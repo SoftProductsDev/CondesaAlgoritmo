@@ -1,4 +1,6 @@
 package condeso;
+import java.util.Set;
+
 import horario.HorarioEntrega;
 import horario.HorarioMaster;
 import horario.HorarioPersonal;
@@ -15,6 +17,7 @@ public interface CondesoInterface {
 	  public HorarioEntrega entrega = null;
 	  public HorarioMaster master = null;
 	  public HorarioPersonal personal = null;
+	  public Set<?> dondePuedeTrabajar = null;
 	  public Contrato contrato = null;
 	  public enum Contrato {
 	  }	  	  
