@@ -32,7 +32,7 @@ public class AddGUI extends Application{
   private TextField levelTF;
   private ChoiceBox<TipoEmpleado> empleoCh;
   private RadioButton matutinoCh;
-  private DatePicker fechaContrataciónDP;
+  private DatePicker fechaContratacionDP;
   private ChoiceBox<Contrato> contratoCh;
   private RadioButton cajaTS;
   private RadioButton vespertinoCh;
@@ -89,7 +89,7 @@ public class AddGUI extends Application{
     tile.getChildren().add(matutinoCh);
     tile.getChildren().add(vespertinoCh);
     tile.getChildren().add(new Label("Fecha de contratación (DD/MM/YYYY)"));
-    tile.getChildren().add(fechaContrataciónDP);
+    tile.getChildren().add(fechaContratacionDP);
     tile.getChildren().add(new Label("Seleccione el tipo de contrato"));
     tile.getChildren().add(contratoCh);
     tile.getChildren().add(btn);
@@ -109,7 +109,7 @@ public class AddGUI extends Application{
         !levelTF.getText().isEmpty()&&
         fijoCh.isSelected() || temporal.isSelected() &&
         matutinoCh.isSelected() || vespertinoCh.isSelected()
-        && fechaContrataciónDP.getValue() != null
+        && fechaContratacionDP.getValue() != null
         && contratoCh.getValue() != null){return true;}
         else
           {
@@ -126,7 +126,7 @@ public class AddGUI extends Application{
         level,
         matutinoCh.isSelected(),
         cajaTS.isSelected(),
-        fechaContrataciónDP.getValue(),
+        fechaContratacionDP.getValue(),
         new ArrayList<Tiendas>(),
         Contrato.Tipo1
     );
@@ -148,7 +148,7 @@ public class AddGUI extends Application{
     matutinoCh.setToggleGroup(group2);
     vespertinoCh = new RadioButton("Vespertino");
     vespertinoCh.setToggleGroup(group2);
-    fechaContrataciónDP = new DatePicker();
+    fechaContratacionDP = new DatePicker();
     contratoCh = new ChoiceBox<Contrato>
         (FXCollections.observableArrayList(Contrato.Tipo1));
     levelTF = new TextField();
@@ -158,5 +158,6 @@ public class AddGUI extends Application{
 
   public static void main(String[] args) {
     launch(args);
+    AddGUI.main(args);
   }
 }
