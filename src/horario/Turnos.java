@@ -1,18 +1,22 @@
 package horario;
 
 import java.util.Set;
-
 import condeso.Contrato;
 
 public class Turnos {
 	private boolean elemental;
-	private int intervalo;
-	private Contrato contrato;
+	private boolean matutino;
+	private boolean ocupado = false;
+	private int inicio;
+	private int fin;
+	private int duracion;
 
-	public Turnos(boolean elemental, int intervalo, Contrato contrato) {
+	public Turnos(boolean elemental, int inicio, int fin, int duracion, boolean matutino) {
 		this.elemental = elemental;
-		this.intervalo = intervalo;
-		this.contrato = contrato;
+		this.inicio = inicio;
+		this.fin = fin;
+		this.duracion = duracion;
+		this.matutino = matutino;
 	}
 
 	public boolean isElemental() {
@@ -23,19 +27,45 @@ public class Turnos {
 		this.elemental = elemental;
 	}
 
-	public int getIntervalo() {
-		return intervalo;
+	public int getInicio() {
+		return inicio;
 	}
 
-	public void setIntervalo(int intervalo) {
-		this.intervalo = intervalo;
+	public void setInicio(int inicio) {
+		this.inicio = inicio;
 	}
 
-	public Contrato getContrato() {
-		return contrato;
+	public int getFin() {
+		return fin;
 	}
 
-	public void setContrato(Contrato contrato) {
-		this.contrato = contrato;
+	public void setFin(int fin) {
+		this.fin = fin;
 	}
+
+	public int getDuracion() {
+		return duracion;
+	}
+
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
+	}
+
+	public boolean isMatutino() {
+		return matutino;
+	}
+
+	public void setMatutino(boolean matutino) {
+		this.matutino = matutino;
+	}
+
+	public boolean isOcupado() {
+		return ocupado;
+	}
+
+	public void setOcupado(boolean ocupado) {
+		this.ocupado = ocupado;
+	}
+	
+	
 }
