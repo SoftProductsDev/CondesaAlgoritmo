@@ -1,5 +1,7 @@
 package horario;
 
+import java.util.Set;
+
 import condeso.Contrato;
 
 public class Turnos {

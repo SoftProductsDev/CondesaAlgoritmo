@@ -13,19 +13,19 @@ import tiendas.Tiendas;
 public class Condeso {
     private TipoEmpleado tipo;
     private String nombre;
-	  private boolean fijos;
-	  private int level;
-	  private int priorityValue;
-	  private boolean manana;
-	  private boolean caja;
-	  private LocalDate antiguedad;
-	  private int diasSeguidos;
-	  private int finesLibres;
-	  private HorarioEntrega entrega;
-	  private HorarioMaster master;
-	  private HorarioPersonal personal;
-	  private List<Tiendas> dondePuedeTrabajar;
-	  private Contrato contrato;
+	private boolean fijos;
+	private int level;
+	private int priorityValue;
+	private boolean manana;
+	private boolean caja;
+	private LocalDate antiguedad;
+	private int diasSeguidos;
+	private int finesLibres;
+	private HorarioEntrega entrega;
+	private HorarioMaster master;
+	private HorarioPersonal personal;
+	private List<Tiendas> dondePuedeTrabajar;
+	private Contrato contrato;
 
 	public Condeso(TipoEmpleado tipo, String nombre, boolean fijos, int level, boolean manana,
 			boolean caja, LocalDate antiguedad, List<Tiendas> dondePuedeTrabajar, Contrato contrato) {
