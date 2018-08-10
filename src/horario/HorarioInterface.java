@@ -1,5 +1,5 @@
 package horario;
 
-public interface HorarioInterface {
+public class HorarioInterface {
 
 }

@@ -1,5 +1,5 @@
 package horario;
 
-public class HorarioEntrega implements HorarioInterface{
+public class HorarioEntrega extends HorarioInterface{
 
 }
