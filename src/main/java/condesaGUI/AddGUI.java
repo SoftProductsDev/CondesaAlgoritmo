@@ -42,7 +42,7 @@ public class AddGUI extends Application{
   private RadioButton temporal;
   private Label errorMssg;
 
-
+  //Builds elements
   @Override
   public void start(Stage primaryStage) {
     Button btn = new Button();
