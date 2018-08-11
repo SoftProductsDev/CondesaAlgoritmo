@@ -3,7 +3,10 @@ package condesaGUI;
 import condeso.Condeso;
 import condeso.Contrato;
 import condeso.TipoEmpleado;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -126,11 +129,15 @@ public class AddGUI extends Application{
         level,
         matutinoCh.isSelected(),
         cajaTS.isSelected(),
-        fechaContratacionDP.getValue(),
+        asDate(fechaContratacionDP.getValue()),
         new ArrayList<Tiendas>(),
         Contrato.Tipo1
     );
     return condeso;
+  }
+
+  private Date asDate(LocalDate localDate) {
+    return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
   }
 
   private void CreateControls(){

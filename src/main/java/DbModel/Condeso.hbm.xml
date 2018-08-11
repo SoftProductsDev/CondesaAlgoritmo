@@ -1,0 +1,17 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD X.X//EN"
+  "DbModel/hi¿bernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class>
+    <id name="id" type="long" column="id">
+      <generator class="increment"/>
+    </id>
+    <property column="nombre" name="nombre"/>
+    <property column="fijos" name="fijos"/>
+    <property column="level" name="level"/>
+    <property column="caja" name="caja"/>
+    <property column="antiguedad" name="antiguedad"/>
+  </class>
+  <!-- other properties mapping-->
+</hibernate-mapping>
+

@@ -8,7 +8,8 @@ public class Dias {
 	// key = inicio del turno
 	// value = turno
 	private Set<Turnos> turnos = new HashSet<Turnos>();
-	Date date = new Date(0);
+	Date date;
+
 	public Dias(Date date) {
 		this.date = date;
 	}

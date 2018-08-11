@@ -18,7 +18,7 @@ public class Condeso {
 	private int priorityValue;
 	private boolean manana;
 	private boolean caja;
-	private LocalDate antiguedad;
+	private  Date antiguedad;
 	private int diasSeguidos;
 	private int finesLibres;
 	private HorarioEntrega entrega;
@@ -28,7 +28,7 @@ public class Condeso {
 	private Contrato contrato;
 
 	public Condeso(TipoEmpleado tipo, String nombre, boolean fijos, int level, boolean manana,
-			boolean caja, LocalDate antiguedad, List<Tiendas> dondePuedeTrabajar, Contrato contrato) {
+			boolean caja, Date antiguedad, List<Tiendas> dondePuedeTrabajar, Contrato contrato) {
 		this.tipo = tipo;
 		this.nombre = nombre;
 		this.fijos = fijos;
@@ -111,11 +111,11 @@ public class Condeso {
 		this.caja = caja;
 	}
 
-	public LocalDate getAntiguedad() {
+	public Date getAntiguedad() {
 		return antiguedad;
 	}
 
-	public void setAntiguedad(LocalDate antiguedad) {
+	public void setAntiguedad(Date antiguedad) {
 		this.antiguedad = antiguedad;
 	}
 
