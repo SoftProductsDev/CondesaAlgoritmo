@@ -6,9 +6,7 @@
         <id name="id" type="long" column="id">
             <generator class="increment"/>
         </id>
-        <one-to-many name="plantillas" class="Plantillas">
-            <column name="plantillas"/>
-        </one-to-many>
+        <property name="plantillas" type="Plantillas"/>
         <property  column="name" name="name"/>
         <property  column="horario master" name="horario master"/>
     </class>

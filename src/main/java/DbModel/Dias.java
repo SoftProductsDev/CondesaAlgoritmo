@@ -2,12 +2,21 @@ package DbModel;
 
 import horario.Turnos;
 
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.HashMap;
 
+@Entity
 public class Dias {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private HashMap<Integer,horario.Turnos> turnos = new HashMap<Integer, Turnos>();
+
+    @OneToMany(mappedBy="dias")
+    @MapKey(name="inicio")
+    private HashMap<Integer,horario.Turnos> turnos;
     private Date date;
 
     public long getId() {

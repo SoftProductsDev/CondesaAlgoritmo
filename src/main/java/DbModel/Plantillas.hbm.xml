@@ -6,9 +6,10 @@
         <id name="id" type="long" column="id">
             <generator class="increment"/>
         </id>
-        <one-to-many column="dias" class="Dias">
-            <column name="dias"/>
-        </one-to-many>
+        <set name="dias">
+            <key column="date" not-null="true"></key>
+            <one-to-many class="Dias"/>
+        </set>
     </class>
     <!-- other properties mapping-->
 </hibernate-mapping>
