@@ -61,7 +61,7 @@ public class AddGUI extends Application{
         }
         catch(Exception e)
         {
-          errorMssg.setText("Ingrese un valor núemrico en nivel");
+          errorMssg.setText("Ingrese un valor numérico en nivel");
         }
         }
       }
