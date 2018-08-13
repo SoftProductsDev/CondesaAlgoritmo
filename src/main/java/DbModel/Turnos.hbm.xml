@@ -6,11 +6,11 @@
         <id name="id" type="long" column="id">
             <generator class="increment"/>
         </id>
-        <properties column="elemental" name="elemental"/>
-        <properties column="matutino" name="matutino"/>
-        <properties column="inicio" name="inicio"/>
-        <properties column="fin" name="fin"/>
-        <properties column="duracion" name="duracion"/>
+        <property column="elemental" name="elemental"/>
+        <property column="matutino" name="matutino"/>
+        <property column="inicio" name="inicio"/>
+        <property column="fin" name="fin"/>
+        <property column="duracion" name="duracion"/>
     </class>
     <!-- other properties mapping-->
 </hibernate-mapping>

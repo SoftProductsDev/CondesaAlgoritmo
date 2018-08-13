@@ -9,8 +9,8 @@
         <one-to-many name="plantillas" class="Plantillas">
             <column name="plantillas"/>
         </one-to-many>
-        <properties  column="name" name="name"/>
-        <properties  column="horario master" name="horario master"/>
+        <property  column="name" name="name"/>
+        <property  column="horario master" name="horario master"/>
     </class>
     <!-- other properties mapping-->
 </hibernate-mapping>
