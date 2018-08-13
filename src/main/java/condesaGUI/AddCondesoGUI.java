@@ -1,5 +1,6 @@
 package condesaGUI;
 
+import DbController.HibernateCrud;
 import condeso.Condeso;
 import condeso.Contrato;
 import condeso.TipoEmpleado;
@@ -49,6 +50,8 @@ public class AddCondesoGUI extends Application{
                     try {
                         level = Integer.parseInt(levelTF.getText());
                         Condeso condeso = CreateCondeso(level);
+                        //Guarda en base de datos
+                        HibernateCrud.SaveCondeso(condeso);
                         errorMssg.setText("Se ha añadido: " + condeso.getNombre());
                         System.out.println(condeso);
                     }
