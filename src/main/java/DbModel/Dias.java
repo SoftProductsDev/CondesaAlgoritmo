@@ -4,10 +4,24 @@ import horario.Turnos;
 
 import java.sql.Date;
 import java.util.HashMap;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MapKey;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Dias {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private HashMap<Integer,horario.Turnos> turnos = new HashMap<Integer, Turnos>();
+
+    @OneToMany(mappedBy="dias")
+    @MapKey(name="inicio")
+    private HashMap<Integer,horario.Turnos> turnos;
     private Date date;
 
     public long getId() {
