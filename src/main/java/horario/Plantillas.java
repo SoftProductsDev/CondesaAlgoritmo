@@ -1,7 +1,12 @@
 package horario;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Plantillas {
-	private Dias dias;
+	private Set<Dias> dias;
+
+	public Plantillas() {
+		dias = new HashSet<Dias>();
+	}
 }

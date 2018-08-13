@@ -1,0 +1,14 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD X.X//EN"
+        "DbModel/hi¿bernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class>
+        <id name="id" type="long" column="id">
+            <generator class="increment"/>
+        </id>
+        <one-to-many name="turnos" class="Turnos">
+            <column name="turnos"/>
+        </one-to-many>
+    </class>
+    <!-- other properties mapping-->
+</hibernate-mapping>
