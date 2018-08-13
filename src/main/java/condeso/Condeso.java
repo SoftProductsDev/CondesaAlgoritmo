@@ -1,14 +1,11 @@
 package condeso;
-import java.time.LocalDate;
-import java.time.chrono.Chronology;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-
 import horario.HorarioEntrega;
 import horario.HorarioMaster;
 import horario.HorarioPersonal;
 import tiendas.Tiendas;
+
+import java.util.Date;
+import java.util.List;
 
 public class Condeso {
     private TipoEmpleado tipo;
