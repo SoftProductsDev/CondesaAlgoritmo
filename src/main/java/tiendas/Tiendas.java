@@ -1,7 +1,7 @@
 package tiendas;
 import horario.HorarioMaster;
 import horario.Plantillas;
-public class Tiendas {
+public class Tiendas { // hola amigos
 	private Plantillas plantilla;
 	private String nombre;
 	private HorarioMaster master;
