@@ -1,5 +1,6 @@
 package condesaGUI;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -7,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
@@ -52,8 +54,20 @@ public class MainGUI extends Application {
         tiendas.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                AddTiendaGUI tiendas = new AddTiendaGUI();
-//TODO
+                Parent root;
+                try {
+                    Stage stage = new Stage();
+                    stage.setTitle("Add Condeso");
+                    AddCondesoGUI condeso = new AddCondesoGUI();
+                    condeso.start(stage);
+                    stage.setScene(condeso.scene);
+                    stage.show();
+                    // Hide this current window (if this is what you want)
+                    //((Node)(event.getSource())).getScene().getWindow().hide();
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
         Button condesos = new Button();
@@ -61,8 +75,20 @@ public class MainGUI extends Application {
         condesos.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                AddCondesoGUI condesos = new AddCondesoGUI();
-//TODO
+                Parent root;
+                try {
+                    Stage stage = new Stage();
+                    stage.setTitle("Add Condeso");
+                    AddTiendaGUI tienda = new AddTiendaGUI();
+                    tienda.start(stage);
+                    stage.setScene(tienda.scene);
+                    stage.show();
+                    // Hide this current window (if this is what you want)
+                    //((Node)(event.getSource())).getScene().getWindow().hide();
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
         controls[0] = condesos;

@@ -35,6 +35,7 @@ public class AddCondesoGUI extends Application{
     private RadioButton vespertinoCh;
     private RadioButton temporal;
     private Label errorMssg;
+    public Scene scene;
 
     //Builds elements
     @Override
@@ -94,7 +95,7 @@ public class AddCondesoGUI extends Application{
         tile.getChildren().add(btn);
         tile.getChildren().add(errorMssg);
 
-        Scene scene = new Scene(tile, 300, 700);
+        scene = new Scene(tile, 300, 700);
 
         primaryStage.setTitle("Añadir Condesos");
         primaryStage.setScene(scene);
