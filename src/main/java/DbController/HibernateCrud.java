@@ -22,14 +22,14 @@ public class HibernateCrud {
     condesodb.setAntiguedad(condeso.getAntiguedad());
     condesodb.setCaja(condeso.isCaja());
     condesodb.setContrato(condeso.getContrato());
-    condesodb.setDondePuedeTrabajar(condeso.getDondePuedeTrabajar());
-    condesodb.setEntrega(condeso.getEntrega());
+    //condesodb.setDondePuedeTrabajar(condeso.getDondePuedeTrabajar());
+    //condesodb.setEntrega(condeso.getEntrega());
     condesodb.setFijos(condeso.isFijos());
     condesodb.setLevel(condeso.getLevel());
     condesodb.setManana(condeso.isManana());
-    condesodb.setMaster(condeso.getMaster());
+    //condesodb.setMaster(condeso.getMaster());
     condesodb.setNombre(condeso.getNombre());
-    condesodb.setPersonal(condeso.getPersonal());
+    //condesodb.setPersonal(condeso.getPersonal());
     condesodb.setTipo(condeso.getTipo());
 
     // save condeso object

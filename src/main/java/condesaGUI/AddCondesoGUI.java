@@ -57,7 +57,7 @@ public class AddCondesoGUI extends Application{
                     }
                     catch(Exception e)
                     {
-                        errorMssg.setText("Ingrese un valor numérico en nivel");
+                        errorMssg.setText("Ingrese un valor numérico en nivel" + e.getMessage());
                     }
                 }
             }

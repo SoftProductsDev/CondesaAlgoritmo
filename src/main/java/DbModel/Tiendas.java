@@ -2,11 +2,28 @@ package DbModel;
 
 import horario.HorarioMaster;
 import horario.Plantillas;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "tiendas")
 public class Tiendas {
+
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     private long id;
+
+    @Column(name = "plantillas")
     private Plantillas plantilla;
+
+    @Column(name = "nombre")
     private String nombre;
+
+    @Column(name = "horariomaster")
     private HorarioMaster master;
 
     public Tiendas(){

@@ -1,12 +1,35 @@
 package DbModel;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "turnos")
 public class Turnos {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     private long id;
+
+    @Column(name = "elemental")
     private boolean elemental;
+
+    @Column(name = "matutino")
     private boolean matutino;
+
+    @Column(name = "ocupado")
     private boolean ocupado = false;
+
+    @Column(name = "inicio")
     private int inicio;
+
+    @Column(name = "fin")
     private int fin;
+
+    @Column(name = "duracion")
     private int duracion;
 
     public Turnos(){

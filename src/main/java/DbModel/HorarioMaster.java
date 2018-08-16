@@ -1,21 +1,25 @@
 package DbModel;
 
+import horario.Dias;
+import java.util.Map;
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashMap;
+
 
 /**
  * Created by javier on 13/08/2018.
  */
+@Entity
+@Table(name = "horariomaster")
 public class HorarioMaster {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
-  @OneToMany(mappedBy="HorarioMaster")
-  @MapKey(name="date")
-  private HashMap<Date, horario.Dias> mes;
+  @ElementCollection
+  @CollectionTable(name = "mesmaster")
+  private Map<Date, Dias> mes;
 
   public HorarioMaster() {
   }
@@ -28,11 +32,11 @@ public class HorarioMaster {
     this.id = id;
   }
 
-  public HashMap<Date, horario.Dias> getMes() {
+  public Map<Date, horario.Dias> getMes() {
     return mes;
   }
 
-  public void setMes(HashMap<Date, horario.Dias> mes) {
+  public void setMes(Map<Date, horario.Dias> mes) {
     this.mes = mes;
   }
 }

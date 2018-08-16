@@ -5,6 +5,19 @@ import condeso.TipoEmpleado;
 import horario.HorarioEntrega;
 import horario.HorarioMaster;
 import horario.HorarioPersonal;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import org.hibernate.annotations.IndexColumn;
+import org.hibernate.annotations.Type;
 import tiendas.Tiendas;
 
 import java.util.Date;
@@ -13,19 +26,44 @@ import java.util.List;
 /**
  * Created by javier on 10/08/2018.
  */
+
+@Entity
+@Table(name = "condeso")
 public class Condeso {
+
+  @Id
+  @GeneratedValue
+  @Column(name = "id")
   private long id;
+  @Column
   private TipoEmpleado tipo;
+  @Column
   private String nombre;
+  @Column
   private boolean fijos;
+  @Column
   private int level;
+  @Column
   private boolean manana;
+  @Column
   private boolean caja;
+  @Column
   private Date antiguedad;
+  /*@JoinColumn(name="horarioentrega")
+  @OneToOne
   private HorarioEntrega entrega;
+  @JoinColumn(name="horarioentrega")
+  @ManyToOne
   private HorarioMaster master;
+  @JoinColumn(name="horarioentrega")
+  @OneToOne
   private HorarioPersonal personal;
-  private List<Tiendas> dondePuedeTrabajar;
+
+  @ElementCollection(fetch= FetchType.LAZY)
+  @CollectionTable(name = "tiendas")
+  @IndexColumn(name="tiendas_index")
+  private List<Tiendas> dondePuedeTrabajar;*/
+  @Column
   private Contrato contrato;
 
   public Condeso() {
@@ -95,7 +133,7 @@ public class Condeso {
     this.antiguedad = antiguedad;
   }
 
-  public HorarioEntrega getEntrega() {
+  /*public HorarioEntrega getEntrega() {
     return entrega;
   }
 
@@ -126,7 +164,7 @@ public class Condeso {
   public void setDondePuedeTrabajar(List<Tiendas> dondePuedeTrabajar) {
     this.dondePuedeTrabajar = dondePuedeTrabajar;
   }
-
+*/
   public Contrato getContrato() {
     return contrato;
   }

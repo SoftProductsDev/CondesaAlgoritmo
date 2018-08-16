@@ -4,22 +4,23 @@ import horario.Dias;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by javier on 13/08/2018.
  */
 
 @Entity
+@Table(name = "horarioentrega")
 public class HorarioEntrega {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
-  @OneToMany(mappedBy="HorarioEntrega")
-  @MapKey(name="date")
-  private HashMap<Date, Dias> mes;
+  @ElementCollection
+  @CollectionTable(name = "mesentrega")
+  private Map<Date, Dias> mes;
 
   public HorarioEntrega() {
   }
@@ -32,11 +33,11 @@ public class HorarioEntrega {
     this.id = id;
   }
 
-  public HashMap<Date, Dias> getMes() {
+  public Map<Date, Dias> getMes() {
     return mes;
   }
 
-  public void setMes(HashMap<Date, Dias> mes) {
+  public void setMes(Map<Date, Dias> mes) {
     this.mes = mes;
   }
 }
