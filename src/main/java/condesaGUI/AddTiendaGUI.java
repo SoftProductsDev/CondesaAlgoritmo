@@ -24,13 +24,14 @@ public class AddTiendaGUI extends Application {
 
   private TilePane Tile;
   private Node[] controls;
+  public Scene scene;
 
   @Override
   public void start(Stage primaryStage) throws Exception {
     CreateLayout();
     CreateControls();
     AddControlsToLayout();
-    Scene scene = new Scene(Tile, 300, 500);
+    scene = new Scene(Tile, 300, 500);
     primaryStage.setTitle("Añadir Tiendas");
     primaryStage.setScene(scene);
     primaryStage.show();
