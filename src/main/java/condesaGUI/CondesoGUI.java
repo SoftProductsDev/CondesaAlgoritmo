@@ -1,4 +1,7 @@
 package condesaGUI;
 
-public class CondesoGUI {
+import javax.swing.*;
+
+public class CondesoGUI extends JPanel{
+    private JPanel condeso;
 }
