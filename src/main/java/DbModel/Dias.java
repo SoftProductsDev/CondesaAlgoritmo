@@ -1,6 +1,6 @@
 package DbModel;
 
-import horario.Turnos;
+import DbModel.Turnos;
 
 import java.util.Map;
 import javax.persistence.*;
@@ -17,12 +17,13 @@ public class Dias {
     @Column(name = "id")
     private long id;
 
-    @ElementCollection
+    /*@ElementCollection
+    @MapKey (name = "inicio")
     @CollectionTable(name = "turnos")
-    private Map<Integer, Turnos> turnos;
+    private Map<Integer, DbModel.Turnos> turnos;*/
 
     @Column(name = "date")
-    private Date date;
+    private java.util.Date date;
 
     public long getId() {
         return id;
@@ -32,19 +33,19 @@ public class Dias {
         this.id = id;
     }
 
-    public Map<Integer, Turnos> getTurnos() {
+    /*public Map<Integer, Turnos> getTurnos() {
         return turnos;
     }
 
     public void setTurnos(Map<Integer, Turnos> turnos) {
         this.turnos = turnos;
-    }
+    }*/
 
-    public Date getDate() {
+    public java.util.Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(java.util.Date date) {
         this.date = date;
     }
 }
