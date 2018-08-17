@@ -1,7 +1,8 @@
 package horario;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Dias {
 	// key = inicio del turno
@@ -9,7 +10,21 @@ public class Dias {
 	private HashMap<Integer,Turnos> turnos = new HashMap<Integer,Turnos>();
 	private Date date;
 
-	public Dias(Date date) {
+	public  DbModel.Dias convertToDbModel()
+	{
+		DbModel.Dias result = new DbModel.Dias();
+		result.setDate(date);
+		//result.setTurnos(convertTurnosToDbModel());
+		return result;
+	}
+
+  private Map<Integer, DbModel.Turnos> convertTurnosToDbModel() {
+	  HashMap<Integer, DbModel.Turnos> result = new HashMap<>();
+	  turnos.forEach((k,v) -> result.put(k, v.convertToDbModel()));
+	  return  result;
+   }
+
+  public Dias(Date date) {
 		this.date = date;
 	}
 	public HashMap<Integer,Turnos> getTurnos() {

@@ -5,6 +5,8 @@ import condeso.TipoEmpleado;
 import horario.HorarioEntrega;
 import horario.HorarioMaster;
 import horario.HorarioPersonal;
+import java.util.HashMap;
+import java.util.Map;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -14,9 +16,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapKey;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.IndexColumn;
+import org.hibernate.annotations.MapKeyType;
 import org.hibernate.annotations.Type;
 import tiendas.Tiendas;
 
@@ -49,9 +53,12 @@ public class Condeso {
   private boolean caja;
   @Column
   private Date antiguedad;
-  /*@JoinColumn(name="horarioentrega")
-  @OneToOne
-  private HorarioEntrega entrega;
+
+  @ElementCollection
+  @MapKey(name = "date")
+  @CollectionTable
+  private Map<Date, Dias> entrega;
+  /*
   @JoinColumn(name="horarioentrega")
   @ManyToOne
   private HorarioMaster master;
@@ -133,14 +140,14 @@ public class Condeso {
     this.antiguedad = antiguedad;
   }
 
-  /*public HorarioEntrega getEntrega() {
+  public Map<Date, Dias> getEntrega() {
     return entrega;
   }
 
-  public void setEntrega(HorarioEntrega entrega) {
+  public void setEntrega(Map entrega) {
     this.entrega = entrega;
   }
-
+/*
   public HorarioMaster getMaster() {
     return master;
   }

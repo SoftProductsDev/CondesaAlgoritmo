@@ -20,6 +20,8 @@
     <!-- Mapping Classes -->
     <!-- Recipe: Save An Object -->
     <mapping class="DbModel.Condeso" />
+    <mapping class="DbModel.Dias"/>
+    <mapping class="DbModel.Turnos"/>
 
 
 
