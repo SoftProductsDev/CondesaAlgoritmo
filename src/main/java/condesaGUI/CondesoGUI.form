@@ -10,7 +10,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="e3731" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+      <component id="e3731" class="javax.swing.JTextField" binding="nombreField">
         <constraints>
           <grid row="0" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -28,109 +28,111 @@
           <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
-      <component id="cb939" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+      <component id="cb939" class="javax.swing.JComboBox" binding="cargoBox">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
       </component>
-      <component id="ccf80" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+      <component id="ccf80" class="javax.swing.JTextField" binding="nivelField">
         <constraints>
           <grid row="2" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value=""/>
+        </properties>
       </component>
-      <component id="8db7" class="javax.swing.JLabel">
+      <component id="8db7" class="javax.swing.JLabel" binding="fijo">
         <constraints>
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="32" height="16"/>
           </grid>
         </constraints>
         <properties>
-          <text value="Label"/>
+          <text value="Fijo "/>
         </properties>
       </component>
-      <component id="ed2ed" class="javax.swing.JRadioButton" binding="radioButton1" default-binding="true">
+      <component id="ed2ed" class="javax.swing.JRadioButton" binding="siRadioButton" default-binding="true">
         <constraints>
           <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="RadioButton"/>
+          <text value="si"/>
         </properties>
       </component>
-      <component id="99f9b" class="javax.swing.JRadioButton" binding="radioButton2" default-binding="true">
+      <component id="99f9b" class="javax.swing.JRadioButton" binding="noRadioButton" default-binding="true">
         <constraints>
           <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="RadioButton"/>
+          <text value="no"/>
         </properties>
       </component>
-      <component id="23896" class="javax.swing.JLabel">
+      <component id="23896" class="javax.swing.JLabel" binding="caja">
         <constraints>
           <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Cargo"/>
+          <text value="caja"/>
         </properties>
       </component>
-      <component id="3252d" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
+      <component id="3252d" class="javax.swing.JComboBox" binding="cajaBox">
         <constraints>
           <grid row="4" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
       </component>
-      <component id="4db72" class="javax.swing.JLabel">
+      <component id="4db72" class="javax.swing.JLabel" binding="Nombre">
         <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Label"/>
+          <text value="Nombre"/>
         </properties>
       </component>
-      <component id="132d6" class="javax.swing.JLabel">
+      <component id="132d6" class="javax.swing.JLabel" binding="Cargo">
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Label"/>
+          <text value="Cargo"/>
         </properties>
       </component>
-      <component id="d7285" class="javax.swing.JLabel">
+      <component id="d7285" class="javax.swing.JLabel" binding="Nivel">
         <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Label"/>
+          <text value="Nivel"/>
         </properties>
       </component>
-      <component id="d98e1" class="javax.swing.JLabel">
+      <component id="d98e1" class="javax.swing.JLabel" binding="tipo">
         <constraints>
           <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Label"/>
+          <text value="Tipo de turno"/>
         </properties>
       </component>
-      <component id="c37a0" class="javax.swing.JRadioButton" binding="radioButton3" default-binding="true">
+      <component id="c37a0" class="javax.swing.JRadioButton" binding="matutinoRadioButton" default-binding="true">
         <constraints>
           <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="RadioButton"/>
+          <text value="Matutino"/>
         </properties>
       </component>
-      <component id="685b2" class="javax.swing.JRadioButton" binding="radioButton4" default-binding="true">
+      <component id="685b2" class="javax.swing.JRadioButton" binding="vespertinoRadioButton" default-binding="true">
         <constraints>
           <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="RadioButton"/>
+          <text value="Vespertino"/>
         </properties>
       </component>
-      <component id="4bdc6" class="javax.swing.JLabel">
+      <component id="4bdc6" class="javax.swing.JLabel" binding="contratacion">
         <constraints>
           <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -138,7 +140,7 @@
           <text value="Contratacion"/>
         </properties>
       </component>
-      <component id="c3825" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+      <component id="c3825" class="javax.swing.JTextField" binding="contratacionField">
         <constraints>
           <grid row="6" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -146,7 +148,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="663f9" class="javax.swing.JLabel">
+      <component id="663f9" class="javax.swing.JLabel" binding="contrato">
         <constraints>
           <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -154,7 +156,7 @@
           <text value="Tipo de contrato"/>
         </properties>
       </component>
-      <component id="1c287" class="javax.swing.JComboBox" binding="comboBox3" default-binding="true">
+      <component id="1c287" class="javax.swing.JComboBox" binding="tipoBox">
         <constraints>
           <grid row="7" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
