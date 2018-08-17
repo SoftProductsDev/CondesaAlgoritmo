@@ -4,6 +4,10 @@ import DbController.HibernateCrud;
 import condeso.Condeso;
 import condeso.Contrato;
 import condeso.TipoEmpleado;
+import horario.Dias;
+import horario.HorarioEntrega;
+import horario.Turnos;
+import java.util.HashMap;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -130,6 +134,7 @@ public class AddCondesoGUI extends Application{
                 new ArrayList<Tiendas>(),
                 Contrato.Tipo1
         );
+        condeso.setEntrega(new HorarioEntrega(new HashMap()));
         return condeso;
     }
 

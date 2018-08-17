@@ -19,6 +19,17 @@ public class Turnos {
 		this.matutino = matutino;
 	}
 
+	public DbModel.Turnos convertToDbModel()
+	{
+		DbModel.Turnos result = new DbModel.Turnos();
+		result.setElemental(elemental);
+		result.setInicio(inicio);
+		result.setDuracion(duracion);
+		result.setMatutino(matutino);
+		result.setOcupado(ocupado);
+		return  result;
+	}
+
 	public boolean isElemental() {
 		return elemental;
 	}
