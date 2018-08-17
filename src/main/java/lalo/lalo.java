@@ -1,12 +1,9 @@
 package lalo;
-import java.util.Queue;
-import java.util.Set;
-
 import condeso.Condeso;
 import horario.HorarioEntrega;
-import codeso.Condeso;
-import horario.HorarioMaster;
-import horario.HorarioPersonal;
+
+import java.util.Queue;
+import java.util.Set;
 public class lalo {
 	public Set<HorarioEntrega> entregas;
 	public Queue<Condeso> condesos;
