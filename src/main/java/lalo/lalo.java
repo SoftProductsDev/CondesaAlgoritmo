@@ -1,12 +1,15 @@
 package lalo;
 import java.util.Queue;
 import java.util.Set;
+
+import condeso.Condeso;
 import horario.HorarioEntrega;
+import codeso.Condeso;
 import horario.HorarioMaster;
 import horario.HorarioPersonal;
 public class lalo {
 	public Set<HorarioEntrega> entregas;
-	public Queue<?> condesos;
+	public Queue<Condeso> condesos;
 	public Set<?> tiendas;
 	public void  GMTodos() {
 		//TODO
