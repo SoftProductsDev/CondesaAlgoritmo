@@ -34,6 +34,7 @@ public class CondesosCRUDGUI {
     private JRadioButton noButton;
     private JLabel contratacionLabel;
 
+
     public CondesosCRUDGUI(){
         tablaCondesos.setFont(new Font("Arial", Font.PLAIN, 40));
         editCondeso.setFont(new Font("Arial", Font.PLAIN, 40));
@@ -62,7 +63,17 @@ public class CondesosCRUDGUI {
         borrarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Object[] options = {"Si",
+                        "No"};
+                int n = JOptionPane.showOptionDialog(frame,
+                        "Quieres borrar este condeso ? \n"
+                        + "Se borrara permanentemente ",
+                        "Borrar Condeso",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.WARNING_MESSAGE,
+                        null,
+                        options,
+                        options[1]);
             }
         });
         actualizarButton.addActionListener(new ActionListener() {

@@ -12,8 +12,6 @@ public class FrontPage extends JFrame{
     private JButton crearCondesoButton;
     private JButton nuevoHorarioButton;
     private JButton crearTiendaButton;
-    private JList list1;
-    private JList list2;
 
     public FrontPage() {
         crearCondesoButton.setFont(new Font("Arial", Font.PLAIN, 40));
