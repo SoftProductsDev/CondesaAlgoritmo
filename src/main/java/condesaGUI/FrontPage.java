@@ -14,18 +14,13 @@ public class FrontPage extends JFrame{
     private JButton crearTiendaButton;
     private JList list1;
     private JList list2;
-    private JList list3;
-    private JPanel BotonesDeInicio;
-    private JPanel ListasDeInicio;
-    private JButton agregarCondesoButton;
 
     public FrontPage() {
-
         crearCondesoButton.setFont(new Font("Arial", Font.PLAIN, 40));
         crearCondesoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CondesoGUI condesoGUI = new CondesoGUI();
+                CondesosCRUDGUI condesoGUI = new CondesosCRUDGUI();
                 condesoGUI.start();
             }
         });
@@ -33,7 +28,8 @@ public class FrontPage extends JFrame{
         crearTiendaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                TiendasGUI tiendas = new TiendasGUI();
+                tiendas.start();
             }
         });
         nuevoHorarioButton.setFont(new Font("Arial", Font.PLAIN, 40));
