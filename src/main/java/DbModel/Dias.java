@@ -1,11 +1,6 @@
 package DbModel;
 
-import DbModel.Turnos;
-
-import java.util.Map;
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.HashMap;
 
 @Entity
 @Table(name = "dias")

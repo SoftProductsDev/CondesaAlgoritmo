@@ -7,6 +7,7 @@ import java.util.Map;
 public class Dias {
 	// key = inicio del turno
 	// value = turno
+	private long Id;
 	private HashMap<Integer,Turnos> turnos = new HashMap<Integer,Turnos>();
 	private Date date;
 
@@ -18,7 +19,15 @@ public class Dias {
 		return result;
 	}
 
-  private Map<Integer, DbModel.Turnos> convertTurnosToDbModel() {
+	public long getId() {
+		return Id;
+	}
+
+	public void setId(long id) {
+		Id = id;
+	}
+
+	private Map<Integer, DbModel.Turnos> convertTurnosToDbModel() {
 	  HashMap<Integer, DbModel.Turnos> result = new HashMap<>();
 	  turnos.forEach((k,v) -> result.put(k, v.convertToDbModel()));
 	  return  result;

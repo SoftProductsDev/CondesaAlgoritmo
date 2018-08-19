@@ -4,6 +4,7 @@ import java.util.Set;
 import condeso.Contrato;
 
 public class Turnos {
+	private long Id;
 	private boolean elemental;
 	private boolean matutino;
 	private boolean ocupado = false;
@@ -18,6 +19,14 @@ public class Turnos {
 		this.fin = fin;
 		this.duracion = duracion;
 		this.matutino = matutino;
+	}
+
+	public long getId() {
+		return Id;
+	}
+
+	public void setId(long id) {
+		Id = id;
 	}
 
 	public DbModel.Turnos convertToDbModel()

@@ -2,6 +2,7 @@ package tiendas;
 import horario.HorarioMaster;
 import horario.Plantillas;
 public class Tiendas { // hola amigos
+	private long Id;
 	private Plantillas plantilla;
 	private String nombre;
 	private HorarioMaster master;
@@ -13,6 +14,14 @@ public class Tiendas { // hola amigos
 
 	public Plantillas getPlantilla() {
 		return plantilla;
+	}
+
+	public long getId() {
+		return Id;
+	}
+
+	public void setId(long id) {
+		Id = id;
 	}
 
 	public void setPlantilla(Plantillas plantilla) {

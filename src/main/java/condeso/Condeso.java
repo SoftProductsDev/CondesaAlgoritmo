@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Condeso {
+	private long Id;
     private TipoEmpleado tipo;
     private String nombre;
 	private boolean fijos;
@@ -52,7 +53,15 @@ public class Condeso {
         '}';
   }
 
-  public TipoEmpleado getTipo() {
+	public long getId() {
+		return Id;
+	}
+
+	public void setId(long id) {
+		Id = id;
+	}
+
+	public TipoEmpleado getTipo() {
 		return tipo;
 	}
 

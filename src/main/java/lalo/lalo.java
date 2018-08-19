@@ -1,4 +1,5 @@
 package lalo;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ import horario.Turnos;
 import tiendas.Tiendas;
 import horario.HorarioMaster;
 import horario.HorarioPersonal;
+import horario.HorarioEntrega;
+
 public class lalo {
 	public Set<HorarioEntrega> entregas;
 	public Queue<Condeso> condesos;
