@@ -9,4 +9,6 @@ public class Plantillas {
 	public Plantillas() {
 		dias = new HashSet<Dias>();
 	}
+
+	public Set<Dias> getDias(){return dias; }
 }

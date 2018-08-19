@@ -4,9 +4,11 @@ import java.util.Set;
 import condeso.Contrato;
 
 public class Turnos {
+	private long Id;
 	private boolean elemental;
 	private boolean matutino;
 	private boolean ocupado = false;
+	private boolean noOptions = false;
 	private int inicio;
 	private int fin;
 	private int duracion;
@@ -19,6 +21,14 @@ public class Turnos {
 		this.matutino = matutino;
 	}
 
+	public long getId() {
+		return Id;
+	}
+
+	public void setId(long id) {
+		Id = id;
+	}
+
 	public DbModel.Turnos convertToDbModel()
 	{
 		DbModel.Turnos result = new DbModel.Turnos();
@@ -28,6 +38,12 @@ public class Turnos {
 		result.setMatutino(matutino);
 		result.setOcupado(ocupado);
 		return  result;
+	}
+
+	public boolean noOptionst(){return noOptions;}
+
+	public void setNoOptions(boolean Options){
+		noOptions = Options;
 	}
 
 	public boolean isElemental() {
