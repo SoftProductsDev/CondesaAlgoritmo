@@ -48,6 +48,6 @@ public class FrontPage extends JFrame{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(FrontPage.WIDTH, FrontPage.HEIGHT);
+        //frame.setSize(FrontPage.WIDTH, FrontPage.HEIGHT);
     }
 }

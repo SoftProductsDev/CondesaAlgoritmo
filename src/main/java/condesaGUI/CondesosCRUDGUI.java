@@ -84,7 +84,7 @@ public class CondesosCRUDGUI {
         frame.setContentPane(new CondesosCRUDGUI().listaDeCondesos);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.pack();
-        frame.setSize(CondesosCRUDGUI.WIDTH, CondesosCRUDGUI.HEIGHT);
+        //frame.setSize(CondesosCRUDGUI.WIDTH, CondesosCRUDGUI.HEIGHT);
         frame.setVisible(true);
 
     }
