@@ -1,16 +1,28 @@
 package lalo;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Set;
 
 import condeso.Condeso;
 import horario.HorarioEntrega;
-import codeso.Condeso;
+import horario.Turnos;
+import tiendas.Tiendas;
 import horario.HorarioMaster;
 import horario.HorarioPersonal;
 public class lalo {
 	public Set<HorarioEntrega> entregas;
 	public Queue<Condeso> condesos;
-	public Set<?> tiendas;
+	public Set<Tiendas> tiendas;
+	private ArrayList<Turnos> turnos;
+
+	/*private void ListaDeTurnos(){
+		for(Tiendas t : tiendas){
+			
+		}
+	}*/
+
 	public void  GMTodos() {
 		//TODO
 	}
@@ -27,7 +39,7 @@ public class lalo {
 		//TODO
 	}
 	public void laloFuncionando() {
-		//TODO
+
 	}
 	public static void main(String[] args) {
 		//TODO

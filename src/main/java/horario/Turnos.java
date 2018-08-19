@@ -7,6 +7,7 @@ public class Turnos {
 	private boolean elemental;
 	private boolean matutino;
 	private boolean ocupado = false;
+	private boolean noOptions = false;
 	private int inicio;
 	private int fin;
 	private int duracion;
@@ -28,6 +29,12 @@ public class Turnos {
 		result.setMatutino(matutino);
 		result.setOcupado(ocupado);
 		return  result;
+	}
+
+	public boolean noOptionst(){return noOptions;}
+
+	public void setNoOptions(boolean Options){
+		noOptions = Options;
 	}
 
 	public boolean isElemental() {
