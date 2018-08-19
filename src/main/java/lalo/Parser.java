@@ -27,7 +27,7 @@ public class Parser {
                     }
                  disponibilidad = new int[3][28+j];
 
-                    for(int k = 0; k < disponibilidad[0].length){
+                    for(int k = 0; k < disponibilidad[0].length; k++){
                         disponibilidad[0][k] = k+1;
                     }
 
@@ -86,7 +86,7 @@ private static int ignore(String input, char toIgnore){
 private static int subString(String input, int i, char last){
         int j = i + 1;
         while(input.charAt(j) != last){
-            int j = j++;
+            j = j++;
         }
         return j;
 }
