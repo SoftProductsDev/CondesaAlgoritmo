@@ -45,7 +45,7 @@ public class Parser {
                  }
                  line = buffer.readLine();
                     i = 0;
-                    i = ignore(line, ' ');
+                    i = ignore(line,  ' ');
                     for(int k = 0; k < disponibilidad[2].length; k++){
                         number = line.substring(i, (i = subString(line, i, ' ' )));
                         try{
