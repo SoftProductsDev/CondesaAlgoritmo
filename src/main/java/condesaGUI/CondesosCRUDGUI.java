@@ -1,9 +1,12 @@
 package condesaGUI;
 
+import DbModel.Condeso;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class CondesosCRUDGUI {
     private static final int WIDTH = 1100;
@@ -33,9 +36,15 @@ public class CondesosCRUDGUI {
     private JRadioButton siButton;
     private JRadioButton noButton;
     private JLabel contratacionLabel;
-
+    private JLabel tipeOfDateLabel;
+    private JTextField fechaText;
+    private List<Condeso> condesos;
+    private int columns;
+    private int rows;
 
     public CondesosCRUDGUI(){
+        fechaText.setFont(new Font("Arial", Font.PLAIN, 30));
+        tipeOfDateLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         tablaCondesos.setFont(new Font("Arial", Font.PLAIN, 40));
         editCondeso.setFont(new Font("Arial", Font.PLAIN, 40));
         listaDeCondesos.setFont(new Font("Arial", Font.PLAIN, 40));
@@ -60,6 +69,8 @@ public class CondesosCRUDGUI {
         contratoBox.setFont(new Font("Arial", Font.PLAIN, 30));
         cargoBox.setFont(new Font("Arial", Font.PLAIN, 30));
         nivelBox.setFont(new Font("Arial", Font.PLAIN, 30));
+        //condesos = DbController.HibernateCrud.GetAllCondesos();
+        // rows = condesos.size();
         borrarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -74,6 +85,12 @@ public class CondesosCRUDGUI {
                         null,
                         options,
                         options[1]);
+                System.out.println(n);
+                if(n == 0){
+//Borrar
+                }else{
+//Sino nel
+                }
             }
         });
         actualizarButton.addActionListener(new ActionListener() {
@@ -88,6 +105,46 @@ public class CondesosCRUDGUI {
 
             }
         });
+        masculinoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                isSelectedSexo(false);
+            }
+        });
+        femeninoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                isSelectedSexo(true);
+            }
+        });
+        siButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                isSelectedCaja(true);
+            }
+        });
+        noButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                isSelectedCaja(false);
+            }
+        });
+    }
+
+    public void isSelectedCaja(boolean caja){
+        if(caja){
+            noButton.setSelected(false);
+        }else{
+            siButton.setSelected(false);
+        }
+    }
+
+    public void isSelectedSexo(boolean femenino){
+        if(femenino){
+            masculinoButton.setSelected(false);
+        }else{
+            femeninoButton.setSelected(false);
+        }
     }
 
     public void start(){
