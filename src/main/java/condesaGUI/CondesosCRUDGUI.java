@@ -105,18 +105,6 @@ public class CondesosCRUDGUI {
 
             }
         });
-        masculinoButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                isSelectedSexo(false);
-            }
-        });
-        femeninoButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                isSelectedSexo(true);
-            }
-        });
         siButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -136,14 +124,6 @@ public class CondesosCRUDGUI {
             noButton.setSelected(false);
         }else{
             siButton.setSelected(false);
-        }
-    }
-
-    public void isSelectedSexo(boolean femenino){
-        if(femenino){
-            masculinoButton.setSelected(false);
-        }else{
-            femeninoButton.setSelected(false);
         }
     }
 

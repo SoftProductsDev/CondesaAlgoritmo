@@ -242,4 +242,14 @@
       </component>
     </children>
   </grid>
+  <buttonGroups>
+    <group name="sexo">
+      <member id="3ae5e"/>
+      <member id="4f807"/>
+    </group>
+    <group name="caja">
+      <member id="a6d14"/>
+      <member id="2ba4"/>
+    </group>
+  </buttonGroups>
 </form>
