@@ -7,6 +7,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 
 public class CondesosCRUDGUI {
     private static final int WIDTH = 1100;
@@ -69,8 +73,7 @@ public class CondesosCRUDGUI {
         contratoBox.setFont(new Font("Arial", Font.PLAIN, 30));
         cargoBox.setFont(new Font("Arial", Font.PLAIN, 30));
         nivelBox.setFont(new Font("Arial", Font.PLAIN, 30));
-        //condesos = DbController.HibernateCrud.GetAllCondesos();
-        // rows = condesos.size();
+
         borrarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,7 +81,7 @@ public class CondesosCRUDGUI {
                         "No"};
                 int n = JOptionPane.showOptionDialog(frame,
                         "Quieres borrar este condeso ? \n"
-                        + "Se borrara permanentemente ",
+                        + "Se borrará permanentemente ",
                         "Borrar Condeso",
                         JOptionPane.YES_NO_CANCEL_OPTION,
                         JOptionPane.WARNING_MESSAGE,
@@ -128,12 +131,35 @@ public class CondesosCRUDGUI {
     }
 
     public void start(){
-        frame.setTitle("Informacion de Condesos");
+        frame.setTitle("Información de Condesos");
         frame.setContentPane(new CondesosCRUDGUI().listaDeCondesos);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.pack();
         //frame.setSize(CondesosCRUDGUI.WIDTH, CondesosCRUDGUI.HEIGHT);
         frame.setVisible(true);
+        createTableContents();
+
+    }
+
+    private void createTableContents() {
+        // TODO: place custom component creation code here
+        String[] columnNames = {"Nombre", "Antigüedad", "Tipo", "Nivel", "Fijos", "Caja",
+            "Matutino", "Vespertino"};
+        DefaultTableModel model = new DefaultTableModel();
+        tablaCondesos.setModel(model);
+        model.setColumnIdentifiers(columnNames);
+
+        List<Condeso> condesos = DbController.HibernateCrud.GetAllCondesos();
+        for (Condeso c : condesos) {
+            Object[] o = new Object[6];
+            o[0] = c.getNombre();
+            o[1] = c.getAntiguedad();
+            o[2] = c.getTipo();
+            o[3] = c.getLevel();
+            o[4] = c.isFijos();
+            o[5] = c.isCaja();
+            model.addRow(o);
+        }
 
     }
 }
