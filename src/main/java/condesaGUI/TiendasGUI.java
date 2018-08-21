@@ -2,6 +2,8 @@ package condesaGUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TiendasGUI {
     private JFrame frame = new JFrame();
@@ -26,6 +28,13 @@ public class TiendasGUI {
         plantillasDeTurnosButton.setFont(new Font("Arial", Font.PLAIN, 30));
         managerLabel.setFont(new Font("Arial", Font.PLAIN, 40));
         managerText.setFont(new Font("Arial", Font.PLAIN, 30));
+        plantillasDeTurnosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                plantillasGUI plantillas = new plantillasGUI();
+                plantillas.start();
+            }
+        });
     }
     public void start(){
         frame.setTitle("CONDESA");

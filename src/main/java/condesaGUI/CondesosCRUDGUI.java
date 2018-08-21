@@ -3,14 +3,11 @@ package condesaGUI;
 import DbModel.Condeso;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
 
 public class CondesosCRUDGUI {
     private static final int WIDTH = 1100;
@@ -131,24 +128,25 @@ public class CondesosCRUDGUI {
     }
 
     public void start(){
+        createTableContents();
         frame.setTitle("Información de Condesos");
         frame.setContentPane(new CondesosCRUDGUI().listaDeCondesos);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.pack();
         //frame.setSize(CondesosCRUDGUI.WIDTH, CondesosCRUDGUI.HEIGHT);
         frame.setVisible(true);
-        createTableContents();
 
     }
 
     private void createTableContents() {
         // TODO: place custom component creation code here
+        DefaultTableModel model = new DefaultTableModel();
         String[] columnNames = {"Nombre", "Antigüedad", "Tipo", "Nivel", "Fijos", "Caja",
             "Matutino", "Vespertino"};
-        DefaultTableModel model = new DefaultTableModel();
-        tablaCondesos.setModel(model);
+        model.setColumnCount(8);
         model.setColumnIdentifiers(columnNames);
-
+        String Nombre = "Nombre";
+        model.addColumn(Nombre);
         List<Condeso> condesos = DbController.HibernateCrud.GetAllCondesos();
         for (Condeso c : condesos) {
             Object[] o = new Object[6];
@@ -160,7 +158,8 @@ public class CondesosCRUDGUI {
             o[5] = c.isCaja();
             model.addRow(o);
         }
-
+        tablaCondesos.setModel(model);
+       // tablaCondesos.setColumnModel();
     }
 }
 
