@@ -54,11 +54,11 @@ public class AddCondesoGUI extends Application{
                     int level = 0;
                     try {
                         level = Integer.parseInt(levelTF.getText());
-                        Condeso condeso = CreateCondeso(level);
+                        //Condeso condeso = CreateCondeso(level);
                         //Guarda en base de datos
-                        HibernateCrud.SaveCondeso(condeso);
-                        errorMssg.setText("Se ha añadido: " + condeso.getNombre());
-                        System.out.println(condeso);
+                        //HibernateCrud.SaveCondeso(condeso);
+                        //errorMssg.setText("Se ha añadido: " + condeso.getNombre());
+                        //System.out.println(condeso);
                     }
                     catch(Exception e)
                     {
@@ -122,7 +122,7 @@ public class AddCondesoGUI extends Application{
         }
     }
 
-    private Condeso CreateCondeso(int level) {
+    /*private Condeso CreateCondeso(int level) {
         Condeso condeso = new Condeso(
                 empleoCh.getValue(),
                 nameTF.getText(),
@@ -136,7 +136,7 @@ public class AddCondesoGUI extends Application{
         );
         condeso.setEntrega(new HorarioEntrega(new HashMap()));
         return condeso;
-    }
+    }*/
 
     private Date asDate(LocalDate localDate) {
         return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());

@@ -11,7 +11,7 @@ import org.hibernate.SessionFactory;
  * Created by javier on 13/08/2018.
  */
 public class HibernateCrud {
-  public static String SaveCondeso(condeso.Condeso condeso)
+  public static String SaveCondeso(Condeso condeso)
   {
     SessionFactory sessionFactory =  HibernateUtil.getSessionFactory();
 
@@ -20,30 +20,16 @@ public class HibernateCrud {
     // begin a transaction 
     session.getTransaction().begin();
 
-    Condeso condesodb = new Condeso();
-    condesodb.setAntiguedad(condeso.getAntiguedad());
-    condesodb.setCaja(condeso.isCaja());
-    condesodb.setContrato(condeso.getContrato());
-    //condesodb.setDondePuedeTrabajar(condeso.getDondePuedeTrabajar());
-    condesodb.setEntrega(condeso.getEntrega().convertToDbModel());
-    condesodb.setFijos(condeso.isFijos());
-    condesodb.setLevel(condeso.getLevel());
-    condesodb.setManana(condeso.isManana());
-    //condesodb.setMaster(condeso.getMaster());
-    condesodb.setNombre(condeso.getNombre());
-    //condesodb.setPersonal(condeso.getPersonal());
-    condesodb.setTipo(condeso.getTipo());
-
     // save condeso object
-    session.save(condesodb);
-
+    session.save(condeso);
 
     // commit transaction
     session.getTransaction().commit();
     session.close();
+    sessionFactory.close();
 
     HibernateUtil.shutdown();
-    return ("condeso saved, id:  " + condesodb.getId());
+    return ("condeso saved, id:  " + condeso.getId());
   }
 
   public static String UpdateCondeso(Condeso updatedCondeso){
@@ -94,5 +80,4 @@ public class HibernateCrud {
 
     return condesos;
   }
-
 }

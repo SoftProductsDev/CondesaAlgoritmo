@@ -1,6 +1,5 @@
 package DbModel;
 
-import horario.Dias;
 import java.util.Map;
 import javax.persistence.*;
 import java.util.Date;
@@ -10,7 +9,7 @@ import java.util.Date;
  * Created by javier on 13/08/2018.
  */
 @Entity
-@Table(name = "horariomaster")
+@Table
 public class HorarioMaster {
 
   @Id
@@ -32,11 +31,11 @@ public class HorarioMaster {
     this.id = id;
   }
 
-  public Map<Date, horario.Dias> getMes() {
+  public Map<Date, Dias> getMes() {
     return mes;
   }
 
-  public void setMes(Map<Date, horario.Dias> mes) {
+  public void setMes(Map<Date, Dias> mes) {
     this.mes = mes;
   }
 }
