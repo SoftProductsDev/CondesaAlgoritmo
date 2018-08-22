@@ -28,7 +28,6 @@ public class HibernateCrud {
     session.close();
     sessionFactory.close();
 
-    HibernateUtil.shutdown();
     return ("condeso saved, id:  " + condeso.getId());
   }
 
@@ -41,7 +40,6 @@ public class HibernateCrud {
     session.getTransaction().commit();
 
     session.close();
-    HibernateUtil.shutdown();
 
     return "Updated condeso: " + updatedCondeso.toString();
   }
@@ -54,7 +52,6 @@ public class HibernateCrud {
     session.delete(deletedCondeso);
     session.getTransaction().commit();
     session.close();
-    HibernateUtil.shutdown();
 
     return  "Deleted:" + deletedCondeso.toString();
   }
@@ -64,7 +61,6 @@ public class HibernateCrud {
     Session session =  sessionFactory.openSession();
     Condeso condeso =  (Condeso) session.get(Condeso.class, condesoBuscado.getId());
     session.close();
-    HibernateUtil.shutdown();
     return condeso;
   }
 
@@ -75,8 +71,8 @@ public class HibernateCrud {
     Criteria criteria = session.createCriteria(Condeso.class);
     List<Condeso> condesos = criteria.list();
 
+    session.flush();
     session.close();
-    HibernateUtil.shutdown();
 
     return condesos;
   }
