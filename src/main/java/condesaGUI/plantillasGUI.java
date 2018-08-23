@@ -1,20 +1,25 @@
 package condesaGUI;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class plantillasGUI {
     public JFrame frame = new JFrame();
-    private JPanel plantillasNuevas;
+    private JPanel plantillasNuevasTable;
     private JPanel plantillasAnteriores;
     private JPanel main;
-    private JComboBox comboBox1;
-    private JTable table1;
-    private JButton button1;
+    private JComboBox nombresBox;
+    private JTable plantillasViejasTable;
+    private JButton borrarButton;
+    private JLabel nombreLabel;
+    private JComboBox diaBob;
+    private JLabel diaLabel;
+    private JTable diaTable;
+    private JFormattedTextField formattedTextField1;
+    private JTable plantillaNuevaTable;
+    private JButton agregarButton;
+    private JFormattedTextField formattedTextField2;
 
     public plantillasGUI(){
-        plantillasNuevas.setFont(new Font("Arial", Font.PLAIN, 40));
-        plantillasAnteriores.setFont(new Font("Arial", Font.PLAIN, 40));
     }
     public void start(){
         frame.setTitle("Plantillas");

@@ -128,7 +128,7 @@ public class CondesosCRUDGUI {
     }
 
     public void start(){
-        createTableContents();
+        //createTableContents();
         frame.setTitle("Información de Condesos");
         frame.setContentPane(new CondesosCRUDGUI().listaDeCondesos);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -139,7 +139,6 @@ public class CondesosCRUDGUI {
     }
 
     private void createTableContents() {
-        // TODO: place custom component creation code here
         DefaultTableModel model = new DefaultTableModel();
         String[] columnNames = {"Nombre", "Antigüedad", "Tipo", "Nivel", "Fijos", "Caja",
             "Matutino", "Vespertino"};
