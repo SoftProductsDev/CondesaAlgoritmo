@@ -17,9 +17,12 @@ public class plantillasGUI {
     private JFormattedTextField formattedTextField1;
     private JTable plantillaNuevaTable;
     private JButton agregarButton;
-    private JFormattedTextField formattedTextField2;
+    private JFormattedTextField HHFormattedTextField;
+    private JButton agregarPlantillaButton;
 
     public plantillasGUI(){
+        //diaTable.setColumnModel();
+        //diaTable.setModel();
     }
     public void start(){
         frame.setTitle("Plantillas");

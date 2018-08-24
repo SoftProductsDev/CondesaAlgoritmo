@@ -37,7 +37,8 @@ public class FrontPage extends JFrame{
         nuevoHorarioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+            horarioNuevoGUI nuevoHorario = new horarioNuevoGUI();
+            nuevoHorario.start();
             }
         });
     }

@@ -7,6 +7,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class CondesosCRUDGUI {
@@ -16,7 +18,7 @@ public class CondesosCRUDGUI {
     private JTable tablaCondesos;
     private JPanel editCondeso;
     private JPanel listaDeCondesos;
-    private JFormattedTextField nombreText;
+    private JTextField nombreText;
     private JRadioButton masculinoButton;
     private JLabel sexoLabel;
     private JRadioButton femeninoButton;
@@ -37,15 +39,16 @@ public class CondesosCRUDGUI {
     private JRadioButton siButton;
     private JRadioButton noButton;
     private JLabel contratacionLabel;
-    private JLabel tipeOfDateLabel;
-    private JTextField fechaText;
+    private JPanel fechaPanel;
+    DateFormat format = new SimpleDateFormat("mm/dd/yyyy");
+    private JFormattedTextField fechaText = new JFormattedTextField(format);
     private List<Condeso> condesos;
     private int columns;
     private int rows;
 
-    public CondesosCRUDGUI(){
-        fechaText.setFont(new Font("Arial", Font.PLAIN, 30));
-        tipeOfDateLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+    public CondesosCRUDGUI() {
+      //  fechaPanel.setLayout();
+        //fechaPanel.add(fechaText);
         tablaCondesos.setFont(new Font("Arial", Font.PLAIN, 40));
         editCondeso.setFont(new Font("Arial", Font.PLAIN, 40));
         listaDeCondesos.setFont(new Font("Arial", Font.PLAIN, 40));
@@ -105,26 +108,6 @@ public class CondesosCRUDGUI {
 
             }
         });
-        siButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                isSelectedCaja(true);
-            }
-        });
-        noButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                isSelectedCaja(false);
-            }
-        });
-    }
-
-    public void isSelectedCaja(boolean caja){
-        if(caja){
-            noButton.setSelected(false);
-        }else{
-            siButton.setSelected(false);
-        }
     }
 
     public void start(){
@@ -145,7 +128,7 @@ public class CondesosCRUDGUI {
         model.setColumnCount(8);
         model.setColumnIdentifiers(columnNames);
         String Nombre = "Nombre";
-        model.addColumn(Nombre);
+        model.addColumn(Nombre);              
         List<Condeso> condesos = DbController.HibernateCrud.GetAllCondesos();
         for (Condeso c : condesos) {
             Object[] o = new Object[6];
