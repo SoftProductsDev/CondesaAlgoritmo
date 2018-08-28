@@ -1,3 +1,4 @@
+import DbController.HibernateCrud;
 import DbModel.Condeso;
 import DbModel.Dias;
 import DbModel.Turnos;
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import junit.framework.TestCase;
+import tiendas.Tiendas;
 
 public class HibernateCrudTest extends TestCase {
 
@@ -59,6 +61,23 @@ public class HibernateCrudTest extends TestCase {
     result.put(turno.getInicio(), turno);
 
     return  result;
+  }
+
+  public void testCreateTienda()
+  {
+    DbModel.Tiendas tienda = new DbModel.Tiendas();
+    tienda.setNombre("HBF");
+
+    HibernateCrud.SaveTienda(tienda);
+  }
+
+  public void testGetTiendas()
+  {
+    List<Tiendas> tiendas = HibernateCrud.GetAllTiendas();
+    for (Tiendas tienda:tiendas
+    ) {
+      System.out.println(tienda);
+    }
   }
 
 }

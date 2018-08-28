@@ -15,7 +15,7 @@ public class Dias {
 	{
 		DbModel.Dias result = new DbModel.Dias();
 		result.setDate(date);
-		//result.setTurnos(convertTurnosToDbModel());
+		result.setTurnos(convertTurnosToDbModel());
 		return result;
 	}
 

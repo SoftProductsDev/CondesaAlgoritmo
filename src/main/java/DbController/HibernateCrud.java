@@ -6,6 +6,8 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.transform.Transformers;
+import tiendas.Tiendas;
 
 /**
  * Created by javier on 13/08/2018.
@@ -71,9 +73,34 @@ public class HibernateCrud {
     Criteria criteria = session.createCriteria(Condeso.class);
     List<Condeso> condesos = criteria.list();
 
-    session.flush();
     session.close();
 
     return condesos;
+  }
+
+  public  static List<tiendas.Tiendas> GetAllTiendas(){
+    SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    Session session = sessionFactory.openSession();
+
+
+    List<tiendas.Tiendas> tiendas = session.createQuery( "select " +
+        "       t.id as id, " +
+        "       t.nombre as nombre " +
+        "from Tiendas t ")
+        .setResultTransformer( Transformers.aliasToBean( tiendas.Tiendas.class )).list();
+
+    return tiendas;
+  }
+
+  public static  void SaveTienda(DbModel.Tiendas tienda) {
+    SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    Session session = sessionFactory.openSession();
+
+    session.getTransaction().begin();
+
+    session.save(tienda);
+    session.getTransaction().commit();
+    session.close();
+    sessionFactory.close();
   }
 }

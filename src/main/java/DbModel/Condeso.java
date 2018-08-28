@@ -4,6 +4,10 @@ import condeso.Contrato;
 import condeso.TipoEmpleado;
 import java.util.List;
 import java.util.Map;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -185,5 +189,13 @@ public class Condeso {
 
   public void setEntrega(HorarioEntrega entrega) {
     this.entrega = entrega;
+  }
+
+  public BooleanProperty Manana() {
+    return new SimpleBooleanProperty(manana);
+  }
+
+  public ObservableValue<Boolean> Tarde() {
+    return  new SimpleBooleanProperty(tarde);
   }
 }
