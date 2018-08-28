@@ -7,7 +7,6 @@ import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.application.Application;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +33,7 @@ public class PruebaGUI  extends Application implements Initializable {
 
   @Override
   public void start(Stage primaryStage) throws Exception{
-    String sceneFile = "/pruebaGUI.fxml";
+    String sceneFile = "/condesosGUI.fxml";
     Parent root = null;
     URL url  = null;
     try
