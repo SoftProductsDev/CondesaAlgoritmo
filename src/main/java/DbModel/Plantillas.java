@@ -1,6 +1,5 @@
 package DbModel;
 
-import horario.Dias;
 import java.util.Set;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -24,7 +23,7 @@ public class Plantillas {
      An instance of the contained entity class cannot appear
      at more than one value of the collection index.*/
     @ElementCollection
-    @CollectionTable(name = "dias")
+    @CollectionTable
     private Set<Dias> dias;
 
     public Plantillas(){

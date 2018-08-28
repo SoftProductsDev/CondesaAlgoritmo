@@ -1,9 +1,15 @@
 package condesaGUI;
 
+import DbModel.Condeso;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class CondesosCRUDGUI {
     private static final int WIDTH = 1100;
@@ -12,7 +18,7 @@ public class CondesosCRUDGUI {
     private JTable tablaCondesos;
     private JPanel editCondeso;
     private JPanel listaDeCondesos;
-    private JFormattedTextField nombreText;
+    private JTextField nombreText;
     private JRadioButton masculinoButton;
     private JLabel sexoLabel;
     private JRadioButton femeninoButton;
@@ -33,9 +39,16 @@ public class CondesosCRUDGUI {
     private JRadioButton siButton;
     private JRadioButton noButton;
     private JLabel contratacionLabel;
+    private JPanel fechaPanel;
+    DateFormat format = new SimpleDateFormat("mm/dd/yyyy");
+    private JFormattedTextField fechaText = new JFormattedTextField(format);
+    private List<Condeso> condesos;
+    private int columns;
+    private int rows;
 
-
-    public CondesosCRUDGUI(){
+    public CondesosCRUDGUI() {
+      //  fechaPanel.setLayout();
+        //fechaPanel.add(fechaText);
         tablaCondesos.setFont(new Font("Arial", Font.PLAIN, 40));
         editCondeso.setFont(new Font("Arial", Font.PLAIN, 40));
         listaDeCondesos.setFont(new Font("Arial", Font.PLAIN, 40));
@@ -60,6 +73,7 @@ public class CondesosCRUDGUI {
         contratoBox.setFont(new Font("Arial", Font.PLAIN, 30));
         cargoBox.setFont(new Font("Arial", Font.PLAIN, 30));
         nivelBox.setFont(new Font("Arial", Font.PLAIN, 30));
+
         borrarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -67,13 +81,19 @@ public class CondesosCRUDGUI {
                         "No"};
                 int n = JOptionPane.showOptionDialog(frame,
                         "Quieres borrar este condeso ? \n"
-                        + "Se borrara permanentemente ",
+                        + "Se borrará permanentemente ",
                         "Borrar Condeso",
                         JOptionPane.YES_NO_CANCEL_OPTION,
                         JOptionPane.WARNING_MESSAGE,
                         null,
                         options,
                         options[1]);
+                System.out.println(n);
+                if(n == 0){
+//Borrar
+                }else{
+//Sino nel
+                }
             }
         });
         actualizarButton.addActionListener(new ActionListener() {
@@ -91,13 +111,37 @@ public class CondesosCRUDGUI {
     }
 
     public void start(){
-        frame.setTitle("Informacion de Condesos");
+        //createTableContents();
+        frame.setTitle("Información de Condesos");
         frame.setContentPane(new CondesosCRUDGUI().listaDeCondesos);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.pack();
         //frame.setSize(CondesosCRUDGUI.WIDTH, CondesosCRUDGUI.HEIGHT);
         frame.setVisible(true);
 
+    }
+
+    private void createTableContents() {
+        DefaultTableModel model = new DefaultTableModel();
+        String[] columnNames = {"Nombre", "Antigüedad", "Tipo", "Nivel", "Fijos", "Caja",
+            "Matutino", "Vespertino"};
+        model.setColumnCount(8);
+        model.setColumnIdentifiers(columnNames);
+        String Nombre = "Nombre";
+        model.addColumn(Nombre);              
+        List<Condeso> condesos = DbController.HibernateCrud.GetAllCondesos();
+        for (Condeso c : condesos) {
+            Object[] o = new Object[6];
+            o[0] = c.getNombre();
+            o[1] = c.getAntiguedad();
+            o[2] = c.getTipo();
+            o[3] = c.getLevel();
+            o[4] = c.isFijos();
+            o[5] = c.isCaja();
+            model.addRow(o);
+        }
+        tablaCondesos.setModel(model);
+       // tablaCondesos.setColumnModel();
     }
 }
 

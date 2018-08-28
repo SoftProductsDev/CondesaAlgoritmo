@@ -6,12 +6,14 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.transform.Transformers;
+import tiendas.Tiendas;
 
 /**
  * Created by javier on 13/08/2018.
  */
 public class HibernateCrud {
-  public static String SaveCondeso(condeso.Condeso condeso)
+  public static String SaveCondeso(Condeso condeso)
   {
     SessionFactory sessionFactory =  HibernateUtil.getSessionFactory();
 
@@ -20,30 +22,15 @@ public class HibernateCrud {
     // begin a transaction 
     session.getTransaction().begin();
 
-    Condeso condesodb = new Condeso();
-    condesodb.setAntiguedad(condeso.getAntiguedad());
-    condesodb.setCaja(condeso.isCaja());
-    condesodb.setContrato(condeso.getContrato());
-    //condesodb.setDondePuedeTrabajar(condeso.getDondePuedeTrabajar());
-    condesodb.setEntrega(condeso.getEntrega().convertToDbModel());
-    condesodb.setFijos(condeso.isFijos());
-    condesodb.setLevel(condeso.getLevel());
-    condesodb.setManana(condeso.isManana());
-    //condesodb.setMaster(condeso.getMaster());
-    condesodb.setNombre(condeso.getNombre());
-    //condesodb.setPersonal(condeso.getPersonal());
-    condesodb.setTipo(condeso.getTipo());
-
     // save condeso object
-    session.save(condesodb);
-
+    session.save(condeso);
 
     // commit transaction
     session.getTransaction().commit();
     session.close();
+    sessionFactory.close();
 
-    HibernateUtil.shutdown();
-    return ("condeso saved, id:  " + condesodb.getId());
+    return ("condeso saved, id:  " + condeso.getId());
   }
 
   public static String UpdateCondeso(Condeso updatedCondeso){
@@ -55,7 +42,6 @@ public class HibernateCrud {
     session.getTransaction().commit();
 
     session.close();
-    HibernateUtil.shutdown();
 
     return "Updated condeso: " + updatedCondeso.toString();
   }
@@ -68,7 +54,6 @@ public class HibernateCrud {
     session.delete(deletedCondeso);
     session.getTransaction().commit();
     session.close();
-    HibernateUtil.shutdown();
 
     return  "Deleted:" + deletedCondeso.toString();
   }
@@ -78,7 +63,6 @@ public class HibernateCrud {
     Session session =  sessionFactory.openSession();
     Condeso condeso =  (Condeso) session.get(Condeso.class, condesoBuscado.getId());
     session.close();
-    HibernateUtil.shutdown();
     return condeso;
   }
 
@@ -90,9 +74,33 @@ public class HibernateCrud {
     List<Condeso> condesos = criteria.list();
 
     session.close();
-    HibernateUtil.shutdown();
 
     return condesos;
   }
 
+  public  static List<tiendas.Tiendas> GetAllTiendas(){
+    SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    Session session = sessionFactory.openSession();
+
+
+    List<tiendas.Tiendas> tiendas = session.createQuery( "select " +
+        "       t.id as id, " +
+        "       t.nombre as nombre " +
+        "from Tiendas t ")
+        .setResultTransformer( Transformers.aliasToBean( tiendas.Tiendas.class )).list();
+
+    return tiendas;
+  }
+
+  public static  void SaveTienda(DbModel.Tiendas tienda) {
+    SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    Session session = sessionFactory.openSession();
+
+    session.getTransaction().begin();
+
+    session.save(tienda);
+    session.getTransaction().commit();
+    session.close();
+    sessionFactory.close();
+  }
 }

@@ -12,6 +12,9 @@ public class Tiendas { // hola amigos
 		this.nombre = nombre;
 	}
 
+	public Tiendas() {
+	}
+
 	public Plantillas getPlantilla() {
 		return plantilla;
 	}
@@ -42,5 +45,15 @@ public class Tiendas { // hola amigos
 
 	public void setMaster(HorarioMaster master) {
 		this.master = master;
+	}
+
+	@Override
+	public String toString() {
+		return "Tiendas{" +
+				"Id=" + Id +
+				", plantilla=" + plantilla +
+				", nombre='" + nombre + '\'' +
+				", master=" + master +
+				'}';
 	}
 }

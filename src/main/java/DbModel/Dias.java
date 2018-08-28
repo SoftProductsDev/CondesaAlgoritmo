@@ -1,6 +1,8 @@
 package DbModel;
 
+import java.util.Map;
 import javax.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "dias")
@@ -12,10 +14,11 @@ public class Dias {
     @Column(name = "id")
     private long id;
 
-    /*@ElementCollection
+    @ElementCollection
     @MapKey (name = "inicio")
-    @CollectionTable(name = "turnos")
-    private Map<Integer, DbModel.Turnos> turnos;*/
+    @CollectionTable
+    @OneToMany(cascade = CascadeType.ALL)
+    private Map<Integer, Turnos> turnos;
 
     @Column(name = "date")
     private java.util.Date date;
@@ -28,13 +31,13 @@ public class Dias {
         this.id = id;
     }
 
-    /*public Map<Integer, Turnos> getTurnos() {
+    public Map<Integer, Turnos> getTurnos() {
         return turnos;
     }
 
     public void setTurnos(Map<Integer, Turnos> turnos) {
         this.turnos = turnos;
-    }*/
+    }
 
     public java.util.Date getDate() {
         return date;

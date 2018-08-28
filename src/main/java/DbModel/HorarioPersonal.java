@@ -16,8 +16,8 @@ public class HorarioPersonal{
     private long id;
 
   @ElementCollection
-  @CollectionTable(name = "mespersonal")
-  private Map<Date, horario.Dias> mes;
+  @CollectionTable
+  private Map<Date, Dias> mes;
 
     public HorarioPersonal() {
     }
@@ -30,11 +30,11 @@ public class HorarioPersonal{
       this.id = id;
     }
 
-    public Map<Date, horario.Dias> getMes() {
+    public Map<Date, Dias> getMes() {
       return mes;
     }
 
-    public void setMes(Map<Date, horario.Dias> mes) {
+    public void setMes(Map<Date, Dias> mes) {
       this.mes = mes;
     }
 }

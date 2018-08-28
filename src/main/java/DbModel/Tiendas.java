@@ -1,11 +1,13 @@
 package DbModel;
 
-import horario.HorarioMaster;
-import horario.Plantillas;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,13 +19,15 @@ public class Tiendas {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "plantillas")
+    @JoinColumn
+    @ManyToOne
     private Plantillas plantilla;
 
     @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "horariomaster")
+    @JoinColumn
+    @ManyToOne
     private HorarioMaster master;
 
     public Tiendas(){

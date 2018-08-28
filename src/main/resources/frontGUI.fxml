@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.FrontGUI">
+   <children>
+      <Button layoutX="14.0" layoutY="24.0" mnemonicParsing="false" onAction="#CondesosClicked" prefHeight="25.0" prefWidth="210.0" text="Condesos" />
+      <Button layoutX="233.0" layoutY="24.0" mnemonicParsing="false" onAction="#TiendasClicked" prefHeight="25.0" prefWidth="210.0" text="Tiendas" />
+      <Button layoutX="451.0" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="210.0" text="Nuevo Horario" />
+      <Canvas height="287.0" layoutX="19.0" layoutY="74.0" width="618.0" />
+   </children>
+</AnchorPane>

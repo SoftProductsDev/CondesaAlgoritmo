@@ -15,6 +15,7 @@ public class Condeso {
 	private int level;
 	private int priorityValue;
 	private boolean manana;
+	private boolean tarde;
 	private boolean caja;
 	private  Date antiguedad;
 	private int diasSeguidos;
@@ -25,13 +26,16 @@ public class Condeso {
 	private List<Tiendas> dondePuedeTrabajar;
 	private Contrato contrato;
 
-	public Condeso(TipoEmpleado tipo, String nombre, boolean fijos, int level, boolean manana,
-			boolean caja, Date antiguedad, List<Tiendas> dondePuedeTrabajar, Contrato contrato) {
+	public Condeso(TipoEmpleado tipo, String nombre,
+			boolean fijos, int level, boolean manana,
+			boolean tarde, boolean caja, Date antiguedad,
+			List<Tiendas> dondePuedeTrabajar, Contrato contrato) {
 		this.tipo = tipo;
 		this.nombre = nombre;
 		this.fijos = fijos;
 		this.level = level;
 		this.manana = manana;
+		this.tarde = tarde;
 		this.caja = caja;
 		this.antiguedad = antiguedad;
 		this.dondePuedeTrabajar = dondePuedeTrabajar;
@@ -46,6 +50,7 @@ public class Condeso {
         ", fijos=" + fijos +
         ", level=" + level +
         ", manana=" + manana +
+				", tarde=" + tarde +
         ", caja=" + caja +
         ", antiguedad=" + antiguedad +
         ", dondePuedeTrabajar=" + dondePuedeTrabajar +
@@ -107,6 +112,14 @@ public class Condeso {
 
 	public void setManana(boolean manana) {
 		this.manana = manana;
+	}
+
+	public boolean isTarde() {
+		return tarde;
+	}
+
+	public void setTarde(boolean tarde) {
+		this.tarde = tarde;
 	}
 
 	public boolean isCaja() {

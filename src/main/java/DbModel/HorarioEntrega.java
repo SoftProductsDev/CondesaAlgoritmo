@@ -1,7 +1,5 @@
 package DbModel;
 
-import horario.Dias;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Map;
@@ -11,7 +9,7 @@ import java.util.Map;
  */
 
 @Entity
-@Table(name = "horarioentrega")
+@Table
 public class HorarioEntrega {
 
   @Id

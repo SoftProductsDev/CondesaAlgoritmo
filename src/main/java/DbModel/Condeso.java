@@ -2,11 +2,13 @@ package DbModel;
 
 import condeso.Contrato;
 import condeso.TipoEmpleado;
-import horario.HorarioEntrega;
-import horario.HorarioMaster;
-import horario.HorarioPersonal;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -17,15 +19,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapKey;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import org.hibernate.annotations.IndexColumn;
-import org.hibernate.annotations.MapKeyType;
-import org.hibernate.annotations.Type;
-import tiendas.Tiendas;
-
 import java.util.Date;
-import java.util.List;
+import org.hibernate.annotations.IndexColumn;
+
 
 /**
  * Created by javier on 10/08/2018.
@@ -50,31 +49,35 @@ public class Condeso {
   @Column
   private boolean manana;
   @Column
+  private boolean tarde;
+  @Column
   private boolean caja;
   @Column
   private Date antiguedad;
 
-  @ElementCollection
-  @MapKey(name = "date")
-  @CollectionTable
-  private Map<Date, Dias> entrega;
-  /*
-  @JoinColumn(name="horarioentrega")
+  @JoinColumn
+  @OneToOne
+  private HorarioEntrega entrega;
+
+  @JoinColumn
   @ManyToOne
   private HorarioMaster master;
-  @JoinColumn(name="horarioentrega")
+
+  @JoinColumn
   @OneToOne
   private HorarioPersonal personal;
 
   @ElementCollection(fetch= FetchType.LAZY)
-  @CollectionTable(name = "tiendas")
-  @IndexColumn(name="tiendas_index")
-  private List<Tiendas> dondePuedeTrabajar;*/
+  @CollectionTable
+  private List<Tiendas> dondePuedeTrabajar;
+
   @Column
   private Contrato contrato;
 
   public Condeso() {
   }
+
+
 
   public long getId() {
     return id;
@@ -124,6 +127,14 @@ public class Condeso {
     this.manana = manana;
   }
 
+  public boolean isTarde() {
+    return tarde;
+  }
+
+  public void setTarde(boolean tarde) {
+    this.tarde = tarde;
+  }
+
   public boolean isCaja() {
     return caja;
   }
@@ -140,14 +151,6 @@ public class Condeso {
     this.antiguedad = antiguedad;
   }
 
-  public Map<Date, Dias> getEntrega() {
-    return entrega;
-  }
-
-  public void setEntrega(Map entrega) {
-    this.entrega = entrega;
-  }
-/*
   public HorarioMaster getMaster() {
     return master;
   }
@@ -171,12 +174,28 @@ public class Condeso {
   public void setDondePuedeTrabajar(List<Tiendas> dondePuedeTrabajar) {
     this.dondePuedeTrabajar = dondePuedeTrabajar;
   }
-*/
+
   public Contrato getContrato() {
     return contrato;
   }
 
   public void setContrato(Contrato contrato) {
     this.contrato = contrato;
+  }
+
+  public HorarioEntrega getEntrega() {
+    return entrega;
+  }
+
+  public void setEntrega(HorarioEntrega entrega) {
+    this.entrega = entrega;
+  }
+
+  public BooleanProperty Manana() {
+    return new SimpleBooleanProperty(manana);
+  }
+
+  public ObservableValue<Boolean> Tarde() {
+    return  new SimpleBooleanProperty(tarde);
   }
 }

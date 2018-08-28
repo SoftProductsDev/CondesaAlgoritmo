@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 public class HorarioInterface {
+  private long Id;
   private HashMap<Date, Dias> mes;
 
   public HashMap<Date, Dias> getMes() {
@@ -19,7 +20,8 @@ public class HorarioInterface {
   {
 
    HashMap<Date, DbModel.Dias> result = new HashMap<Date, DbModel.Dias>();
-    mes.forEach((k,v)-> v.convertToDbModel());
+    mes.forEach((k,v)->
+    result.put(v.getDate(), v.convertToDbModel()));
    return result;
   }
 
