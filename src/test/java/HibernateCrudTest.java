@@ -4,6 +4,7 @@ import DbModel.Dias;
 import DbModel.Turnos;
 import condeso.Contrato;
 import condeso.TipoEmpleado;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +36,7 @@ public class HibernateCrudTest extends TestCase {
 
     Condeso condeso = new Condeso();
     condeso.setCaja(true);
-    condeso.setAntiguedad(new Date());
+    condeso.setAntiguedad(LocalDate.now());
     condeso.setContrato(Contrato.Tipo1);
     //condeso.setEntrega(entrega);
     condeso.setFijos(true);

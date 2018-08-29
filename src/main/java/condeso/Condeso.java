@@ -2,9 +2,9 @@ package condeso;
 import horario.HorarioEntrega;
 import horario.HorarioMaster;
 import horario.HorarioPersonal;
+import java.time.LocalDate;
 import tiendas.Tiendas;
 
-import java.util.Date;
 import java.util.List;
 
 public class Condeso {
@@ -17,7 +17,7 @@ public class Condeso {
 	private boolean manana;
 	private boolean tarde;
 	private boolean caja;
-	private  Date antiguedad;
+	private LocalDate antiguedad;
 	private int diasSeguidos;
 	private int finesLibres;
 	private HorarioEntrega entrega;
@@ -28,7 +28,7 @@ public class Condeso {
 
 	public Condeso(TipoEmpleado tipo, String nombre,
 			boolean fijos, int level, boolean manana,
-			boolean tarde, boolean caja, Date antiguedad,
+			boolean tarde, boolean caja, LocalDate antiguedad,
 			List<Tiendas> dondePuedeTrabajar, Contrato contrato) {
 		this.tipo = tipo;
 		this.nombre = nombre;
@@ -130,11 +130,11 @@ public class Condeso {
 		this.caja = caja;
 	}
 
-	public Date getAntiguedad() {
+	public LocalDate getAntiguedad() {
 		return antiguedad;
 	}
 
-	public void setAntiguedad(Date antiguedad) {
+	public void setAntiguedad(LocalDate antiguedad) {
 		this.antiguedad = antiguedad;
 	}
 

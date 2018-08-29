@@ -2,13 +2,11 @@ package DbModel;
 
 import condeso.Contrato;
 import condeso.TipoEmpleado;
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.Property;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
-import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -17,13 +15,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapKey;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.util.Date;
-import org.hibernate.annotations.IndexColumn;
 
 
 /**
@@ -53,7 +48,7 @@ public class Condeso {
   @Column
   private boolean caja;
   @Column
-  private Date antiguedad;
+  private LocalDate antiguedad;
 
   @JoinColumn
   @OneToOne
@@ -69,6 +64,7 @@ public class Condeso {
 
   @ElementCollection(fetch= FetchType.LAZY)
   @CollectionTable
+  @ManyToMany
   private List<Tiendas> dondePuedeTrabajar;
 
   @Column
@@ -143,11 +139,11 @@ public class Condeso {
     this.caja = caja;
   }
 
-  public Date getAntiguedad() {
+  public LocalDate getAntiguedad() {
     return antiguedad;
   }
 
-  public void setAntiguedad(Date antiguedad) {
+  public void setAntiguedad(LocalDate antiguedad) {
     this.antiguedad = antiguedad;
   }
 
@@ -197,5 +193,9 @@ public class Condeso {
 
   public ObservableValue<Boolean> Tarde() {
     return  new SimpleBooleanProperty(tarde);
+  }
+
+  public ObservableValue<Boolean> Nivel() {
+    return  new SimpleBooleanProperty(caja);
   }
 }

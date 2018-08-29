@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class FrontGUI {
@@ -25,7 +26,7 @@ public class FrontGUI {
       url  = getClass().getResource( sceneFile );
       root = FXMLLoader.load( url );
       Stage stage = new Stage();
-      stage.setScene(new Scene(root, 800, 700));
+      stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight()));
       stage.show();
     } catch(Exception e) {
       e.printStackTrace();

@@ -28,7 +28,6 @@ public class HibernateCrud {
     // commit transaction
     session.getTransaction().commit();
     session.close();
-    sessionFactory.close();
 
     return ("condeso saved, id:  " + condeso.getId());
   }

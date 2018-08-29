@@ -1,11 +1,15 @@
 package tiendas;
 import horario.HorarioMaster;
 import horario.Plantillas;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+
 public class Tiendas { // hola amigos
 	private long Id;
 	private Plantillas plantilla;
 	private String nombre;
 	private HorarioMaster master;
+	private Boolean selected;
 
 	public Tiendas(Plantillas plantilla, String nombre) {
 		this.plantilla = plantilla;
@@ -13,6 +17,7 @@ public class Tiendas { // hola amigos
 	}
 
 	public Tiendas() {
+		selected = false;
 	}
 
 	public Plantillas getPlantilla() {
@@ -47,13 +52,19 @@ public class Tiendas { // hola amigos
 		this.master = master;
 	}
 
+	public Boolean getSelected() {
+		return selected;
+	}
+
+	public void setSelected(Boolean selected) {
+		this.selected = selected;
+	}
+
+	public BooleanProperty selected(){return new SimpleBooleanProperty(selected);
+	}
+
 	@Override
 	public String toString() {
-		return "Tiendas{" +
-				"Id=" + Id +
-				", plantilla=" + plantilla +
-				", nombre='" + nombre + '\'' +
-				", master=" + master +
-				'}';
+		return nombre;
 	}
 }
