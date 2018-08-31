@@ -26,7 +26,8 @@ public class FrontGUI {
       url  = getClass().getResource( sceneFile );
       root = FXMLLoader.load( url );
       Stage stage = new Stage();
-      stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight()));
+      stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
+          Screen.getPrimary().getVisualBounds().getHeight()));
       stage.show();
     } catch(Exception e) {
       e.printStackTrace();
