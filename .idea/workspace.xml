@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="026ca1b6-8286-4ac4-b5c8-f123aeab7225" name="Default" comment="Tienda Crud y prueba de GUI">
+    <list default="true" id="026ca1b6-8286-4ac4-b5c8-f123aeab7225" name="Default" comment="cambio a plantillas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/condesosGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/condesosGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/frontGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/frontGUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/plantillasGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plantillasGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/condesosGUI.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/classes/condesosGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/classes/condesosGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/classes/plantillasGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/classes/tiendasGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/classes/classes/classes/tiendasGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/frontGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/classes/classes/frontGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/tiendasGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/classes/classes/tiendasGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/frontGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/classes/frontGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/tiendasGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/classes/tiendasGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/FrontGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/FrontGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/PlantillaGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/PlantillaGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/TiendaGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/TiendaGUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/condesosGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesosGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/frontGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/frontGUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/plantillasGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plantillasGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiendasGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tiendasGUI.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -27,7 +33,8 @@
     <session id="945996806">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="10" />
+          <entry key="project.closed" value="12" />
+          <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.29" value="1" />
           <entry key="project.open.time.31" value="1" />
           <entry key="project.open.time.40" value="2" />
@@ -36,34 +43,35 @@
           <entry key="project.open.time.46" value="1" />
           <entry key="project.open.time.47" value="1" />
           <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.50" value="1" />
           <entry key="project.open.time.51" value="1" />
           <entry key="project.open.time.56" value="1" />
           <entry key="project.open.time.59" value="1" />
-          <entry key="project.opened" value="12" />
+          <entry key="project.opened" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="5" />
-          <entry key="fxml" value="469" />
-          <entry key="java" value="6892" />
-          <entry key="txt" value="64" />
+          <entry key="fxml" value="499" />
+          <entry key="java" value="7269" />
+          <entry key="txt" value="83" />
           <entry key="xml" value="192" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="6892" />
-          <entry key="PLAIN_TEXT" value="69" />
-          <entry key="XML" value="661" />
+          <entry key="JAVA" value="7269" />
+          <entry key="PLAIN_TEXT" value="88" />
+          <entry key="XML" value="691" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="dtd" value="3" />
           <entry key="form" value="9" />
-          <entry key="fxml" value="23" />
-          <entry key="java" value="121" />
+          <entry key="fxml" value="27" />
+          <entry key="java" value="124" />
           <entry key="properties" value="1" />
           <entry key="xml" value="5" />
         </counts>
@@ -72,9 +80,9 @@
         <counts>
           <entry key="DTD" value="3" />
           <entry key="GUI_DESIGNER_FORM" value="9" />
-          <entry key="JAVA" value="121" />
+          <entry key="JAVA" value="124" />
           <entry key="Properties" value="1" />
-          <entry key="XML" value="28" />
+          <entry key="XML" value="32" />
         </counts>
       </usages-collector>
     </session>
@@ -111,102 +119,73 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/condesosGUI.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+            <state relative-caret-position="1955">
+              <caret line="115" column="54" selection-start-line="115" selection-start-column="54" selection-end-line="115" selection-end-column="54" />
             </state>
           </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/MainGUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="44" column="49" selection-start-line="44" selection-start-column="49" selection-end-line="44" selection-end-column="49" />
+        <entry file="file://$PROJECT_DIR$/src/main/resources/frontGUI.fxml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
             </state>
           </provider>
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/plantillasGUI.fxml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="32" column="62" selection-start-line="32" selection-start-column="62" selection-end-line="32" selection-end-column="62" />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+            <state relative-caret-position="119">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/TiendaGUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-238">
-              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/plantillasGUI.fxml">
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="32" column="62" selection-start-line="32" selection-start-column="62" selection-end-line="32" selection-end-column="62" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="612">
+              <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="17" lean-forward="true" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+            <state relative-caret-position="358">
+              <caret line="155" column="75" selection-start-line="155" selection-start-column="75" selection-end-line="155" selection-end-column="75" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Parser.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/DbModel/Condeso.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+            <state relative-caret-position="2091">
+              <caret line="201" selection-start-line="201" selection-end-line="201" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/lalo/lalo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-37">
-              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Test.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -250,7 +229,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/horario/HorarioPersonal.java" />
         <option value="$PROJECT_DIR$/src/main/java/DbModel/SessionFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/DbModel/Dias.hbm.xml" />
         <option value="$PROJECT_DIR$/src/main/java/DbModel/Tiendas.hbm.xml" />
@@ -289,18 +267,19 @@
         <option value="$PROJECT_DIR$/src/main/java/PlantillaGUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/TiendasGUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/condesaGUI/TiendaGUI.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/frontGUI.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/condesaGUI/MainGUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/tiendas/Tiendas.java" />
-        <option value="$PROJECT_DIR$/src/main/java/DbModel/Condeso.java" />
         <option value="$PROJECT_DIR$/src/main/java/condeso/Condeso.java" />
         <option value="$PROJECT_DIR$/src/test/java/HibernateCrudTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/DbController/HibernateCrud.java" />
         <option value="$PROJECT_DIR$/src/main/java/condesaGUI/PruebaGUI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/condesosGUI.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/plantillasGUI.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/frontGUI.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/condesosGUI.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/DbModel/Condeso.java" />
+        <option value="$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java" />
       </list>
     </option>
   </component>
@@ -343,7 +322,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -398,11 +376,12 @@
       </pane>
       <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="477" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535749609360" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535762320442" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
     <property name="last_opened_file_path" value="C:/Program Files/Git/cmd/git.exe" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -502,17 +481,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="Application" factoryName="Application">
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lalo.Test" />
+      <module name="CondesaAlgoritmo" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lalo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HibernateCrudTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CondesaAlgoritmo" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="HibernateCrudTest" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -597,19 +581,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.HibernateCrudTest" />
       <item itemvalue="JUnit.HibernateCrudTest.testGetTiendas" />
       <item itemvalue="JUnit.HibernateCrudTest.testCreateTienda" />
       <item itemvalue="Application.FrontPage" />
       <item itemvalue="Application.MainGUI" />
+      <item itemvalue="Application.Test" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainGUI" />
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.FrontPage" />
         <item itemvalue="JUnit.HibernateCrudTest.testGetTiendas" />
         <item itemvalue="JUnit.HibernateCrudTest.testCreateTienda" />
-        <item itemvalue="JUnit.HibernateCrudTest" />
       </list>
     </recent_temporary>
   </component>
@@ -645,7 +629,14 @@
       <option name="project" value="LOCAL" />
       <updated>1535427157993</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="cambio a plantillas">
+      <created>1535749664051</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1535749664051</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -682,8 +673,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14818764" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15138593" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Nl-Palette" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -702,7 +694,7 @@
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50053304" side_tool="true" weight="0.32827735" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4989339" weight="0.32936078" />
       <window_info anchor="bottom" id="CheckStyle" order="10" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49946696" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49946696" weight="0.32936078" />
       <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.4946695" weight="0.32719395" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -746,7 +738,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Tienda Crud y prueba de GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tienda Crud y prueba de GUI" />
+    <MESSAGE value="cambio a plantillas" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambio a plantillas" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -757,6 +750,12 @@
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java</url>
+          <line>175</line>
+          <properties />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -765,13 +764,7 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/TiendasGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/TiendasGUI.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.form" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/util/function/BiConsumer.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/AddTiendaGUI.java" />
@@ -788,9 +781,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/DbModel/hibernate-mapping-3.0.dtd">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontPage.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontPage.form" />
     <entry file="file://$PROJECT_DIR$/src/main/java/horario/HorarioPersonal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -923,13 +914,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/AddCondesoGUI.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontPage.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/DbController/DbController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="496">
@@ -942,27 +927,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/plantillasGUI.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/frontGUI.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="87" selection-start-line="9" selection-start-column="87" selection-end-line="9" selection-end-column="87" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesosCRUDGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="44" column="29" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesosCRUDGUI.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/plantillasGUI.form" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesosCRUDGUI.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesosCRUDGUI.form" />
     <entry file="file://$PROJECT_DIR$/src/main/java/tiendas/Tiendas.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -970,16 +937,6 @@
           <folding>
             <element signature="e#474#475#0" expanded="true" />
             <element signature="e#497#498#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/DbModel/Condeso.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1547">
-          <caret line="142" column="7" selection-start-line="142" selection-start-column="7" selection-end-line="142" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1002,83 +959,50 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/PruebaGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="719">
-          <caret line="165" column="65" selection-start-line="165" selection-start-column="65" selection-end-line="165" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#start#0;class#PruebaGUI#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/PruebaGUI.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/PlantillaGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1431#1432#0" expanded="true" />
-            <element signature="e#1459#1460#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/lalo/lalo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-37">
+        <state relative-caret-position="68">
           <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+        <state relative-caret-position="-335">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/TiendaGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="17" lean-forward="true" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+        <state relative-caret-position="17">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/MainGUI.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1087,31 +1011,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/TiendaGUI.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/condesosGUI.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-238">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        <state relative-caret-position="1955">
+          <caret line="115" column="54" selection-start-line="115" selection-start-column="54" selection-end-line="115" selection-end-column="54" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/frontGUI.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/plantillasGUI.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="62" selection-start-line="32" selection-start-column="62" selection-end-line="32" selection-end-column="62" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/condesosGUI.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/plantillasGUI.fxml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml">
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="32" column="62" selection-start-line="32" selection-start-column="62" selection-end-line="32" selection-end-column="62" />
+        <state relative-caret-position="612">
+          <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
         </state>
       </provider>
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DbModel/Condeso.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2091">
+          <caret line="201" selection-start-line="201" selection-end-line="201" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="155" column="75" selection-start-line="155" selection-start-column="75" selection-end-line="155" selection-end-column="75" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">

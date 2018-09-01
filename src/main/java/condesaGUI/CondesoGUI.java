@@ -135,9 +135,29 @@ public class CondesoGUI  extends Application implements Initializable {
 
         tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
 
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, newSelection,
+            oldSelection) -> {
+            loadCondesoUpdate();
+            });
         //ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
         //listTiendas.setItems(tiendas);
+    }
 
+    private void loadCondesoUpdate() {
+        try {
+            Condeso condeso = tableView.getSelectionModel().getSelectedItem();
+            nombreTextField.setText(condeso.getNombre());
+            contratoChoiceBox.setValue(condeso.getContrato());
+            matutinoRadio.setSelected(condeso.isManana());
+            vespertinoRadio.setSelected(condeso.isTarde());
+            calendario.setValue(condeso.getAntiguedad());
+            cargoComboBox.setValue(condeso.getTipo());
+            cajaRadio.setSelected(condeso.isCaja());
+            nivelComboBox.setValue(nivelComboBox.getItems().get(condeso.getLevel()));}
+        catch (Exception e)
+        {
+
+        }
     }
 
     public void addButtonClicked(ActionEvent actionEvent) {
@@ -156,7 +176,29 @@ public class CondesoGUI  extends Application implements Initializable {
         tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
     }
 
+<<<<<<< HEAD
     public void condesoActualClicked(ActionEvent actionEvent){
 
+=======
+    public void deleteButtonClicked(ActionEvent actionEvent) {
+        Condeso condeso = tableView.getSelectionModel().getSelectedItem();
+        HibernateCrud.DeleteCondeso(condeso);
+        tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
+    }
+
+    public void updateButtonClicked(ActionEvent actionEvent) {
+        Condeso condeso = tableView.getSelectionModel().getSelectedItem();
+        condeso.setNombre(nombreTextField.getText());
+        condeso.setContrato(contratoChoiceBox.getValue());
+        condeso.setManana(matutinoRadio.isSelected());
+        condeso.setTarde(vespertinoRadio.isSelected());
+        condeso.setAntiguedad(calendario.getValue());
+        condeso.setTipo(cargoComboBox.getValue());
+        condeso.setLevel(Integer.parseInt(String.valueOf(nivelComboBox.getValue().charAt
+            (nivelComboBox.getValue().length() - 1))));
+        condeso.setCaja(cajaRadio.isSelected());
+        HibernateCrud.UpdateCondeso(condeso);
+        tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
+>>>>>>> f1713f4d7d588f31d01484d4c3df57b6e8ee32a9
     }
 }

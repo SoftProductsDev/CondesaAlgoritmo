@@ -17,7 +17,10 @@
       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="110.0" />
       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="110.0" />
       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="110.0" />
+<<<<<<< HEAD
       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="110.0" />
+=======
+>>>>>>> f1713f4d7d588f31d01484d4c3df57b6e8ee32a9
       <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
@@ -46,6 +49,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+<<<<<<< HEAD
       <Label layoutX="17.0" layoutY="241.0" prefHeight="27.0" prefWidth="159.0" text="Información de Tiendas" GridPane.rowIndex="4" />
       <Label layoutX="17.0" layoutY="268.0" text="Nombre de la tienda" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
       <Label layoutX="17.0" layoutY="302.0" text="Manager" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
@@ -55,5 +59,22 @@
       <Button layoutX="80.0" layoutY="351.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="25.0" prefWidth="131.0" text="Agregar" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="7" />
       <Button layoutX="222.0" layoutY="351.0" mnemonicParsing="false" onAction="#updateButtonClicked" prefHeight="25.0" prefWidth="131.0" text="Actualizar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
       <Button layoutX="364.0" layoutY="351.0" mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="25.0" prefWidth="131.0" text="Eliminar" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+=======
+      <Label layoutX="17.0" layoutY="241.0" prefHeight="27.0" prefWidth="300.0" text="Información de Tiendas" GridPane.columnSpan="2147483647" GridPane.rowIndex="3">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="17.0" layoutY="268.0" text="Nombre de la tienda" GridPane.rowIndex="4" />
+      <Label layoutX="17.0" layoutY="302.0" text="Manager" GridPane.rowIndex="5" />
+      <TextField fx:id="nombreTextField" layoutX="142.0" layoutY="264.0" prefHeight="25.0" prefWidth="410.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="4" />
+      <TextField fx:id="managerTextField" layoutX="80.0" layoutY="298.0" prefHeight="4.0" prefWidth="105.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="LEFT" GridPane.rowIndex="5" />
+      <Button layoutX="330.0" layoutY="298.0" mnemonicParsing="false" onAction="#plantillasClicked" prefHeight="25.0" prefWidth="222.0" text="Plantillas" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+      <Button layoutX="80.0" layoutY="351.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="25.0" prefWidth="131.0" text="Agregar" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="6" />
+      <Button layoutX="222.0" layoutY="351.0" mnemonicParsing="false" onAction="#updateButtonClicked" prefHeight="25.0" prefWidth="131.0" text="Actualizar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+      <Button layoutX="364.0" layoutY="351.0" mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="25.0" prefWidth="131.0" text="Eliminar" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+>>>>>>> f1713f4d7d588f31d01484d4c3df57b6e8ee32a9
    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </GridPane>
