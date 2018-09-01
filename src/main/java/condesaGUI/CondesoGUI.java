@@ -155,4 +155,8 @@ public class CondesoGUI  extends Application implements Initializable {
         HibernateCrud.SaveCondeso(condeso);
         tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
     }
+
+    public void condesoActualClicked(ActionEvent actionEvent){
+
+    }
 }

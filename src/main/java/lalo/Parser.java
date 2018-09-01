@@ -6,6 +6,11 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Parser {
+    private static int[][] horario;
+    public static void main(String[] args){
+       horario = parse("disponibilidad.txt");
+      // System.out.println(toString(horario));
+    }
     public static int[][] parse(String fileName) {
         String line;
         String month = "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28";
@@ -89,6 +94,16 @@ private static int subString(String input, int i, char last){
             j = j++;
         }
         return j;
+}
+
+public static String toString(int[][] horario){
+        String a = "";
+        for(int i = 0; i < 2;i++){
+            for(int j = 0; j < horario.length ;j++){
+                a += horario[i][j];
+            }
+        }
+        return a;
 }
 
 }

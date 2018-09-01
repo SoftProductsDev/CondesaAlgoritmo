@@ -1,12 +1,13 @@
 package condesaGUI;
 
-import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+
+import java.net.URL;
 
 public class FrontGUI {
 
@@ -16,6 +17,10 @@ public class FrontGUI {
 
   public void TiendasClicked(ActionEvent actionEvent) throws Exception {
     OpenNewWindow("/tiendasGUI.fxml");
+  }
+
+  public void NuevoHorarioClicked(ActionEvent actionEvent) throws Exception{
+    OpenNewWindow("/nuevoHorarioGUI.fxml");
   }
 
   private void OpenNewWindow(String filename) throws Exception{

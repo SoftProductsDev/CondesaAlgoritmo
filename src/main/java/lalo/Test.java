@@ -9,7 +9,7 @@ public class Test {
     public static void main(String [] args) {
 
         // The name of the file to open.
-        String fileName = "disponibilidad.txt";
+        String fileName = "/disponibilidad.txt";
 
         // This will reference one line at a time
         String line = null;
