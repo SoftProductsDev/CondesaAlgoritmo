@@ -176,10 +176,11 @@ public class CondesoGUI  extends Application implements Initializable {
         tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
     }
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
     public void condesoActualClicked(ActionEvent actionEvent){
 
-=======
+    }
+
     public void deleteButtonClicked(ActionEvent actionEvent) {
         Condeso condeso = tableView.getSelectionModel().getSelectedItem();
         HibernateCrud.DeleteCondeso(condeso);
@@ -199,6 +200,5 @@ public class CondesoGUI  extends Application implements Initializable {
         condeso.setCaja(cajaRadio.isSelected());
         HibernateCrud.UpdateCondeso(condeso);
         tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
->>>>>>> f1713f4d7d588f31d01484d4c3df57b6e8ee32a9
     }
 }
