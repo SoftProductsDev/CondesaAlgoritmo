@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PlantillaGUI   extends Application implements Initializable {
-    @FXML private ComboBox<?> nombre;
+    @FXML private ComboBox<String> nombre;
 
     @Override
     public void start(Stage primaryStage) throws Exception {

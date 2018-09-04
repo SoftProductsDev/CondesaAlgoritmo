@@ -1,16 +1,16 @@
 import DbController.HibernateCrud;
 import DbModel.Condeso;
 import DbModel.Dias;
+import DbModel.Tiendas;
 import DbModel.Turnos;
 import condeso.Contrato;
 import condeso.TipoEmpleado;
+import junit.framework.TestCase;
+
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import junit.framework.TestCase;
-import tiendas.Tiendas;
 
 public class HibernateCrudTest extends TestCase {
 
@@ -74,9 +74,8 @@ public class HibernateCrudTest extends TestCase {
 
   public void testGetTiendas()
   {
-    List<Tiendas> tiendas = HibernateCrud.GetAllTiendas();
-    for (Tiendas tienda:tiendas
-    ) {
+    List<DbModel.Tiendas> tiendas = HibernateCrud.GetAllTiendas();
+    for (Tiendas tienda:tiendas) {
       System.out.println(tienda);
     }
   }

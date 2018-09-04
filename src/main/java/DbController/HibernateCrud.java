@@ -2,16 +2,14 @@ package DbController;
 
 import DbModel.Condeso;
 import DbModel.HibernateUtil;
-import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.transform.Transformers;
-import tiendas.Tiendas;
+import DbModel.Tiendas;
 
-/**
- * Created by javier on 13/08/2018.
- */
+import java.util.List;
+import java.util.ArrayList;
+
 public class HibernateCrud {
   public static String SaveCondeso(Condeso condeso)
   {
@@ -77,29 +75,55 @@ public class HibernateCrud {
     return condesos;
   }
 
-  public  static List<tiendas.Tiendas> GetAllTiendas(){
+  public  static List<Tiendas> GetAllTiendas(){
     SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
     Session session = sessionFactory.openSession();
-
-
-    List<tiendas.Tiendas> tiendas = session.createQuery( "select " +
-        "       t.id as id, " +
-        "       t.nombre as nombre " +
-        "from Tiendas t ")
-        .setResultTransformer( Transformers.aliasToBean( tiendas.Tiendas.class )).list();
-
+    Criteria criteria = session.createCriteria(Tiendas.class);
+    List<Tiendas> tiendas = criteria.list();
+    session.close();
     return tiendas;
   }
 
-  public static  void SaveTienda(DbModel.Tiendas tienda) {
+  public static String SaveTienda(Tiendas tienda) {
     SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
     Session session = sessionFactory.openSession();
-
     session.getTransaction().begin();
-
     session.save(tienda);
     session.getTransaction().commit();
     session.close();
-    sessionFactory.close();
+    return ("tienda saved, id:  " + tienda.getId());
   }
+
+  public static String DeleteTienda(Tiendas deletedTienda) {
+    SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    Session session = sessionFactory.openSession();
+    session.getTransaction().begin();
+    session.delete(deletedTienda);
+    session.getTransaction().commit();
+    session.close();
+    return  "Deleted:" + deletedTienda.toString();
+  }
+
+    public static String UpdateTienda(Tiendas updatedTienda) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.getTransaction().begin();
+        session.update(updatedTienda);
+        session.getTransaction().commit();
+        session.close();
+        return "Updated condeso: " + updatedTienda.toString();
+    }
+
+
+
+  public static List<String> tiendasToList(){
+    List<Tiendas> tiendas = GetAllTiendas();
+    List<String> tiendasString = new ArrayList<String>();
+    for(Tiendas tienda : tiendas){
+        String nombre = tienda.getNombre();
+        tiendasString.add(nombre);
+    }
+    return tiendasString;
+  }
+
 }

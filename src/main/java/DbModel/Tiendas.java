@@ -1,14 +1,7 @@
 package DbModel;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "tiendas")
@@ -25,6 +18,9 @@ public class Tiendas {
 
     @Column(name = "nombre")
     private String nombre;
+
+    @Column(name = "manager")
+    private String manager;
 
     @JoinColumn
     @ManyToOne
@@ -63,5 +59,13 @@ public class Tiendas {
 
     public void setMaster(HorarioMaster master) {
         this.master = master;
+    }
+
+    public String getManager() {
+        return manager;
+    }
+
+    public void setManager(String manager) {
+        this.manager = manager;
     }
 }

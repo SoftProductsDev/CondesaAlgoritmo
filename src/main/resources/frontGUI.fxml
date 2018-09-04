@@ -2,9 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<GridPane fx:controller="condesaGUI.FrontGUI" fx:id="grid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="grid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.FrontGUI">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -18,8 +24,8 @@
    <children>
       <Canvas height="287.0" layoutX="18.0" layoutY="74.0" width="618.0" />
       <Button mnemonicParsing="false" onAction="#CondesosClicked" text="Condesos" GridPane.halignment="CENTER" />
-      <ComboBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
-      <Button mnemonicParsing="false" text="Nuevo Horario" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+      <ComboBox fx:id="tiendasComboBox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#NuevoHorarioClicked" text="Nuevo Horario" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
       <Button mnemonicParsing="false" onAction="#TiendasClicked" text="Tiendas" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
       <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
         <columns>

@@ -1,8 +1,8 @@
 package condeso;
 
-/**
- * Created by javier on 09/08/2018.
- */
+
 public enum Contrato {
-  Tipo1;
+  Tipo1,
+  Tipo2,
+  Tipo3
 }
