@@ -2,11 +2,10 @@ package DbController;
 
 import DbModel.Condeso;
 import DbModel.HibernateUtil;
+import DbModel.Tiendas;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.transform.Transformers;
-import DbModel.Tiendas;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,15 +87,9 @@ public class HibernateCrud {
         public static List<Tiendas> GetAllTiendas () {
             SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
             Session session = sessionFactory.openSession();
-
-            List<DbModel.Tiendas> tiendas = session.createQuery("select " +
-                    "       t.id as id, " +
-                    "       t.nombre as nombre " +
-                    "from Tiendas t ")
-                    .setResultTransformer(Transformers.aliasToBean(DbModel.Tiendas.class)).list();
-
+            Criteria criteria = session.createCriteria(Tiendas.class);
+            List<Tiendas> tiendas = criteria.list();
             session.close();
-
             return tiendas;
         }
 
