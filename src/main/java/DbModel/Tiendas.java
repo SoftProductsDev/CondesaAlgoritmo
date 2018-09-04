@@ -64,4 +64,9 @@ public class Tiendas {
     public void setMaster(HorarioMaster master) {
         this.master = master;
     }
+
+    @Override
+    public String toString() {
+        return  nombre;
+    }
 }

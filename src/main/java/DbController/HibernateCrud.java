@@ -77,7 +77,7 @@ public class HibernateCrud {
     return condesos;
   }
 
-  public  static List<tiendas.Tiendas> GetAllTiendas(){
+  public  static List<tiendas.Tiendas> GetAllDTOTiendas(){
     SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
     Session session = sessionFactory.openSession();
 
@@ -87,6 +87,21 @@ public class HibernateCrud {
         "       t.nombre as nombre " +
         "from Tiendas t ")
         .setResultTransformer( Transformers.aliasToBean( tiendas.Tiendas.class )).list();
+
+    return tiendas;
+  }
+
+  public static  List<DbModel.Tiendas> GetAllTiendas(){
+    SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    Session session = sessionFactory.openSession();
+
+    List<DbModel.Tiendas> tiendas = session.createQuery( "select " +
+        "       t.id as id, " +
+        "       t.nombre as nombre " +
+        "from Tiendas t ")
+        .setResultTransformer( Transformers.aliasToBean( DbModel.Tiendas.class )).list();
+
+    session.close();
 
     return tiendas;
   }

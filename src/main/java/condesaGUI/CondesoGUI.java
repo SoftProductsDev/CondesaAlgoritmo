@@ -7,6 +7,7 @@ import condeso.TipoEmpleado;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.hibernate.Hibernate;
 import tiendas.Tiendas;
 
 import java.net.URL;
@@ -36,7 +38,7 @@ public class CondesoGUI  extends Application implements Initializable {
     @FXML private TableColumn<Condeso, Integer> condesoNivel;
     @FXML private TableColumn<Condeso, Boolean> condesoCaja;
     @FXML private TableColumn<Condeso, TipoEmpleado> condesoCargo;
-    @FXML private ListView<Tiendas> listTiendas;
+    @FXML private ListView<DbModel.Tiendas> listTiendas;
     @FXML private ComboBox<TipoEmpleado> cargoComboBox;
     @FXML private ComboBox<String> nivelComboBox;
     @FXML private ChoiceBox<Contrato> contratoChoiceBox;
@@ -131,7 +133,7 @@ public class CondesoGUI  extends Application implements Initializable {
                 });
         tiendasCheckBox.setCellFactory(CheckBoxTableCell.forTableColumn(tiendasCheckBox));
         tiendasCheckBox.setEditable(true);
-        tiendasTableView.getItems().setAll(HibernateCrud.GetAllTiendas());
+        tiendasTableView.getItems().setAll(HibernateCrud.GetAllDTOTiendas());
 
         tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
 
@@ -139,8 +141,7 @@ public class CondesoGUI  extends Application implements Initializable {
             oldSelection) -> {
             loadCondesoUpdate();
             });
-        //ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
-        //listTiendas.setItems(tiendas);
+
     }
 
     private void loadCondesoUpdate() {
@@ -153,7 +154,11 @@ public class CondesoGUI  extends Application implements Initializable {
             calendario.setValue(condeso.getAntiguedad());
             cargoComboBox.setValue(condeso.getTipo());
             cajaRadio.setSelected(condeso.isCaja());
-            nivelComboBox.setValue(nivelComboBox.getItems().get(condeso.getLevel()));}
+            nivelComboBox.setValue(nivelComboBox.getItems().get(condeso.getLevel()));
+
+            ObservableList<DbModel.Tiendas> tiendas = FXCollections.observableList(
+                condeso.getDondePuedeTrabajar());
+            listTiendas.setItems(tiendas);}
         catch (Exception e)
         {
 
@@ -176,7 +181,6 @@ public class CondesoGUI  extends Application implements Initializable {
         tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
     }
 
-//<<<<<<< HEAD
     public void condesoActualClicked(ActionEvent actionEvent){
 
     }

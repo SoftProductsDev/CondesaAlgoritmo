@@ -5,6 +5,7 @@ import DbModel.Turnos;
 import condeso.Contrato;
 import condeso.TipoEmpleado;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -20,10 +21,9 @@ public class HibernateCrudTest extends TestCase {
     ) {
       System.out.println(condeso.toString());
     }
-
   }
 
-  public void testCreate(){
+  public void testCreateCondeso(){
     HashMap<Date, Dias> entrega = new HashMap<Date ,Dias>();
     Dias dia = new Dias();
     Date date = new Date();
@@ -45,6 +45,12 @@ public class HibernateCrudTest extends TestCase {
     condeso.setLevel(1);
     condeso.setTipo(TipoEmpleado.Encargado);
     condeso.setNombre("Empleado");
+    List<DbModel.Tiendas> tiendas = new ArrayList<>();
+    DbModel.Tiendas tienda = new DbModel.Tiendas();
+    tienda.setNombre("HBF");
+    tienda.setId(1);
+    tiendas.add(tienda);
+    condeso.setDondePuedeTrabajar(tiendas);
 
     DbController.HibernateCrud.SaveCondeso(condeso);
   }
@@ -68,13 +74,12 @@ public class HibernateCrudTest extends TestCase {
   {
     DbModel.Tiendas tienda = new DbModel.Tiendas();
     tienda.setNombre("HBF");
-
     HibernateCrud.SaveTienda(tienda);
   }
 
   public void testGetTiendas()
   {
-    List<Tiendas> tiendas = HibernateCrud.GetAllTiendas();
+    List<Tiendas> tiendas = HibernateCrud.GetAllDTOTiendas();
     for (Tiendas tienda:tiendas
     ) {
       System.out.println(tienda);
