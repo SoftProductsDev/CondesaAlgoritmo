@@ -1,25 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="026ca1b6-8286-4ac4-b5c8-f123aeab7225" name="Default" comment="cambio a plantillas">
+    <list default="true" id="026ca1b6-8286-4ac4-b5c8-f123aeab7225" name="Default" comment="condesoGUI con actualizar y borrar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/condesosGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/condesosGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/frontGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/frontGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plantillasGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plantillasGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/classes/tiendasGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/classes/classes/classes/tiendasGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/frontGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/classes/classes/frontGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/tiendasGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/classes/classes/tiendasGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/classes/frontGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/classes/frontGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/classes/tiendasGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/classes/tiendasGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/FrontGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/FrontGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/condesosGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesosGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/frontGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/frontGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/plantillasGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plantillasGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tiendasGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tiendasGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbController/DbController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbController/HibernateCrud.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Condeso.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Dias.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/HibernateUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/HorarioEntrega.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/HorarioMaster.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/HorarioPersonal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Plantillas.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Tiendas.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Turnos.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/Log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/Log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/classes/Log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/classes/classes/classes/tiendasGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/classes/classes/condesosGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/classes/classes/plantillasGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/classes/classes/tiendasGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/classes/condesosGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/classes/hibernate-configuration.dtd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/classes/plantillasGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/classes/tiendasGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/condesosGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/hibernate-configuration.dtd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/nuevoHorarioGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/plantillasGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/classes/tiendasGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/condesosGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/frontGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/hibernate-configuration.dtd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/hibernate.cfg.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/nuevoHorarioGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/plantillasGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classes/tiendasGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/AbstractLayout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/DimensionInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/GridConstraints.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/GridLayoutManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/HorizontalInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/LayoutState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/Spacer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/SupportCode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/Util.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/VerticalInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/FrontGUI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/MainGUI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/NuevoHorarioGUI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/PlantillaGUI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/TiendaGUI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condeso/Condeso.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condeso/Contrato.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condeso/TipoEmpleado.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesosGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/frontGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/hibernate-configuration.dtd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/hibernate.cfg.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/horario/Dias.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/horario/HorarioEntrega.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/horario/HorarioInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/horario/HorarioMaster.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/horario/HorarioPersonal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/horario/Plantillas.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/horario/Turnos.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/lalo/Parser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/lalo/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/lalo/lalo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nuevoHorarioGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/plantillasGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiendas/Tiendas.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiendasGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/HibernateCrudTest.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -33,7 +94,7 @@
     <session id="945996806">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="12" />
+          <entry key="project.closed" value="13" />
           <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.29" value="1" />
           <entry key="project.open.time.31" value="1" />
@@ -47,7 +108,8 @@
           <entry key="project.open.time.51" value="1" />
           <entry key="project.open.time.56" value="1" />
           <entry key="project.open.time.59" value="1" />
-          <entry key="project.opened" value="14" />
+          <entry key="project.open.time.61" value="1" />
+          <entry key="project.opened" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -55,14 +117,14 @@
           <entry key="dummy" value="5" />
           <entry key="fxml" value="499" />
           <entry key="java" value="7269" />
-          <entry key="txt" value="83" />
+          <entry key="txt" value="120" />
           <entry key="xml" value="192" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="7269" />
-          <entry key="PLAIN_TEXT" value="88" />
+          <entry key="PLAIN_TEXT" value="125" />
           <entry key="XML" value="691" />
         </counts>
       </usages-collector>
@@ -71,6 +133,7 @@
           <entry key="dtd" value="3" />
           <entry key="form" value="9" />
           <entry key="fxml" value="27" />
+          <entry key="gitignore" value="1" />
           <entry key="java" value="124" />
           <entry key="properties" value="1" />
           <entry key="xml" value="5" />
@@ -81,6 +144,7 @@
           <entry key="DTD" value="3" />
           <entry key="GUI_DESIGNER_FORM" value="9" />
           <entry key="JAVA" value="124" />
+          <entry key="PLAIN_TEXT" value="1" />
           <entry key="Properties" value="1" />
           <entry key="XML" value="32" />
         </counts>
@@ -130,8 +194,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/frontGUI.fxml">
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+            <state relative-caret-position="255">
+              <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
             </state>
           </provider>
           <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
@@ -150,8 +214,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="13" selection-start-line="13" selection-end-line="13" />
+            <state relative-caret-position="136">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -162,18 +226,27 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml">
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
+            <state relative-caret-position="646">
+              <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
             </state>
           </provider>
           <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
+            <state relative-caret-position="1955">
               <caret line="155" column="75" selection-start-line="155" selection-start-column="75" selection-end-line="155" selection-end-column="75" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -322,6 +395,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -374,14 +450,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="477" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535762320442" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536019049956" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
     <property name="last_opened_file_path" value="C:/Program Files/Git/cmd/git.exe" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -406,6 +479,146 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\javier\Documents\Condesa\CondesaAlgoritmo\target\classes" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/lalo/Parser.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/lalo/Test.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/frontGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/nuevoHorarioGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/classes/classes/classes/tiendasGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/classes/classes/tiendasGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/classes/frontGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/classes/nuevoHorarioGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/classes/tiendasGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/condesaGUI/FrontGUI.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/frontGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/lalo/Parser.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/lalo/Test.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/nuevoHorarioGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/tiendasGUI.fxml</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/classes/classes/classes/classes/classes/tiendasGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/classes/classes/classes/classes/condesosGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/classes/classes/classes/classes/plantillasGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/classes/classes/classes/classes/tiendasGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/classes/classes/classes/condesosGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/classes/classes/classes/plantillasGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/classes/classes/condesosGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/classes/classes/nuevoHorarioGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/classes/classes/plantillasGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/classes/condesosGUI.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/classes/plantillasGUI.fxml</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/classes/classes/frontGUI.fxml</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -636,7 +849,14 @@
       <option name="project" value="LOCAL" />
       <updated>1535749664051</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="condesoGUI con actualizar y borrar">
+      <created>1535763133327</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1535763133327</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -673,9 +893,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15138593" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15298508" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Nl-Palette" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -694,7 +913,7 @@
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50053304" side_tool="true" weight="0.32827735" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4989339" weight="0.32936078" />
       <window_info anchor="bottom" id="CheckStyle" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49946696" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49946696" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.4946695" weight="0.32719395" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -739,7 +958,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Tienda Crud y prueba de GUI" />
     <MESSAGE value="cambio a plantillas" />
-    <option name="LAST_COMMIT_MESSAGE" value="cambio a plantillas" />
+    <MESSAGE value="condesoGUI con actualizar y borrar" />
+    <option name="LAST_COMMIT_MESSAGE" value="condesoGUI con actualizar y borrar" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -764,7 +984,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/TiendasGUI.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.form" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/util/function/BiConsumer.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/AddTiendaGUI.java" />
@@ -919,11 +1138,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="496">
           <caret line="34" column="3" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#convertListToDbModel#0;class#DbController#0" />
-            <element signature="method#convertCondesoToDb#0;class#DbController#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -934,10 +1148,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
-          <folding>
-            <element signature="e#474#475#0" expanded="true" />
-            <element signature="e#497#498#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -988,9 +1198,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-335">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -998,9 +1205,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1021,8 +1225,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/frontGUI.fxml">
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+        <state relative-caret-position="255">
+          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
         </state>
       </provider>
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
@@ -1037,8 +1241,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        <state relative-caret-position="136">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1047,11 +1251,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml">
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
+        <state relative-caret-position="646">
+          <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
         </state>
       </provider>
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1955">
+          <caret line="155" column="75" selection-start-line="155" selection-start-column="75" selection-end-line="155" selection-end-column="75" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/DbModel/Condeso.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1063,10 +1274,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="155" column="75" selection-start-line="155" selection-start-column="75" selection-end-line="155" selection-end-column="75" />
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
