@@ -19,7 +19,7 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import tiendas.Tiendas;
+import DbModel.Tiendas;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -122,13 +122,14 @@ public class CondesoGUI  extends Application implements Initializable {
         condesoNivel.setCellValueFactory(new PropertyValueFactory<Condeso, Integer>("level"));
 
         tiendasNombre.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("nombre"));
-        tiendasCheckBox.setCellValueFactory(
+       /*tiendasCheckBox.setCellValueFactory(
                 new Callback<CellDataFeatures<Tiendas, Boolean>, ObservableValue<Boolean>>() {
                     @Override
                     public ObservableValue<Boolean> call(CellDataFeatures<Tiendas, Boolean> param) {
                         return param.getValue().selected();
                     }
                 });
+                */
         tiendasCheckBox.setCellFactory(CheckBoxTableCell.forTableColumn(tiendasCheckBox));
         tiendasCheckBox.setEditable(true);
         tiendasTableView.getItems().setAll(HibernateCrud.GetAllTiendas());
@@ -174,11 +175,6 @@ public class CondesoGUI  extends Application implements Initializable {
 
         HibernateCrud.SaveCondeso(condeso);
         tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
-    }
-
-//<<<<<<< HEAD
-    public void condesoActualClicked(ActionEvent actionEvent){
-
     }
 
     public void deleteButtonClicked(ActionEvent actionEvent) {

@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -62,9 +63,9 @@ public class Condeso {
   @OneToOne
   private HorarioPersonal personal;
 
-  @ElementCollection(fetch= FetchType.LAZY)
+  @ElementCollection
   @CollectionTable
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   private List<Tiendas> dondePuedeTrabajar;
 
   @Column
@@ -198,4 +199,6 @@ public class Condeso {
   public ObservableValue<Boolean> Nivel() {
     return  new SimpleBooleanProperty(caja);
   }
+
+
 }

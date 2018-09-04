@@ -61,11 +61,16 @@ public class Tiendas {
         this.master = master;
     }
 
+
     public String getManager() {
         return manager;
     }
 
     public void setManager(String manager) {
         this.manager = manager;
+    }
+    @Override
+    public String toString() {
+        return  "";
     }
 }
