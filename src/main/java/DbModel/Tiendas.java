@@ -2,6 +2,7 @@ package DbModel;
 
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "tiendas")
@@ -21,6 +22,9 @@ public class Tiendas {
 
     @Column(name = "manager")
     private String manager;
+
+    @Column(name = "fechaApertura")
+    private LocalDate fechaApertura;
 
     @JoinColumn
     @ManyToOne
@@ -72,5 +76,13 @@ public class Tiendas {
     @Override
     public String toString() {
         return  "";
+    }
+
+    public LocalDate getFechaApertura() {
+        return fechaApertura;
+    }
+
+    public void setFechaApertura(LocalDate fechaApertura) {
+        this.fechaApertura = fechaApertura;
     }
 }

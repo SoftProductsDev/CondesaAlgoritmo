@@ -1,13 +1,7 @@
 package DbModel;
 
+import javax.persistence.*;
 import java.util.Set;
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "plantillas")
@@ -26,6 +20,9 @@ public class Plantillas {
     @CollectionTable
     private Set<Dias> dias;
 
+    @Column(name = "nombre")
+    private  String nombre;
+
     public Plantillas(){
     }
 
@@ -43,5 +40,13 @@ public class Plantillas {
 
     public void setDias(Set<Dias> dias) {
         this.dias = dias;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }
