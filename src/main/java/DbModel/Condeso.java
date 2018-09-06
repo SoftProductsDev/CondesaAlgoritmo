@@ -2,24 +2,13 @@ package DbModel;
 
 import condeso.Contrato;
 import condeso.TipoEmpleado;
-import java.time.LocalDate;
-import java.util.List;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
-import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.List;
 
 
 /**
@@ -50,6 +39,10 @@ public class Condeso {
   private boolean caja;
   @Column
   private LocalDate antiguedad;
+  @Column
+  private boolean masculino;
+  @Column
+  private boolean femenino;
 
   @JoinColumn
   @OneToOne
@@ -200,5 +193,19 @@ public class Condeso {
     return  new SimpleBooleanProperty(caja);
   }
 
+  public boolean isMasculino() {
+    return masculino;
+  }
 
+  public void setMasculino(boolean masculino) {
+    this.masculino = masculino;
+  }
+
+  public boolean isFemenino() {
+    return femenino;
+  }
+
+  public void setFemenino(boolean femenino) {
+    this.femenino = femenino;
+  }
 }

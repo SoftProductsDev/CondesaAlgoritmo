@@ -1,10 +1,6 @@
 package DbModel;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "turnos")
@@ -31,6 +27,10 @@ public class Turnos {
 
     @Column(name = "duracion")
     private int duracion;
+
+    @JoinColumn
+    @OneToOne
+    private Condeso condeso;
 
     public Turnos(){
     }
@@ -89,5 +89,13 @@ public class Turnos {
 
     public void setDuracion(int duracion) {
         this.duracion = duracion;
+    }
+
+    public Condeso getCondeso() {
+        return condeso;
+    }
+
+    public void setCondeso(Condeso condeso) {
+        this.condeso = condeso;
     }
 }

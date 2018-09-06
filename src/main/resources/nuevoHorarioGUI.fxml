@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.NuevoHorarioGUI">
     <columnConstraints>
         <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="110.0" />
         <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="110.0" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="110.0" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="110.0" />
         <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="110.0" />
         <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="110.0" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="110.0" />
         <ColumnConstraints />
     </columnConstraints>
     <rowConstraints>
@@ -23,4 +25,33 @@
         <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
         <RowConstraints />
     </rowConstraints>
+   <children>
+       <Button fx:id="iniciarButton" mnemonicParsing="false" text="Iniciar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" >
+           <font>
+               <Font size="18.0" />
+           </font>
+       </Button>
+      <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="6" GridPane.valignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="6" GridPane.valignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <Label text="Condesos Disponibles" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT">
+       <font>
+           <Font size="18.0" />
+       </font>
+       </Label>
+       <Label text="Tiendas Disponibles" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="LEFT" >
+           <font>
+               <Font size="18.0" />
+           </font>
+       </Label>
+   </children>
 </GridPane>

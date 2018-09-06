@@ -1,9 +1,9 @@
 package horario;
 
-import java.util.Set;
-import condeso.Contrato;
+import condeso.Condeso;
 
 public class Turnos {
+	private Condeso condeso;
 	private long Id;
 	private boolean elemental;
 	private boolean matutino;
@@ -93,6 +93,12 @@ public class Turnos {
 	public void setOcupado(boolean ocupado) {
 		this.ocupado = ocupado;
 	}
-	
-	
+
+	public Condeso getCondeso() {
+		return condeso;
+	}
+
+	public void setCondeso(Condeso condeso) {
+		this.condeso = condeso;
+	}
 }
