@@ -7,40 +7,20 @@ import java.io.IOException;
 
 public class Test {
     public static void main(String [] args) {
+        String filename = "disponibilidad.txt";
+        int[][] horario = Parser.parse(filename);
+        System.out.println(toString(horario));
 
-        // The name of the file to open.
-        String fileName = "/disponibilidad.txt";
+    }
 
-        // This will reference one line at a time
-        String line = null;
-
-        try {
-            // FileReader reads text files in the default encoding.
-            FileReader fileReader =
-                    new FileReader(fileName);
-
-            // Always wrap FileReader in BufferedReader.
-            BufferedReader bufferedReader =
-                    new BufferedReader(fileReader);
-
-            while((line = bufferedReader.readLine()) != null) {
-                System.out.println(line);
+    private static String toString(int[][] horario){
+        String table = "";
+        for(int i = 0; i < horario.length; i++){
+            for(int j = 0; j < horario[i].length; j++){
+                table += horario[i][j] + ", ";
             }
-
-            // Always close files.
-            bufferedReader.close();
+            table += "\r";
         }
-        catch(FileNotFoundException ex) {
-            System.out.println(
-                    "Unable to open file '" +
-                            fileName + "'");
-        }
-        catch(IOException ex) {
-            System.out.println(
-                    "Error reading file '"
-                            + fileName + "'");
-            // Or we could just do this:
-            // ex.printStackTrace();
-        }
+        return table;
     }
 }
