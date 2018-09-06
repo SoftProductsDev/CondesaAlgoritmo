@@ -18,7 +18,7 @@ public class Test {
             for(int j = 0; j < horario[i].length; j++){
                 System.out.print(horario[i][j] + ", ");
             }
-          System.out.println();   
+          System.out.println();
         }
 
     }
