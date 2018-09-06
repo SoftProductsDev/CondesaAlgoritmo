@@ -9,18 +9,17 @@ public class Test {
     public static void main(String [] args) {
         String filename = "disponibilidad.txt";
         int[][] horario = Parser.parse(filename);
-        System.out.println(toString(horario));
+        toString(horario);
 
     }
 
-    private static String toString(int[][] horario){
-        String table = "";
+    private static void toString(int[][] horario){
         for(int i = 0; i < horario.length; i++){
             for(int j = 0; j < horario[i].length; j++){
-                table += horario[i][j] + ", ";
+                System.out.print(horario[i][j] + ", ");
             }
-            table += "\r";
+          System.out.println();   
         }
-        return table;
+
     }
 }

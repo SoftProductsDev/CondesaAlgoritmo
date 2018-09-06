@@ -42,10 +42,8 @@ public class Parser {
                  number = line.substring(i, (i = subString(line, i, '\t' )));
                  try{
                     hour = Integer.parseInt(number);
-                    System.out.print(hour + ", ");
                  } catch(Exception e){
                      hour = 0;
-                     System.out.print(hour + ", ");
                  }
                  disponibilidad[1][k] = hour;
                  i++;
@@ -53,7 +51,9 @@ public class Parser {
                  line = buffer.readLine();
                     i = ignore(line,  '\t');
                     for(int k = 0; k < disponibilidad[2].length; k++){
+
                         number = line.substring(i, (i = subString(line, i, '\t' )));
+
                         try{
                             hour = Integer.parseInt(number);
                         } catch(Exception e){
@@ -95,7 +95,7 @@ private static int ignore(String input, char toIgnore){
 private static int subString(String input, int i, char last){
         int j = i + 1;
         while(j < input.length() && input.charAt(j) != last){
-            j = j++;
+            j++;
         }
         if(j < input.length())
         return j;
