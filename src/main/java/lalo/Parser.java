@@ -4,13 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Set;
 
 public class Parser {
-    private static int[][] horario;
-    /*public static void main(String[] args){
-       horario = parse("disponibilidad.txt");
-      // System.out.println(toString(horario));
-    }*/
+
     public static int[][] parse(String fileName) {
         String line;
         String month = "1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t11\t12\t13\t14\t15\t16\t17\t18\t19\t20\t21\t22\t23\t24\t25\t26\t27\t28";
@@ -37,7 +34,7 @@ public class Parser {
                     }
 
                  line = buffer.readLine();
-                 i = ignore(line, '\t');
+                 /*i = ignore(line, '\t');
                  for(int k = 0; k < disponibilidad[1].length; k++){
                  number = line.substring(i, (i = subString(line, i, '\t' )));
                  try{
@@ -47,9 +44,13 @@ public class Parser {
                  }
                  disponibilidad[1][k] = hour;
                  i++;
-                 }
+                 }*/
+                 parseTime(disponibilidad, line, 1);
+
                  line = buffer.readLine();
-                    i = ignore(line,  '\t');
+
+                 parseTime(disponibilidad, line, 2);
+                    /*i = ignore(line,  '\t');
                     for(int k = 0; k < disponibilidad[2].length; k++){
 
                         number = line.substring(i, (i = subString(line, i, '\t' )));
@@ -61,7 +62,7 @@ public class Parser {
                         }
                         disponibilidad[2][k] = hour;
                         i++;
-                    }
+                    }*/
                     buffer.close();
                     return disponibilidad;
 
@@ -84,6 +85,24 @@ public class Parser {
         return null;
     }
 
+private static void parseTime(int[][] disponibilidad, String line, int a){
+        int i;
+        String number;
+        int hour;
+
+    i = ignore(line, '\t');
+    for(int k = 0; k < disponibilidad[a].length; k++){
+        number = line.substring(i, (i = subString(line, i, '\t' )));
+        try{
+            hour = Integer.parseInt(number);
+        } catch(Exception e){
+            hour = 0;
+        }
+        disponibilidad[a][k] = hour;
+        i++;
+    }
+}
+
 private static int ignore(String input, char toIgnore){
   int i = 0;
         while(input.charAt(i) == toIgnore){
@@ -102,6 +121,7 @@ private static int subString(String input, int i, char last){
         else return input.length()-1;
 }
 
+
 public static String toString(int[][] horario){
         String a = "";
         for(int i = 0; i < 2;i++){
@@ -110,6 +130,10 @@ public static String toString(int[][] horario){
             }
         }
         return a;
+}
+
+public static Set<Disponibilidad> parse2(String filename){
+
 }
 
 }
