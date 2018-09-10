@@ -7,6 +7,7 @@ import java.util.Queue;
 import java.util.Set;
 
 import condeso.Condeso;
+import condeso.CompareCondesos;
 import horario.HorarioEntrega;
 import horario.Turnos;
 import tiendas.Tiendas;

@@ -25,6 +25,8 @@ public class Condeso {
 	private HorarioPersonal personal;
 	private List<Tiendas> dondePuedeTrabajar;
 	private Contrato contrato;
+	private int horas;
+	private int horasAsignadas;
 
 	public Condeso(TipoEmpleado tipo, String nombre,
 			boolean fijos, int level, boolean manana,
@@ -193,4 +195,12 @@ public class Condeso {
 	public void setContrato(Contrato contrato) {
 		this.contrato = contrato;
 	}
+
+	public int getHoras(){ return horas;}
+
+	public void setHoras(int horas){ this.horas = horas;}
+
+	public void setHorasAsignadas(int horasAsignadas){this.horasAsignadas = horasAsignadas;}
+
+	public int getHorasAsignadas(){return horasAsignadas;}
 }
