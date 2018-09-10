@@ -3,6 +3,24 @@ package lalo;
 public class Disponibilidad {
     private String name;
     private int[][] disponibilidad;
+    private int max;
+    private int min;
+
+    public void setMax(int max){
+        this.max = max;
+    }
+
+    public int getMax(){
+        return max;
+    }
+
+    public void setMin(int min){
+        this.min = min;
+    }
+
+    public int getMin(){
+        return min;
+    }
 
     public Disponibilidad(String name){
         this.name = name;
