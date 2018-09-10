@@ -7,9 +7,9 @@ import java.io.IOException;
 
 public class Test {
     public static void main(String [] args) {
-       /* String filename = "disponibilidad.txt";
+        String filename = "disponibilidad.txt";
         int[][] horario = Parser.parse(filename);
-        toString(horario);*/
+        toString(horario);
 
 
 
