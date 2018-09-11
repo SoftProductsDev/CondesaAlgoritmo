@@ -51,6 +51,7 @@ public class Parser {
             buffer.close();
 
         } catch (FileNotFoundException ex) {
+
             System.out.println(
                     "Unable to open file '" +
                             fileName + "'");

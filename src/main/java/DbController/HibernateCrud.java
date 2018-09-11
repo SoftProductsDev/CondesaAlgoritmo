@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.transform.Transformers;
 
 
 public class HibernateCrud {
@@ -77,13 +78,18 @@ public class HibernateCrud {
 
 
         public static List<Tiendas> GetAllDTOTiendas () {
-            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-            Session session = sessionFactory.openSession();
-            Criteria criteria = session.createCriteria(Tiendas.class);
-            List<Tiendas> tiendas = criteria.list();
-            session.close();
-            return tiendas;
+          SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+          Session session = sessionFactory.openSession();
+          List<Tiendas> tiendas = session.createQuery(""
+              + "select        "
+              + "t.id as id,        "
+              + "t.nombre as nombre from Tiendas t ").setResultTransformer(
+              Transformers.aliasToBean(Tiendas.class)).list();
+          session.close();
+          return tiendas;
         }
+
+
         public static List<Tiendas> GetAllTiendas () {
             SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
             Session session = sessionFactory.openSession();
