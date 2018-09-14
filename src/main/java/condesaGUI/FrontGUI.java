@@ -1,7 +1,11 @@
 package condesaGUI;
 
 import DbController.HibernateCrud;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -27,7 +32,10 @@ public class FrontGUI extends Application implements Initializable {
   @FXML private ListView<String>  horaList2;
   @FXML private ListView<String>  horaList3;
   @FXML private ListView<String>  horaList4;
-  private static ObservableList<String> horario = FXCollections.observableArrayList(getStaticList());
+  @FXML private Label monthLabel;
+  private LocalDate calendar;
+  private static final ObservableList<String>
+      horario = FXCollections.observableArrayList(getStaticList());
 
   private static ArrayList getStaticList() {
     ArrayList list = new ArrayList<>();
@@ -49,6 +57,9 @@ public class FrontGUI extends Application implements Initializable {
     horaList3.setItems(horario);
     horaList4.setItems(horario);
     tiendasComboBox.getItems().setAll(HibernateCrud.tiendasToList());
+    Locale spanishLocale=new Locale("es", "ES");
+    calendar = LocalDate.now();
+    monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern("MMMM",spanishLocale)));
   }
   public static void main(String[] args) {
     launch(args);
@@ -80,5 +91,19 @@ public class FrontGUI extends Application implements Initializable {
     } catch(Exception e) {
       e.printStackTrace();
     }
+  }
+
+  public void monthBackButton(ActionEvent actionEvent) {
+    Locale spanishLocale=new Locale("es", "ES");
+    calendar = calendar.plusMonths(-1);
+    monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern(
+        "MMMM",spanishLocale)));
+  }
+
+  public void monthNextButton(ActionEvent actionEvent) {
+    Locale spanishLocale=new Locale("es", "ES");
+    calendar = calendar.plusMonths(1);
+    monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern(
+        "MMMM",spanishLocale)));
   }
 }

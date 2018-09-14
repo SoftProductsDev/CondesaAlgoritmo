@@ -1,51 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="026ca1b6-8286-4ac4-b5c8-f123aeab7225" name="Default" comment="Add tiendas en CondesoGui - incompleto">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_11.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="026ca1b6-8286-4ac4-b5c8-f123aeab7225" name="Default" comment="Calendario 1.0.3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CalendarControl/calendar.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/condesaGUI/MainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/condesaGUI/MainGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/calendarControl.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/frontGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/frontGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DbController/DbController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbController/DbController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DbController/HibernateCrud.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbController/HibernateCrud.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Condeso.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/Condeso.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Dias.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/Dias.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/HibernateUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/HibernateUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/HorarioEntrega.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/HorarioEntrega.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/HorarioMaster.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/HorarioMaster.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/HorarioPersonal.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/HorarioPersonal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Plantillas.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/Plantillas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Tiendas.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/Tiendas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Turnos.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/Turnos.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/FrontGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/FrontGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/MainGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/MainGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/NuevoHorarioGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/NuevoHorarioGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/PlantillaGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/PlantillaGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/TiendaGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/TiendaGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/condeso/Condeso.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condeso/Condeso.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/condeso/Contrato.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condeso/Contrato.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/condeso/TipoEmpleado.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condeso/TipoEmpleado.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/frontGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/frontGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/horario/Dias.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/horario/Dias.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/horario/HorarioEntrega.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/horario/HorarioEntrega.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/horario/HorarioInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/horario/HorarioInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/horario/HorarioMaster.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/horario/HorarioMaster.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/horario/HorarioPersonal.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/horario/HorarioPersonal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/horario/Plantillas.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/horario/Plantillas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/horario/Turnos.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/horario/Turnos.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/lalo/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/lalo/Parser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/lalo/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/lalo/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/lalo/lalo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/lalo/lalo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tiendas/Tiendas.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tiendas/Tiendas.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -121,47 +82,49 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="fxml" value="733" />
-          <entry key="java" value="451" />
-          <entry key="txt" value="10" />
+          <entry key="fxml" value="900" />
+          <entry key="java" value="656" />
+          <entry key="txt" value="31" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="451" />
-          <entry key="PLAIN_TEXT" value="10" />
-          <entry key="XML" value="733" />
+          <entry key="JAVA" value="656" />
+          <entry key="PLAIN_TEXT" value="31" />
+          <entry key="XML" value="900" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.38" value="1" />
+          <entry key="project.open.time.39" value="1" />
           <entry key="project.open.time.57" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.open.time.97" value="1" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/frontGUI.fxml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="67" column="96" selection-start-line="67" selection-start-column="96" selection-end-line="67" selection-end-column="96" />
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="174" column="127" selection-start-line="174" selection-start-column="127" selection-end-line="174" selection-end-column="127" />
             </state>
           </provider>
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="45" column="31" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
+            <state relative-caret-position="259">
+              <caret line="106" column="32" selection-start-line="106" selection-start-column="32" selection-end-line="106" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -177,8 +140,18 @@
     </option>
   </component>
   <component name="FindInProjectRecents">
+    <findStrings>
+      <find>prefWidth=</find>
+      <find>prefWidth=&quot;100.0&quot;</find>
+      <find>GridPane.halignment=&quot;CENTER&quot;</find>
+      <find>maxHeight=&quot;1.7976931348623157E308&quot;</find>
+    </findStrings>
     <replaceStrings>
       <replace>&quot;ALWAYS&quot;</replace>
+      <replace>prefWidth=&quot;100.0&quot;  maxWidth=&quot;Infinity&quot;/&gt;</replace>
+      <replace>prefWidth=&quot;100.0&quot;  maxWidth=&quot;Infinity&quot;</replace>
+      <replace>GridPane.rowIndex=&quot;1&quot; GridPane.halignment=&quot;CENTER&quot;</replace>
+      <replace>GridPane.rowIndex=&quot;2&quot; GridPane.halignment=&quot;CENTER&quot;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -201,8 +174,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Prueba.java" />
         <option value="$PROJECT_DIR$/src/main/resources/prueba.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/calendarControl.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java" />
         <option value="$PROJECT_DIR$/src/main/resources/frontGUI.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java" />
       </list>
     </option>
   </component>
@@ -218,8 +191,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1593" />
-    <option name="y" value="146" />
+    <option name="x" value="-270" />
+    <option name="y" value="-11" />
     <option name="width" value="1366" />
     <option name="height" value="678" />
   </component>
@@ -229,8 +202,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -275,11 +248,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536808020199" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536813080479" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -403,13 +376,28 @@
       <option name="project" value="LOCAL" />
       <updated>1536641871906</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Calendario 1.0.1">
+      <created>1536808114358</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1536808114359</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Calendario 1.0.2">
+      <created>1536812938502</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1536812938502</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15031983" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21785174" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -418,12 +406,12 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32719395" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32569557" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39869988" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.4989339" visible="true" weight="0.19393283" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4989339" weight="0.19393283" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5010661" side_tool="true" weight="0.19393283" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.641258" weight="0.32936078" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49946696" weight="0.32936078" />
@@ -469,7 +457,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Calendario" />
-    <option name="LAST_COMMIT_MESSAGE" value="Calendario" />
+    <MESSAGE value="Calendario 1.0.1" />
+    <MESSAGE value="Calendario 1.0.2" />
+    <MESSAGE value="Calendario 1.0.3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Calendario 1.0.3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -655,29 +646,10 @@
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/prueba.fxml" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/Prueba.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Prueba.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/CalendarControl/CustomControlExample.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/calendarControl.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13753">
-          <caret line="809" column="49" selection-start-line="809" selection-start-column="42" selection-end-line="809" selection-end-column="49" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/CalendarControl/calendarControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/calendarControl.fxml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/CalendarControl/calendarControl.java" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml">
       <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -700,20 +672,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/frontGUI.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="174" column="127" selection-start-line="174" selection-start-column="127" selection-end-line="174" selection-end-column="127" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="45" column="31" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
+        <state relative-caret-position="259">
+          <caret line="106" column="32" selection-start-line="106" selection-start-column="32" selection-end-line="106" selection-end-column="32" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/frontGUI.fxml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="67" column="96" selection-start-line="67" selection-start-column="96" selection-end-line="67" selection-end-column="96" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
   </component>
   <component name="masterDetails">
