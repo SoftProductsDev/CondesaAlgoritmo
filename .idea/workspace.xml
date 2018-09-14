@@ -2,17 +2,42 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3a0ca2c0-7043-459c-b133-22855bede177" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_11.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CondesaAlgoritmo.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbController/DbController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbController/DbController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbController/HibernateCrud.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbController/HibernateCrud.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Condeso.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/Condeso.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Dias.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/Dias.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/HibernateUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/HibernateUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/HorarioEntrega.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/HorarioEntrega.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/HorarioMaster.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/HorarioMaster.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/HorarioPersonal.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/HorarioPersonal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Plantillas.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/Plantillas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Tiendas.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/Tiendas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Turnos.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/Turnos.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/FrontGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/FrontGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/MainGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/MainGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/NuevoHorarioGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/NuevoHorarioGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/PlantillaGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/PlantillaGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/TiendaGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/TiendaGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condeso/Condeso.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condeso/Condeso.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condeso/Contrato.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condeso/Contrato.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condeso/TipoEmpleado.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condeso/TipoEmpleado.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/horario/Dias.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/horario/Dias.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/horario/HorarioEntrega.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/horario/HorarioEntrega.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/horario/HorarioInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/horario/HorarioInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/horario/HorarioMaster.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/horario/HorarioMaster.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/horario/HorarioPersonal.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/horario/HorarioPersonal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/horario/Plantillas.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/horario/Plantillas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/horario/Turnos.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/horario/Turnos.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/lalo/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/lalo/Parser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/lalo/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/lalo/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/lalo/lalo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/lalo/lalo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiendas/Tiendas.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tiendas/Tiendas.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -67,114 +92,49 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-586801356">
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="8" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="8" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages" />
+      <usages-collector id="statistics.file.types.edit" />
+      <usages-collector id="statistics.file.extensions.edit" />
+      <usages-collector id="statistics.js.language.service.starts" />
+      <usages-collector id="statistics.spring.boot.mvc.usages" />
+      <usages-collector id="statistics.spring.boot.run.usages" />
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Parser.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#parse#0;class#Parser#0" />
-                <element signature="method#parseTime#0;class#Parser#0" />
-                <element signature="method#parseTime#1;class#Parser#0" />
-                <element signature="method#ignore#0;class#Parser#0" />
-                <element signature="method#subString#0;class#Parser#0" />
-                <element signature="method#getPosition#0;class#Parser#0" />
-                <element signature="method#toString#0;class#Parser#0" />
-                <element signature="method#parse2#0;class#Parser#0" />
-              </folding>
+            <state relative-caret-position="68">
+              <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/lalo/lalo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-155">
-              <caret line="12" column="23" lean-forward="true" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Test.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/disponibilidad.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/condeso/CompareCondesos.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/condeso/Condeso.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1590">
-              <caret line="204" column="58" lean-forward="true" selection-start-line="204" selection-start-column="58" selection-end-line="204" selection-end-column="58" />
-              <folding>
-                <element signature="e#686#1156#0" />
-                <element signature="e#1160#1573#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/lang/Object.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="234" column="18" selection-start-line="234" selection-start-column="18" selection-end-line="234" selection-end-column="18" />
-              <folding>
-                <element signature="e#10065#10066#0" expanded="true" />
-                <element signature="e#10148#10149#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/condeso/Contrato.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/PlantillaGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/TiendaGUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+            <state relative-caret-position="459">
+              <caret line="40" selection-start-line="40" selection-end-line="40" />
             </state>
           </provider>
         </entry>
@@ -204,6 +164,12 @@
       </list>
     </option>
   </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
   <component name="MavenProjectNavigator">
     <treeState>
       <expand>
@@ -215,10 +181,10 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1366" />
-    <option name="height" value="678" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="20" />
+    <option name="width" value="1370" />
+    <option name="height" value="680" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -226,69 +192,60 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="CondesaAlgoritmo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CondesaAlgoritmo" type="462c0819:PsiDirectoryNode" />
+              <item name="Algoritmo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Algoritmo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="CondesaAlgoritmo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CondesaAlgoritmo" type="462c0819:PsiDirectoryNode" />
+              <item name="Algoritmo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Algoritmo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="CondesaAlgoritmo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CondesaAlgoritmo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CondesaAlgoritmo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CondesaAlgoritmo" type="462c0819:PsiDirectoryNode" />
+              <item name="Algoritmo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Algoritmo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="CondesaAlgoritmo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CondesaAlgoritmo" type="462c0819:PsiDirectoryNode" />
+              <item name="Algoritmo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Algoritmo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="condeso" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="CondesaAlgoritmo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CondesaAlgoritmo" type="462c0819:PsiDirectoryNode" />
+              <item name="Algoritmo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Algoritmo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="condesaGUI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Algoritmo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Algoritmo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="lalo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CondesaAlgoritmo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CondesaAlgoritmo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CondesaAlgoritmo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CondesaAlgoritmo" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536621262176" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536756880139" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -310,7 +267,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Test (1)">
+  <component name="RunManager" selected="Application.MainGUI">
+    <configuration name="CondesoGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="condesaGUI.CondesoGUI" />
+      <module name="CondesaAlgoritmo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="condesaGUI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="FrontGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="condesaGUI.FrontGUI" />
       <module name="CondesaAlgoritmo" />
@@ -339,23 +309,9 @@
     </configuration>
     <configuration name="MainGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="condesaGUI.MainGUI" />
-      <module name="main" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="condesaGUI.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Parser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lalo.Parser" />
-      <module name="main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="lalo.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -378,18 +334,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.MainGUI" />
-      <item itemvalue="Application.Parser" />
       <item itemvalue="Application.MainGUI (1)" />
       <item itemvalue="Application.Test (1)" />
       <item itemvalue="Application.FrontGUI" />
+      <item itemvalue="Application.CondesoGUI" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test (1)" />
         <item itemvalue="Application.MainGUI" />
-        <item itemvalue="Application.MainGUI (1)" />
+        <item itemvalue="Application.CondesoGUI" />
         <item itemvalue="Application.FrontGUI" />
-        <item itemvalue="Application.Parser" />
+        <item itemvalue="Application.MainGUI (1)" />
+        <item itemvalue="Application.Test (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -403,14 +359,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1536180017383</updated>
+      <workItem from="1536755177079" duration="1110000" />
+      <workItem from="1536943003948" duration="991000" />
     </task>
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="2607000" />
+  </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1366" height="678" extended-state="0" />
-    <editor active="true" />
+    <frame x="-6" y="-6" width="1549" height="837" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18353474" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.089201875" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -419,7 +379,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32423207" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32152975" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3993174" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -428,6 +388,7 @@
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.32993197" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32993197" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -436,27 +397,47 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Maven Projects" order="7" weight="0.32930514" />
+      <window_info anchor="right" id="Database" order="8" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.087860495" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" />
+      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.32152975" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.3993174" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32993197" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32993197" />
+      <window_info anchor="right" id="Database" order="0" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="8" weight="0.32930514" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/main.iml" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/MainGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Plan agosto.txt" />
     <entry file="file://$PROJECT_DIR$/CondesaAlgoritmo.userlibraries">
       <provider selected="true" editor-type-id="text-editor" />
@@ -488,31 +469,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/PlantillaGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/TiendaGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
@@ -523,25 +483,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/lang/Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="234" column="18" selection-start-line="234" selection-start-column="18" selection-end-line="234" selection-end-column="18" />
-          <folding>
-            <element signature="e#10065#10066#0" expanded="true" />
-            <element signature="e#10148#10149#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/lang/Object.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/condeso/Condeso.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1590">
           <caret line="204" column="58" lean-forward="true" selection-start-line="204" selection-start-column="58" selection-end-line="204" selection-end-column="58" />
-          <folding>
-            <element signature="e#686#1156#0" />
-            <element signature="e#1160#1573#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -559,9 +505,12 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/lalo/lalo.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
+        <state relative-caret-position="68">
           <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -577,10 +526,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/lalo/lalo.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-155">
-          <caret line="12" column="23" lean-forward="true" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+        <state relative-caret-position="221">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/MainGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/CalendarControl/calendar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/PlantillaGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
         </state>
       </provider>
     </entry>
