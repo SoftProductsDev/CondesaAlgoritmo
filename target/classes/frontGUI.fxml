@@ -1,39 +1,211 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="grid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.FrontGUI">
+<GridPane fx:id="grid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.FrontGUI">
   <columnConstraints>
+    <ColumnConstraints />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="38.0" minHeight="19.0" prefHeight="19.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="38.0" minHeight="19.0" prefHeight="${grid.width*0.1}" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="38.0" minHeight="19.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="38.0" minHeight="19.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="361.0" vgrow="ALWAYS" />
   </rowConstraints>
    <children>
-      <Canvas height="287.0" layoutX="18.0" layoutY="74.0" width="618.0" />
-       <Button mnemonicParsing="false" onAction="#CondesosClicked" prefHeight="38.0" prefWidth="331.0" text="Condesos" GridPane.halignment="CENTER"/>
-      <ComboBox fx:id="tiendasComboBox" prefHeight="65.0" prefWidth="304.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
-      <Button mnemonicParsing="false" onAction="#NuevoHorarioClicked" prefHeight="65.0" prefWidth="181.0" text="Nuevo Horario" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-      <Button mnemonicParsing="false" onAction="#TiendasClicked" prefHeight="65.0" prefWidth="200.0" text="Tiendas" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-      <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
+       <Button mnemonicParsing="false" onAction="#CondesosClicked" prefHeight="38.0" prefWidth="331.0" text="Condesos" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+      <ComboBox fx:id="tiendasComboBox" prefHeight="65.0" prefWidth="304.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#NuevoHorarioClicked" prefHeight="65.0" prefWidth="181.0" text="Nuevo Horario" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#TiendasClicked" prefHeight="65.0" prefWidth="200.0" text="Tiendas" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+
+      <ScrollPane fitToHeight="false" fitToWidth="true" maxHeight="Infinity" prefHeight="466.0" prefWidth="200.0" vbarPolicy="ALWAYS" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="3">
+         <content>
+           <GridPane maxHeight="Infinity" maxWidth="Infinity" prefHeight="1997.0" prefWidth="739.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+             <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="56.0" minWidth="10.0" prefWidth="56.0" />
+               <ColumnConstraints fx:id="column0" hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="98.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="102.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="96.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="97.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="99.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="95.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="84.0" />
+             </columnConstraints>
+             <rowConstraints>
+               <RowConstraints maxHeight="20.0" minHeight="0.0" prefHeight="10.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+             </rowConstraints>
+             <children>
+               <ListView fx:id="horaList0" maxHeight="400" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1" />
+               <ListView fx:id="horaList1" maxHeight="400" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3" />
+               <ListView fx:id="horaList2" maxHeight="400" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5" />
+               <ListView fx:id="horaList3" maxHeight="400" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7" />
+               <ListView fx:id="horaList4" maxHeight="400" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="9" />
+             <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+             <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+             <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+             <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
+             <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="5" GridPane.halignment="CENTER" />
+             <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="6" GridPane.halignment="CENTER" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="7" GridPane.halignment="CENTER" />
+
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+
+             </children>
+             <GridPane.margin>
+               <Insets top="5.0" />
+             </GridPane.margin>
+           </GridPane>
+         </content></ScrollPane>
+      <GridPane id="monthGrid" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="1" GridPane.rowSpan="2">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="56.0" minWidth="10.0" prefWidth="56.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" prefWidth="104.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+         <Label alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" style="-fx-background-color: #4286f4;" text="Viernes" textFill="#fffefe" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+           <font>
+             <Font name="System Bold" size="14.0" />
+           </font>
+           <GridPane.margin>
+             <Insets bottom="1.0" left="1.0" right="1.0" />
+           </GridPane.margin>
+            </Label>
+         <Label alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" style="-fx-background-color: #4286f4;" text="Sábado" textFill="#fffefe" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+           <font>
+             <Font name="System Bold" size="14.0" />
+           </font>
+           <GridPane.margin>
+             <Insets bottom="1.0" left="1.0" right="1.0" />
+           </GridPane.margin>
+            </Label>
+         <Label alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" style="-fx-background-color: #4286f4;" text="Martes" textFill="#fffefe" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+           <font>
+             <Font name="System Bold" size="14.0" />
+           </font>
+           <GridPane.margin>
+             <Insets bottom="1.0" left="1.0" right="1.0" />
+           </GridPane.margin>
+            </Label>
+         <Label alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" prefHeight="45.0" prefWidth="82.0" style="-fx-background-color: #4286f4;" text="Lunes" textFill="#fffefe" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+           <font>
+             <Font name="System Bold" size="14.0" />
+           </font>
+           <GridPane.margin>
+             <Insets bottom="1.0" left="1.0" right="1.0" />
+           </GridPane.margin>
+            </Label>
+         <Label fx:id="monthLabel" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="28.0" prefWidth="247.0" style="-fx-background-color: #4286f4;" text="Septiembre " textFill="#f5f2f2" GridPane.columnIndex="3" GridPane.columnSpan="3">
+           <font>
+             <Font name="System Bold" size="14.0" />
+           </font>
+           <GridPane.margin>
+             <Insets bottom="4.0" left="1.0" right="1.0" top="1.0" />
+           </GridPane.margin>
+         </Label>
+         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#monthBackButton" prefHeight="25.0" prefWidth="162.0" style="-fx-background-color: #4286f4;" text="&lt;&lt;" textFill="#f5f3f3" GridPane.columnIndex="2">
+           <padding>
+             <Insets bottom="5.0" right="1.0" top="5.0" />
+           </padding>
+           <GridPane.margin>
+             <Insets bottom="5.0" left="1.0" right="1.0" top="1.0" />
+           </GridPane.margin>
+         </Button>
+         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#monthNextButton" prefHeight="27.0" prefWidth="216.0" style="-fx-background-color: #4286f4;" text="&gt;&gt;" textFill="WHITE" GridPane.columnIndex="6">
+           <padding>
+             <Insets bottom="5.0" left="1.0" top="5.0" />
+           </padding>
+           <GridPane.margin>
+             <Insets bottom="5.0" left="1.0" right="1.0" top="1.0" />
+           </GridPane.margin>
+         </Button>
+         <Label alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" style="-fx-background-color: #4286f4;" text="Miércoles" textFill="#fffefe" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+           <font>
+             <Font name="System Bold" size="14.0" />
+           </font>
+           <GridPane.margin>
+             <Insets bottom="1.0" left="1.0" right="1.0" />
+           </GridPane.margin>
+            </Label>
+         <Label alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" style="-fx-background-color: #4286f4;" text="Domingo" textFill="#fffefe" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+           <font>
+             <Font name="System Bold" size="14.0" />
+           </font>
+           <GridPane.margin>
+             <Insets bottom="1.0" left="1.0" right="1.0" />
+           </GridPane.margin>
+            </Label>
+         <Label alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" style="-fx-background-color: #4286f4;" text="Jueves" textFill="#fffefe" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+           <font>
+             <Font name="System Bold" size="14.0" />
+           </font>
+           <GridPane.margin>
+             <Insets bottom="1.0" left="1.0" right="1.0" />
+           </GridPane.margin>
+            </Label>
+         </children>
+      </GridPane>
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

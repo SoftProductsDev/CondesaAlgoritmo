@@ -1,7 +1,14 @@
 package condesaGUI;
 
 import DbController.HibernateCrud;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -18,13 +27,39 @@ import java.util.ResourceBundle;
 public class FrontGUI extends Application implements Initializable {
 
   @FXML private ComboBox<String>  tiendasComboBox;
+  @FXML private  ListView<String> horaList0;
+  @FXML private ListView<String>  horaList1;
+  @FXML private ListView<String>  horaList2;
+  @FXML private ListView<String>  horaList3;
+  @FXML private ListView<String>  horaList4;
+  @FXML private Label monthLabel;
+  private LocalDate calendar;
+  private static final ObservableList<String>
+      horario = FXCollections.observableArrayList(getStaticList());
+
+  private static ArrayList getStaticList() {
+    ArrayList list = new ArrayList<>();
+    for (int i = 8; i < 24; i++){
+      list.add(i + "-" + (i+1));
+    }
+    return list;
+  }
+
 
   public void start(Stage primaryStage) throws Exception{
 
   }
 
   public void initialize(URL location, ResourceBundle resources) {
+    horaList0.setItems(horario);
+    horaList1.setItems(horario);
+    horaList2.setItems(horario);
+    horaList3.setItems(horario);
+    horaList4.setItems(horario);
     tiendasComboBox.getItems().setAll(HibernateCrud.tiendasToList());
+    Locale spanishLocale=new Locale("es", "ES");
+    calendar = LocalDate.now();
+    monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern("MMMM",spanishLocale)));
   }
   public static void main(String[] args) {
     launch(args);
@@ -56,5 +91,19 @@ public class FrontGUI extends Application implements Initializable {
     } catch(Exception e) {
       e.printStackTrace();
     }
+  }
+
+  public void monthBackButton(ActionEvent actionEvent) {
+    Locale spanishLocale=new Locale("es", "ES");
+    calendar = calendar.plusMonths(-1);
+    monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern(
+        "MMMM",spanishLocale)));
+  }
+
+  public void monthNextButton(ActionEvent actionEvent) {
+    Locale spanishLocale=new Locale("es", "ES");
+    calendar = calendar.plusMonths(1);
+    monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern(
+        "MMMM",spanishLocale)));
   }
 }
