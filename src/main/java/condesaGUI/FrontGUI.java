@@ -70,16 +70,24 @@ public class FrontGUI extends Application implements Initializable {
   }
 
   private void setCalendarDays() {
-    DayOfWeek i = calendar.withDayOfMonth(1).getDayOfWeek();
+    DayOfWeek day = calendar.withDayOfMonth(1).getDayOfWeek();
     int lengthMonth = calendar.getMonth().length(calendar.isLeapYear());
-    int x = 0;
+    int lengthLastMonth = calendar.plusMonths(- 1).lengthOfMonth();
+    int labelIndex = 0;
     for (int j = 1; j <= 35; j++) {
-      Label label = (Label) calendarNodes.get(x + 5);
-      int dayNum = (j - i.getValue() + 1);
-      int f = Math.floorMod(dayNum, lengthMonth + 1);
-      if(f==0)f += 1;
+      Label label = (Label) calendarNodes.get(labelIndex + 5);
+      int dayNum = (j - day.getValue() + 1);
+      int f = 0;
+      if(dayNum <=0 ) {
+        f = Math.floorMod(dayNum, lengthLastMonth);
+        if(f == 0){f = lengthLastMonth;}
+      }
+      else {
+        f = Math.floorMod(dayNum, lengthMonth);
+        if(f == 0){f = lengthMonth;}
+      }
       label.setText(Integer.toString(f));
-      x++;
+      labelIndex++;
     }
   }
 
