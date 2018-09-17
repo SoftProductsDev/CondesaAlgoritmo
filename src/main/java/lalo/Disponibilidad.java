@@ -42,4 +42,14 @@ public class Disponibilidad {
         return disponibilidad;
     }
 
+    public void Print(){
+        System.out.println(name);
+        for(int i = 0; i < disponibilidad.length; i++){
+            for(int j = 0; j < disponibilidad[i].length; j++){
+                System.out.print(disponibilidad[i][j] + ", ");
+            }
+            System.out.println();
+        }
+    }
+
 }
