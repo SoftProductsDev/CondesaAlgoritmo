@@ -10,6 +10,7 @@ public class Dias {
 	private long Id;
 	private HashMap<Integer,Turnos> turnos = new HashMap<Integer,Turnos>();
 	private Date date;
+	private int dia;
 
 	public  DbModel.Dias convertToDbModel()
 	{
@@ -26,6 +27,10 @@ public class Dias {
 	public void setId(long id) {
 		Id = id;
 	}
+
+	public void setDia(int dia){this.dia  = dia;}
+
+	public int getDia(){return dia;}
 
 	private Map<Integer, DbModel.Turnos> convertTurnosToDbModel() {
 	  HashMap<Integer, DbModel.Turnos> result = new HashMap<>();
