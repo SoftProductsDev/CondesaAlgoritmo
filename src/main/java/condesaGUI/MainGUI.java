@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.TilePane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 
@@ -34,7 +35,9 @@ public class MainGUI extends Application {
             throw ex;
         }
         primaryStage.setTitle("Página de inicio");
-        primaryStage.setScene(new Scene(root, 700, 600));
+        Scene scene = new Scene(root ,Screen.getPrimary().getVisualBounds().getWidth(),
+            Screen.getPrimary().getVisualBounds().getMaxY());
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 }
