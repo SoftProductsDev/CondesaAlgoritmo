@@ -20,7 +20,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -35,6 +37,7 @@ public class FrontGUI extends Application implements Initializable {
   @FXML private ListView<String>  horaList2;
   @FXML private ListView<String>  horaList3;
   @FXML private ListView<String>  horaList4;
+  @FXML private ListView<String>  horaList5;
   @FXML private Label monthLabel;
   @FXML private GridPane monthGrid;
   private ObservableList<Node> calendarNodes;
@@ -61,12 +64,36 @@ public class FrontGUI extends Application implements Initializable {
     horaList2.setItems(horario);
     horaList3.setItems(horario);
     horaList4.setItems(horario);
+    horaList5.setItems(horario);
     tiendasComboBox.getItems().setAll(HibernateCrud.tiendasToList());
     Locale spanishLocale=new Locale("es", "ES");
     calendar = LocalDate.now();
     monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern("MMMM, YYYY",spanishLocale)));
     calendarNodes = monthGrid.getChildren();
     setCalendarDays();
+    addLabelGrids();
+  }
+
+  private void addLabelGrids() {
+    for (int i = 1; i < 8; i++){
+      for (int j = 1; j < 12; j+=2){
+        GridPane grid = new GridPane();
+        for (int k = 0; k < 7; k++) {
+          ColumnConstraints column = new ColumnConstraints();
+          column.prefWidthProperty().set(200);
+          column.setMaxWidth(1234567890);
+          grid.getColumnConstraints().add(column);
+        }
+        for (int k = 0; k < 16; k++) {
+          RowConstraints column = new RowConstraints();
+          column.setPrefHeight(400);
+          grid.getRowConstraints().add(column);
+        }
+        grid.gridLinesVisibleProperty().set(true);
+        grid.setStyle("-fx-padding: 0 0 1 3;");
+        monthGrid.add(grid,i,j);
+      }
+    }
   }
 
   private void setCalendarDays() {
@@ -74,8 +101,8 @@ public class FrontGUI extends Application implements Initializable {
     int lengthMonth = calendar.getMonth().length(calendar.isLeapYear());
     int lengthLastMonth = calendar.plusMonths(- 1).lengthOfMonth();
     int labelIndex = 0;
-    for (int j = 1; j <= 35; j++) {
-      Label label = (Label) calendarNodes.get(labelIndex + 5);
+    for (int j = 1; j <= 42; j++) {
+      Label label = (Label) calendarNodes.get(labelIndex + 6);
       int dayNum = (j - day.getValue() + 1);
       int f = 0;
       if(dayNum <=0 ) {

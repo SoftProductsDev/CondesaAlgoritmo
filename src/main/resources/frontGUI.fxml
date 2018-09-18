@@ -13,7 +13,6 @@
 
 <GridPane fx:id="grid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.FrontGUI">
   <columnConstraints>
-    <ColumnConstraints />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -26,34 +25,36 @@
     <RowConstraints minHeight="10.0" prefHeight="361.0" vgrow="ALWAYS" />
   </rowConstraints>
    <children>
-       <Button mnemonicParsing="false" onAction="#CondesosClicked" prefHeight="38.0" prefWidth="331.0" text="Condesos" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-      <ComboBox fx:id="tiendasComboBox" prefHeight="65.0" prefWidth="304.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
-      <Button mnemonicParsing="false" onAction="#NuevoHorarioClicked" prefHeight="65.0" prefWidth="181.0" text="Nuevo Horario" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
-      <Button mnemonicParsing="false" onAction="#TiendasClicked" prefHeight="65.0" prefWidth="200.0" text="Tiendas" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+       <Button mnemonicParsing="false" onAction="#CondesosClicked" prefHeight="38.0" prefWidth="331.0" text="Condesos" GridPane.halignment="CENTER" />
+      <ComboBox fx:id="tiendasComboBox" prefHeight="65.0" prefWidth="304.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#NuevoHorarioClicked" prefHeight="65.0" prefWidth="181.0" text="Nuevo Horario" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#TiendasClicked" prefHeight="65.0" prefWidth="200.0" text="Tiendas" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
 
-      <ScrollPane fitToHeight="false" fitToWidth="true" maxHeight="Infinity" prefHeight="466.0" prefWidth="200.0" vbarPolicy="ALWAYS" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="3">
+      <ScrollPane fitToHeight="false" fitToWidth="true" maxHeight="Infinity" prefHeight="466.0" prefWidth="200.0" vbarPolicy="ALWAYS" GridPane.columnSpan="2147483647" GridPane.rowIndex="3">
          <content>
-           <GridPane fx:id="monthGrid" maxHeight="Infinity" maxWidth="Infinity" prefHeight="1997.0" prefWidth="739.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+           <GridPane fx:id="monthGrid" maxHeight="Infinity" maxWidth="Infinity" prefHeight="2340.0" prefWidth="739.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
              <columnConstraints>
                <ColumnConstraints hgrow="SOMETIMES" maxWidth="56.0" minWidth="10.0" prefWidth="56.0" />
                <ColumnConstraints fx:id="column0" hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="98.0" />
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="102.0" />
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="96.0" />
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="97.0" />
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="99.0" />
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="95.0" />
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="84.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="110.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="72.0" />
              </columnConstraints>
              <rowConstraints>
                <RowConstraints maxHeight="20.0" minHeight="0.0" prefHeight="10.0" vgrow="SOMETIMES" />
                <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-               <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-               <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-               <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
                <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
              </rowConstraints>
              <children>
@@ -62,6 +63,7 @@
                <ListView fx:id="horaList2" maxHeight="400" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5" />
                <ListView fx:id="horaList3" maxHeight="400" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7" />
                <ListView fx:id="horaList4" maxHeight="400" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="9" />
+               <ListView fx:id="horaList5" maxHeight="400" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="11" />
              <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
              <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
              <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
@@ -101,317 +103,22 @@
                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-                  <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <ListView prefHeight="200.0" prefWidth="200.0" />
-                        <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" />
-                        <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" />
-                        <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
-                        <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
-                        <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-                        <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                     </children>
-                  </GridPane>
-               <GridPane GridPane.columnIndex="2" GridPane.rowIndex="1">
-                 <columnConstraints>
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                 </columnConstraints>
-                 <rowConstraints>
-                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                 </rowConstraints>
-                 <children>
-                   <ListView prefHeight="200.0" prefWidth="200.0" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                 </children>
-               </GridPane>
-               <GridPane GridPane.columnIndex="3" GridPane.rowIndex="1">
-                 <columnConstraints>
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                 </columnConstraints>
-                 <rowConstraints>
-                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                 </rowConstraints>
-                 <children>
-                   <ListView prefHeight="200.0" prefWidth="200.0" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                 </children>
-               </GridPane>
-               <GridPane GridPane.columnIndex="4" GridPane.rowIndex="1">
-                 <columnConstraints>
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                 </columnConstraints>
-                 <rowConstraints>
-                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                 </rowConstraints>
-                 <children>
-                   <ListView prefHeight="200.0" prefWidth="200.0" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                 </children>
-               </GridPane>
-               <GridPane GridPane.columnIndex="5" GridPane.rowIndex="1">
-                 <columnConstraints>
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                 </columnConstraints>
-                 <rowConstraints>
-                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                 </rowConstraints>
-                 <children>
-                   <ListView prefHeight="200.0" prefWidth="200.0" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                 </children>
-               </GridPane>
-               <GridPane GridPane.columnIndex="6" GridPane.rowIndex="1">
-                 <columnConstraints>
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                 </columnConstraints>
-                 <rowConstraints>
-                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                 </rowConstraints>
-                 <children>
-                   <ListView prefHeight="200.0" prefWidth="200.0" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                 </children>
-               </GridPane>
-               <GridPane GridPane.columnIndex="7" GridPane.rowIndex="1">
-                 <columnConstraints>
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                 </columnConstraints>
-                 <rowConstraints>
-                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                 </rowConstraints>
-                 <children>
-                   <ListView prefHeight="200.0" prefWidth="200.0" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                 </children>
-               </GridPane>
-               <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
-                 <columnConstraints>
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                 </columnConstraints>
-                 <rowConstraints>
-                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                 </rowConstraints>
-                 <children>
-                   <ListView prefHeight="200.0" prefWidth="200.0" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                 </children>
-               </GridPane>
-               <GridPane GridPane.columnIndex="2" GridPane.rowIndex="3">
-                 <columnConstraints>
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                 </columnConstraints>
-                 <rowConstraints>
-                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                 </rowConstraints>
-                 <children>
-                   <ListView prefHeight="200.0" prefWidth="200.0" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                 </children>
-               </GridPane>
-               <GridPane GridPane.columnIndex="3" GridPane.rowIndex="3">
-                 <columnConstraints>
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                 </columnConstraints>
-                 <rowConstraints>
-                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                 </rowConstraints>
-                 <children>
-                   <ListView prefHeight="200.0" prefWidth="200.0" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                 </children>
-               </GridPane>
-               <GridPane GridPane.columnIndex="4" GridPane.rowIndex="3">
-                 <columnConstraints>
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                 </columnConstraints>
-                 <rowConstraints>
-                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                 </rowConstraints>
-                 <children>
-                   <ListView prefHeight="200.0" prefWidth="200.0" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                 </children>
-               </GridPane>
-               <GridPane GridPane.columnIndex="5" GridPane.rowIndex="3">
-                 <columnConstraints>
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                 </columnConstraints>
-                 <rowConstraints>
-                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                 </rowConstraints>
-                 <children>
-                   <ListView maxWidth="Infinity" prefHeight="200.0" prefWidth="200.0" />
-                   <ListView maxWidth="Infinity" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" />
-                   <ListView maxWidth="Infinity" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" />
-                   <ListView maxWidth="Infinity" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
-                   <ListView maxWidth="Infinity" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
-                   <ListView maxWidth="Infinity" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-                   <ListView maxWidth="Infinity"  prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                 </children>
-               </GridPane>
-               <GridPane GridPane.columnIndex="6" GridPane.rowIndex="3">
-                 <columnConstraints>
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                 </columnConstraints>
-                 <rowConstraints>
-                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                 </rowConstraints>
-                 <children>
-                   <ListView prefHeight="200.0" prefWidth="200.0" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-                   <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                 </children>
-               </GridPane>
 
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
              </children>
-             <GridPane.margin>
-               <Insets top="5.0" />
-             </GridPane.margin>
-           </GridPane>
+             </GridPane>
          </content></ScrollPane>
-      <GridPane GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="1" GridPane.rowSpan="2">
+      <GridPane GridPane.columnSpan="4" GridPane.rowIndex="1" GridPane.rowSpan="2">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="56.0" minWidth="10.0" prefWidth="56.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" prefWidth="104.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" prefWidth="100.0" />
@@ -447,7 +154,7 @@
              <Insets bottom="1.0" left="1.0" right="1.0" />
            </GridPane.margin>
             </Label>
-         <Label alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" prefHeight="45.0" prefWidth="82.0" style="-fx-background-color: #4286f4;" text="Lunes" textFill="#fffefe" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+         <Label alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" prefHeight="29.0" prefWidth="83.0" style="-fx-background-color: #4286f4;" text="Lunes" textFill="#fffefe" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
            <font>
              <Font name="System Bold" size="14.0" />
            </font>
