@@ -1,6 +1,8 @@
 package DbModel;
 
+import java.time.LocalDate;
 import javax.persistence.*;
+import tiendas.Tiendas;
 
 @Entity
 @Table(name = "turnos")
@@ -29,8 +31,15 @@ public class Turnos {
     private int duracion;
 
     @JoinColumn
-    @OneToOne
+    @OneToMany
     private Condeso condeso;
+
+    @Column
+    private LocalDate fecha;
+
+    @JoinColumn
+    @ManyToOne
+    private DbModel.Tiendas tienda;
 
     public Turnos(){
     }

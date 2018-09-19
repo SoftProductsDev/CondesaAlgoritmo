@@ -1,11 +1,16 @@
 package condesaGUI;
 
 import DbController.HibernateCrud;
+import horario.Dias;
+import horario.HorarioMaster;
+import horario.Turnos;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Locale;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -28,10 +33,11 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import tiendas.Tiendas;
 
 public class FrontGUI extends Application implements Initializable {
 
-  @FXML private ComboBox<String>  tiendasComboBox;
+  @FXML private ComboBox<Tiendas>  tiendasComboBox;
   @FXML private  ListView<String> horaList0;
   @FXML private ListView<String>  horaList1;
   @FXML private ListView<String>  horaList2;
@@ -65,7 +71,7 @@ public class FrontGUI extends Application implements Initializable {
     horaList3.setItems(horario);
     horaList4.setItems(horario);
     horaList5.setItems(horario);
-    tiendasComboBox.getItems().setAll(HibernateCrud.tiendasToList());
+    tiendasComboBox.getItems().setAll(HibernateCrud.GetAllDTOTiendas());
     Locale spanishLocale=new Locale("es", "ES");
     calendar = LocalDate.now();
     monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern("MMMM, YYYY",spanishLocale)));
@@ -89,7 +95,7 @@ public class FrontGUI extends Application implements Initializable {
           column.setPrefHeight(400);
           grid.getRowConstraints().add(column);
         }
-        grid.gridLinesVisibleProperty().set(true);
+        //grid.gridLinesVisibleProperty().set(true);
         grid.setStyle("-fx-padding: 0 0 1 3;");
         monthGrid.add(grid,i,j);
       }
@@ -116,6 +122,10 @@ public class FrontGUI extends Application implements Initializable {
       label.setText(Integer.toString(f));
       labelIndex++;
     }
+  }
+
+  private void setHorarioMaster(HorarioMaster horario){
+    HashMap<LocalDate, Dias> mes = horario.getMes();
   }
 
   public static void main(String[] args) {

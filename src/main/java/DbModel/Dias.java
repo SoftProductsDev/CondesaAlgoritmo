@@ -1,5 +1,6 @@
 package DbModel;
 
+import java.time.LocalDate;
 import java.util.Map;
 import javax.persistence.*;
 import org.hibernate.annotations.Cascade;
@@ -21,7 +22,7 @@ public class Dias {
     private Map<Integer, Turnos> turnos;
 
     @Column(name = "date")
-    private java.util.Date date;
+    private LocalDate date;
 
     public long getId() {
         return id;
@@ -39,11 +40,11 @@ public class Dias {
         this.turnos = turnos;
     }
 
-    public java.util.Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(java.util.Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 }

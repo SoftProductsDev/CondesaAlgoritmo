@@ -1,5 +1,6 @@
 package DbModel;
 
+import java.time.LocalDate;
 import java.util.Map;
 import javax.persistence.*;
 import java.util.Date;
@@ -18,7 +19,7 @@ public class HorarioMaster {
 
   @ElementCollection
   @CollectionTable(name = "mesmaster")
-  private Map<Date, Dias> mes;
+  private Map<LocalDate, Dias> mes;
 
   public HorarioMaster() {
   }
@@ -31,11 +32,11 @@ public class HorarioMaster {
     this.id = id;
   }
 
-  public Map<Date, Dias> getMes() {
+  public Map<LocalDate, Dias> getMes() {
     return mes;
   }
 
-  public void setMes(Map<Date, Dias> mes) {
+  public void setMes(Map<LocalDate, Dias> mes) {
     this.mes = mes;
   }
 }

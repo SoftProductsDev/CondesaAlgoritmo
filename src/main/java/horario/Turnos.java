@@ -1,6 +1,7 @@
 package horario;
 
 import condeso.Condeso;
+import java.time.LocalDate;
 import tiendas.Tiendas;
 
 import java.util.Date;
@@ -15,7 +16,7 @@ public class Turnos {
 	private int inicio;
 	private int fin;
 	private int duracion;
-	private Date fecha;
+	private LocalDate fecha;
 	private Tiendas tienda;
 
 	public Turnos(boolean elemental, int inicio, int fin, int duracion, boolean matutino) {
@@ -107,9 +108,9 @@ public class Turnos {
 		this.condeso = condeso;
 	}
 
-	public Date getDate(){return fecha;}
+	public LocalDate getDate(){return fecha;}
 
-	public void setDate(Date fecha){this.fecha = fecha;}
+	public void setDate(LocalDate fecha){this.fecha = fecha;}
 
 	public Tiendas getTienda(){return tienda;}
 

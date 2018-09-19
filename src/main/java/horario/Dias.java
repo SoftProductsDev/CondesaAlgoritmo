@@ -1,5 +1,6 @@
 package horario;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +10,7 @@ public class Dias {
 	// value = turno
 	private long Id;
 	private HashMap<Integer,Turnos> turnos = new HashMap<Integer,Turnos>();
-	private Date date;
+	private LocalDate date;
 	private int dia;
 
 	public  DbModel.Dias convertToDbModel()
@@ -38,7 +39,7 @@ public class Dias {
 	  return  result;
    }
 
-  public Dias(Date date) {
+  public Dias(LocalDate date) {
 		this.date = date;
 	}
 	public HashMap<Integer,Turnos> getTurnos() {
@@ -47,10 +48,10 @@ public class Dias {
 	public void setTurnos(HashMap<Integer,Turnos> turnos) {
 		this.turnos = turnos;
 	}
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 	
