@@ -82,14 +82,21 @@ public class lalo {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(fecha);
 		int day = cal.get(Calendar.DAY_OF_MONTH);
+		int desde = disp[0][day-1];
+		int hasta = disp[1][day-1];
+		if(desde <= inicio && hasta >= fin) return true;
+		return false;
 	}
 
 	private boolean checkDiasSeguidos(Condeso elCondeso, Turnos elTurno){
-
+	return false;
 	}
 
 	private boolean checkFinesLibres(Condeso elCondeso, Turnos elTurno){
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(elTurno.getDate());
 
+	return false;
 	}
 
 	private void AsignarTurno(Condeso elCondeso, Turnos elTurno){
