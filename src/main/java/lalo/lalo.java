@@ -1,11 +1,6 @@
 package lalo;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.ArrayList;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 import condeso.Condeso;
 import condeso.CompareCondesos;
@@ -71,11 +66,29 @@ public class lalo {
 		}
 	}
 	private boolean checkCondeso(Condeso elCondeso, HashMap<Integer, Integer[][]> disponibilidad, Turnos elTurno){
+		if(!checkDisponibilidad(elCondeso, disponibilidad, elTurno)) return false;
+		if(!checkDiasSeguidos(elCondeso, elTurno)) return false;
+		if(!checkFinesLibres(elCondeso, elTurno)) return false;
+		return true;
+
+	}
+
+	private boolean checkDisponibilidad(Condeso elCondeso, HashMap<Integer, Integer[][]> disponibilidad, Turnos elTurno){
 		int Id = (int) elCondeso.getId();
 		Integer[][] disp = disponibilidad.get(Id);
 		int inicio = elTurno.getInicio();
 		int fin = elTurno.getFin();
-		elTurno.
+		Date fecha = elTurno.getDate();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(fecha);
+		int day = cal.get(Calendar.DAY_OF_MONTH);
+	}
+
+	private boolean checkDiasSeguidos(Condeso elCondeso, Turnos elTurno){
+
+	}
+
+	private boolean checkFinesLibres(Condeso elCondeso, Turnos elTurno){
 
 	}
 
