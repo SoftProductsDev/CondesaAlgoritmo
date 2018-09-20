@@ -30,8 +30,7 @@ public class Turnos {
     @Column(name = "duracion")
     private int duracion;
 
-    @JoinColumn
-    @OneToMany
+    @ManyToOne
     private Condeso condeso;
 
     @Column

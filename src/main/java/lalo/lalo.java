@@ -1,5 +1,6 @@
 package lalo;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import condeso.Condeso;
@@ -78,10 +79,11 @@ public class lalo {
 		Integer[][] disp = disponibilidad.get(Id);
 		int inicio = elTurno.getInicio();
 		int fin = elTurno.getFin();
-		Date fecha = elTurno.getDate();
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(fecha);
-		int day = cal.get(Calendar.DAY_OF_MONTH);
+		LocalDate fecha = elTurno.getDate();
+		//Calendar cal = Calendar.getInstance();
+		//cal.setTime(fecha);
+		//int day = cal.get(Calendar.DAY_OF_MONTH);
+		int day = fecha.getDayOfMonth();
 		int desde = disp[0][day-1];
 		int hasta = disp[1][day-1];
 		if(desde <= inicio && hasta >= fin) return true;
@@ -93,8 +95,9 @@ public class lalo {
 	}
 
 	private boolean checkFinesLibres(Condeso elCondeso, Turnos elTurno){
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(elTurno.getDate());
+		//Calendar cal = Calendar.getInstance();
+		//cal.setTime(elTurno.getDate());
+		elTurno.getDate();
 
 	return false;
 	}

@@ -44,7 +44,11 @@ public class Condeso {
 		this.contrato = contrato;
 	}
 
-  @Override
+  public Condeso(String nombre) {
+		this.nombre = nombre;
+  }
+
+	@Override
   public String toString() {
     return "Condeso{" +
         "tipo=" + tipo +

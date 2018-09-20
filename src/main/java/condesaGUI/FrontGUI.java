@@ -1,6 +1,7 @@
 package condesaGUI;
 
 import DbController.HibernateCrud;
+import condeso.Condeso;
 import horario.Dias;
 import horario.HorarioMaster;
 import horario.Turnos;
@@ -78,6 +79,7 @@ public class FrontGUI extends Application implements Initializable {
     calendarNodes = monthGrid.getChildren();
     setCalendarDays();
     addLabelGrids();
+    setTurnos(GetTestTurno());
   }
 
   private void addLabelGrids() {
@@ -128,6 +130,23 @@ public class FrontGUI extends Application implements Initializable {
     HashMap<LocalDate, Dias> mes = horario.getMes();
   }
 
+  private void setDias(Dias dia){
+    HashMap<Integer, Turnos> turnos = dia.getTurnos();
+  }
+
+  private void setTurnos(Turnos turno){
+    //considering the first hour is 8 am
+    int hourIndex = turno.getInicio() - 8;
+    if(hourIndex < 0){
+      //Cry
+    }
+    //42 date Labels
+    int dateIndex = turno.getDate().getDayOfMonth() + 42 +
+        calendar.withDayOfMonth(1).getDayOfWeek().getValue();
+     GridPane pane = (GridPane) monthGrid.getChildren().get(dateIndex);
+    pane.add(new Label(turno.getCondeso().getNombre()), 0, hourIndex);
+  }
+
   public static void main(String[] args) {
     launch(args);
   }
@@ -175,5 +194,18 @@ public class FrontGUI extends Application implements Initializable {
     setCalendarDays();
     monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern(
         "MMMM, YYYY",spanishLocale)));
+  }
+
+  private HorarioMaster getTestHorario(){
+    HashMap<LocalDate, Dias> map = new HashMap<>();
+
+    HorarioMaster horarioMaster = new HorarioMaster(map);
+    return horarioMaster;
+  }
+
+  private Turnos GetTestTurno(){
+    Turnos result = new Turnos(new Condeso("Pepe"), 1, true, true, true,
+    8, 12, 4, LocalDate.now());
+    return result;
   }
 }
