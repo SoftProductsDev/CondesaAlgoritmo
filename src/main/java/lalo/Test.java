@@ -17,23 +17,8 @@ public class Test {
             e.Print();
             System.out.println();*/
         Calendar cal = Calendar.getInstance();
-        cal.set(2018, 8, 17);
-        System.out.println(cal.get(Calendar.DAY_OF_WEEK) + Calendar.SEPTEMBER);
-        Date first = new Date(2018, 8, 17);
-        Date second = new Date(2018, 8, 18);
-        Date third = new Date(2018, 8, 19);
-        Date fourth = new Date(2018, 8, 20);
-        Date fifth = new Date(2018, 8, 21);
-        Date sixth = new Date(2018, 8, 22);
-        Date seventh = new Date(2018, 8, 23);
-
-        System.out.println(fecha(first) + first.toString());
-        System.out.println(fecha(second) + second.toString());
-        System.out.println(fecha(third) + third.toString());
-        System.out.println(fecha(fourth) + fourth.toString());
-        System.out.println(fecha(fifth) + fifth.toString());
-        System.out.println(fecha(sixth) + sixth.toString());
-        System.out.println(fecha(seventh) + seventh.toString());
+        cal.set(2018, 8, 23);
+        System.out.println(cal.get(Calendar.DAY_OF_WEEK) + ", " +Calendar.SEPTEMBER);
 
 
     }
