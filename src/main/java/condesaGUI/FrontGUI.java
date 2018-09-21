@@ -73,7 +73,7 @@ public class FrontGUI extends Application implements Initializable {
     horaList3.setItems(horario);
     horaList4.setItems(horario);
     horaList5.setItems(horario);
-    tiendasComboBox.getItems().setAll(HibernateCrud.GetAllDTOTiendas());
+    //tiendasComboBox.getItems().setAll(HibernateCrud.GetAllDTOTiendas());
     Locale spanishLocale=new Locale("es", "ES");
     calendar = LocalDate.now();
     monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern("MMMM, YYYY",spanishLocale)));

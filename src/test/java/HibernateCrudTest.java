@@ -24,9 +24,9 @@ public class HibernateCrudTest extends TestCase {
   }
 
   public void testCreateCondeso(){
-    HashMap<Date, Dias> entrega = new HashMap<Date ,Dias>();
+    HashMap<LocalDate, Dias> entrega = new HashMap<LocalDate, Dias>();
     Dias dia = new Dias();
-    Date date = new Date();
+    LocalDate date = LocalDate.now();
     dia.setDate(date);
 
     HashMap<Integer, Turnos> turnos = createTurnos();

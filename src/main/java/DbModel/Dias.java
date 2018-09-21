@@ -21,7 +21,7 @@ public class Dias {
     private Map<Integer, Turnos> turnos;
 
     @Column(name = "date")
-    private java.util.Date date;
+    private LocalDate date;
 
     public long getId() {
         return id;
@@ -39,7 +39,7 @@ public class Dias {
         this.turnos = turnos;
     }
 
-    public java.util.Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

@@ -1,6 +1,7 @@
 package horario;
 
 import condeso.Condeso;
+import java.time.LocalDate;
 
 public class Turnos {
 	private Condeso condeso;
@@ -12,14 +13,7 @@ public class Turnos {
 	private int inicio;
 	private int fin;
 	private int duracion;
-
-	public Turnos(boolean elemental, int inicio, int fin, int duracion, boolean matutino) {
-		this.elemental = elemental;
-		this.inicio = inicio;
-		this.fin = fin;
-		this.duracion = duracion;
-		this.matutino = matutino;
-	}
+	private LocalDate date;
 
 	public long getId() {
 		return Id;
@@ -38,6 +32,19 @@ public class Turnos {
 		result.setMatutino(matutino);
 		result.setOcupado(ocupado);
 		return  result;
+	}
+
+	public Turnos(Condeso condeso, long id, boolean elemental, boolean matutino, boolean ocupado,
+			int inicio, int fin, int duracion, LocalDate date) {
+		this.condeso = condeso;
+		Id = id;
+		this.elemental = elemental;
+		this.matutino = matutino;
+		this.ocupado = ocupado;
+		this.inicio = inicio;
+		this.fin = fin;
+		this.duracion = duracion;
+		this.date = date;
 	}
 
 	public boolean noOptionst(){return noOptions;}
@@ -100,5 +107,8 @@ public class Turnos {
 
 	public void setCondeso(Condeso condeso) {
 		this.condeso = condeso;
+	}
+
+	public LocalDate getDate() { return date;
 	}
 }
