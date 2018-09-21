@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Dias {
 	// key = inicio del turno
-	// value = turno
+	// value = turno.
 	private long Id;
 	private HashMap<Integer,Turnos> turnos = new HashMap<Integer,Turnos>();
 	private LocalDate date;
