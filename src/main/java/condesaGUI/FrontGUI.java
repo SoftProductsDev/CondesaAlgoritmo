@@ -1,11 +1,17 @@
 package condesaGUI;
 
 import DbController.HibernateCrud;
+import condeso.Condeso;
+import horario.Dias;
+import horario.HorarioMaster;
+import horario.Turnos;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Locale;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -20,21 +26,25 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import tiendas.Tiendas;
 
 public class FrontGUI extends Application implements Initializable {
 
-  @FXML private ComboBox<String>  tiendasComboBox;
+  @FXML private ComboBox<Tiendas>  tiendasComboBox;
   @FXML private  ListView<String> horaList0;
   @FXML private ListView<String>  horaList1;
   @FXML private ListView<String>  horaList2;
   @FXML private ListView<String>  horaList3;
   @FXML private ListView<String>  horaList4;
+  @FXML private ListView<String>  horaList5;
   @FXML private Label monthLabel;
   @FXML private GridPane monthGrid;
   private ObservableList<Node> calendarNodes;
@@ -56,17 +66,43 @@ public class FrontGUI extends Application implements Initializable {
   }
 
   public void initialize(URL location, ResourceBundle resources) {
+    //Populate javafx Nodes with data
     horaList0.setItems(horario);
     horaList1.setItems(horario);
     horaList2.setItems(horario);
     horaList3.setItems(horario);
     horaList4.setItems(horario);
-    tiendasComboBox.getItems().setAll(HibernateCrud.tiendasToList());
+    horaList5.setItems(horario);
+    tiendasComboBox.getItems().setAll(HibernateCrud.GetAllDTOTiendas());
     Locale spanishLocale=new Locale("es", "ES");
     calendar = LocalDate.now();
     monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern("MMMM, YYYY",spanishLocale)));
     calendarNodes = monthGrid.getChildren();
     setCalendarDays();
+    addLabelGrids();
+    setTurnos(GetTestTurno());
+  }
+
+  private void addLabelGrids() {
+    for (int i = 1; i < 8; i++){
+      for (int j = 1; j < 12; j+=2){
+        GridPane grid = new GridPane();
+        for (int k = 0; k < 7; k++) {
+          ColumnConstraints column = new ColumnConstraints();
+          column.prefWidthProperty().set(200);
+          column.setMaxWidth(1234567890);
+          grid.getColumnConstraints().add(column);
+        }
+        for (int k = 0; k < 16; k++) {
+          RowConstraints column = new RowConstraints();
+          column.setPrefHeight(400);
+          grid.getRowConstraints().add(column);
+        }
+        //grid.gridLinesVisibleProperty().set(true);
+        grid.setStyle("-fx-padding: 0 0 1 3;");
+        monthGrid.add(grid,i,j);
+      }
+    }
   }
 
   private void setCalendarDays() {
@@ -74,8 +110,8 @@ public class FrontGUI extends Application implements Initializable {
     int lengthMonth = calendar.getMonth().length(calendar.isLeapYear());
     int lengthLastMonth = calendar.plusMonths(- 1).lengthOfMonth();
     int labelIndex = 0;
-    for (int j = 1; j <= 35; j++) {
-      Label label = (Label) calendarNodes.get(labelIndex + 5);
+    for (int j = 1; j <= 42; j++) {
+      Label label = (Label) calendarNodes.get(labelIndex + 6);
       int dayNum = (j - day.getValue() + 1);
       int f = 0;
       if(dayNum <=0 ) {
@@ -89,6 +125,27 @@ public class FrontGUI extends Application implements Initializable {
       label.setText(Integer.toString(f));
       labelIndex++;
     }
+  }
+
+  private void setHorarioMaster(HorarioMaster horario){
+    HashMap<LocalDate, Dias> mes = horario.getMes();
+  }
+
+  private void setDias(Dias dia){
+    HashMap<Integer, Turnos> turnos = dia.getTurnos();
+  }
+
+  private void setTurnos(Turnos turno){
+    //considering the first hour is 8 am
+    int hourIndex = turno.getInicio() - 8;
+    if(hourIndex < 0){
+      //Cry
+    }
+    //42 date Labels
+    int dateIndex = turno.getDate().getDayOfMonth() + 47 +
+        calendar.withDayOfMonth(1).getDayOfWeek().getValue();
+    GridPane pane = (GridPane) monthGrid.getChildren().get(dateIndex);
+    pane.add(new Label(turno.getCondeso().getNombre()), 0, hourIndex);
   }
 
   public static void main(String[] args) {
@@ -138,5 +195,18 @@ public class FrontGUI extends Application implements Initializable {
     setCalendarDays();
     monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern(
         "MMMM, YYYY",spanishLocale)));
+  }
+
+  private HorarioMaster getTestHorario(){
+    HashMap<LocalDate, Dias> map = new HashMap<>();
+
+    HorarioMaster horarioMaster = new HorarioMaster(map);
+    return horarioMaster;
+  }
+
+  private Turnos GetTestTurno(){
+    Turnos result = new Turnos(new Condeso("Pepe"), 1, true, true, true,
+    8, 12, 4, LocalDate.now());
+    return result;
   }
 }
