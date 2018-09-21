@@ -66,6 +66,7 @@ public class FrontGUI extends Application implements Initializable {
   }
 
   public void initialize(URL location, ResourceBundle resources) {
+    //Populate javafx Nodes with data
     horaList0.setItems(horario);
     horaList1.setItems(horario);
     horaList2.setItems(horario);
