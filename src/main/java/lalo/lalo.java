@@ -1,5 +1,6 @@
 package lalo;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -56,10 +57,10 @@ public class lalo {
 
 		Turnos elTurno = turnos.remove();
 		while(elTurno != null){
-			elCondeso = fila.remove();
+			elCondeso = fila.poll();
 			while(!checkCondeso(elCondeso, disponibilidad, elTurno)){
 				noDisponible.add(elCondeso);
-				elCondeso = fila.remove();
+				elCondeso = fila.poll();
 			}
 			if(elCondeso == null) noAsignados.add(elTurno);
 			else AsignarTurno(elCondeso, elTurno);
@@ -80,9 +81,6 @@ public class lalo {
 		int inicio = elTurno.getInicio();
 		int fin = elTurno.getFin();
 		LocalDate fecha = elTurno.getDate();
-		//Calendar cal = Calendar.getInstance();
-		//cal.setTime(fecha);
-		//int day = cal.get(Calendar.DAY_OF_MONTH);
 		int day = fecha.getDayOfMonth();
 		int desde = disp[0][day-1];
 		int hasta = disp[1][day-1];
@@ -91,15 +89,15 @@ public class lalo {
 	}
 
 	private boolean checkDiasSeguidos(Condeso elCondeso, Turnos elTurno){
-	return false;
+		return false;
 	}
 
 	private boolean checkFinesLibres(Condeso elCondeso, Turnos elTurno){
-		//Calendar cal = Calendar.getInstance();
-		//cal.setTime(elTurno.getDate());
-		elTurno.getDate();
-
-	return false;
+		LocalDate fecha = elTurno.getDate();
+		DayOfWeek dia = fecha.getDayOfWeek();
+		if(dia != DayOfWeek.SATURDAY && dia != DayOfWeek.SUNDAY) return true;
+		if(elCondeso.getFinesLibres() == 1) return false;
+		return true;
 	}
 
 	private void AsignarTurno(Condeso elCondeso, Turnos elTurno){
