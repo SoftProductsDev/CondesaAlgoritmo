@@ -84,8 +84,9 @@ public class FrontGUI extends Application implements Initializable {
   }
 
   private void addLabelGrids() {
-    for (int i = 1; i < 8; i++){
-      for (int j = 1; j < 12; j+=2){
+
+    for (int j = 1; j < 12; j+=2){
+      for (int i = 1; i < 8; i++){
         GridPane grid = new GridPane();
         for (int k = 0; k < 7; k++) {
           ColumnConstraints column = new ColumnConstraints();
@@ -98,6 +99,7 @@ public class FrontGUI extends Application implements Initializable {
           column.setPrefHeight(400);
           grid.getRowConstraints().add(column);
         }
+        grid.setId(i + "-" + j);
         //grid.gridLinesVisibleProperty().set(true);
         grid.setStyle("-fx-padding: 0 0 1 3;");
         monthGrid.add(grid,i,j);
@@ -142,10 +144,18 @@ public class FrontGUI extends Application implements Initializable {
       //Cry
     }
     //42 date Labels
-    int dateIndex = turno.getDate().getDayOfMonth() + 47 +
+    int x = turno.getDate().getDayOfMonth();
+    int dateIndex = turno.getDate().getDayOfMonth() + 46 +
         calendar.withDayOfMonth(1).getDayOfWeek().getValue();
     GridPane pane = (GridPane) monthGrid.getChildren().get(dateIndex);
-    pane.add(new Label(turno.getCondeso().getNombre()), 0, hourIndex);
+    for (int i = 0; i < turno.getDuracion(); i++){
+    Label label = new Label(turno.getCondeso().getNombre());
+    label.setStyle("-fx-background-color: " + turno.getCondeso().getColor());
+    label.setMaxHeight(125462739);
+    label.setMaxWidth(1234567890);
+    pane.add(label, 0, hourIndex);
+    hourIndex++;
+    }
   }
 
   public static void main(String[] args) {
@@ -205,7 +215,7 @@ public class FrontGUI extends Application implements Initializable {
   }
 
   private Turnos GetTestTurno(){
-    Turnos result = new Turnos(new Condeso("Pepe"), 1, true, true, true,
+    Turnos result = new Turnos(new Condeso("Pepe", "#e82966"), 1, true, true, true,
     8, 12, 4, LocalDate.now());
     return result;
   }

@@ -27,6 +27,8 @@ public class Condeso {
 	private Contrato contrato;
 	private int horas;
 	private int horasAsignadas;
+	//Hex Color Format
+	private String color;
 
 	public Condeso(TipoEmpleado tipo, String nombre,
 			boolean fijos, int level, boolean manana,
@@ -44,8 +46,9 @@ public class Condeso {
 		this.contrato = contrato;
 	}
 
-	public Condeso(String nombre) {
+	public Condeso(String nombre, String color) {
 		this.nombre = nombre;
+		this.color = color;
 	}
 
 	@Override
@@ -207,4 +210,12 @@ public class Condeso {
 	public void setHorasAsignadas(int horasAsignadas){this.horasAsignadas = horasAsignadas;}
 
 	public int getHorasAsignadas(){return horasAsignadas;}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
 }

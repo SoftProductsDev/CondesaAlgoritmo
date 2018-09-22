@@ -43,6 +43,8 @@ public class Condeso {
   private boolean masculino;
   @Column
   private boolean femenino;
+  @Column
+  private String color;
 
   @JoinColumn
   @OneToOne
@@ -207,5 +209,13 @@ public class Condeso {
 
   public void setFemenino(boolean femenino) {
     this.femenino = femenino;
+  }
+
+  public String getColor() {
+    return color;
+  }
+
+  public void setColor(String color) {
+    this.color = color;
   }
 }
