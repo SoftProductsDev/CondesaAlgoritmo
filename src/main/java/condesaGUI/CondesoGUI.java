@@ -50,6 +50,7 @@ public class CondesoGUI  extends Application implements Initializable {
     @FXML private RadioButton vespertinoRadio;
     @FXML private DatePicker calendario;
     @FXML private RadioButton cajaRadio;
+    @FXML private ColorPicker color;
 
 
 
@@ -172,6 +173,10 @@ public class CondesoGUI  extends Application implements Initializable {
         condeso.setLevel(Integer.parseInt(String.valueOf(nivelComboBox.getValue().charAt
                 (nivelComboBox.getValue().length() - 1))));
         condeso.setCaja(cajaRadio.isSelected());
+        condeso.setMasculino(masculinoRadio.isSelected());
+        condeso.setFemenino(femeninoRadio.isSelected());
+        String x = color.getValue().toString();
+        condeso.setColor(color.getValue().toString());
 
         HibernateCrud.SaveCondeso(condeso);
         tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
