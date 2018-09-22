@@ -9,6 +9,7 @@ import junit.framework.TestCase;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class HibernateCrudTest extends TestCase {
   }
 
   public void testCreateCondeso(){
-    HashMap<LocalDate, Dias> entrega = new HashMap<>();
+    HashMap<LocalDate, Dias> entrega = new HashMap<LocalDate, Dias>();
     Dias dia = new Dias();
     LocalDate date = LocalDate.now();
     dia.setDate(date);

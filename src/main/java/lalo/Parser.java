@@ -63,7 +63,7 @@ public class Parser {
         return null;
     }
 
-private static int parseTime(int[][] disponibilidad, String line, int a){
+private static void parseTime(int[][] disponibilidad, String line, int a){
         int i;
         String number;
         int hour;
@@ -79,10 +79,9 @@ private static int parseTime(int[][] disponibilidad, String line, int a){
         disponibilidad[a][k] = hour;
         i++;
     }
-    return i;
 }
 
-private static int parseTime(int [][] disponibilidad, String line, int a, int start){
+private static void parseTime(int [][] disponibilidad, String line, int a, int start){
     int i = start;
     String number;
     int hour;
@@ -96,31 +95,6 @@ private static int parseTime(int [][] disponibilidad, String line, int a, int st
         disponibilidad[a][k] = hour;
         i++;
     }
-    return i;
-}
-
-private static void parseMaxMin(String line, int i, Disponibilidad condeso){
-        String number;
-        int hours;
-            number = line.substring(i, (i = subString(line, i, '\t' )));
-            try{
-                hours = Integer.parseInt(number);
-            } catch(Exception e){
-                hours = -1;
-            }
-            condeso.setMin(hours);
-            i++;
-
-    number = line.substring(i, (i = subString(line, i, '\t' )));
-    try{
-        hours = Integer.parseInt(number);
-    } catch(Exception e){
-        hours = -1;
-    }
-    condeso.setMax(hours);
-
-
-
 
 }
 
@@ -189,9 +163,7 @@ try{
               name = line.substring(j, i);
               condeso = new Disponibilidad(name);
               disponibilidad = new int[2][dias];
-              i = parseTime(disponibilidad, line, 0, ++i);
-              i++;
-              parseMaxMin(line, i, condeso);
+              parseTime(disponibilidad, line, 0, ++i);
               line = buffer.readLine();
               parseTime(disponibilidad, line, 1);
               condeso.setDisponibilidad(disponibilidad);

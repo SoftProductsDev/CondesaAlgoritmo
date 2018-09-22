@@ -1,37 +1,36 @@
 package lalo;
 
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.*;
 
+
 import condeso.Condeso;
 import condeso.CompareCondesos;
-import horario.*;
+import horario.HorarioEntrega;
+import horario.Turnos;
 import tiendas.Tiendas;
+import horario.HorarioMaster;
+import horario.HorarioPersonal;
 import horario.HorarioEntrega;
 
 public class lalo {
-	private PriorityQueue<Condeso> fila;
-	private PriorityQueue<Dias> dias;
-	private HashMap<Integer, Integer[][]> disponibilidad;
-	private Queue<Turnos> turnos;
-	public Set<Condeso> condesos;
-	public Set<Tiendas> tiendas;
 	public Set<HorarioEntrega> entregas;
+	public Queue<Condeso> condesos;
+	public Set<Tiendas> tiendas;
+	private PriorityQueue<Turnos> turnos;
+
+	private PriorityQueue<Condeso> fila;
+	private HashMap<Integer, Integer[][]> disponibilidad;
+
+
 
 	/*private void ListaDeTurnos(){
 		for(Tiendas t : tiendas){
 			
 		}
 	}*/
-
-	private ArrayList<Plantillas> getPlantillas(Set<Tiendas> tiendas){
-		ArrayList<Plantillas> plantillas = new ArrayList<Plantillas>();
-		for(Tiendas tienda : tiendas){
-			plantillas.add(tienda.getPlantilla());
-		}
-		return plantillas;
-	}
 
 	public void  GMTodos() {
 		//TODO
@@ -49,15 +48,12 @@ public class lalo {
 		//TODO
 	}
 	public void laloFuncionando() {
-		Set<Condeso> noDisponible = new HashSet<Condeso>();
-		Set<Turnos> noAsignados = new HashSet<Turnos>();
-		Condeso elCondeso;
-		fila = new PriorityQueue<>(new CompareCondesos());
-		fila.addAll(condesos);
+		Set<Condeso> noDisponible = new HashSet<>();
+		Set<Turnos> noAsignados = new HashSet<>();
 
-		Turnos elTurno = turnos.remove();
+		Turnos elTurno = turnos.poll();
 		while(elTurno != null){
-			elCondeso = fila.poll();
+			Condeso elCondeso = fila.poll();
 			while(!checkCondeso(elCondeso, disponibilidad, elTurno)){
 				noDisponible.add(elCondeso);
 				elCondeso = fila.poll();
@@ -103,6 +99,7 @@ public class lalo {
 	private void AsignarTurno(Condeso elCondeso, Turnos elTurno){
 
 	}
+
 
 	public static void main(String[] args) {
 		//TODO

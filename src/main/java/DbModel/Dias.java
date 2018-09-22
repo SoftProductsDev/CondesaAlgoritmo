@@ -3,7 +3,6 @@ package DbModel;
 import java.time.LocalDate;
 import java.util.Map;
 import javax.persistence.*;
-import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "dias")

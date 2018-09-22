@@ -35,9 +35,8 @@ public class MainGUI extends Application {
             throw ex;
         }
         primaryStage.setTitle("Página de inicio");
-        Scene scene = new Scene(root ,Screen.getPrimary().getVisualBounds().getWidth(),
-            Screen.getPrimary().getVisualBounds().getMaxY());
-        primaryStage.setScene(scene);
+        primaryStage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
+            Screen.getPrimary().getVisualBounds().getMaxY()));
         primaryStage.show();
     }
 }

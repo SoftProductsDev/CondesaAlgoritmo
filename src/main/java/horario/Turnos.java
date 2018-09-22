@@ -2,9 +2,6 @@ package horario;
 
 import condeso.Condeso;
 import java.time.LocalDate;
-import tiendas.Tiendas;
-
-import java.util.Date;
 
 public class Turnos {
 	private Condeso condeso;
@@ -16,29 +13,7 @@ public class Turnos {
 	private int inicio;
 	private int fin;
 	private int duracion;
-	private LocalDate fecha;
-	private Tiendas tienda;
-
-	public Turnos(boolean elemental, int inicio, int fin, int duracion, boolean matutino) {
-		this.elemental = elemental;
-		this.inicio = inicio;
-		this.fin = fin;
-		this.duracion = duracion;
-		this.matutino = matutino;
-	}
-
-	public Turnos(Condeso condeso, long id, boolean elemental, boolean matutino, boolean ocupado,
-			int inicio, int fin, int duracion, LocalDate fecha) {
-		this.condeso = condeso;
-		Id = id;
-		this.elemental = elemental;
-		this.matutino = matutino;
-		this.ocupado = ocupado;
-		this.inicio = inicio;
-		this.fin = fin;
-		this.duracion = duracion;
-		this.fecha = fecha;
-	}
+	private LocalDate date;
 
 	public long getId() {
 		return Id;
@@ -53,11 +28,23 @@ public class Turnos {
 		DbModel.Turnos result = new DbModel.Turnos();
 		result.setElemental(elemental);
 		result.setInicio(inicio);
-		result.setFin(fin);
 		result.setDuracion(duracion);
 		result.setMatutino(matutino);
 		result.setOcupado(ocupado);
 		return  result;
+	}
+
+	public Turnos(Condeso condeso, long id, boolean elemental, boolean matutino, boolean ocupado,
+			int inicio, int fin, int duracion, LocalDate date) {
+		this.condeso = condeso;
+		Id = id;
+		this.elemental = elemental;
+		this.matutino = matutino;
+		this.ocupado = ocupado;
+		this.inicio = inicio;
+		this.fin = fin;
+		this.duracion = duracion;
+		this.date = date;
 	}
 
 	public boolean noOptionst(){return noOptions;}
@@ -122,11 +109,6 @@ public class Turnos {
 		this.condeso = condeso;
 	}
 
-	public LocalDate getDate(){return fecha;}
-
-	public void setDate(LocalDate fecha){this.fecha = fecha;}
-
-	public Tiendas getTienda(){return tienda;}
-
-	public void setTienda(Tiendas tienda){this.tienda = tienda;}
+	public LocalDate getDate() { return date;
+	}
 }
