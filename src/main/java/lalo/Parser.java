@@ -177,7 +177,7 @@ try{
               condeso.setDisponibilidad(disponibilidad);
               Disp.add(condeso);
               buffer.readLine();
-              Condeso DbCondeso = HibernateCrud.findCondesoId(666);
+              Condeso DbCondeso = HibernateCrud.findCondesoId(666, allCondesos);
               if(DbCondeso != null){
                   HorarioEntrega entrega = new HorarioEntrega();
                   entrega.setMax(666);
