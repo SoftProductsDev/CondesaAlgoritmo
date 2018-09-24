@@ -141,4 +141,9 @@ public class HibernateCrud {
             }
             return tiendasString;
         }
+
+    public static Condeso findCondesoId(int id) {
+        //no esta implementado
+        return null;
     }
+}
