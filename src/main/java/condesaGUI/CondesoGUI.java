@@ -4,9 +4,11 @@ import DbController.HibernateCrud;
 import DbModel.Condeso;
 import condeso.Contrato;
 import condeso.TipoEmpleado;
+import java.util.List;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import DbModel.Tiendas;
@@ -25,9 +28,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
+import org.hibernate.Hibernate;
 
 public class CondesoGUI  extends Application implements Initializable {
     @FXML private TableView<DbModel.Condeso> tableView;
+    @FXML private TableColumn<Condeso, Long> condesoId;
     @FXML private TableColumn<DbModel.Condeso, String> condesoName;
     @FXML private TableColumn<DbModel.Condeso, Contrato> condesoContrato;
     @FXML private TableColumn<Condeso, Boolean> condesoVespertino;
@@ -36,6 +41,8 @@ public class CondesoGUI  extends Application implements Initializable {
     @FXML private TableColumn<Condeso, Integer> condesoNivel;
     @FXML private TableColumn<Condeso, Boolean> condesoCaja;
     @FXML private TableColumn<Condeso, TipoEmpleado> condesoCargo;
+    @FXML private TableColumn<Condeso, String> condesoColor;
+    @FXML private TableColumn<Condeso, Boolean> condesoSexo;
     @FXML private ListView<Tiendas> listTiendas;
     @FXML private ComboBox<TipoEmpleado> cargoComboBox;
     @FXML private ComboBox<String> nivelComboBox;
@@ -51,6 +58,7 @@ public class CondesoGUI  extends Application implements Initializable {
     @FXML private DatePicker calendario;
     @FXML private RadioButton cajaRadio;
     @FXML private ColorPicker color;
+    private List<Tiendas> tiendas;
 
 
 
@@ -121,6 +129,39 @@ public class CondesoGUI  extends Application implements Initializable {
         condesoAntiguedad.setCellValueFactory(new PropertyValueFactory<Condeso, Date>("antiguedad"));
         condesoCargo.setCellValueFactory(new PropertyValueFactory<Condeso, TipoEmpleado>("tipo"));
         condesoNivel.setCellValueFactory(new PropertyValueFactory<Condeso, Integer>("level"));
+        condesoId.setCellValueFactory(new PropertyValueFactory<Condeso, Long>("Id"));
+        condesoSexo.setCellValueFactory(new PropertyValueFactory<Condeso, Boolean>("femenino"));
+        condesoSexo.setCellFactory( column -> {
+            return new TableCell<Condeso, Boolean>(){
+                @Override
+                protected void updateItem(Boolean item, boolean empty){
+                    if (item == null || empty) {
+                        setText(null);
+                        setStyle("");
+                    } else {
+                        if(item){setText("Femenino");}
+                        else {setText("Masculino");}
+                    }
+                }
+            };
+        });
+        condesoColor.setCellValueFactory(new PropertyValueFactory<Condeso, String>("color"));
+        condesoColor.setCellFactory( column -> {
+            return new TableCell<Condeso, String>(){
+                @Override
+                protected void updateItem(String item, boolean empty){
+                    if (item == null || empty) {
+                        setText(null);
+                        setStyle("");
+                    } else {
+
+                        // Fill with a different color.
+                        setStyle("-fx-background-color: " + item);
+                    }
+                }
+            };
+        });
+
 
         tiendasNombre.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("nombre"));
        /*tiendasCheckBox.setCellValueFactory(
@@ -133,7 +174,8 @@ public class CondesoGUI  extends Application implements Initializable {
                 */
         tiendasCheckBox.setCellFactory(CheckBoxTableCell.forTableColumn(tiendasCheckBox));
         tiendasCheckBox.setEditable(true);
-        tiendasTableView.getItems().setAll(HibernateCrud.GetAllTiendas());
+        tiendas = HibernateCrud.GetAllTiendas();
+        tiendasTableView.getItems().setAll(tiendas);
 
         tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
 
@@ -141,8 +183,6 @@ public class CondesoGUI  extends Application implements Initializable {
             oldSelection) -> {
             loadCondesoUpdate();
             });
-        //ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
-        //listTiendas.setItems(tiendas);
     }
 
     private void loadCondesoUpdate() {
@@ -155,7 +195,14 @@ public class CondesoGUI  extends Application implements Initializable {
             calendario.setValue(condeso.getAntiguedad());
             cargoComboBox.setValue(condeso.getTipo());
             cajaRadio.setSelected(condeso.isCaja());
-            nivelComboBox.setValue(nivelComboBox.getItems().get(condeso.getLevel()));}
+            masculinoRadio.setSelected(condeso.isMasculino());
+            femeninoRadio.setSelected(condeso.isFemenino());
+            nivelComboBox.setValue(nivelComboBox.getItems().get(condeso.getLevel() - 1));
+            color.setValue(Color.web(condeso.getColor()));
+            Hibernate.initialize(condeso.getDondePuedeTrabajar());
+            ObservableList<Tiendas> tiendas = (ObservableList<Tiendas>)condeso.getDondePuedeTrabajar() ;
+            listTiendas.setItems(tiendas);
+        }
         catch (Exception e)
         {
 
@@ -175,8 +222,9 @@ public class CondesoGUI  extends Application implements Initializable {
         condeso.setCaja(cajaRadio.isSelected());
         condeso.setMasculino(masculinoRadio.isSelected());
         condeso.setFemenino(femeninoRadio.isSelected());
-        String x = color.getValue().toString();
-        condeso.setColor(color.getValue().toString());
+        String colorHex = color.getValue().toString();
+        colorHex = "#" + colorHex.substring(2, 8);
+        condeso.setColor(colorHex);
 
         HibernateCrud.SaveCondeso(condeso);
         tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
@@ -199,6 +247,11 @@ public class CondesoGUI  extends Application implements Initializable {
         condeso.setLevel(Integer.parseInt(String.valueOf(nivelComboBox.getValue().charAt
             (nivelComboBox.getValue().length() - 1))));
         condeso.setCaja(cajaRadio.isSelected());
+        String colorHex = color.getValue().toString();
+        colorHex = "#" + colorHex.substring(2, 8);
+        condeso.setColor(colorHex);
+        condeso.setFemenino(femeninoRadio.isSelected());
+        condeso.setMasculino(masculinoRadio.isSelected());
         HibernateCrud.UpdateCondeso(condeso);
         tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
     }

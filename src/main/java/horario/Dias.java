@@ -1,15 +1,17 @@
 package horario;
 
+import DbModel.Turnos;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Dias {
-    // key = inicio del turno
-    // value = turno.
     private long Id;
-    private HashMap<Integer,Turnos> turnos = new HashMap<Integer,Turnos>();
+    //Usar TreeSet
+    private Set<DbModel.Turnos> turnos = new TreeSet<>();
     private LocalDate date;
     private int dia;
 
@@ -17,7 +19,7 @@ public class Dias {
     {
         DbModel.Dias result = new DbModel.Dias();
         result.setDate(date);
-        result.setTurnos(convertTurnosToDbModel());
+        //result.setTurnos(convertTurnosToDbModel());
         return result;
     }
 
@@ -35,17 +37,17 @@ public class Dias {
 
     private Map<Integer, DbModel.Turnos> convertTurnosToDbModel() {
         HashMap<Integer, DbModel.Turnos> result = new HashMap<>();
-        turnos.forEach((k,v) -> result.put(k, v.convertToDbModel()));
+        //turnos.forEach((k,v) -> result.put(k, v.convertToDbModel()));
         return  result;
     }
 
     public Dias(LocalDate date) {
         this.date = date;
     }
-    public HashMap<Integer,Turnos> getTurnos() {
+    public Set<DbModel.Turnos> getTurnos() {
         return turnos;
     }
-    public void setTurnos(HashMap<Integer,Turnos> turnos) {
+    public void setTurnos(Set<Turnos> turnos) {
         this.turnos = turnos;
     }
     public LocalDate getDate() {

@@ -70,7 +70,7 @@ public class DbController {
     dbCondeso.setDondePuedeTrabajar(convertListToDbModel(condeso.getDondePuedeTrabajar()));
 
     HorarioEntrega entrega = new HorarioEntrega();
-    entrega.setMes(condeso.getEntrega().convertToDbModel());
+    //entrega.setMes(condeso.getEntrega().convertToDbModel());
     dbCondeso.setEntrega(entrega);
 
     HorarioMaster master = new HorarioMaster();

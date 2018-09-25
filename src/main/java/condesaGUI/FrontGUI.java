@@ -38,7 +38,7 @@ import tiendas.Tiendas;
 
 public class FrontGUI extends Application implements Initializable {
 
-  @FXML private ComboBox<Tiendas>  tiendasComboBox;
+  @FXML private ComboBox<tiendas.Tiendas>  tiendasComboBox;
   @FXML private  ListView<String> horaList0;
   @FXML private ListView<String>  horaList1;
   @FXML private ListView<String>  horaList2;
@@ -73,14 +73,14 @@ public class FrontGUI extends Application implements Initializable {
     horaList3.setItems(horario);
     horaList4.setItems(horario);
     horaList5.setItems(horario);
-    //tiendasComboBox.getItems().setAll(HibernateCrud.GetAllDTOTiendas());
+    tiendasComboBox.setItems(FXCollections.observableList(HibernateCrud.GetAllDTOTiendas()));
     Locale spanishLocale=new Locale("es", "ES");
     calendar = LocalDate.now();
     monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern("MMMM, YYYY",spanishLocale)));
     calendarNodes = monthGrid.getChildren();
     setCalendarDays();
     addLabelGrids();
-    setTurnos(GetTestTurno());
+    //setTurnos(GetTestTurno());
   }
 
   private void addLabelGrids() {
@@ -130,32 +130,54 @@ public class FrontGUI extends Application implements Initializable {
   }
 
   private void setHorarioMaster(HorarioMaster horario){
-    HashMap<LocalDate, Dias> mes = horario.getMes();
+    HorarioMaster master = tiendasComboBox.getValue().getMaster();
+    for (int i = 1; i < calendar.getMonth().length(calendar.isLeapYear()); i++)
+    {
+        Dias dia = master.getMes().get(calendar.withDayOfMonth(i));
+        setDias(dia);
+    }
   }
 
   private void setDias(Dias dia){
-    HashMap<Integer, Turnos> turnos = dia.getTurnos();
+    int[] latestTurn = {0,0,0,0,0,0,0};
+    for (DbModel.Turnos turno:dia.getTurnos()
+    ) {
+      latestTurn = setTurnos(turno, dia.getDate(), latestTurn);
+    }
   }
 
-  private void setTurnos(Turnos turno){
+  private int[] setTurnos(DbModel.Turnos turno, LocalDate date, int[] latestTurn){
     //considering the first hour is 8 am
     int hourIndex = turno.getInicio() - 8;
     if(hourIndex < 0){
       //Cry
     }
+
+    //column inside "Day"
+    int columnIndex = 0;
+    for (int j = 0; j < 7; j++){
+      if (latestTurn[j] < turno.getInicio()){
+        columnIndex = j;
+        latestTurn[j] = turno.getFin();
+        break;
+      }
+    }
+
     //42 date Labels
-    int x = turno.getDate().getDayOfMonth();
-    int dateIndex = turno.getDate().getDayOfMonth() + 46 +
+    int dateIndex = date.getDayOfMonth() + 46 +
         calendar.withDayOfMonth(1).getDayOfWeek().getValue();
     GridPane pane = (GridPane) monthGrid.getChildren().get(dateIndex);
+
     for (int i = 0; i < turno.getDuracion(); i++){
     Label label = new Label(turno.getCondeso().getNombre());
     label.setStyle("-fx-background-color: " + turno.getCondeso().getColor());
     label.setMaxHeight(125462739);
     label.setMaxWidth(1234567890);
-    pane.add(label, 0, hourIndex);
+    pane.add(label, columnIndex, hourIndex);
     hourIndex++;
     }
+
+    return latestTurn;
   }
 
   public static void main(String[] args) {

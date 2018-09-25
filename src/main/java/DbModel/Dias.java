@@ -2,6 +2,7 @@ package DbModel;
 
 import java.time.LocalDate;
 import java.util.Map;
+import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -18,7 +19,8 @@ public class Dias {
     @MapKey (name = "inicio")
     @CollectionTable
     @OneToMany(cascade = CascadeType.ALL)
-    private Map<Integer, Turnos> turnos;
+    //usar TreeSet
+    private Set<Turnos> turnos;
 
     @Column(name = "date")
     private LocalDate date;
@@ -31,11 +33,11 @@ public class Dias {
         this.id = id;
     }
 
-    public Map<Integer, Turnos> getTurnos() {
+    public Set<Turnos> getTurnos() {
         return turnos;
     }
 
-    public void setTurnos(Map<Integer, Turnos> turnos) {
+    public void setTurnos(Set<Turnos> turnos) {
         this.turnos = turnos;
     }
 

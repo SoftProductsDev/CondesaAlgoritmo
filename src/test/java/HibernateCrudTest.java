@@ -30,7 +30,7 @@ public class HibernateCrudTest extends TestCase {
     dia.setDate(date);
 
     HashMap<Integer, Turnos> turnos = createTurnos();
-    dia.setTurnos(turnos);
+    //dia.setTurnos(turnos);
 
     entrega.put(dia.getDate(), dia);
 

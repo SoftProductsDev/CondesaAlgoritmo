@@ -77,14 +77,14 @@ public class HibernateCrud {
     }
 
 
-        public static List<Tiendas> GetAllDTOTiendas () {
+        public static List<tiendas.Tiendas> GetAllDTOTiendas () {
           SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
           Session session = sessionFactory.openSession();
-          List<Tiendas> tiendas = session.createQuery(""
+          List<tiendas.Tiendas> tiendas = session.createQuery(""
               + "select        "
               + "t.id as id,        "
               + "t.nombre as nombre from Tiendas t ").setResultTransformer(
-              Transformers.aliasToBean(Tiendas.class)).list();
+              Transformers.aliasToBean(tiendas.Tiendas.class)).list();
           session.close();
           return tiendas;
         }
