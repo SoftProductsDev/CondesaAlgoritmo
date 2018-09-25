@@ -123,7 +123,7 @@ public class lalo {
 	}
 
 	private Reasons checkReason(Turnos elTurno, Condeso elCondeso){
-		
+		return null;
 	}
 
 	private PriorityQueue<Condeso> findCandidates(Turnos elTurno, Set<Condeso> condesos, HashMap<Integer, Integer[][]> disponibilidad){

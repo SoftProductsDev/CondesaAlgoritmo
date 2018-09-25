@@ -236,9 +236,4 @@ public class FrontGUI extends Application implements Initializable {
     return horarioMaster;
   }
 
-  private Turnos GetTestTurno(){
-    Turnos result = new Turnos(new Condeso("Pepe", "#e82966"), 1, true, true, true,
-    8, 12, 4, LocalDate.now());
-    return result;
-  }
 }
