@@ -109,12 +109,31 @@ public class lalo {
 		if(elCondeso.getFinesLibres() == 1) return false;
 		return true;
 	}
-	
+
 
 	private void reacomodar(Set<Turnos> noAsignados, Set<Condeso> condesos, HashMap<Integer, Integer[][]> disponibilidad){
-		//TODO
+		for(Turnos elTurno : noAsignados){
+			PriorityQueue<Condeso> candidates = findCandidates(elTurno, condesos, disponibilidad);
+		}
+
 	}
 
+	private enum Reasons{
+		finesOcupados, maximoAlcanzado, turnoEseDia, maximoDiasSeguidos
+	}
+
+	private Reasons checkReason(Turnos elTurno, Condeso elCondeso){
+		
+	}
+
+	private PriorityQueue<Condeso> findCandidates(Turnos elTurno, Set<Condeso> condesos, HashMap<Integer, Integer[][]> disponibilidad){
+		PriorityQueue<Condeso> candidates = new PriorityQueue<>(new CompareCondesos());
+
+		for(Condeso elCondeso : condesos ){
+			if(checkDisponibilidad(elCondeso, disponibilidad, elTurno)) candidates.add(elCondeso);
+		}
+		return candidates;
+	}
 
 	public static void main(String[] args) {
 		//TODO
