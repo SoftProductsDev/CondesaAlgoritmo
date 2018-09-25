@@ -2,7 +2,11 @@ package condeso;
 import horario.HorarioEntrega;
 import horario.HorarioMaster;
 import horario.HorarioPersonal;
+
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+
+import horario.Turnos;
 import tiendas.Tiendas;
 
 import java.util.List;
@@ -22,11 +26,12 @@ public class Condeso {
 	private int finesLibres;
 	private HorarioEntrega entrega;
 	private HorarioMaster master;
-	private HorarioPersonal personal;
+	private Turnos[] personal = new Turnos[31];
 	private List<Tiendas> dondePuedeTrabajar;
 	private Contrato contrato;
 	private int horas;
-	private int horasAsignadas;
+	private int horasAsignadas = 0;
+	private int maxHours;
 	//Hex Color Format
 	private String color;
 
@@ -147,13 +152,18 @@ public class Condeso {
 		this.antiguedad = antiguedad;
 	}
 
-	public int getDiasSeguidos() {
-		return diasSeguidos;
+	public int getDiasSeguidos(LocalDate fecha) {
+		int dia = fecha.getDayOfMonth();
+		int counter = 0;
+		while(dia - 2- counter > 0 && personal[dia-2-counter] != null){
+			counter++;
+		}
+		return counter;
 	}
 
-	public void setDiasSeguidos(int diasSeguidos) {
-		this.diasSeguidos = diasSeguidos;
-	}
+	public int getDiasSeguidos(){return diasSeguidos;}
+
+	public void setDiasSeguidos(int diasSeguidos){this.diasSeguidos = diasSeguidos;}
 
 	public int getFinesLibres() {
 		return finesLibres;
@@ -179,11 +189,11 @@ public class Condeso {
 		this.master = master;
 	}
 
-	public HorarioPersonal getPersonal() {
+	public Turnos[] getPersonal() {
 		return personal;
 	}
 
-	public void setPersonal(HorarioPersonal personal) {
+	public void setPersonal(Turnos[] personal) {
 		this.personal = personal;
 	}
 
@@ -218,4 +228,28 @@ public class Condeso {
 	public void setColor(String color) {
 		this.color = color;
 	}
+
+	public void asignarTurno(Turnos elTurno){
+		int day = elTurno.getDate().getDayOfMonth();
+		personal[day-1] = elTurno;
+		horasAsignadas += elTurno.getDuracion();
+		DayOfWeek dia = elTurno.getDate().getDayOfWeek();
+		if(dia == DayOfWeek.SATURDAY || dia == DayOfWeek.SUNDAY){
+			switch (dia){
+				case SUNDAY: if(personal[day-2] == null) finesLibres--;
+				break;
+				case SATURDAY: if(personal[day] == null) finesLibres--;
+				break;
+				default: break;
+			}
+		}
+
+	}
+
+	public void setMaxHours(int maxHours){this.maxHours = maxHours;}
+
+	public int getMaxHours(){return maxHours;}
+
+	public boolean checkMax(){ if(maxHours <= horasAsignadas) return false;
+	return true;}
 }
