@@ -12,7 +12,7 @@ public class Turnos {
 	private boolean noOptions = false;
 	private int inicio;
 	private int fin;
-	private int duracion;
+
 	private LocalDate date;
 
 	public long getId() {
@@ -28,14 +28,13 @@ public class Turnos {
 		DbModel.Turnos result = new DbModel.Turnos();
 		result.setElemental(elemental);
 		result.setInicio(inicio);
-		result.setDuracion(duracion);
 		result.setMatutino(matutino);
 		result.setOcupado(ocupado);
 		return  result;
 	}
 
 	public Turnos(Condeso condeso, long id, boolean elemental, boolean matutino, boolean ocupado,
-			int inicio, int fin, int duracion, LocalDate date) {
+			int inicio, int fin, LocalDate date) {
 		this.condeso = condeso;
 		Id = id;
 		this.elemental = elemental;
@@ -43,7 +42,6 @@ public class Turnos {
 		this.ocupado = ocupado;
 		this.inicio = inicio;
 		this.fin = fin;
-		this.duracion = duracion;
 		this.date = date;
 	}
 
@@ -78,11 +76,7 @@ public class Turnos {
 	}
 
 	public int getDuracion() {
-		return duracion;
-	}
-
-	public void setDuracion(int duracion) {
-		this.duracion = duracion;
+		return fin - inicio;
 	}
 
 	public boolean isMatutino() {

@@ -58,7 +58,7 @@ public class lalo {
 				}
 				if (elCondeso == null) noAsignados.add(elTurno);
 				else{
-					AsignarTurno(elCondeso, elTurno);
+					elCondeso.asignarTurno(elTurno);
 					yaOcupados.add(elCondeso);
 				}
 				last = elTurno;
@@ -79,7 +79,7 @@ public class lalo {
 		if(!checkDisponibilidad(elCondeso, disponibilidad, elTurno)) return false;
 		if(!checkDiasSeguidos(elCondeso, elTurno)) return false;
 		if(!checkFinesLibres(elCondeso, elTurno)) return false;
-		if(!checkMax(elCondeso, elTurno)) return false;
+		if(!elCondeso.checkMax()) return false;
 		return true;
 
 	}
@@ -98,8 +98,8 @@ public class lalo {
 	}
 
 	private boolean checkDiasSeguidos(Condeso elCondeso, Turnos elTurno){
-		//TODO
-		return false;
+		if(elCondeso.getDiasSeguidos(elTurno.getDate()) >= elCondeso.getDiasSeguidos()) return false;
+		return true;
 	}
 
 	private boolean checkFinesLibres(Condeso elCondeso, Turnos elTurno){
@@ -109,14 +109,7 @@ public class lalo {
 		if(elCondeso.getFinesLibres() == 1) return false;
 		return true;
 	}
-
-	private boolean checkMax(Condeso elCondeso, Turnos elTurnos){
-		return false;
-	}
-
-	private void AsignarTurno(Condeso elCondeso, Turnos elTurno){
-		//TODO
-	}
+	
 
 	private void reacomodar(Set<Turnos> noAsignados, Set<Condeso> condesos, HashMap<Integer, Integer[][]> disponibilidad){
 		//TODO
