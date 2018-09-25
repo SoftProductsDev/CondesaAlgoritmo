@@ -31,25 +31,29 @@ public class HibernateCrudTest extends TestCase {
     hbf.setManager("Jorge");
     hbf.setFechaApertura(LocalDate.now());
     hbf.setId(1);
+    HibernateCrud.SaveTienda(hbf);
 
 
     DbModel.Tiendas mf = new DbModel.Tiendas();
     mf.setNombre("MF");
-    hbf.setManager("Leo");
-    hbf.setFechaApertura(LocalDate.now());
-    hbf.setId(2);
+    mf.setManager("Leo");
+    mf.setFechaApertura(LocalDate.now());
+    mf.setId(2);
+    HibernateCrud.SaveTienda(mf);
 
 
     DbModel.Tiendas impler = new DbModel.Tiendas();
-    hbf.setNombre("IMP");
-    hbf.setManager("Jorge");
-    hbf.setFechaApertura(LocalDate.now());
-    hbf.setId(3);
+    impler.setNombre("IMP");
+    impler.setManager("Jorge");
+    impler.setFechaApertura(LocalDate.now());
+    impler.setId(3);
+    HibernateCrud.SaveTienda(impler);
 
 
     tiendas.add(impler);
     tiendas.add(mf);
     tiendas.add(hbf);
+
 
 
     Condeso condeso = new Condeso();
