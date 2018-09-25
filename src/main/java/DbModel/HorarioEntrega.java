@@ -17,9 +17,17 @@ public class HorarioEntrega {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
-  @ElementCollection
-  @CollectionTable(name = "mesentrega")
-  private Map<LocalDate, Dias> mes;
+  @Column(name = "disponibilidad")
+  private int[][] disponibilidad;
+
+  @Column(name = "Minimo")
+  private int min;
+
+  @Column(name ="Maximo")
+  private int max;
+
+  @Column(name = "mes")
+  private LocalDate mes;
 
   public HorarioEntrega() {
   }
@@ -32,11 +40,35 @@ public class HorarioEntrega {
     this.id = id;
   }
 
-  public Map<LocalDate, Dias> getMes() {
+  public int[][] getDisponibilidad() {
+    return disponibilidad;
+  }
+
+  public void setDisponibilidad(int[][] disponibilidad) {
+    this.disponibilidad = disponibilidad;
+  }
+
+  public int getMin() {
+    return min;
+  }
+
+  public void setMin(int min) {
+    this.min = min;
+  }
+
+  public int getMax() {
+    return max;
+  }
+
+  public void setMax(int max) {
+    this.max = max;
+  }
+
+  public LocalDate getMes() {
     return mes;
   }
 
-  public void setMes(Map<LocalDate, Dias> mes) {
+  public void setMes(LocalDate mes) {
     this.mes = mes;
   }
 }

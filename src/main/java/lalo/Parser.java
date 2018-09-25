@@ -4,14 +4,22 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Set;
+import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import DbController.HibernateCrud;
+import DbModel.Condeso;
+import DbModel.HorarioEntrega;
 
 public class Parser {
 
+    private static List<Condeso> allCondesos = HibernateCrud.GetAllCondesos();
+
     public static int[][] parse(String fileName) {
         String line;
-        String month = "1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t11\t12\t13\t14\t15\t16\t17\t18\t19\t20\t21\t22\t23\t24\t25\t26\t27\t28";
+        String month = "1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t11\t12\t13\t14\t15\t16\t17  \t18\t19\t20\t21\t22\t23\t24\t25\t26\t27\t28";
         int[][] disponibilidad;
         try {
             FileReader reader = new FileReader(fileName);
@@ -169,6 +177,17 @@ try{
               condeso.setDisponibilidad(disponibilidad);
               Disp.add(condeso);
               buffer.readLine();
+              Condeso DbCondeso = HibernateCrud.findCondesoId(666, allCondesos);
+              if(DbCondeso != null){
+                  HorarioEntrega entrega = new HorarioEntrega();
+                  entrega.setMax(666);
+                  entrega.setMin(666);
+                  entrega.setMes(LocalDate.now());
+                  entrega.setDisponibilidad(disponibilidad);
+                  DbCondeso.setEntrega(entrega);
+              }else{
+                  System.out.print("WARNING: Condeso not found!");
+              }
             }
             buffer.close();
             return Disp;

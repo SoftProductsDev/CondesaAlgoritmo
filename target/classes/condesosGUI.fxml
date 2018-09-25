@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -17,13 +18,13 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.CondesoGUI">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="881.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.CondesoGUI">
   <columnConstraints>
-      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="110.0" />
-      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="122.0" />
-    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="123.0" />
-    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="126.0" />
-      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="202.0" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="ALWAYS" maxWidth="205.0" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="ALWAYS" maxWidth="257.0" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="219.0" minWidth="10.0" prefWidth="70.0" />
   </columnConstraints>
   <rowConstraints>
       <RowConstraints maxHeight="109.0" minHeight="0.0" prefHeight="38.0" vgrow="SOMETIMES" />
@@ -34,18 +35,22 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <TableView fx:id="tableView" editable="true" prefHeight="134.0" prefWidth="545.0" GridPane.columnSpan="4" GridPane.rowIndex="1">
         <columns>
-          <TableColumn fx:id="condesoName" prefWidth="${tableView.width*0.125}" resizable="false" text="Nombre" />
-            <TableColumn fx:id="condesoCargo" prefWidth="${tableView.width*0.125}" text="Cargo" />
-          <TableColumn fx:id="condesoContrato" prefWidth="${tableView.width*0.125}" text="Contrato" />
-            <TableColumn fx:id="condesoVespertino" prefWidth="${tableView.width*0.125}" text="Vespertino" />
-            <TableColumn fx:id="condesoMatutino" prefWidth="${tableView.width*0.125}" text="Matutino" />
-            <TableColumn fx:id="condesoAntiguedad" prefWidth="${tableView.width*0.125}" text="Fecha de Contratación" />
-            <TableColumn fx:id="condesoCaja" prefWidth="${tableView.width*0.125}" text="Caja" />
-            <TableColumn fx:id="condesoNivel" prefWidth="${tableView.width*0.125}" text="Nivel" />
+          <TableColumn fx:id="condesoId" prefWidth="${tableView.width*0.0909}" resizable="false" text="Id" />
+          <TableColumn fx:id="condesoName" prefWidth="${tableView.width*0.0909}" resizable="false" text="Nombre" />
+            <TableColumn fx:id="condesoCargo" prefWidth="${tableView.width*0.0909}" text="Cargo" />
+          <TableColumn fx:id="condesoContrato" prefWidth="${tableView.width*0.0909}" text="Contrato" />
+            <TableColumn fx:id="condesoVespertino" prefWidth="${tableView.width*0.0909}" text="Vespertino" />
+            <TableColumn fx:id="condesoMatutino" prefWidth="${tableView.width*0.0909}" text="Matutino" />
+            <TableColumn fx:id="condesoAntiguedad" prefWidth="${tableView.width*0.0909}" text="Fecha de Contratación" />
+            <TableColumn fx:id="condesoCaja" prefWidth="${tableView.width*0.0909}" text="Caja" />
+            <TableColumn fx:id="condesoNivel" prefWidth="${tableView.width*0.0909}" text="Nivel" />
+          <TableColumn fx:id="condesoSexo" prefWidth="${tableView.width*0.0909}" resizable="false" text="Sexo" />
+          <TableColumn fx:id="condesoColor" prefWidth="${tableView.width*0.0909}" resizable="false" text="Color" />
         </columns>
         <items>
 
@@ -87,8 +92,8 @@
           <Font size="16.0" />
         </font>
       </Label>
-      <Button mnemonicParsing="false" onAction="#addButtonClicked" text="Agregar" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-      <Button mnemonicParsing="false" onAction="#deleteButtonClicked" text="Eliminar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+      <Button mnemonicParsing="false" onAction="#addButtonClicked" text="Agregar" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#deleteButtonClicked" text="Eliminar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
       <TextField fx:id="nombreTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <RadioButton fx:id="masculinoRadio" mnemonicParsing="false" selected="true" text="Masculino" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <toggleGroup>
@@ -113,7 +118,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button mnemonicParsing="false" onAction="#updateButtonClicked" text="Actualizar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" />
+      <Button mnemonicParsing="false" onAction="#updateButtonClicked" text="Actualizar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" />
       <Label text="Caja" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6">
          <font>
             <Font size="16.0" />
@@ -129,6 +134,12 @@
           <TableColumn fx:id="tiendasCheckBox" prefWidth="43.0" />
         </columns>
       </TableView>
+      <ColorPicker fx:id="color" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+      <Label alignment="CENTER" text="Color" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
    <opaqueInsets>
       <Insets />
