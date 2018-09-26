@@ -1,18 +1,20 @@
 package condesaGUI;
 
 import DbController.HibernateCrud;
-import condeso.Condeso;
-import horario.Dias;
-import horario.HorarioMaster;
-import horario.Turnos;
+import DbModel.Condeso;
+import DbModel.Dias;
+import DbModel.HorarioMaster;
+import DbModel.Turnos;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,11 +36,12 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import tiendas.Tiendas;
+import DbModel.Tiendas;
+import org.hibernate.Hibernate;
 
 public class FrontGUI extends Application implements Initializable {
 
-  @FXML private ComboBox<tiendas.Tiendas>  tiendasComboBox;
+  @FXML private ComboBox<Tiendas>  tiendasComboBox;
   @FXML private  ListView<String> horaList0;
   @FXML private ListView<String>  horaList1;
   @FXML private ListView<String>  horaList2;
@@ -73,7 +76,7 @@ public class FrontGUI extends Application implements Initializable {
     horaList3.setItems(horario);
     horaList4.setItems(horario);
     horaList5.setItems(horario);
-    tiendasComboBox.setItems(FXCollections.observableList(HibernateCrud.GetAllDTOTiendas()));
+    tiendasComboBox.setItems(FXCollections.observableList(HibernateCrud.GetAllTiendas()));
     Locale spanishLocale=new Locale("es", "ES");
     calendar = LocalDate.now();
     monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern("MMMM, YYYY",spanishLocale)));
@@ -101,7 +104,7 @@ public class FrontGUI extends Application implements Initializable {
         }
         grid.setId(i + "-" + j);
         //grid.gridLinesVisibleProperty().set(true);
-        grid.setStyle("-fx-padding: 0 0 1 3;");
+        grid.setStyle("-fx-padding: 0 0 0 0;");
         monthGrid.add(grid,i,j);
       }
     }
@@ -129,12 +132,17 @@ public class FrontGUI extends Application implements Initializable {
     }
   }
 
-  private void setHorarioMaster(HorarioMaster horario){
-    HorarioMaster master = tiendasComboBox.getValue().getMaster();
+  private void setHorarioMaster(){
+    //Tiendas tienda = tiendasComboBox.getValue();
+    //HorarioMaster master = tiendasComboBox.getValue().getMaster();
+    HorarioMaster master = createHorario();
     for (int i = 1; i < calendar.getMonth().length(calendar.isLeapYear()); i++)
     {
-        Dias dia = master.getMes().get(calendar.withDayOfMonth(i));
+        Map<LocalDate, Dias> mes = master.getMes();
+        Dias dia = mes.get(calendar.withDayOfMonth(i));
+        if(dia!=null){
         setDias(dia);
+        }
     }
   }
 
@@ -156,7 +164,7 @@ public class FrontGUI extends Application implements Initializable {
     //column inside "Day"
     int columnIndex = 0;
     for (int j = 0; j < 7; j++){
-      if (latestTurn[j] < turno.getInicio()){
+      if (latestTurn[j] <= turno.getInicio()){
         columnIndex = j;
         latestTurn[j] = turno.getFin();
         break;
@@ -229,11 +237,152 @@ public class FrontGUI extends Application implements Initializable {
         "MMMM, YYYY",spanishLocale)));
   }
 
-  private HorarioMaster getTestHorario(){
-    HashMap<LocalDate, Dias> map = new HashMap<>();
+  public void getHorario(ActionEvent actionEvent) {
+    setHorarioMaster();
+  }
 
-    HorarioMaster horarioMaster = new HorarioMaster(map);
+  public HorarioMaster createHorario() {
+    HorarioMaster horarioMaster = new HorarioMaster();
+    horarioMaster.setMes(createMes());
     return horarioMaster;
   }
 
+  private Map<LocalDate, Dias> createMes() {
+    Map<LocalDate, Dias> result = new HashMap<>();
+    Dias dia1 = createDia(LocalDate.now().withDayOfMonth(1));
+    Dias dia2 = createDia2(LocalDate.now().withDayOfMonth(2));
+    result.put(dia1.getDate(), dia1);
+    result.put(dia2.getDate(), dia2);
+    return result;
+  }
+
+  private Dias createDia(LocalDate date) {
+    Dias result = new Dias();
+    result.setDate(date);
+    result.setTurnos(createTurnos());
+    return result;
+  }
+
+  private Dias createDia2(LocalDate date) {
+    Dias result = new Dias();
+    result.setDate(date);
+    result.setTurnos(createTurnos2());
+    return result;
+  }
+
+  private Set<Turnos> createTurnos2() {
+    Set<Turnos> result = new TreeSet<>();
+    List<Condeso> condesos = HibernateCrud.GetAllCondesos();
+
+    Turnos turno1 = new Turnos();
+    turno1.setInicio(9);
+    turno1.setFin(16);
+    turno1.setCondeso(condesos.get(9));
+
+    Turnos turno2 = new Turnos();
+    turno2.setInicio(16);
+    turno2.setFin(21);
+    turno2.setCondeso(condesos.get(1));
+
+    Turnos turno3 = new Turnos();
+    turno3.setInicio(9);
+    turno3.setFin(15);
+    turno3.setCondeso(condesos.get(10));
+
+    Turnos turno4 = new Turnos();
+    turno4.setInicio(17);
+    turno4.setFin(23);
+    turno4.setCondeso(condesos.get(12));
+
+    Turnos turno5 = new Turnos();
+    turno5.setInicio(17);
+    turno5.setFin(23);
+    turno5.setCondeso(condesos.get(11));
+
+    Turnos turno6 = new Turnos();
+    turno6.setInicio(9);
+    turno6.setFin(14);
+    turno6.setCondeso(condesos.get(13));
+
+    Turnos turno7 = new Turnos();
+    turno7.setInicio(15);
+    turno7.setFin(21);
+    turno7.setCondeso(condesos.get(14));
+
+    Turnos turno8 = new Turnos();
+    turno8.setInicio(16);
+    turno8.setFin(22);
+    turno8.setCondeso(condesos.get(4));
+
+
+
+    result.add(turno1);
+    result.add(turno2);
+    result.add(turno3);
+    result.add(turno4);
+    result.add(turno5);
+    result.add(turno6);
+    result.add(turno7);
+    result.add(turno8);
+
+    return result;
+  }
+
+  private Set<Turnos> createTurnos() {
+    Set<Turnos> result = new TreeSet<>();
+    List<Condeso> condesos = HibernateCrud.GetAllCondesos();
+
+    Turnos turno1 = new Turnos();
+    turno1.setInicio(12);
+    turno1.setFin(20);
+    turno1.setCondeso(condesos.get(0));
+
+    Turnos turno2 = new Turnos();
+    turno2.setInicio(8);
+    turno2.setFin(14);
+    turno2.setCondeso(condesos.get(1));
+
+    Turnos turno3 = new Turnos();
+    turno3.setInicio(8);
+    turno3.setFin(14);
+    turno3.setCondeso(condesos.get(2));
+
+    Turnos turno4 = new Turnos();
+    turno4.setInicio(14);
+    turno4.setFin(22);
+    turno4.setCondeso(condesos.get(3));
+
+    Turnos turno5 = new Turnos();
+    turno5.setInicio(17);
+    turno5.setFin(22);
+    turno5.setCondeso(condesos.get(4));
+
+    Turnos turno6 = new Turnos();
+    turno6.setInicio(12);
+    turno6.setFin(18);
+    turno6.setCondeso(condesos.get(5));
+
+    Turnos turno7 = new Turnos();
+    turno7.setInicio(16);
+    turno7.setFin(22);
+    turno7.setCondeso(condesos.get(6));
+
+    Turnos turno8 = new Turnos();
+    turno8.setInicio(16);
+    turno8.setFin(22);
+    turno8.setCondeso(condesos.get(7));
+
+
+
+    result.add(turno1);
+    result.add(turno2);
+    result.add(turno3);
+    result.add(turno4);
+    result.add(turno5);
+    result.add(turno6);
+    result.add(turno7);
+    result.add(turno8);
+
+    return result;
+  }
 }

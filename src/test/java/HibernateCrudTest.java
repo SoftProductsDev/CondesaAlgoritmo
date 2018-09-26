@@ -2,10 +2,14 @@
 import DbController.HibernateCrud;
 import DbModel.Condeso;
 import DbModel.Dias;
+import DbModel.HorarioMaster;
 import DbModel.Tiendas;
 import DbModel.Turnos;
 import condeso.Contrato;
 import condeso.TipoEmpleado;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import junit.framework.TestCase;
 
 import java.time.LocalDate;
@@ -267,19 +271,40 @@ public class HibernateCrudTest extends TestCase {
     HibernateCrud.SaveCondeso(condeso15);
   }
 
-  private HashMap<Integer, Turnos> createTurnos() {
-    HashMap<Integer, Turnos> result = new HashMap<Integer, Turnos>();
-    Turnos turno = new Turnos();
-    turno.setOcupado(false);
-    turno.setMatutino(true);
-    turno.setDuracion(4);
-    turno.setInicio(8);
-    turno.setElemental(false);
-    turno.setFin(12);
+  public void testCreateHorario() {
+    HorarioMaster horarioMaster = new HorarioMaster();
+    horarioMaster.setMes(createMes());
+    Tiendas tienda = HibernateCrud.GetAllTiendas().get(0);
+    tienda.setMaster(horarioMaster);
+    HibernateCrud.UpdateTienda(tienda);
+  }
 
-    result.put(turno.getInicio(), turno);
+  private Map<LocalDate, Dias> createMes() {
+    Map<LocalDate, Dias> result = new HashMap<>();
+    Dias dia1 = createDia();
+    result.put(dia1.getDate(), dia1);
+    return result;
+  }
 
-    return  result;
+  private Dias createDia() {
+    Dias result = new Dias();
+    result.setDate(LocalDate.now());
+    result.setTurnos(createTurnos());
+    return result;
+  }
+
+  private Set<Turnos> createTurnos() {
+    Set<Turnos> result = new TreeSet<>();
+    List<Condeso> condesos = HibernateCrud.GetAllCondesos();
+
+    Turnos turno1 = new Turnos();
+    turno1.setInicio(8);
+    turno1.setFin(12);
+    turno1.setCondeso(condesos.get(0));
+
+    result.add(turno1);
+
+    return result;
   }
 
   public void testCreateTienda()

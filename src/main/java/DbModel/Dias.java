@@ -19,7 +19,6 @@ public class Dias {
     @MapKey (name = "inicio")
     @CollectionTable
     @OneToMany(cascade = CascadeType.ALL)
-    //usar TreeSet
     private Set<Turnos> turnos;
 
     @Column(name = "date")
