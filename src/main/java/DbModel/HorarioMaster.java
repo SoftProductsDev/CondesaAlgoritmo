@@ -5,6 +5,9 @@ import java.util.Map;
 import javax.persistence.*;
 import java.util.Date;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.FetchProfile;
 
 
 /**
@@ -19,8 +22,9 @@ public class HorarioMaster {
   private long id;
 
   @JoinColumn
-  @OneToMany
+  @OneToMany( fetch = FetchType.EAGER)
   @Cascade(org.hibernate.annotations.CascadeType.ALL)
+
   private Map<LocalDate, Dias> mes;
 
   public HorarioMaster() {

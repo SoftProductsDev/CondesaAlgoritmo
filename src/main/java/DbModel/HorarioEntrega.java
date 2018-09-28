@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Map;
+import org.hibernate.annotations.Fetch;
 
 /**
  * Created by javier on 13/08/2018.

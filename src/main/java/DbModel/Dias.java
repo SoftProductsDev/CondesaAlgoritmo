@@ -18,7 +18,7 @@ public class Dias {
     @ElementCollection
     @MapKey (name = "inicio")
     @CollectionTable
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Turnos> turnos;
 
     @Column(name = "date")
