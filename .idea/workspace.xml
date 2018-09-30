@@ -2,7 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="026ca1b6-8286-4ac4-b5c8-f123aeab7225" name="Default" comment="Reparación">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plantillasGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plantillasGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/HibernateCrudTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/HibernateCrudTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbController/HibernateCrud.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbController/HibernateCrud.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Condeso.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/Condeso.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Dias.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/Dias.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/HorarioEntrega.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/HorarioEntrega.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/HorarioMaster.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/HorarioMaster.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/HorarioPersonal.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/HorarioPersonal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Plantillas.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/Plantillas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Tiendas.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/Tiendas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DbModel/Turnos.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DbModel/Turnos.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/CondesoGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/FrontGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/FrontGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/MainGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/MainGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/NuevoHorarioGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/NuevoHorarioGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesaGUI/TiendaGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesaGUI/TiendaGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condeso/Condeso.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condeso/Condeso.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/condesosGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/condesosGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/frontGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/frontGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/horario/Dias.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/horario/Dias.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/horario/HorarioInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/horario/HorarioInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/horario/Plantillas.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/horario/Plantillas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/horario/Turnos.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/horario/Turnos.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/lalo/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/lalo/Parser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/lalo/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/lalo/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/lalo/lalo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/lalo/lalo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nuevoHorarioGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nuevoHorarioGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/HibernateCrudTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/HibernateCrudTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -125,22 +157,23 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JAVA" value="18" />
-          <entry key="XML" value="1" />
+          <entry key="XML" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1921" />
+          <entry key="java" value="2205" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1921" />
+          <entry key="JAVA" value="2205" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="fxml" value="2" />
           <entry key="java" value="18" />
           <entry key="xml" value="1" />
         </counts>
@@ -152,8 +185,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/DbController/HibernateCrud.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="168">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/HibernateCrudTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -162,10 +207,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/HibernateCrudTest.java">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/plantillasGUI.fxml">
+          <provider editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml">
+          <provider editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/DbModel/Tiendas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4343">
-              <caret line="267" column="6" selection-start-line="267" selection-start-column="6" selection-end-line="267" selection-end-column="6" />
+            <state relative-caret-position="238">
+              <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -174,10 +231,18 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Parser.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="969">
+              <caret line="94" column="13" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+              <folding>
+                <element signature="e#3499#3500#0" expanded="true" />
+                <element signature="e#3527#3528#0" expanded="true" />
+                <element signature="e#6052#6501#0" expanded="true" />
+                <element signature="e#6500#6501#0" expanded="true" />
+                <element signature="e#6677#7140#0" expanded="true" />
+                <element signature="e#7139#7140#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -185,8 +250,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3417">
-              <caret line="237" selection-start-line="237" selection-end-line="237" />
+            <state relative-caret-position="168">
+              <caret line="81" selection-start-line="81" selection-end-line="81" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -195,74 +260,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/lalo/lalo.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/MainGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="952">
-              <caret line="125" column="20" selection-start-line="125" selection-start-column="20" selection-end-line="125" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#GMTodos#0;class#lalo#0" />
-                <element signature="method#encargadosGM#0;class#lalo#0" />
-                <element signature="method#medioFijos#0;class#lalo#0" />
-                <element signature="method#dondeHayJusto#0;class#lalo#0" />
-                <element signature="method#pocoONadaDeJuego#0;class#lalo#0" />
-                <element signature="method#laloFuncionando#0;class#lalo#0" />
-                <element signature="method#checkCondeso#0;class#lalo#0" />
-                <element signature="method#checkDisponibilidad#0;class#lalo#0" />
-                <element signature="method#checkDiasSeguidos#0;class#lalo#0" />
-                <element signature="method#checkFinesLibres#0;class#lalo#0" />
-                <element signature="e#3433#3434#0" expanded="true" />
-                <element signature="e#3451#3452#0" expanded="true" />
-                <element signature="method#findCandidates#0;class#lalo#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/DbController/DbController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="67" selection-start-line="29" selection-start-column="67" selection-end-line="29" selection-end-column="67" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Disponibilidad.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/DbModel/HorarioEntrega.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="37" selection-start-line="37" selection-end-line="37" />
-              <folding>
-                <element signature="method#HorarioEntrega#0;class#HorarioEntrega#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2244">
-              <caret line="132" column="17" selection-start-line="132" selection-start-column="17" selection-end-line="132" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/DbModel/Condeso.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+            <state relative-caret-position="168">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
@@ -336,6 +337,8 @@
         <option value="$PROJECT_DIR$/src/main/java/lalo/lalo.java" />
         <option value="$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java" />
         <option value="$PROJECT_DIR$/src/test/java/HibernateCrudTest.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/plantillasGUI.fxml" />
       </list>
     </option>
   </component>
@@ -361,7 +364,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -377,11 +380,6 @@
             <path>
               <item name="Algoritmo" type="b2602c69:ProjectViewProjectNode" />
               <item name="Algoritmo" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Algoritmo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Algoritmo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -395,79 +393,18 @@
               <item name="Algoritmo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Algoritmo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Algoritmo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="condesaGUI" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Algoritmo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Algoritmo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="condeso" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Algoritmo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Algoritmo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="DbController" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Algoritmo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Algoritmo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="DbModel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Algoritmo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Algoritmo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="horario" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Algoritmo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Algoritmo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="lalo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Algoritmo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Algoritmo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Algoritmo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Algoritmo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537907481495" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538313846335" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -491,7 +428,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.HibernateCrudTest.testCreateCondeso">
+  <component name="RunManager" selected="Application.MainGUI">
     <configuration name="CustomControlExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="CalendarControl.CustomControlExample" />
       <module name="CondesaAlgoritmo" />
@@ -563,8 +500,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.HibernateCrudTest.testCreateCondeso" />
         <item itemvalue="Application.MainGUI" />
+        <item itemvalue="JUnit.HibernateCrudTest.testCreateCondeso" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.MainGUI (1)" />
         <item itemvalue="Application.CustomControlExample" />
@@ -679,28 +616,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="HibernateCrudTest_testCreateCondeso - 2018.09.25 at 21h 49m 09s.xml">
-      <configuration name="HibernateCrudTest.testCreateCondeso" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HibernateCrudTest_testCreateCondeso - 2018.09.25 at 21h 55m 05s.xml">
-      <configuration name="HibernateCrudTest.testCreateCondeso" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HibernateCrudTest_testCreateCondeso - 2018.09.25 at 21h 56m 54s.xml">
-      <configuration name="HibernateCrudTest.testCreateCondeso" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HibernateCrudTest_testCreateCondeso - 2018.09.25 at 22h 00m 51s.xml">
-      <configuration name="HibernateCrudTest.testCreateCondeso" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HibernateCrudTest_testCreateCondeso - 2018.09.25 at 22h 02m 55s.xml">
-      <configuration name="HibernateCrudTest.testCreateCondeso" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HibernateCrudTest_testCreateCondeso - 2018.09.25 at 22h 11m 21s.xml">
-      <configuration name="HibernateCrudTest.testCreateCondeso" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="HibernateCrudTest_testCreateCondeso - 2018.09.25 at 22h 26m 33s.xml">
       <configuration name="HibernateCrudTest.testCreateCondeso" configurationId="JUnit" />
     </history-entry>
     <history-entry file="HibernateCrudTest_testCreateCondeso - 2018.09.25 at 22h 29m 34s.xml">
+      <configuration name="HibernateCrudTest.testCreateCondeso" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HibernateCrudTest_testCreateCondeso - 2018.09.30 at 14h 32m 56s.xml">
+      <configuration name="HibernateCrudTest.testCreateCondeso" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HibernateCrudTest_testCreateCondeso - 2018.09.30 at 14h 34m 36s.xml">
+      <configuration name="HibernateCrudTest.testCreateCondeso" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HibernateCrudTest_testCreateCondeso - 2018.09.30 at 14h 36m 46s.xml">
+      <configuration name="HibernateCrudTest.testCreateCondeso" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HibernateCrudTest_testCreateCondeso - 2018.09.30 at 14h 36m 47s.xml">
+      <configuration name="HibernateCrudTest.testCreateCondeso" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HibernateCrudTest_testCreateCondeso - 2018.09.30 at 14h 37m 31s.xml">
+      <configuration name="HibernateCrudTest.testCreateCondeso" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HibernateCrudTest_testCreateCondeso - 2018.09.30 at 14h 41m 16s.xml">
+      <configuration name="HibernateCrudTest.testCreateCondeso" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HibernateCrudTest_testCreateCondeso - 2018.09.30 at 14h 51m 57s.xml">
+      <configuration name="HibernateCrudTest.testCreateCondeso" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HibernateCrudTest_testCreateCondeso - 2018.09.30 at 14h 53m 30s.xml">
       <configuration name="HibernateCrudTest.testCreateCondeso" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -708,7 +651,7 @@
     <frame x="-6" y="-6" width="1549" height="837" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.66003615" visible="true" weight="0.18309858" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.66003615" weight="0.3293092" />
       <window_info id="Structure" order="1" sideWeight="0.33996382" side_tool="true" weight="0.13950369" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -717,7 +660,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4989339" visible="true" weight="0.21671388" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4989339" visible="true" weight="0.0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.18413597" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -794,15 +737,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/prueba.fxml" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Prueba.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/CalendarControl/CustomControlExample.java" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/calendarControl.fxml" />
     <entry file="file://$PROJECT_DIR$/src/main/java/CalendarControl/calendarControl.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/condesosGUI.fxml">
       <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -896,13 +834,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/DbModel/Tiendas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/frontGUI.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
@@ -913,8 +844,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/MainGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+        <state relative-caret-position="168">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>
@@ -941,8 +872,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3451">
-          <caret line="207" selection-start-line="207" selection-end-line="207" />
+        <state relative-caret-position="969">
+          <caret line="94" column="13" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+          <folding>
+            <element signature="e#3499#3500#0" expanded="true" />
+            <element signature="e#3527#3528#0" expanded="true" />
+            <element signature="e#6052#6501#0" expanded="true" />
+            <element signature="e#6500#6501#0" expanded="true" />
+            <element signature="e#6677#7140#0" expanded="true" />
+            <element signature="e#7139#7140#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1023,16 +962,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/DbController/HibernateCrud.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1042,8 +971,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3417">
-          <caret line="237" selection-start-line="237" selection-end-line="237" />
+        <state relative-caret-position="168">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1111,15 +1040,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/HibernateCrudTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/DbModel/Tiendas.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4343">
-          <caret line="267" column="6" selection-start-line="267" selection-start-column="6" selection-end-line="267" selection-end-column="6" />
+        <state relative-caret-position="238">
+          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DbController/HibernateCrud.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/HibernateCrudTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/plantillasGUI.fxml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
   </component>
   <component name="masterDetails">

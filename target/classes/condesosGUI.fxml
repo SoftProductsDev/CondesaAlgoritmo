@@ -22,9 +22,9 @@
   <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="ALWAYS" maxWidth="205.0" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="ALWAYS" maxWidth="257.0" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="219.0" minWidth="10.0" prefWidth="70.0" />
+    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="70.0" />
   </columnConstraints>
   <rowConstraints>
       <RowConstraints maxHeight="109.0" minHeight="0.0" prefHeight="38.0" vgrow="SOMETIMES" />
@@ -72,37 +72,38 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label text="Nombre" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+      <Label text="Nombre" GridPane.halignment="CENTER" GridPane.rowIndex="4">
         <font>
           <Font size="16.0" />
         </font>
       </Label>
-      <Label text="Sexo" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+      <Label text="Sexo" GridPane.halignment="CENTER" GridPane.rowIndex="5">
         <font>
           <Font size="16.0" />
         </font>
       </Label>
-      <Label text="Contrato" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+      <Label text="Contrato" GridPane.halignment="CENTER" GridPane.rowIndex="6">
         <font>
           <Font size="16.0" />
         </font>
       </Label>
-      <Label text="Turno" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+      <Label text="Turno" GridPane.halignment="CENTER" GridPane.rowIndex="7">
         <font>
           <Font size="16.0" />
         </font>
       </Label>
+      <TextField fx:id="idTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <Button mnemonicParsing="false" onAction="#addButtonClicked" text="Agregar" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
       <Button mnemonicParsing="false" onAction="#deleteButtonClicked" text="Eliminar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-      <TextField fx:id="nombreTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <RadioButton fx:id="masculinoRadio" mnemonicParsing="false" selected="true" text="Masculino" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <TextField fx:id="nombreTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <RadioButton fx:id="masculinoRadio" mnemonicParsing="false" selected="true" text="Masculino" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <toggleGroup>
             <ToggleGroup fx:id="Sexo" />
          </toggleGroup></RadioButton>
-      <RadioButton fx:id="femeninoRadio" mnemonicParsing="false" text="Femenino" toggleGroup="$Sexo" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-      <ChoiceBox fx:id="contratoChoiceBox" prefHeight="25.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="5" />
-      <RadioButton fx:id="matutinoRadio" mnemonicParsing="false" text="Matutino" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <RadioButton fx:id="vespertinoRadio" mnemonicParsing="false" text="Vespertino" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+      <RadioButton fx:id="femeninoRadio" mnemonicParsing="false" text="Femenino" toggleGroup="$Sexo" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+      <ChoiceBox fx:id="contratoChoiceBox" prefHeight="25.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6" />
+      <RadioButton fx:id="matutinoRadio" mnemonicParsing="false" text="Matutino" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <RadioButton fx:id="vespertinoRadio" mnemonicParsing="false" text="Vespertino" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
       <Label text="Contratación" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <font>
             <Font size="16.0" />
@@ -136,6 +137,11 @@
       </TableView>
       <ColorPicker fx:id="color" GridPane.columnIndex="3" GridPane.rowIndex="7" />
       <Label alignment="CENTER" text="Color" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label text="Id" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <font>
             <Font size="16.0" />
          </font>

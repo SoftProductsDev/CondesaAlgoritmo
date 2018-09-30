@@ -71,6 +71,7 @@ public class HibernateCrudTest extends TestCase {
     condeso.setTipo(TipoEmpleado.Encargado);
     condeso.setNombre("Pepe");
     condeso.setColor("#f48642");
+    condeso.setId(1);
     //condeso.setDondePuedeTrabajar(tiendas);
     HibernateCrud.SaveCondeso(condeso);
 
@@ -85,6 +86,7 @@ public class HibernateCrudTest extends TestCase {
     condeso2.setTipo(TipoEmpleado.Equipo);
     condeso2.setNombre("Pablo");
     condeso2.setColor("#f1f441");
+    condeso2.setId(2);
     //condeso.setDondePuedeTrabajar(tiendas);
     HibernateCrud.SaveCondeso(condeso2);
 
@@ -99,6 +101,7 @@ public class HibernateCrudTest extends TestCase {
     condeso3.setTipo(TipoEmpleado.GM);
     condeso3.setNombre("Javier");
     condeso3.setColor("#f44141");
+    condeso3.setId(3);
     //condeso.setDondePuedeTrabajar(tiendas);
     HibernateCrud.SaveCondeso(condeso3);
 
@@ -113,6 +116,7 @@ public class HibernateCrudTest extends TestCase {
     condeso4.setTipo(TipoEmpleado.Encargado);
     condeso4.setNombre("Sofia");
     condeso4.setColor("#be41f4");
+    condeso4.setId(4);
     //condeso.setDondePuedeTrabajar(tiendas);
     HibernateCrud.SaveCondeso(condeso4);
 
@@ -127,6 +131,7 @@ public class HibernateCrudTest extends TestCase {
     condeso5.setTipo(TipoEmpleado.Nuevo);
     condeso5.setNombre("Ximena");
     condeso5.setColor("#7f41f4");
+    condeso5.setId(5);
     //condeso.setDondePuedeTrabajar(tiendas);
     HibernateCrud.SaveCondeso(condeso5);
 
@@ -141,6 +146,7 @@ public class HibernateCrudTest extends TestCase {
     condeso6.setTipo(TipoEmpleado.Nuevo);
     condeso6.setNombre("Esteban");
     condeso6.setColor("#61f441");
+    condeso6.setId(6);
     //condeso.setDondePuedeTrabajar(tiendas);
     HibernateCrud.SaveCondeso(condeso6);
 
@@ -155,6 +161,7 @@ public class HibernateCrudTest extends TestCase {
     condeso7.setTipo(TipoEmpleado.Encargado);
     condeso7.setNombre("Jose");
     condeso7.setColor("#41f4ee");
+    condeso7.setId(7);
     //condeso.setDondePuedeTrabajar(tiendas);
     HibernateCrud.SaveCondeso(condeso7);
 
@@ -169,6 +176,7 @@ public class HibernateCrudTest extends TestCase {
     condeso8.setTipo(TipoEmpleado.Encargado);
     condeso8.setNombre("Memo");
     condeso8.setColor("#4c41f4");
+    condeso8.setId(8);
     //condeso.setDondePuedeTrabajar(tiendas);
     HibernateCrud.SaveCondeso(condeso8);
 
@@ -183,6 +191,7 @@ public class HibernateCrudTest extends TestCase {
     condeso9.setTipo(TipoEmpleado.Encargado);
     condeso9.setNombre("Tonio");
     condeso9.setColor("#f4b841");
+    condeso9.setId(9);
     //condeso.setDondePuedeTrabajar(tiendas);
     HibernateCrud.SaveCondeso(condeso9);
 
@@ -197,6 +206,7 @@ public class HibernateCrudTest extends TestCase {
     condeso10.setTipo(TipoEmpleado.Encargado);
     condeso10.setNombre("Abraham");
     condeso10.setColor("#f47041");
+    condeso10.setId(10);
     //condeso.setDondePuedeTrabajar(tiendas);
     HibernateCrud.SaveCondeso(condeso10);
 
@@ -211,6 +221,7 @@ public class HibernateCrudTest extends TestCase {
     condeso11.setTipo(TipoEmpleado.Encargado);
     condeso11.setNombre("Martin");
     condeso11.setColor("#0d5f63");
+    condeso11.setId(11);
     //condeso.setDondePuedeTrabajar(tiendas);
     HibernateCrud.SaveCondeso(condeso11);
 
@@ -225,6 +236,7 @@ public class HibernateCrudTest extends TestCase {
     condeso12.setTipo(TipoEmpleado.Encargado);
     condeso12.setNombre("Pepe");
     condeso12.setColor("#750202");
+    condeso12.setId(12);
     //condeso.setDondePuedeTrabajar(tiendas);
     HibernateCrud.SaveCondeso(condeso12);
 
@@ -239,6 +251,7 @@ public class HibernateCrudTest extends TestCase {
     condeso13.setTipo(TipoEmpleado.Encargado);
     condeso13.setNombre("Esther");
     condeso13.setColor("#6c0c6d");
+    condeso13.setId(13);
     //condeso.setDondePuedeTrabajar(tiendas);
     HibernateCrud.SaveCondeso(condeso13);
 
@@ -253,6 +266,7 @@ public class HibernateCrudTest extends TestCase {
     condeso14.setTipo(TipoEmpleado.Encargado);
     condeso14.setNombre("Jose");
     condeso14.setColor("#b7bdf7");
+    condeso14.setId(14);
     //condeso.setDondePuedeTrabajar(tiendas);
     HibernateCrud.SaveCondeso(condeso14);
 
@@ -267,6 +281,7 @@ public class HibernateCrudTest extends TestCase {
     condeso15.setTipo(TipoEmpleado.Encargado);
     condeso15.setNombre("Dariana");
     condeso15.setColor("#b7f7ed");
+    condeso15.setId(15);
     //condeso.setDondePuedeTrabajar(tiendas);
     HibernateCrud.SaveCondeso(condeso15);
   }
