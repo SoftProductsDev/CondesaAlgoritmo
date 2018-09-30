@@ -123,7 +123,10 @@ public class lalo {
 	}
 
 	private Reasons checkReason(Turnos elTurno, Condeso elCondeso){
-		return null;
+		if(elCondeso.getPersonal()[elTurno.getDate().getDayOfMonth()-1] != null) return Reasons.turnoEseDia;
+		if(!checkDiasSeguidos(elCondeso, elTurno)) return Reasons.maximoDiasSeguidos;
+		if(!elCondeso.checkMax()) return Reasons.maximoAlcanzado;
+		return Reasons.finesOcupados;
 	}
 
 	private PriorityQueue<Condeso> findCandidates(Turnos elTurno, Set<Condeso> condesos, HashMap<Integer, Integer[][]> disponibilidad){
