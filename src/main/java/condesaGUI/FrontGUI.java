@@ -1,18 +1,20 @@
 package condesaGUI;
 
 import DbController.HibernateCrud;
-import condeso.Condeso;
-import horario.Dias;
-import horario.HorarioMaster;
-import horario.Turnos;
+import DbModel.Condeso;
+import DbModel.Dias;
+import DbModel.HorarioMaster;
+import DbModel.Turnos;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,11 +36,12 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import tiendas.Tiendas;
+import DbModel.Tiendas;
+import org.hibernate.Hibernate;
 
 public class FrontGUI extends Application implements Initializable {
 
-  @FXML private ComboBox<tiendas.Tiendas>  tiendasComboBox;
+  @FXML private ComboBox<Tiendas>  tiendasComboBox;
   @FXML private  ListView<String> horaList0;
   @FXML private ListView<String>  horaList1;
   @FXML private ListView<String>  horaList2;
@@ -73,7 +76,7 @@ public class FrontGUI extends Application implements Initializable {
     horaList3.setItems(horario);
     horaList4.setItems(horario);
     horaList5.setItems(horario);
-    tiendasComboBox.setItems(FXCollections.observableList(HibernateCrud.GetAllDTOTiendas()));
+    tiendasComboBox.setItems(FXCollections.observableList(HibernateCrud.GetAllTiendas()));
     Locale spanishLocale=new Locale("es", "ES");
     calendar = LocalDate.now();
     monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern("MMMM, YYYY",spanishLocale)));
@@ -101,7 +104,7 @@ public class FrontGUI extends Application implements Initializable {
         }
         grid.setId(i + "-" + j);
         //grid.gridLinesVisibleProperty().set(true);
-        grid.setStyle("-fx-padding: 0 0 1 3;");
+        grid.setStyle("-fx-padding: 0 0 0 0;");
         monthGrid.add(grid,i,j);
       }
     }
@@ -129,12 +132,17 @@ public class FrontGUI extends Application implements Initializable {
     }
   }
 
-  private void setHorarioMaster(HorarioMaster horario){
+  private void setHorarioMaster(){
+    Tiendas tienda = tiendasComboBox.getValue();
     HorarioMaster master = tiendasComboBox.getValue().getMaster();
+    //HorarioMaster master = createHorario();
     for (int i = 1; i < calendar.getMonth().length(calendar.isLeapYear()); i++)
     {
-        Dias dia = master.getMes().get(calendar.withDayOfMonth(i));
+        Map<LocalDate, Dias> mes = master.getMes();
+        Dias dia = mes.get(calendar.withDayOfMonth(i));
+        if(dia!=null){
         setDias(dia);
+        }
     }
   }
 
@@ -156,7 +164,7 @@ public class FrontGUI extends Application implements Initializable {
     //column inside "Day"
     int columnIndex = 0;
     for (int j = 0; j < 7; j++){
-      if (latestTurn[j] < turno.getInicio()){
+      if (latestTurn[j] <= turno.getInicio()){
         columnIndex = j;
         latestTurn[j] = turno.getFin();
         break;
@@ -229,11 +237,9 @@ public class FrontGUI extends Application implements Initializable {
         "MMMM, YYYY",spanishLocale)));
   }
 
-  private HorarioMaster getTestHorario(){
-    HashMap<LocalDate, Dias> map = new HashMap<>();
-
-    HorarioMaster horarioMaster = new HorarioMaster(map);
-    return horarioMaster;
+  public void getHorario(ActionEvent actionEvent) {
+    setHorarioMaster();
   }
+
 
 }

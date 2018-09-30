@@ -4,6 +4,10 @@ import java.time.LocalDate;
 import java.util.Map;
 import javax.persistence.*;
 import java.util.Date;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.FetchProfile;
 
 
 /**
@@ -17,8 +21,10 @@ public class HorarioMaster {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
-  @ElementCollection
-  @CollectionTable(name = "mesmaster")
+  @JoinColumn
+  @OneToMany( fetch = FetchType.EAGER)
+  @Cascade(org.hibernate.annotations.CascadeType.ALL)
+
   private Map<LocalDate, Dias> mes;
 
   public HorarioMaster() {

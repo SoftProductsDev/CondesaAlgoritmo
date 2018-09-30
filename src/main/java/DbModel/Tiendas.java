@@ -3,6 +3,7 @@ package DbModel;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "tiendas")
@@ -27,7 +28,8 @@ public class Tiendas {
     private LocalDate fechaApertura;
 
     @JoinColumn
-    @ManyToOne
+    @OneToOne
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private HorarioMaster master;
 
     public Tiendas(){
@@ -75,7 +77,7 @@ public class Tiendas {
     }
     @Override
     public String toString() {
-        return  "";
+        return  nombre;
     }
 
     public LocalDate getFechaApertura() {

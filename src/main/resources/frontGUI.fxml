@@ -26,7 +26,7 @@
   </rowConstraints>
   <children>
     <Button mnemonicParsing="false" onAction="#CondesosClicked" prefHeight="38.0" prefWidth="331.0" text="Condesos" GridPane.halignment="CENTER" />
-    <ComboBox fx:id="tiendasComboBox" prefHeight="65.0" prefWidth="304.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+    <ComboBox fx:id="tiendasComboBox" onAction="#getHorario" prefHeight="65.0" prefWidth="304.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
     <Button mnemonicParsing="false" onAction="#NuevoHorarioClicked" prefHeight="65.0" prefWidth="181.0" text="Nuevo Horario" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
     <Button mnemonicParsing="false" onAction="#TiendasClicked" prefHeight="65.0" prefWidth="200.0" text="Tiendas" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
 

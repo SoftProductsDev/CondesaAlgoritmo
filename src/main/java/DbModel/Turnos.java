@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "turnos")
-public class Turnos {
+public class Turnos implements Comparable<Turnos> {
     @Id
     @GeneratedValue
     @Column(name = "id")
@@ -24,9 +24,6 @@ public class Turnos {
 
     @Column(name = "fin")
     private int fin;
-
-    @Column(name = "duracion")
-    private int duracion;
 
     @JoinColumn
     @OneToOne
@@ -84,11 +81,7 @@ public class Turnos {
     }
 
     public int getDuracion() {
-        return duracion;
-    }
-
-    public void setDuracion(int duracion) {
-        this.duracion = duracion;
+        return fin-inicio;
     }
 
     public Condeso getCondeso() {
@@ -97,5 +90,12 @@ public class Turnos {
 
     public void setCondeso(Condeso condeso) {
         this.condeso = condeso;
+    }
+
+    @Override
+    public int compareTo(Turnos o) {
+        if(this.inicio > o.getInicio()){return 1;}
+        else if (this.inicio == o.getInicio() && this.condeso == o.getCondeso()){return 0;}
+        else{return -1;}
     }
 }
