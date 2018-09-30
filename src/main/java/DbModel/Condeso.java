@@ -20,7 +20,6 @@ import java.util.List;
 public class Condeso {
 
   @Id
-  @GeneratedValue
   @Column(name = "id")
   private long id;
   @Column

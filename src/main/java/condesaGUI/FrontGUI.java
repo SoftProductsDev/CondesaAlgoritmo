@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -31,6 +32,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -57,6 +59,7 @@ public class FrontGUI extends Application implements Initializable {
 
   private static ArrayList getStaticList() {
     ArrayList list = new ArrayList<>();
+    list.add("  ");
     for (int i = 8; i < 24; i++){
       list.add(i + "-" + (i+1));
     }
@@ -97,7 +100,7 @@ public class FrontGUI extends Application implements Initializable {
           column.setMaxWidth(1234567890);
           grid.getColumnConstraints().add(column);
         }
-        for (int k = 0; k < 16; k++) {
+        for (int k = 0; k < 17; k++) {
           RowConstraints column = new RowConstraints();
           column.setPrefHeight(400);
           grid.getRowConstraints().add(column);
@@ -105,6 +108,34 @@ public class FrontGUI extends Application implements Initializable {
         grid.setId(i + "-" + j);
         //grid.gridLinesVisibleProperty().set(true);
         grid.setStyle("-fx-padding: 0 0 0 0;");
+        Label label1 = new Label("GM");
+        label1.setTextAlignment(TextAlignment.CENTER);
+        label1.setAlignment(Pos.CENTER);
+        Label label2 = new Label("GM");
+        label2.setTextAlignment(TextAlignment.CENTER);
+        label2.setAlignment(Pos.CENTER);
+        Label label3 = new Label("G");
+        label3.setTextAlignment(TextAlignment.CENTER);
+        label3.setAlignment(Pos.CENTER);
+        Label label4 = new Label("F");
+        label4.setTextAlignment(TextAlignment.CENTER);
+        label4.setAlignment(Pos.CENTER);
+        Label label5 = new Label("H");
+        label5.setTextAlignment(TextAlignment.CENTER);
+        label5.setAlignment(Pos.CENTER);
+        Label label6 = new Label("B");
+        label6.setTextAlignment(TextAlignment.CENTER);
+        label6.setAlignment(Pos.CENTER);
+        Label label7 = new Label("R");
+        label7.setTextAlignment(TextAlignment.CENTER);
+        label7.setAlignment(Pos.CENTER);
+        grid.add(label1, 0,0);
+        grid.add(label2, 1,0);
+        grid.add(label3, 2,0);
+        grid.add(label4, 3,0);
+        grid.add(label5, 4,0);
+        grid.add(label6, 5,0);
+        grid.add(label7, 6,0);
         monthGrid.add(grid,i,j);
       }
     }
@@ -134,7 +165,7 @@ public class FrontGUI extends Application implements Initializable {
 
   private void setHorarioMaster(){
     Tiendas tienda = tiendasComboBox.getValue();
-    HorarioMaster master = tiendasComboBox.getValue().getMaster();
+     HorarioMaster master = tiendasComboBox.getValue().getMaster();
     //HorarioMaster master = createHorario();
     for (int i = 1; i < calendar.getMonth().length(calendar.isLeapYear()); i++)
     {
@@ -156,7 +187,7 @@ public class FrontGUI extends Application implements Initializable {
 
   private int[] setTurnos(DbModel.Turnos turno, LocalDate date, int[] latestTurn){
     //considering the first hour is 8 am
-    int hourIndex = turno.getInicio() - 8;
+    int hourIndex = turno.getInicio() - 7;
     if(hourIndex < 0){
       //Cry
     }

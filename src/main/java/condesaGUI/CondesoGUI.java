@@ -58,6 +58,7 @@ public class CondesoGUI  extends Application implements Initializable {
     @FXML private DatePicker calendario;
     @FXML private RadioButton cajaRadio;
     @FXML private ColorPicker color;
+    @FXML private  TextField idTextField;
     private List<Tiendas> tiendas;
 
 
@@ -188,6 +189,7 @@ public class CondesoGUI  extends Application implements Initializable {
     private void loadCondesoUpdate() {
         try {
             Condeso condeso = tableView.getSelectionModel().getSelectedItem();
+            idTextField.setText(Long.toString(condeso.getId()));
             nombreTextField.setText(condeso.getNombre());
             contratoChoiceBox.setValue(condeso.getContrato());
             matutinoRadio.setSelected(condeso.isManana());
@@ -211,6 +213,8 @@ public class CondesoGUI  extends Application implements Initializable {
 
     public void addButtonClicked(ActionEvent actionEvent) {
         DbModel.Condeso condeso = new Condeso();
+        try{condeso.setId(Long.parseLong(idTextField.getText()));}
+        catch (Exception e){}
         condeso.setNombre(nombreTextField.getText());
         condeso.setContrato(contratoChoiceBox.getValue());
         condeso.setManana(matutinoRadio.isSelected());
@@ -238,6 +242,8 @@ public class CondesoGUI  extends Application implements Initializable {
 
     public void updateButtonClicked(ActionEvent actionEvent) {
         Condeso condeso = tableView.getSelectionModel().getSelectedItem();
+        try{condeso.setId(Long.parseLong(idTextField.getText()));}
+        catch (Exception e){}
         condeso.setNombre(nombreTextField.getText());
         condeso.setContrato(contratoChoiceBox.getValue());
         condeso.setManana(matutinoRadio.isSelected());
