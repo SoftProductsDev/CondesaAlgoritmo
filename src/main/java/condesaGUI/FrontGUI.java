@@ -29,6 +29,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -52,6 +53,7 @@ public class FrontGUI extends Application implements Initializable {
   @FXML private ListView<String>  horaList5;
   @FXML private Label monthLabel;
   @FXML private GridPane monthGrid;
+
   private ObservableList<Node> calendarNodes;
   private LocalDate calendar;
   private static final ObservableList<String>
@@ -79,7 +81,8 @@ public class FrontGUI extends Application implements Initializable {
     horaList3.setItems(horario);
     horaList4.setItems(horario);
     horaList5.setItems(horario);
-    tiendasComboBox.setItems(FXCollections.observableList(HibernateCrud.GetAllTiendas()));
+    ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
+    tiendasComboBox.setItems(tiendas);
     Locale spanishLocale=new Locale("es", "ES");
     calendar = LocalDate.now();
     monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern("MMMM, YYYY",spanishLocale)));
@@ -107,7 +110,7 @@ public class FrontGUI extends Application implements Initializable {
         }
         grid.setId(i + "-" + j);
         //grid.gridLinesVisibleProperty().set(true);
-        grid.setStyle("-fx-padding: 0 0 0 0;");
+        grid.setStyle("-fx-padding: 0 1 1 0;");
         Label label1 = new Label("GM");
         label1.setTextAlignment(TextAlignment.CENTER);
         label1.setAlignment(Pos.CENTER);
@@ -271,6 +274,5 @@ public class FrontGUI extends Application implements Initializable {
   public void getHorario(ActionEvent actionEvent) {
     setHorarioMaster();
   }
-
 
 }

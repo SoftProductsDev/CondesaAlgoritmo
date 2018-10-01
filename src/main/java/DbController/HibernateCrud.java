@@ -94,6 +94,7 @@ public class HibernateCrud {
             SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
             Session session = sessionFactory.openSession();
             Criteria criteria = session.createCriteria(Tiendas.class);
+            criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
             List<Tiendas> tiendas = criteria.list();
             session.close();
             return tiendas;

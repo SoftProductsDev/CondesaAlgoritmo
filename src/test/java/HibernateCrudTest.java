@@ -34,7 +34,7 @@ public class HibernateCrudTest extends TestCase {
     hbf.setNombre("HBF");
     hbf.setManager("Jorge");
     hbf.setFechaApertura(LocalDate.now());
-    hbf.setId(1);
+    //hbf.setId(1);
     HibernateCrud.SaveTienda(hbf);
 
 
@@ -42,7 +42,7 @@ public class HibernateCrudTest extends TestCase {
     mf.setNombre("MF");
     mf.setManager("Leo");
     mf.setFechaApertura(LocalDate.now());
-    mf.setId(2);
+    //mf.setId(2);
     HibernateCrud.SaveTienda(mf);
 
 
@@ -50,7 +50,7 @@ public class HibernateCrudTest extends TestCase {
     impler.setNombre("IMP");
     impler.setManager("Jorge");
     impler.setFechaApertura(LocalDate.now());
-    impler.setId(3);
+    //impler.setId(3);
     HibernateCrud.SaveTienda(impler);
 
 
@@ -298,8 +298,18 @@ public class HibernateCrudTest extends TestCase {
     Map<LocalDate, Dias> result = new HashMap<>();
     Dias dia1 = createDia(LocalDate.now().withDayOfMonth(1));
     Dias dia2 = createDia2(LocalDate.now().withDayOfMonth(2));
+    Dias dia3 = createDia3(LocalDate.now().withDayOfMonth(3));
+    Dias dia4 = createDia4(LocalDate.now().withDayOfMonth(4));
+    Dias dia5 = createDia5(LocalDate.now().withDayOfMonth(5));
+    Dias dia6 = createDia6(LocalDate.now().withDayOfMonth(6));
+    Dias dia7 = createDia7(LocalDate.now().withDayOfMonth(7));
     result.put(dia1.getDate(), dia1);
     result.put(dia2.getDate(), dia2);
+    result.put(dia3.getDate(), dia3);
+    result.put(dia4.getDate(), dia4);
+    result.put(dia5.getDate(), dia5);
+    result.put(dia6.getDate(), dia6);
+    result.put(dia7.getDate(), dia7);
     return result;
   }
 
@@ -314,6 +324,330 @@ public class HibernateCrudTest extends TestCase {
     Dias result = new Dias();
     result.setDate(date);
     result.setTurnos(createTurnos2());
+    return result;
+  }
+
+  private Dias createDia3(LocalDate date) {
+    Dias result = new Dias();
+    result.setDate(date);
+    result.setTurnos(createTurnos3());
+    return result;
+  }
+
+  private Dias createDia4(LocalDate date) {
+    Dias result = new Dias();
+    result.setDate(date);
+    result.setTurnos(createTurnos4());
+    return result;
+  }
+
+  private Dias createDia5(LocalDate date) {
+    Dias result = new Dias();
+    result.setDate(date);
+    result.setTurnos(createTurnos5());
+    return result;
+  }
+  private Dias createDia6(LocalDate date) {
+    Dias result = new Dias();
+    result.setDate(date);
+    result.setTurnos(createTurnos6());
+    return result;
+  }
+
+  private Dias createDia7(LocalDate date) {
+    Dias result = new Dias();
+    result.setDate(date);
+    result.setTurnos(createTurnos7());
+    return result;
+  }
+
+  private Set<Turnos> createTurnos3() {
+    Set<Turnos> result = new TreeSet<>();
+    List<Condeso> condesos = HibernateCrud.GetAllCondesos();
+
+    Turnos turno1 = new Turnos();
+    turno1.setInicio(9);
+    turno1.setFin(16);
+    turno1.setCondeso(condesos.get(2));
+
+    Turnos turno2 = new Turnos();
+    turno2.setInicio(16);
+    turno2.setFin(21);
+    turno2.setCondeso(condesos.get(1));
+
+    Turnos turno3 = new Turnos();
+    turno3.setInicio(9);
+    turno3.setFin(15);
+    turno3.setCondeso(condesos.get(6));
+
+    Turnos turno4 = new Turnos();
+    turno4.setInicio(17);
+    turno4.setFin(23);
+    turno4.setCondeso(condesos.get(7));
+
+    Turnos turno5 = new Turnos();
+    turno5.setInicio(17);
+    turno5.setFin(23);
+    turno5.setCondeso(condesos.get(11));
+
+    Turnos turno6 = new Turnos();
+    turno6.setInicio(9);
+    turno6.setFin(14);
+    turno6.setCondeso(condesos.get(13));
+
+    Turnos turno7 = new Turnos();
+    turno7.setInicio(15);
+    turno7.setFin(21);
+    turno7.setCondeso(condesos.get(14));
+
+    Turnos turno8 = new Turnos();
+    turno8.setInicio(16);
+    turno8.setFin(22);
+    turno8.setCondeso(condesos.get(4));
+
+
+
+    result.add(turno1);
+    result.add(turno2);
+    result.add(turno3);
+    result.add(turno4);
+    result.add(turno5);
+    result.add(turno6);
+    result.add(turno7);
+    result.add(turno8);
+
+    return result;
+  }
+
+  private Set<Turnos> createTurnos4() {
+    Set<Turnos> result = new TreeSet<>();
+    List<Condeso> condesos = HibernateCrud.GetAllCondesos();
+
+    Turnos turno1 = new Turnos();
+    turno1.setInicio(9);
+    turno1.setFin(17);
+    turno1.setCondeso(condesos.get(1));
+
+    Turnos turno2 = new Turnos();
+    turno2.setInicio(15);
+    turno2.setFin(20);
+    turno2.setCondeso(condesos.get(2));
+
+    Turnos turno3 = new Turnos();
+    turno3.setInicio(9);
+    turno3.setFin(16);
+    turno3.setCondeso(condesos.get(3));
+
+    Turnos turno4 = new Turnos();
+    turno4.setInicio(16);
+    turno4.setFin(23);
+    turno4.setCondeso(condesos.get(4));
+
+    Turnos turno5 = new Turnos();
+    turno5.setInicio(17);
+    turno5.setFin(23);
+    turno5.setCondeso(condesos.get(5));
+
+    Turnos turno6 = new Turnos();
+    turno6.setInicio(9);
+    turno6.setFin(15);
+    turno6.setCondeso(condesos.get(6));
+
+    Turnos turno7 = new Turnos();
+    turno7.setInicio(15);
+    turno7.setFin(21);
+    turno7.setCondeso(condesos.get(7));
+
+    Turnos turno8 = new Turnos();
+    turno8.setInicio(16);
+    turno8.setFin(22);
+    turno8.setCondeso(condesos.get(8));
+
+
+
+    result.add(turno1);
+    result.add(turno2);
+    result.add(turno3);
+    result.add(turno4);
+    result.add(turno5);
+    result.add(turno6);
+    result.add(turno7);
+    result.add(turno8);
+
+    return result;
+  }
+
+  private Set<Turnos> createTurnos5() {
+    Set<Turnos> result = new TreeSet<>();
+    List<Condeso> condesos = HibernateCrud.GetAllCondesos();
+
+    Turnos turno1 = new Turnos();
+    turno1.setInicio(9);
+    turno1.setFin(16);
+    turno1.setCondeso(condesos.get(3));
+
+    Turnos turno2 = new Turnos();
+    turno2.setInicio(16);
+    turno2.setFin(21);
+    turno2.setCondeso(condesos.get(1));
+
+    Turnos turno3 = new Turnos();
+    turno3.setInicio(9);
+    turno3.setFin(15);
+    turno3.setCondeso(condesos.get(2));
+
+    Turnos turno4 = new Turnos();
+    turno4.setInicio(17);
+    turno4.setFin(23);
+    turno4.setCondeso(condesos.get(12));
+
+    Turnos turno5 = new Turnos();
+    turno5.setInicio(17);
+    turno5.setFin(23);
+    turno5.setCondeso(condesos.get(11));
+
+    Turnos turno6 = new Turnos();
+    turno6.setInicio(9);
+    turno6.setFin(14);
+    turno6.setCondeso(condesos.get(7));
+
+    Turnos turno7 = new Turnos();
+    turno7.setInicio(15);
+    turno7.setFin(21);
+    turno7.setCondeso(condesos.get(14));
+
+    Turnos turno8 = new Turnos();
+    turno8.setInicio(16);
+    turno8.setFin(22);
+    turno8.setCondeso(condesos.get(4));
+
+
+
+    result.add(turno1);
+    result.add(turno2);
+    result.add(turno3);
+    result.add(turno4);
+    result.add(turno5);
+    result.add(turno6);
+    result.add(turno7);
+    result.add(turno8);
+
+    return result;
+  }
+
+  private Set<Turnos> createTurnos6() {
+    Set<Turnos> result = new TreeSet<>();
+    List<Condeso> condesos = HibernateCrud.GetAllCondesos();
+
+    Turnos turno1 = new Turnos();
+    turno1.setInicio(9);
+    turno1.setFin(16);
+    turno1.setCondeso(condesos.get(9));
+
+    Turnos turno2 = new Turnos();
+    turno2.setInicio(16);
+    turno2.setFin(21);
+    turno2.setCondeso(condesos.get(4));
+
+    Turnos turno3 = new Turnos();
+    turno3.setInicio(9);
+    turno3.setFin(15);
+    turno3.setCondeso(condesos.get(10));
+
+    Turnos turno4 = new Turnos();
+    turno4.setInicio(17);
+    turno4.setFin(23);
+    turno4.setCondeso(condesos.get(7));
+
+    Turnos turno5 = new Turnos();
+    turno5.setInicio(17);
+    turno5.setFin(23);
+    turno5.setCondeso(condesos.get(11));
+
+    Turnos turno6 = new Turnos();
+    turno6.setInicio(9);
+    turno6.setFin(14);
+    turno6.setCondeso(condesos.get(8));
+
+    Turnos turno7 = new Turnos();
+    turno7.setInicio(15);
+    turno7.setFin(21);
+    turno7.setCondeso(condesos.get(6));
+
+    Turnos turno8 = new Turnos();
+    turno8.setInicio(16);
+    turno8.setFin(22);
+    turno8.setCondeso(condesos.get(5));
+
+
+
+    result.add(turno1);
+    result.add(turno2);
+    result.add(turno3);
+    result.add(turno4);
+    result.add(turno5);
+    result.add(turno6);
+    result.add(turno7);
+    result.add(turno8);
+
+    return result;
+  }
+
+  private Set<Turnos> createTurnos7() {
+    Set<Turnos> result = new TreeSet<>();
+    List<Condeso> condesos = HibernateCrud.GetAllCondesos();
+
+    Turnos turno1 = new Turnos();
+    turno1.setInicio(9);
+    turno1.setFin(16);
+    turno1.setCondeso(condesos.get(2));
+
+    Turnos turno2 = new Turnos();
+    turno2.setInicio(16);
+    turno2.setFin(21);
+    turno2.setCondeso(condesos.get(1));
+
+    Turnos turno3 = new Turnos();
+    turno3.setInicio(9);
+    turno3.setFin(15);
+    turno3.setCondeso(condesos.get(7));
+
+    Turnos turno4 = new Turnos();
+    turno4.setInicio(17);
+    turno4.setFin(23);
+    turno4.setCondeso(condesos.get(3));
+
+    Turnos turno5 = new Turnos();
+    turno5.setInicio(17);
+    turno5.setFin(23);
+    turno5.setCondeso(condesos.get(11));
+
+    Turnos turno6 = new Turnos();
+    turno6.setInicio(9);
+    turno6.setFin(14);
+    turno6.setCondeso(condesos.get(5));
+
+    Turnos turno7 = new Turnos();
+    turno7.setInicio(15);
+    turno7.setFin(21);
+    turno7.setCondeso(condesos.get(14));
+
+    Turnos turno8 = new Turnos();
+    turno8.setInicio(16);
+    turno8.setFin(22);
+    turno8.setCondeso(condesos.get(4));
+
+
+
+    result.add(turno1);
+    result.add(turno2);
+    result.add(turno3);
+    result.add(turno4);
+    result.add(turno5);
+    result.add(turno6);
+    result.add(turno7);
+    result.add(turno8);
+
     return result;
   }
 
@@ -339,7 +673,7 @@ public class HibernateCrudTest extends TestCase {
     Turnos turno4 = new Turnos();
     turno4.setInicio(17);
     turno4.setFin(23);
-    turno4.setCondeso(condesos.get(12));
+    turno4.setCondeso(condesos.get(7));
 
     Turnos turno5 = new Turnos();
     turno5.setInicio(17);
@@ -433,12 +767,12 @@ public class HibernateCrudTest extends TestCase {
     return result;
   }
 
-  public void testCreateTienda()
+  /*public void testCreateTienda()
   {
     DbModel.Tiendas tienda = new DbModel.Tiendas();
     tienda.setNombre("HBF");
     HibernateCrud.SaveTienda(tienda);
-  }
+  }*/
 
   public void testGetTiendas()
   {
