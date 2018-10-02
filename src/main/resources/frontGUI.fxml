@@ -40,21 +40,21 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="110.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="72.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="87.0" />
           </columnConstraints>
           <rowConstraints>
-            <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="400.0" minHeight="400.0" prefHeight="300.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="400.0" minHeight="400.0" prefHeight="300.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="400.0" minHeight="400.0" prefHeight="300.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="400.0" minHeight="400.0" prefHeight="300.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="400.0" minHeight="400.0" prefHeight="300.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="400.0" minHeight="400.0" prefHeight="300.0" vgrow="SOMETIMES" />
           </rowConstraints>
           <children>
