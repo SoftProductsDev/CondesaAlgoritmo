@@ -17,7 +17,7 @@ public class ExcelWriter {
     Sheet sheet = workbook.createSheet("HorarioMaster");
 
     // Write the output to a file
-    //Tambien puede especificar el path ("C:\\Report\\TestCase.xls"));
+    //Tambien puede especificar el path ("C:\\Report\\TestCase.xlsx"));
     FileOutputStream fileOut = new FileOutputStream("poi-generated-file.xlsx");
     workbook.write(fileOut);
     fileOut.close();

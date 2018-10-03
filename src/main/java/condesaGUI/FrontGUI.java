@@ -111,58 +111,7 @@ public class FrontGUI extends Application implements Initializable {
         }
         grid.setId(i + "-" + j);
         //grid.gridLinesVisibleProperty().set(true);
-        Label label1 = new Label("GM");
-        label1.setTextAlignment(TextAlignment.CENTER);
-        label1.setAlignment(Pos.CENTER);
-        label1.setMaxWidth(12345546);
-        label1.setMaxHeight(12345546);
-        label1.setStyle("-fx-border-color: black;");
-        Label label2 = new Label("GM");
-        label2.setTextAlignment(TextAlignment.CENTER);
-        label2.setAlignment(Pos.CENTER);
-        label2.setMaxWidth(12345546);
-        label2.setMaxHeight(12345546);
-        label2.setStyle("-fx-border-color: black;");
-        Label label3 = new Label("G");
-        label3.setTextAlignment(TextAlignment.CENTER);
-        label3.setAlignment(Pos.CENTER);
-        label3.setMaxWidth(12345546);
-        label3.setMaxHeight(12345546);
-        label3.setStyle("-fx-border-color: black;");
-        Label label4 = new Label("F");
-        label4.setTextAlignment(TextAlignment.CENTER);
-        label4.setAlignment(Pos.CENTER);
-        label4.setMaxWidth(12345546);
-        label4.setMaxHeight(12345546);
-        label4.setStyle("-fx-border-color: black;");
-        Label label5 = new Label("H");
-        label5.setTextAlignment(TextAlignment.CENTER);
-        label5.setAlignment(Pos.CENTER);
-        label5.setMaxWidth(12345546);
-        label5.setMaxHeight(12345546);
-        label5.setStyle("-fx-border-color: black;");
-        Label label6 = new Label("B");
-        label6.setTextAlignment(TextAlignment.CENTER);
-        label6.setAlignment(Pos.CENTER);
-        label6.setMaxWidth(12345546);
-        label6.setMaxHeight(12345546);
-        label6.setStyle("-fx-border-color: black;");
-        Label label7 = new Label("R");
-        label7.setTextAlignment(TextAlignment.CENTER);
-        label7.setAlignment(Pos.CENTER);
-        label7.setMaxWidth(12345546);
-        label7.setMaxHeight(12345546);
-        label7.setStyle("-fx-border-color: black;");
-        grid.setStyle("-fx-border-color: black;");
-
-        grid.add(label1, 0,0);
-        grid.add(label2, 1,0);
-        grid.add(label3, 2,0);
-        grid.add(label4, 3,0);
-        grid.add(label5, 4,0);
-        grid.add(label6, 5,0);
-        grid.add(label7, 6,0);
-        grid.toBack();
+        addLetrasArriba(grid);
         monthGrid.add(grid,i,j);
       }
     }
@@ -308,8 +257,63 @@ public class FrontGUI extends Application implements Initializable {
       if(node.getClass() == GridPane.class){
         GridPane grid = (GridPane) node;
         grid.getChildren().clear();
+        addLetrasArriba(grid);
       }
     }
+  }
+
+  public void addLetrasArriba(GridPane grid){
+    Label label1 = new Label("GM");
+    label1.setTextAlignment(TextAlignment.CENTER);
+    label1.setAlignment(Pos.CENTER);
+    label1.setMaxWidth(12345546);
+    label1.setMaxHeight(12345546);
+    label1.setStyle("-fx-border-color: black;");
+    Label label2 = new Label("GM");
+    label2.setTextAlignment(TextAlignment.CENTER);
+    label2.setAlignment(Pos.CENTER);
+    label2.setMaxWidth(12345546);
+    label2.setMaxHeight(12345546);
+    label2.setStyle("-fx-border-color: black;");
+    Label label3 = new Label("G");
+    label3.setTextAlignment(TextAlignment.CENTER);
+    label3.setAlignment(Pos.CENTER);
+    label3.setMaxWidth(12345546);
+    label3.setMaxHeight(12345546);
+    label3.setStyle("-fx-border-color: black;");
+    Label label4 = new Label("F");
+    label4.setTextAlignment(TextAlignment.CENTER);
+    label4.setAlignment(Pos.CENTER);
+    label4.setMaxWidth(12345546);
+    label4.setMaxHeight(12345546);
+    label4.setStyle("-fx-border-color: black;");
+    Label label5 = new Label("H");
+    label5.setTextAlignment(TextAlignment.CENTER);
+    label5.setAlignment(Pos.CENTER);
+    label5.setMaxWidth(12345546);
+    label5.setMaxHeight(12345546);
+    label5.setStyle("-fx-border-color: black;");
+    Label label6 = new Label("B");
+    label6.setTextAlignment(TextAlignment.CENTER);
+    label6.setAlignment(Pos.CENTER);
+    label6.setMaxWidth(12345546);
+    label6.setMaxHeight(12345546);
+    label6.setStyle("-fx-border-color: black;");
+    Label label7 = new Label("R");
+    label7.setTextAlignment(TextAlignment.CENTER);
+    label7.setAlignment(Pos.CENTER);
+    label7.setMaxWidth(12345546);
+    label7.setMaxHeight(12345546);
+    label7.setStyle("-fx-border-color: black;");
+    grid.setStyle("-fx-border-color: black;");
+
+    grid.add(label1, 0,0);
+    grid.add(label2, 1,0);
+    grid.add(label3, 2,0);
+    grid.add(label4, 3,0);
+    grid.add(label5, 4,0);
+    grid.add(label6, 5,0);
+    grid.add(label7, 6,0);
   }
 
 }
