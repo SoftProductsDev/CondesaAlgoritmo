@@ -77,7 +77,7 @@
            <Label layoutX="39.0" layoutY="217.0" prefHeight="45.0" prefWidth="98.0" text="Dia" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
            <ComboBox layoutX="74.0" layoutY="213.0" prefHeight="0.0" prefWidth="144.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
            <Label prefHeight="45.0" prefWidth="145.0" text="Turno de" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-            <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="158.0" text="Agregar" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" prefHeight="22.0" prefWidth="83.0" text="Agregar" GridPane.columnIndex="5" GridPane.rowIndex="3" />
            <TextField prefHeight="25.0" prefWidth="104.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
            <Label text="a" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
            <TextField prefHeight="25.0" prefWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />

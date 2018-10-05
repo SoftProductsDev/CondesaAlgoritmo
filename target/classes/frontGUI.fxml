@@ -44,18 +44,18 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="72.0" />
           </columnConstraints>
           <rowConstraints>
-            <RowConstraints maxHeight="20.0" minHeight="0.0" prefHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="300.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="300.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="400.0" minHeight="400.0" prefHeight="300.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="300.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="400.0" minHeight="400.0" prefHeight="300.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="300.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="400.0" minHeight="400.0" prefHeight="300.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="300.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="400.0" minHeight="400.0" prefHeight="300.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="300.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="400.0" minHeight="400.0" prefHeight="300.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="400.0" minHeight="400.0" prefHeight="300.0" vgrow="SOMETIMES" />
           </rowConstraints>
           <children>
             <ListView fx:id="horaList0" maxHeight="500" prefHeight="120.0" prefWidth="200.0" GridPane.rowIndex="1" />
