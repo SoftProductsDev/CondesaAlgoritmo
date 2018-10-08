@@ -10,15 +10,23 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -48,9 +56,6 @@ public class CondesoGUI  extends Application implements Initializable {
     @FXML private ComboBox<TipoEmpleado> cargoComboBox;
     @FXML private ComboBox<String> nivelComboBox;
     @FXML private ChoiceBox<Contrato> contratoChoiceBox;
-    @FXML private TableView<Tiendas> tiendasTableView;
-    @FXML private TableColumn<Tiendas, String> tiendasNombre;
-    @FXML private TableColumn<Tiendas, Boolean> tiendasCheckBox;
     @FXML private TextField nombreTextField;
     @FXML private RadioButton masculinoRadio;
     @FXML private RadioButton femeninoRadio;
@@ -62,7 +67,9 @@ public class CondesoGUI  extends Application implements Initializable {
     @FXML private  TextField idTextField;
     @FXML private TextField abrevTextField;
     @FXML private Label errorLabel;
+    @FXML private ScrollPane scrollPane;
     private List<Tiendas> tiendas;
+    private List<Tiendas> tiendasAddCondeso;
 
 
 
@@ -97,6 +104,8 @@ public class CondesoGUI  extends Application implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+      tiendasAddCondeso = new ArrayList<Tiendas>();
+      tiendas = HibernateCrud.GetAllTiendas();
         cargoComboBox.getItems().setAll(TipoEmpleado.values());
         contratoChoiceBox.getItems().setAll(Contrato.values());
         ArrayList<String> lvlList = new ArrayList<>();
@@ -167,30 +176,53 @@ public class CondesoGUI  extends Application implements Initializable {
             };
         });
 
-
-        tiendasNombre.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("nombre"));
-       /*tiendasCheckBox.setCellValueFactory(
-                new Callback<CellDataFeatures<Tiendas, Boolean>, ObservableValue<Boolean>>() {
-                    @Override
-                    public ObservableValue<Boolean> call(CellDataFeatures<Tiendas, Boolean> param) {
-                        return param.getValue().selected();
-                    }
-                });
-                */
-        tiendasCheckBox.setCellFactory(CheckBoxTableCell.forTableColumn(tiendasCheckBox));
-        tiendasCheckBox.setEditable(true);
-        tiendas = HibernateCrud.GetAllTiendas();
-        tiendasTableView.getItems().setAll(tiendas);
-
         tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
 
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, newSelection,
             oldSelection) -> {
             loadCondesoUpdate();
             });
+        initializeListasTiendas();
     }
 
-    private void loadCondesoUpdate() {
+  private void initializeListasTiendas() {
+    GridPane grid = new GridPane();
+    ColumnConstraints column = new ColumnConstraints();
+    column.prefWidthProperty().set(150);
+    column.setMaxWidth(1234567890);
+    grid.getColumnConstraints().add(column);
+    grid.getColumnConstraints().add(column);
+    for (int i = 0; i < tiendas.size(); i++){
+      RowConstraints row = new RowConstraints();
+      row.setPrefHeight(50);
+      grid.getRowConstraints().add(row);
+    }
+    for (int i = 0; i < tiendas.size(); i++){
+      Label label = new Label(tiendas.get(i).getNombre());
+      label.setAlignment(Pos.CENTER);
+      label.setStyle("-fx-font-size: 14pt;");
+      grid.add(label, 0, i );
+      CheckBox checkBox = new CheckBox();
+      int finalI = i;
+      checkBox.addEventHandler(MouseEvent.MOUSE_CLICKED,
+          new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+              DbModel.Tiendas tienda = tiendas.get(finalI);
+              if(checkBox.isSelected()){
+              tiendasAddCondeso.add(tienda);}
+              else{
+                tiendasAddCondeso.remove(tienda);
+              }
+            };
+      });
+      grid.add(checkBox, 1, i);
+    }
+    scrollPane.setContent(grid);
+  }
+
+
+  private void loadCondesoUpdate() {
         try {
             Condeso condeso = tableView.getSelectionModel().getSelectedItem();
             idTextField.setText(Long.toString(condeso.getId()));
@@ -207,7 +239,8 @@ public class CondesoGUI  extends Application implements Initializable {
             nivelComboBox.setValue(nivelComboBox.getItems().get(condeso.getLevel() - 1));
             color.setValue(Color.web(condeso.getColor()));
             Hibernate.initialize(condeso.getDondePuedeTrabajar());
-            ObservableList<Tiendas> tiendas = (ObservableList<Tiendas>)condeso.getDondePuedeTrabajar() ;
+            ObservableList<Tiendas> tiendas =
+                FXCollections.observableArrayList(condeso.getDondePuedeTrabajar());
             listTiendas.setItems(tiendas);
         }
         catch (Exception e)
@@ -222,6 +255,7 @@ public class CondesoGUI  extends Application implements Initializable {
         catch (Exception e){
             errorLabel.setText("Error: El Id solo puede contener números!");
         }
+        try{
         condeso.setNombre(nombreTextField.getText());
         condeso.setAbreviacion(abrevTextField.getText());
         condeso.setContrato(contratoChoiceBox.getValue());
@@ -237,14 +271,24 @@ public class CondesoGUI  extends Application implements Initializable {
         String colorHex = color.getValue().toString();
         colorHex = "#" + colorHex.substring(2, 8);
         condeso.setColor(colorHex);
-
-        try {
-            HibernateCrud.SaveCondeso(condeso);
-        }catch (Exception InvocationTargetException){
-            errorLabel.setText("Error: Ese Id ya existe; elija otro!");
+        errorLabel.setText("");}
+        catch (NullPointerException e){
+          errorLabel.setText("Error: Complete todos los campos");
         }
 
-        tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
+        if (tiendasAddCondeso.isEmpty()){
+          errorLabel.setText("No se seleccionaron tiendas");
+        }
+        else{
+          condeso.setDondePuedeTrabajar(tiendasAddCondeso);
+          try {
+              HibernateCrud.SaveCondeso(condeso);
+          }catch (Exception InvocationTargetException){
+              errorLabel.setText("Error: Ese Id ya existe; elija otro!");
+          }
+
+          tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
+        }
     }
 
     public void deleteButtonClicked(ActionEvent actionEvent) {
@@ -255,26 +299,41 @@ public class CondesoGUI  extends Application implements Initializable {
 
     public void updateButtonClicked(ActionEvent actionEvent) {
         Condeso condeso = tableView.getSelectionModel().getSelectedItem();
+        errorLabel.setText("");
         try{condeso.setId(Long.parseLong(idTextField.getText()));}
         catch (Exception e){
             errorLabel.setText("Error: El Id solo puede contener números!");
         }
-        condeso.setNombre(nombreTextField.getText());
-        condeso.setAbreviacion(abrevTextField.getText());
-        condeso.setContrato(contratoChoiceBox.getValue());
-        condeso.setManana(matutinoRadio.isSelected());
-        condeso.setTarde(vespertinoRadio.isSelected());
-        condeso.setAntiguedad(calendario.getValue());
-        condeso.setTipo(cargoComboBox.getValue());
-        condeso.setLevel(Integer.parseInt(String.valueOf(nivelComboBox.getValue().charAt
-            (nivelComboBox.getValue().length() - 1))));
-        condeso.setCaja(cajaRadio.isSelected());
-        String colorHex = color.getValue().toString();
-        colorHex = "#" + colorHex.substring(2, 8);
-        condeso.setColor(colorHex);
-        condeso.setFemenino(femeninoRadio.isSelected());
-        condeso.setMasculino(masculinoRadio.isSelected());
-        HibernateCrud.UpdateCondeso(condeso);
+        try {
+          condeso.setNombre(nombreTextField.getText());
+          condeso.setAbreviacion(abrevTextField.getText());
+          condeso.setContrato(contratoChoiceBox.getValue());
+          condeso.setManana(matutinoRadio.isSelected());
+          condeso.setTarde(vespertinoRadio.isSelected());
+          condeso.setAntiguedad(calendario.getValue());
+          condeso.setTipo(cargoComboBox.getValue());
+          condeso.setLevel(Integer.parseInt(String.valueOf(nivelComboBox.getValue().charAt
+              (nivelComboBox.getValue().length() - 1))));
+          condeso.setCaja(cajaRadio.isSelected());
+          String colorHex = color.getValue().toString();
+          colorHex = "#" + colorHex.substring(2, 8);
+          condeso.setColor(colorHex);
+          condeso.setFemenino(femeninoRadio.isSelected());
+          condeso.setMasculino(masculinoRadio.isSelected());}
+        catch (NullPointerException e){
+          errorLabel.setText("Error: Complete todos los campos");
+        }
+      if (tiendasAddCondeso.isEmpty()){
+        errorLabel.setText("No se seleccionaron tiendas");
+      }
+      else{
+        condeso.setDondePuedeTrabajar(tiendasAddCondeso);
+        try{
+          HibernateCrud.UpdateCondeso(condeso);}
+        catch (Exception e){
+          errorLabel.setText("Error: El Id no se puede actualizar!");
+        }
         tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
+      }
     }
 }
