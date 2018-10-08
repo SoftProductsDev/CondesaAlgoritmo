@@ -1,5 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.sheeom</groupId>
     <artifactId>CondesaAlgoritmo</artifactId>
@@ -18,8 +19,9 @@
     </build>
     <packaging>jar</packaging>
 
-    <name>Chapter2</name>
+    <name>Condesa</name>
     <url>http://maven.apache.org</url>
+
 
     <properties>
         <hibernate.version>4.3.5.Final</hibernate.version>
@@ -55,6 +57,13 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>${log4j.version}</version>
+        </dependency>
+
+        <!-- Apache POI dependency for excel file format - `.xlsx` -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.17</version>
         </dependency>
 
 

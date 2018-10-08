@@ -27,6 +27,8 @@ public class Condeso {
   @Column
   private String nombre;
   @Column
+  private String abreviacion;
+  @Column
   private boolean fijos;
   @Column
   private int level;
@@ -69,6 +71,13 @@ public class Condeso {
   }
 
 
+  public String getAbreviacion() {
+    return abreviacion;
+  }
+
+  public void setAbreviacion(String abreviacion) {
+    this.abreviacion = abreviacion;
+  }
 
   public long getId() {
     return id;

@@ -34,6 +34,7 @@ public class CondesoGUI  extends Application implements Initializable {
     @FXML private TableView<DbModel.Condeso> tableView;
     @FXML private TableColumn<Condeso, Long> condesoId;
     @FXML private TableColumn<DbModel.Condeso, String> condesoName;
+    @FXML private TableColumn<Condeso, String> condesoAbreviacion;
     @FXML private TableColumn<DbModel.Condeso, Contrato> condesoContrato;
     @FXML private TableColumn<Condeso, Boolean> condesoVespertino;
     @FXML private TableColumn<Condeso, Boolean> condesoMatutino;
@@ -59,6 +60,8 @@ public class CondesoGUI  extends Application implements Initializable {
     @FXML private RadioButton cajaRadio;
     @FXML private ColorPicker color;
     @FXML private  TextField idTextField;
+    @FXML private TextField abrevTextField;
+    @FXML private Label errorLabel;
     private List<Tiendas> tiendas;
 
 
@@ -102,6 +105,7 @@ public class CondesoGUI  extends Application implements Initializable {
         lvlList.add("Bueno - 3");
         nivelComboBox.setItems( FXCollections.observableArrayList(lvlList));
         condesoName.setCellValueFactory(new PropertyValueFactory<Condeso, String>("nombre"));
+        condesoAbreviacion.setCellValueFactory(new PropertyValueFactory<Condeso, String>("abreviacion"));
         condesoMatutino.setCellValueFactory(new Callback<CellDataFeatures<Condeso,Boolean>, ObservableValue<Boolean>>() {
             @Override
             public ObservableValue<Boolean> call(CellDataFeatures<Condeso, Boolean> param) {
@@ -191,6 +195,7 @@ public class CondesoGUI  extends Application implements Initializable {
             Condeso condeso = tableView.getSelectionModel().getSelectedItem();
             idTextField.setText(Long.toString(condeso.getId()));
             nombreTextField.setText(condeso.getNombre());
+            abrevTextField.setText(condeso.getAbreviacion());
             contratoChoiceBox.setValue(condeso.getContrato());
             matutinoRadio.setSelected(condeso.isManana());
             vespertinoRadio.setSelected(condeso.isTarde());
@@ -214,8 +219,11 @@ public class CondesoGUI  extends Application implements Initializable {
     public void addButtonClicked(ActionEvent actionEvent) {
         DbModel.Condeso condeso = new Condeso();
         try{condeso.setId(Long.parseLong(idTextField.getText()));}
-        catch (Exception e){}
+        catch (Exception e){
+            errorLabel.setText("Error: El Id solo puede contener números!");
+        }
         condeso.setNombre(nombreTextField.getText());
+        condeso.setAbreviacion(abrevTextField.getText());
         condeso.setContrato(contratoChoiceBox.getValue());
         condeso.setManana(matutinoRadio.isSelected());
         condeso.setTarde(vespertinoRadio.isSelected());
@@ -230,7 +238,12 @@ public class CondesoGUI  extends Application implements Initializable {
         colorHex = "#" + colorHex.substring(2, 8);
         condeso.setColor(colorHex);
 
-        HibernateCrud.SaveCondeso(condeso);
+        try {
+            HibernateCrud.SaveCondeso(condeso);
+        }catch (Exception InvocationTargetException){
+            errorLabel.setText("Error: Ese Id ya existe; elija otro!");
+        }
+
         tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
     }
 
@@ -243,8 +256,11 @@ public class CondesoGUI  extends Application implements Initializable {
     public void updateButtonClicked(ActionEvent actionEvent) {
         Condeso condeso = tableView.getSelectionModel().getSelectedItem();
         try{condeso.setId(Long.parseLong(idTextField.getText()));}
-        catch (Exception e){}
+        catch (Exception e){
+            errorLabel.setText("Error: El Id solo puede contener números!");
+        }
         condeso.setNombre(nombreTextField.getText());
+        condeso.setAbreviacion(abrevTextField.getText());
         condeso.setContrato(contratoChoiceBox.getValue());
         condeso.setManana(matutinoRadio.isSelected());
         condeso.setTarde(vespertinoRadio.isSelected());

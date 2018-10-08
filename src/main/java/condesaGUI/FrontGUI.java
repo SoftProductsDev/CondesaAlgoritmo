@@ -32,6 +32,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Screen;
@@ -110,35 +111,7 @@ public class FrontGUI extends Application implements Initializable {
         }
         grid.setId(i + "-" + j);
         //grid.gridLinesVisibleProperty().set(true);
-        grid.setStyle("-fx-padding: 0 1 1 0;");
-        Label label1 = new Label("GM");
-        label1.setTextAlignment(TextAlignment.CENTER);
-        label1.setAlignment(Pos.CENTER);
-        Label label2 = new Label("GM");
-        label2.setTextAlignment(TextAlignment.CENTER);
-        label2.setAlignment(Pos.CENTER);
-        Label label3 = new Label("G");
-        label3.setTextAlignment(TextAlignment.CENTER);
-        label3.setAlignment(Pos.CENTER);
-        Label label4 = new Label("F");
-        label4.setTextAlignment(TextAlignment.CENTER);
-        label4.setAlignment(Pos.CENTER);
-        Label label5 = new Label("H");
-        label5.setTextAlignment(TextAlignment.CENTER);
-        label5.setAlignment(Pos.CENTER);
-        Label label6 = new Label("B");
-        label6.setTextAlignment(TextAlignment.CENTER);
-        label6.setAlignment(Pos.CENTER);
-        Label label7 = new Label("R");
-        label7.setTextAlignment(TextAlignment.CENTER);
-        label7.setAlignment(Pos.CENTER);
-        grid.add(label1, 0,0);
-        grid.add(label2, 1,0);
-        grid.add(label3, 2,0);
-        grid.add(label4, 3,0);
-        grid.add(label5, 4,0);
-        grid.add(label6, 5,0);
-        grid.add(label7, 6,0);
+        addLetrasArriba(grid);
         monthGrid.add(grid,i,j);
       }
     }
@@ -169,14 +142,15 @@ public class FrontGUI extends Application implements Initializable {
   private void setHorarioMaster(){
     Tiendas tienda = tiendasComboBox.getValue();
      HorarioMaster master = tiendasComboBox.getValue().getMaster();
-    //HorarioMaster master = createHorario();
-    for (int i = 1; i < calendar.getMonth().length(calendar.isLeapYear()); i++)
-    {
-        Map<LocalDate, Dias> mes = master.getMes();
-        Dias dia = mes.get(calendar.withDayOfMonth(i));
-        if(dia!=null){
-        setDias(dia);
-        }
+    if (master != null){
+      for (int i = 1; i < calendar.getMonth().length(calendar.isLeapYear()); i++)
+      {
+          Map<LocalDate, Dias> mes = master.getMes();
+          Dias dia = mes.get(calendar.withDayOfMonth(i));
+          if(dia!=null){
+          setDias(dia);
+          }
+      }
     }
   }
 
@@ -260,6 +234,7 @@ public class FrontGUI extends Application implements Initializable {
     setCalendarDays();
     monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern(
         "MMMM, YYYY",spanishLocale)));
+    deleteTurnosLabels();
 
   }
 
@@ -269,10 +244,76 @@ public class FrontGUI extends Application implements Initializable {
     setCalendarDays();
     monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern(
         "MMMM, YYYY",spanishLocale)));
+    deleteTurnosLabels();
   }
 
   public void getHorario(ActionEvent actionEvent) {
     setHorarioMaster();
+  }
+
+  public void deleteTurnosLabels(){
+    for (Node node: monthGrid.getChildren()
+    ) {
+      if(node.getClass() == GridPane.class){
+        GridPane grid = (GridPane) node;
+        grid.getChildren().clear();
+        addLetrasArriba(grid);
+      }
+    }
+  }
+
+  public void addLetrasArriba(GridPane grid){
+    Label label1 = new Label("GM");
+    label1.setTextAlignment(TextAlignment.CENTER);
+    label1.setAlignment(Pos.CENTER);
+    label1.setMaxWidth(12345546);
+    label1.setMaxHeight(12345546);
+    label1.setStyle("-fx-border-color: black;");
+    Label label2 = new Label("GM");
+    label2.setTextAlignment(TextAlignment.CENTER);
+    label2.setAlignment(Pos.CENTER);
+    label2.setMaxWidth(12345546);
+    label2.setMaxHeight(12345546);
+    label2.setStyle("-fx-border-color: black;");
+    Label label3 = new Label("G");
+    label3.setTextAlignment(TextAlignment.CENTER);
+    label3.setAlignment(Pos.CENTER);
+    label3.setMaxWidth(12345546);
+    label3.setMaxHeight(12345546);
+    label3.setStyle("-fx-border-color: black;");
+    Label label4 = new Label("F");
+    label4.setTextAlignment(TextAlignment.CENTER);
+    label4.setAlignment(Pos.CENTER);
+    label4.setMaxWidth(12345546);
+    label4.setMaxHeight(12345546);
+    label4.setStyle("-fx-border-color: black;");
+    Label label5 = new Label("H");
+    label5.setTextAlignment(TextAlignment.CENTER);
+    label5.setAlignment(Pos.CENTER);
+    label5.setMaxWidth(12345546);
+    label5.setMaxHeight(12345546);
+    label5.setStyle("-fx-border-color: black;");
+    Label label6 = new Label("B");
+    label6.setTextAlignment(TextAlignment.CENTER);
+    label6.setAlignment(Pos.CENTER);
+    label6.setMaxWidth(12345546);
+    label6.setMaxHeight(12345546);
+    label6.setStyle("-fx-border-color: black;");
+    Label label7 = new Label("R");
+    label7.setTextAlignment(TextAlignment.CENTER);
+    label7.setAlignment(Pos.CENTER);
+    label7.setMaxWidth(12345546);
+    label7.setMaxHeight(12345546);
+    label7.setStyle("-fx-border-color: black;");
+    grid.setStyle("-fx-border-color: black;");
+
+    grid.add(label1, 0,0);
+    grid.add(label2, 1,0);
+    grid.add(label3, 2,0);
+    grid.add(label4, 3,0);
+    grid.add(label5, 4,0);
+    grid.add(label6, 5,0);
+    grid.add(label7, 6,0);
   }
 
 }
