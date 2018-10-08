@@ -143,8 +143,8 @@ public class HibernateCrud {
             return tiendasString;
         }
 
-    public static Condeso findCondesoId(int id, List<Condeso> allCondesos) {
+    public static Condeso findCondesoId(int id) {
         // en caso de que se quede ordenado simpre los condesos con su id
-        return allCondesos.get(id);
+        return null;
     }
 }

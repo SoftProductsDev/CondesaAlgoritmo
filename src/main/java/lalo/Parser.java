@@ -15,7 +15,15 @@ import DbModel.HorarioEntrega;
 
 public class Parser {
 
-    private static List<Condeso> allCondesos = HibernateCrud.GetAllCondesos();
+    private static List<Condeso> foundCondesos;
+
+    public static List<Condeso> getFoundCondesos() {
+        return foundCondesos;
+    }
+
+    public static void setFoundCondesos(List<Condeso> foundCondesos) {
+        Parser.foundCondesos = foundCondesos;
+    }
 
     public static int[][] parse(String fileName) {
         String line;
@@ -177,7 +185,7 @@ try{
               condeso.setDisponibilidad(disponibilidad);
               Disp.add(condeso);
               buffer.readLine();
-              Condeso DbCondeso = HibernateCrud.findCondesoId(666, allCondesos);
+              Condeso DbCondeso = HibernateCrud.findCondesoId(666);
               if(DbCondeso != null){
                   HorarioEntrega entrega = new HorarioEntrega();
                   entrega.setMax(666);
@@ -185,6 +193,7 @@ try{
                   entrega.setMes(LocalDate.now());
                   entrega.setDisponibilidad(disponibilidad);
                   DbCondeso.setEntrega(entrega);
+                  foundCondesos.add(DbCondeso);
               }else{
                   System.out.print("WARNING: Condeso not found!");
               }
