@@ -197,6 +197,7 @@ public class FrontGUI extends Application implements Initializable {
     }
 
     PopOver popOver = new PopOver();
+    popOver.setAnimated(true);
     //42 date Labels + 12 listViews of time
     int dateIndex = date.getDayOfMonth() + 52 +
         calendar.withDayOfMonth(1).getDayOfWeek().getValue();
