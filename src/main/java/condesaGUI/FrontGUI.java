@@ -41,6 +41,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 import DbModel.Tiendas;
+import org.controlsfx.control.PopOver;
 import org.hibernate.Hibernate;
 
 public class FrontGUI extends Application implements Initializable {
@@ -52,6 +53,12 @@ public class FrontGUI extends Application implements Initializable {
   @FXML private ListView<String>  horaList3;
   @FXML private ListView<String>  horaList4;
   @FXML private ListView<String>  horaList5;
+  @FXML private ListView<String>  horaList6;
+  @FXML private ListView<String>  horaList7;
+  @FXML private ListView<String>  horaList8;
+  @FXML private ListView<String>  horaList9;
+  @FXML private ListView<String>  horaList10;
+  @FXML private ListView<String>  horaList11;
   @FXML private Label monthLabel;
   @FXML private GridPane monthGrid;
 
@@ -82,6 +89,12 @@ public class FrontGUI extends Application implements Initializable {
     horaList3.setItems(horario);
     horaList4.setItems(horario);
     horaList5.setItems(horario);
+    horaList6.setItems(horario);
+    horaList7.setItems(horario);
+    horaList8.setItems(horario);
+    horaList9.setItems(horario);
+    horaList10.setItems(horario);
+    horaList11.setItems(horario);
     ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
     tiendasComboBox.setItems(tiendas);
     Locale spanishLocale=new Locale("es", "ES");
@@ -122,8 +135,9 @@ public class FrontGUI extends Application implements Initializable {
     int lengthMonth = calendar.getMonth().length(calendar.isLeapYear());
     int lengthLastMonth = calendar.plusMonths(- 1).lengthOfMonth();
     int labelIndex = 0;
+    //There are 42 Labels for days
     for (int j = 1; j <= 42; j++) {
-      Label label = (Label) calendarNodes.get(labelIndex + 6);
+      Label label = (Label) calendarNodes.get(labelIndex + 12);
       int dayNum = (j - day.getValue() + 1);
       int f = 0;
       if(dayNum <=0 ) {
@@ -141,7 +155,10 @@ public class FrontGUI extends Application implements Initializable {
 
   private void setHorarioMaster(){
     Tiendas tienda = tiendasComboBox.getValue();
-     HorarioMaster master = tiendasComboBox.getValue().getMaster();
+    HorarioMaster master = null;
+    if(tienda != null){
+      master = tienda.getMaster();
+    }
     if (master != null){
       for (int i = 1; i < calendar.getMonth().length(calendar.isLeapYear()); i++)
       {
@@ -179,8 +196,9 @@ public class FrontGUI extends Application implements Initializable {
       }
     }
 
-    //42 date Labels
-    int dateIndex = date.getDayOfMonth() + 46 +
+    PopOver popOver = new PopOver();
+    //42 date Labels + 12 listViews of time
+    int dateIndex = date.getDayOfMonth() + 52 +
         calendar.withDayOfMonth(1).getDayOfWeek().getValue();
     GridPane pane = (GridPane) monthGrid.getChildren().get(dateIndex);
 
@@ -235,7 +253,7 @@ public class FrontGUI extends Application implements Initializable {
     monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern(
         "MMMM, YYYY",spanishLocale)));
     deleteTurnosLabels();
-
+    setHorarioMaster();
   }
 
   public void monthNextButton(ActionEvent actionEvent) {
@@ -245,9 +263,11 @@ public class FrontGUI extends Application implements Initializable {
     monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern(
         "MMMM, YYYY",spanishLocale)));
     deleteTurnosLabels();
+    setHorarioMaster();
   }
 
   public void getHorario(ActionEvent actionEvent) {
+    deleteTurnosLabels();
     setHorarioMaster();
   }
 
