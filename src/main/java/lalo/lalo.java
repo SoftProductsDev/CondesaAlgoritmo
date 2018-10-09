@@ -77,11 +77,12 @@ public class lalo {
 	private boolean checkCondeso(Condeso elCondeso, HashMap<Integer, Integer[][]> disponibilidad, Turnos elTurno){
 		if(elCondeso == null) return true;
 		if(!checkDisponibilidad(elCondeso, disponibilidad, elTurno)) return false;
+		if(!checkTienda(elCondeso, elTurno)) return false;
 		if(!checkTurnosEseDia(elCondeso, elTurno)) return false;
 		if(!checkDiasSeguidos(elCondeso, elTurno)) return false;
 		if(!checkFinesLibres(elCondeso, elTurno)) return false;
 		if(!elCondeso.checkMax()) return false;
-		if(!checkTienda(elCondeso, elTurno)) return false;
+		if(!checkLevel(elCondeso, elTurno)) return false;
 		return true;
 
 	}
@@ -133,8 +134,11 @@ public class lalo {
 
 
 	private void reacomodar(Set<Turnos> noAsignados, Set<Condeso> condesos, HashMap<Integer, Integer[][]> disponibilidad){
+		PriorityQueue<Condeso> fila = new PriorityQueue<>();
+		fila.addAll(condesos);
 		for(Turnos elTurno : noAsignados){
 			PriorityQueue<Condeso> candidates = findCandidates(elTurno, condesos, disponibilidad);
+
 
 		}
 
