@@ -9,6 +9,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -104,7 +105,7 @@
       <Button mnemonicParsing="false" onAction="#addButtonClicked" text="Agregar" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
       <Button mnemonicParsing="false" onAction="#deleteButtonClicked" text="Eliminar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
       <TextField fx:id="nombreTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <RadioButton fx:id="masculinoRadio" mnemonicParsing="false" selected="true" text="Masculino" GridPane.columnIndex="1" GridPane.rowIndex="6">
+      <RadioButton fx:id="masculinoRadio" mnemonicParsing="false" text="Masculino" GridPane.columnIndex="1" GridPane.rowIndex="6">
          <toggleGroup>
             <ToggleGroup fx:id="Sexo" />
          </toggleGroup></RadioButton>
@@ -137,12 +138,6 @@
       <ComboBox fx:id="cargoComboBox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
       <ComboBox fx:id="nivelComboBox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
       <RadioButton fx:id="cajaRadio" mnemonicParsing="false" text="Sí" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="6" />
-      <TableView fx:id="tiendasTableView" editable="true" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.rowSpan="5">
-        <columns>
-          <TableColumn fx:id="tiendasNombre" prefWidth="139.0" text="Tiendas" />
-          <TableColumn fx:id="tiendasCheckBox" prefWidth="43.0" />
-        </columns>
-      </TableView>
       <ColorPicker fx:id="color" GridPane.columnIndex="3" GridPane.rowIndex="7" />
       <Label alignment="CENTER" text="Color" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7">
          <font>
@@ -160,6 +155,7 @@
             <Font size="16.0" />
          </font>
       </Label>
+      <ScrollPane fx:id="scrollPane" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.rowSpan="2147483647" />
    </children>
    <opaqueInsets>
       <Insets />

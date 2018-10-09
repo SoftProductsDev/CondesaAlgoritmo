@@ -69,6 +69,7 @@ public class HibernateCrud {
         Session session = sessionFactory.openSession();
 
         Criteria criteria = session.createCriteria(Condeso.class);
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         List<Condeso> condesos = criteria.list();
 
         session.close();
@@ -143,8 +144,8 @@ public class HibernateCrud {
             return tiendasString;
         }
 
-    public static Condeso findCondesoId(int id, List<Condeso> allCondesos) {
+    public static Condeso findCondesoId(int id) {
         // en caso de que se quede ordenado simpre los condesos con su id
-        return allCondesos.get(id);
+        return null;
     }
 }
