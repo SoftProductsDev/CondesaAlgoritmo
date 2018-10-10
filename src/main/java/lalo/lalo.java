@@ -130,30 +130,77 @@ public class lalo {
 	private boolean checkLevel(Condeso elCondeso, Turnos elTurno){
 		//TODO
 		return true;
-	}
+	}  //falta agregarlo en muchas partes
 
 
 	private void reacomodar(Set<Turnos> noAsignados, Set<Condeso> condesos, HashMap<Integer, Integer[][]> disponibilidad){
 		PriorityQueue<Condeso> fila = new PriorityQueue<>(new CompareCondesos());
-		boolean Found = false;
-		List<Condeso> aChecar;
+		List<Condeso> regaladores;
+
 		for(Turnos elTurno : noAsignados){
+			boolean Found = false;
 			Set<Condeso> candidates = findCandidates(elTurno, condesos, disponibilidad);
 			HashMap<Reasons, List<Condeso>> posibles = checkReason(elTurno, candidates); // candidatos divididos por razones
-			condesos.removeAll(candidates);
+
 			fila.addAll(condesos);
 			int dia = elTurno.getDate().getDayOfMonth();
-
-			aChecar = posibles.get(Reasons.turnoEseDia);
+			regaladores = posibles.get(Reasons.turnoEseDia);
+			condesos.removeAll(regaladores);
 			Condeso candidate;
 			Set<Condeso> checados = new HashSet<>();
-			for(Condeso elCondeso : aChecar) {
+			Set<Condeso> useless = new HashSet<>();
+			boolean first = true;
+			for(Condeso elCondeso : regaladores) {
 				while (!Found && !fila.isEmpty()) {     // intentar reacomodar los que tienen turno ese mismo día
 				candidate = fila.poll();
-				Found = offerTurn(elCondeso, candidate, elTurno);
-				//TODO
+				Found = changeTurn(elCondeso, candidate, elTurno);
+				if(first){
+				if(useful(disponibilidad, candidate, dia)) checados.add(candidate);
+				else useless.add(candidate);} else {
+				checados.add(candidate);
 				}
-				if(Found) break;
+				}
+				if(first) first = false;
+				if(Found){
+					break;
+				}else{
+					fila.addAll(checados);
+				}
+			}
+			condesos.addAll(regaladores);
+
+			if(!Found){ //intentar reacomodar a los que tienen muchos turnos
+				fila = new PriorityQueue<>(new CompareCondesos());
+				regaladores = posibles.get(Reasons.maximoDiasSeguidos);
+				condesos.removeAll(regaladores);
+				checados = new HashSet<>();
+				useless = new HashSet<>();
+				fila.addAll(condesos);
+				if(elTurno.getDate().getDayOfWeek()  == DayOfWeek.SATURDAY || elTurno.getDate().getDayOfWeek() == DayOfWeek.SUNDAY){
+					for(Condeso elCondeso : regaladores){
+						if(!checkFinesLibres(elCondeso, elTurno)) { useless.add(elCondeso); regaladores.remove(elCondeso);}
+					}
+				}
+				for(Condeso elCondeso : regaladores){
+					while(!Found && !fila.isEmpty()){
+						candidate = fila.poll();
+						Found = porDiasSeguidos(elCondeso, candidate, elTurno);
+						checados.add(candidate);
+					}
+					if(Found){
+					break;
+					}else{
+					fila.addAll(checados);
+					}
+
+				}
+				condesos.addAll(regaladores);
+				condesos.addAll(useless);
+
+				if(!Found){
+
+				}
+
 			}
 
 
@@ -163,11 +210,32 @@ public class lalo {
 
 	}
 
+	private boolean porDiasSeguidos(Condeso regalador, Condeso candidate, Turnos elTurno){
+		Turnos oferta;
+		int dia = elTurno.getDate().getDayOfMonth()-1;
+		int max = regalador.getDiasSeguidos();
+		for(int i = 0; i < max; i++){
+			oferta = regalador.getPersonal()[dia-1-i];
+			if(checkCondeso(candidate, disponibilidad, oferta)){
+				candidate.asignarTurno(regalador.borrarTurno(oferta));
+				regalador.asignarTurno(elTurno);
+			return true;
+			}
+		}
+		return false;
+	}
+
+	private boolean useful(HashMap<Integer, Integer[][]> disponibilidad, Condeso elCondeso, int dia){
+		Integer[][] disp = disponibilidad.get(elCondeso.getId());
+		if(disp[1][dia-1] != 0) return true;
+		return false;
+	}
+
 	private enum Reasons{
 		finesOcupados, maximoAlcanzado, turnoEseDia, maximoDiasSeguidos
 	}
 
-	private boolean offerTurn(Condeso elCondeso, Condeso candidate, Turnos elTurno){
+	private boolean changeTurn(Condeso elCondeso, Condeso candidate, Turnos elTurno){
 		int dia = elTurno.getDate().getDayOfMonth();
 		Turnos turno = elCondeso.getPersonal()[dia-1];
 		if(checkCondeso(candidate, disponibilidad, turno)) {
@@ -186,9 +254,10 @@ public class lalo {
 
 		for(Condeso elCondeso : candidates){
 			if(elCondeso.getPersonal()[elTurno.getDate().getDayOfMonth()-1] != null) yaTieneTurno.add(elCondeso);
-			if(!checkDiasSeguidos(elCondeso, elTurno)) diasSeguidos.add(elCondeso);
-			if(!elCondeso.checkMax()) maximoDelMes.add(elCondeso);
-			if(!checkFinesLibres(elCondeso, elTurno)) finesDeSemana.add(elCondeso);
+			else if(!checkDiasSeguidos(elCondeso, elTurno)) diasSeguidos.add(elCondeso);
+			else if(!checkFinesLibres(elCondeso, elTurno)) finesDeSemana.add(elCondeso);
+			else if(!elCondeso.checkMax()) maximoDelMes.add(elCondeso);
+
 		}
 
 		HashMap<Reasons, List<Condeso>> Razones = new HashMap<>();
@@ -207,8 +276,5 @@ public class lalo {
 		}
 		return candidates;
 	}
-
-	public static void main(String[] args) {
-		//TODO
-	}
+	
 }

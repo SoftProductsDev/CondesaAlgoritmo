@@ -84,7 +84,7 @@
         <counts>
           <entry key="eml" value="1" />
           <entry key="iml" value="1" />
-          <entry key="java" value="18" />
+          <entry key="java" value="19" />
           <entry key="txt" value="7" />
           <entry key="userlibraries" value="1" />
           <entry key="xml" value="2" />
@@ -93,20 +93,20 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="IDEA_MODULE" value="1" />
-          <entry key="JAVA" value="18" />
+          <entry key="JAVA" value="19" />
           <entry key="PLAIN_TEXT" value="9" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4290" />
+          <entry key="JAVA" value="6496" />
           <entry key="PLAIN_TEXT" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="4290" />
+          <entry key="java" value="6496" />
           <entry key="txt" value="7" />
         </counts>
       </usages-collector>
@@ -184,8 +184,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/lalo/lalo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-13">
-              <caret line="153" column="22" selection-start-line="153" selection-start-column="22" selection-end-line="153" selection-end-column="22" />
+            <state relative-caret-position="945">
+              <caret line="278" column="4" lean-forward="true" selection-start-line="278" selection-start-column="4" selection-end-line="278" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#GMTodos#0;class#lalo#0" />
@@ -193,16 +193,31 @@
                 <element signature="method#medioFijos#0;class#lalo#0" />
                 <element signature="method#dondeHayJusto#0;class#lalo#0" />
                 <element signature="method#pocoONadaDeJuego#0;class#lalo#0" />
+                <element signature="method#laloFuncionando#0;class#lalo#0" />
+                <element signature="method#checkCondeso#0;class#lalo#0" />
+                <element signature="method#checkDisponibilidad#0;class#lalo#0" />
                 <element signature="method#checkDiasSeguidos#0;class#lalo#0" />
                 <element signature="method#checkFinesLibres#0;class#lalo#0" />
                 <element signature="method#checkTurnosEseDia#0;class#lalo#0" />
                 <element signature="method#checkTienda#0;class#lalo#0" />
                 <element signature="method#checkLevel#0;class#lalo#0" />
+                <element signature="method#reacomodar#0;class#lalo#0" />
+                <element signature="method#porDiasSeguidos#0;class#lalo#0" />
+                <element signature="method#useful#0;class#lalo#0" />
                 <element signature="class#Reasons#0;class#lalo#0" />
-                <element signature="method#offerTurn#0;class#lalo#0" />
+                <element signature="method#changeTurn#0;class#lalo#0" />
                 <element signature="method#checkReason#0;class#lalo#0" />
-                <element signature="method#main#0;class#lalo#0" />
+                <element signature="method#findCandidates#0;class#lalo#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Disponibilidad.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -271,8 +286,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/condeso/Condeso.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="255" column="8" lean-forward="true" selection-start-line="255" selection-start-column="8" selection-end-line="255" selection-end-column="8" />
+            <state relative-caret-position="257">
+              <caret line="271" column="32" lean-forward="true" selection-start-line="271" selection-start-column="32" selection-end-line="271" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -285,15 +300,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1005">
               <caret line="97" column="79" selection-start-line="97" selection-start-column="79" selection-end-line="97" selection-end-column="79" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/condeso/TipoEmpleado.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -503,7 +509,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539133342171" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539213251563" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
     <property name="last_opened_file_path" value="$USER_HOME$/CondesaPrueba/CondesaAlgoritmo" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -950,13 +956,6 @@
     <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/disponibilidad.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/disponibilidad2.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="531">
@@ -1075,13 +1074,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Disponibilidad.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1213,6 +1205,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+          <folding>
+            <element signature="e#1319#1320#0" expanded="true" />
+            <element signature="e#1347#1348#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1227,6 +1223,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
           <caret line="206" column="80" selection-start-line="206" selection-start-column="80" selection-end-line="206" selection-end-column="80" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#setCalendarDays#0;class#FrontGUI#0" />
+            <element signature="method#setHorarioMaster#0;class#FrontGUI#0" />
+            <element signature="method#setDias#0;class#FrontGUI#0" />
+            <element signature="method#addLetrasArriba#0;class#FrontGUI#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1262,10 +1265,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condeso/TipoEmpleado.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Disponibilidad.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/condeso/Condeso.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="255" column="8" lean-forward="true" selection-start-line="255" selection-start-column="8" selection-end-line="255" selection-end-column="8" />
+        <state relative-caret-position="257">
+          <caret line="271" column="32" lean-forward="true" selection-start-line="271" selection-start-column="32" selection-end-line="271" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1274,8 +1291,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/lalo/lalo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13">
-          <caret line="153" column="22" selection-start-line="153" selection-start-column="22" selection-end-line="153" selection-end-column="22" />
+        <state relative-caret-position="945">
+          <caret line="278" column="4" lean-forward="true" selection-start-line="278" selection-start-column="4" selection-end-line="278" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#GMTodos#0;class#lalo#0" />
@@ -1283,15 +1300,21 @@
             <element signature="method#medioFijos#0;class#lalo#0" />
             <element signature="method#dondeHayJusto#0;class#lalo#0" />
             <element signature="method#pocoONadaDeJuego#0;class#lalo#0" />
+            <element signature="method#laloFuncionando#0;class#lalo#0" />
+            <element signature="method#checkCondeso#0;class#lalo#0" />
+            <element signature="method#checkDisponibilidad#0;class#lalo#0" />
             <element signature="method#checkDiasSeguidos#0;class#lalo#0" />
             <element signature="method#checkFinesLibres#0;class#lalo#0" />
             <element signature="method#checkTurnosEseDia#0;class#lalo#0" />
             <element signature="method#checkTienda#0;class#lalo#0" />
             <element signature="method#checkLevel#0;class#lalo#0" />
+            <element signature="method#reacomodar#0;class#lalo#0" />
+            <element signature="method#porDiasSeguidos#0;class#lalo#0" />
+            <element signature="method#useful#0;class#lalo#0" />
             <element signature="class#Reasons#0;class#lalo#0" />
-            <element signature="method#offerTurn#0;class#lalo#0" />
+            <element signature="method#changeTurn#0;class#lalo#0" />
             <element signature="method#checkReason#0;class#lalo#0" />
-            <element signature="method#main#0;class#lalo#0" />
+            <element signature="method#findCandidates#0;class#lalo#0" />
           </folding>
         </state>
       </provider>

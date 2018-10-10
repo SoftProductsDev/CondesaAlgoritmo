@@ -158,6 +158,11 @@ public class Condeso {
 		while(dia - 2- counter > 0 && personal[dia-2-counter] != null){
 			counter++;
 		}
+		int i = 0;
+		while(dia + i < 31 && personal[dia + i] != null){
+			i++;
+			counter++;
+		}
 		return counter;
 	}
 
@@ -260,6 +265,17 @@ public class Condeso {
 	public void setMaxHours(int maxHours){this.maxHours = maxHours;}
 
 	public int getMaxHours(){return maxHours;}
+
+	public Turnos borrarTurno(Turnos elTurno){
+		int dia = elTurno.getDate().getDayOfMonth() - 1;
+		Turnos supuesto = personal[dia];
+		if(elTurno == supuesto){
+		personal[dia] = null;
+		horasAsignadas-= supuesto.getDuracion();
+		elTurno.setCondeso(null);
+		}
+		return null;
+	} // falta checar fines de semana
 
 	public boolean checkMax(){ if(maxHours <= horasAsignadas) return false;
 	return true;}
