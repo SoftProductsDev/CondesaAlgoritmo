@@ -19,6 +19,7 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,6 +31,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -195,22 +197,27 @@ public class FrontGUI extends Application implements Initializable {
         break;
       }
     }
-
-    PopOver popOver = new PopOver();
-    popOver.setAnimated(true);
     //42 date Labels + 12 listViews of time
     int dateIndex = date.getDayOfMonth() + 52 +
         calendar.withDayOfMonth(1).getDayOfWeek().getValue();
     GridPane pane = (GridPane) monthGrid.getChildren().get(dateIndex);
 
-    for (int i = 0; i < turno.getDuracion(); i++){
+
     Label label = new Label(turno.getCondeso().getNombre());
-    label.setStyle("-fx-background-color: " + turno.getCondeso().getColor());
+    label.setStyle("-fx-background-color: " + turno.getCondeso().getColor() + "; -fx-rotate: 90");
+    //label.setStyle();
     label.setMaxHeight(125462739);
     label.setMaxWidth(1234567890);
-    pane.add(label, columnIndex, hourIndex);
-    hourIndex++;
-    }
+    label.addEventHandler(MouseEvent.MOUSE_CLICKED,
+        new EventHandler<MouseEvent>() {
+          @Override
+          public void handle(MouseEvent event) {
+            label.setStyle("-fx-border-color: black");
+            PopOver pop = new PopOver(new Label("caca"));
+            pop.show(label);
+          };
+        });
+    pane.add(label, columnIndex, hourIndex, 1, turno.getDuracion());
 
     return latestTurn;
   }

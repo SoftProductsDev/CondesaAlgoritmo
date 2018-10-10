@@ -9,8 +9,8 @@
         <module name="CondesaAlgoritmo" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="CondesaAlgoritmo" target="8" />
+    <bytecodeTargetLevel target="10">
+      <module name="CondesaAlgoritmo" target="10" />
     </bytecodeTargetLevel>
   </component>
 </project>
