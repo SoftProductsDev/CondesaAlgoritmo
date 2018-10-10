@@ -41,7 +41,8 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="87.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="56.0" minWidth="10.0" prefWidth="56.0" />
           </columnConstraints>
           <rowConstraints>
             <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="10.0" vgrow="SOMETIMES" />
@@ -64,6 +65,12 @@
             <ListView fx:id="horaList3" maxHeight="500" prefHeight="120.0" prefWidth="200.0" GridPane.rowIndex="7" />
             <ListView fx:id="horaList4" maxHeight="500" prefHeight="120.0" prefWidth="200.0" GridPane.rowIndex="9" />
             <ListView fx:id="horaList5" maxHeight="500" prefHeight="120.0" prefWidth="200.0" GridPane.rowIndex="11" />
+            <ListView fx:id="horaList6" maxHeight="500" prefHeight="120.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+            <ListView fx:id="horaList7" maxHeight="500" prefHeight="120.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+            <ListView fx:id="horaList8" maxHeight="500" prefHeight="120.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+            <ListView fx:id="horaList9" maxHeight="500" prefHeight="120.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="7" />
+            <ListView fx:id="horaList10" maxHeight="500" prefHeight="120.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="9" />
+            <ListView fx:id="horaList11" maxHeight="500" prefHeight="120.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="11" />
             <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
             <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
             <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Label" textFill="#f8f7f7" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
@@ -124,6 +131,7 @@
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="70.0" minWidth="10.0" prefWidth="70.0" />
       </columnConstraints>
       <rowConstraints>
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
