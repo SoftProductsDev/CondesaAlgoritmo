@@ -134,10 +134,29 @@ public class lalo {
 
 
 	private void reacomodar(Set<Turnos> noAsignados, Set<Condeso> condesos, HashMap<Integer, Integer[][]> disponibilidad){
-		PriorityQueue<Condeso> fila = new PriorityQueue<>();
-		fila.addAll(condesos);
+		PriorityQueue<Condeso> fila = new PriorityQueue<>(new CompareCondesos());
+		boolean Found = false;
+		List<Condeso> aChecar;
 		for(Turnos elTurno : noAsignados){
-			PriorityQueue<Condeso> candidates = findCandidates(elTurno, condesos, disponibilidad);
+			Set<Condeso> candidates = findCandidates(elTurno, condesos, disponibilidad);
+			HashMap<Reasons, List<Condeso>> posibles = checkReason(elTurno, candidates); // candidatos divididos por razones
+			condesos.removeAll(candidates);
+			fila.addAll(condesos);
+			int dia = elTurno.getDate().getDayOfMonth();
+
+			aChecar = posibles.get(Reasons.turnoEseDia);
+			Condeso candidate;
+			Set<Condeso> checados = new HashSet<>();
+			for(Condeso elCondeso : aChecar) {
+				while (!Found && !fila.isEmpty()) {     // intentar reacomodar los que tienen turno ese mismo día
+				candidate = fila.poll();
+				Found = offerTurn(elCondeso, candidate, elTurno);
+				//TODO
+				}
+				if(Found) break;
+			}
+
+
 
 
 		}
@@ -148,14 +167,24 @@ public class lalo {
 		finesOcupados, maximoAlcanzado, turnoEseDia, maximoDiasSeguidos
 	}
 
-	private HashMap<Reasons, List<Condeso>> checkReason(Turnos elTurno, PriorityQueue<Condeso> candidates){
-		Condeso[] candidatos = (Condeso[]) candidates.toArray();
+	private boolean offerTurn(Condeso elCondeso, Condeso candidate, Turnos elTurno){
+		int dia = elTurno.getDate().getDayOfMonth();
+		Turnos turno = elCondeso.getPersonal()[dia-1];
+		if(checkCondeso(candidate, disponibilidad, turno)) {
+			elCondeso.cambiarTurno(elTurno);
+			candidate.asignarTurno(turno);
+			return true;
+		}
+		return false;
+	}
+
+	private HashMap<Reasons, List<Condeso>> checkReason(Turnos elTurno, Set<Condeso> candidates){
 		List<Condeso> yaTieneTurno = new ArrayList<>();
 		List<Condeso> diasSeguidos = new ArrayList<>();
 		List<Condeso> maximoDelMes = new ArrayList<>();
 		List<Condeso> finesDeSemana = new ArrayList<>();
 
-		for(Condeso elCondeso : candidatos){
+		for(Condeso elCondeso : candidates){
 			if(elCondeso.getPersonal()[elTurno.getDate().getDayOfMonth()-1] != null) yaTieneTurno.add(elCondeso);
 			if(!checkDiasSeguidos(elCondeso, elTurno)) diasSeguidos.add(elCondeso);
 			if(!elCondeso.checkMax()) maximoDelMes.add(elCondeso);
@@ -170,11 +199,11 @@ public class lalo {
 		return Razones;
 	}
 
-	private PriorityQueue<Condeso> findCandidates(Turnos elTurno, Set<Condeso> condesos, HashMap<Integer, Integer[][]> disponibilidad){
-		PriorityQueue<Condeso> candidates = new PriorityQueue<>(new CompareCondesos());
+	private Set<Condeso> findCandidates(Turnos elTurno, Set<Condeso> condesos, HashMap<Integer, Integer[][]> disponibilidad){
+		Set<Condeso> candidates = new HashSet<>();
 
 		for(Condeso elCondeso : condesos ){
-			if(checkDisponibilidad(elCondeso, disponibilidad, elTurno)) candidates.add(elCondeso);
+			if(checkDisponibilidad(elCondeso, disponibilidad, elTurno) && checkTienda(elCondeso, elTurno)) candidates.add(elCondeso);
 		}
 		return candidates;
 	}
