@@ -328,11 +328,11 @@ public class CondesoGUI  extends Application implements Initializable {
       }
       else{
         condeso.setDondePuedeTrabajar(tiendasAddCondeso);
-        try{
-          HibernateCrud.UpdateCondeso(condeso);}
-        catch (Exception e){
-          errorLabel.setText("Error: El Id no se puede actualizar!");
-        }
+        //try{
+          HibernateCrud.UpdateCondeso(condeso);
+        //catch (Exception e){
+        //  errorLabel.setText(e.getMessage());
+        //}
         tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
       }
     }

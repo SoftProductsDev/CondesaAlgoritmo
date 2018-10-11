@@ -5,6 +5,8 @@ import DbModel.Condeso;
 import DbModel.Dias;
 import DbModel.HorarioMaster;
 import DbModel.Turnos;
+import java.awt.event.FocusListener;
+import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -16,6 +18,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,10 +30,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -201,10 +206,15 @@ public class FrontGUI extends Application implements Initializable {
     int dateIndex = date.getDayOfMonth() + 52 +
         calendar.withDayOfMonth(1).getDayOfWeek().getValue();
     GridPane pane = (GridPane) monthGrid.getChildren().get(dateIndex);
+    Label label = createLabel(turno);
+    pane.add(label, columnIndex, hourIndex, 1, turno.getDuracion());
 
+    return latestTurn;
+  }
 
+  private Label createLabel(Turnos turno) {
     Label label = new Label(turno.getCondeso().getNombre());
-    label.setStyle("-fx-background-color: " + turno.getCondeso().getColor() + "; -fx-rotate: 90");
+    label.setStyle("-fx-background-color: " + turno.getCondeso().getColor());
     //label.setStyle();
     label.setMaxHeight(125462739);
     label.setMaxWidth(1234567890);
@@ -212,14 +222,28 @@ public class FrontGUI extends Application implements Initializable {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            label.setStyle("-fx-border-color: black");
-            PopOver pop = new PopOver(new Label("caca"));
+            Accordion p = null;
+            String sceneFile = "/editPopOver.fxml";
+            Parent root = null;
+            URL url  = null;
+            try {
+                url  = getClass().getResource( sceneFile );
+                root = FXMLLoader.load( url );
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+            PopOver pop = new PopOver(root);
             pop.show(label);
           };
         });
-    pane.add(label, columnIndex, hourIndex, 1, turno.getDuracion());
+    return label;
+  }
 
-    return latestTurn;
+  private Node createEditPopOver() {
+    Accordion accordion = new Accordion();
+    new TitledPane();
+    //accordion.setExpandedPane();
+    return accordion;
   }
 
   public static void main(String[] args) {

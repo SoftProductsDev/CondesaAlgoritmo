@@ -59,9 +59,8 @@ public class Condeso {
   @OneToOne
   private HorarioPersonal personal;
 
-  @ElementCollection
-  @CollectionTable
-  @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @JoinColumn
+  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   private List<Tiendas> dondePuedeTrabajar;
 
   @Column
