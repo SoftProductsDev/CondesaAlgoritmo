@@ -84,8 +84,8 @@
         <counts>
           <entry key="eml" value="1" />
           <entry key="iml" value="1" />
-          <entry key="java" value="19" />
-          <entry key="txt" value="7" />
+          <entry key="java" value="21" />
+          <entry key="txt" value="8" />
           <entry key="userlibraries" value="1" />
           <entry key="xml" value="2" />
         </counts>
@@ -93,20 +93,20 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="IDEA_MODULE" value="1" />
-          <entry key="JAVA" value="19" />
-          <entry key="PLAIN_TEXT" value="9" />
+          <entry key="JAVA" value="21" />
+          <entry key="PLAIN_TEXT" value="10" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="6496" />
+          <entry key="JAVA" value="6905" />
           <entry key="PLAIN_TEXT" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="6496" />
+          <entry key="java" value="6905" />
           <entry key="txt" value="7" />
         </counts>
       </usages-collector>
@@ -181,11 +181,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/lalo/lalo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="945">
-              <caret line="278" column="4" lean-forward="true" selection-start-line="278" selection-start-column="4" selection-end-line="278" selection-end-column="4" />
+            <state relative-caret-position="419">
+              <caret line="278" selection-start-line="278" selection-end-line="278" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#GMTodos#0;class#lalo#0" />
@@ -214,22 +214,46 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Disponibilidad.java">
+        <entry file="file://$PROJECT_DIR$/disponibilidad3.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            <state relative-caret-position="90">
+              <caret line="6" column="37" lean-forward="true" selection-start-line="5" selection-end-line="6" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/horario/CompareDias.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+            <state relative-caret-position="180">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Parser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="347">
+              <caret line="191" column="56" lean-forward="true" selection-start-line="191" selection-start-column="56" selection-end-line="191" selection-end-column="56" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#parse#0;class#Parser#0" />
+                <element signature="method#parseTime#0;class#Parser#0" />
+                <element signature="method#parseTime#1;class#Parser#0" />
+                <element signature="method#ignore#0;class#Parser#0" />
+                <element signature="method#subString#0;class#Parser#0" />
+                <element signature="method#getPosition#0;class#Parser#0" />
+                <element signature="method#toString#0;class#Parser#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Disponibilidad.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -243,24 +267,6 @@
                 <element signature="imports" expanded="true" />
                 <element signature="method#getDate#0;class#Turnos#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/horario/HorarioMaster.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/disponibilidad2.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="531">
-              <caret line="73" column="12" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -287,7 +293,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/condeso/Condeso.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="257">
-              <caret line="271" column="32" lean-forward="true" selection-start-line="271" selection-start-column="32" selection-end-line="271" selection-end-column="32" />
+              <caret line="271" column="32" selection-start-line="271" selection-start-column="32" selection-end-line="271" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -351,9 +357,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/disponibilidad.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/lalo/Parser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/lalo/Disponibilidad.java" />
-        <option value="$PROJECT_DIR$/src/main/java/lalo/Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/condeso/CompareCondesos.java" />
         <option value="$PROJECT_DIR$/src/main/java/CalendarControl/calendarControl.java" />
         <option value="$PROJECT_DIR$/src/main/java/CalendarControl/calendar.java" />
@@ -387,6 +390,9 @@
         <option value="$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/condeso/Condeso.java" />
         <option value="$PROJECT_DIR$/src/main/java/lalo/lalo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/lalo/Test.java" />
+        <option value="$PROJECT_DIR$/src/main/java/lalo/Disponibilidad.java" />
+        <option value="$PROJECT_DIR$/src/main/java/lalo/Parser.java" />
       </list>
     </option>
   </component>
@@ -406,11 +412,10 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1202" />
-    <option name="y" value="58" />
-    <option name="width" value="1377" />
-    <option name="height" value="739" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="y" value="23" />
+    <option name="width" value="1366" />
+    <option name="height" value="678" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -509,7 +514,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539213251563" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539400861620" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
     <property name="last_opened_file_path" value="$USER_HOME$/CondesaPrueba/CondesaAlgoritmo" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -846,7 +851,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1366" height="678" extended-state="0" />
+    <frame x="0" y="23" width="1366" height="678" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23036253" />
@@ -956,25 +961,11 @@
     <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/disponibilidad2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="73" column="12" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_161/jre/lib/rt.jar!/sun/misc/FloatingDecimal.class" />
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/Front.css" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="693">
-          <caret line="100" column="22" lean-forward="true" selection-start-line="100" selection-start-column="22" selection-end-line="100" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/condeso/CompareCondesos2.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1187,13 +1178,6 @@
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/controlsfx/controlsfx/9.0.0/controlsfx-9.0.0.jar!/org/controlsfx/control/PopOver.class" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/HibernateCrudTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4692">
@@ -1272,17 +1256,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Disponibilidad.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/condeso/Condeso.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="257">
-          <caret line="271" column="32" lean-forward="true" selection-start-line="271" selection-start-column="32" selection-end-line="271" selection-end-column="32" />
+          <caret line="271" column="32" selection-start-line="271" selection-start-column="32" selection-end-line="271" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1291,8 +1268,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/lalo/lalo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="278" column="4" lean-forward="true" selection-start-line="278" selection-start-column="4" selection-end-line="278" selection-end-column="4" />
+        <state relative-caret-position="419">
+          <caret line="278" selection-start-line="278" selection-end-line="278" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#GMTodos#0;class#lalo#0" />
@@ -1315,6 +1292,43 @@
             <element signature="method#changeTurn#0;class#lalo#0" />
             <element signature="method#checkReason#0;class#lalo#0" />
             <element signature="method#findCandidates#0;class#lalo#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/disponibilidad3.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="37" lean-forward="true" selection-start-line="5" selection-end-line="6" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Disponibilidad.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="191" column="56" lean-forward="true" selection-start-line="191" selection-start-column="56" selection-end-line="191" selection-end-column="56" />
+          <folding>
+            <element signature="method#parse#0;class#Parser#0" />
+            <element signature="method#parseTime#0;class#Parser#0" />
+            <element signature="method#parseTime#1;class#Parser#0" />
+            <element signature="method#ignore#0;class#Parser#0" />
+            <element signature="method#subString#0;class#Parser#0" />
+            <element signature="method#getPosition#0;class#Parser#0" />
+            <element signature="method#toString#0;class#Parser#0" />
           </folding>
         </state>
       </provider>

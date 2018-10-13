@@ -2,6 +2,7 @@ package lalo;
 
 public class Disponibilidad {
     private String name;
+    private int Id;
     private int[][] disponibilidad;
     private int max;
     private int min;
@@ -9,6 +10,10 @@ public class Disponibilidad {
     public void setMax(int max){
         this.max = max;
     }
+
+    public void setId(int Id){this.Id = Id;}
+
+    public int getId(){return Id;}
 
     public int getMax(){
         return max;

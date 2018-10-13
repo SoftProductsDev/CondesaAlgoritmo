@@ -276,5 +276,5 @@ public class lalo {
 		}
 		return candidates;
 	}
-	
+
 }

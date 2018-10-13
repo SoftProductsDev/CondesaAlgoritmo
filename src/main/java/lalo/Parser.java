@@ -157,6 +157,7 @@ Set<Disponibilidad> Disp = new HashSet<Disponibilidad>();
 String month = "1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t11\t12\t13\t14\t15\t16\t17\t18\t19\t20\t21\t22\t23\t24\t25\t26\t27\t28";
 String line;
 String name;
+int Id;
 Disponibilidad condeso;
 int[][] disponibilidad;
 try{
@@ -181,6 +182,15 @@ try{
               disponibilidad = new int[2][dias];
               parseTime(disponibilidad, line, 0, ++i);
               line = buffer.readLine();
+
+              //parser del Id de condeso, para que funcione descomentar y borrar la función parseTime justo debajo de la parte comentada
+
+                /*j = ignore(line, '\t');
+              i = getPosition(line, '\t', j);
+              Id = Integer.parseInt(line.substring(j, i));
+              condeso.setId(Id);
+              parseTime(disponibilidad, line, 1, ++i);*/
+
               parseTime(disponibilidad, line, 1);
               condeso.setDisponibilidad(disponibilidad);
               Disp.add(condeso);
