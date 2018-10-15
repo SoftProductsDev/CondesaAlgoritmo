@@ -100,13 +100,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="10124" />
+          <entry key="JAVA" value="10269" />
           <entry key="PLAIN_TEXT" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="10124" />
+          <entry key="java" value="10269" />
           <entry key="txt" value="7" />
         </counts>
       </usages-collector>
@@ -181,11 +181,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/lalo/lalo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="84" column="7" selection-start-line="84" selection-start-column="7" selection-end-line="84" selection-end-column="7" />
+            <state relative-caret-position="408">
+              <caret line="128" column="38" selection-start-line="128" selection-start-column="38" selection-end-line="128" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#generateQueueTurnos#0;class#lalo#0" />
@@ -193,13 +193,11 @@
                 <element signature="method#medioFijos#0;class#lalo#0" />
                 <element signature="method#dondeHayJusto#0;class#lalo#0" />
                 <element signature="method#laloFuncionando#0;class#lalo#0" />
-                <element signature="method#checkCondeso#0;class#lalo#0" />
                 <element signature="method#checkDisponibilidad#0;class#lalo#0" />
                 <element signature="method#checkDiasSeguidos#0;class#lalo#0" />
                 <element signature="method#checkFinesLibres#0;class#lalo#0" />
                 <element signature="method#checkTurnosEseDia#0;class#lalo#0" />
                 <element signature="method#checkTienda#0;class#lalo#0" />
-                <element signature="method#checkLevel#0;class#lalo#0" />
                 <element signature="method#checkEncargado#0;class#lalo#0" />
                 <element signature="method#reacomodar#0;class#lalo#0" />
                 <element signature="method#porDiasSeguidos#0;class#lalo#0" />
@@ -276,7 +274,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/horario/Dias.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="15" column="35" lean-forward="true" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+              <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -284,8 +282,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/condeso/Condeso.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="882">
-              <caret line="244" column="49" lean-forward="true" selection-start-line="244" selection-start-column="49" selection-end-line="244" selection-end-column="49" />
+            <state relative-caret-position="2490">
+              <caret line="280" column="17" lean-forward="true" selection-start-line="280" selection-start-column="17" selection-end-line="280" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -293,11 +291,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/condeso/Contrato.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+            <state relative-caret-position="105">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -391,7 +389,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/frontGUI.fxml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/condeso/Condeso.java" />
         <option value="$PROJECT_DIR$/src/main/java/lalo/Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/lalo/Disponibilidad.java" />
         <option value="$PROJECT_DIR$/src/main/java/lalo/Parser.java" />
@@ -400,6 +397,8 @@
         <option value="$PROJECT_DIR$/src/main/java/horario/HorarioInterface.java" />
         <option value="$PROJECT_DIR$/src/main/java/horario/Plantillas.java" />
         <option value="$PROJECT_DIR$/src/main/java/lalo/lalo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/condeso/Condeso.java" />
+        <option value="$PROJECT_DIR$/src/main/java/condeso/Contrato.java" />
       </list>
     </option>
   </component>
@@ -477,14 +476,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="DbController" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CondesaAlgoritmo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CondesaAlgoritmo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="ExcelController" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -522,7 +513,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="h&#9;FILE&#9;file:///Users/sebastian/CondesaAlgoritmo/src/main/java/horario/HorarioMaster.java" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539594231457" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539632230090" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
     <property name="last_opened_file_path" value="$USER_HOME$/CondesaPrueba/CondesaAlgoritmo" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -860,7 +851,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1366" height="678" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23036253" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1269,13 +1259,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/horario/Dias.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="15" column="35" lean-forward="true" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/horario/Turnos.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="975">
@@ -1300,27 +1283,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condeso/Condeso.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/horario/Dias.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="244" column="49" lean-forward="true" selection-start-line="244" selection-start-column="49" selection-end-line="244" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condeso/Contrato.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+        <state relative-caret-position="105">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/lalo/lalo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="84" column="7" selection-start-line="84" selection-start-column="7" selection-end-line="84" selection-end-column="7" />
+        <state relative-caret-position="408">
+          <caret line="128" column="38" selection-start-line="128" selection-start-column="38" selection-end-line="128" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#generateQueueTurnos#0;class#lalo#0" />
@@ -1328,13 +1301,11 @@
             <element signature="method#medioFijos#0;class#lalo#0" />
             <element signature="method#dondeHayJusto#0;class#lalo#0" />
             <element signature="method#laloFuncionando#0;class#lalo#0" />
-            <element signature="method#checkCondeso#0;class#lalo#0" />
             <element signature="method#checkDisponibilidad#0;class#lalo#0" />
             <element signature="method#checkDiasSeguidos#0;class#lalo#0" />
             <element signature="method#checkFinesLibres#0;class#lalo#0" />
             <element signature="method#checkTurnosEseDia#0;class#lalo#0" />
             <element signature="method#checkTienda#0;class#lalo#0" />
-            <element signature="method#checkLevel#0;class#lalo#0" />
             <element signature="method#checkEncargado#0;class#lalo#0" />
             <element signature="method#reacomodar#0;class#lalo#0" />
             <element signature="method#porDiasSeguidos#0;class#lalo#0" />
@@ -1344,6 +1315,23 @@
             <element signature="method#checkReason#0;class#lalo#0" />
             <element signature="method#findCandidates#0;class#lalo#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condeso/Condeso.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2490">
+          <caret line="280" column="17" lean-forward="true" selection-start-line="280" selection-start-column="17" selection-end-line="280" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condeso/Contrato.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>

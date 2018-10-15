@@ -277,6 +277,6 @@ public class Condeso {
 		return null;
 	} // falta checar fines de semana
 
-	public boolean checkMax(){ if(maxHours <= horasAsignadas) return false;
+	public boolean checkMax(Turnos elTurno){ if(maxHours <= horasAsignadas + elTurno.getDuracion()) return false;
 	return true;}
 }

@@ -126,7 +126,7 @@ public class lalo {
 		if(!checkEncargado(elCondeso, elTurno)) return false;
 		if(!checkDiasSeguidos(elCondeso, elTurno)) return false;
 		if(!checkFinesLibres(elCondeso, elTurno)) return false;
-		if(!elCondeso.checkMax()) return false;
+		if(!elCondeso.checkMax(elTurno)) return false;
 		if(!checkLevel(elCondeso, elTurno)) return false;
 		return true;
 
@@ -176,6 +176,8 @@ public class lalo {
 		if(elCondeso.getLevel() > 1 ) return true;
 		Tiendas laTienda = elTurno.getTienda();
 		HashMap<LocalDate, Dias> elMaster = horariosMaster.get(laTienda).getMes();
+		Dias elDia = elMaster.get(elTurno.getDate());
+
 		//TODO
 		return true;
 	}  //falta agregarlo en muchas partes
