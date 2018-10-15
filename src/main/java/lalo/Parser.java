@@ -26,7 +26,7 @@ public class Parser {
         Parser.foundCondesos = foundCondesos;
     }
 
-    public static int[][] parse(MysqlxDatatypes.Scalar.String fileName) {
+    public static int[][] parse(String fileName) {
         String line;
         String month = "1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t11\t12\t13\t14\t15\t16\t17  \t18\t19\t20\t21\t22\t23\t24\t25\t26\t27\t28";
         int[][] disponibilidad;
@@ -80,7 +80,7 @@ public class Parser {
         return null;
     }
 
-private static void parseTime(int[][] disponibilidad, MysqlxDatatypes.Scalar.String line, int a){
+private static void parseTime(int[][] disponibilidad, String line, int a){
         int i;
         String number;
         int hour;

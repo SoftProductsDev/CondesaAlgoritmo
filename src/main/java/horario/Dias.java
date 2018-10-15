@@ -1,6 +1,5 @@
 package horario;
 
-import DbModel.Turnos;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -13,7 +12,7 @@ import java.util.TreeSet;
 public class Dias {
     private long Id;
     //Usar TreeSet
-    private Set<DbModel.Turnos> turnos = new TreeSet<>();
+    private Set<Turnos> turnos = new TreeSet<>();
     private LocalDate date;
     private int dia;
     private DayOfWeek day;
@@ -52,7 +51,7 @@ public class Dias {
     public Dias(LocalDate date) {
         this.date = date;
     }
-    public Set<DbModel.Turnos> getTurnos() {
+    public Set<Turnos> getTurnos() {
         return turnos;
     }
     public void setTurnos(Set<Turnos> turnos) {
