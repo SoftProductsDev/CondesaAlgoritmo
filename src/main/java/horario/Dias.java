@@ -1,6 +1,8 @@
 package horario;
 
 import DbModel.Turnos;
+
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,6 +16,7 @@ public class Dias {
     private Set<DbModel.Turnos> turnos = new TreeSet<>();
     private LocalDate date;
     private int dia;
+    private DayOfWeek day;
 
     public  DbModel.Dias convertToDbModel()
     {
@@ -34,6 +37,11 @@ public class Dias {
     public void setDia(int dia){this.dia  = dia;}
 
     public int getDia(){return dia;}
+
+    public DayOfWeek getDay(){return day;}
+
+    public void setDay(DayOfWeek day){this.day = day;}
+
 
     private Map<Integer, DbModel.Turnos> convertTurnosToDbModel() {
         HashMap<Integer, DbModel.Turnos> result = new HashMap<>();
@@ -56,5 +64,7 @@ public class Dias {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
+
 
 }

@@ -3,15 +3,18 @@ package lalo;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.*;
 
 
 import condeso.Condeso;
 import condeso.CompareCondesos;
+import condeso.TipoEmpleado;
 import horario.HorarioEntrega;
 import horario.Turnos;
 import tiendas.Tiendas;
 import horario.HorarioMaster;
+import horario.Dias;
 import horario.HorarioPersonal;
 import horario.HorarioEntrega;
 
@@ -19,13 +22,53 @@ public class lalo {
 	public Set<HorarioEntrega> entregas;
 	public Set<Condeso> condesos;
 	public Set<Tiendas> tiendas;
-	private PriorityQueue<Turnos> turnos;
+	private Queue<Turnos> turnos;
+	private HashMap<Tiendas, HorarioMaster> horariosMaster;
+
+	public lalo(HashMap<Tiendas, HorarioMaster> horariosMaster, Set<Condeso> condesos, Set<Tiendas> tiendas){
+		this.horariosMaster = horariosMaster;
+		this.condesos = condesos;
+		this.tiendas = tiendas;
+		turnos = generateQueueTurnos(horariosMaster);
+
+	}
+
+	private Queue<Turnos> generateQueueTurnos(HashMap<Tiendas, HorarioMaster> horariosMaster /*, Queue<Turnos> encargados*/){
+		Queue<Turnos> elementales;
+		Queue<Turnos> noElementales;
+		HorarioMaster elMaster;
+		int year;
+		HashMap<LocalDate, Dias> mes;
+		Month month;
+		Set<Turnos> losTurnos;
+		for(Tiendas laTienda: tiendas){
+			elMaster = horariosMaster.get(laTienda);
+			year = elMaster.getYear();
+			month = elMaster.getMonth();
+			HashMap<LocalDate, Dias> losDias;
+			Dias elDia;
+			mes = elMaster.getMes();
+			int length = LocalDate.of(year, month, 1).lengthOfMonth();
+			for(int i = 0; i < length; i++){
+				elDia = mes.get(LocalDate.of(year, month, i+1));
+				losTurnos = elDia.getTurnos();
+				for(Turnos elTurno : losTurnos){
+					if(elTurno.isElemental()) elementales.add(elTurno);
+					else noElementales.add(elTurno);
+				}
+			}
+		}
+		elementales.addAll(noElementales);
+		// encargados.addAll(elementales);
+		return elementales;
+
+	}
 
 	private PriorityQueue<Condeso> fila;
 	private HashMap<Integer, Integer[][]> disponibilidad;
 
 
-	public void  GMTodos() {
+	/*public void  GMTodos() {
 		//TODO
 	}
 	public void encargadosGM() {
@@ -39,12 +82,13 @@ public class lalo {
 	}
 	public void pocoONadaDeJuego() {
 		//TODO
-	}
+	}*/
 
 	public void laloFuncionando() {
 		Set<Condeso> noDisponible = new HashSet<>();
 		Set<Turnos> noAsignados = new HashSet<>();
 		Set<Condeso> yaOcupados = new HashSet<>();
+
 
 		Turnos elTurno = turnos.poll();
 		Turnos last;
@@ -79,6 +123,7 @@ public class lalo {
 		if(!checkDisponibilidad(elCondeso, disponibilidad, elTurno)) return false;
 		if(!checkTienda(elCondeso, elTurno)) return false;
 		if(!checkTurnosEseDia(elCondeso, elTurno)) return false;
+		if(!checkEncargado(elCondeso, elTurno)) return false;
 		if(!checkDiasSeguidos(elCondeso, elTurno)) return false;
 		if(!checkFinesLibres(elCondeso, elTurno)) return false;
 		if(!elCondeso.checkMax()) return false;
@@ -128,9 +173,18 @@ public class lalo {
 	}
 
 	private boolean checkLevel(Condeso elCondeso, Turnos elTurno){
+		if(elCondeso.getLevel() > 1 ) return true;
+		Tiendas laTienda = elTurno.getTienda();
+		HashMap<LocalDate, Dias> elMaster = horariosMaster.get(laTienda).getMes();
 		//TODO
 		return true;
 	}  //falta agregarlo en muchas partes
+
+	private boolean checkEncargado(Condeso elCondeso, Turnos elTurno){
+		if(!elTurno.deEncargado()) return true;
+		else if(elCondeso.getTipo() == TipoEmpleado.Encargado || elCondeso.getTipo() == TipoEmpleado.GM) return true;
+		else return false;
+	}
 
 
 	private void reacomodar(Set<Turnos> noAsignados, Set<Condeso> condesos, HashMap<Integer, Integer[][]> disponibilidad){
