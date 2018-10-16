@@ -2,6 +2,7 @@ package DbModel;
 
 import condeso.Contrato;
 import condeso.TipoEmpleado;
+import java.util.Objects;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
@@ -224,5 +225,27 @@ public class Condeso {
 
   public void setColor(String color) {
     this.color = color;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Condeso condeso = (Condeso) o;
+    return getId() == condeso.getId();
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(getId());
+  }
+
+  @Override
+  public String toString() {
+    return  nombre;
   }
 }

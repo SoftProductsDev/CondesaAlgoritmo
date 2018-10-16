@@ -182,11 +182,11 @@ public class FrontGUI extends Application implements Initializable {
     int[] latestTurn = {0,0,0,0,0,0,0};
     for (DbModel.Turnos turno:dia.getTurnos()
     ) {
-      latestTurn = setTurnos(turno, dia.getDate(), latestTurn);
+      latestTurn = setTurnos(dia, turno, dia.getDate(), latestTurn);
     }
   }
 
-  private int[] setTurnos(DbModel.Turnos turno, LocalDate date, int[] latestTurn){
+  private int[] setTurnos(Dias dia, DbModel.Turnos turno, LocalDate date, int[] latestTurn){
     //considering the first hour is 8 am
     int hourIndex = turno.getInicio() - 7;
     if(hourIndex < 0){
@@ -206,13 +206,13 @@ public class FrontGUI extends Application implements Initializable {
     int dateIndex = date.getDayOfMonth() + 52 +
         calendar.withDayOfMonth(1).getDayOfWeek().getValue();
     GridPane pane = (GridPane) monthGrid.getChildren().get(dateIndex);
-    Label label = createLabel(turno);
+    Label label = createLabel(dia,turno);
     pane.add(label, columnIndex, hourIndex, 1, turno.getDuracion());
 
     return latestTurn;
   }
 
-  private Label createLabel(Turnos turno) {
+  private Label createLabel(Dias dia, Turnos turno) {
     Label label = new Label(turno.getCondeso().getNombre());
     label.setStyle("-fx-background-color: " + turno.getCondeso().getColor());
     //label.setStyle();
@@ -222,18 +222,22 @@ public class FrontGUI extends Application implements Initializable {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            Accordion p = null;
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPopOver.fxml"));
             String sceneFile = "/editPopOver.fxml";
             Parent root = null;
             URL url  = null;
             try {
-                url  = getClass().getResource( sceneFile );
-                root = FXMLLoader.load( url );
+                //url  = getClass().getResource( sceneFile );
+                //root = fxmlLoader.load( url );
+              root = (Parent) fxmlLoader.load();
             } catch (IOException e) {
               e.printStackTrace();
             }
             PopOver pop = new PopOver(root);
+            pop.setAutoFix(false);
             pop.show(label);
+            EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();
+            edit.SetInitialValues(turno, dia);
           };
         });
     return label;
