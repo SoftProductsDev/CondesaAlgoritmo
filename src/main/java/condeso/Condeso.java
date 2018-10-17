@@ -5,6 +5,7 @@ import horario.HorarioPersonal;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.lang.Math;
 
 import horario.Turnos;
 import tiendas.Tiendas;
@@ -29,9 +30,9 @@ public class Condeso {
 	private Turnos[] personal = new Turnos[31];
 	private List<Tiendas> dondePuedeTrabajar;
 	private Contrato contrato;
-	private int horas;
 	private int horasAsignadas = 0;
 	private int maxHours;
+	private int minHours;
 	//Hex Color Format
 	private String color;
 
@@ -218,9 +219,7 @@ public class Condeso {
 		this.contrato = contrato;
 	}
 
-	public int getHoras(){ return horas;}
-
-	public void setHoras(int horas){ this.horas = horas;}
+	public int getHoras(){ return (maxHours + minHours)/2;}
 
 	public void setHorasAsignadas(int horasAsignadas){this.horasAsignadas = horasAsignadas;}
 
@@ -262,7 +261,9 @@ public class Condeso {
 
 	}
 
-	public void setMaxHours(int maxHours){this.maxHours = maxHours;}
+	public void setMaxHours(int maxHours){
+		this.maxHours = contrato == Contrato.MiniJob ? Math.min(maxHours, 45) :  Math.max(maxHours, 50);
+		}
 
 	public int getMaxHours(){return maxHours;}
 
@@ -276,6 +277,10 @@ public class Condeso {
 		}
 		return null;
 	} // falta checar fines de semana
+
+	public int getMinHours(){return minHours;}
+
+	public void setMinHours(int minHours){this.minHours = minHours;}
 
 	public boolean checkMax(Turnos elTurno){ if(maxHours <= horasAsignadas + elTurno.getDuracion()) return false;
 	return true;}

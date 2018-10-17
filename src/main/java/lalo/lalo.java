@@ -34,7 +34,8 @@ public class lalo {
 	}
 
 	private Queue<Turnos> generateQueueTurnos(HashMap<Tiendas, HorarioMaster> horariosMaster /*, Queue<Turnos> encargados*/){
-		Queue<Turnos> elementales;
+		Queue<Turnos> elementales =;
+
 		Queue<Turnos> noElementales;
 		HorarioMaster elMaster;
 		int year;
@@ -312,7 +313,7 @@ public class lalo {
 			if(elCondeso.getPersonal()[elTurno.getDate().getDayOfMonth()-1] != null) yaTieneTurno.add(elCondeso);
 			else if(!checkDiasSeguidos(elCondeso, elTurno)) diasSeguidos.add(elCondeso);
 			else if(!checkFinesLibres(elCondeso, elTurno)) finesDeSemana.add(elCondeso);
-			else if(!elCondeso.checkMax()) maximoDelMes.add(elCondeso);
+			else if(!elCondeso.checkMax(elTurno)) maximoDelMes.add(elCondeso);
 
 		}
 

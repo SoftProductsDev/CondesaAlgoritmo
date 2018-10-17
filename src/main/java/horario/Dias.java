@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import tiendas.Tiendas;
 
 public class Dias {
     private long Id;
@@ -16,6 +17,11 @@ public class Dias {
     private LocalDate date;
     private int dia;
     private DayOfWeek day;
+    private Tiendas tienda;
+
+    public Tiendas getTienda(){return tienda;}
+
+    public void setTienda(Tiendas tienda){this.tienda = tienda;}
 
     public  DbModel.Dias convertToDbModel()
     {

@@ -12,9 +12,8 @@ public class Turnos {
 	private boolean noOptions = false;
 	private int inicio;
 	private int fin;
-	private Tiendas tienda;
 
-	private LocalDate date;
+	private Dias elDia;
 
 	private boolean encargado;
 
@@ -36,17 +35,20 @@ public class Turnos {
 	}
 
 	public Turnos(Condeso condeso, long id, boolean elemental, boolean matutino,
-			int inicio, int fin, LocalDate date, Tiendas tienda, boolean encargado) {
+			int inicio, int fin, Dias elDia, boolean encargado) {
 		this.condeso = condeso;
 		Id = id;
 		this.elemental = elemental;
 		this.matutino = matutino;
 		this.inicio = inicio;
 		this.fin = fin;
-		this.date = date;
-		this.tienda = tienda;
+		this.elDia = elDia;
 		this.encargado = encargado;
 	}
+
+	public Dias getDay(){return elDia;}
+
+	public void setDay(Dias elDia){this.elDia = elDia;}
 
 	public boolean noOptionst(){return noOptions;}
 
@@ -109,17 +111,16 @@ public class Turnos {
 		this.condeso = condeso;
 	}
 
-	public void setDate(LocalDate date){ this.date = date;}
 
-	public LocalDate getDate() { return date;
+
+	public LocalDate getDate() { return elDia.getDate();
 	}
 
-	public Tiendas getTienda(){return tienda;}
+	public Tiendas getTienda(){return elDia.getTienda();}
 
-	public void setTienda(Tiendas tienda){ this.tienda = tienda;}
 
 	public Turnos duplicate(){
-	return new Turnos(condeso, Id, elemental, matutino, inicio, fin, date, tienda, encargado);
+	return new Turnos(condeso, Id, elemental, matutino, inicio, fin, elDia, encargado);
 	}
 
 }
