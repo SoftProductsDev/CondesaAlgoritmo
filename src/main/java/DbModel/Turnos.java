@@ -1,5 +1,6 @@
 package DbModel;
 
+import horario.TipoTurno;
 import javax.persistence.*;
 
 @Entity
@@ -28,6 +29,9 @@ public class Turnos implements Comparable<Turnos> {
     @JoinColumn
     @OneToOne
     private Condeso condeso;
+
+    @Column
+    private TipoTurno tipoTurno;
 
     public Turnos(){
     }
@@ -90,6 +94,14 @@ public class Turnos implements Comparable<Turnos> {
 
     public void setCondeso(Condeso condeso) {
         this.condeso = condeso;
+    }
+
+    public TipoTurno getTipoTurno() {
+        return tipoTurno;
+    }
+
+    public void setTipoTurno(TipoTurno tipoTurno) {
+        this.tipoTurno = tipoTurno;
     }
 
     @Override

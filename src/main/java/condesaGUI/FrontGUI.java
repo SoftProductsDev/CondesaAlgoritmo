@@ -206,13 +206,13 @@ public class FrontGUI extends Application implements Initializable {
     int dateIndex = date.getDayOfMonth() + 52 +
         calendar.withDayOfMonth(1).getDayOfWeek().getValue();
     GridPane pane = (GridPane) monthGrid.getChildren().get(dateIndex);
-    Label label = createLabel(dia,turno);
+    Label label = createLabel(dia,turno, pane);
     pane.add(label, columnIndex, hourIndex, 1, turno.getDuracion());
 
     return latestTurn;
   }
 
-  private Label createLabel(Dias dia, Turnos turno) {
+  private Label createLabel(Dias dia, Turnos turno, GridPane grid) {
     Label label = new Label(turno.getCondeso().getNombre());
     label.setStyle("-fx-background-color: " + turno.getCondeso().getColor());
     //label.setStyle();
@@ -237,7 +237,7 @@ public class FrontGUI extends Application implements Initializable {
             pop.setAutoFix(false);
             pop.show(label);
             EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();
-            edit.SetInitialValues(turno, dia);
+            edit.SetInitialValues(turno, dia, grid, label);
           };
         });
     return label;

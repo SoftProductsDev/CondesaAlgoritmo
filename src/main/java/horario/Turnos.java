@@ -13,6 +13,7 @@ public class Turnos {
 	private int inicio;
 	private int fin;
 	private Tiendas tienda;
+	private TipoTurno tipoTurno;
 
 	private LocalDate date;
 
