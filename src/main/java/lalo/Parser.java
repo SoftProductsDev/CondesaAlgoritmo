@@ -80,6 +80,27 @@ public class Parser {
         return null;
     }
 
+private static void parseMaxMin(String line, Disponibilidad laDisponibilidad, int posicion){
+        String number;
+        int num;
+     number = line.substring(posicion , (posicion = subString(line, posicion, '\t')));
+     try{
+         num = Integer.parseInt(number);
+     }catch (Exception e){
+         num = 0;
+     }
+     laDisponibilidad.setMax(num);
+     posicion++;
+     number = line.substring(posicion, (posicion = subString(line, posicion, '\t')));
+     try{
+         num =Integer.parseInt(number);
+     }catch(Exception e){
+         num = 0;
+     }
+     laDisponibilidad.setMin(num);
+
+}
+
 private static void parseTime(int[][] disponibilidad, String line, int a){
         int i;
         String number;
@@ -98,7 +119,7 @@ private static void parseTime(int[][] disponibilidad, String line, int a){
     }
 }
 
-private static void parseTime(int [][] disponibilidad, String line, int a, int start){
+private static int parseTime(int [][] disponibilidad, String line, int a, int start){
     int i = start;
     String number;
     int hour;
@@ -112,7 +133,7 @@ private static void parseTime(int [][] disponibilidad, String line, int a, int s
         disponibilidad[a][k] = hour;
         i++;
     }
-
+return i;
 }
 
 private static int ignore(String input, char toIgnore){
@@ -181,7 +202,9 @@ try{
               name = line.substring(j, i);
               condeso = new Disponibilidad(name);
               disponibilidad = new int[2][dias];
-              parseTime(disponibilidad, line, 0, ++i);
+              j = parseTime(disponibilidad, line, 0, ++i) + 1;
+              parseMaxMin(line, condeso, j);
+
               line = buffer.readLine();
 
               //parser del Id de condeso, para que funcione descomentar y borrar la función parseTime justo debajo de la parte comentada
@@ -225,5 +248,6 @@ try{
 
     return null;
 }
+
 
 }

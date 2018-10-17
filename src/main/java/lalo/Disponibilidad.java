@@ -48,7 +48,7 @@ public class Disponibilidad {
     }
 
     public void Print(){
-        System.out.println(name);
+        System.out.println(name + " Max: " + max + ", Min: " + min);
         for(int i = 0; i < disponibilidad.length; i++){
             for(int j = 0; j < disponibilidad[i].length; j++){
                 System.out.print(disponibilidad[i][j] + ", ");
