@@ -10,12 +10,8 @@ import java.util.*;
 import condeso.Condeso;
 import condeso.CompareCondesos;
 import condeso.TipoEmpleado;
-import horario.HorarioEntrega;
-import horario.Turnos;
+import horario.*;
 import tiendas.Tiendas;
-import horario.HorarioMaster;
-import horario.Dias;
-import horario.HorarioPersonal;
 import horario.HorarioEntrega;
 
 public class lalo {
@@ -35,9 +31,9 @@ public class lalo {
 
 	private Queue<Turnos> generateQueueTurnos(HashMap<Tiendas, HorarioMaster> horariosMaster /*, Queue<Turnos> encargados*/){
 
-		Queue<Turnos> elementales = new PriorityQueue<Turnos>();
+		Queue<Turnos> elementales = new PriorityQueue<>(new CompareTurnos());
 
-		Queue<Turnos> noElementales;
+		Queue<Turnos> noElementales = new PriorityQueue<>(new CompareTurnos());
 		HorarioMaster elMaster;
 		int year;
 		HashMap<LocalDate, Dias> mes;
@@ -55,14 +51,14 @@ public class lalo {
 				elDia = mes.get(LocalDate.of(year, month, i+1));
 				losTurnos = elDia.getTurnos();
 				for(Turnos elTurno : losTurnos){
-					/*Comentado porque no deja compilar
+
 					if(elTurno.isElemental()) elementales.add(elTurno);
-					else noElementales.add(elTurno);*/
+					else noElementales.add(elTurno);
 				}
 			}
 		}
-		//elementales.addAll(noElementales);
-		// encargados.addAll(elementales);
+		elementales.addAll(noElementales);
+		//encargados.addAll(elementales);
 		return elementales;
 
 	}
