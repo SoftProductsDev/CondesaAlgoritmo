@@ -63,7 +63,7 @@ public class HibernateCrudTest extends TestCase {
     Condeso condeso = new Condeso();
     condeso.setCaja(true);
     condeso.setAntiguedad(LocalDate.now());
-    condeso.setContrato(Contrato.Tipo1);
+    condeso.setContrato(Contrato.MiniJob);
     condeso.setFijos(true);
     condeso.setManana(true);
     condeso.setTarde(true);
@@ -78,7 +78,7 @@ public class HibernateCrudTest extends TestCase {
     Condeso condeso2 = new Condeso();
     condeso2.setCaja(false);
     condeso2.setAntiguedad(LocalDate.now());
-    condeso2.setContrato(Contrato.Tipo2);
+    condeso2.setContrato(Contrato.otros);
     condeso2.setFijos(true);
     condeso2.setManana(true);
     condeso2.setTarde(true);
@@ -93,7 +93,7 @@ public class HibernateCrudTest extends TestCase {
     Condeso condeso3 = new Condeso();
     condeso3.setCaja(true);
     condeso3.setAntiguedad(LocalDate.now());
-    condeso3.setContrato(Contrato.Tipo3);
+    condeso3.setContrato(Contrato.MiniJob);
     condeso3.setFijos(false);
     condeso3.setManana(true);
     condeso3.setTarde(true);
@@ -108,7 +108,7 @@ public class HibernateCrudTest extends TestCase {
     Condeso condeso4 = new Condeso();
     condeso4.setCaja(true);
     condeso4.setAntiguedad(LocalDate.now());
-    condeso4.setContrato(Contrato.Tipo1);
+    condeso4.setContrato(Contrato.MiniJob);
     condeso4.setFijos(true);
     condeso4.setManana(true);
     condeso4.setTarde(true);
@@ -123,7 +123,7 @@ public class HibernateCrudTest extends TestCase {
     Condeso condeso5 = new Condeso();
     condeso5.setCaja(true);
     condeso5.setAntiguedad(LocalDate.now());
-    condeso5.setContrato(Contrato.Tipo1);
+    condeso5.setContrato(Contrato.MiniJob);
     condeso5.setFijos(true);
     condeso5.setManana(true);
     condeso5.setTarde(true);
@@ -138,7 +138,7 @@ public class HibernateCrudTest extends TestCase {
     Condeso condeso6 = new Condeso();
     condeso6.setCaja(true);
     condeso6.setAntiguedad(LocalDate.now());
-    condeso6.setContrato(Contrato.Tipo1);
+    condeso6.setContrato(Contrato.MiniJob);
     condeso6.setFijos(true);
     condeso6.setManana(true);
     condeso6.setTarde(true);
@@ -153,7 +153,7 @@ public class HibernateCrudTest extends TestCase {
     Condeso condeso7 = new Condeso();
     condeso7.setCaja(true);
     condeso7.setAntiguedad(LocalDate.now());
-    condeso7.setContrato(Contrato.Tipo1);
+    condeso7.setContrato(Contrato.MiniJob);
     condeso7.setFijos(true);
     condeso7.setManana(true);
     condeso7.setTarde(true);
@@ -168,7 +168,7 @@ public class HibernateCrudTest extends TestCase {
     Condeso condeso8 = new Condeso();
     condeso8.setCaja(true);
     condeso8.setAntiguedad(LocalDate.now());
-    condeso8.setContrato(Contrato.Tipo1);
+    condeso8.setContrato(Contrato.MiniJob);
     condeso8.setFijos(true);
     condeso8.setManana(true);
     condeso8.setTarde(true);
@@ -183,7 +183,7 @@ public class HibernateCrudTest extends TestCase {
     Condeso condeso9 = new Condeso();
     condeso9.setCaja(true);
     condeso9.setAntiguedad(LocalDate.now());
-    condeso9.setContrato(Contrato.Tipo1);
+    condeso9.setContrato(Contrato.MiniJob);
     condeso9.setFijos(true);
     condeso9.setManana(true);
     condeso9.setTarde(true);
@@ -198,7 +198,7 @@ public class HibernateCrudTest extends TestCase {
     Condeso condeso10 = new Condeso();
     condeso10.setCaja(true);
     condeso10.setAntiguedad(LocalDate.now());
-    condeso10.setContrato(Contrato.Tipo1);
+    condeso10.setContrato(Contrato.MiniJob);
     condeso10.setFijos(true);
     condeso10.setManana(true);
     condeso10.setTarde(true);
@@ -213,7 +213,7 @@ public class HibernateCrudTest extends TestCase {
     Condeso condeso11 = new Condeso();
     condeso11.setCaja(true);
     condeso11.setAntiguedad(LocalDate.now());
-    condeso11.setContrato(Contrato.Tipo1);
+    condeso11.setContrato(Contrato.MiniJob);
     condeso11.setFijos(true);
     condeso11.setManana(true);
     condeso11.setTarde(true);
@@ -228,7 +228,7 @@ public class HibernateCrudTest extends TestCase {
     Condeso condeso12 = new Condeso();
     condeso12.setCaja(true);
     condeso12.setAntiguedad(LocalDate.now());
-    condeso12.setContrato(Contrato.Tipo1);
+    condeso12.setContrato(Contrato.MiniJob);
     condeso12.setFijos(true);
     condeso12.setManana(true);
     condeso12.setTarde(true);
@@ -243,7 +243,7 @@ public class HibernateCrudTest extends TestCase {
     Condeso condeso13 = new Condeso();
     condeso13.setCaja(true);
     condeso13.setAntiguedad(LocalDate.now());
-    condeso13.setContrato(Contrato.Tipo1);
+    condeso13.setContrato(Contrato.MiniJob);
     condeso13.setFijos(true);
     condeso13.setManana(true);
     condeso13.setTarde(true);
@@ -258,7 +258,7 @@ public class HibernateCrudTest extends TestCase {
     Condeso condeso14 = new Condeso();
     condeso14.setCaja(true);
     condeso14.setAntiguedad(LocalDate.now());
-    condeso14.setContrato(Contrato.Tipo1);
+    condeso14.setContrato(Contrato.MiniJob);
     condeso14.setFijos(true);
     condeso14.setManana(true);
     condeso14.setTarde(true);
@@ -273,7 +273,7 @@ public class HibernateCrudTest extends TestCase {
     Condeso condeso15 = new Condeso();
     condeso15.setCaja(true);
     condeso15.setAntiguedad(LocalDate.now());
-    condeso15.setContrato(Contrato.Tipo1);
+    condeso15.setContrato(Contrato.MiniJob);
     condeso15.setFijos(true);
     condeso15.setManana(true);
     condeso15.setTarde(true);

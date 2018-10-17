@@ -34,7 +34,8 @@ public class lalo {
 	}
 
 	private Queue<Turnos> generateQueueTurnos(HashMap<Tiendas, HorarioMaster> horariosMaster /*, Queue<Turnos> encargados*/){
-		Queue<Turnos> elementales =;
+
+		Queue<Turnos> elementales = new PriorityQueue<Turnos>();
 
 		Queue<Turnos> noElementales;
 		HorarioMaster elMaster;
@@ -54,12 +55,13 @@ public class lalo {
 				elDia = mes.get(LocalDate.of(year, month, i+1));
 				losTurnos = elDia.getTurnos();
 				for(Turnos elTurno : losTurnos){
+					/*Comentado porque no deja compilar
 					if(elTurno.isElemental()) elementales.add(elTurno);
-					else noElementales.add(elTurno);
+					else noElementales.add(elTurno);*/
 				}
 			}
 		}
-		elementales.addAll(noElementales);
+		//elementales.addAll(noElementales);
 		// encargados.addAll(elementales);
 		return elementales;
 

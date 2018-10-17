@@ -12,6 +12,8 @@ public class Turnos {
 	private boolean noOptions = false;
 	private int inicio;
 	private int fin;
+	private Tiendas tienda;
+	private TipoTurno tipoTurno;
 
 	private Dias elDia;
 
