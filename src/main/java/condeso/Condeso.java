@@ -175,8 +175,13 @@ public class Condeso {
 		return finesLibres;
 	}
 
-	public void setFinesLibres(int finesLibres) {
-		this.finesLibres = finesLibres;
+	public void setFinesLibres(LocalDate date) {
+		int length = date.getMonth().length(date.isLeapYear());
+		DayOfWeek first = LocalDate.of(date.getYear(), date.getMonth(), 1).getDayOfWeek();
+		length = length % 7;
+		DayOfWeek last = first.plus(length);
+		if(last.getValue() < first.getValue()) finesLibres = 5;
+		else finesLibres = 4;
 	}
 
 	public HorarioEntrega getEntrega() {
@@ -271,9 +276,19 @@ public class Condeso {
 		int dia = elTurno.getDate().getDayOfMonth() - 1;
 		Turnos supuesto = personal[dia];
 		if(elTurno == supuesto){
-		personal[dia] = null;
-		horasAsignadas-= supuesto.getDuracion();
-		elTurno.setCondeso(null);
+		    LocalDate date = elTurno.getDate();
+		    personal[dia] = null;
+		    horasAsignadas-= supuesto.getDuracion();
+		    elTurno.setCondeso(null);
+		    DayOfWeek day = date.getDayOfWeek();
+		    if(day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY){
+		        switch (day){
+                    case SATURDAY: if(dia < date.getMonth().length(date.isLeapYear()) && personal[dia+1] == null) finesLibres++;
+                    break;
+                    case SUNDAY: if(dia > 0 && personal[dia-1] == null) finesLibres++;
+                    break;
+                }
+            }
 		}
 		return null;
 	} // falta checar fines de semana

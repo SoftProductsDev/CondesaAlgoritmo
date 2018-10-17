@@ -113,6 +113,9 @@ public class Turnos {
 		this.condeso = condeso;
 	}
 
+	public void setTipoTurno(TipoTurno tipo){this.tipoTurno = tipo;}
+
+	public TipoTurno getTipoTurno(){return tipoTurno;}
 
 
 	public LocalDate getDate() { return elDia.getDate();

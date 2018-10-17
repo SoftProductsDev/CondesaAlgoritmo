@@ -9,19 +9,23 @@ import java.util.*;
 
 import condeso.Condeso;
 import condeso.CompareCondesos;
+import condeso.Contrato;
 import condeso.TipoEmpleado;
 import horario.*;
+import javafx.scene.layout.Priority;
 import tiendas.Tiendas;
 import horario.HorarioEntrega;
 
 public class lalo {
 	public Set<HorarioEntrega> entregas;
-	public Set<Condeso> condesos;
+	private Set<Condeso> condesos;
 	public Set<Tiendas> tiendas;
 	private Queue<Turnos> turnos;
 	private HashMap<Tiendas, HorarioMaster> horariosMaster;
+	private HashMap<Integer, Integer[][]> disponibilidad;
 
-	public lalo(HashMap<Tiendas, HorarioMaster> horariosMaster, Set<Condeso> condesos, Set<Tiendas> tiendas){
+	public lalo(HashMap<Tiendas, HorarioMaster> horariosMaster, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad){
+		this.disponibilidad = disponibilidad;
 		this.horariosMaster = horariosMaster;
 		this.condesos = condesos;
 		this.tiendas = tiendas;
@@ -29,11 +33,10 @@ public class lalo {
 
 	}
 
-	private Queue<Turnos> generateQueueTurnos(HashMap<Tiendas, HorarioMaster> horariosMaster /*, Queue<Turnos> encargados*/){
+	private PriorityQueue<Turnos> generateQueueTurnos(HashMap<Tiendas, HorarioMaster> horariosMaster /*, Queue<Turnos> encargados*/){
 
-		Queue<Turnos> elementales = new PriorityQueue<>(new CompareTurnos());
+		PriorityQueue<Turnos> turnosPriorityQueue = new PriorityQueue<>(new CompareTurnos());
 
-		Queue<Turnos> noElementales = new PriorityQueue<>(new CompareTurnos());
 		HorarioMaster elMaster;
 		int year;
 		HashMap<LocalDate, Dias> mes;
@@ -51,43 +54,25 @@ public class lalo {
 				elDia = mes.get(LocalDate.of(year, month, i+1));
 				losTurnos = elDia.getTurnos();
 				for(Turnos elTurno : losTurnos){
-
-					if(elTurno.isElemental()) elementales.add(elTurno);
-					else noElementales.add(elTurno);
+					turnosPriorityQueue.add(elTurno);
 				}
 			}
 		}
-		elementales.addAll(noElementales);
-		//encargados.addAll(elementales);
-		return elementales;
+		//turnosPriorityQueue.addAll(encargados);
+		return turnosPriorityQueue;
 
 	}
 
-	private PriorityQueue<Condeso> fila;
-	private HashMap<Integer, Integer[][]> disponibilidad;
 
 
-	/*public void  GMTodos() {
-		//TODO
-	}
-	public void encargadosGM() {
-		//TODO
-	}
-	public void medioFijos() {
-		//TODO
-	}
-	public void dondeHayJusto() {
-		//TODO
-	}
-	public void pocoONadaDeJuego() {
-		//TODO
-	}*/
+
 
 	public void laloFuncionando() {
 		Set<Condeso> noDisponible = new HashSet<>();
-		Set<Turnos> noAsignados = new HashSet<>();
 		Set<Condeso> yaOcupados = new HashSet<>();
-
+		Set<Turnos> noAsignados = new HashSet<>();
+		PriorityQueue<Condeso> fila = new PriorityQueue<>(new CompareCondesos());
+		fila.addAll(condesos);
 
 		Turnos elTurno = turnos.poll();
 		Turnos last;
@@ -150,6 +135,7 @@ public class lalo {
 	}
 
 	private boolean checkFinesLibres(Condeso elCondeso, Turnos elTurno){
+		if(elCondeso.getContrato() == Contrato.MiniJob) return true;
 		LocalDate fecha = elTurno.getDate();
 		DayOfWeek dia = fecha.getDayOfWeek();
 		if(dia != DayOfWeek.SATURDAY && dia != DayOfWeek.SUNDAY) return true;
