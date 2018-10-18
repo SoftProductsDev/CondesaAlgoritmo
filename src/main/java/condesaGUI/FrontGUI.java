@@ -180,19 +180,23 @@ public class FrontGUI extends Application implements Initializable {
 
   private void setDias(Dias dia){
     int[] latestTurn = {0,0,0,0,0,0,0};
+    //42 date Labels + 12 listViews of time
+    int dateIndex = dia.getDate().getDayOfMonth() + 52 +
+        calendar.withDayOfMonth(1).getDayOfWeek().getValue();
+    GridPane pane = (GridPane) monthGrid.getChildren().get(dateIndex);
+    addGridEventHandler(pane, dia);
     for (DbModel.Turnos turno:dia.getTurnos()
     ) {
-      latestTurn = setTurnos(dia, turno, dia.getDate(), latestTurn);
+      latestTurn = setTurnos(dia, turno, dia.getDate(), latestTurn, pane);
     }
   }
 
-  private int[] setTurnos(Dias dia, DbModel.Turnos turno, LocalDate date, int[] latestTurn){
+  private int[] setTurnos(Dias dia, DbModel.Turnos turno, LocalDate date, int[] latestTurn, GridPane pane){
     //considering the first hour is 8 am
     int hourIndex = turno.getInicio() - 7;
     if(hourIndex < 0){
       //Cry
     }
-
     //column inside "Day"
     int columnIndex = 0;
     for (int j = 0; j < 7; j++){
@@ -202,10 +206,8 @@ public class FrontGUI extends Application implements Initializable {
         break;
       }
     }
-    //42 date Labels + 12 listViews of time
-    int dateIndex = date.getDayOfMonth() + 52 +
-        calendar.withDayOfMonth(1).getDayOfWeek().getValue();
-    GridPane pane = (GridPane) monthGrid.getChildren().get(dateIndex);
+
+
     Label label = createLabel(dia,turno, pane);
     pane.add(label, columnIndex, hourIndex, 1, turno.getDuracion());
 
@@ -223,12 +225,8 @@ public class FrontGUI extends Application implements Initializable {
           @Override
           public void handle(MouseEvent event) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPopOver.fxml"));
-            String sceneFile = "/editPopOver.fxml";
             Parent root = null;
-            URL url  = null;
             try {
-                //url  = getClass().getResource( sceneFile );
-                //root = fxmlLoader.load( url );
               root = (Parent) fxmlLoader.load();
             } catch (IOException e) {
               e.printStackTrace();
@@ -237,17 +235,11 @@ public class FrontGUI extends Application implements Initializable {
             pop.setAutoFix(false);
             pop.show(label);
             EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();
-            edit.SetInitialValues(turno, dia, grid, label);
+            edit.setInitialValues(turno, dia, grid, label);
+            event.consume();
           };
         });
     return label;
-  }
-
-  private Node createEditPopOver() {
-    Accordion accordion = new Accordion();
-    new TitledPane();
-    //accordion.setExpandedPane();
-    return accordion;
   }
 
   public static void main(String[] args) {
@@ -370,6 +362,27 @@ public class FrontGUI extends Application implements Initializable {
     grid.add(label5, 4,0);
     grid.add(label6, 5,0);
     grid.add(label7, 6,0);
+  }
+
+  private void addGridEventHandler(GridPane pane, Dias dia) {
+    pane.addEventHandler(MouseEvent.MOUSE_CLICKED,
+        new EventHandler<MouseEvent>() {
+          @Override
+          public void handle(MouseEvent event) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/addPopOver.fxml"));
+            Parent root = null;
+            try {
+              root = (Parent) fxmlLoader.load();
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+            PopOver pop = new PopOver(root);
+            pop.setAutoFix(false);
+            pop.show(pane);
+            AddPopOverGUI add = fxmlLoader.getController();
+            add.setInitialValues(pane, dia);
+          }
+        });
   }
 
 }

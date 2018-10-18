@@ -23,48 +23,39 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import org.controlsfx.control.PopOver;
 
-public class EditPopOverGUI  implements Initializable {
+public class AddPopOverGUI implements Initializable {
+  @FXML private ChoiceBox<TipoTurno> tipoChoice;
   @FXML private TextField inicioField;
   @FXML private TextField finField;
   @FXML private ChoiceBox<Condeso> condesoChoice;
-  private Turnos turno;
+  private GridPane gridPane;
   private Dias dia;
-  private GridPane grid;
-  private Label label;
 
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    ObservableList<Condeso> list = FXCollections.observableArrayList(HibernateCrud.GetAllCondesos());
-    condesoChoice.setItems(list);
-  }
-
-  public void setInitialValues(Turnos turno, Dias dia, GridPane grid, Label label){
-    this.turno = turno;
-    this.dia = dia;
-    this.grid = grid;
-    this.label = label;
-    inicioField.setText(Integer.toString(turno.getInicio()));
-    finField.setText(Integer.toString(turno.getFin()));
-    condesoChoice.getSelectionModel().select(turno.getCondeso() );
-  }
-
-  public void applyChange(ActionEvent actionEvent) {
+  public void addTurno(ActionEvent actionEvent) {
+    Turnos turno = new Turnos();
     turno.setInicio(Integer.parseInt(inicioField.getText()));
     turno.setFin(Integer.parseInt(finField.getText()));
     turno.setCondeso(condesoChoice.getSelectionModel().getSelectedItem());
-    grid.getChildren().remove(label);
-    //considering the first hour is 8 am
-    int hourIndex = turno.getInicio() - 7;
-    int columna = turno.getTipoTurno().ordinal();
-    grid.add(createLabel(), hourIndex, columna,1,turno.getDuracion());
+    turno.setTipoTurno(tipoChoice.getValue());
+    gridPane.add(createLabel(turno),turno.getTipoTurno().ordinal() + 1, turno.getInicio() - 7,
+        1, turno.getDuracion());
+    dia.getTurnos().add(turno);
   }
 
-  public void Delete(ActionEvent actionEvent) {
-    dia.getTurnos().remove(turno);
-    grid.getChildren().remove(label);
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    ObservableList<Condeso> condesos = FXCollections.observableArrayList(HibernateCrud.GetAllCondesos());
+    condesoChoice.setItems(condesos);
+    ObservableList<TipoTurno> turnos = FXCollections.observableArrayList(TipoTurno.values());
+    tipoChoice.setItems(turnos);
   }
 
-  private Label createLabel() {
+  public void setInitialValues(GridPane grid, Dias dia){
+    this.gridPane = grid;
+    this.dia = dia;
+  }
+
+  private Label createLabel(Turnos turno) {
     Label label = new Label(turno.getCondeso().getNombre());
     label.setStyle("-fx-background-color: " + turno.getCondeso().getColor());
     //label.setStyle();
@@ -89,7 +80,7 @@ public class EditPopOverGUI  implements Initializable {
             pop.setAutoFix(false);
             pop.show(label);
             EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();
-            edit.setInitialValues(turno, dia, grid, label);
+            edit.setInitialValues(turno, dia, gridPane, label);
           };
         });
     return label;

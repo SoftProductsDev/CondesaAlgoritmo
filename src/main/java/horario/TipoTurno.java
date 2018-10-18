@@ -4,7 +4,7 @@ public enum TipoTurno {
   GM,
   G,
   F,
-  D,
+  H,
   B,
   R
 }
