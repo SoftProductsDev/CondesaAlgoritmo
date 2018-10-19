@@ -73,7 +73,6 @@ public class PlantillaGUI   extends Application implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         horaList0.setItems(horario);
         horaList1.setItems(horario);
-        horaList3.setItems(horario);
         horaList4.setItems(horario);
         horaList5.setItems(horario);
         ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());

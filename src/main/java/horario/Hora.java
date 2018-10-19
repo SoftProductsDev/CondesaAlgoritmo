@@ -32,7 +32,7 @@ public class Hora {
 
     public void change(Turnos elTurno){
         int ocupados = 0;
-        int 
+        //int
         int countNoOcupados = 0;
         boolean nivelUno = false;
         for(Turnos turno : colisiones){
