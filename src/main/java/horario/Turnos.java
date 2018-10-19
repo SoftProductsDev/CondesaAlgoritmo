@@ -14,10 +14,13 @@ public class Turnos {
 	private int fin;
 	private Tiendas tienda;
 	private TipoTurno tipoTurno;
-
+	private int minimo;
 	private Dias elDia;
-
 	private boolean encargado;
+
+	public int getMinimo(){return minimo;}
+
+	public void setMinimo(int minimo){this.minimo = minimo;}
 
 	public long getId() {
 		return Id;

@@ -13,11 +13,21 @@ import tiendas.Tiendas;
 public class Dias {
     private long Id;
     //Usar TreeSet
-    private Set<Turnos> turnos = new TreeSet<>();
+    private Set<Turnos> turnos = new TreeSet<>(new CompareTurnos2());
     private LocalDate date;
     private int dia;
     private DayOfWeek day;
     private Tiendas tienda;
+    private HashMap<Integer, Hora> horas;
+    private float promedioMinimo;
+
+    public float getPromedioMinimo(){return promedioMinimo;}
+
+    public void setPromedioMinimo(float promedioMinimo){this.promedioMinimo = promedioMinimo;}
+
+    public HashMap<Integer, Hora> getHoras(){return horas;}
+
+    public void setHoras(HashMap<Integer, Hora> horas){this.horas = horas;}
 
     public Tiendas getTienda(){return tienda;}
 
