@@ -13,6 +13,8 @@ public class Plantillas {
 
 	private Set<Dias> dias;
 
+	private String name;
+
 	public Plantillas() {
 		dias = new HashSet<Dias>();
 	}

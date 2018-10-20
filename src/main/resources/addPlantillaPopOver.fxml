@@ -6,16 +6,14 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="217.0" prefWidth="106.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.AddPopOverGUI">
+<AnchorPane fx:id="anchorPane" prefHeight="217.0" prefWidth="106.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.AddPlantillasPopOver">
   <children>
     <Button fx:id="aplicarButton" layoutX="10.0" layoutY="178.0" mnemonicParsing="false" onAction="#addTurno" text="Añadir Turno" />
     <Label layoutX="6.0" layoutY="122.0" text="Inicio" />
     <Label layoutX="12.0" layoutY="150.0" text="Fin" />
     <TextField fx:id="inicioField" layoutX="48.0" layoutY="118.0" prefHeight="25.0" prefWidth="46.0" />
     <TextField fx:id="finField" layoutX="47.0" layoutY="146.0" prefHeight="25.0" prefWidth="47.0" />
-    <ChoiceBox fx:id="condesoChoice" layoutX="3.0" layoutY="31.0" prefHeight="25.0" prefWidth="99.0" />
-    <Label layoutX="32.0" layoutY="14.0" text="Condeso" />
-      <Label layoutX="20.0" layoutY="64.0" text="Tipo de Turno" />
-      <ChoiceBox fx:id="tipoChoice" layoutX="3.0" layoutY="81.0" prefHeight="25.0" prefWidth="99.0" />
+    <Label layoutX="11.0" layoutY="39.0" text="Tipo de Turno" />
+    <ChoiceBox fx:id="tipoChoice" layoutX="4.0" layoutY="64.0" prefHeight="25.0" prefWidth="99.0" />
   </children>
 </AnchorPane>
