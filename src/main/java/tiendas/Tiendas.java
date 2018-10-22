@@ -4,12 +4,18 @@ import horario.Plantillas;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
-public class Tiendas { // hola amigos
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+public class Tiendas {
 	private long Id;
 	private Plantillas plantilla;
 	private String nombre;
 	private HorarioMaster master;
 	private Boolean selected;
+	private List<LocalDate> diasDeCierre = new ArrayList<>();
 
 	public Tiendas(Plantillas plantilla, String nombre) {
 		this.plantilla = plantilla;
@@ -61,6 +67,14 @@ public class Tiendas { // hola amigos
 	}
 
 	public BooleanProperty selected(){return new SimpleBooleanProperty(selected);
+	}
+
+	public List<LocalDate> getDiasDeCierre() {
+		return diasDeCierre;
+	}
+
+	public void setDiasDeCierre(List<LocalDate> diasDeCierre) {
+		this.diasDeCierre = diasDeCierre;
 	}
 
 	@Override
