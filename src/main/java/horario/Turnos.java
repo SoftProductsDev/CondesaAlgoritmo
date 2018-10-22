@@ -8,8 +8,8 @@ import java.util.HashMap;
 public class Turnos {
 	private Condeso condeso;
 	private long Id;
-	private boolean elemental;
-	private boolean matutino;
+	//private boolean elemental;
+	//private boolean matutino;
 	private boolean noOptions = false;
 	private int inicio;
 	private int fin;
@@ -18,6 +18,20 @@ public class Turnos {
 	private int minimo;
 	private Dias elDia;
 	private boolean encargado;
+	private int idTienda;
+	private LocalDate fecha;
+
+	public LocalDate getFecha(){return fecha;}
+
+	public void setFecha(LocalDate fecha){
+		this.fecha = fecha;
+	}
+
+	public void setIdTienda(int id){
+		idTienda = id;
+	}
+
+	public int getIdTienda(){return idTienda;}
 
 	public void setHoras() {
 		HashMap<Integer, Hora> horas = elDia.getHoras();
@@ -43,22 +57,29 @@ public class Turnos {
 	public DbModel.Turnos convertToDbModel()
 	{
 		DbModel.Turnos result = new DbModel.Turnos();
-		result.setElemental(elemental);
+		//result.setElemental(elemental);
 		result.setInicio(inicio);
-		result.setMatutino(matutino);
+		//result.setMatutino(matutino);
 		return  result;
 	}
 
-	public Turnos(Condeso condeso, long id, boolean elemental, boolean matutino,
+	public Turnos(Condeso condeso, long id,
 			int inicio, int fin, Dias elDia, boolean encargado) {
 		this.condeso = condeso;
 		Id = id;
-		this.elemental = elemental;
-		this.matutino = matutino;
+		//this.matutino = matutino;
 		this.inicio = inicio;
 		this.fin = fin;
 		this.elDia = elDia;
 		this.encargado = encargado;
+	}
+
+	public Turnos(int idTienda, int inicio, int fin, LocalDate fecha){ // solo para el caso de los GM
+		this.idTienda = idTienda;
+		this.inicio = inicio;
+		this.fin = fin;
+		this.fecha = fecha;
+		encargado = true;
 	}
 
 	public Dias getDay(){return elDia;}
@@ -71,13 +92,13 @@ public class Turnos {
 		noOptions = Options;
 	}
 
-	public boolean isElemental() {
+	/*public boolean isElemental() {
 		return elemental;
 	}
 
 	public void setElemental(boolean elemental) {
 		this.elemental = elemental;
-	}
+	}*/
 
 	public int getInicio() {
 		return inicio;
@@ -99,13 +120,13 @@ public class Turnos {
 		return fin - inicio;
 	}
 
-	public boolean isMatutino() {
+	/*public boolean isMatutino() {
 		return matutino;
 	}
 
 	public void setMatutino(boolean matutino) {
 		this.matutino = matutino;
-	}
+	}*/
 
 	public boolean isOcupado() {
 		if(condeso == null)
@@ -138,7 +159,7 @@ public class Turnos {
 
 
 	public Turnos duplicate(){
-	return new Turnos(condeso, Id, elemental, matutino, inicio, fin, elDia, encargado);
+	return new Turnos(condeso, Id, inicio, fin, elDia, encargado);
 	}
 
 

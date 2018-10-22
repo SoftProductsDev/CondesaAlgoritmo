@@ -11,18 +11,19 @@ import javax.persistence.Id;
 public class Plantillas {
 	private long Id;
 
-	private Set<Dias> dias;
+	private Dias[] dias;
 
 	private String name;
 
 	public Plantillas() {
-		dias = new HashSet<Dias>();
+		dias = new Dias[7];
 	}
 
-	public Set<Dias> getDias(){return dias; }
+	public Dias[] getDias(){return dias; }
 
-	public void setDias(Set<Dias> dias) {
-		this.dias = dias;
+	public void setDia(int dia, Dias elDia) {
+		if( dia < 1 || dia > 7) return;
+		dias[dia-1] = elDia;
 	}
 
 	public long getId() {
@@ -33,31 +34,8 @@ public class Plantillas {
 		Id = id;
 	}
 
-	private Dias[] getSemana(){
-		Dias[] days = new Dias[7];
-		for(Dias dia : dias){
-			switch(dia.getDay()){
-				case MONDAY: days[0] = dia;
-				break;
-				case TUESDAY: days[1] = dia;
-					break;
-				case WEDNESDAY: days[2] = dia;
-					break;
-				case THURSDAY: days[3] = dia;
-					break;
-				case FRIDAY: days[4] = dia;
-					break;
-				case SATURDAY: days[5] = dia;
-					break;
-				case SUNDAY: days[6] = dia;
-					break;
-			}
-		}
-		return days;
-	}
 
 	public HorarioMaster generateMaster(LocalDate date){
-		Dias[] days = getSemana();
 		int year = date.getYear();
 		Month month = date.getMonth();
 
@@ -67,7 +45,7 @@ public class Plantillas {
 		Dias elDia;
 		for(int i = 0; i < dias; i++){
 			date2 = LocalDate.of(year, month, i+1);
-			elDia = generateDay(date2, days);
+			elDia = generateDay(date2, this.dias);
 			master.put(date2, elDia);
 		}
 		return new HorarioMaster(master);

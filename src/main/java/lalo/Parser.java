@@ -5,16 +5,18 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.time.Month;
+import java.util.*;
 
 import DbController.HibernateCrud;
 import DbModel.Condeso;
 import DbModel.HorarioEntrega;
 import com.mysql.cj.x.protobuf.MysqlxDatatypes;
+import horario.Turnos;
 
 public class Parser {
+
+
 
     private static List<Condeso> foundCondesos;
 
@@ -144,8 +146,16 @@ private static int ignore(String input, char toIgnore){
         return i;
 }
 
+private static int ignore(String input, char toIgnore, int from){
+    int i = from;
+    while(input.charAt(i) == toIgnore){
+        i++;
+    }
+    return i;
+    }
+
 private static int subString(String input, int i, char last){
-        int j = i + 1;
+        int j = i /*+1*/;//por si se caga algo
         while(j < input.length() && input.charAt(j) != last){
             j++;
         }
@@ -246,6 +256,138 @@ try{
 
 
     return null;
+}
+
+public Set<GM> parseGMs(String filename, ArrayList<Turnos> losTurnos , LocalDate date){
+String line;
+String tienda;
+String mes;
+Month month;
+
+
+
+
+HashMap<Integer, GM> GMs = new HashMap<Integer, GM>();
+ArrayList<Integer> IDs = new ArrayList<>();
+
+try{
+    FileReader reader = new FileReader(filename);
+    BufferedReader buffer = new BufferedReader(reader);
+    while((line=buffer.readLine()) != null ){
+      int i = ignore(line, '\t');
+      int j = subString(line, i, '\t');
+      int idTienda;
+      tienda = line.substring(i, j);
+      i = ignore(line, '\t', j);
+      j = subString(line, i, '\t');
+      try{
+      idTienda = Integer.parseInt(line.substring(i, j));}
+      catch (Exception e){
+          System.out.println("error al leer el Id de tienda");
+          return null;
+      }
+      line = buffer.readLine();
+      i = ignore(line, '\t');
+      j = subString(line, i, '\t');
+      mes = line.substring(i, j);
+      mes = mes.toUpperCase();
+      month = Month.valueOf(mes);
+      buffer.readLine();
+      buffer.readLine();
+      parseTurnosGMs(buffer.readLine(), buffer.readLine(), buffer.readLine(), buffer.readLine(), date,  GMs,
+              IDs, idTienda, losTurnos);
+      parseTurnosGMs(buffer.readLine(), buffer.readLine(), buffer.readLine(), buffer.readLine(), date,  GMs,
+                IDs, idTienda, losTurnos);
+       line = buffer.readLine();
+        while(useless(line)){
+          buffer.readLine();
+        }
+
+    }
+
+
+
+}catch (FileNotFoundException ex){
+    System.out.println( "Unable to open file '" +
+            filename + "'");
+} catch (IOException e){
+    e.printStackTrace();
+}
+
+
+    return null;
+
+
+}
+
+private boolean useless(String line){
+     for(int i = 0; i < line.length(); i++){
+         if(line.charAt(i) != '\t') return false;
+     }
+     return true;
+}
+
+private void parseTurnosGMs(String inicio, String fin, String GM, String ID, LocalDate mes, HashMap<Integer, GM> GMs ,
+                            ArrayList<Integer> IDs, int idTienda, ArrayList<Turnos> losTurnos){
+        int length = mes.lengthOfMonth();
+        int paraInicio = 0;
+        int paraFin = 0;
+        int paraGM = 0;
+        int paraId = 0;
+        int begin = 0;
+        int end;
+        int Id;
+        String Abrev;
+        boolean next = false;
+        GM elGM;
+
+        // String anfang;
+        // String ende;
+
+        paraInicio = ignore(inicio, '\t');
+        paraFin = ignore(fin, '\t');
+        paraGM = ignore(GM, '\t');
+        paraId = ignore(ID, '\t');
+    paraGM = subString(GM, paraGM, '\t')+1;
+    paraId = subString(ID, paraId, '\t')+1;
+
+        for(int i = 0; i < length; i++){
+            try{
+                begin = Integer.parseInt(inicio.substring(paraInicio, (paraInicio = subString(inicio, paraInicio, '\t' ))));
+                next = true;
+            } catch(Exception e){
+               paraInicio++;
+               paraFin = subString(fin, paraFin, '\t') + 1;
+               paraId = subString(ID, paraId, '\t') + 1;
+               paraGM = subString(GM , paraGM, '\t') + 1;
+                next = false;
+            }
+            if(next){
+               try{
+                   end = Integer.parseInt(fin.substring(paraFin, (paraFin = subString(fin, paraFin, '\t'))));
+                   Id = Integer.parseInt(ID.substring(paraId, (paraId = subString(ID, paraId, '\t'))));
+               }catch(Exception e){
+                   throw new RuntimeException("error parsing second number or ID");
+               }
+               Abrev = GM.substring(paraGM, (paraGM = subString(GM, paraGM, '\t')));
+               elGM = GMs.get(Id);
+               if(Abrev.charAt(0) == '#'){
+                 losTurnos.add(new Turnos(idTienda, begin, end, LocalDate.of(mes.getYear(), mes.getMonth(), i+1)));
+               }else{
+               if(elGM == null){
+                   elGM = new GM(Id, Abrev);
+                   IDs.add(Id);
+                   GMs.put(Id, elGM);
+               }
+               elGM.addTurno(new Turnos(idTienda, begin, end, LocalDate.of(mes.getYear(), mes.getMonth(), i+1)));
+            }
+            paraInicio++;
+            paraFin++;
+            paraId++;
+            paraGM++;
+            }
+
+        }
 }
 
 

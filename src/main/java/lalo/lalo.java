@@ -24,9 +24,8 @@ public class lalo {
 	private HashMap<Tiendas, HorarioMaster> horariosMaster;
 	private HashMap<Integer, Integer[][]> disponibilidad;
 
-	public lalo(HashMap<Tiendas, HorarioMaster> horariosMaster, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad){
+	public lalo(List<GM> GMs, List<Turnos> deEncargado, TreeSet<LocalDate> diasCerrados, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad){
 		this.disponibilidad = disponibilidad;
-		this.horariosMaster = horariosMaster;
 		this.condesos = condesos;
 		this.tiendas = tiendas;
 		turnos = generateQueueTurnos(horariosMaster);
@@ -65,7 +64,8 @@ public class lalo {
 
 
 
-
+	public void start(){
+	}
 
 	public void laloFuncionando() {
 		Set<Condeso> noDisponible = new HashSet<>();
