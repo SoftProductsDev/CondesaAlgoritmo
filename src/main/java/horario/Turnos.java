@@ -28,7 +28,7 @@ public class Turnos {
 
 	public int getMinimo(){return minimo;}
 
-	public void setMi11nimo(int minimo){
+	public void setMinimo(int minimo){
 	    if(minimo > this.minimo) this.minimo = minimo;
 	}
 
