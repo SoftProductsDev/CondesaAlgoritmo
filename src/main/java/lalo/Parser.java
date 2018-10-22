@@ -258,7 +258,9 @@ try{
     return null;
 }
 
+
 public static Set<GM> parseGMs(String filename, ArrayList<Turnos> losTurnos , LocalDate date){
+
 String line;
 String tienda;
 String mes;
@@ -329,13 +331,16 @@ return paraRegresar;
 private static boolean useless(String line){
        System.out.println("useless");
      for(int i = 0; i < 5; i++){
+
          if(line.charAt(i) != '\t') return false;
      }
      return true;
 }
 
+
 private static void parseTurnosGMs(String inicio, String fin, String GM, String ID, LocalDate mes, HashMap<Integer, GM> GMs ,
                             ArrayList<Integer> IDs, int idTienda, ArrayList<Turnos> losTurnos){
+
         int length = mes.lengthOfMonth();
         int paraInicio = 0;
         int paraFin = 0;
