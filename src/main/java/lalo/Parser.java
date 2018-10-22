@@ -258,7 +258,7 @@ try{
     return null;
 }
 
-public Set<GM> parseGMs(String filename, ArrayList<Turnos> losTurnos , LocalDate date){
+public static Set<GM> parseGMs(String filename, ArrayList<Turnos> losTurnos, LocalDate date){
 String line;
 String tienda;
 String mes;
@@ -323,15 +323,15 @@ return paraRegresar;
 
 }
 
-private boolean useless(String line){
+private static boolean useless(String line){
      for(int i = 0; i < line.length(); i++){
          if(line.charAt(i) != '\t') return false;
      }
      return true;
 }
 
-private void parseTurnosGMs(String inicio, String fin, String GM, String ID, LocalDate mes, HashMap<Integer, GM> GMs ,
-                            ArrayList<Integer> IDs, int idTienda, ArrayList<Turnos> losTurnos){
+private static void parseTurnosGMs(String inicio, String fin, String GM, String ID, LocalDate mes, HashMap<Integer, GM> GMs,
+                                   ArrayList<Integer> IDs, int idTienda, ArrayList<Turnos> losTurnos){
         int length = mes.lengthOfMonth();
         int paraInicio = 0;
         int paraFin = 0;

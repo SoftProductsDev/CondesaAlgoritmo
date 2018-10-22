@@ -2,6 +2,7 @@ package condesaGUI;
 
 import DbController.HibernateCrud;
 import DbModel.Condeso;
+import horario.Turnos;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +16,7 @@ import lalo.Disponibilidad;
 import lalo.Parser;
 import lalo.lalo;
 import tiendas.Tiendas;
+import lalo.GM;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -83,7 +85,9 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         String filename = "disponibilidad2.txt";
         Set<Disponibilidad> horario = Parser.parse2(filename);
-        //Set<GM> gms = Parser.parse
+        LocalDate date = LocalDate.of(2018, 11, 1); // momentaneamente
+        ArrayList<Turnos> turnos = new ArrayList<>();
+        Set<GM> gms = Parser.parseGMs("GMs.txt", turnos,date);
         List<Condeso> allCondesos = DbController.HibernateCrud.GetAllCondesos();
         List<Condeso> foundCondesos = new LinkedList<>();
         for(Disponibilidad e: horario){
