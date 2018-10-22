@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Accordion maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="217.0" prefWidth="110.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.EditPlantillasPopOverGUI">
+  <panes>
+    <TitledPane animated="false" expanded="true" text="Editar">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="166.0" prefWidth="108.0">
+          <children>
+            <Button fx:id="aplicarButton" layoutX="4.0" layoutY="127.0" mnemonicParsing="false" onAction="#applyChange" text="Aplicar cambio" />
+            <Label layoutX="15.0" layoutY="75.0" text="Inicio" />
+            <Label layoutX="21.0" layoutY="104.0" text="Fin" />
+            <TextField fx:id="inicioField" layoutX="55.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
+            <TextField fx:id="finField" layoutX="54.0" layoutY="100.0" prefHeight="25.0" prefWidth="47.0" />
+          </children></AnchorPane>
+      </content>
+    </TitledPane>
+    <TitledPane animated="false" prefHeight="192.0" prefWidth="116.0" text="Eliminar">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <children>
+            <Button layoutX="2.0" layoutY="62.0" mnemonicParsing="false" onAction="#Delete" prefHeight="43.0" prefWidth="104.0" text="Eliminar Turno" />
+          </children></AnchorPane>
+      </content>
+    </TitledPane>
+  </panes>
+</Accordion>

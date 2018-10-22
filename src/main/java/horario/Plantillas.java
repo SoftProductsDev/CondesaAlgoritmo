@@ -13,6 +13,8 @@ public class Plantillas {
 
 	private Set<Dias> dias;
 
+	private String name;
+
 	public Plantillas() {
 		dias = new HashSet<Dias>();
 	}
@@ -29,14 +31,6 @@ public class Plantillas {
 
 	public void setId(long id) {
 		Id = id;
-	}
-
-	public DbModel.Plantillas convertToDbModel()
-	{
-		DbModel.Plantillas result = new DbModel.Plantillas();
-		result.setId(Id);
-		dias.forEach((k) -> result.getDias().add(k.convertToDbModel()));
-		return result;
 	}
 
 	private Dias[] getSemana(){

@@ -16,9 +16,8 @@ public class Plantillas {
     to more than one instance of the collection.
      An instance of the contained entity class cannot appear
      at more than one value of the collection index.*/
-    @ElementCollection
-    @CollectionTable
-    private Set<Dias> dias;
+    @OrderColumn
+    private Dias[] dias;
 
     @Column(name = "nombre")
     private  String nombre;
@@ -34,19 +33,19 @@ public class Plantillas {
         this.id = id;
     }
 
-    public Set<Dias> getDias() {
-        return dias;
-    }
-
-    public void setDias(Set<Dias> dias) {
-        this.dias = dias;
-    }
-
     public String getNombre() {
         return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Dias[] getDias() {
+        return dias;
+    }
+
+    public void setDias(Dias[] dias) {
+        this.dias = dias;
     }
 }

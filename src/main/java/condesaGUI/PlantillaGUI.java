@@ -1,19 +1,28 @@
 package condesaGUI;
 
 import DbController.HibernateCrud;
+import DbModel.Dias;
+import DbModel.Plantillas;
 import DbModel.Tiendas;
+import java.io.IOException;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.util.TreeSet;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -23,18 +32,23 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import org.controlsfx.control.PopOver;
 
 public class PlantillaGUI   extends Application implements Initializable {
-    @FXML private ComboBox<String>  nombre;
-    @FXML private ComboBox<Tiendas> tiendasComboBox;
+    @FXML private ChoiceBox<String> nombreChoice;
+    @FXML private ChoiceBox<Tiendas> tiendasChoice;
     @FXML private ListView<String>  horaList0;
     @FXML private ListView<String>  horaList1;
     @FXML private ListView<String>  horaList3;
-    @FXML private ListView<String>  horaList4;
-    @FXML private ListView<String>  horaList5;
-
+    @FXML private ListView<String>  horaList2;
+    @FXML private GridPane weekGrid;
+    @FXML private GridPane weekGrid1;
+    private Dias[] dias;
     private static final ObservableList<String>
             horario = FXCollections.observableArrayList(getStaticList());
+    private Plantillas nuevaPlantilla;
+
+    public PlantillaGUI(){}
 
     private static ArrayList getStaticList() {
         ArrayList list = new ArrayList<>();
@@ -43,6 +57,21 @@ public class PlantillaGUI   extends Application implements Initializable {
             list.add(i + "-" + (i+1));
         }
         return list;
+    }
+
+    private static Dias[] createWeek(){
+        Dias[] dias = new Dias[7];
+        //This day is a monday, and should always be monday
+        LocalDate mondayDate = LocalDate.of(2018,10,22);
+        for (int i = 0; i < 7; i++){
+            Dias dia = new Dias();
+            dia.setDate(mondayDate);
+            dia.setTurnos(new TreeSet<>());
+            dias[i] = dia;
+            //Adds a day
+            mondayDate = mondayDate.plusDays(1);
+        }
+        return dias;
     }
 
     @Override
@@ -71,18 +100,20 @@ public class PlantillaGUI   extends Application implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        dias = createWeek();
+        nuevaPlantilla = new Plantillas();
+        nuevaPlantilla.setDias(dias);
         horaList0.setItems(horario);
         horaList1.setItems(horario);
-        horaList4.setItems(horario);
-        horaList5.setItems(horario);
+        horaList2.setItems(horario);
+        horaList3.setItems(horario);
         ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
-        tiendasComboBox.setItems(tiendas);
-        addLabelGrids();
+        tiendasChoice.setItems(tiendas);
+        addLabelGrids(weekGrid);
+        addLabelGrids(weekGrid1);
     }
 
-    private void addLabelGrids() {
-
-        for (int j = 1; j < 12; j+=2){
+    private void addLabelGrids(GridPane gridToAddLabels) {
             for (int i = 1; i < 8; i++){
                 GridPane grid = new GridPane();
                 for (int k = 0; k < 7; k++) {
@@ -96,12 +127,12 @@ public class PlantillaGUI   extends Application implements Initializable {
                     column.setPrefHeight(400);
                     grid.getRowConstraints().add(column);
                 }
-                grid.setId(i + "-" + j);
+                grid.setId(i + "-" + 0);
                 //grid.gridLinesVisibleProperty().set(true);
                 addLetrasArriba(grid);
-               // monthGrid.add(grid,i,j);
+                addGridEventHandler(grid, dias[i-1]);
+                gridToAddLabels.add(grid,i,0);
             }
-        }
     }
 
     public void addLetrasArriba(GridPane grid){
@@ -158,6 +189,28 @@ public class PlantillaGUI   extends Application implements Initializable {
         grid.add(label7, 6,0);
     }
 
+
+    private void addGridEventHandler(GridPane pane, Dias dia) {
+        pane.addEventHandler(MouseEvent.MOUSE_CLICKED,
+            new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/addPlantillaPopOver.fxml"));
+                    Parent root = null;
+                    try {
+                        root = (Parent) fxmlLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    PopOver pop = new PopOver(root);
+                    pop.setAutoFix(false);
+                    pop.show(pane);
+                    AddPlantillasPopOver add = fxmlLoader.getController();
+                    add.setInitialValues(pane, dia);
+                }
+            });
+    }
 
     public static void main(String[] args) {
         launch(args);

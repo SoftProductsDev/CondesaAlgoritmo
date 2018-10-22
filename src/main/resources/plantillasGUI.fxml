@@ -1,126 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane layoutX="0" layoutY="0" prefHeight="655.0" prefWidth="999.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.PlantillaGUI">
+<GridPane maxHeight="Infinity" maxWidth="Infinity" prefHeight="723.0" prefWidth="893.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.PlantillaGUI">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="151.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="593.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="30.0" prefHeight="128.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="336.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <ChoiceBox fx:id="tiendasChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <Label text="Tiendas" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <ChoiceBox fx:id="nombreChoice" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <Button mnemonicParsing="false" prefWidth="400.0" text="Utilizar" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Label text="Plantillas Anteriores" GridPane.columnSpan="2">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label text="Nombre Plantilla" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <Label text="Nueva Plantilla" GridPane.rowIndex="4">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <GridPane GridPane.columnSpan="2147483647" GridPane.rowIndex="5">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="289.0" minWidth="10.0" prefWidth="184.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="466.0" minWidth="10.0" prefWidth="147.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="466.0" minWidth="10.0" prefWidth="147.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="466.0" minWidth="10.0" prefWidth="147.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="466.0" minWidth="10.0" prefWidth="147.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="466.0" minWidth="10.0" prefWidth="147.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="466.0" minWidth="10.0" prefWidth="147.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="466.0" minWidth="10.0" prefWidth="125.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="466.0" minWidth="10.0" prefWidth="121.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="10.0" prefWidth="50.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="10.0" prefWidth="64.0" />
         </columnConstraints>
         <rowConstraints>
-      <RowConstraints maxHeight="178.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="213.0" minHeight="10.0" prefHeight="117.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="213.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="205.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="205.0" minHeight="10.0" prefHeight="93.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="205.0" minHeight="10.0" prefHeight="93.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="205.0" minHeight="10.0" prefHeight="93.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="205.0" minHeight="10.0" prefHeight="93.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="278.0" minHeight="10.0" prefHeight="135.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="182.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="182.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="310.0" vgrow="SOMETIMES" />
         </rowConstraints>
-      <GridPane.margin>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-      </GridPane.margin>
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-               <children>
-                  <Label layoutX="46.0" layoutY="25.0" text="Nombre" />
-                  <ComboBox fx:id="nombreComboBx" layoutX="16.0" layoutY="42.0" prefHeight="25.0" prefWidth="104.0" />
-               </children>
-            </AnchorPane>
-            <Button mnemonicParsing="false" text="Agregar Plantilla" GridPane.columnIndex="4" GridPane.rowIndex="10" />
-           <Label layoutX="32.0" layoutY="180.0" prefHeight="27.0" prefWidth="221.0" text="Plantillas Anteriores" GridPane.columnSpan="2">
-             <font>
-               <Font name="System Bold" size="18.0" />
-             </font></Label>
-      <AnchorPane prefHeight="220.0" prefWidth="202.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #4286f4;" text="Lunes" textFill="#f5f5f5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+           <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #4286f4;" text="Martes" textFill="#f5f5f5" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+           <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #4286f4;" text="Miércoles" textFill="#f5f5f5" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+           <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #4286f4;" text="Jueves" textFill="#f5f5f5" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+           <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #4286f4;" text="Viernes" textFill="#f5f5f5" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+           <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #4286f4;" text="Sábado" textFill="#f5f5f5" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+           <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #4286f4;" text="Domingo" textFill="#f5f5f5" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <ScrollPane fitToWidth="true" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+               <content>
+                  <GridPane fx:id="weekGrid" prefHeight="417.0" prefWidth="Infinity">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="10.0" prefWidth="50.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="10.0" prefWidth="50.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="417" prefHeight="205.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ListView fx:id="horaList0" maxHeight="Infinity" prefHeight="120.0" prefWidth="60.0" />
+                        <ListView fx:id="horaList1" maxHeight="Infinity" prefHeight="120.0" prefWidth="64.0" GridPane.columnIndex="8" />
+                     </children>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </GridPane>
+      <GridPane layoutX="10.0" layoutY="268.0" GridPane.columnIndex="2" GridPane.rowSpan="4">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="10.0" prefWidth="64.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="304.0" minHeight="10.0" prefHeight="298.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <Label fx:id="tienda" layoutX="30.0" layoutY="24.0" text="Tienda" />
-            <ComboBox fx:id="tiendasComboBox" layoutX="3.0" layoutY="42.0" prefHeight="0.0" prefWidth="129.0" />
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #4286f4;" text="Lunes" textFill="#f5f5f5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #4286f4;" text="Martes" textFill="#f5f5f5" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #4286f4;" text="Miércoles" textFill="#f5f5f5" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #4286f4;" text="Jueves" textFill="#f5f5f5" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #4286f4;" text="Viernes" textFill="#f5f5f5" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #4286f4;" text="Sábado" textFill="#f5f5f5" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #4286f4;" text="Domingo" textFill="#f5f5f5" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <ScrollPane fitToWidth="true" prefHeight="400.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+               <content>
+                  <GridPane fx:id="weekGrid1" prefHeight="417.0" prefWidth="Infinity">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="10.0" prefWidth="50.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="10.0" prefWidth="50.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                       <RowConstraints maxHeight="417.0" minHeight="400.0" prefHeight="300.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ListView fx:id="horaList2" maxHeight="Infinity" prefHeight="120.0" prefWidth="200.0" />
+                        <ListView fx:id="horaList3" maxHeight="Infinity" prefHeight="120.0" prefWidth="200.0" GridPane.columnIndex="8" />
+                     </children>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </GridPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="6">
+         <children>
+            <Button layoutX="395.0" mnemonicParsing="false" text="Guardar Plantilla" />
          </children>
       </AnchorPane>
-      <GridPane fx:id="weekPreviewGrid" maxHeight="Infinity" maxWidth="Infinity" prefHeight="352.0" prefWidth="943.0" GridPane.columnSpan="9" GridPane.rowIndex="5" GridPane.rowSpan="5">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="56.0" minWidth="10.0" prefWidth="56.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints maxWidth="56.0" minWidth="10.0" prefWidth="56.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints maxHeight="236.0" minHeight="0.0" prefHeight="14.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="400.0" minHeight="86.0" prefHeight="378.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <ListView fx:id="horaList4" maxHeight="500" prefHeight="296.0" prefWidth="56.0" GridPane.rowIndex="1" />
-            <ListView fx:id="horaList5" maxHeight="500" prefHeight="120.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Lunes" textFill="#f8f7f7" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Martes" textFill="#f8f7f7" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Miercoles" textFill="#f8f7f7" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Jueves" textFill="#f8f7f7" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Viernes" textFill="#f8f7f7" GridPane.columnIndex="5" GridPane.halignment="CENTER" />
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Sabado" textFill="#f8f7f7" GridPane.columnIndex="6" GridPane.halignment="CENTER" />
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Domingo" textFill="#f8f7f7" GridPane.columnIndex="7" GridPane.halignment="CENTER" />
-         </children>
-      </GridPane>
-      <GridPane fx:id="weekGrid" maxHeight="Infinity" maxWidth="Infinity" prefHeight="123.0" prefWidth="724.0" GridPane.columnIndex="2" GridPane.columnSpan="7" GridPane.rowSpan="4">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="56.0" minWidth="10.0" prefWidth="56.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="Infinity" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints maxWidth="56.0" minWidth="10.0" prefWidth="56.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints maxHeight="236.0" minHeight="0.0" prefHeight="25.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="400.0" minHeight="86.0" prefHeight="126.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <ListView fx:id="horaList0" maxHeight="500" prefHeight="120.0" prefWidth="110.0" GridPane.rowIndex="1" />
-            <ListView fx:id="horaList1" maxHeight="500" prefHeight="120.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Lunes" textFill="#f8f7f7" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Martes" textFill="#f8f7f7" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Miercoles" textFill="#f8f7f7" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Jueves" textFill="#f8f7f7" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Viernes" textFill="#f8f7f7" GridPane.columnIndex="5" GridPane.halignment="CENTER" />
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Sabado" textFill="#f8f7f7" GridPane.columnIndex="6" GridPane.halignment="CENTER" />
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #4286f4;" text="Domingo" textFill="#f8f7f7" GridPane.columnIndex="7" GridPane.halignment="CENTER" />
-         </children>
-      </GridPane>
-            <Label text="Nueva Plantilla" GridPane.columnSpan="2" GridPane.rowIndex="4">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Utilizar" GridPane.rowIndex="2" />
-         </children>
-   <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-   </padding>
-      </GridPane>
+   </children>
+</GridPane>
