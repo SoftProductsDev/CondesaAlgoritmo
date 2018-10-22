@@ -33,14 +33,6 @@ public class Plantillas {
 		Id = id;
 	}
 
-	public DbModel.Plantillas convertToDbModel()
-	{
-		DbModel.Plantillas result = new DbModel.Plantillas();
-		result.setId(Id);
-		dias.forEach((k) -> result.getDias().add(k.convertToDbModel()));
-		return result;
-	}
-
 	private Dias[] getSemana(){
 		Dias[] days = new Dias[7];
 		for(Dias dia : dias){

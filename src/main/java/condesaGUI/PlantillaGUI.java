@@ -2,8 +2,12 @@ package condesaGUI;
 
 import DbController.HibernateCrud;
 import DbModel.Dias;
+import DbModel.Plantillas;
 import DbModel.Tiendas;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.util.TreeSet;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,9 +43,12 @@ public class PlantillaGUI   extends Application implements Initializable {
     @FXML private ListView<String>  horaList2;
     @FXML private GridPane weekGrid;
     @FXML private GridPane weekGrid1;
-
+    private Dias[] dias;
     private static final ObservableList<String>
             horario = FXCollections.observableArrayList(getStaticList());
+    private Plantillas nuevaPlantilla;
+
+    public PlantillaGUI(){}
 
     private static ArrayList getStaticList() {
         ArrayList list = new ArrayList<>();
@@ -50,6 +57,21 @@ public class PlantillaGUI   extends Application implements Initializable {
             list.add(i + "-" + (i+1));
         }
         return list;
+    }
+
+    private static Dias[] createWeek(){
+        Dias[] dias = new Dias[7];
+        //This day is a monday, and should always be monday
+        LocalDate mondayDate = LocalDate.of(2018,10,22);
+        for (int i = 0; i < 7; i++){
+            Dias dia = new Dias();
+            dia.setDate(mondayDate);
+            dia.setTurnos(new TreeSet<>());
+            dias[i] = dia;
+            //Adds a day
+            mondayDate = mondayDate.plusDays(1);
+        }
+        return dias;
     }
 
     @Override
@@ -78,6 +100,9 @@ public class PlantillaGUI   extends Application implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        dias = createWeek();
+        nuevaPlantilla = new Plantillas();
+        nuevaPlantilla.setDias(dias);
         horaList0.setItems(horario);
         horaList1.setItems(horario);
         horaList2.setItems(horario);
@@ -103,9 +128,9 @@ public class PlantillaGUI   extends Application implements Initializable {
                     grid.getRowConstraints().add(column);
                 }
                 grid.setId(i + "-" + 0);
-                grid.gridLinesVisibleProperty().set(true);
+                //grid.gridLinesVisibleProperty().set(true);
                 addLetrasArriba(grid);
-                addGridEventHandler(grid, new Dias());
+                addGridEventHandler(grid, dias[i-1]);
                 gridToAddLabels.add(grid,i,0);
             }
     }
@@ -181,6 +206,8 @@ public class PlantillaGUI   extends Application implements Initializable {
                     PopOver pop = new PopOver(root);
                     pop.setAutoFix(false);
                     pop.show(pane);
+                    AddPlantillasPopOver add = fxmlLoader.getController();
+                    add.setInitialValues(pane, dia);
                 }
             });
     }

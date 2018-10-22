@@ -1,6 +1,7 @@
 package condesaGUI;
 
 import DbModel.Condeso;
+import DbModel.Dias;
 import DbModel.Turnos;
 import horario.TipoTurno;
 import java.io.IOException;
@@ -28,6 +29,7 @@ public class AddPlantillasPopOver implements Initializable {
   @FXML private TextField finField;
   @FXML private AnchorPane anchorPane;
   private GridPane gridPane;
+  private Dias dia;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -42,20 +44,20 @@ public class AddPlantillasPopOver implements Initializable {
     turno.setTipoTurno(tipoChoice.getValue());
     gridPane.add(createLabel(turno),turno.getTipoTurno().ordinal() + 1, turno.getInicio() - 7,
         1, turno.getDuracion());
-    //dia.getTurnos().add(turno);
+    dia.getTurnos().add(turno);
   }
 
   private Label createLabel(Turnos turno) {
     Label label = new Label("Turno");
-    //label.setStyle();
+    label.setStyle("-fx-background-color: #4286f4");
     label.setMaxHeight(125462739);
     label.setMaxWidth(1234567890);
     label.addEventHandler(MouseEvent.MOUSE_CLICKED,
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPopOver.fxml"));
-            String sceneFile = "/editPopOver.fxml";
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPlantillasPopOver.fxml"));
+            String sceneFile = "/editPlantillasPopOver.fxml";
             Parent root = null;
             URL url  = null;
             try {
@@ -68,10 +70,16 @@ public class AddPlantillasPopOver implements Initializable {
             PopOver pop = new PopOver(root);
             pop.setAutoFix(false);
             pop.show(label);
-            EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();
-            //edit.setInitialValues(turno, dia, gridPane, label);
+            EditPlantillasPopOverGUI edit = fxmlLoader.getController();
+            edit.setInitialValues(turno, dia, gridPane, label);
+            event.consume();
           };
         });
     return label;
+  }
+
+  public void setInitialValues(GridPane gridPane, Dias dia){
+    this.gridPane = gridPane;
+    this.dia = dia;
   }
 }

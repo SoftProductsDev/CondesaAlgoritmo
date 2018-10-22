@@ -81,6 +81,7 @@ public class AddPopOverGUI implements Initializable {
             pop.show(label);
             EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();
             edit.setInitialValues(turno, dia, gridPane, label);
+            event.consume();
           };
         });
     return label;
