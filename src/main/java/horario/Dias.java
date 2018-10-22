@@ -25,6 +25,7 @@ public class Dias {
 
     public void setPromedioMinimo(float promedioMinimo){this.promedioMinimo = promedioMinimo;}
 
+
     public HashMap<Integer, Hora> getHoras(){return horas;}
 
     public void setHoras(HashMap<Integer, Hora> horas){this.horas = horas;}

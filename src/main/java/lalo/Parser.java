@@ -208,14 +208,13 @@ try{
               line = buffer.readLine();
 
               //parser del Id de condeso, para que funcione descomentar y borrar la función parseTime justo debajo de la parte comentada
-
-                /*j = ignore(line, '\t');
+                j = ignore(line, '\t');
               i = getPosition(line, '\t', j);
               Id = Integer.parseInt(line.substring(j, i));
               condeso.setId(Id);
-              parseTime(disponibilidad, line, 1, ++i);*/
+              parseTime(disponibilidad, line, 1, ++i);
 
-              parseTime(disponibilidad, line, 1);
+              //parseTime(disponibilidad, line, 1);
               condeso.setDisponibilidad(disponibilidad);
               Disp.add(condeso);
               buffer.readLine();
