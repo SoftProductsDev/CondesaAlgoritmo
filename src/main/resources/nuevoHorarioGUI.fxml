@@ -37,14 +37,15 @@
         <RowConstraints />
     </rowConstraints>
    <children>
-       <Button fx:id="iniciarButton" mnemonicParsing="false" text="Iniciar" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+       <Button fx:id="iniciarButton" mnemonicParsing="false" onAction="#iniciarClicked" text="Iniciar" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="7">
            <font>
                <Font size="18.0" />
            </font>
        </Button>
-      <TableView fx:id="tiendasTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="6" GridPane.valignment="CENTER">
+      <TableView fx:id="tiendasTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.valignment="CENTER">
         <columns>
-          <TableColumn fx:id="tiendasName" prefWidth="${tiendasTable.width*1}" text="Nombre Tiendas" />
+          <TableColumn fx:id="tiendasName" prefWidth="${tiendasTable.width*0.5}" text="Nombre Tiendas" />
+            <TableColumn fx:id="tiendasPlantilla" prefWidth="${tiendasTable.width*0.5}" text="Plantilla Actual" />
         </columns>
       </TableView>
       <TableView fx:id="condesosTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="6" GridPane.valignment="CENTER">
@@ -54,6 +55,13 @@
             <TableColumn fx:id="condesoID" prefWidth="${condesosTable.width*0.333}" text="ID" />
         </columns>
       </TableView>
+       <TableView fx:id="gmsTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="3">
+           <columns>
+               <TableColumn fx:id="gmName" prefWidth="${gmsTable.width*0.333}" text="Nombre GM" />
+               <TableColumn fx:id="gmAbreviación" prefWidth="${gmsTable.width*0.333}" text="Abreviación" />
+               <TableColumn fx:id="gmID" prefWidth="${gmsTable.width*0.333}" text="ID" />
+           </columns>
+       </TableView>
       <Label text="Condesos Disponibles" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER">
        <font>
            <Font size="18.0" />
@@ -69,8 +77,8 @@
                <Font size="18.0" />
            </font>
        </Label>
-      <DatePicker fx:id="fechaDeCierre" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+      <DatePicker fx:id="fechaDeCierre" onAction="#fechasDeCierreClicked" GridPane.columnIndex="7" GridPane.rowIndex="1" />
       <ListView fx:id="fechaDeCierreList" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-      <Button fx:id="eliminarButton" mnemonicParsing="false" text="Eliminar" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+      <Button fx:id="eliminarButton" mnemonicParsing="false" onAction="#eliminarClicked" text="Eliminar" GridPane.columnIndex="8" GridPane.rowIndex="1" />
    </children>
 </GridPane>
