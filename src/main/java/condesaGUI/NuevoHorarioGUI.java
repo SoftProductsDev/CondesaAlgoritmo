@@ -2,7 +2,6 @@ package condesaGUI;
 
 import DbController.HibernateCrud;
 import DbModel.Condeso;
-import DbModel.Tiendas;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +13,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import lalo.Disponibilidad;
 import lalo.Parser;
+import lalo.lalo;
+import tiendas.Tiendas;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -46,17 +47,19 @@ public class NuevoHorarioGUI extends Application implements Initializable {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+           // lalo lalo = new lalo();
+           // lalo.start();
     }
 
     public void eliminarClicked(ActionEvent actionEvent) {
         LocalDate date = fechaDeCierreList.getSelectionModel().getSelectedItem();
-        if(date != null){
+        Tiendas tienda =  tiendasTable.getSelectionModel().getSelectedItem();
+        if(date != null && tienda != null){
+            dias = tienda.getDiasDeCierre();
             dias.remove(date);
             diasDeCierre = FXCollections.observableArrayList(dias);
             fechaDeCierreList.setItems(diasDeCierre);
-            //TODO
-            //eliminar tambien de la tienda tambien
+            tienda.setDiasDeCierre(dias);
         }
     }
 
@@ -68,11 +71,11 @@ public class NuevoHorarioGUI extends Application implements Initializable {
         LocalDate date = fechaDeCierre.getValue();
         Tiendas tienda = tiendasTable.getSelectionModel().getSelectedItem();
         if(date != null && tienda != null){
-            //TODO
-            //hay que agregarlo a la tienda tambien
+            dias = tienda.getDiasDeCierre();
             dias.add(date);
             diasDeCierre = FXCollections.observableArrayList(dias);
             fechaDeCierreList.setItems(diasDeCierre);
+            tienda.setDiasDeCierre(dias);
         }
     }
 
@@ -80,6 +83,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         String filename = "disponibilidad2.txt";
         Set<Disponibilidad> horario = Parser.parse2(filename);
+        //Set<GM> gms = Parser.parse
         List<Condeso> allCondesos = DbController.HibernateCrud.GetAllCondesos();
         List<Condeso> foundCondesos = new LinkedList<>();
         for(Disponibilidad e: horario){
@@ -99,7 +103,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
         condesoAbreviación.setCellValueFactory(new PropertyValueFactory<Condeso, String>("abreviacion"));
         tiendasName.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("nombre"));
         condesosTable.getItems().setAll( allCondesos);
-        tiendasTable.getItems().setAll( HibernateCrud.GetAllTiendas());
+        tiendasTable.getItems().setAll( HibernateCrud.GetAllDTOTiendas());
 
 
         tiendasTable.getSelectionModel().selectedItemProperty().addListener((obs, newSelection,
@@ -109,6 +113,9 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     }
 
     private void loadFechasDeCierreUpdate() {
-        //Todo
+        Tiendas tienda = tiendasTable.getSelectionModel().getSelectedItem();
+        dias = tienda.getDiasDeCierre();
+        diasDeCierre = FXCollections.observableArrayList(dias);
+        fechaDeCierreList.setItems(diasDeCierre);
     }
 }
