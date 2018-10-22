@@ -263,7 +263,7 @@ String line;
 String tienda;
 String mes;
 Month month;
-
+Set<GM> paraRegresar = new HashSet<GM>();
 
 
 
@@ -304,8 +304,11 @@ try{
         }
 
     }
-
-
+buffer.close();
+for(int id : IDs){
+    paraRegresar.add(GMs.get(id));
+}
+return paraRegresar;
 
 }catch (FileNotFoundException ex){
     System.out.println( "Unable to open file '" +
