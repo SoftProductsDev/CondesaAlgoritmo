@@ -41,4 +41,10 @@ public class GM {
    public List<Turnos> getSusTurnos(){
         return susTurnos;
    }
+
+   public void print(){
+        System.out.println(elGM + ", " + Id);
+        System.out.println(susTurnos.size());
+        System.out.println();
+   }
 }

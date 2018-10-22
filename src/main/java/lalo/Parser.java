@@ -161,7 +161,7 @@ private static int subString(String input, int i, char last){
         }
         if(j < input.length())
         return j;
-        else return input.length()-1;
+        else return input.length();
 }
 
 private static int getPosition(String line, char last, int i){
@@ -258,7 +258,7 @@ try{
     return null;
 }
 
-public Set<GM> parseGMs(String filename, ArrayList<Turnos> losTurnos , LocalDate date){
+public static Set<GM> parseGMs(String filename, ArrayList<Turnos> losTurnos , LocalDate date){
 String line;
 String tienda;
 String mes;
@@ -286,6 +286,7 @@ try{
           System.out.println("error al leer el Id de tienda");
           return null;
       }
+
       line = buffer.readLine();
       i = ignore(line, '\t');
       j = subString(line, i, '\t');
@@ -298,10 +299,12 @@ try{
               IDs, idTienda, losTurnos);
       parseTurnosGMs(buffer.readLine(), buffer.readLine(), buffer.readLine(), buffer.readLine(), date,  GMs,
                 IDs, idTienda, losTurnos);
-       line = buffer.readLine();
-        while(useless(line)){
-          buffer.readLine();
-        }
+      buffer.readLine();
+      buffer.readLine();
+      buffer.readLine();
+        /*while(useless(line)){
+          line = buffer.readLine();
+        }*/
 
     }
 buffer.close();
@@ -323,14 +326,15 @@ return paraRegresar;
 
 }
 
-private boolean useless(String line){
-     for(int i = 0; i < line.length(); i++){
+private static boolean useless(String line){
+       System.out.println("useless");
+     for(int i = 0; i < 5; i++){
          if(line.charAt(i) != '\t') return false;
      }
      return true;
 }
 
-private void parseTurnosGMs(String inicio, String fin, String GM, String ID, LocalDate mes, HashMap<Integer, GM> GMs ,
+private static void parseTurnosGMs(String inicio, String fin, String GM, String ID, LocalDate mes, HashMap<Integer, GM> GMs ,
                             ArrayList<Integer> IDs, int idTienda, ArrayList<Turnos> losTurnos){
         int length = mes.lengthOfMonth();
         int paraInicio = 0;
@@ -368,10 +372,15 @@ private void parseTurnosGMs(String inicio, String fin, String GM, String ID, Loc
             if(next){
                try{
                    end = Integer.parseInt(fin.substring(paraFin, (paraFin = subString(fin, paraFin, '\t'))));
-                   Id = Integer.parseInt(ID.substring(paraId, (paraId = subString(ID, paraId, '\t'))));
                }catch(Exception e){
-                   throw new RuntimeException("error parsing second number or ID");
+                   throw new RuntimeException("error parsing second number");
                }
+               try{
+                   Id = Integer.parseInt(ID.substring(paraId, (paraId = subString(ID, paraId, '\t'))));
+               }catch (Exception e){
+                   Id = 0;
+               }
+
                Abrev = GM.substring(paraGM, (paraGM = subString(GM, paraGM, '\t')));
                elGM = GMs.get(Id);
                if(Abrev.charAt(0) == '#'){
