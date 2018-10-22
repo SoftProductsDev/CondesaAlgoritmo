@@ -258,6 +258,7 @@ public class Condeso {
 
 	public void cambiarTurno(Turnos elTurno){
 		int day = elTurno.getDate().getDayOfMonth();
+		personal[day-1].setCondeso(null);
 		int horas = personal[day-1].getDuracion();
 		int horasNuevas = elTurno.getDuracion();
 		personal[day-1] = elTurno;

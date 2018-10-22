@@ -32,7 +32,7 @@ public class Hora {
 
     public void change(Turnos elTurno){
         int ocupados = 0;
-        //int
+        int minimo = (int)(promedio*colisiones.size());
         int countNoOcupados = 0;
         boolean nivelUno = false;
         for(Turnos turno : colisiones){
@@ -41,6 +41,14 @@ public class Hora {
                 if(turno.getCondeso().getLevel() == 1) nivelUno = true;}
             else countNoOcupados++;
         }
+
+        minimo = (minimo-ocupados+countNoOcupados-1)/countNoOcupados;
+        if(nivelUno && minimo <= 1) minimo++;
+
+        for(Turnos turno : colisiones){
+            if(!turno.isOcupado()) turno.setMinimo(minimo);
+        }
+
 
     }
 
