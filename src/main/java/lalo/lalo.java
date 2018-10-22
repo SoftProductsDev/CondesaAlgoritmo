@@ -24,7 +24,8 @@ public class lalo {
 	private HashMap<Tiendas, HorarioMaster> horariosMaster;
 	private HashMap<Integer, Integer[][]> disponibilidad;
 
-	public lalo(List<GM> GMs, List<Turnos> deEncargado, TreeSet<LocalDate> diasCerrados, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad){
+	public lalo(List<Turnos> GMs, List<Turnos> deEncargado, TreeSet<LocalDate> diasCerrados, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad,
+	LocalDate fecha){
 		this.disponibilidad = disponibilidad;
 		this.condesos = condesos;
 		this.tiendas = tiendas;
