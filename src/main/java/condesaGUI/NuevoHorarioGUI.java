@@ -14,7 +14,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import lalo.Disponibilidad;
 import lalo.Parser;
-import lalo.lalo;
 import tiendas.Tiendas;
 import lalo.GM;
 
@@ -35,12 +34,14 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     @FXML private ListView<LocalDate> fechaDeCierreList;
     @FXML private TableView<Condeso> gmsTable;
     @FXML private TableColumn<Condeso, String> gmName;
-    @FXML private TableColumn<Condeso, Integer> gmID;
+    @FXML private TableColumn<Condeso, Long> gmID;
     @FXML private TableColumn<Condeso, String> gmAbreviación;
+    @FXML private DatePicker mesDeInicioPicker;
 
 
     private ObservableList<LocalDate> diasDeCierre = null;
     private List<LocalDate> dias = new ArrayList<>();
+    private List<Condeso> allCondesos = DbController.HibernateCrud.GetAllCondesos();
 
 
     public static void main(String[] args) {
@@ -81,14 +82,29 @@ public class NuevoHorarioGUI extends Application implements Initializable {
         }
     }
 
+    public void mesDeInicioClicked(ActionEvent actionEvent){
+        LocalDate date = LocalDate.of(2018, 11, 1); // momentaneamente
+        ArrayList<Turnos> turnos = new ArrayList<>();
+        Set<GM> gms = Parser.parseGMs("GMs.txt", turnos,date);
+        List<Condeso> allGMs = new LinkedList<>();
+        for(GM gm: gms){
+            int id = gm.getId();
+            for(Condeso condeso : allCondesos){
+                if(condeso.getId() == id){
+                    allGMs.add(condeso);
+                }
+            }
+        }
+        gmName.setCellValueFactory(new PropertyValueFactory<Condeso, String>("nombre"));
+        gmID.setCellValueFactory(new PropertyValueFactory<Condeso, Long>("Id"));
+        gmAbreviación.setCellValueFactory(new PropertyValueFactory<Condeso, String>("abreviacion"));
+        gmsTable.getItems().setAll(allGMs);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String filename = "disponibilidad2.txt";
         Set<Disponibilidad> horario = Parser.parse2(filename);
-        LocalDate date = LocalDate.of(2018, 11, 1); // momentaneamente
-        ArrayList<Turnos> turnos = new ArrayList<>();
-        Set<GM> gms = Parser.parseGMs("GMs.txt", turnos,date);
-        List<Condeso> allCondesos = DbController.HibernateCrud.GetAllCondesos();
         List<Condeso> foundCondesos = new LinkedList<>();
         for(Disponibilidad e: horario){
             e.Print();
@@ -106,10 +122,8 @@ public class NuevoHorarioGUI extends Application implements Initializable {
         condesoID.setCellValueFactory(new PropertyValueFactory<Condeso, Long>("Id"));
         condesoAbreviación.setCellValueFactory(new PropertyValueFactory<Condeso, String>("abreviacion"));
         tiendasName.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("nombre"));
-        condesosTable.getItems().setAll( allCondesos);
+        condesosTable.getItems().setAll(foundCondesos);
         tiendasTable.getItems().setAll( HibernateCrud.GetAllDTOTiendas());
-
-
         tiendasTable.getSelectionModel().selectedItemProperty().addListener((obs, newSelection,
                                                                           oldSelection) -> {
             loadFechasDeCierreUpdate();
