@@ -46,7 +46,7 @@ public class Hora {
         if(nivelUno && minimo <= 1) minimo++;
 
         for(Turnos turno : colisiones){
-            if(!turno.isOcupado()) turno.setMinimo(minimo);
+            //if(!turno.isOcupado()) turno.setMinimo(minimo);
         }
 
 

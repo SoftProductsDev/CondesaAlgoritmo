@@ -35,7 +35,6 @@ public class NuevoHorarioGUI extends Application implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*
         String filename = "disponibilidad2.txt";
         Set<Disponibilidad> horario = Parser.parse2(filename);
         List<Condeso> allCondesos = lalo.Parser.getFoundCondesos();
@@ -43,7 +42,6 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             e.Print();
             System.out.println();
         }
-        */
         condesoName.setCellValueFactory(new PropertyValueFactory<Condeso, String>("nombre"));
         tiendasName.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("nombre"));
         //condesosTable.getItems().setAll( allCondesos);
