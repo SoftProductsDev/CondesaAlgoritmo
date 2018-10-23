@@ -49,7 +49,7 @@ public class AddPlantillasPopOver implements Initializable {
 
   private Label createLabel(Turnos turno) {
     Label label = new Label("Turno");
-    label.setStyle("-fx-background-color: #4286f4");
+    label.setStyle("-fx-background-color: #4286f4; -fx-border-color: black");
     label.setMaxHeight(125462739);
     label.setMaxWidth(1234567890);
     label.addEventHandler(MouseEvent.MOUSE_CLICKED,

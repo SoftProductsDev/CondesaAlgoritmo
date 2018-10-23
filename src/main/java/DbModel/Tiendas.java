@@ -1,6 +1,7 @@
 package DbModel;
 
 
+import java.util.List;
 import javax.persistence.*;
 import java.time.LocalDate;
 import org.hibernate.annotations.Cascade;
@@ -14,8 +15,9 @@ public class Tiendas {
     @Column(name = "id")
     private long id;
 
-    @JoinColumn
-    @ManyToOne
+    @JoinColumn(name = "plantilla")
+    @OneToOne
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Plantillas plantilla;
 
     @Column(name = "nombre")
@@ -31,6 +33,11 @@ public class Tiendas {
     @OneToOne
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private HorarioMaster master;
+
+    @JoinColumn
+    @OneToMany(fetch = FetchType.EAGER)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<Plantillas> plantillasAnteriores;
 
     public Tiendas(){
     }
@@ -86,5 +93,13 @@ public class Tiendas {
 
     public void setFechaApertura(LocalDate fechaApertura) {
         this.fechaApertura = fechaApertura;
+    }
+
+    public List<Plantillas> getPlantillasAnteriores() {
+        return plantillasAnteriores;
+    }
+
+    public void setPlantillasAnteriores(List<Plantillas> plantillasAnteriores) {
+        this.plantillasAnteriores = plantillasAnteriores;
     }
 }

@@ -1,5 +1,6 @@
 package DbModel;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.Set;
@@ -8,7 +9,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "dias")
 public class Dias {
-
 
     @Id
     @GeneratedValue

@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.metamodel.relational.Tuple;
 import org.hibernate.transform.Transformers;
 
 
@@ -82,9 +83,11 @@ public class HibernateCrud {
           SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
           Session session = sessionFactory.openSession();
           List<tiendas.Tiendas> tiendas = session.createQuery(""
-              + "select        "
-              + "t.id as id,        "
-              + "t.nombre as nombre from Tiendas t ").setResultTransformer(
+              + "select "
+              + "t.id as id, "
+              + "t.nombre as nombre, "
+              + "t.plantilla as plantilla from Tiendas t"
+              ).setResultTransformer(
               Transformers.aliasToBean(tiendas.Tiendas.class)).list();
           session.close();
           return tiendas;

@@ -1,7 +1,11 @@
 package DbModel;
 
+import java.util.List;
 import javax.persistence.*;
 import java.util.Set;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "plantillas")
@@ -12,12 +16,11 @@ public class Plantillas {
     @Column(name = "id")
     private long id;
 
-    /*An instance of the contained entity class cannot belong
-    to more than one instance of the collection.
-     An instance of the contained entity class cannot appear
-     at more than one value of the collection index.*/
-    @OrderColumn
-    private Dias[] dias;
+    @JoinColumn
+    @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<Dias> dias;
 
     @Column(name = "nombre")
     private  String nombre;
@@ -41,11 +44,16 @@ public class Plantillas {
         this.nombre = nombre;
     }
 
-    public Dias[] getDias() {
+    public List<Dias> getDias() {
         return dias;
     }
 
-    public void setDias(Dias[] dias) {
+    public void setDias(List<Dias> dias) {
         this.dias = dias;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 }

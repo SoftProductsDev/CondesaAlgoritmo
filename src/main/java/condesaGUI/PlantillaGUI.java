@@ -4,24 +4,30 @@ import DbController.HibernateCrud;
 import DbModel.Dias;
 import DbModel.Plantillas;
 import DbModel.Tiendas;
+import DbModel.Turnos;
 import java.io.IOException;
-import java.time.Duration;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 import java.util.TreeSet;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -33,9 +39,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import org.controlsfx.control.PopOver;
+import org.hibernate.Hibernate;
 
 public class PlantillaGUI   extends Application implements Initializable {
-    @FXML private ChoiceBox<String> nombreChoice;
+    @FXML private ChoiceBox<Plantillas> nombreChoice;
     @FXML private ChoiceBox<Tiendas> tiendasChoice;
     @FXML private ListView<String>  horaList0;
     @FXML private ListView<String>  horaList1;
@@ -43,7 +50,9 @@ public class PlantillaGUI   extends Application implements Initializable {
     @FXML private ListView<String>  horaList2;
     @FXML private GridPane weekGrid;
     @FXML private GridPane weekGrid1;
-    private Dias[] dias;
+    @FXML private ChoiceBox<Tiendas> tiendasChoiceNueva;
+    @FXML private TextField nombrePlantilla;
+    private List<Dias> dias;
     private static final ObservableList<String>
             horario = FXCollections.observableArrayList(getStaticList());
     private Plantillas nuevaPlantilla;
@@ -59,15 +68,15 @@ public class PlantillaGUI   extends Application implements Initializable {
         return list;
     }
 
-    private static Dias[] createWeek(){
-        Dias[] dias = new Dias[7];
+    private static List<Dias> createWeek(){
+        List<Dias> dias = new ArrayList<>();
         //This day is a monday, and should always be monday
         LocalDate mondayDate = LocalDate.of(2018,10,22);
         for (int i = 0; i < 7; i++){
             Dias dia = new Dias();
             dia.setDate(mondayDate);
             dia.setTurnos(new TreeSet<>());
-            dias[i] = dia;
+            dias.add(i, dia);
             //Adds a day
             mondayDate = mondayDate.plusDays(1);
         }
@@ -109,11 +118,64 @@ public class PlantillaGUI   extends Application implements Initializable {
         horaList3.setItems(horario);
         ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
         tiendasChoice.setItems(tiendas);
+        addChoiceboxListeners();
+        tiendasChoiceNueva.setItems(tiendas);
         addLabelGrids(weekGrid);
         addLabelGrids(weekGrid1);
     }
 
-    private void addLabelGrids(GridPane gridToAddLabels) {
+    private void addChoiceboxListeners(){
+      tiendasChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+        @Override
+        public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+          Tiendas tienda = tiendasChoice.getItems().get(number2.intValue());
+          try{
+            ObservableList<Plantillas> plantillas = FXCollections.observableArrayList(
+                tienda.getPlantillasAnteriores());
+            nombreChoice.setItems(plantillas);
+          }catch (Exception e){}
+        }
+      });
+      nombreChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+        @Override
+        public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
+          Plantillas plantilla = nombreChoice.getItems().get(newValue.intValue());
+          try {
+            deleteTurnosLabels(weekGrid1);
+            setDias(plantilla.getDias());
+          }catch (Exception e){}
+        }
+      });
+    }
+
+  private void setDias(List<Dias> dias) {
+    for (Dias dia: dias
+    ) {
+      for (Turnos turno: dia.getTurnos()
+      ) {
+        setTurno(turno, dia.getDate().getDayOfWeek().getValue() + 2);
+      }
+
+    }
+  }
+
+  private void setTurno(Turnos turno, int gridIndex) {
+      GridPane grid =  (GridPane) weekGrid1.getChildren().get(gridIndex);
+    int hourIndex = turno.getInicio() - 7;
+    int columna = turno.getTipoTurno().ordinal();
+      grid.add(createLabel(), columna + 1, hourIndex,1, turno.getDuracion());
+  }
+
+  private Node createLabel() {
+      Label label = new Label("Turno");
+      label.setStyle("-fx-background-color: #4286f4; -fx-border-color: black");
+      //label.setStyle();
+      label.setMaxHeight(125462739);
+      label.setMaxWidth(1234567890);
+      return label;
+  }
+
+  private void addLabelGrids(GridPane gridToAddLabels) {
             for (int i = 1; i < 8; i++){
                 GridPane grid = new GridPane();
                 for (int k = 0; k < 7; k++) {
@@ -130,7 +192,9 @@ public class PlantillaGUI   extends Application implements Initializable {
                 grid.setId(i + "-" + 0);
                 //grid.gridLinesVisibleProperty().set(true);
                 addLetrasArriba(grid);
-                addGridEventHandler(grid, dias[i-1]);
+                if(gridToAddLabels == weekGrid){
+                  addGridEventHandler(grid, dias.get(i-1));
+                }
                 gridToAddLabels.add(grid,i,0);
             }
     }
@@ -215,4 +279,41 @@ public class PlantillaGUI   extends Application implements Initializable {
     public static void main(String[] args) {
         launch(args);
     }
+
+  public void savePLantilla(ActionEvent actionEvent) {
+      Tiendas tienda = tiendasChoiceNueva.getSelectionModel().getSelectedItem();
+      Plantillas nueva = new Plantillas();
+      try{
+        nueva.setNombre(nombrePlantilla.getText());
+      }catch (Exception e){}
+      nueva.setDias(nuevaPlantilla.getDias());
+      try {
+        Hibernate.initialize(tienda.getPlantillasAnteriores());
+        tienda.getPlantillasAnteriores().add(nueva);
+      }catch(Exception e){
+        tienda.setPlantillasAnteriores(new ArrayList<>());
+        tienda.getPlantillasAnteriores().add(nueva);
+      }
+      HibernateCrud.UpdateTienda(tienda);
+      nuevaPlantilla.setDias(createWeek());
+      deleteTurnosLabels(weekGrid);
+  }
+
+  public void deleteTurnosLabels(GridPane pane){
+    for (Node node: pane.getChildren()
+    ) {
+      if(node.getClass() == GridPane.class){
+        GridPane grid = (GridPane) node;
+        grid.getChildren().clear();
+        addLetrasArriba(grid);
+      }
+    }
+  }
+
+  public void setPlantilla(ActionEvent actionEvent) {
+      Tiendas tienda = tiendasChoice.getSelectionModel().getSelectedItem();
+      Plantillas plantillas = nombreChoice.getSelectionModel().getSelectedItem();
+      tienda.setPlantilla(plantillas);
+      HibernateCrud.UpdateTienda(tienda);
+  }
 }

@@ -776,8 +776,8 @@ public class HibernateCrudTest extends TestCase {
 
   public void testGetTiendas()
   {
-    List<Tiendas> tiendas = HibernateCrud.GetAllTiendas();
-    for (Tiendas tienda:tiendas
+    List<tiendas.Tiendas> tiendas = HibernateCrud.GetAllDTOTiendas();
+    for (tiendas.Tiendas tienda:tiendas
     ) {
       System.out.println(tienda);
     }
