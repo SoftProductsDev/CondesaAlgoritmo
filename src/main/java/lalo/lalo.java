@@ -26,7 +26,7 @@ public class lalo {
 	private List<Turnos> deEncargado;
 	private LocalDate fecha;
 
-	public lalo(List<Turnos> GMs, List<Turnos> deEncargado, TreeSet<LocalDate> diasCerrados, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad,
+	public lalo(Set<Turnos> GMs, List<Turnos> deEncargado, TreeSet<LocalDate> diasCerrados, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad,
 	LocalDate fecha){
 		this.fecha = fecha;
 		this.deEncargado = deEncargado;
@@ -44,7 +44,7 @@ public class lalo {
 
 	}
 
-	private void addOtrosTurnos(List<Turnos> GMs, List<Turnos> deEncargado){
+	private void addOtrosTurnos(Set<Turnos> GMs, List<Turnos> deEncargado){
 		Dias elDia;
 		for(Turnos elTurno : GMs){
 			elDia = horariosMaster.get(elTurno.getTienda()).getMes().get(elTurno.getDate());
@@ -261,6 +261,7 @@ public class lalo {
 				condesos.addAll(useless);
 
 				if(!Found){
+
 
 				}
 
