@@ -51,7 +51,7 @@ public class Plantillas {
 		return new HorarioMaster(master);
  	}
 
- 	private Dias generateDay(LocalDate date, Dias[] days){ //TODO checar consistencia
+ 	private static Dias generateDay(LocalDate date, Dias[] days){ //TODO checar consistencia
 		int dia = date.getDayOfWeek().getValue()-1;
 		Set<Turnos> turnos = new HashSet<>();
 		Dias elDia = days[dia];

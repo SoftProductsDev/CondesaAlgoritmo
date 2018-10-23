@@ -1,5 +1,6 @@
 package horario;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Hora {
@@ -11,6 +12,11 @@ public class Hora {
 
     private void setElDia(Dias elDia){this.elDia = elDia;}
 
+    public Hora(Dias elDia, float promedio){
+        this.elDia = elDia;
+        this.promedio = promedio;
+        colisiones = new ArrayList<>();
+    }
 
 
     public void addTurno(Turnos elTurno){
@@ -46,7 +52,7 @@ public class Hora {
         if(nivelUno && minimo <= 1) minimo++;
 
         for(Turnos turno : colisiones){
-            //if(!turno.isOcupado()) turno.setMinimo(minimo);
+            if(!turno.isOcupado()) turno.setMinimo(minimo);
         }
 
 

@@ -28,7 +28,11 @@ public class Dias {
 
     public HashMap<Integer, Hora> getHoras(){return horas;}
 
-    public void setHoras(HashMap<Integer, Hora> horas){this.horas = horas;}
+    public void setHoras(){
+        for(Turnos elTurno : turnos ){
+            elTurno.setHoras();
+        }
+    }
 
     public Tiendas getTienda(){return tienda;}
 
@@ -73,6 +77,9 @@ public class Dias {
     }
     public void setTurnos(Set<Turnos> turnos) {
         this.turnos = turnos;
+    }
+    public void addTurno(Turnos elTurno){
+        turnos.add(elTurno);
     }
     public LocalDate getDate() {
         return date;

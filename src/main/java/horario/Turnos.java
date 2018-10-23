@@ -3,7 +3,9 @@ package horario;
 import tiendas.Tiendas;
 import condeso.Condeso;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Turnos {
 	private Condeso condeso;
@@ -20,6 +22,7 @@ public class Turnos {
 	private boolean encargado;
 	private int idTienda;
 	private LocalDate fecha;
+	private List<Hora> misHoras = new ArrayList<>();
 
 	public LocalDate getFecha(){return fecha;}
 
@@ -34,9 +37,23 @@ public class Turnos {
 	public int getIdTienda(){return idTienda;}
 
 	public void setHoras() {
+		if(encargado) return;
 		HashMap<Integer, Hora> horas = elDia.getHoras();
+		Hora laHora;
 		for (int i = inicio; i <= fin; i++) {
-			horas.get(i).addTurno(this);
+			laHora = horas.get(i);
+			if(laHora == null){
+				laHora = new Hora(elDia, elDia.getPromedioMinimo());
+				horas.put(i, laHora);
+			}
+			laHora.addTurno(this);
+			misHoras.add(laHora);
+		}
+	}
+
+	public void change(){
+		for(Hora laHora : misHoras){
+			laHora.change(this);
 		}
 	}
 

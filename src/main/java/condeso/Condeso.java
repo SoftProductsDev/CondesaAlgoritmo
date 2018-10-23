@@ -241,6 +241,7 @@ public class Condeso {
 	public void asignarTurno(Turnos elTurno){
 		int day = elTurno.getDate().getDayOfMonth();
 		elTurno.setCondeso(this);
+		elTurno.change();
 		personal[day-1] = elTurno;
 		horasAsignadas += elTurno.getDuracion();
 		DayOfWeek dia = elTurno.getDate().getDayOfWeek();

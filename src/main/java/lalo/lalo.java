@@ -23,17 +23,42 @@ public class lalo {
 	private Queue<Turnos> turnos;
 	private HashMap<Tiendas, HorarioMaster> horariosMaster;
 	private HashMap<Integer, Integer[][]> disponibilidad;
+	private List<Turnos> deEncargado;
+	private LocalDate fecha;
 
 	public lalo(List<Turnos> GMs, List<Turnos> deEncargado, TreeSet<LocalDate> diasCerrados, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad,
 	LocalDate fecha){
+		this.fecha = fecha;
+		this.deEncargado = deEncargado;
 		this.disponibilidad = disponibilidad;
 		this.condesos = condesos;
 		this.tiendas = tiendas;
-		turnos = generateQueueTurnos(horariosMaster);
+		horariosMaster = new HashMap<>();
+		for(Tiendas laTienda : tiendas){
+			horariosMaster.put(laTienda, laTienda.getPlantilla().generateMaster(fecha));
+		}
+		addOtrosTurnos(GMs, deEncargado);
+
+		turnos = generateQueueTurnos(horariosMaster, deEncargado);
+
 
 	}
 
-	private PriorityQueue<Turnos> generateQueueTurnos(HashMap<Tiendas, HorarioMaster> horariosMaster /*, Queue<Turnos> encargados*/){
+	private void addOtrosTurnos(List<Turnos> GMs, List<Turnos> deEncargado){
+		Dias elDia;
+		for(Turnos elTurno : GMs){
+			elDia = horariosMaster.get(elTurno.getTienda()).getMes().get(elTurno.getDate());
+			elDia.addTurno(elTurno);
+			elTurno.setDay(elDia);
+		}
+		for(Turnos elTurno : deEncargado){
+			elDia = horariosMaster.get(elTurno.getTienda()).getMes().get(elTurno.getDate());
+			elDia.addTurno(elTurno);
+			elTurno.setDay(elDia);
+		}
+	}
+
+	private PriorityQueue<Turnos> generateQueueTurnos(HashMap<Tiendas, HorarioMaster> horariosMaster , List<Turnos> encargados){
 
 		PriorityQueue<Turnos> turnosPriorityQueue = new PriorityQueue<>(new CompareTurnos());
 
@@ -58,7 +83,7 @@ public class lalo {
 				}
 			}
 		}
-		//turnosPriorityQueue.addAll(encargados);
+		turnosPriorityQueue.addAll(encargados);
 		return turnosPriorityQueue;
 
 	}
@@ -159,14 +184,9 @@ public class lalo {
 	}
 
 	private boolean checkLevel(Condeso elCondeso, Turnos elTurno){
-		if(elCondeso.getLevel() > 1 ) return true;
-		Tiendas laTienda = elTurno.getTienda();
-		HashMap<LocalDate, Dias> elMaster = horariosMaster.get(laTienda).getMes();
-		Dias elDia = elMaster.get(elTurno.getDate());
-
-		//TODO
-		return true;
-	}  //falta agregarlo en muchas partes
+		if(elCondeso.getLevel() >= elTurno.getMinimo()) return true;
+		return false;
+	}
 
 	private boolean checkEncargado(Condeso elCondeso, Turnos elTurno){
 		if(!elTurno.deEncargado()) return true;
