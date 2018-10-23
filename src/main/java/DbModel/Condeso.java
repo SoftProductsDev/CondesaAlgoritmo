@@ -10,6 +10,8 @@ import javafx.beans.value.ObservableValue;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 
 /**
@@ -36,6 +38,8 @@ public class Condeso {
   @Column
   private boolean manana;
   @Column
+  private boolean lunch;
+  @Column
   private boolean tarde;
   @Column
   private boolean caja;
@@ -61,7 +65,8 @@ public class Condeso {
   private HorarioPersonal personal;
 
   @JoinColumn
-  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.ALL)
+  @LazyCollection(LazyCollectionOption.FALSE)
   private List<Tiendas> dondePuedeTrabajar;
 
   @Column
@@ -227,6 +232,14 @@ public class Condeso {
     this.color = color;
   }
 
+  public boolean isLunch() {
+    return lunch;
+  }
+
+  public void setLunch(boolean lunch) {
+    this.lunch = lunch;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -247,5 +260,9 @@ public class Condeso {
   @Override
   public String toString() {
     return  nombre;
+  }
+
+  public ObservableValue<Boolean> Lunch() {
+      return  new SimpleBooleanProperty(lunch);
   }
 }

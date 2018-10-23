@@ -58,14 +58,12 @@ public class HibernateCrudTest extends TestCase {
     tiendas.add(mf);
     tiendas.add(hbf);
 
-
-
     Condeso condeso = new Condeso();
     condeso.setCaja(true);
     condeso.setAntiguedad(LocalDate.now());
     condeso.setContrato(Contrato.MiniJob);
     condeso.setFijos(true);
-    condeso.setManana(true);
+    condeso.setManana(true); condeso.setLunch(true);
     condeso.setTarde(true);
     condeso.setLevel(1);
     condeso.setTipo(TipoEmpleado.Encargado);
@@ -81,6 +79,7 @@ public class HibernateCrudTest extends TestCase {
     condeso2.setContrato(Contrato.otros);
     condeso2.setFijos(true);
     condeso2.setManana(true);
+    condeso2.setLunch(true);
     condeso2.setTarde(true);
     condeso2.setLevel(2);
     condeso2.setTipo(TipoEmpleado.Equipo);
@@ -96,6 +95,7 @@ public class HibernateCrudTest extends TestCase {
     condeso3.setContrato(Contrato.MiniJob);
     condeso3.setFijos(false);
     condeso3.setManana(true);
+    condeso3.setLunch(true);
     condeso3.setTarde(true);
     condeso3.setLevel(3);
     condeso3.setTipo(TipoEmpleado.GM);
@@ -694,8 +694,6 @@ public class HibernateCrudTest extends TestCase {
     turno8.setInicio(16);
     turno8.setFin(22);
     turno8.setCondeso(condesos.get(4));
-
-
 
     result.add(turno1);
     result.add(turno2);

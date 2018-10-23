@@ -45,6 +45,7 @@ public class CondesoGUI  extends Application implements Initializable {
     @FXML private TableColumn<Condeso, String> condesoAbreviacion;
     @FXML private TableColumn<DbModel.Condeso, Contrato> condesoContrato;
     @FXML private TableColumn<Condeso, Boolean> condesoVespertino;
+    @FXML private TableColumn<Condeso, Boolean> condesoLunch;
     @FXML private TableColumn<Condeso, Boolean> condesoMatutino;
     @FXML private TableColumn<Condeso, Date> condesoAntiguedad;
     @FXML private TableColumn<Condeso, Integer> condesoNivel;
@@ -60,6 +61,7 @@ public class CondesoGUI  extends Application implements Initializable {
     @FXML private RadioButton masculinoRadio;
     @FXML private RadioButton femeninoRadio;
     @FXML private RadioButton matutinoRadio;
+    @FXML private RadioButton lunchRadio;
     @FXML private RadioButton vespertinoRadio;
     @FXML private DatePicker calendario;
     @FXML private RadioButton cajaRadio;
@@ -131,6 +133,14 @@ public class CondesoGUI  extends Application implements Initializable {
         });
         condesoVespertino.setCellFactory(CheckBoxTableCell.forTableColumn(condesoVespertino));
         condesoVespertino.setEditable(false);
+        condesoLunch.setCellValueFactory(new Callback<CellDataFeatures<Condeso,Boolean>, ObservableValue<Boolean>>() {
+          @Override
+          public ObservableValue<Boolean> call(CellDataFeatures<Condeso, Boolean> param) {
+            return param.getValue().Lunch();
+          }
+        });
+        condesoLunch.setCellFactory(CheckBoxTableCell.forTableColumn(condesoLunch));
+        condesoLunch.setEditable(false);
         condesoCaja.setCellValueFactory(new Callback<CellDataFeatures<Condeso,Boolean>, ObservableValue<Boolean>>() {
             @Override
             public ObservableValue<Boolean> call(CellDataFeatures<Condeso, Boolean> param) {
@@ -231,6 +241,7 @@ public class CondesoGUI  extends Application implements Initializable {
             contratoChoiceBox.setValue(condeso.getContrato());
             matutinoRadio.setSelected(condeso.isManana());
             vespertinoRadio.setSelected(condeso.isTarde());
+            lunchRadio.setSelected(condeso.isLunch());
             calendario.setValue(condeso.getAntiguedad());
             cargoComboBox.setValue(condeso.getTipo());
             cajaRadio.setSelected(condeso.isCaja());
@@ -260,6 +271,7 @@ public class CondesoGUI  extends Application implements Initializable {
         condeso.setAbreviacion(abrevTextField.getText());
         condeso.setContrato(contratoChoiceBox.getValue());
         condeso.setManana(matutinoRadio.isSelected());
+        condeso.setLunch(lunchRadio.isSelected());
         condeso.setTarde(vespertinoRadio.isSelected());
         condeso.setAntiguedad(calendario.getValue());
         condeso.setTipo(cargoComboBox.getValue());
@@ -309,6 +321,7 @@ public class CondesoGUI  extends Application implements Initializable {
           condeso.setAbreviacion(abrevTextField.getText());
           condeso.setContrato(contratoChoiceBox.getValue());
           condeso.setManana(matutinoRadio.isSelected());
+          condeso.setLunch(lunchRadio.isSelected());
           condeso.setTarde(vespertinoRadio.isSelected());
           condeso.setAntiguedad(calendario.getValue());
           condeso.setTipo(cargoComboBox.getValue());
@@ -328,11 +341,12 @@ public class CondesoGUI  extends Application implements Initializable {
       }
       else{
         condeso.setDondePuedeTrabajar(tiendasAddCondeso);
-        //try{
+        try {
           HibernateCrud.UpdateCondeso(condeso);
-        //catch (Exception e){
-        //  errorLabel.setText(e.getMessage());
-        //}
+        }
+        catch (Exception e){
+         errorLabel.setText(e.getMessage());
+        }
         tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
       }
     }
