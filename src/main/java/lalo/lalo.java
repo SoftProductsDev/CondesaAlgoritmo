@@ -253,6 +253,7 @@ public class lalo {
 					break;
 					}else{
 					fila.addAll(checados);
+					checados.clear();
 					}
 
 				}
@@ -277,13 +278,28 @@ public class lalo {
 		int dia = elTurno.getDate().getDayOfMonth()-1;
 		int max = regalador.getDiasSeguidos();
 		for(int i = 0; i < max; i++){
+			if(dia-1-i > 0)
 			oferta = regalador.getPersonal()[dia-1-i];
-			if(checkCondeso(candidate, disponibilidad, oferta)){
+			else break;
+			if(oferta != null && checkCondeso(candidate, disponibilidad, oferta)){
 				candidate.asignarTurno(regalador.borrarTurno(oferta));
 				regalador.asignarTurno(elTurno);
 			return true;
-			}
+			}else if(oferta == null) break;
 		}
+		int length = elTurno.getDate().lengthOfMonth();
+
+		for(int i = 0; i < max; i++){
+			if(dia + 1 + i < length)
+			oferta = regalador.getPersonal()[dia + 1 + i];
+			else break;
+			if(oferta != null && checkCondeso(candidate, disponibilidad, oferta)){
+				candidate.asignarTurno(regalador.borrarTurno(oferta));
+				regalador.asignarTurno(elTurno);
+				return true;
+			}else if(oferta == null) break;
+		}
+
 		return false;
 	}
 
