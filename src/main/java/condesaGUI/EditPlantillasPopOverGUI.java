@@ -51,7 +51,7 @@ public class EditPlantillasPopOverGUI  implements Initializable {
       //considering the first hour is 8 am
       int hourIndex = turno.getInicio() - 7;
       int columna = turno.getTipoTurno().ordinal();
-      grid.add(createLabel(), hourIndex, columna,1,turno.getDuracion());
+      grid.add(createLabel(), columna + 1, hourIndex,1, turno.getDuracion());
     }
 
     public void Delete(ActionEvent actionEvent) {
@@ -61,7 +61,7 @@ public class EditPlantillasPopOverGUI  implements Initializable {
 
     private Label createLabel() {
       Label label = new Label("Turno");
-      label.setStyle("-fx-background-color: #4286f4");
+      label.setStyle("-fx-background-color: #4286f4; -fx-border-color: black");
       //label.setStyle();
       label.setMaxHeight(125462739);
       label.setMaxWidth(1234567890);
