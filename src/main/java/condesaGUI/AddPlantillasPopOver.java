@@ -1,8 +1,8 @@
 package condesaGUI;
 
-import DbModel.Condeso;
-import DbModel.Dias;
-import DbModel.Turnos;
+import condeso.Condeso;
+import horario.Dias;
+import horario.Turnos;
 import horario.TipoTurno;
 import java.io.IOException;
 import java.net.URL;

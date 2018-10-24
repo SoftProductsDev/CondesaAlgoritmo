@@ -1,84 +1,97 @@
 package condeso;
 import horario.HorarioEntrega;
 import horario.HorarioMaster;
-import horario.HorarioPersonal;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.lang.Math;
 
 import horario.Turnos;
+import java.util.Objects;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import tiendas.Tiendas;
 
 import java.util.List;
 
+@Entity
+@Table(name = "condeso")
 public class Condeso {
-	private long Id;
-    private TipoEmpleado tipo;
-    private String nombre;
+
+	@Id
+	@Column(name = "id")
+	private long id;
+	@Column
+	private TipoEmpleado tipo;
+	@Column
+	private String nombre;
+	@Column
+	private String abreviacion;
+	@Column
 	private boolean fijos;
+	@Column
 	private int level;
-	private int priorityValue;
+	@Column
 	private boolean manana;
+	@Column
+	private boolean lunch;
+	@Column
 	private boolean tarde;
+	@Column
 	private boolean caja;
+	@Column
 	private LocalDate antiguedad;
+	@Column
+	private boolean masculino;
+	@Column
+	private boolean femenino;
+	@Column
+	private String color;
+
+	@JoinColumn
+	@OneToOne
+	private HorarioEntrega entrega;
+
+	@JoinColumn
+	@ManyToOne
+	private HorarioMaster master;
+
+	@JoinColumn
+	@OneToMany(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<tiendas.Tiendas> dondePuedeTrabajar;
+
+	@Column
+	private Contrato contrato;
+
+	public Condeso() {
+	}
+	private int priorityValue;
 	private int diasSeguidos;
 	private int finesLibres;
-	private HorarioEntrega entrega;
-	private HorarioMaster master;
 	private Turnos[] personal = new Turnos[31];
-	private List<Tiendas> dondePuedeTrabajar;
-	private Contrato contrato;
 	private int horasAsignadas = 0;
 	private int maxHours;
 	private int minHours;
-	//Hex Color Format
-	private String color;
-
-	public Condeso(TipoEmpleado tipo, String nombre,
-			boolean fijos, int level, boolean manana,
-			boolean tarde, boolean caja, LocalDate antiguedad,
-			List<Tiendas> dondePuedeTrabajar, Contrato contrato) {
-		this.tipo = tipo;
-		this.nombre = nombre;
-		this.fijos = fijos;
-		this.level = level;
-		this.manana = manana;
-		this.tarde = tarde;
-		this.caja = caja;
-		this.antiguedad = antiguedad;
-		this.dondePuedeTrabajar = dondePuedeTrabajar;
-		this.contrato = contrato;
-	}
-
-	public Condeso(String nombre, String color) {
-		this.nombre = nombre;
-		this.color = color;
-	}
-
-	@Override
-  public String toString() {
-    return "Condeso{" +
-        "tipo=" + tipo +
-        ", nombre='" + nombre + '\'' +
-        ", fijos=" + fijos +
-        ", level=" + level +
-        ", manana=" + manana +
-				", tarde=" + tarde +
-        ", caja=" + caja +
-        ", antiguedad=" + antiguedad +
-        ", dondePuedeTrabajar=" + dondePuedeTrabajar +
-        ", contrato=" + contrato +
-        '}';
-  }
 
 	public long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public TipoEmpleado getTipo() {
@@ -216,6 +229,42 @@ public class Condeso {
 		this.dondePuedeTrabajar = dondePuedeTrabajar;
 	}
 
+	public String getAbreviacion() {
+		return abreviacion;
+	}
+
+	public void setAbreviacion(String abreviacion) {
+		this.abreviacion = abreviacion;
+	}
+
+	public boolean isLunch() {
+		return lunch;
+	}
+
+	public void setLunch(boolean lunch) {
+		this.lunch = lunch;
+	}
+
+	public boolean isMasculino() {
+		return masculino;
+	}
+
+	public void setMasculino(boolean masculino) {
+		this.masculino = masculino;
+	}
+
+	public boolean isFemenino() {
+		return femenino;
+	}
+
+	public void setFemenino(boolean femenino) {
+		this.femenino = femenino;
+	}
+
+	public void setFinesLibres(int finesLibres) {
+		this.finesLibres = finesLibres;
+	}
+
 	public Contrato getContrato() {
 		return contrato;
 	}
@@ -236,6 +285,18 @@ public class Condeso {
 
 	public void setColor(String color) {
 		this.color = color;
+	}
+
+	public BooleanProperty Manana() {
+		return new SimpleBooleanProperty(manana);
+	}
+
+	public ObservableValue<Boolean> Tarde() {
+		return  new SimpleBooleanProperty(tarde);
+	}
+
+	public ObservableValue<Boolean> Nivel() {
+		return  new SimpleBooleanProperty(caja);
 	}
 
 	public void asignarTurno(Turnos elTurno){
@@ -301,4 +362,30 @@ public class Condeso {
 
 	public boolean checkMax(Turnos elTurno){ if(maxHours <= horasAsignadas + elTurno.getDuracion()) return false;
 	return true;}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		DbModel.Condeso condeso = (DbModel.Condeso) o;
+		return getId() == condeso.getId();
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getId());
+	}
+
+	@Override
+	public String toString() {
+		return  nombre;
+	}
+
+	public ObservableValue<Boolean> Lunch() {
+		return  new SimpleBooleanProperty(lunch);
+	}
 }

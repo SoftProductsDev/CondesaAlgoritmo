@@ -19,14 +19,14 @@
 
     <!-- Mapping Classes -->
     <!-- Recipe: Save An Object -->
-    <mapping class="DbModel.Condeso" />
-    <mapping class="DbModel.HorarioMaster"/>
-    <mapping class="DbModel.HorarioEntrega"/>
-    <mapping class="DbModel.HorarioPersonal"/>
-    <mapping class="DbModel.Tiendas"/>
-    <mapping class="DbModel.Plantillas"/>
-    <mapping class="DbModel.Dias"/>
-    <mapping class="DbModel.Turnos"/>
+    <mapping class="condeso.Condeso" />
+    <mapping class="horario.HorarioMaster"/>
+    <mapping class="horario.HorarioEntrega"/>
+    <mapping class="horario.HorarioPersonal"/>
+    <mapping class="tiendas.Tiendas"/>
+    <mapping class="horario.Plantillas"/>
+    <mapping class="horario.Dias"/>
+    <mapping class="horario.Turnos"/>
 
 
 

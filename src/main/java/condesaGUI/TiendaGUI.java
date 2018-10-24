@@ -1,8 +1,8 @@
 package condesaGUI;
 
 import DbController.HibernateCrud;
-import DbModel.Plantillas;
-import DbModel.Tiendas;
+import horario.Plantillas;
+import tiendas.Tiendas;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,11 +23,11 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class TiendaGUI extends Application implements Initializable {
-    @FXML private TableView<DbModel.Tiendas> tableView;
-    @FXML private TableColumn<DbModel.Tiendas, String> tiendaNombre;
-    @FXML private TableColumn<DbModel.Tiendas, String> tiendaManager;
-    @FXML private TableColumn<DbModel.Tiendas, Date> fechaApertura;
-    @FXML private TableColumn<DbModel.Tiendas, Plantillas> plantillaActual;
+    @FXML private TableView<Tiendas> tableView;
+    @FXML private TableColumn<Tiendas, String> tiendaNombre;
+    @FXML private TableColumn<Tiendas, String> tiendaManager;
+    @FXML private TableColumn<Tiendas, Date> fechaApertura;
+    @FXML private TableColumn<Tiendas, Plantillas> plantillaActual;
     @FXML private TextField nombreTextField;
     @FXML private TextField managerTextField;
     @FXML private DatePicker apertura;
@@ -86,7 +86,7 @@ public class TiendaGUI extends Application implements Initializable {
     }
 
     public void addButtonClicked(ActionEvent actionEvent) {
-        DbModel.Tiendas tienda = new Tiendas();
+        Tiendas tienda = new Tiendas();
         tienda.setNombre(nombreTextField.getText());
         tienda.setManager(managerTextField.getText());
         tienda.setFechaApertura(apertura.getValue());

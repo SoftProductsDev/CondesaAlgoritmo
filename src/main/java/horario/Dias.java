@@ -8,18 +8,42 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MapKey;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import tiendas.Tiendas;
 
+@Entity
+@Table(name = "dias")
 public class Dias {
-    private long Id;
+    @javax.persistence.Id
+    @GeneratedValue
+    @Column(name = "id")
+    private long id;
+
     //Usar TreeSet
-    private Set<Turnos> turnos = new TreeSet<>(new CompareTurnos2());
+    @ElementCollection
+    @MapKey(name = "inicio")
+    @CollectionTable
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Turnos> turnos;
+
+    @Column(name = "date")
     private LocalDate date;
-    private int dia;
-    private DayOfWeek day;
+
     private Tiendas tienda;
     private HashMap<Integer, Hora> horas;
     private float promedioMinimo;
+
+    public Dias(){}
 
     public float getPromedioMinimo(){return promedioMinimo;}
 
@@ -38,36 +62,17 @@ public class Dias {
 
     public void setTienda(Tiendas tienda){this.tienda = tienda;}
 
-    public  DbModel.Dias convertToDbModel()
-    {
-        DbModel.Dias result = new DbModel.Dias();
-        result.setDate(date);
-        //result.setTurnos(convertTurnosToDbModel());
-        return result;
-    }
-
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
-    public void setDia(int dia){this.dia  = dia;}
+    public int getDia(){return date.getDayOfMonth();}
 
-    public int getDia(){return dia;}
-
-    public DayOfWeek getDay(){return day;}
-
-    public void setDay(DayOfWeek day){this.day = day;}
-
-
-    private Map<Integer, DbModel.Turnos> convertTurnosToDbModel() {
-        HashMap<Integer, DbModel.Turnos> result = new HashMap<>();
-        //turnos.forEach((k,v) -> result.put(k, v.convertToDbModel()));
-        return  result;
-    }
+    public DayOfWeek getDay(){return date.getDayOfWeek();}
 
     public Dias(LocalDate date) {
         this.date = date;
@@ -87,7 +92,4 @@ public class Dias {
     public void setDate(LocalDate date) {
         this.date = date;
     }
-
-
-
 }

@@ -1,8 +1,8 @@
 package DbController;
 
-import DbModel.Condeso;
+import condeso.Condeso;
 import DbModel.HibernateUtil;
-import DbModel.Tiendas;
+import tiendas.Tiendas;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -104,7 +104,7 @@ public class HibernateCrud {
             return tiendas;
         }
 
-        public static String SaveTienda (DbModel.Tiendas tienda){
+        public static String SaveTienda (Tiendas tienda){
             SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
             Session session = sessionFactory.openSession();
 

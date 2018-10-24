@@ -28,15 +28,6 @@ public class HorarioInterface {
     this.mes = mes;
   }
 
-  public HashMap<LocalDate, DbModel.Dias>  convertToDbModel()
-  {
-
-   HashMap<LocalDate, DbModel.Dias> result = new HashMap<LocalDate, DbModel.Dias>();
-    mes.forEach((k,v)->
-    result.put(v.getDate(), v.convertToDbModel()));
-   return result;
-  }
-
   public HorarioInterface(HashMap<LocalDate, Dias> mes) {
     this.mes = mes;
   }
