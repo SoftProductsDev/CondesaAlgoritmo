@@ -77,13 +77,13 @@ public class Plantillas {
 		for(int i = 0; i < dias; i++){
 			date2 = LocalDate.of(year, month, i+1);
 			if(!diasCerrado.contains(date2)){
-			elDia = generateDay(date2, this.dias, laTienda);
+			elDia = generateDay(date2, this.dias, master);
 			}
 		}
 		return laTienda.getMaster();
  	}
 
- 	private static Dias generateDay(LocalDate date, List<Dias> days, HashMap<LocalDate, Dias> master){ //TODO checar consistencia
+ 	private static Dias generateDay(LocalDate date, List<Dias> days, Map<LocalDate, Dias> master){ //TODO checar consistencia
 		int dia = date.getDayOfWeek().getValue()-1;
 		Set<Turnos> turnos = new HashSet<>();
 		Dias elDia = days.get(dia);
