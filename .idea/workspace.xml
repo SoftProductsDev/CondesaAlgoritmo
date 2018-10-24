@@ -4,9 +4,7 @@
     <list default="true" id="f45e2806-e0f5-4685-aedd-68df2f55e82f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Test/java/HibernateCrudTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test/java/HibernateCrudTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/condesaGUI/NuevoHorarioGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/condesaGUI/NuevoHorarioGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/condeso/Condeso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/condeso/Condeso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tiendas/Tiendas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tiendas/Tiendas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -20,7 +18,7 @@
     <session id="-586801356">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="fxml" value="1" />
+          <entry key="fxml" value="2" />
           <entry key="java" value="38" />
           <entry key="txt" value="1" />
           <entry key="xml" value="1" />
@@ -30,19 +28,19 @@
         <counts>
           <entry key="JAVA" value="38" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="XML" value="2" />
+          <entry key="XML" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="fxml" value="53" />
-          <entry key="java" value="4318" />
+          <entry key="java" value="4360" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4318" />
+          <entry key="JAVA" value="4360" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="XML" value="53" />
         </counts>
@@ -58,12 +56,15 @@
       </usages-collector>
     </session>
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Algoritmo" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/NuevoHorarioGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1326">
+            <state relative-caret-position="-447">
               <caret line="113" selection-start-line="113" selection-end-line="113" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -75,8 +76,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/lalo/lalo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="74" column="39" lean-forward="true" selection-start-line="74" selection-start-column="39" selection-end-line="74" selection-end-column="39" />
+            <state relative-caret-position="3179">
+              <caret line="187" column="51" lean-forward="true" selection-start-line="187" selection-start-column="51" selection-end-line="187" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -88,7 +89,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/condeso/Condeso.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="233">
-              <caret line="390" column="27" selection-start-line="390" selection-start-column="27" selection-end-line="390" selection-end-column="27" />
+              <caret line="383" column="27" selection-start-line="383" selection-start-column="27" selection-end-line="383" selection-end-column="27" />
               <folding>
                 <element signature="e#2062#2063#0" expanded="true" />
                 <element signature="e#2078#2079#0" expanded="true" />
@@ -180,7 +181,6 @@
                 <element signature="e#5902#5903#0" expanded="true" />
                 <element signature="e#5946#5947#0" expanded="true" />
                 <element signature="e#5992#5993#0" expanded="true" />
-                <element signature="e#8579#8580#0" expanded="true" />
                 <element signature="e#8614#8615#0" expanded="true" />
                 <element signature="e#8654#8655#0" expanded="true" />
                 <element signature="e#8675#8676#0" expanded="true" />
@@ -191,10 +191,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
+            <state relative-caret-position="3179">
               <caret line="231" column="3" lean-forward="true" selection-start-line="231" selection-start-column="3" selection-end-line="231" selection-end-column="3" />
             </state>
           </provider>
@@ -203,8 +203,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2">
-              <caret line="376" column="4" lean-forward="true" selection-start-line="376" selection-start-column="4" selection-end-line="376" selection-end-column="4" />
+            <state relative-caret-position="168">
+              <caret line="344" selection-start-line="344" selection-end-line="344" />
               <folding>
                 <element signature="e#573#574#0" expanded="true" />
                 <element signature="e#609#610#0" expanded="true" />
@@ -227,6 +227,12 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml">
+          <provider editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/tiendas/Tiendas.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -240,19 +246,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/horario/Dias.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-408">
-              <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Test/java/HibernateCrudTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
+            <state relative-caret-position="199">
+              <caret line="35" column="19" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -264,7 +261,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/horario/HorarioMaster.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="488">
-              <caret line="46" column="12" lean-forward="true" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
+              <caret line="48" column="12" lean-forward="true" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
               <folding>
                 <element signature="e#800#801#0" expanded="true" />
                 <element signature="e#822#823#0" expanded="true" />
@@ -294,7 +291,6 @@
         <option value="$PROJECT_DIR$/src/main/java/condesaGUI/PlantillaGUI.java" />
         <option value="$PROJECT_DIR$/src/main/resources/plantillasGUI.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/lalo/Disponibilidad.java" />
-        <option value="$PROJECT_DIR$/src/Test/java/HibernateCrudTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/horario/HorarioMaster.java" />
         <option value="$PROJECT_DIR$/src/main/java/lalo/lalo.java" />
         <option value="$PROJECT_DIR$/src/main/java/condesaGUI/NuevoHorarioGUI.java" />
@@ -302,6 +298,8 @@
         <option value="$PROJECT_DIR$/src/main/java/tiendas/Tiendas.java" />
         <option value="$PROJECT_DIR$/src/main/java/lalo/Parser.java" />
         <option value="$PROJECT_DIR$/src/main/java/condeso/Condeso.java" />
+        <option value="$PROJECT_DIR$/src/Test/java/HibernateCrudTest.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml" />
       </list>
     </option>
   </component>
@@ -400,7 +398,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540408200082" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540412742277" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -448,14 +446,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="HibernateCrudTest.testTiendas" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CondesaAlgoritmo" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="HibernateCrudTest" />
+      <option name="METHOD_NAME" value="testTiendas" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.MainGUI" />
       <item itemvalue="JUnit.HibernateCrudTest.testCreateCondeso" />
       <item itemvalue="JUnit.HibernateCrudTest.testCreateHorario" />
+      <item itemvalue="JUnit.HibernateCrudTest.testTiendas" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainGUI" />
+        <item itemvalue="JUnit.HibernateCrudTest.testTiendas" />
         <item itemvalue="JUnit.HibernateCrudTest.testCreateCondeso" />
         <item itemvalue="JUnit.HibernateCrudTest.testCreateHorario" />
       </list>
@@ -475,12 +485,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="HibernateCrudTest_testCreateHorario - 2018.10.22 at 12h 11m 56s.xml">
-      <configuration name="HibernateCrudTest.testCreateHorario" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HibernateCrudTest_testCreateHorario - 2018.10.22 at 12h 14m 25s.xml">
-      <configuration name="HibernateCrudTest.testCreateHorario" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="HibernateCrudTest_testCreateCondeso - 2018.10.22 at 12h 15m 03s.xml">
       <configuration name="HibernateCrudTest.testCreateCondeso" configurationId="JUnit" />
     </history-entry>
@@ -505,6 +509,12 @@
     <history-entry file="HibernateCrudTest_testCreateCondeso - 2018.10.24 at 20h 53m 42s.xml">
       <configuration name="HibernateCrudTest.testCreateCondeso" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="HibernateCrudTest_testTiendas - 2018.10.24 at 22h 24m 26s.xml">
+      <configuration name="HibernateCrudTest.testTiendas" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HibernateCrudTest_testTiendas - 2018.10.24 at 22h 25m 28s.xml">
+      <configuration name="HibernateCrudTest.testTiendas" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1549" height="837" extended-state="6" />
@@ -513,9 +523,9 @@
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info id="Capture Tool" order="2" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.12743126" />
+      <window_info id="Image Layers" order="3" />
+      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.49858356" visible="true" weight="0.0" />
+      <window_info id="Favorites" order="5" sideWeight="0.50141644" side_tool="true" visible="true" weight="0.0" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.20679887" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
@@ -523,7 +533,7 @@
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.21671388" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.0" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.28611898" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -540,6 +550,23 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/lalo/Parser.java</url>
+          <line>344</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="((Tiendas)((HashMap.Node)((HashMap)lasTiendas).entrySet().toArray()[2]).getValue()).plantillasAnteriores" custom="java.util.HashMap.Node,tiendas.Tiendas,java.util.HashMap" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/disponibilidad3.txt" />
@@ -652,15 +679,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/horario/Dias.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-408">
-          <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+        <state relative-caret-position="-204">
+          <caret line="29" column="22" lean-forward="true" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/horario/HorarioMaster.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="488">
-          <caret line="46" column="12" lean-forward="true" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
+          <caret line="48" column="12" lean-forward="true" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
           <folding>
             <element signature="e#800#801#0" expanded="true" />
             <element signature="e#822#823#0" expanded="true" />
@@ -674,73 +701,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/lalo/lalo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="74" column="39" lean-forward="true" selection-start-line="74" selection-start-column="39" selection-end-line="74" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/TiendaGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="91" column="53" selection-start-line="91" selection-start-column="53" selection-end-line="91" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tiendas/Tiendas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="62" column="42" selection-start-line="62" selection-start-column="42" selection-end-line="62" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2">
-          <caret line="376" column="4" lean-forward="true" selection-start-line="376" selection-start-column="4" selection-end-line="376" selection-end-column="4" />
-          <folding>
-            <element signature="e#573#574#0" expanded="true" />
-            <element signature="e#609#610#0" expanded="true" />
-            <element signature="e#681#682#0" expanded="true" />
-            <element signature="e#733#734#0" expanded="true" />
-            <element signature="e#4882#4898#0" expanded="true" />
-            <element signature="e#7008#7017#0" expanded="true" />
-            <element signature="e#7242#7257#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/NuevoHorarioGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1326">
-          <caret line="113" selection-start-line="113" selection-end-line="113" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Test/java/HibernateCrudTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/condeso/Condeso.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
-          <caret line="390" column="27" selection-start-line="390" selection-start-column="27" selection-end-line="390" selection-end-column="27" />
+          <caret line="383" column="27" selection-start-line="383" selection-start-column="27" selection-end-line="383" selection-end-column="27" />
           <folding>
             <element signature="e#2062#2063#0" expanded="true" />
             <element signature="e#2078#2079#0" expanded="true" />
@@ -832,7 +796,6 @@
             <element signature="e#5902#5903#0" expanded="true" />
             <element signature="e#5946#5947#0" expanded="true" />
             <element signature="e#5992#5993#0" expanded="true" />
-            <element signature="e#8579#8580#0" expanded="true" />
             <element signature="e#8614#8615#0" expanded="true" />
             <element signature="e#8654#8655#0" expanded="true" />
             <element signature="e#8675#8676#0" expanded="true" />
@@ -844,10 +807,77 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
+        <state relative-caret-position="3179">
           <caret line="231" column="3" lean-forward="true" selection-start-line="231" selection-start-column="3" selection-end-line="231" selection-end-column="3" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/lalo/lalo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3179">
+          <caret line="187" column="51" lean-forward="true" selection-start-line="187" selection-start-column="51" selection-end-line="187" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/NuevoHorarioGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-447">
+          <caret line="113" selection-start-line="113" selection-end-line="113" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/lalo/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="344" selection-start-line="344" selection-end-line="344" />
+          <folding>
+            <element signature="e#573#574#0" expanded="true" />
+            <element signature="e#609#610#0" expanded="true" />
+            <element signature="e#681#682#0" expanded="true" />
+            <element signature="e#733#734#0" expanded="true" />
+            <element signature="e#4882#4898#0" expanded="true" />
+            <element signature="e#7008#7017#0" expanded="true" />
+            <element signature="e#7242#7257#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tiendas/Tiendas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="62" column="42" selection-start-line="62" selection-start-column="42" selection-end-line="62" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Test/java/HibernateCrudTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="35" column="19" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/TiendaGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="91" column="53" selection-start-line="91" selection-start-column="53" selection-end-line="91" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/tiendasGUI.fxml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
   </component>
 </project>

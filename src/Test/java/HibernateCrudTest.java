@@ -27,35 +27,38 @@ public class HibernateCrudTest extends TestCase {
     }
   }
 
+  public void testTiendas(){
+      List<Tiendas> tiendas = new ArrayList<>();
+      Tiendas hbf = new Tiendas();
+      hbf.setNombre("HBF");
+      hbf.setManager("Jorge");
+      hbf.setFechaApertura(LocalDate.now());
+      hbf.setId(2);
+      HibernateCrud.SaveTienda(hbf);
+
+
+      Tiendas mf = new Tiendas();
+      mf.setNombre("MF");
+      mf.setManager("Leo");
+      mf.setFechaApertura(LocalDate.now());
+      mf.setId(1);
+      HibernateCrud.SaveTienda(mf);
+
+
+      Tiendas impler = new Tiendas();
+      impler.setNombre("IMP");
+      impler.setManager("Jorge");
+      impler.setFechaApertura(LocalDate.now());
+      impler.setId(3);
+      HibernateCrud.SaveTienda(impler);
+
+
+      tiendas.add(impler);
+      tiendas.add(mf);
+      tiendas.add(hbf);
+  }
+
   public void testCreateCondeso(){
-    List<Tiendas> tiendas = new ArrayList<>();
-    Tiendas hbf = new Tiendas();
-    hbf.setNombre("HBF");
-    hbf.setManager("Jorge");
-    hbf.setFechaApertura(LocalDate.now());
-    hbf.setId(1);
-    HibernateCrud.SaveTienda(hbf);
-
-
-    Tiendas mf = new Tiendas();
-    mf.setNombre("MF");
-    mf.setManager("Leo");
-    mf.setFechaApertura(LocalDate.now());
-    mf.setId(2);
-    HibernateCrud.SaveTienda(mf);
-
-
-    Tiendas impler = new Tiendas();
-    impler.setNombre("IMP");
-    impler.setManager("Jorge");
-    impler.setFechaApertura(LocalDate.now());
-    impler.setId(3);
-    HibernateCrud.SaveTienda(impler);
-
-
-    tiendas.add(impler);
-    tiendas.add(mf);
-    tiendas.add(hbf);
 
     Condeso condeso = new Condeso();
     condeso.setCaja(true);
@@ -83,7 +86,7 @@ public class HibernateCrudTest extends TestCase {
     condeso2.setLevel(2);
     condeso2.setTipo(TipoEmpleado.Equipo);
     condeso2.setNombre("Pablo");
-    condeso2.setColor("#f1f441");
+    condeso2.setColor("#f1f4rv41");
     condeso2.setId(2);
     //condeso.setDondePuedeTrabajar(tiendas);
     HibernateCrud.SaveCondeso(condeso2);
