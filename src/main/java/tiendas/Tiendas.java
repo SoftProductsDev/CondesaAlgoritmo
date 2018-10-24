@@ -23,8 +23,7 @@ import org.hibernate.annotations.Cascade;
 @Entity
 @Table(name = "tiendas")
 public class Tiendas {
-	@javax.persistence.Id
-	@GeneratedValue
+	@Id
 	@Column(name = "id")
 	private long id;
 

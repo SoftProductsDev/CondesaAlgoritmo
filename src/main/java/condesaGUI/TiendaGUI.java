@@ -28,8 +28,10 @@ public class TiendaGUI extends Application implements Initializable {
     @FXML private TableColumn<Tiendas, String> tiendaManager;
     @FXML private TableColumn<Tiendas, Date> fechaApertura;
     @FXML private TableColumn<Tiendas, Plantillas> plantillaActual;
+    @FXML private TableColumn<Tiendas, Long> id;
     @FXML private TextField nombreTextField;
     @FXML private TextField managerTextField;
+    @FXML private TextField idTextField;
     @FXML private DatePicker apertura;
 
     @Override
@@ -76,6 +78,7 @@ public class TiendaGUI extends Application implements Initializable {
     private void loadTiendadUpdate(){
         try{
             Tiendas tienda = tableView.getSelectionModel().getSelectedItem();
+            idTextField.setText(Long.toString(tienda.getId()));
             nombreTextField.setText(tienda.getNombre());
             managerTextField.setText(tienda.getManager());
             fechaApertura.setCellValueFactory(new PropertyValueFactory<Tiendas, Date>("fechaApertura"));
@@ -87,11 +90,19 @@ public class TiendaGUI extends Application implements Initializable {
 
     public void addButtonClicked(ActionEvent actionEvent) {
         Tiendas tienda = new Tiendas();
-        tienda.setNombre(nombreTextField.getText());
-        tienda.setManager(managerTextField.getText());
-        tienda.setFechaApertura(apertura.getValue());
-        HibernateCrud.SaveTienda(tienda);
-        tableView.getItems().setAll(HibernateCrud.GetAllTiendas());
+        try{
+            tienda.setId(Long.parseLong(idTextField.getText()));
+        }catch (Exception e){
+            e.getMessage();
+        }
+
+        if(!nombreTextField.getText().isEmpty() && !managerTextField.getText().isEmpty()) {
+            tienda.setNombre(nombreTextField.getText());
+            tienda.setManager(managerTextField.getText());
+            tienda.setFechaApertura(apertura.getValue());
+            HibernateCrud.SaveTienda(tienda);
+            tableView.getItems().setAll(HibernateCrud.GetAllTiendas());
+        }
     }
 
     public void deleteButtonClicked(ActionEvent actionEventent){
@@ -102,15 +113,24 @@ public class TiendaGUI extends Application implements Initializable {
 
     public void updateButtonClicked(ActionEvent actionEvent){
         Tiendas tienda =  tableView.getSelectionModel().getSelectedItem();
-        tienda.setNombre(nombreTextField.getText());
-        tienda.setManager(managerTextField.getText());
-        tienda.setFechaApertura(apertura.getValue());
-        HibernateCrud.UpdateTienda(tienda);
-        tableView.getItems().setAll(HibernateCrud.GetAllTiendas());
+        try{
+            tienda.setId(Long.parseLong(idTextField.getText()));
+        }catch (Exception e){
+            e.getMessage();
+        }
+
+        if(!nombreTextField.getText().isEmpty() && !managerTextField.getText().isEmpty()) {
+            tienda.setNombre(nombreTextField.getText());
+            tienda.setManager(managerTextField.getText());
+            tienda.setFechaApertura(apertura.getValue());
+            HibernateCrud.SaveTienda(tienda);
+            tableView.getItems().setAll(HibernateCrud.GetAllTiendas());
+        }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        id.setCellValueFactory(new PropertyValueFactory<Tiendas, Long>("id"));
         tiendaNombre.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("nombre"));
         tiendaManager.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("manager"));
         fechaApertura.setCellValueFactory(new PropertyValueFactory<Tiendas, Date>("fechaApertura"));

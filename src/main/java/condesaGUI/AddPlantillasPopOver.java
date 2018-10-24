@@ -23,7 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import org.controlsfx.control.PopOver;
 
-public class AddPlantillasPopOver implements Initializable {
+public class  AddPlantillasPopOver implements Initializable {
   @FXML private ChoiceBox<TipoTurno> tipoChoice;
   @FXML private TextField inicioField;
   @FXML private TextField finField;
