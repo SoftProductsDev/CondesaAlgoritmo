@@ -3,6 +3,7 @@ package lalo;
 import condeso.Condeso;
 import horario.TipoTurno;
 import horario.Turnos;
+import tiendas.Tiendas;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -25,14 +26,23 @@ public class Test {
 
 
 
-        String filename = "GMs.txt";
+        /*String filename = "GMs.txt";
         ArrayList<Turnos> deEncargado = new ArrayList<>();
         Set<Condeso> GMs = Parser.parseGMs(filename, deEncargado, LocalDate.of(2018, Month.NOVEMBER, 1));
         for(Condeso elGM : GMs){
             elGM.printCondeso();
         }
-        System.out.println(deEncargado.size());
-
+        System.out.println(deEncargado.size());*/
+        List<Tiendas> lasTiendas = new ArrayList<>();
+        for(int i = 0; i < 3; i++){
+            Tiendas laTienda = new Tiendas();
+            laTienda.setNombre("Tienda" + i);
+            lasTiendas.add(laTienda);
+        }
+        for(Tiendas laTienda : lasTiendas){
+            
+            laTienda.print();
+        }
 
 
 

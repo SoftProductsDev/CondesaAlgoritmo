@@ -29,7 +29,7 @@ public class HorarioMaster {
   private Map<LocalDate, Dias> mes;
 
   public HorarioMaster() {
-    mes=new HashMap<>();
+    mes=new HashMap<LocalDate, Dias>();
   }
 
 

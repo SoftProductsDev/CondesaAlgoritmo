@@ -147,4 +147,10 @@ public class Tiendas {
 	public String toString() {
 		return nombre;
 	}
+
+	public void print(){
+		System.out.println(nombre);
+		System.out.println(master);
+		System.out.println(master.getMes());
+	}
 }
