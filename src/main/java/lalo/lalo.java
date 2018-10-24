@@ -72,8 +72,8 @@ public class lalo {
 		Set<Turnos> losTurnos;
 		for(Tiendas laTienda: tiendas){
 			elMaster = horariosMaster.get(laTienda);
-			year = elMaster.getYear();
-			month = elMaster.getMonth();
+			year = fecha.getYear();
+			month = fecha.getMonth();
 			HashMap<LocalDate, Dias> losDias;
 			Dias elDia;
 			mes = elMaster.getMes();
@@ -94,6 +94,7 @@ public class lalo {
 
 
 	public void start(){
+
 	}
 
 	public void laloFuncionando() {
@@ -201,6 +202,7 @@ public class lalo {
 	private void reacomodar(Set<Turnos> noAsignados, Set<Condeso> condesos, HashMap<Integer, Integer[][]> disponibilidad){
 		PriorityQueue<Condeso> fila = new PriorityQueue<>(new CompareCondesos());
 		List<Condeso> regaladores;
+		Set<Turnos> dificiles = new HashSet<>();
 
 		for(Turnos elTurno : noAsignados){
 			boolean Found = false;
@@ -283,14 +285,21 @@ public class lalo {
 						}
 					}
 					condesos.addAll(regaladores);
+					if (!Found) {
+						dificiles.add(elTurno);
+					}
 				}
+
+
 
 			}
 
-
-
-
 		}
+		insist(dificiles);
+
+	}
+
+	private void insist(Set<Turnos> noAsignados){
 
 	}
 
