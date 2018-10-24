@@ -3,7 +3,7 @@ package lalo;
 public class Disponibilidad {
     private String name;
     private int Id;
-    private int[][] disponibilidad;
+    private Integer[][] disponibilidad;
     private int max;
     private int min;
 
@@ -39,11 +39,11 @@ public class Disponibilidad {
         this.name = name;
     }
 
-    public void setDisponibilidad(int[][] disponibilidad){
+    public void setDisponibilidad(Integer[][] disponibilidad){
         this.disponibilidad = disponibilidad;
     }
 
-    public int[][] getDisponibilidad(){
+    public Integer[][] getDisponibilidad(){
         return disponibilidad;
     }
 

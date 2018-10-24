@@ -1,7 +1,7 @@
 package condesaGUI;
 
-import DbController.HibernateCrud;
 import DbModel.Condeso;
+import horario.Plantillas;
 import horario.Turnos;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import lalo.Disponibilidad;
 import lalo.Parser;
+import lalo.lalo;
 import tiendas.Tiendas;
 import lalo.GM;
 
@@ -25,7 +26,8 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     @FXML private TableView<Condeso> condesosTable;
     @FXML private TableView<Tiendas> tiendasTable;
     @FXML private TableColumn<Condeso, String> condesoName;
-    @FXML private  TableColumn<Tiendas, String> tiendasName;
+    @FXML private TableColumn<Tiendas, String> tiendasName;
+    @FXML private TableColumn<Tiendas, Plantillas> tiendasPlantilla;
     @FXML private TableColumn<Condeso, Long> condesoID;
     @FXML private TableColumn<Condeso, String> condesoAbreviación;
     @FXML private Button iniciarButton;
@@ -42,6 +44,15 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     private ObservableList<LocalDate> diasDeCierre = null;
     private List<LocalDate> dias = new ArrayList<>();
     private List<Condeso> allCondesos = DbController.HibernateCrud.GetAllCondesos();
+    private Set<Condeso> foundCondesos = new HashSet<>();
+    private List<Tiendas> allTiendas = DbController.HibernateCrud.GetAllDTOTiendas();
+    private Set<Disponibilidad> horario;
+    private Set<GM> gms;
+    private ArrayList<Turnos> turnosEncargado = new ArrayList<>();
+
+
+    private HashMap<Integer, Integer[][]> disponibilidad;
+    private LocalDate fecha;
 
 
     public static void main(String[] args) {
@@ -50,8 +61,21 @@ public class NuevoHorarioGUI extends Application implements Initializable {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-           // lalo lalo = new lalo();
-           // lalo.start();
+        disponibilidad = changeSetToHashMap(horario);
+        if(fecha !=  null){
+            Set<Tiendas> tiendasALL2 = new HashSet<>();
+            tiendasALL2.addAll(allTiendas);
+            //lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha);
+            //lalo.start();
+        }
+    }
+
+    public HashMap<Integer, Integer[][]> changeSetToHashMap(Set<Disponibilidad> disponibilidad){
+        HashMap<Integer, Integer[][]> hasmapDisponibilidad = new HashMap<>();
+        for(Disponibilidad disponibilidadUnCondeso:disponibilidad){
+            hasmapDisponibilidad.put(disponibilidadUnCondeso.getId(),disponibilidadUnCondeso.getDisponibilidad());
+        }
+        return hasmapDisponibilidad;
     }
 
     public void eliminarClicked(ActionEvent actionEvent) {
@@ -83,9 +107,9 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     }
 
     public void mesDeInicioClicked(ActionEvent actionEvent){
-        LocalDate date = LocalDate.of(2018, 11, 1); // momentaneamente
-        ArrayList<Turnos> turnos = new ArrayList<>();
-        Set<GM> gms = Parser.parseGMs("GMs.txt", turnos,date);
+        LocalDate date = mesDeInicioPicker.getValue();
+        fecha = date;
+        gms = Parser.parseGMs("GMs.txt", turnosEncargado,date);
         List<Condeso> allGMs = new LinkedList<>();
         for(GM gm: gms){
             int id = gm.getId();
@@ -104,8 +128,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String filename = "disponibilidad2.txt";
-        Set<Disponibilidad> horario = Parser.parse2(filename);
-        List<Condeso> foundCondesos = new LinkedList<>();
+        horario = Parser.parse2(filename);
         for(Disponibilidad e: horario){
             e.Print();
             System.out.println();
@@ -122,8 +145,9 @@ public class NuevoHorarioGUI extends Application implements Initializable {
         condesoID.setCellValueFactory(new PropertyValueFactory<Condeso, Long>("Id"));
         condesoAbreviación.setCellValueFactory(new PropertyValueFactory<Condeso, String>("abreviacion"));
         tiendasName.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("nombre"));
+        tiendasPlantilla.setCellValueFactory(new PropertyValueFactory<Tiendas, Plantillas>("plantillas"));
         condesosTable.getItems().setAll(foundCondesos);
-        tiendasTable.getItems().setAll( HibernateCrud.GetAllDTOTiendas());
+        tiendasTable.getItems().setAll(allTiendas);
         tiendasTable.getSelectionModel().selectedItemProperty().addListener((obs, newSelection,
                                                                           oldSelection) -> {
             loadFechasDeCierreUpdate();
