@@ -40,7 +40,7 @@ public class Test {
             lasTiendas.add(laTienda);
         }
         for(Tiendas laTienda : lasTiendas){
-            
+
             laTienda.print();
         }
 

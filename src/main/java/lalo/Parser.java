@@ -413,8 +413,3 @@ private static void parseTurnosGMs(String inicio, String fin, String GM, String 
 
 }
 
-/*if(elGM == null){
-        elGM = new GM(Id, Abrev);
-        IDs.add(Id);
-        GMs.put(Id, elGM);
-        }*/

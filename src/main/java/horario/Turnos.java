@@ -118,7 +118,7 @@ public class Turnos implements Comparable<Turnos> {
 		this.encargado = encargado;
 	}
 
-	/*public Turnos(long idTienda, int inicio, int fin, LocalDate fecha){ // solo para el caso de los GM
+	/*public Turnos(long idTienda, int inicio, int fin, LocalDate fecha){ // solo para el caso de los GMs
 		this.idTienda = idTienda;
 		this.inicio = inicio;
 		this.fin = fin;

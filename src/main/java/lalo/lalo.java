@@ -96,6 +96,7 @@ public class lalo {
 
 
 	public void start(){
+		laloFuncionando();
 
 	}
 
