@@ -91,7 +91,7 @@ private static void parseMaxMin(String line, Disponibilidad laDisponibilidad, in
      }catch (Exception e){
          num = 0;
      }
-     laDisponibilidad.setMax(num);
+     laDisponibilidad.setMin(num);
      posicion++;
      number = line.substring(posicion, (posicion = subString(line, posicion, '\t')));
      try{
@@ -99,7 +99,7 @@ private static void parseMaxMin(String line, Disponibilidad laDisponibilidad, in
      }catch(Exception e){
          num = 0;
      }
-     laDisponibilidad.setMin(num);
+     laDisponibilidad.setMax(num);
 
 }
 
@@ -228,7 +228,7 @@ try{
               condeso.setDisponibilidad(disponibilidad);
               Disp.add(condeso);
               buffer.readLine();
-              Condeso DbCondeso = HibernateCrud.findCondesoId(666);
+              /*Condeso DbCondeso = HibernateCrud.findCondesoId(666);
               if(DbCondeso != null){
                   HorarioEntrega entrega = new HorarioEntrega();
                   entrega.setMax(666);
@@ -239,7 +239,7 @@ try{
                   foundCondesos.add(DbCondeso);
               }else{
                   System.out.print("WARNING: Condeso not found!");
-              }
+              }*/
             }
             buffer.close();
             return Disp;
