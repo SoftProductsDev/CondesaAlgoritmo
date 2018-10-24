@@ -300,9 +300,9 @@ try{
       buffer.readLine();
       buffer.readLine();
       parseTurnosGMs(buffer.readLine(), buffer.readLine(), buffer.readLine(), buffer.readLine(), date,  GMs,
-               idTienda, losTurnos);
+               idTienda, losTurnos, lasTiendas);
       parseTurnosGMs(buffer.readLine(), buffer.readLine(), buffer.readLine(), buffer.readLine(), date,  GMs,
-                idTienda, losTurnos);
+                idTienda, losTurnos, lasTiendas);
       buffer.readLine();
       buffer.readLine();
       buffer.readLine();
@@ -340,9 +340,9 @@ private static boolean useless(String line){
 }
 
 
-private static void parseTurnosGMs(String inicio, String fin, String GM, String ID, LocalDate mes, HashMap<Long, Condeso> GMs,
-                                   long idTienda, ArrayList<Turnos> losTurnos, HashMap<Long, Tiendas> lasTiendas){
-        HashMap<LocalDate, Dias> elMaster = lasTiendas.get(idTienda).getMaster().getMes();
+private static void parseTurnosGMs(String inicio, String fin, String GM, String ID, LocalDate mes, Map<Long, Condeso> GMs,
+                                   long idTienda, ArrayList<Turnos> losTurnos, Map<Long, Tiendas> lasTiendas){
+        Map<LocalDate, Dias> elMaster = lasTiendas.get(idTienda).getMaster().getMes();
         int length = mes.lengthOfMonth();
         int paraInicio = 0;
         int paraFin = 0;
@@ -391,9 +391,9 @@ private static void parseTurnosGMs(String inicio, String fin, String GM, String 
                Abrev = GM.substring(paraGM, (paraGM = subString(GM, paraGM, '\t')));
                elGM = GMs.get(Id);
                if(Abrev.charAt(0) == '#'){
-                 losTurnos.add(new Turnos(idTienda, begin, end, LocalDate.of(mes.getYear(), mes.getMonth(), i+1)));
+                 losTurnos.add(new Turnos(null, begin, end, elMaster.get(LocalDate.of(mes.getYear(), mes.getMonth(), i+1)), true));
                }else{
-               elGM.asignarTurno(new Turnos(elGM, ));
+               elGM.asignarTurno(new Turnos(elGM, begin, end, elMaster.get(LocalDate.of(mes.getYear(), mes.getMonth(), i+1)), true));
             }
             paraInicio++;
             paraFin++;
