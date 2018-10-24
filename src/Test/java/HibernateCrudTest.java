@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class HibernateCrudTest extends TestCase {
-
+/*
   public void testGet() {
     List<Condeso> condesos = DbController.HibernateCrud.GetAllCondesos();
     for (Condeso condeso: condesos
@@ -770,7 +770,7 @@ public class HibernateCrudTest extends TestCase {
     DbModel.Tiendas tienda = new DbModel.Tiendas();
     tienda.setNombre("HBF");
     HibernateCrud.SaveTienda(tienda);
-  }*/
+  }
 
   public void testGetTiendas()
   {
@@ -780,5 +780,5 @@ public class HibernateCrudTest extends TestCase {
       System.out.println(tienda);
     }
   }
-
+*/
 }

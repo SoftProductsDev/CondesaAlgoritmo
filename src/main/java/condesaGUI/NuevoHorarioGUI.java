@@ -1,6 +1,7 @@
 package condesaGUI;
 
-import DbModel.Condeso;
+
+import condeso.Condeso;
 import horario.Plantillas;
 import horario.Turnos;
 import javafx.application.Application;
@@ -65,8 +66,9 @@ public class NuevoHorarioGUI extends Application implements Initializable {
         if(fecha !=  null){
             Set<Tiendas> tiendasALL2 = new HashSet<>();
             tiendasALL2.addAll(allTiendas);
-            //lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha);
-            //lalo.start();
+            lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha);
+            System.out.print("no mamo");
+            lalo.start();
         }
     }
 

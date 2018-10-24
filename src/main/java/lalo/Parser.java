@@ -121,7 +121,7 @@ private static void parseTime(int[][] disponibilidad, String line, int a){
     }
 }
 
-private static int parseTime(int [][] disponibilidad, String line, int a, int start){
+private static int parseTime(Integer [][] disponibilidad, String line, int a, int start){
     int i = start;
     String number;
     int hour;
@@ -191,7 +191,7 @@ String line;
 String name;
 int Id;
 Disponibilidad condeso;
-int[][] disponibilidad;
+Integer[][] disponibilidad;
 try{
     FileReader reader = new FileReader(filename);
     BufferedReader buffer = new BufferedReader(reader);
@@ -211,7 +211,7 @@ try{
               i = getPosition(line, '\t', j);
               name = line.substring(j, i);
               condeso = new Disponibilidad(name);
-              disponibilidad = new int[2][dias];
+              disponibilidad = new Integer[2][dias];
               j = parseTime(disponibilidad, line, 0, ++i) + 1;
               parseMaxMin(line, condeso, j);
 
@@ -228,18 +228,6 @@ try{
               condeso.setDisponibilidad(disponibilidad);
               Disp.add(condeso);
               buffer.readLine();
-              /*Condeso DbCondeso = HibernateCrud.findCondesoId(666);
-              if(DbCondeso != null){
-                  HorarioEntrega entrega = new HorarioEntrega();
-                  entrega.setMax(666);
-                  entrega.setMin(666);
-                  entrega.setMes(LocalDate.now());
-                  entrega.setDisponibilidad(disponibilidad);
-                  DbCondeso.setEntrega(entrega);
-                  foundCondesos.add(DbCondeso);
-              }else{
-                  System.out.print("WARNING: Condeso not found!");
-              }*/
             }
             buffer.close();
             return Disp;
