@@ -48,7 +48,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     private Set<Condeso> foundCondesos = new HashSet<>();
     private List<Tiendas> allTiendas = DbController.HibernateCrud.GetAllDTOTiendas();
     private Set<Disponibilidad> horario;
-    private Set<GM> gms;
+    private Set<Condeso> gms;
     private ArrayList<Turnos> turnosEncargado = new ArrayList<>();
 
 
@@ -113,8 +113,8 @@ public class NuevoHorarioGUI extends Application implements Initializable {
         fecha = date;
         //gms = Parser.parseGMs("GMs.txt", turnosEncargado,date);
         List<Condeso> allGMs = new LinkedList<>();
-        for(GM gm: gms){
-            int id = gm.getId();
+        for(Condeso gm: gms){
+            long id = gm.getId();
             for(Condeso condeso : allCondesos){
                 if(condeso.getId() == id){
                     allGMs.add(condeso);
