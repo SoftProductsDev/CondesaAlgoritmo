@@ -3,10 +3,7 @@ package horario;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,9 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import jdk.nashorn.api.tree.Tree;
+import org.apache.poi.hssf.record.TableRecord;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import tiendas.Tiendas;
 
 @Entity
 @Table(name = "plantillas")
@@ -65,20 +66,21 @@ public class Plantillas {
 		this.nombre = nombre;
 	}
 
-	public HorarioMaster generateMaster(LocalDate date){
+	public HorarioMaster generateMaster(LocalDate date, Tiendas laTienda){
 		int year = date.getYear();
 		Month month = date.getMonth();
-
+		List<LocalDate> diasCerrado = laTienda.getDiasDeCierre();
 		int dias = date.lengthOfMonth();
-		HashMap<LocalDate, Dias> master = new HashMap<>();
+		HashMap<LocalDate, Dias> master = laTienda.getMaster().getMes();
 		LocalDate date2;
 		Dias elDia;
 		for(int i = 0; i < dias; i++){
 			date2 = LocalDate.of(year, month, i+1);
+			if(!diasCerrado.contains(date2)){
 			elDia = generateDay(date2, this.dias);
-			master.put(date2, elDia);
+			master.put(date2, elDia);}
 		}
-		return new HorarioMaster(master);
+		return laTienda.getMaster();
  	}
 
  	private static Dias generateDay(LocalDate date, List<Dias> days){ //TODO checar consistencia

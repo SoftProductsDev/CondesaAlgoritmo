@@ -35,7 +35,7 @@ public class lalo {
 		this.tiendas = tiendas;
 		horariosMaster = new HashMap<>();
 		for(Tiendas laTienda : tiendas){
-			horariosMaster.put(laTienda, laTienda.getPlantilla().generateMaster(fecha));
+			horariosMaster.put(laTienda, laTienda.getPlantilla().generateMaster(fecha, laTienda));
 		}
 		addOtrosTurnos(GMs, deEncargado);
 
@@ -67,7 +67,7 @@ public class lalo {
 
 		HorarioMaster elMaster;
 		int year;
-		HashMap<LocalDate, Dias> mes;
+		Map<LocalDate, Dias> mes;
 		Month month;
 		Set<Turnos> losTurnos;
 		for(Tiendas laTienda: tiendas){

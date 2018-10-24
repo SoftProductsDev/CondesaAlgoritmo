@@ -26,12 +26,12 @@ public class HorarioMaster {
   @JoinColumn
   @OneToMany( fetch = FetchType.EAGER)
   @Cascade(org.hibernate.annotations.CascadeType.ALL)
-  private HashMap<LocalDate, Dias> mes;
+  private Map<LocalDate, Dias> mes;
 
   public HorarioMaster() {
   }
 
-  public HorarioMaster(HashMap<LocalDate,horario.Dias> master) {
+  public HorarioMaster(Map<LocalDate,horario.Dias> master) {
     mes = master;
   }
 
@@ -43,11 +43,11 @@ public class HorarioMaster {
     this.id = id;
   }
 
-  public HashMap<LocalDate, Dias> getMes() {
+  public Map<LocalDate, Dias> getMes() {
     return mes;
   }
 
-  public void setMes(HashMap<LocalDate, Dias> mes) {
+  public void setMes(Map<LocalDate, Dias> mes) {
     this.mes = mes;
   }
 }

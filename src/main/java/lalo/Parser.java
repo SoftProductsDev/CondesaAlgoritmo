@@ -9,10 +9,13 @@ import java.time.Month;
 import java.util.*;
 
 import DbController.HibernateCrud;
-import DbModel.Condeso;
+import condeso.Condeso;
 import DbModel.HorarioEntrega;
 import com.mysql.cj.x.protobuf.MysqlxDatatypes;
+import condeso.TipoEmpleado;
+import horario.Dias;
 import horario.Turnos;
+import tiendas.Tiendas;
 
 public class Parser {
 
@@ -247,18 +250,29 @@ try{
 }
 
 
-public static Set<GM> parseGMs(String filename, ArrayList<Turnos> losTurnos , LocalDate date){
+public static Set<Condeso> parseGMs(String filename, ArrayList<Turnos> losTurnos , LocalDate date){
 
 String line;
 String tienda;
 String mes;
 Month month;
-Set<GM> paraRegresar = new HashSet<GM>();
+Set<Condeso> paraRegresar = new HashSet<Condeso>();
+List<Condeso> todosLosCondesos = HibernateCrud.GetAllCondesos();
+List<Tiendas> todasLasTiendas = HibernateCrud.GetAllTiendas();
+HashMap<Long, Tiendas> lasTiendas = new HashMap<>();
+HashMap<Long, Condeso> GMs = new HashMap<Long, Condeso>();
+ArrayList<Long> IDs = new ArrayList<>();
 
+for(Tiendas laTienda : todasLasTiendas){
+    lasTiendas.put(laTienda.getId(), laTienda);
+}
 
+for(Condeso elCondeso : todosLosCondesos){
+    if(elCondeso.getTipo() == TipoEmpleado.GM){ GMs.put(elCondeso.getId(), elCondeso);
+    IDs.add(elCondeso.getId());
+    }
+    }
 
-HashMap<Integer, GM> GMs = new HashMap<Integer, GM>();
-ArrayList<Integer> IDs = new ArrayList<>();
 
 try{
     FileReader reader = new FileReader(filename);
@@ -286,9 +300,9 @@ try{
       buffer.readLine();
       buffer.readLine();
       parseTurnosGMs(buffer.readLine(), buffer.readLine(), buffer.readLine(), buffer.readLine(), date,  GMs,
-              IDs, idTienda, losTurnos);
+               idTienda, losTurnos);
       parseTurnosGMs(buffer.readLine(), buffer.readLine(), buffer.readLine(), buffer.readLine(), date,  GMs,
-                IDs, idTienda, losTurnos);
+                idTienda, losTurnos);
       buffer.readLine();
       buffer.readLine();
       buffer.readLine();
@@ -298,7 +312,7 @@ try{
 
     }
 buffer.close();
-for(int id : IDs){
+for(long id : IDs){
     paraRegresar.add(GMs.get(id));
 }
 return paraRegresar;
@@ -326,9 +340,9 @@ private static boolean useless(String line){
 }
 
 
-private static void parseTurnosGMs(String inicio, String fin, String GM, String ID, LocalDate mes, HashMap<Integer, GM> GMs ,
-                            ArrayList<Integer> IDs, int idTienda, ArrayList<Turnos> losTurnos){
-
+private static void parseTurnosGMs(String inicio, String fin, String GM, String ID, LocalDate mes, HashMap<Long, Condeso> GMs,
+                                   long idTienda, ArrayList<Turnos> losTurnos, HashMap<Long, Tiendas> lasTiendas){
+        HashMap<LocalDate, Dias> elMaster = lasTiendas.get(idTienda).getMaster().getMes();
         int length = mes.lengthOfMonth();
         int paraInicio = 0;
         int paraFin = 0;
@@ -336,10 +350,10 @@ private static void parseTurnosGMs(String inicio, String fin, String GM, String 
         int paraId = 0;
         int begin = 0;
         int end;
-        int Id;
+        long Id;
         String Abrev;
         boolean next = false;
-        GM elGM;
+        Condeso elGM;
 
         // String anfang;
         // String ende;
@@ -379,12 +393,7 @@ private static void parseTurnosGMs(String inicio, String fin, String GM, String 
                if(Abrev.charAt(0) == '#'){
                  losTurnos.add(new Turnos(idTienda, begin, end, LocalDate.of(mes.getYear(), mes.getMonth(), i+1)));
                }else{
-               if(elGM == null){
-                   elGM = new GM(Id, Abrev);
-                   IDs.add(Id);
-                   GMs.put(Id, elGM);
-               }
-               elGM.addTurno(new Turnos(idTienda, begin, end, LocalDate.of(mes.getYear(), mes.getMonth(), i+1)));
+               elGM.asignarTurno(new Turnos(elGM, ));
             }
             paraInicio++;
             paraFin++;
@@ -397,3 +406,9 @@ private static void parseTurnosGMs(String inicio, String fin, String GM, String 
 
 
 }
+
+/*if(elGM == null){
+        elGM = new GM(Id, Abrev);
+        IDs.add(Id);
+        GMs.put(Id, elGM);
+        }*/

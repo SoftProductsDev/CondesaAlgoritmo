@@ -44,14 +44,14 @@ public class Turnos implements Comparable<Turnos> {
 	@Column
 	private TipoTurno tipoTurno;
 
-	private long Id;
+
 	//private boolean elemental;
 	//private boolean matutino;
 	private boolean noOptions = false;
 	private int minimo;
 	private Dias elDia;
 	private boolean encargado;
-	private int idTienda;
+	private long idTienda;
 	private LocalDate fecha;
 	private List<Hora> misHoras = new ArrayList<>();
 
@@ -71,7 +71,7 @@ public class Turnos implements Comparable<Turnos> {
 		idTienda = id;
 	}
 
-	public int getIdTienda(){return idTienda;}
+	public long getIdTienda(){return idTienda;}
 
 	public void setHoras() {
 		if(encargado) return;
@@ -100,18 +100,9 @@ public class Turnos implements Comparable<Turnos> {
 	    if(minimo > this.minimo) this.minimo = Math.min(minimo, 3);
 	}
 
-	public long getId() {
-		return Id;
-	}
 
-	public void setId(long id) {
-		Id = id;
-	}
-
-	public Turnos(Condeso condeso, long id,
-			int inicio, int fin, Dias elDia, boolean encargado) {
+	public Turnos(Condeso condeso, int inicio, int fin, Dias elDia, boolean encargado) {
 		this.condeso = condeso;
-		Id = id;
 		//this.matutino = matutino;
 		this.inicio = inicio;
 		this.fin = fin;
@@ -119,7 +110,7 @@ public class Turnos implements Comparable<Turnos> {
 		this.encargado = encargado;
 	}
 
-	public Turnos(int idTienda, int inicio, int fin, LocalDate fecha){ // solo para el caso de los GM
+	public Turnos(long idTienda, int inicio, int fin, LocalDate fecha){ // solo para el caso de los GM
 		this.idTienda = idTienda;
 		this.inicio = inicio;
 		this.fin = fin;
@@ -204,7 +195,7 @@ public class Turnos implements Comparable<Turnos> {
 
 
 	public Turnos duplicate(){
-	return new Turnos(condeso, Id, inicio, fin, elDia, encargado);
+	return new Turnos(condeso, inicio, fin, elDia, encargado);
 	}
 
 	@Override

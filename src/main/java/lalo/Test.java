@@ -9,20 +9,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.PriorityQueue;
-import java.util.Random;
-import java.util.Set;
+import java.time.chrono.IsoEra;
+import java.util.*;
 
 public class Test {
     public static void main(String [] args) {
 
-      String filename = "disponibilidad2.txt";
+      /*String filename = "disponibilidad2.txt";
         Set<Disponibilidad> horario = Parser.parse2(filename);
         for(Disponibilidad e: horario){
             e.Print();
             System.out.println();
-        }
+        }*/
+
+
 
         /*String filename = "GMs.txt";
         ArrayList<Turnos> deEncargado = new ArrayList<>();
