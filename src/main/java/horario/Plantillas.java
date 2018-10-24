@@ -108,5 +108,8 @@ public class Plantillas {
 
 	}
 
-
+	@Override
+	public String toString(){
+		return nombre;
+	}
 }
