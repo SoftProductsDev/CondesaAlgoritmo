@@ -1,9 +1,8 @@
 package condesaGUI;
 
 import DbController.HibernateCrud;
-import DbModel.Condeso;
-import DbModel.Dias;
-import DbModel.Turnos;
+import horario.Dias;
+import horario.Turnos;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

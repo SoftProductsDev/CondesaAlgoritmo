@@ -1,7 +1,7 @@
 package condesaGUI;
 
 import DbController.HibernateCrud;
-import DbModel.Condeso;
+import condeso.Condeso;
 import horario.Turnos;
 import javafx.application.Application;
 import javafx.collections.FXCollections;

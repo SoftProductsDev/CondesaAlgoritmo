@@ -1,10 +1,10 @@
 package condesaGUI;
 
 import DbController.HibernateCrud;
-import DbModel.Dias;
-import DbModel.Plantillas;
-import DbModel.Tiendas;
-import DbModel.Turnos;
+import horario.Dias;
+import horario.Plantillas;
+import tiendas.Tiendas;
+import horario.Turnos;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;

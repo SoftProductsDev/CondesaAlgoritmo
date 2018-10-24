@@ -1,7 +1,7 @@
 package condesaGUI;
 
 import DbController.HibernateCrud;
-import DbModel.Condeso;
+import condeso.Condeso;
 import condeso.Contrato;
 import condeso.TipoEmpleado;
 import java.util.List;
@@ -30,7 +30,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import DbModel.Tiendas;
+import tiendas.Tiendas;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -39,11 +39,11 @@ import java.util.ResourceBundle;
 import org.hibernate.Hibernate;
 
 public class CondesoGUI  extends Application implements Initializable {
-    @FXML private TableView<DbModel.Condeso> tableView;
+    @FXML private TableView<Condeso> tableView;
     @FXML private TableColumn<Condeso, Long> condesoId;
-    @FXML private TableColumn<DbModel.Condeso, String> condesoName;
+    @FXML private TableColumn<Condeso, String> condesoName;
     @FXML private TableColumn<Condeso, String> condesoAbreviacion;
-    @FXML private TableColumn<DbModel.Condeso, Contrato> condesoContrato;
+    @FXML private TableColumn<Condeso, Contrato> condesoContrato;
     @FXML private TableColumn<Condeso, Boolean> condesoVespertino;
     @FXML private TableColumn<Condeso, Boolean> condesoLunch;
     @FXML private TableColumn<Condeso, Boolean> condesoMatutino;
@@ -218,7 +218,7 @@ public class CondesoGUI  extends Application implements Initializable {
           new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-              DbModel.Tiendas tienda = tiendas.get(finalI);
+              Tiendas tienda = tiendas.get(finalI);
               if(checkBox.isSelected()){
               tiendasAddCondeso.add(tienda);}
               else{
@@ -261,7 +261,7 @@ public class CondesoGUI  extends Application implements Initializable {
     }
 
     public void addButtonClicked(ActionEvent actionEvent) {
-        DbModel.Condeso condeso = new Condeso();
+        Condeso condeso = new Condeso();
         try{condeso.setId(Long.parseLong(idTextField.getText()));}
         catch (Exception e){
             errorLabel.setText("Error: El Id solo puede contener números!");

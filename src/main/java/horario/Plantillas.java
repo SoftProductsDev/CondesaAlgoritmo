@@ -5,35 +5,65 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
+@Entity
+@Table(name = "plantillas")
 public class Plantillas {
-	private long Id;
 
-	private Dias[] dias;
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
+	private long id;
 
-	private String name;
+	@JoinColumn
+	@OneToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	private List<Dias> dias;
 
-	public Plantillas() {
-		dias = new Dias[7];
-	}
+	@Column(name = "nombre")
+	private  String nombre;
 
-	public Dias[] getDias(){return dias; }
+	public List<Dias> getDias(){return dias; }
 
-	public void setDia(int dia, Dias elDia) {
+	/*public void setDia(int dia, Dias elDia) {
 		if( dia < 1 || dia > 7) return;
-		dias[dia-1] = elDia;
-	}
+		dias.get(dia-1) = elDia;
+	}*/
+
+	public Plantillas(){}
 
 	public long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(long id) {
-		Id = id;
+		this.id = id;
 	}
 
+	public void setDias(List<Dias> dias) {
+		this.dias = dias;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
 	public HorarioMaster generateMaster(LocalDate date){
 		int year = date.getYear();
@@ -51,10 +81,10 @@ public class Plantillas {
 		return new HorarioMaster(master);
  	}
 
- 	private static Dias generateDay(LocalDate date, Dias[] days){ //TODO checar consistencia
+ 	private static Dias generateDay(LocalDate date, List<Dias> days){ //TODO checar consistencia
 		int dia = date.getDayOfWeek().getValue()-1;
 		Set<Turnos> turnos = new HashSet<>();
-		Dias elDia = days[dia];
+		Dias elDia = days.get(dia);
 		Set<Turnos> losTurnos = elDia.getTurnos(); //falta resolver
 		Dias theDay = new Dias(date);
 		Turnos turno;

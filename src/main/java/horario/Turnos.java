@@ -1,5 +1,12 @@
 package horario;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import tiendas.Tiendas;
 import condeso.Condeso;
 import java.time.LocalDate;
@@ -7,22 +14,48 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Turnos {
+@Entity
+@Table(name = "turnos")
+public class Turnos implements Comparable<Turnos> {
+	@javax.persistence.Id
+	@GeneratedValue
+	@Column(name = "id")
+	private long id;
+
+	/*@Column(name = "elemental")
+	private boolean elemental;
+
+	@Column(name = "matutino")
+	private boolean matutino;
+
+	@Column(name = "ocupado")
+	private boolean ocupado = false;*/
+
+	@Column(name = "inicio")
+	private int inicio;
+
+	@Column(name = "fin")
+	private int fin;
+
+	@JoinColumn
+	@OneToOne
 	private Condeso condeso;
+
+	@Column
+	private TipoTurno tipoTurno;
+
 	private long Id;
 	//private boolean elemental;
 	//private boolean matutino;
 	private boolean noOptions = false;
-	private int inicio;
-	private int fin;
-	private Tiendas tienda;
-	private TipoTurno tipoTurno;
 	private int minimo;
 	private Dias elDia;
 	private boolean encargado;
 	private int idTienda;
 	private LocalDate fecha;
 	private List<Hora> misHoras = new ArrayList<>();
+
+	public Turnos(){};
 
 	public LocalDate getFecha(){return fecha;}
 
@@ -69,15 +102,6 @@ public class Turnos {
 
 	public void setId(long id) {
 		Id = id;
-	}
-
-	public DbModel.Turnos convertToDbModel()
-	{
-		DbModel.Turnos result = new DbModel.Turnos();
-		//result.setElemental(elemental);
-		result.setInicio(inicio);
-		//result.setMatutino(matutino);
-		return  result;
 	}
 
 	public Turnos(Condeso condeso, long id,
@@ -179,8 +203,13 @@ public class Turnos {
 	return new Turnos(condeso, Id, inicio, fin, elDia, encargado);
 	}
 
-
-
+	@Override
+	public int compareTo(Turnos o2) {
+		if(this.getInicio() != o2.getInicio()) return  Integer.compare(this.getInicio(), o2.getInicio());
+		else{
+			return this.getTipoTurno().compareTo(o2.getTipoTurno());
+		}
+	}
 }
 
 

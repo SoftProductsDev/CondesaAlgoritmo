@@ -8,12 +8,45 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import org.hibernate.annotations.Cascade;
 
 public class Tiendas {
-	private long Id;
+	@javax.persistence.Id
+	@GeneratedValue
+	@Column(name = "id")
+	private long id;
+
+	@JoinColumn(name = "plantilla")
+	@OneToOne
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private Plantillas plantilla;
+
+	@Column(name = "nombre")
 	private String nombre;
+
+	@Column(name = "manager")
+	private String manager;
+
+	@Column(name = "fechaApertura")
+	private LocalDate fechaApertura;
+
+	@JoinColumn
+	@OneToOne
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private HorarioMaster master;
+
+	@JoinColumn
+	@OneToMany(fetch = FetchType.EAGER)
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	private List<Plantillas> plantillasAnteriores;
+
 	private Boolean selected;
 	private List<LocalDate> diasDeCierre = new ArrayList<>();
 
@@ -31,11 +64,11 @@ public class Tiendas {
 	}
 
 	public long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public void setPlantilla(Plantillas plantilla) {
@@ -67,6 +100,30 @@ public class Tiendas {
 	}
 
 	public BooleanProperty selected(){return new SimpleBooleanProperty(selected);
+	}
+
+	public String getManager() {
+		return manager;
+	}
+
+	public void setManager(String manager) {
+		this.manager = manager;
+	}
+
+	public LocalDate getFechaApertura() {
+		return fechaApertura;
+	}
+
+	public void setFechaApertura(LocalDate fechaApertura) {
+		this.fechaApertura = fechaApertura;
+	}
+
+	public List<Plantillas> getPlantillasAnteriores() {
+		return plantillasAnteriores;
+	}
+
+	public void setPlantillasAnteriores(List<Plantillas> plantillasAnteriores) {
+		this.plantillasAnteriores = plantillasAnteriores;
 	}
 
 	public List<LocalDate> getDiasDeCierre() {

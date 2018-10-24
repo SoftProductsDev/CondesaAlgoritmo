@@ -1,24 +1,18 @@
 package condesaGUI;
 
 import DbController.HibernateCrud;
-import DbModel.Condeso;
-import DbModel.Dias;
-import DbModel.HorarioMaster;
-import DbModel.Turnos;
-import java.awt.event.FocusListener;
+import condeso.Condeso;
+import horario.Dias;
+import horario.HorarioMaster;
+import horario.Turnos;
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,16 +24,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Accordion;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Screen;
@@ -47,7 +37,7 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import DbModel.Tiendas;
+import tiendas.Tiendas;
 import org.controlsfx.control.PopOver;
 import org.hibernate.Hibernate;
 
@@ -185,13 +175,13 @@ public class FrontGUI extends Application implements Initializable {
         calendar.withDayOfMonth(1).getDayOfWeek().getValue();
     GridPane pane = (GridPane) monthGrid.getChildren().get(dateIndex);
     addGridEventHandler(pane, dia);
-    for (DbModel.Turnos turno:dia.getTurnos()
+    for (Turnos turno:dia.getTurnos()
     ) {
       latestTurn = setTurnos(dia, turno, dia.getDate(), latestTurn, pane);
     }
   }
 
-  private int[] setTurnos(Dias dia, DbModel.Turnos turno, LocalDate date, int[] latestTurn, GridPane pane){
+  private int[] setTurnos(Dias dia, Turnos turno, LocalDate date, int[] latestTurn, GridPane pane){
     //considering the first hour is 8 am
     int hourIndex = turno.getInicio() - 7;
     if(hourIndex < 0){
