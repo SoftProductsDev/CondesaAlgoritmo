@@ -26,7 +26,7 @@ public class lalo {
 	private List<Turnos> deEncargado;
 	private LocalDate fecha;
 
-	public lalo(Set<Turnos> GMs, List<Turnos> deEncargado, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad,
+	public lalo(Set<GM> GMs, List<Turnos> deEncargado, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad,
 	LocalDate fecha){
 		this.fecha = fecha;
 		this.deEncargado = deEncargado;
@@ -44,12 +44,15 @@ public class lalo {
 
 	}
 
-	private void addOtrosTurnos(Set<Turnos> GMs, List<Turnos> deEncargado){
+	private void addOtrosTurnos(Set<GM> GMs, List<Turnos> deEncargado){
 		Dias elDia;
-		for(Turnos elTurno : GMs){
+		for(GM elGM : GMs){
+			List<Turnos> losTurno =  elGM.getSusTurnos();
+			for(Turnos elTurno : losTurno){
 			elDia = horariosMaster.get(elTurno.getTienda()).getMes().get(elTurno.getDate());
 			elDia.addTurno(elTurno);
 			elTurno.setDay(elDia);
+			}
 		}
 		for(Turnos elTurno : deEncargado){
 			elDia = horariosMaster.get(elTurno.getTienda()).getMes().get(elTurno.getDate());
@@ -261,7 +264,25 @@ public class lalo {
 				condesos.addAll(useless);
 
 				if(!Found){
-
+					fila = new PriorityQueue<>(new CompareCondesos());
+					regaladores = posibles.get(Reasons.maximoAlcanzado);
+					condesos.removeAll(regaladores);
+					checados = new HashSet<>();
+					fila.addAll(condesos);
+					for(Condeso elCondeso : regaladores){
+						while(!Found && !fila.isEmpty()){
+							candidate = fila.poll();
+							Found = porMaximmoAlcanzado(elCondeso, candidate, elTurno);
+							checados.add(candidate);
+						}
+						if(Found){
+							break;
+						}else{
+							fila.addAll(checados);
+							checados.clear();
+						}
+					}
+					condesos.addAll(regaladores);
 				}
 
 			}
@@ -271,6 +292,20 @@ public class lalo {
 
 		}
 
+	}
+
+	private boolean porMaximmoAlcanzado(Condeso regalador, Condeso candidate, Turnos elTurno){
+		Turnos oferta;
+		int length = elTurno.getDate().lengthOfMonth();
+		for(int i = 0; i < length; i++){
+			oferta = regalador.getPersonal()[i];
+			if(oferta != null && checkCondeso(candidate, disponibilidad, oferta)){
+				candidate.asignarTurno(regalador.borrarTurno(oferta));
+				regalador.asignarTurno(elTurno);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private boolean porDiasSeguidos(Condeso regalador, Condeso candidate, Turnos elTurno){
