@@ -1,8 +1,6 @@
 package horario;
 
-import DbModel.Dias;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
@@ -21,7 +19,7 @@ public class HorarioPersonal{
 
   @ElementCollection
   @CollectionTable
-  private Map<LocalDate, DbModel.Dias> mes;
+  private Map<LocalDate, Dias> mes;
 
   public HorarioPersonal() {
   }
@@ -34,7 +32,7 @@ public class HorarioPersonal{
     this.id = id;
   }
 
-  public Map<LocalDate, DbModel.Dias> getMes() {
+  public Map<LocalDate, Dias> getMes() {
     return mes;
   }
 

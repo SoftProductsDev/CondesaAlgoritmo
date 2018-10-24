@@ -111,7 +111,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     public void mesDeInicioClicked(ActionEvent actionEvent){
         LocalDate date = mesDeInicioPicker.getValue();
         fecha = date;
-        gms = Parser.parseGMs("GMs.txt", turnosEncargado,date);
+        //gms = Parser.parseGMs("GMs.txt", turnosEncargado,date);
         List<Condeso> allGMs = new LinkedList<>();
         for(GM gm: gms){
             int id = gm.getId();

@@ -20,6 +20,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import tiendas.Tiendas;
@@ -78,12 +79,19 @@ public class Condeso {
 
 	public Condeso() {
 	}
+	@Transient
 	private int priorityValue;
+	@Transient
 	private int diasSeguidos;
+	@Transient
 	private int finesLibres;
+	@Transient
 	private Turnos[] personal = new Turnos[31];
+	@Transient
 	private int horasAsignadas = 0;
+	@Transient
 	private int maxHours;
+	@Transient
 	private int minHours;
 
 	public long getId() {

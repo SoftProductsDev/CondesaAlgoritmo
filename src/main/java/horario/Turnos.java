@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import tiendas.Tiendas;
 import condeso.Condeso;
 import java.time.LocalDate;
@@ -47,12 +48,19 @@ public class Turnos implements Comparable<Turnos> {
 
 	//private boolean elemental;
 	//private boolean matutino;
+	@Transient
 	private boolean noOptions = false;
+	@Transient
 	private int minimo;
+	@Transient
 	private Dias elDia;
+	@Transient
 	private boolean encargado;
+	@Transient
 	private long idTienda;
+	@Transient
 	private LocalDate fecha;
+	@Transient
 	private List<Hora> misHoras = new ArrayList<>();
 
 	public void resetMinimo(){
