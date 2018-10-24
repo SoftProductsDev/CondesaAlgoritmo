@@ -153,7 +153,7 @@ public class PlantillaGUI   extends Application implements Initializable {
     ) {
       for (Turnos turno: dia.getTurnos()
       ) {
-        setTurno(turno, dia.getDate().getDayOfWeek().getValue() + 2);
+        setTurno(turno, dia.getDate().getDayOfWeek().getValue() + 1);
       }
 
     }
