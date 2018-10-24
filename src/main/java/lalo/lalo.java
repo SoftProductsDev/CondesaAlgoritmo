@@ -302,8 +302,8 @@ public class lalo {
 	}
 
 	private void insist(Set<Turnos> noAsignados){
-
-	}
+		return;
+			}
 
 	private boolean porMaximmoAlcanzado(Condeso regalador, Condeso candidate, Turnos elTurno){
 		Turnos oferta;

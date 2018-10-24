@@ -65,6 +65,7 @@ public class Tiendas {
 
 	public Tiendas() {
 		selected = false;
+		this.master = new HorarioMaster();
 	}
 
 	public Plantillas getPlantilla() {
