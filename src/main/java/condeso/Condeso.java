@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.lang.Math;
 
 import horario.Turnos;
+
+import java.util.ArrayList;
 import java.util.Objects;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -394,5 +396,27 @@ public class Condeso {
 
 	public ObservableValue<Boolean> Lunch() {
 		return  new SimpleBooleanProperty(lunch);
+	}
+
+	public void printCondeso(){
+		System.out.println(nombre);
+		List<Turnos> losTurnos = new ArrayList<>();
+		for(int i =0; i < personal.length; i++){
+			Turnos elturno = personal[i];
+			if(elturno != null){
+				losTurnos.add(elturno);
+				System.out.print(i + "\t");
+			}
+		}
+		System.out.println();
+		for(int i = 0; i < losTurnos.size(); i++){
+			Turnos elTurno = losTurnos.get(i);
+			System.out.print(elTurno.getInicio() + "\t");
+		}
+		System.out.println();
+		for (int i = 0; i < losTurnos.size(); i++){
+			Turnos elTurno = losTurnos.get(i);
+			System.out.print(elTurno.getFin() + "\t");
+		}
 	}
 }

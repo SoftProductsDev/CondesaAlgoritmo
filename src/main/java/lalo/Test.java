@@ -1,5 +1,6 @@
 package lalo;
 
+import condeso.Condeso;
 import horario.TipoTurno;
 import horario.Turnos;
 
@@ -24,13 +25,13 @@ public class Test {
 
 
 
-        /*String filename = "GMs.txt";
+        String filename = "GMs.txt";
         ArrayList<Turnos> deEncargado = new ArrayList<>();
-        Set<GM> GMs = Parser.parseGMs(filename, deEncargado, LocalDate.of(2018, Month.NOVEMBER, 1));
-        for(GM elGM : GMs){
-            elGM.print();
+        Set<Condeso> GMs = Parser.parseGMs(filename, deEncargado, LocalDate.of(2018, Month.NOVEMBER, 1));
+        for(Condeso elGM : GMs){
+            elGM.printCondeso();
         }
-        System.out.println(deEncargado.size());*/
+        System.out.println(deEncargado.size());
 
 
 
