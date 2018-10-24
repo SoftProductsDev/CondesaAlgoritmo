@@ -29,7 +29,9 @@ public class HorarioMaster {
   private Map<LocalDate, Dias> mes;
 
   public HorarioMaster() {
+    mes=new HashMap<>();
   }
+
 
   public HorarioMaster(Map<LocalDate,horario.Dias> master) {
     mes = master;

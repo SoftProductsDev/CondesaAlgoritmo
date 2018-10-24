@@ -3,11 +3,7 @@ package horario;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -48,6 +44,12 @@ public class Dias {
     private float promedioMinimo;
 
     public Dias(){}
+
+    public Dias(LocalDate date, Tiendas laTienda){
+        this.date = date;
+        this.tienda = laTienda;
+        turnos = new HashSet<>();
+    }
 
     public void  resetMinimoTurnos(){
         for(Turnos elTurno : turnos){

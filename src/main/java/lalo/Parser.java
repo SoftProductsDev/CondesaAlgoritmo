@@ -354,7 +354,7 @@ private static void parseTurnosGMs(String inicio, String fin, String GM, String 
         String Abrev;
         boolean next = false;
         Condeso elGM;
-
+        Tiendas laTienda = lasTiendas.get(idTienda);
         // String anfang;
         // String ende;
 
@@ -364,6 +364,7 @@ private static void parseTurnosGMs(String inicio, String fin, String GM, String 
         paraId = ignore(ID, '\t');
     paraGM = subString(GM, paraGM, '\t')+1;
     paraId = subString(ID, paraId, '\t')+1;
+    Dias elDia;
 
         for(int i = 0; i < length; i++){
             try{
@@ -390,10 +391,15 @@ private static void parseTurnosGMs(String inicio, String fin, String GM, String 
 
                Abrev = GM.substring(paraGM, (paraGM = subString(GM, paraGM, '\t')));
                elGM = GMs.get(Id);
+               elDia =  elMaster.get(LocalDate.of(mes.getYear(), mes.getMonth(), i+1));
+               if(elDia == null) {
+                   elDia = new Dias(LocalDate.of(mes.getYear(), mes.getMonth(), i+1), laTienda);
+                   elMaster.put(LocalDate.of(mes.getYear(), mes.getMonth(), i+1), elDia);
+               }
                if(Abrev.charAt(0) == '#'){
-                 losTurnos.add(new Turnos(null, begin, end, elMaster.get(LocalDate.of(mes.getYear(), mes.getMonth(), i+1)), true));
+                 losTurnos.add(new Turnos(null, begin, end, elDia, true));
                }else{
-               elGM.asignarTurno(new Turnos(elGM, begin, end, elMaster.get(LocalDate.of(mes.getYear(), mes.getMonth(), i+1)), true));
+               elGM.asignarTurno(new Turnos(elGM, begin, end, elDia, true));
             }
             paraInicio++;
             paraFin++;
