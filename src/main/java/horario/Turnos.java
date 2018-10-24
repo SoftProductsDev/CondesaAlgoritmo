@@ -55,6 +55,10 @@ public class Turnos implements Comparable<Turnos> {
 	private LocalDate fecha;
 	private List<Hora> misHoras = new ArrayList<>();
 
+	public void resetMinimo(){
+		minimo = 1;
+	}
+
 	public Turnos(){};
 
 	public LocalDate getFecha(){return fecha;}

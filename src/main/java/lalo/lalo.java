@@ -72,8 +72,8 @@ public class lalo {
 		Set<Turnos> losTurnos;
 		for(Tiendas laTienda: tiendas){
 			elMaster = horariosMaster.get(laTienda);
-			year = elMaster.getYear();
-			month = elMaster.getMonth();
+			year = fecha.getYear();
+			month = fecha.getMonth();
 			HashMap<LocalDate, Dias> losDias;
 			Dias elDia;
 			mes = elMaster.getMes();
