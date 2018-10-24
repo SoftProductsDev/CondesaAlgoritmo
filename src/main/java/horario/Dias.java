@@ -45,6 +45,12 @@ public class Dias {
 
     public Dias(){}
 
+    public void  resetMinimoTurnos(){
+        for(Turnos elTurno : turnos){
+            elTurno.resetMinimo();
+        }
+    }
+
     public float getPromedioMinimo(){return promedioMinimo;}
 
     public void setPromedioMinimo(float promedioMinimo){this.promedioMinimo = promedioMinimo;}

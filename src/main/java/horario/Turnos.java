@@ -97,7 +97,7 @@ public class Turnos implements Comparable<Turnos> {
 	public int getMinimo(){return minimo;}
 
 	public void setMinimo(int minimo){
-	    if(minimo > this.minimo) this.minimo = minimo;
+	    if(minimo > this.minimo) this.minimo = Math.min(minimo, 3);
 	}
 
 	public long getId() {

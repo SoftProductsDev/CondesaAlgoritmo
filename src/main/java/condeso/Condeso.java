@@ -302,6 +302,7 @@ public class Condeso {
 	public void asignarTurno(Turnos elTurno){
 		int day = elTurno.getDate().getDayOfMonth();
 		elTurno.setCondeso(this);
+		elTurno.getDay().resetMinimoTurnos();
 		elTurno.change();
 		personal[day-1] = elTurno;
 		horasAsignadas += elTurno.getDuracion();
@@ -318,15 +319,20 @@ public class Condeso {
 
 	}
 
-	public void cambiarTurno(Turnos elTurno){
+	public Turnos cambiarTurno(Turnos elTurno){
 		int day = elTurno.getDate().getDayOfMonth();
+		elTurno.getDay().resetMinimoTurnos();
+		elTurno.getDay().resetMinimoTurnos();
+		Turnos aRegresar = personal[day-1];
 		personal[day-1].setCondeso(null);
 		int horas = personal[day-1].getDuracion();
 		int horasNuevas = elTurno.getDuracion();
 		personal[day-1] = elTurno;
 		elTurno.setCondeso(this);
+		elTurno.change();
+		aRegresar.change();
 		horasAsignadas += (horasNuevas - horas);
-
+		return aRegresar;
 	}
 
 	public void setMaxHours(int maxHours){
@@ -352,6 +358,7 @@ public class Condeso {
                     break;
                 }
             }
+            return elTurno;
 		}
 		return null;
 	} // falta checar fines de semana
