@@ -20,14 +20,13 @@
     <!-- Mapping Classes -->
     <!-- Recipe: Save An Object -->
     <mapping class="condeso.Condeso" />
-    <mapping class="horario.HorarioMaster"/>
+    <mapping class="horario.HorarioMaster" />
     <mapping class="horario.HorarioEntrega"/>
     <mapping class="horario.HorarioPersonal"/>
     <mapping class="tiendas.Tiendas"/>
     <mapping class="horario.Plantillas"/>
     <mapping class="horario.Dias"/>
     <mapping class="horario.Turnos"/>
-
 
 
   </session-factory>

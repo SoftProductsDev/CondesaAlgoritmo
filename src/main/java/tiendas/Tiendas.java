@@ -9,14 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import org.hibernate.annotations.Cascade;
 
+@Entity
+@Table(name = "tiendas")
 public class Tiendas {
 	@javax.persistence.Id
 	@GeneratedValue
@@ -47,7 +52,9 @@ public class Tiendas {
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private List<Plantillas> plantillasAnteriores;
 
+	@Transient
 	private Boolean selected;
+	@Transient
 	private List<LocalDate> diasDeCierre = new ArrayList<>();
 
 	public Tiendas(Plantillas plantilla, String nombre) {

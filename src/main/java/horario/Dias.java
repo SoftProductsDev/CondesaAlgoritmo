@@ -19,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import tiendas.Tiendas;
 
 @Entity
@@ -39,8 +40,11 @@ public class Dias {
     @Column(name = "date")
     private LocalDate date;
 
+    @Transient
     private Tiendas tienda;
+    @Transient
     private HashMap<Integer, Hora> horas;
+    @Transient
     private float promedioMinimo;
 
     public Dias(){}
