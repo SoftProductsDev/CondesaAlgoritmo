@@ -14,6 +14,7 @@ import DbModel.HorarioEntrega;
 import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import condeso.TipoEmpleado;
 import horario.Dias;
+import horario.HorarioMaster;
 import horario.Turnos;
 import tiendas.Tiendas;
 
@@ -342,7 +343,10 @@ private static boolean useless(String line){
 
 private static void parseTurnosGMs(String inicio, String fin, String GM, String ID, LocalDate mes, Map<Long, Condeso> GMs,
                                    long idTienda, ArrayList<Turnos> losTurnos, Map<Long, Tiendas> lasTiendas){
-        Map<LocalDate, Dias> elMaster = lasTiendas.get(idTienda).getMaster().getMes();
+        Map<LocalDate, Dias> elMaster = new HashMap<>();
+        Tiendas tienda = lasTiendas.get(idTienda);
+        HorarioMaster mamastroso = tienda.getMaster();
+        elMaster = lasTiendas.get(idTienda).getMaster().getMes();
         int length = mes.lengthOfMonth();
         int paraInicio = 0;
         int paraFin = 0;
