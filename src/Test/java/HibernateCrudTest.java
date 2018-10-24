@@ -1,10 +1,10 @@
 
 import DbController.HibernateCrud;
-import DbModel.Condeso;
-import DbModel.Dias;
-import DbModel.HorarioMaster;
-import DbModel.Tiendas;
-import DbModel.Turnos;
+import horario.Dias;
+import horario.HorarioMaster;
+import horario.Turnos;
+import tiendas.Tiendas;
+import condeso.Condeso;
 import condeso.Contrato;
 import condeso.TipoEmpleado;
 import java.util.Map;
@@ -14,12 +14,11 @@ import junit.framework.TestCase;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 public class HibernateCrudTest extends TestCase {
-/*
+
   public void testGet() {
     List<Condeso> condesos = DbController.HibernateCrud.GetAllCondesos();
     for (Condeso condeso: condesos
@@ -29,28 +28,28 @@ public class HibernateCrudTest extends TestCase {
   }
 
   public void testCreateCondeso(){
-    List<DbModel.Tiendas> tiendas = new ArrayList<>();
-    DbModel.Tiendas hbf = new DbModel.Tiendas();
+    List<Tiendas> tiendas = new ArrayList<>();
+    Tiendas hbf = new Tiendas();
     hbf.setNombre("HBF");
     hbf.setManager("Jorge");
     hbf.setFechaApertura(LocalDate.now());
-    //hbf.setId(1);
+    hbf.setId(1);
     HibernateCrud.SaveTienda(hbf);
 
 
-    DbModel.Tiendas mf = new DbModel.Tiendas();
+    Tiendas mf = new Tiendas();
     mf.setNombre("MF");
     mf.setManager("Leo");
     mf.setFechaApertura(LocalDate.now());
-    //mf.setId(2);
+    mf.setId(2);
     HibernateCrud.SaveTienda(mf);
 
 
-    DbModel.Tiendas impler = new DbModel.Tiendas();
+    Tiendas impler = new Tiendas();
     impler.setNombre("IMP");
     impler.setManager("Jorge");
     impler.setFechaApertura(LocalDate.now());
-    //impler.setId(3);
+    impler.setId(3);
     HibernateCrud.SaveTienda(impler);
 
 
@@ -294,8 +293,8 @@ public class HibernateCrudTest extends TestCase {
     HibernateCrud.UpdateTienda(tienda);
   }
 
-  private Map<LocalDate, Dias> createMes() {
-    Map<LocalDate, Dias> result = new HashMap<>();
+  private HashMap<LocalDate, Dias> createMes() {
+    HashMap<LocalDate, Dias> result = new HashMap<>();
     Dias dia1 = createDia(LocalDate.now().withDayOfMonth(1));
     Dias dia2 = createDia2(LocalDate.now().withDayOfMonth(2));
     Dias dia3 = createDia3(LocalDate.now().withDayOfMonth(3));
@@ -765,9 +764,9 @@ public class HibernateCrudTest extends TestCase {
     return result;
   }
 
-  /*public void testCreateTienda()
+  public void testCreateTienda()
   {
-    DbModel.Tiendas tienda = new DbModel.Tiendas();
+    Tiendas tienda = new Tiendas();
     tienda.setNombre("HBF");
     HibernateCrud.SaveTienda(tienda);
   }
@@ -780,5 +779,5 @@ public class HibernateCrudTest extends TestCase {
       System.out.println(tienda);
     }
   }
-*/
+
 }

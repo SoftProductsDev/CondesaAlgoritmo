@@ -17,8 +17,6 @@ import lalo.Disponibilidad;
 import lalo.Parser;
 import lalo.lalo;
 import tiendas.Tiendas;
-import lalo.GM;
-
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
@@ -46,9 +44,9 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     private List<LocalDate> dias = new ArrayList<>();
     private List<Condeso> allCondesos = DbController.HibernateCrud.GetAllCondesos();
     private Set<Condeso> foundCondesos = new HashSet<>();
-    private List<Tiendas> allTiendas = DbController.HibernateCrud.GetAllDTOTiendas();
+    private List<Tiendas> allTiendas = DbController.HibernateCrud.GetAllTiendas();
     private Set<Disponibilidad> horario;
-    private Set<GM> gms;
+    private Set<Condeso> gms;
     private ArrayList<Turnos> turnosEncargado = new ArrayList<>();
 
 
@@ -66,9 +64,9 @@ public class NuevoHorarioGUI extends Application implements Initializable {
         if(fecha !=  null){
             Set<Tiendas> tiendasALL2 = new HashSet<>();
             tiendasALL2.addAll(allTiendas);
-            lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha);
+            //lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha);
             System.out.print("no mamo");
-            lalo.start();
+            //lalo.start();
         }
     }
 
@@ -111,10 +109,10 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     public void mesDeInicioClicked(ActionEvent actionEvent){
         LocalDate date = mesDeInicioPicker.getValue();
         fecha = date;
-        //gms = Parser.parseGMs("GMs.txt", turnosEncargado,date);
+        gms = Parser.parseGMs("GMs.txt", turnosEncargado,date);
         List<Condeso> allGMs = new LinkedList<>();
-        for(GM gm: gms){
-            int id = gm.getId();
+        for(Condeso gm: gms){
+            long id = gm.getId();
             for(Condeso condeso : allCondesos){
                 if(condeso.getId() == id){
                     allGMs.add(condeso);

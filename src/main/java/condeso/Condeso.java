@@ -388,7 +388,7 @@ public class Condeso {
 		if (o == null || getClass() != o.getClass()) {
 			return false;
 		}
-		DbModel.Condeso condeso = (DbModel.Condeso) o;
+		Condeso condeso = (Condeso) o;
 		return getId() == condeso.getId();
 	}
 

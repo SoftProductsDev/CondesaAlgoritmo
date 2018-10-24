@@ -60,6 +60,7 @@ public class Tiendas {
 	public Tiendas(Plantillas plantilla, String nombre) {
 		this.plantilla = plantilla;
 		this.nombre = nombre;
+		this.master = new HorarioMaster();
 	}
 
 	public Tiendas() {
