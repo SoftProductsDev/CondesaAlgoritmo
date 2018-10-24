@@ -17,20 +17,20 @@ import java.util.Set;
 public class Test {
     public static void main(String [] args) {
 
-     /* String filename = "disponibilidad2.txt";
+      String filename = "disponibilidad2.txt";
         Set<Disponibilidad> horario = Parser.parse2(filename);
         for(Disponibilidad e: horario){
             e.Print();
             System.out.println();
-        }*/
+        }
 
-        String filename = "GMs.txt";
+        /*String filename = "GMs.txt";
         ArrayList<Turnos> deEncargado = new ArrayList<>();
         Set<GM> GMs = Parser.parseGMs(filename, deEncargado, LocalDate.of(2018, Month.NOVEMBER, 1));
         for(GM elGM : GMs){
             elGM.print();
         }
-        System.out.println(deEncargado.size());
+        System.out.println(deEncargado.size());*/
 
 
 
