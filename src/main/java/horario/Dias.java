@@ -109,6 +109,9 @@ public class Dias {
         return turnos;
     }
     public void setTurnos(Set<Turnos> turnos) {
+        for(Turnos elTurno : turnos){
+            elTurno.setDay(this);
+        }
         this.turnos = turnos;
     }
     public void addTurno(Turnos elTurno){
