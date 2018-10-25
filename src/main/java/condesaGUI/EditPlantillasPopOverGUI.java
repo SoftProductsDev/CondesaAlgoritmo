@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import org.controlsfx.control.PopOver;
+import org.controlsfx.control.ToggleSwitch;
 
 public class EditPlantillasPopOverGUI  implements Initializable {
     @FXML
@@ -29,16 +30,19 @@ public class EditPlantillasPopOverGUI  implements Initializable {
     private Dias dia;
     private GridPane grid;
     private Label label;
+    private ToggleSwitch toggleEditar;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
 
-    public void setInitialValues(Turnos turno, Dias dia, GridPane grid, Label label){
+    public void setInitialValues(Turnos turno, Dias dia, GridPane grid, Label label,
+        ToggleSwitch toggleEditar){
       this.turno = turno;
       this.dia = dia;
       this.grid = grid;
       this.label = label;
+      this.toggleEditar = toggleEditar;
       inicioField.setText(Integer.toString(turno.getInicio()));
       finField.setText(Integer.toString(turno.getFin()));
     }
@@ -68,24 +72,26 @@ public class EditPlantillasPopOverGUI  implements Initializable {
           new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-              FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPlantillasPopOver.fxml"));
-              String sceneFile = "/editPlantillasPopOver.fxml";
-              Parent root = null;
-              URL url  = null;
-              try {
-                //url  = getClass().getResource( sceneFile );
-                //root = fxmlLoader.load( url );
-                root = (Parent) fxmlLoader.load();
-              } catch (IOException e) {
-                e.printStackTrace();
-              }
-              PopOver pop = new PopOver(root);
-              pop.setAutoFix(false);
-              pop.show(label);
-              condesaGUI.EditPlantillasPopOverGUI edit = fxmlLoader.getController();
-              edit.setInitialValues(turno, dia, grid, label);
-              event.consume();
-            };
+              if(toggleEditar.isSelected()){
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPlantillasPopOver.fxml"));
+                String sceneFile = "/editPlantillasPopOver.fxml";
+                Parent root = null;
+                URL url  = null;
+                try {
+                  //url  = getClass().getResource( sceneFile );
+                  //root = fxmlLoader.load( url );
+                  root = (Parent) fxmlLoader.load();
+                } catch (IOException e) {
+                  e.printStackTrace();
+                }
+                PopOver pop = new PopOver(root);
+                pop.setAutoFix(false);
+                pop.show(label);
+                condesaGUI.EditPlantillasPopOverGUI edit = fxmlLoader.getController();
+                edit.setInitialValues(turno, dia, grid, label, toggleEditar);
+                event.consume();
+              };
+            }
           });
       return label;
     }

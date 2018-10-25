@@ -2,6 +2,7 @@ package DbController;
 
 import condeso.Condeso;
 import DbModel.HibernateUtil;
+import horario.Plantillas;
 import tiendas.Tiendas;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -133,7 +134,7 @@ public class HibernateCrud {
             session.update(updatedTienda);
             session.getTransaction().commit();
             session.close();
-            return "Updated condeso: " + updatedTienda.toString();
+            return "Updated tienda: " + updatedTienda.toString();
         }
 
 
@@ -150,5 +151,15 @@ public class HibernateCrud {
     public static Condeso findCondesoId(int id) {
         // en caso de que se quede ordenado simpre los condesos con su id
         return null;
+    }
+
+    public static String UpdatePlantilla(Plantillas plantilla) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.getTransaction().begin();
+        session.update(plantilla);
+        session.getTransaction().commit();
+        session.close();
+        return "Updated tienda: " + plantilla.toString();
     }
 }

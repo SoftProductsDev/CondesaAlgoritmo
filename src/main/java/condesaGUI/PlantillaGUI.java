@@ -3,6 +3,8 @@ package condesaGUI;
 import DbController.HibernateCrud;
 import horario.Dias;
 import horario.Plantillas;
+import javafx.scene.control.ToggleButton;
+import org.controlsfx.control.ToggleSwitch;
 import tiendas.Tiendas;
 import horario.Turnos;
 import java.io.IOException;
@@ -52,6 +54,7 @@ public class PlantillaGUI   extends Application implements Initializable {
     @FXML private GridPane weekGrid1;
     @FXML private ChoiceBox<Tiendas> tiendasChoiceNueva;
     @FXML private TextField nombrePlantilla;
+    @FXML private ToggleSwitch toggleEditar;
     private List<Dias> dias;
     private static final ObservableList<String>
             horario = FXCollections.observableArrayList(getStaticList());
@@ -175,24 +178,26 @@ public class PlantillaGUI   extends Application implements Initializable {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPlantillasPopOver.fxml"));
-            String sceneFile = "/editPlantillasPopOver.fxml";
-            Parent root = null;
-            URL url  = null;
-            try {
-              //url  = getClass().getResource( sceneFile );
-              //root = fxmlLoader.load( url );
-              root = (Parent) fxmlLoader.load();
-            } catch (IOException e) {
-              e.printStackTrace();
-            }
-            PopOver pop = new PopOver(root);
-            pop.setAutoFix(false);
-            pop.show(label);
-            condesaGUI.EditPlantillasPopOverGUI edit = fxmlLoader.getController();
-            edit.setInitialValues(turno, dia, grid, label);
-            event.consume();
-          };
+            if(toggleEditar.isSelected()){
+              FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPlantillasPopOver.fxml"));
+              String sceneFile = "/editPlantillasPopOver.fxml";
+              Parent root = null;
+              URL url  = null;
+              try {
+                //url  = getClass().getResource( sceneFile );
+                //root = fxmlLoader.load( url );
+                root = (Parent) fxmlLoader.load();
+              } catch (IOException e) {
+                e.printStackTrace();
+              }
+              PopOver pop = new PopOver(root);
+              pop.setAutoFix(false);
+              pop.show(label);
+              condesaGUI.EditPlantillasPopOverGUI edit = fxmlLoader.getController();
+              edit.setInitialValues(turno, dia, grid, label, toggleEditar);
+              event.consume();
+            };
+          }
         });
     return label;
   }
@@ -279,6 +284,7 @@ public class PlantillaGUI   extends Application implements Initializable {
             new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
+                  if(toggleEditar.isSelected() || pane == weekGrid){
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/addPlantillaPopOver.fxml"));
                     Parent root = null;
                     try {
@@ -291,16 +297,17 @@ public class PlantillaGUI   extends Application implements Initializable {
                     pop.setAutoFix(false);
                     pop.show(pane);
                     AddPlantillasPopOver add = fxmlLoader.getController();
-                    add.setInitialValues(pane, dia);
+                    add.setInitialValues(pane, dia, toggleEditar);
                 }
-            });
+            }
+        });
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 
-  public void savePLantilla(ActionEvent actionEvent) {
+  public void savePlantilla(ActionEvent actionEvent) {
       Tiendas tienda = tiendasChoiceNueva.getSelectionModel().getSelectedItem();
       Plantillas nueva = new Plantillas();
       try{
@@ -317,6 +324,9 @@ public class PlantillaGUI   extends Application implements Initializable {
       HibernateCrud.UpdateTienda(tienda);
       nuevaPlantilla.setDias(createWeek());
       deleteTurnosLabels(weekGrid);
+    ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
+    tiendasChoice.setItems(tiendas);
+    nombreChoice.setItems(FXCollections.observableList(new ArrayList<>()));
   }
 
   public void deleteTurnosLabels(GridPane pane){
@@ -341,13 +351,27 @@ public class PlantillaGUI   extends Application implements Initializable {
     Tiendas tienda = tiendasChoice.getSelectionModel().getSelectedItem();
     Plantillas plantillas = nombreChoice.getSelectionModel().getSelectedItem();
     tienda.getPlantillasAnteriores().remove(plantillas);
-    if(tienda.getPlantilla().equals(plantillas)){
-      tienda.setPlantilla(null);
-    }
+    try {
+      if(tienda.getPlantilla().equals(plantillas)){
+        tienda.setPlantilla(null);}
+    }catch(NullPointerException e){}
     HibernateCrud.UpdateTienda(tienda);
     deleteTurnosLabels(weekGrid1);
     ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
     tiendasChoice.setItems(tiendas);
     nombreChoice.setItems(FXCollections.observableList(new ArrayList<>()));
+  }
+
+  public void updatePlantilla(ActionEvent actionEvent) {
+      Plantillas plantilla = nombreChoice.getSelectionModel().getSelectedItem();
+      if(plantilla != null) {
+        HibernateCrud.UpdatePlantilla(plantilla);
+      }
+  }
+
+  public void handleClick(MouseEvent mouseEvent) {
+      if(nombreChoice.getSelectionModel().getSelectedItem() == null){
+        toggleEditar.setSelected(false);
+      }
   }
 }
