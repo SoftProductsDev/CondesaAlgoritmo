@@ -21,7 +21,7 @@ public class lalo {
 	private Set<Condeso> condesos;
 	public Set<Tiendas> tiendas;
 	private Queue<Turnos> turnos;
-	private HashMap<Tiendas, HorarioMaster> horariosMaster;
+	private HashMap<Tiendas, HorarioMaster> horariosMaster; // quitar pues estorba
 	private HashMap<Integer, Integer[][]> disponibilidad;
 	private List<Turnos> deEncargado;
 	private LocalDate fecha;
@@ -44,7 +44,7 @@ public class lalo {
 
 	}
 
-	private void addOtrosTurnos(Set<Condeso> GMs, List<Turnos> deEncargado){
+	private void addOtrosTurnos(Set<Condeso> GMs, List<Turnos> deEncargado){ //cre que este método es totalmente innecesario
 		Dias elDia;
 		for(Condeso elGM : GMs){
 			Turnos[] losTurno =  elGM.getPersonal();
@@ -57,6 +57,7 @@ public class lalo {
 			}
 		}
 		for(Turnos elTurno : deEncargado){
+
 			elDia = horariosMaster.get(elTurno.getTienda()).getMes().get(elTurno.getDate());
 			elDia.addTurno(elTurno);
 			elTurno.setDay(elDia);
@@ -79,16 +80,17 @@ public class lalo {
 			HashMap<LocalDate, Dias> losDias;
 			Dias elDia;
 			mes = elMaster.getMes();
-			int length = LocalDate.of(year, month, 1).lengthOfMonth();
+			int length = fecha.lengthOfMonth();
 			for(int i = 0; i < length; i++){
 				elDia = mes.get(LocalDate.of(year, month, i+1));
 				losTurnos = elDia.getTurnos();
 				for(Turnos elTurno : losTurnos){
+					if(!elTurno.isOcupado())
 					turnosPriorityQueue.add(elTurno);
 				}
 			}
 		}
-		turnosPriorityQueue.addAll(encargados);
+		//turnosPriorityQueue.addAll(encargados);
 		return turnosPriorityQueue;
 
 	}

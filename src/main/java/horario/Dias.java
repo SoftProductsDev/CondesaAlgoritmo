@@ -49,6 +49,20 @@ public class Dias {
         this.date = date;
         this.tienda = laTienda;
         turnos = new HashSet<>();
+        switch (date.getDayOfWeek()){
+            case SATURDAY:
+            case SUNDAY:
+            case FRIDAY:
+            case THURSDAY:
+                promedioMinimo = 2.1F;
+             break;
+            case WEDNESDAY:
+            case TUESDAY:
+            case MONDAY:
+                promedioMinimo = 1.8F;
+            break;
+        }
+        laTienda.getMaster().getMes().put(date, this);
     }
 
     public void  resetMinimoTurnos(){
