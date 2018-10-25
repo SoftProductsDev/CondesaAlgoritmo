@@ -60,14 +60,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        disponibilidad = changeSetToHashMap(horario);
-        if(fecha !=  null){
-            Set<Tiendas> tiendasALL2 = new HashSet<>();
-            tiendasALL2.addAll(allTiendas);
-            //lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha);
-            System.out.print("no mamo");
-            //lalo.start();
-        }
+
     }
 
     public HashMap<Integer, Integer[][]> changeSetToHashMap(Set<Disponibilidad> disponibilidad){
@@ -91,7 +84,13 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     }
 
     public void iniciarClicked(ActionEvent actionEvent) {
-
+        disponibilidad = changeSetToHashMap(horario);
+        if(fecha !=  null){
+            Set<Tiendas> tiendasALL2 = new HashSet<>();
+            tiendasALL2.addAll(allTiendas);
+            lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha);
+            lalo.start();
+        }
     }
 
     public void fechasDeCierreClicked(ActionEvent actionEvent){

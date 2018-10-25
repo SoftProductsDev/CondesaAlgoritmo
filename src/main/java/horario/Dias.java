@@ -43,7 +43,9 @@ public class Dias {
     @Transient
     private float promedioMinimo;
 
-    public Dias(){}
+    public Dias(){
+        turnos = new HashSet<>();
+    }
 
     public Dias(LocalDate date, Tiendas laTienda){
         this.date = date;
@@ -100,9 +102,9 @@ public class Dias {
 
     public DayOfWeek getDay(){return date.getDayOfWeek();}
 
-    public Dias(LocalDate date) {
+    /*public Dias(LocalDate date) {
         this.date = date;
-    }
+    }*/
     public Set<Turnos> getTurnos() {
         return turnos;
     }

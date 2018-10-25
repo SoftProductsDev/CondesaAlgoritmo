@@ -40,7 +40,7 @@ public class Test {
             laTienda.setNombre("Tienda" + i);
             lasTiendas.add(laTienda);
         }
-        Dias elDia = new Dias(LocalDate.of(2018, Month.SEPTEMBER, 27));
+       // Dias elDia = new Dias(LocalDate.of(2018, Month.SEPTEMBER, 27), l);
 
 
 
