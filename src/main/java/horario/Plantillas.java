@@ -99,11 +99,10 @@ public class Plantillas {
 		Turnos turno;
 
 		for(Turnos elTurno : losTurnos){
-			turno = elTurno.duplicate();
-			turno.setDay(theDay);
-			turnos.add(turno);
+			turno = elTurno.duplicate(theDay);
+			//turnos.add(turno);
 		}
-		theDay.setTurnos(turnos);
+		//theDay.setTurnos(turnos);
 		return theDay;
 
 	}

@@ -203,7 +203,7 @@ public class Turnos implements Comparable<Turnos> {
 	public Tiendas getTienda(){return elDia.getTienda();}
 
 
-	public Turnos duplicate(){
+	public Turnos duplicate(Dias elDia){
 	return new Turnos(condeso, inicio, fin, elDia, encargado);
 	}
 
