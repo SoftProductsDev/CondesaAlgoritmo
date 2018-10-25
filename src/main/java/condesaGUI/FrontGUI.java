@@ -205,8 +205,14 @@ public class FrontGUI extends Application implements Initializable {
   }
 
   private Label createLabel(Dias dia, Turnos turno, GridPane grid) {
-    Label label = new Label(turno.getCondeso().getNombre());
-    label.setStyle("-fx-background-color: " + turno.getCondeso().getColor());
+    Label label = new Label();
+    if(turno.getCondeso().getNombre() == null){
+      label.setText(turno.getCondeso().getAbreviacion());
+      label.setStyle("-fx-background-color: black");
+    }
+    else{
+      label.setStyle("-fx-background-color: " + turno.getCondeso().getColor());
+    }
     //label.setStyle();
     label.setMaxHeight(125462739);
     label.setMaxWidth(1234567890);
