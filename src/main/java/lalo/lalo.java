@@ -34,9 +34,9 @@ public class lalo {
 		this.condesos = condesos;
 		this.tiendas = tiendas;
 		//horariosMaster = new HashMap<>();
-		/*for(Tiendas laTienda : tiendas){
-			horariosMaster.put(laTienda, laTienda.getPlantilla().generateMaster(fecha, laTienda));
-		}*/
+		for(Tiendas laTienda : tiendas){
+			laTienda.getPlantilla().generateMaster(fecha, laTienda);
+		}
 		//addOtrosTurnos(GMs, deEncargado);
 
 		turnos = generateQueueTurnos();
