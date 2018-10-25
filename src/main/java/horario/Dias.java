@@ -43,12 +43,28 @@ public class Dias {
     @Transient
     private float promedioMinimo;
 
-    public Dias(){}
+    public Dias(){
+        turnos = new HashSet<>();
+    }
 
     public Dias(LocalDate date, Tiendas laTienda){
         this.date = date;
         this.tienda = laTienda;
         turnos = new HashSet<>();
+        switch (date.getDayOfWeek()){
+            case SATURDAY:
+            case SUNDAY:
+            case FRIDAY:
+            case THURSDAY:
+                promedioMinimo = 2.1F;
+             break;
+            case WEDNESDAY:
+            case TUESDAY:
+            case MONDAY:
+                promedioMinimo = 1.8F;
+            break;
+        }
+        laTienda.getMaster().getMes().put(date, this);
     }
 
     public void  resetMinimoTurnos(){
@@ -86,13 +102,16 @@ public class Dias {
 
     public DayOfWeek getDay(){return date.getDayOfWeek();}
 
-    public Dias(LocalDate date) {
+    /*public Dias(LocalDate date) {
         this.date = date;
-    }
+    }*/
     public Set<Turnos> getTurnos() {
         return turnos;
     }
     public void setTurnos(Set<Turnos> turnos) {
+        for(Turnos elTurno : turnos){
+            elTurno.setDay(this);
+        }
         this.turnos = turnos;
     }
     public void addTurno(Turnos elTurno){
@@ -103,5 +122,11 @@ public class Dias {
     }
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public void setDias(){
+        for(Turnos elTurno : turnos){
+            elTurno.setDay(this);
+        }
     }
 }

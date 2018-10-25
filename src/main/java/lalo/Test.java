@@ -1,6 +1,7 @@
 package lalo;
 
 import condeso.Condeso;
+import horario.Dias;
 import horario.TipoTurno;
 import horario.Turnos;
 import tiendas.Tiendas;
@@ -39,10 +40,7 @@ public class Test {
             laTienda.setNombre("Tienda" + i);
             lasTiendas.add(laTienda);
         }
-        for(Tiendas laTienda : lasTiendas){
-
-            laTienda.print();
-        }
+       // Dias elDia = new Dias(LocalDate.of(2018, Month.SEPTEMBER, 27), l);
 
 
 

@@ -21,7 +21,7 @@ public class lalo {
 	private Set<Condeso> condesos;
 	public Set<Tiendas> tiendas;
 	private Queue<Turnos> turnos;
-	private HashMap<Tiendas, HorarioMaster> horariosMaster;
+	//private HashMap<Tiendas, HorarioMaster> horariosMaster; // quitar pues estorba
 	private HashMap<Integer, Integer[][]> disponibilidad;
 	private List<Turnos> deEncargado;
 	private LocalDate fecha;
@@ -33,37 +33,47 @@ public class lalo {
 		this.disponibilidad = disponibilidad;
 		this.condesos = condesos;
 		this.tiendas = tiendas;
-		horariosMaster = new HashMap<>();
+		//horariosMaster = new HashMap<>();
 		for(Tiendas laTienda : tiendas){
-			horariosMaster.put(laTienda, laTienda.getPlantilla().generateMaster(fecha, laTienda));
-		}
-		addOtrosTurnos(GMs, deEncargado);
+			laTienda.getPlantilla().generateMaster(fecha, laTienda);
+			int length = fecha.lengthOfMonth();
+			for(int i = 0; i < length; i++){
+				Dias elDia = laTienda.getMaster().getMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), i+1));
+				Set<Turnos> losTurnos = elDia.getTurnos();
+				elDia.setDias();
 
-		turnos = generateQueueTurnos(horariosMaster, deEncargado);
+			}
+		}
+		//addOtrosTurnos(GMs, deEncargado);
+
+
+		turnos = generateQueueTurnos();
 
 
 	}
 
-	private void addOtrosTurnos(Set<Condeso> GMs, List<Turnos> deEncargado){
+	private void addOtrosTurnos(Set<Condeso> GMs, List<Turnos> deEncargado){ //cre que este método es totalmente innecesario
 		Dias elDia;
 		for(Condeso elGM : GMs){
 			Turnos[] losTurno =  elGM.getPersonal();
 			for(Turnos elTurno : losTurno){
 			if(elTurno != null) {
-				elDia = horariosMaster.get(elTurno.getTienda()).getMes().get(elTurno.getDate());
+
+				elDia = elTurno.getTienda().getMaster().getMes().get(elTurno.getDate());;
 				elDia.addTurno(elTurno);
 				elTurno.setDay(elDia);
 			}
 			}
 		}
 		for(Turnos elTurno : deEncargado){
-			elDia = horariosMaster.get(elTurno.getTienda()).getMes().get(elTurno.getDate());
+
+			elDia = elTurno.getTienda().getMaster().getMes().get(elTurno.getDate());
 			elDia.addTurno(elTurno);
 			elTurno.setDay(elDia);
 		}
 	}
 
-	private PriorityQueue<Turnos> generateQueueTurnos(HashMap<Tiendas, HorarioMaster> horariosMaster , List<Turnos> encargados){
+	private PriorityQueue<Turnos> generateQueueTurnos(){
 
 		PriorityQueue<Turnos> turnosPriorityQueue = new PriorityQueue<>(new CompareTurnos());
 
@@ -73,22 +83,23 @@ public class lalo {
 		Month month;
 		Set<Turnos> losTurnos;
 		for(Tiendas laTienda: tiendas){
-			elMaster = horariosMaster.get(laTienda);
+			elMaster = laTienda.getMaster();
 			year = fecha.getYear();
 			month = fecha.getMonth();
 			HashMap<LocalDate, Dias> losDias;
 			Dias elDia;
 			mes = elMaster.getMes();
-			int length = LocalDate.of(year, month, 1).lengthOfMonth();
+			int length = fecha.lengthOfMonth();
 			for(int i = 0; i < length; i++){
 				elDia = mes.get(LocalDate.of(year, month, i+1));
 				losTurnos = elDia.getTurnos();
 				for(Turnos elTurno : losTurnos){
+					if(!elTurno.isOcupado())
 					turnosPriorityQueue.add(elTurno);
 				}
 			}
 		}
-		turnosPriorityQueue.addAll(encargados);
+		//turnosPriorityQueue.addAll(encargados);
 		return turnosPriorityQueue;
 
 	}
@@ -102,16 +113,19 @@ public class lalo {
 
 	public void laloFuncionando() {
 		Set<Condeso> noDisponible = new HashSet<>();
-		Set<Condeso> yaOcupados = new HashSet<>();
+		//Set<Condeso> yaOcupados = new HashSet<>();
 		Set<Turnos> noAsignados = new HashSet<>();
 		PriorityQueue<Condeso> fila = new PriorityQueue<>(new CompareCondesos());
 		fila.addAll(condesos);
 
 		Turnos elTurno = turnos.poll();
 		Turnos last;
+		int count = 0;
 		while(elTurno != null){
-			last = elTurno;
-			while(last.getDate().getDayOfMonth() == elTurno.getDate().getDayOfMonth()) {
+
+
+				count++;
+				System.out.print(count +", ");
 				Condeso elCondeso = fila.poll();
 				while (!checkCondeso(elCondeso, disponibilidad, elTurno)) {
 					noDisponible.add(elCondeso);
@@ -120,15 +134,13 @@ public class lalo {
 				if (elCondeso == null) noAsignados.add(elTurno);
 				else{
 					elCondeso.asignarTurno(elTurno);
-					yaOcupados.add(elCondeso);
 				}
-				last = elTurno;
+
 				elTurno = turnos.poll();
 				fila.addAll(noDisponible);
 				noDisponible.clear();
-			}
-			fila.addAll(yaOcupados);
-			yaOcupados.clear();
+
+
 		}
 
 		reacomodar(noAsignados, condesos, disponibilidad);
