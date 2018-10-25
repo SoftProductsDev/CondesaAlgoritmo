@@ -15,6 +15,7 @@ import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import condeso.TipoEmpleado;
 import horario.Dias;
 import horario.HorarioMaster;
+import horario.TipoTurno;
 import horario.Turnos;
 import tiendas.Tiendas;
 
@@ -401,9 +402,9 @@ private static void parseTurnosGMs(String inicio, String fin, String GM, String 
                    elMaster.put(LocalDate.of(mes.getYear(), mes.getMonth(), i+1), elDia);
                }
                if(Abrev.charAt(0) == '#'){
-                 losTurnos.add(new Turnos(null, begin, end, elDia, true));
+                 losTurnos.add(new Turnos(null, begin, end, elDia, true, TipoTurno.GM));
                }else{
-               elGM.asignarTurno(new Turnos(elGM, begin, end, elDia, true));
+               elGM.asignarTurno(new Turnos(elGM, begin, end, elDia, true, TipoTurno.GM));
             }
             paraInicio++;
             paraFin++;

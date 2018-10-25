@@ -1,5 +1,6 @@
 package lalo;
 
+import DbController.HibernateCrud;
 import condeso.Condeso;
 import horario.Dias;
 import horario.TipoTurno;
@@ -35,11 +36,19 @@ public class Test {
         }
         System.out.println(deEncargado.size());*/
         List<Tiendas> lasTiendas = new ArrayList<>();
-        for(int i = 0; i < 3; i++){
+        List<Tiendas> lasTiendas2 = new ArrayList<>();
+        lasTiendas = HibernateCrud.GetAllTiendas();
+        lasTiendas2 = HibernateCrud.GetAllTiendas();
+
+        for(int i = 0; i < lasTiendas.size(); i++){
+            System.out.println("Tienda " + i + " " +lasTiendas.get(i));
+            System.out.println("Tienda " + i + " " +lasTiendas2.get(i));
+        }
+        /*for(int i = 0; i < 3; i++){
             Tiendas laTienda = new Tiendas();
             laTienda.setNombre("Tienda" + i);
             lasTiendas.add(laTienda);
-        }
+        }*/
        // Dias elDia = new Dias(LocalDate.of(2018, Month.SEPTEMBER, 27), l);
 
 

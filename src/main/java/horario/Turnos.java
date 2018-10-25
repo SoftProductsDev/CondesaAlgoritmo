@@ -109,7 +109,7 @@ public class Turnos implements Comparable<Turnos> {
 	}
 
 
-	public Turnos(Condeso condeso, int inicio, int fin, Dias elDia, boolean encargado) {
+	public Turnos(Condeso condeso, int inicio, int fin, Dias elDia, boolean encargado, TipoTurno tipoTurno) {
 		this.condeso = condeso;
 		//this.matutino = matutino;
 		this.inicio = inicio;
@@ -117,7 +117,12 @@ public class Turnos implements Comparable<Turnos> {
 		this.elDia = elDia;
 		this.encargado = encargado;
 		elDia.addTurno(this);
+		this.tipoTurno = tipoTurno;
+		minimo = 1;
+		if(elDia == null) throw new RuntimeException("dia es null");
 	}
+
+	public void checkDia(){if(elDia == null)throw  new RuntimeException("dia es null");}
 
 	/*public Turnos(long idTienda, int inicio, int fin, LocalDate fecha){ // solo para el caso de los GMs
 		this.idTienda = idTienda;
@@ -204,7 +209,7 @@ public class Turnos implements Comparable<Turnos> {
 
 
 	public Turnos duplicate(Dias elDia){
-	return new Turnos(condeso, inicio, fin, elDia, encargado);
+	return new Turnos(condeso, inicio, fin, elDia, encargado, tipoTurno);
 	}
 
 	@Override

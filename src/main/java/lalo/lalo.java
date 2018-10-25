@@ -33,17 +33,33 @@ public class lalo {
 		this.disponibilidad = disponibilidad;
 		this.condesos = condesos;
 		this.tiendas = tiendas;
+		for(Condeso elCondeso : condesos){
+			List<Tiendas> lasTiendas = elCondeso.getDondePuedeTrabajar();
+			if(lasTiendas.size() >= tiendas.size()){
+				this.tiendas.clear();
+				this.tiendas.addAll(lasTiendas);
+				break;
+			}
+		}
+
 		//horariosMaster = new HashMap<>();
 		for(Tiendas laTienda : tiendas){
 			laTienda.getPlantilla().generateMaster(fecha, laTienda);
-			int length = fecha.lengthOfMonth();
+			/*int length = fecha.lengthOfMonth();
+			int count = 0;
 			for(int i = 0; i < length; i++){
 				Dias elDia = laTienda.getMaster().getMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), i+1));
 				Set<Turnos> losTurnos = elDia.getTurnos();
+				for(Turnos elTurno : losTurnos){
+					elTurno.checkDia();
+					if(elTurno.deEncargado()) count++;
+				}
 				elDia.setDias();
 
 			}
+			System.out.println(count);*/
 		}
+
 		//addOtrosTurnos(GMs, deEncargado);
 
 
@@ -59,7 +75,7 @@ public class lalo {
 			for(Turnos elTurno : losTurno){
 			if(elTurno != null) {
 
-				elDia = elTurno.getTienda().getMaster().getMes().get(elTurno.getDate());;
+				elDia = elTurno.getTienda().getMaster().getMes().get(elTurno.getDate());
 				elDia.addTurno(elTurno);
 				elTurno.setDay(elDia);
 			}
@@ -82,6 +98,7 @@ public class lalo {
 		Map<LocalDate, Dias> mes;
 		Month month;
 		Set<Turnos> losTurnos;
+		int count = 0;
 		for(Tiendas laTienda: tiendas){
 			elMaster = laTienda.getMaster();
 			year = fecha.getYear();
@@ -113,26 +130,28 @@ public class lalo {
 
 	public void laloFuncionando() {
 		Set<Condeso> noDisponible = new HashSet<>();
+
 		//Set<Condeso> yaOcupados = new HashSet<>();
 		Set<Turnos> noAsignados = new HashSet<>();
 		PriorityQueue<Condeso> fila = new PriorityQueue<>(new CompareCondesos());
 		fila.addAll(condesos);
-
+		System.out.println(disponibilidad.size());
 		Turnos elTurno = turnos.poll();
 		Turnos last;
 		int count = 0;
+		int count2 = 0;
 		while(elTurno != null){
-
-
-				count++;
-				System.out.print(count +", ");
 				Condeso elCondeso = fila.poll();
+				System.out.println(fila.size());
 				while (!checkCondeso(elCondeso, disponibilidad, elTurno)) {
 					noDisponible.add(elCondeso);
 					elCondeso = fila.poll();
 				}
-				if (elCondeso == null) noAsignados.add(elTurno);
+				if (elCondeso == null){ noAsignados.add(elTurno);
+				count2++;
+				}
 				else{
+					System.out.print(count++ + ", ");
 					elCondeso.asignarTurno(elTurno);
 				}
 
@@ -142,7 +161,8 @@ public class lalo {
 
 
 		}
-
+		System.out.println(count);
+		System.out.print(count2);
 		reacomodar(noAsignados, condesos, disponibilidad);
 
 	}

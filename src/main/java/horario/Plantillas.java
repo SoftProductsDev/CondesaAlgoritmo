@@ -93,7 +93,7 @@ public class Plantillas {
 		Dias theDay = master.get(date);
 		if(theDay == null){
 			theDay = new Dias(date, laTienda);
-			master.put(date, elDia);
+			master.put(date, theDay);
 			
 		}
 
@@ -101,6 +101,7 @@ public class Plantillas {
 
 		for(Turnos elTurno : losTurnos){
 			turno = elTurno.duplicate(theDay);
+			turno.checkDia();
 			//turnos.add(turno);
 		}
 		//theDay.setTurnos(turnos);

@@ -85,7 +85,7 @@ public class Condeso {
 	@Transient
 	private int priorityValue;
 	@Transient
-	private int diasSeguidos;
+	private int diasSeguidos = 5;
 	@Transient
 	private int finesLibres;
 	@Transient
@@ -282,6 +282,15 @@ public class Condeso {
 
 	public void setContrato(Contrato contrato) {
 		this.contrato = contrato;
+		switch(contrato){
+			case MiniJob: maxHours = 47;
+			minHours = 0;
+			break;
+			case otros: maxHours = 220;
+			minHours = 50;
+			break;
+
+		}
 	}
 
 	public int getHoras(){ return (maxHours + minHours)/2;}
@@ -376,7 +385,9 @@ public class Condeso {
 
 	public int getMinHours(){return minHours;}
 
-	public void setMinHours(int minHours){this.minHours = minHours;}
+	public void setMinHours(int minHours){this.minHours = minHours;
+		this.minHours = contrato == Contrato.MiniJob ? Math.min(minHours, 45) :  Math.max(minHours, 50);
+	}
 
 	public boolean checkMax(Turnos elTurno){ if(maxHours <= horasAsignadas + elTurno.getDuracion()) return false;
 	return true;}
