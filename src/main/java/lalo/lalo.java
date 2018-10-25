@@ -36,8 +36,16 @@ public class lalo {
 		//horariosMaster = new HashMap<>();
 		for(Tiendas laTienda : tiendas){
 			laTienda.getPlantilla().generateMaster(fecha, laTienda);
+			int length = fecha.lengthOfMonth();
+			for(int i = 0; i < length; i++){
+				Dias elDia = laTienda.getMaster().getMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), i+1));
+				Set<Turnos> losTurnos = elDia.getTurnos();
+				elDia.setDias();
+
+			}
 		}
 		//addOtrosTurnos(GMs, deEncargado);
+
 
 		turnos = generateQueueTurnos();
 

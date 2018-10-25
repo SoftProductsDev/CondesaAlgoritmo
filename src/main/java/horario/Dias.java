@@ -123,4 +123,10 @@ public class Dias {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
+    public void setDias(){
+        for(Turnos elTurno : turnos){
+            elTurno.setDay(this);
+        }
+    }
 }
