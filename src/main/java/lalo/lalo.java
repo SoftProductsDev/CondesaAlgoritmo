@@ -151,8 +151,8 @@ public class lalo {
 				count2++;
 				}
 				else{
-					System.out.print(count++ + ", ");
 					elCondeso.asignarTurno(elTurno);
+					fila.add(elCondeso);
 				}
 
 				elTurno = turnos.poll();
@@ -161,8 +161,8 @@ public class lalo {
 
 
 		}
-		System.out.println(count);
-		System.out.print(count2);
+		System.out.println("Asignados: " + count);
+		System.out.print("No asignados: " + count2);
 		reacomodar(noAsignados, condesos, disponibilidad);
 
 	}
