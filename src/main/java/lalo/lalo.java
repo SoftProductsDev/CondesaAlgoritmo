@@ -113,16 +113,19 @@ public class lalo {
 
 	public void laloFuncionando() {
 		Set<Condeso> noDisponible = new HashSet<>();
-		Set<Condeso> yaOcupados = new HashSet<>();
+		//Set<Condeso> yaOcupados = new HashSet<>();
 		Set<Turnos> noAsignados = new HashSet<>();
 		PriorityQueue<Condeso> fila = new PriorityQueue<>(new CompareCondesos());
 		fila.addAll(condesos);
 
 		Turnos elTurno = turnos.poll();
 		Turnos last;
+		int count = 0;
 		while(elTurno != null){
-			last = elTurno;
-			while(last.getDate().getDayOfMonth() == elTurno.getDate().getDayOfMonth()) {
+
+
+				count++;
+				System.out.print(count +", ");
 				Condeso elCondeso = fila.poll();
 				while (!checkCondeso(elCondeso, disponibilidad, elTurno)) {
 					noDisponible.add(elCondeso);
@@ -131,15 +134,13 @@ public class lalo {
 				if (elCondeso == null) noAsignados.add(elTurno);
 				else{
 					elCondeso.asignarTurno(elTurno);
-					yaOcupados.add(elCondeso);
 				}
-				last = elTurno;
+
 				elTurno = turnos.poll();
 				fila.addAll(noDisponible);
 				noDisponible.clear();
-			}
-			fila.addAll(yaOcupados);
-			yaOcupados.clear();
+
+
 		}
 
 		reacomodar(noAsignados, condesos, disponibilidad);
