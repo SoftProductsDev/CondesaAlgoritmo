@@ -427,4 +427,20 @@ public class Condeso {
 			System.out.print(elTurno.getFin() + "\t");
 		}
 	}
+
+	public void checkMaxMin() {
+		if(maxHours == 0){
+			switch (contrato){
+				case MiniJob: maxHours = 47;
+				break;
+				case otros: maxHours = 220;
+				break;
+			}
+		if(minHours == 0){
+			switch (contrato){
+				case otros: minHours = 50;
+			}
+		}
+		}
+	}
 }

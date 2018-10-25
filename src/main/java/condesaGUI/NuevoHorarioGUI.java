@@ -136,6 +136,9 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             int id = condeso.getId();
             for(Condeso condeso1:allCondesos){
                 if(condeso1.getId() == id){
+                    condeso1.setMaxHours(condeso.getMax());
+                    condeso1.setMinHours(condeso.getMin());
+                    condeso1.checkMaxMin();
                     foundCondesos.add(condeso1) ;
                 }
             }
