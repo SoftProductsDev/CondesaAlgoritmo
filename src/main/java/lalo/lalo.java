@@ -50,7 +50,7 @@ public class lalo {
 			Turnos[] losTurno =  elGM.getPersonal();
 			for(Turnos elTurno : losTurno){
 			if(elTurno != null) {
-				elDia = horariosMaster.get(elTurno.getTienda()).getMes().get(elTurno.getDate());
+				elDia = elTurno.getTienda().getMaster().getMes().get(elTurno.getDate());;
 				elDia.addTurno(elTurno);
 				elTurno.setDay(elDia);
 			}
