@@ -21,7 +21,7 @@ public class lalo {
 	private Set<Condeso> condesos;
 	public Set<Tiendas> tiendas;
 	private Queue<Turnos> turnos;
-	private HashMap<Tiendas, HorarioMaster> horariosMaster; // quitar pues estorba
+	//private HashMap<Tiendas, HorarioMaster> horariosMaster; // quitar pues estorba
 	private HashMap<Integer, Integer[][]> disponibilidad;
 	private List<Turnos> deEncargado;
 	private LocalDate fecha;
@@ -33,13 +33,13 @@ public class lalo {
 		this.disponibilidad = disponibilidad;
 		this.condesos = condesos;
 		this.tiendas = tiendas;
-		horariosMaster = new HashMap<>();
-		for(Tiendas laTienda : tiendas){
+		//horariosMaster = new HashMap<>();
+		/*for(Tiendas laTienda : tiendas){
 			horariosMaster.put(laTienda, laTienda.getPlantilla().generateMaster(fecha, laTienda));
-		}
-		addOtrosTurnos(GMs, deEncargado);
+		}*/
+		//addOtrosTurnos(GMs, deEncargado);
 
-		turnos = generateQueueTurnos(horariosMaster, deEncargado);
+		turnos = generateQueueTurnos();
 
 
 	}
@@ -65,7 +65,7 @@ public class lalo {
 		}
 	}
 
-	private PriorityQueue<Turnos> generateQueueTurnos(HashMap<Tiendas, HorarioMaster> horariosMaster , List<Turnos> encargados){
+	private PriorityQueue<Turnos> generateQueueTurnos(){
 
 		PriorityQueue<Turnos> turnosPriorityQueue = new PriorityQueue<>(new CompareTurnos());
 
@@ -75,7 +75,7 @@ public class lalo {
 		Month month;
 		Set<Turnos> losTurnos;
 		for(Tiendas laTienda: tiendas){
-			elMaster = horariosMaster.get(laTienda);
+			elMaster = laTienda.getMaster();
 			year = fecha.getYear();
 			month = fecha.getMonth();
 			HashMap<LocalDate, Dias> losDias;
