@@ -22,6 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import org.controlsfx.control.PopOver;
+import org.controlsfx.control.ToggleSwitch;
 
 public class  AddPlantillasPopOver implements Initializable {
   @FXML private ChoiceBox<TipoTurno> tipoChoice;
@@ -30,6 +31,7 @@ public class  AddPlantillasPopOver implements Initializable {
   @FXML private AnchorPane anchorPane;
   private GridPane gridPane;
   private Dias dia;
+  private ToggleSwitch toggleEditar;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -56,30 +58,33 @@ public class  AddPlantillasPopOver implements Initializable {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPlantillasPopOver.fxml"));
-            String sceneFile = "/editPlantillasPopOver.fxml";
-            Parent root = null;
-            URL url  = null;
-            try {
-              //url  = getClass().getResource( sceneFile );
-              //root = fxmlLoader.load( url );
-              root = (Parent) fxmlLoader.load();
-            } catch (IOException e) {
-              e.printStackTrace();
-            }
-            PopOver pop = new PopOver(root);
-            pop.setAutoFix(false);
-            pop.show(label);
-            EditPlantillasPopOverGUI edit = fxmlLoader.getController();
-            edit.setInitialValues(turno, dia, gridPane, label);
-            event.consume();
-          };
+            if(toggleEditar.isSelected()){
+              FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPlantillasPopOver.fxml"));
+              String sceneFile = "/editPlantillasPopOver.fxml";
+              Parent root = null;
+              URL url  = null;
+              try {
+                //url  = getClass().getResource( sceneFile );
+                //root = fxmlLoader.load( url );
+                root = (Parent) fxmlLoader.load();
+              } catch (IOException e) {
+                e.printStackTrace();
+              }
+              PopOver pop = new PopOver(root);
+              pop.setAutoFix(false);
+              pop.show(label);
+              EditPlantillasPopOverGUI edit = fxmlLoader.getController();
+              edit.setInitialValues(turno, dia, gridPane, label, toggleEditar);
+              event.consume();
+            };
+          }
         });
     return label;
   }
 
-  public void setInitialValues(GridPane gridPane, Dias dia){
+  public void setInitialValues(GridPane gridPane, Dias dia, ToggleSwitch toggleEditar){
     this.gridPane = gridPane;
     this.dia = dia;
+    this.toggleEditar = toggleEditar;
   }
 }
