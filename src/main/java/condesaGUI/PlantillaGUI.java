@@ -316,4 +316,18 @@ public class PlantillaGUI   extends Application implements Initializable {
       tienda.setPlantilla(plantillas);
       HibernateCrud.UpdateTienda(tienda);
   }
+
+  public void deletePlantilla(ActionEvent actionEvent) {
+    Tiendas tienda = tiendasChoice.getSelectionModel().getSelectedItem();
+    Plantillas plantillas = nombreChoice.getSelectionModel().getSelectedItem();
+    tienda.getPlantillasAnteriores().remove(plantillas);
+    if(tienda.getPlantilla().equals(plantillas)){
+      tienda.setPlantilla(null);
+    }
+    HibernateCrud.UpdateTienda(tienda);
+    deleteTurnosLabels(weekGrid1);
+    ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
+    tiendasChoice.setItems(tiendas);
+    nombreChoice.setItems(FXCollections.observableList(new ArrayList<>()));
+  }
 }
