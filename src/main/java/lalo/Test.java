@@ -35,7 +35,7 @@ public class Test {
             elGM.printCondeso();
         }
         System.out.println(deEncargado.size());*/
-        List<Tiendas> lasTiendas = new ArrayList<>();
+        /*List<Tiendas> lasTiendas = new ArrayList<>();
         List<Tiendas> lasTiendas2 = new ArrayList<>();
         lasTiendas = HibernateCrud.GetAllTiendas();
         lasTiendas2 = HibernateCrud.GetAllTiendas();
@@ -43,13 +43,21 @@ public class Test {
         for(int i = 0; i < lasTiendas.size(); i++){
             System.out.println("Tienda " + i + " " +lasTiendas.get(i));
             System.out.println("Tienda " + i + " " +lasTiendas2.get(i));
-        }
+        }*/
         /*for(int i = 0; i < 3; i++){
             Tiendas laTienda = new Tiendas();
             laTienda.setNombre("Tienda" + i);
             lasTiendas.add(laTienda);
         }*/
        // Dias elDia = new Dias(LocalDate.of(2018, Month.SEPTEMBER, 27), l);
+        List<Integer> hola = new ArrayList<>();
+        long prueba = 33L;
+        hola.add((int)34L);
+        hola.add((int) prueba);
+        for(long pro : hola){
+            System.out.println(pro);
+        }
+
 
 
 

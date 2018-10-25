@@ -143,7 +143,7 @@ public class lalo {
 		while(elTurno != null){
 				Condeso elCondeso = fila.poll();
 				System.out.println(fila.size());
-				while (!checkCondeso(elCondeso, disponibilidad, elTurno)) {
+				while (!checkCondeso(elCondeso, disponibilidad, elTurno)) {//agregar ese pedo
 					noDisponible.add(elCondeso);
 					elCondeso = fila.poll();
 				}
@@ -151,7 +151,7 @@ public class lalo {
 				count2++;
 				}
 				else{
-					count++;
+					System.out.print(count++ + ", ");
 					elCondeso.asignarTurno(elTurno);
 					fila.add(elCondeso);
 				}
@@ -162,6 +162,7 @@ public class lalo {
 
 
 		}
+		System.out.println();
 		System.out.println("Asignados: " + count);
 		System.out.print("No asignados: " + count2);
 		reacomodar(noAsignados, condesos, disponibilidad);
