@@ -206,7 +206,7 @@ public class FrontGUI extends Application implements Initializable {
 
   private Label createLabel(Dias dia, Turnos turno, GridPane grid) {
     Label label = new Label();
-    if(turno.getCondeso().getNombre() == null){
+    if(turno.getCondeso() == null){
       label.setText(turno.getCondeso().getAbreviacion());
       label.setStyle("-fx-background-color: black");
     }

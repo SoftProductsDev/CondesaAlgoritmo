@@ -325,6 +325,8 @@ public class PlantillaGUI   extends Application implements Initializable {
       nuevaPlantilla.setDias(createWeek());
       deleteTurnosLabels(weekGrid);
     ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
+    tiendasChoice.getSelectionModel().clearSelection();
+    nombreChoice.getSelectionModel().clearSelection();
     tiendasChoice.setItems(tiendas);
     nombreChoice.setItems(FXCollections.observableList(new ArrayList<>()));
   }
