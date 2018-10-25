@@ -151,6 +151,7 @@ public class lalo {
 				count2++;
 				}
 				else{
+					count++;
 					elCondeso.asignarTurno(elTurno);
 					fila.add(elCondeso);
 				}
