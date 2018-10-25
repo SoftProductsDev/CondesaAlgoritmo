@@ -86,6 +86,7 @@ public class lalo {
 				elDia = mes.get(LocalDate.of(year, month, i+1));
 				losTurnos = elDia.getTurnos();
 				for(Turnos elTurno : losTurnos){
+					System.out.println(elTurno.getDay());
 					if(!elTurno.isOcupado())
 					turnosPriorityQueue.add(elTurno);
 				}
