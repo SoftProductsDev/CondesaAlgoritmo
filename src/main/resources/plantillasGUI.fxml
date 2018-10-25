@@ -158,5 +158,6 @@
       </GridPane>
       <Label text="Nombre plantilla" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
       <Label text="Tiendas" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+      <Button fx:id="deletePlantilla" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deletePlantilla" text="Eliminar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
    </children>
 </GridPane>
