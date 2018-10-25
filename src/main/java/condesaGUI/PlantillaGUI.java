@@ -153,26 +153,48 @@ public class PlantillaGUI   extends Application implements Initializable {
     ) {
       for (Turnos turno: dia.getTurnos()
       ) {
-        setTurno(turno, dia.getDate().getDayOfWeek().getValue() + 1);
+        setTurno(turno, dia.getDate().getDayOfWeek().getValue() + 1, dia);
       }
 
     }
   }
 
-  private void setTurno(Turnos turno, int gridIndex) {
+  private void setTurno(Turnos turno, int gridIndex, Dias dia) {
       GridPane grid =  (GridPane) weekGrid1.getChildren().get(gridIndex);
     int hourIndex = turno.getInicio() - 7;
     int columna = turno.getTipoTurno().ordinal();
-      grid.add(createLabel(), columna + 1, hourIndex,1, turno.getDuracion());
+      grid.add(createLabel(turno, dia, grid), columna + 1, hourIndex,1, turno.getDuracion());
   }
 
-  private Node createLabel() {
+  private Node createLabel(Turnos turno, Dias dia,GridPane grid) {
       Label label = new Label("Turno");
       label.setStyle("-fx-background-color: #4286f4; -fx-border-color: black");
-      //label.setStyle();
       label.setMaxHeight(125462739);
       label.setMaxWidth(1234567890);
-      return label;
+      label.addEventHandler(MouseEvent.MOUSE_CLICKED,
+        new EventHandler<MouseEvent>() {
+          @Override
+          public void handle(MouseEvent event) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPlantillasPopOver.fxml"));
+            String sceneFile = "/editPlantillasPopOver.fxml";
+            Parent root = null;
+            URL url  = null;
+            try {
+              //url  = getClass().getResource( sceneFile );
+              //root = fxmlLoader.load( url );
+              root = (Parent) fxmlLoader.load();
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+            PopOver pop = new PopOver(root);
+            pop.setAutoFix(false);
+            pop.show(label);
+            condesaGUI.EditPlantillasPopOverGUI edit = fxmlLoader.getController();
+            edit.setInitialValues(turno, dia, grid, label);
+            event.consume();
+          };
+        });
+    return label;
   }
 
   private void addLabelGrids(GridPane gridToAddLabels) {
@@ -192,9 +214,7 @@ public class PlantillaGUI   extends Application implements Initializable {
                 grid.setId(i + "-" + 0);
                 //grid.gridLinesVisibleProperty().set(true);
                 addLetrasArriba(grid);
-                if(gridToAddLabels == weekGrid){
-                  addGridEventHandler(grid, dias.get(i-1));
-                }
+                addGridEventHandler(grid, dias.get(i-1));
                 gridToAddLabels.add(grid,i,0);
             }
     }
