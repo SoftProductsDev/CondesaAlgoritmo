@@ -7,6 +7,7 @@ import java.time.Month;
 import java.util.*;
 
 
+import DbController.HibernateCrud;
 import condeso.Condeso;
 import condeso.CompareCondesos;
 import condeso.Contrato;
@@ -165,7 +166,17 @@ public class lalo {
 		System.out.println();
 		System.out.println("Asignados: " + count);
 		System.out.print("No asignados: " + count2);
-		reacomodar(noAsignados, condesos, disponibilidad);
+		List<Tiendas> tiendasFinal = HibernateCrud.GetAllTiendas();
+		for(Tiendas tiendaUna:tiendas){
+			long id = tiendaUna.getId();
+			for(Tiendas temporal:tiendasFinal){
+				if(id == temporal.getId()){
+					temporal.setMaster(tiendaUna.getMaster());
+				}
+			}
+		}
+		//reacomodar(noAsignados, condesos, disponibilidad);
+
 
 	}
 

@@ -152,7 +152,7 @@ public class FrontGUI extends Application implements Initializable {
 
   private void setHorarioMaster(){
     Tiendas tienda = tiendasComboBox.getValue();
-    HorarioMaster master = null;
+    HorarioMaster master = new HorarioMaster();
     if(tienda != null){
       master = tienda.getMaster();
     }
