@@ -166,14 +166,8 @@ public class lalo {
 		System.out.println();
 		System.out.println("Asignados: " + count);
 		System.out.print("No asignados: " + count2);
-		List<Tiendas> tiendasFinal = HibernateCrud.GetAllTiendas();
 		for(Tiendas tiendaUna:tiendas){
-			long id = tiendaUna.getId();
-			for(Tiendas temporal:tiendasFinal){
-				if(id == temporal.getId()){
-					temporal.setMaster(tiendaUna.getMaster());
-				}
-			}
+			HibernateCrud.UpdateTienda(tiendaUna);
 		}
 		//reacomodar(noAsignados, condesos, disponibilidad);
 
