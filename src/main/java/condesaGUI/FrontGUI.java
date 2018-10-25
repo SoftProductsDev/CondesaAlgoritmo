@@ -187,7 +187,7 @@ public class FrontGUI extends Application implements Initializable {
     if(hourIndex < 0){
       //Cry
     }
-    //column inside "Day"
+    /*
     int columnIndex = 0;
     for (int j = 0; j < 7; j++){
       if (latestTurn[j] <= turno.getInicio()){
@@ -195,11 +195,11 @@ public class FrontGUI extends Application implements Initializable {
         latestTurn[j] = turno.getFin();
         break;
       }
-    }
+    }*/
 
 
     Label label = createLabel(dia,turno, pane);
-    pane.add(label, columnIndex, hourIndex, 1, turno.getDuracion());
+    pane.add(label, turno.getTipoTurno().ordinal(), hourIndex, 1, turno.getDuracion());
 
     return latestTurn;
   }
