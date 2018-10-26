@@ -360,7 +360,6 @@ private static void parseTurnosGMs(String inicio, String fin, String GM, String 
         boolean next = false;
         Condeso elGM;
         Tiendas laTienda = lasTiendas.get(idTienda);
-        System.out.println(laTienda);
         // String anfang;
         // String ende;
 
@@ -404,8 +403,10 @@ private static void parseTurnosGMs(String inicio, String fin, String GM, String 
                }
                if(Abrev.charAt(0) == '#'){
                  losTurnos.add(new Turnos(null, begin, end, elDia, true, TipoTurno.GM));
+                 System.out.println(elDia.getTienda());
                }else{
                elGM.asignarTurno(new Turnos(elGM, begin, end, elDia, true, TipoTurno.GM));
+                   System.out.println(elDia.getTienda());
             }
             paraInicio++;
             paraFin++;
