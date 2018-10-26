@@ -65,18 +65,20 @@ public class lalo {
 			Turnos[] losTurno =  elGM.getPersonal();
 			for(Turnos elTurno : losTurno){
 			if(elTurno != null) {
-
-				elDia = lasTiendas.get(elTurno.getDay().getTienda().getId()).getMaster().getMes().get(elTurno.getDate()) ;
+			    Tiendas tienda = lasTiendas.get(elTurno.getDay().getTienda().getId());
+			    Map<LocalDate, Dias> dias = tienda.getMaster().getMes();
+				elDia = dias.get(elTurno.getDate()) ;
 				elDia.addTurno(elTurno);
 				elTurno.setDay(elDia);
 			}
 			}
 		}
 		for(Turnos elTurno : deEncargado){
-
-			elDia = lasTiendas.get(elTurno.getDay().getTienda().getId()).getMaster().getMes().get(elTurno.getDate()) ;
-			elDia.addTurno(elTurno);
-			elTurno.setDay(elDia);
+            Tiendas tienda = lasTiendas.get(elTurno.getDay().getTienda().getId());
+            Map<LocalDate, Dias> dias = tienda.getMaster().getMes();
+            elDia = dias.get(elTurno.getDate()) ;
+            elDia.addTurno(elTurno);
+            elTurno.setDay(elDia);
 		}
 	}
 
