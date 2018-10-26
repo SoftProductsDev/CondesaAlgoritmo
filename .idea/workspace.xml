@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f5ecf614-8031-4b68-9ae4-649fd2721e2c" name="Default Changelist" comment="arregla bug tiendas condeso">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_11.xml" afterDir="false" />
+    <list default="true" id="f5ecf614-8031-4b68-9ae4-649fd2721e2c" name="Default Changelist" comment="bug plantilla">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -59,26 +57,26 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="fxml" value="94" />
-          <entry key="java" value="889" />
-          <entry key="txt" value="141" />
+          <entry key="java" value="1005" />
+          <entry key="txt" value="154" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="889" />
-          <entry key="PLAIN_TEXT" value="141" />
+          <entry key="JAVA" value="1005" />
+          <entry key="PLAIN_TEXT" value="154" />
           <entry key="XML" value="94" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="fxml" value="3" />
-          <entry key="java" value="16" />
+          <entry key="java" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="16" />
+          <entry key="JAVA" value="20" />
           <entry key="XML" value="3" />
         </counts>
       </usages-collector>
@@ -95,22 +93,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/PlantillaGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="328" selection-start-line="328" selection-end-line="328" />
+            <state relative-caret-position="251">
+              <caret line="373" selection-start-line="373" selection-end-line="373" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#getStaticList#0;class#PlantillaGUI#0" />
                 <element signature="method#initialize#0;class#PlantillaGUI#0" />
-                <element signature="method#setDias#0;class#PlantillaGUI#0" />
-                <element signature="method#setTurno#0;class#PlantillaGUI#0" />
-                <element signature="method#addLabelGrids#0;class#PlantillaGUI#0" />
+                <element signature="method#addChoiceboxListeners#0;class#PlantillaGUI#0" />
+                <element signature="method#createLabel#0;class#PlantillaGUI#0" />
                 <element signature="method#addLetrasArriba#0;class#PlantillaGUI#0" />
+                <element signature="method#savePlantilla#0;class#PlantillaGUI#0" />
                 <element signature="method#deleteTurnosLabels#0;class#PlantillaGUI#0" />
                 <element signature="method#setPlantilla#0;class#PlantillaGUI#0" />
+                <element signature="method#deletePlantilla#0;class#PlantillaGUI#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/AddPlantillasPopOver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="319">
+              <caret line="48" selection-start-line="48" selection-end-line="48" />
+              <folding>
+                <element signature="method#createLabel#0;class#AddPlantillasPopOver#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/EditPopOverGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-204">
+              <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -118,8 +138,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/AddPopOverGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+            <state relative-caret-position="340">
+              <caret line="41" column="6" selection-start-line="41" selection-start-column="6" selection-end-line="41" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="377">
+              <caret line="208" column="25" selection-start-line="208" selection-start-column="25" selection-end-line="208" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -127,17 +156,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/EditPlantillasPopOverGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1190">
-              <caret line="90" column="75" selection-start-line="90" selection-start-column="75" selection-end-line="90" selection-end-column="75" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="208" column="25" selection-start-line="208" selection-start-column="25" selection-end-line="208" selection-end-column="25" />
+            <state relative-caret-position="410">
+              <caret line="54" column="7" lean-forward="true" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -179,16 +199,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/plantillasGUI.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2992">
-              <caret line="176" column="74" selection-start-line="176" selection-start-column="74" selection-end-line="176" selection-end-column="74" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/CondesoGUI.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="184">
@@ -196,15 +206,6 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/MainGUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -237,8 +238,8 @@
         <option value="$PROJECT_DIR$/src/main/java/condesaGUI/EditPlantillasPopOverGUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/condesaGUI/AddPlantillasPopOver.java" />
         <option value="$PROJECT_DIR$/src/main/resources/plantillasGUI.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/condesaGUI/PlantillaGUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/condesaGUI/PlantillaGUI.java" />
       </list>
     </option>
   </component>
@@ -351,15 +352,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/disponibilidad2.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/condesaGUI/NuevoHorarioGUI.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/condeso/Condeso.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/horario/Plantillas.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/horario/Turnos.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/lalo/Parser.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/lalo/Test.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/lalo/lalo.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
@@ -597,7 +589,21 @@
       <option name="project" value="LOCAL" />
       <updated>1540509328392</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="bug plantilla">
+      <created>1540510940788</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1540510940788</updated>
+    </task>
+    <task id="LOCAL-00010" summary="bug plantilla">
+      <created>1540513497382</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1540513497382</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -634,22 +640,21 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.14978679" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.14978679" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.20679887" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="2" weight="0.28602383" />
-      <window_info anchor="bottom" id="Version Control" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="3" weight="0.32936078" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.24485373" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.24485373" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.28602383" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -704,7 +709,8 @@
     <MESSAGE value="Plantillas terminado, super chulo" />
     <MESSAGE value="arregla bug tiendas condeso" />
     <MESSAGE value="arregla bug front" />
-    <option name="LAST_COMMIT_MESSAGE" value="arregla bug front" />
+    <MESSAGE value="bug plantilla" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug plantilla" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -714,6 +720,36 @@
           <line>84</line>
           <properties />
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/condesaGUI/PlantillaGUI.java</url>
+          <line>371</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/condesaGUI/PlantillaGUI.java</url>
+          <line>373</line>
+          <properties />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/condesaGUI/PlantillaGUI.java</url>
+          <line>372</line>
+          <properties />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/condesaGUI/EditPopOverGUI.java</url>
+          <line>54</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/condesaGUI/EditPopOverGUI.java</url>
+          <line>53</line>
+          <properties />
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -878,27 +914,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/AddPlantillasPopOver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="78" column="14" selection-start-line="78" selection-start-column="14" selection-end-line="78" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/AddPopOverGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/EditPlantillasPopOverGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="90" column="75" selection-start-line="90" selection-start-column="75" selection-end-line="90" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/plantillasGUI.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2992">
@@ -921,13 +936,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="208" column="25" selection-start-line="208" selection-start-column="25" selection-end-line="208" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -961,21 +969,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/EditPlantillasPopOverGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="54" column="7" lean-forward="true" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/AddPopOverGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="41" column="6" selection-start-line="41" selection-start-column="6" selection-end-line="41" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/EditPopOverGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-204">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/AddPlantillasPopOver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="method#createLabel#0;class#AddPlantillasPopOver#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/PlantillaGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="328" selection-start-line="328" selection-end-line="328" />
+        <state relative-caret-position="251">
+          <caret line="373" selection-start-line="373" selection-end-line="373" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#getStaticList#0;class#PlantillaGUI#0" />
             <element signature="method#initialize#0;class#PlantillaGUI#0" />
-            <element signature="method#setDias#0;class#PlantillaGUI#0" />
-            <element signature="method#setTurno#0;class#PlantillaGUI#0" />
-            <element signature="method#addLabelGrids#0;class#PlantillaGUI#0" />
+            <element signature="method#addChoiceboxListeners#0;class#PlantillaGUI#0" />
+            <element signature="method#createLabel#0;class#PlantillaGUI#0" />
             <element signature="method#addLetrasArriba#0;class#PlantillaGUI#0" />
+            <element signature="method#savePlantilla#0;class#PlantillaGUI#0" />
             <element signature="method#deleteTurnosLabels#0;class#PlantillaGUI#0" />
             <element signature="method#setPlantilla#0;class#PlantillaGUI#0" />
+            <element signature="method#deletePlantilla#0;class#PlantillaGUI#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/condesaGUI/FrontGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="208" column="25" selection-start-line="208" selection-start-column="25" selection-end-line="208" selection-end-column="25" />
         </state>
       </provider>
     </entry>
