@@ -396,17 +396,18 @@ private static void parseTurnosGMs(String inicio, String fin, String GM, String 
 
                Abrev = GM.substring(paraGM, (paraGM = subString(GM, paraGM, '\t')));
                elGM = GMs.get(Id);
-               //elDia =  elMaster.get(LocalDate.of(mes.getYear(), mes.getMonth(), i+1));
-               //if(elDia == null) {
+               elDia =  elMaster.get(LocalDate.of(mes.getYear(), mes.getMonth(), i+1));
+               if(elDia == null) {
+                   System.out.println("al Menos");
                    elDia = new Dias(LocalDate.of(mes.getYear(), mes.getMonth(), i+1), laTienda);
                    elMaster.put(LocalDate.of(mes.getYear(), mes.getMonth(), i+1), elDia);
-               //}
+               }
                if(Abrev.charAt(0) == '#'){
                  losTurnos.add(new Turnos(null, begin, end, elDia, true, TipoTurno.GM));
-                 System.out.println(elDia.getTienda());
+
                }else{
                elGM.asignarTurno(new Turnos(elGM, begin, end, elDia, true, TipoTurno.GM));
-                   System.out.println(elDia.getTienda());
+
             }
             paraInicio++;
             paraFin++;
