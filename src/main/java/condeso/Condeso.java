@@ -329,9 +329,9 @@ public class Condeso {
 		DayOfWeek dia = elTurno.getDate().getDayOfWeek();
 		if(dia == DayOfWeek.SATURDAY || dia == DayOfWeek.SUNDAY){
 			switch (dia){
-				case SUNDAY: if(personal[day-2] == null) finesLibres--;
+				case SUNDAY: if(day-2 > 0 && personal[day-2] == null) finesLibres--;
 				break;
-				case SATURDAY: if(personal[day] == null) finesLibres--;
+				case SATURDAY: if(day < personal.length && personal[day] == null) finesLibres--;
 				break;
 				default: break;
 			}
