@@ -360,6 +360,7 @@ private static void parseTurnosGMs(String inicio, String fin, String GM, String 
         boolean next = false;
         Condeso elGM;
         Tiendas laTienda = lasTiendas.get(idTienda);
+        System.out.println(laTienda);
         // String anfang;
         // String ende;
 
