@@ -14,6 +14,7 @@ import org.hibernate.metamodel.relational.Tuple;
 import org.hibernate.transform.Transformers;
 
 
+
 public class HibernateCrud {
     public static String SaveCondeso(Condeso condeso) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
