@@ -7,7 +7,6 @@ import java.time.Month;
 import java.util.*;
 
 
-import DbController.HibernateCrud;
 import condeso.Condeso;
 import condeso.CompareCondesos;
 import condeso.Contrato;
@@ -34,21 +33,21 @@ public class lalo {
 		this.disponibilidad = disponibilidad;
 		this.condesos = condesos;
 		this.tiendas = tiendas;
-		/*for(Condeso elCondeso : condesos){
+		for(Condeso elCondeso : condesos){
 			List<Tiendas> lasTiendas = elCondeso.getDondePuedeTrabajar();
 			if(lasTiendas.size() >= tiendas.size()){
 				this.tiendas.clear();
 				this.tiendas.addAll(lasTiendas);
 				break;
 			}
-		}*/
+		}
 
 		//horariosMaster = new HashMap<>();
 		for(Tiendas laTienda : tiendas) {
 			laTienda.getPlantilla().generateMaster(fecha, laTienda);
 		}
 
-		//addOtrosTurnos(GMs, deEncargado);
+		addOtrosTurnos(GMs, deEncargado);
 
 
 		turnos = generateQueueTurnos();
@@ -57,13 +56,17 @@ public class lalo {
 	}
 
 	private void addOtrosTurnos(Set<Condeso> GMs, List<Turnos> deEncargado){ //cre que este método es totalmente innecesario
+		HashMap<Long, Tiendas> lasTiendas = new HashMap<>();
+		for(Tiendas laTienda : tiendas){
+			lasTiendas.put(laTienda.getId(), laTienda);
+		}
 		Dias elDia;
 		for(Condeso elGM : GMs){
 			Turnos[] losTurno =  elGM.getPersonal();
 			for(Turnos elTurno : losTurno){
 			if(elTurno != null) {
 
-				elDia = elTurno.getTienda().getMaster().getMes().get(elTurno.getDate());
+				elDia = lasTiendas.get(elTurno.getDay().getTienda().getId()).getMaster().getMes().get(elTurno.getDate()) ;
 				elDia.addTurno(elTurno);
 				elTurno.setDay(elDia);
 			}
@@ -71,7 +74,7 @@ public class lalo {
 		}
 		for(Turnos elTurno : deEncargado){
 
-			elDia = elTurno.getTienda().getMaster().getMes().get(elTurno.getDate());
+			elDia = lasTiendas.get(elTurno.getDay().getTienda().getId()).getMaster().getMes().get(elTurno.getDate()) ;
 			elDia.addTurno(elTurno);
 			elTurno.setDay(elDia);
 		}
@@ -153,11 +156,7 @@ public class lalo {
 		System.out.println();
 		System.out.println("Asignados: " + count);
 		System.out.print("No asignados: " + count2);
-		for(Tiendas tiendaUna:tiendas){
-			HibernateCrud.UpdateTienda(tiendaUna);
-		}
-		//reacomodar(noAsignados, condesos, disponibilidad);
-
+		reacomodar(noAsignados, condesos, disponibilidad);
 
 	}
 

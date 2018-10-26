@@ -108,15 +108,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     public void mesDeInicioClicked(ActionEvent actionEvent){
         LocalDate date = mesDeInicioPicker.getValue();
         fecha = date;
-        for(Condeso elCondeso : allCondesos){
-            List<Tiendas> lasTiendas = elCondeso.getDondePuedeTrabajar();
-            if(lasTiendas.size() >= allTiendas.size()){
-                this.allTiendas.clear();
-                this.allTiendas.addAll(lasTiendas);
-                break;
-            }
-        }
-        gms = Parser.parseGMs("GMs.txt", turnosEncargado,date, allTiendas);
+        gms = Parser.parseGMs("GMs.txt", turnosEncargado,date);
         List<Condeso> allGMs = new LinkedList<>();
         for(Condeso gm: gms){
             long id = gm.getId();
