@@ -166,7 +166,8 @@ public class PlantillaGUI   extends Application implements Initializable {
       GridPane grid =  (GridPane) weekGrid1.getChildren().get(gridIndex);
     int hourIndex = turno.getInicio() - 7;
     int columna = turno.getTipoTurno().ordinal();
-      grid.add(createLabel(turno, dia, grid), columna + 1, hourIndex,1, turno.getDuracion());
+    grid.add(createLabel(turno, dia, grid), columna + 1, hourIndex,1, turno.getDuracion());
+    addGridEventHandler(grid, dia);
   }
 
   private Node createLabel(Turnos turno, Dias dia,GridPane grid) {
@@ -325,10 +326,11 @@ public class PlantillaGUI   extends Application implements Initializable {
       nuevaPlantilla.setDias(createWeek());
       deleteTurnosLabels(weekGrid);
     ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
-    tiendasChoice.getSelectionModel().clearSelection();
-    nombreChoice.getSelectionModel().clearSelection();
+
+    try {
     tiendasChoice.setItems(tiendas);
     nombreChoice.setItems(FXCollections.observableList(new ArrayList<>()));
+    }catch(Exception e){}
   }
 
   public void deleteTurnosLabels(GridPane pane){
@@ -360,8 +362,10 @@ public class PlantillaGUI   extends Application implements Initializable {
     HibernateCrud.UpdateTienda(tienda);
     deleteTurnosLabels(weekGrid1);
     ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
-    tiendasChoice.setItems(tiendas);
-    nombreChoice.setItems(FXCollections.observableList(new ArrayList<>()));
+    try {
+      tiendasChoice.setItems(tiendas);
+      nombreChoice.setItems(FXCollections.observableList(new ArrayList<>()));
+    }catch(Exception e){}
   }
 
   public void updatePlantilla(ActionEvent actionEvent) {
@@ -369,6 +373,11 @@ public class PlantillaGUI   extends Application implements Initializable {
       if(plantilla != null) {
         HibernateCrud.UpdatePlantilla(plantilla);
       }
+    ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
+    try {
+      tiendasChoice.setItems(tiendas);
+      nombreChoice.setItems(FXCollections.observableList(new ArrayList<>()));
+    }catch(Exception e){}
   }
 
   public void handleClick(MouseEvent mouseEvent) {
