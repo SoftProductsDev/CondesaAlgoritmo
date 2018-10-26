@@ -267,6 +267,12 @@ ArrayList<Long> IDs = new ArrayList<>();
 
 for(Tiendas laTienda : todasLasTiendas){
     lasTiendas.put(laTienda.getId(), laTienda);
+    Map<LocalDate, Dias> losDias = laTienda.getMaster().getMes();
+    int length = date.lengthOfMonth();
+    for(int i = 0; i < length; i++){
+        LocalDate laFecha = LocalDate.of(date.getYear(), date.getMonth(), i+1);
+        losDias.put(laFecha, new Dias(laFecha, laTienda));
+    }
 }
 
 for(Condeso elCondeso : todosLosCondesos){
