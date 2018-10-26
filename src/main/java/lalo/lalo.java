@@ -33,31 +33,18 @@ public class lalo {
 		this.disponibilidad = disponibilidad;
 		this.condesos = condesos;
 		this.tiendas = tiendas;
-		for(Condeso elCondeso : condesos){
+		/*for(Condeso elCondeso : condesos){
 			List<Tiendas> lasTiendas = elCondeso.getDondePuedeTrabajar();
 			if(lasTiendas.size() >= tiendas.size()){
 				this.tiendas.clear();
 				this.tiendas.addAll(lasTiendas);
 				break;
 			}
-		}
+		}*/
 
 		//horariosMaster = new HashMap<>();
-		for(Tiendas laTienda : tiendas){
+		for(Tiendas laTienda : tiendas) {
 			laTienda.getPlantilla().generateMaster(fecha, laTienda);
-			/*int length = fecha.lengthOfMonth();
-			int count = 0;
-			for(int i = 0; i < length; i++){
-				Dias elDia = laTienda.getMaster().getMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), i+1));
-				Set<Turnos> losTurnos = elDia.getTurnos();
-				for(Turnos elTurno : losTurnos){
-					elTurno.checkDia();
-					if(elTurno.deEncargado()) count++;
-				}
-				elDia.setDias();
-
-			}
-			System.out.println(count);*/
 		}
 
 		//addOtrosTurnos(GMs, deEncargado);

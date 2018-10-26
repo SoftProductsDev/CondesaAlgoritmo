@@ -252,7 +252,7 @@ try{
 }
 
 
-public static Set<Condeso> parseGMs(String filename, ArrayList<Turnos> losTurnos , LocalDate date){
+public static Set<Condeso> parseGMs(String filename, ArrayList<Turnos> losTurnos , LocalDate date, List<Tiendas> shops){
 
 String line;
 String tienda;
@@ -260,12 +260,11 @@ String mes;
 Month month;
 Set<Condeso> paraRegresar = new HashSet<Condeso>();
 List<Condeso> todosLosCondesos = HibernateCrud.GetAllCondesos();
-List<Tiendas> todasLasTiendas = HibernateCrud.GetAllTiendas();
 HashMap<Long, Tiendas> lasTiendas = new HashMap<>();
 HashMap<Long, Condeso> GMs = new HashMap<Long, Condeso>();
 ArrayList<Long> IDs = new ArrayList<>();
 
-for(Tiendas laTienda : todasLasTiendas){
+for(Tiendas laTienda : shops){
     lasTiendas.put(laTienda.getId(), laTienda);
 }
 
@@ -282,12 +281,12 @@ try{
     while((line=buffer.readLine()) != null ){
       int i = ignore(line, '\t');
       int j = subString(line, i, '\t');
-      int idTienda;
+      long idTienda;
       tienda = line.substring(i, j);
       i = ignore(line, '\t', j);
       j = subString(line, i, '\t');
       try{
-      idTienda = Integer.parseInt(line.substring(i, j));}
+      idTienda = Long.parseLong(line.substring(i, j));}
       catch (Exception e){
           System.out.println("error al leer el Id de tienda");
           return null;
