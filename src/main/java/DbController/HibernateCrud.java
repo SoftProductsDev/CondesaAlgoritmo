@@ -120,6 +120,7 @@ public class HibernateCrud {
         }
 
         public static String DeleteTienda (Tiendas deletedTienda){
+            deletedTienda.removeTiendasFromCondesos();
             SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
             Session session = sessionFactory.openSession();
             session.getTransaction().begin();
@@ -164,4 +165,16 @@ public class HibernateCrud {
         session.close();
         return "Updated tienda: " + plantilla.toString();
     }
+
+    /*public static void updateAllCondesos(List<Condeso> condesos) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.getTransaction().begin();
+        for (Condeso c:condesos
+        ) {
+            session.update(c);
+        }
+        session.getTransaction().commit();
+        session.close();
+    }*/
 }
