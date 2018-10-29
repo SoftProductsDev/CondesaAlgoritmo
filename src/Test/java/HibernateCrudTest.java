@@ -1,7 +1,9 @@
 
 import DbController.HibernateCrud;
+import condesaGUI.EditPlantillasPopOverGUI;
 import horario.Dias;
 import horario.HorarioMaster;
+import horario.Plantillas;
 import horario.Turnos;
 import org.apache.poi.ss.formula.functions.T;
 import tiendas.Tiendas;
@@ -27,14 +29,100 @@ public class HibernateCrudTest extends TestCase {
   }
 
   public void testGeneral(){
+    testPlantillas();
     testTiendas();
     testCreateCondeso();
-    testPlantillas();
+
 
   }
 
   public  void testPlantillas(){
+    Plantillas plantillaFreiheit = new Plantillas();
+    Plantillas plantillaHauptbahnhof = new Plantillas();
+    Plantillas plantillaImpler = new Plantillas();
 
+    plantillaFreiheit.setNombre("Plantilla Noviembre");
+    plantillaHauptbahnhof.setNombre("Plantilla Noviembre");
+    plantillaImpler.setNombre("Plantilla Noviembre");
+
+    List<Dias> diasFreiheit = setDiasFreiheit();
+    List<Dias> diasHauptBahn = setDiasHauptBahn();
+    List<Dias> diasImpler = setDiasImpler();
+  }
+
+  private List<Dias> setDiasImpler() {
+
+    List<Dias> diasImpler = new ArrayList<>();
+    Dias lunes = new Dias();
+    Dias martes = new Dias();
+    Dias miercoles = new Dias();
+    Dias jueves =  new Dias();
+    Dias viernes = new Dias();
+    Dias sabado = new Dias();
+    Dias domingo = new Dias();
+
+    diasImpler.add(lunes);
+    diasImpler.add(martes);
+    diasImpler.add(miercoles);
+    diasImpler.add(jueves);
+    diasImpler.add(viernes);
+    diasImpler.add(sabado);
+    diasImpler.add(domingo);
+
+    return null;
+  }
+
+  private List<Dias> setDiasHauptBahn() {
+
+    List<Dias> diasHauptBahn = new ArrayList<>();
+    Dias lunes = new Dias();
+    Dias martes = new Dias();
+    Dias miercoles = new Dias();
+    Dias jueves =  new Dias();
+    Dias viernes = new Dias();
+    Dias sabado = new Dias();
+    Dias domingo = new Dias();
+
+    /*Turnos turnoLunes1 = new Turnos();
+    turnoLunes1.setInicio();
+    turnoLunes1.setFin();
+    turnoLunes1.setIdTienda();
+    */
+
+
+    diasHauptBahn.add(lunes);
+    diasHauptBahn.add(martes);
+    diasHauptBahn.add(miercoles);
+    diasHauptBahn.add(jueves);
+    diasHauptBahn.add(viernes);
+    diasHauptBahn.add(sabado);
+    diasHauptBahn.add(domingo);
+
+    return null;
+  }
+
+  private List<Dias> setDiasFreiheit() {
+
+    List<Dias> diasFreiheit = new ArrayList<>();
+    Dias lunes = new Dias();
+    Dias martes = new Dias();
+    Dias miercoles = new Dias();
+    Dias jueves =  new Dias();
+    Dias viernes = new Dias();
+    Dias sabado = new Dias();
+    Dias domingo = new Dias();
+
+
+
+    diasFreiheit.add(lunes);
+    diasFreiheit.add(martes);
+    diasFreiheit.add(miercoles);
+    diasFreiheit.add(jueves);
+    diasFreiheit.add(viernes);
+    diasFreiheit.add(sabado);
+    diasFreiheit.add(domingo);
+
+    return null;
   }
 
   public void testTiendas(){
