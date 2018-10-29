@@ -1,7 +1,9 @@
 package tiendas;
+import DbController.HibernateCrud;
 import condeso.Condeso;
 import horario.HorarioMaster;
 import horario.Plantillas;
+import java.util.Objects;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
@@ -18,6 +20,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PreRemove;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.hibernate.annotations.Cascade;
@@ -153,5 +156,31 @@ public class Tiendas {
 		System.out.println(nombre);
 		System.out.println(master);
 		System.out.println(master.getMes());
+	}
+
+	@PreRemove
+	public void removeTiendasFromCondesos() {
+		List<Condeso> condesos = HibernateCrud.GetAllCondesos();
+		for (Condeso c : condesos) {
+			c.getDondePuedeTrabajar().remove(this);
+			HibernateCrud.UpdateCondeso(c);
+		}
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		Tiendas tiendas = (Tiendas) o;
+		return getId() == tiendas.getId();
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getId());
 	}
 }
