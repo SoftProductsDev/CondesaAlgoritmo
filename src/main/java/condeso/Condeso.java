@@ -13,17 +13,24 @@ import java.util.Objects;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
-import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.CollectionType;
+import org.hibernate.annotations.IndexColumn;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import tiendas.Tiendas;
@@ -35,7 +42,6 @@ import java.util.List;
 public class Condeso {
 
 	@Id
-	@Column(name = "id")
 	private long id;
 	@Column
 	private TipoEmpleado tipo;
@@ -72,8 +78,7 @@ public class Condeso {
 	@ManyToOne
 	private HorarioMaster master;
 
-	@JoinColumn
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<tiendas.Tiendas> dondePuedeTrabajar;
 

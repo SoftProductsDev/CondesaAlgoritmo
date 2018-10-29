@@ -293,11 +293,11 @@ public class CondesoGUI  extends Application implements Initializable {
         }
         else{
           condeso.setDondePuedeTrabajar(tiendasAddCondeso);
-          try {
+          //try {
               HibernateCrud.SaveCondeso(condeso);
-          }catch (Exception InvocationTargetException){
-              errorLabel.setText("Error: Ese Id ya existe; elija otro!");
-          }
+          //}catch (Exception InvocationTargetException){
+            //  errorLabel.setText("Error: Ese Id ya existe; elija otro!");
+          //}
 
           tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
         }
@@ -341,12 +341,12 @@ public class CondesoGUI  extends Application implements Initializable {
       }
       else{
         condeso.setDondePuedeTrabajar(tiendasAddCondeso);
-        try {
+        //try {
           HibernateCrud.UpdateCondeso(condeso);
-        }
-        catch (Exception e){
-         errorLabel.setText(e.getMessage());
-        }
+        /*}
+        catch (Exception e){*/
+         errorLabel.setText("");
+        //}
         tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
       }
     }

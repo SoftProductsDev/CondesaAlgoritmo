@@ -48,6 +48,7 @@ public class HibernateCrud {
     }
 
     public static String DeleteCondeso(Condeso deletedCondeso) {
+        deletedCondeso.setDondePuedeTrabajar(null);
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
 

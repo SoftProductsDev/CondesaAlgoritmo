@@ -27,8 +27,8 @@ public class HibernateCrudTest extends TestCase {
   }
 
   public void testGeneral(){
-    List<Tiendas> tiendas = testTiendas();
-    testCreateCondeso(tiendas);
+    testTiendas();
+    testCreateCondeso();
     testPlantillas();
 
   }
@@ -37,8 +37,7 @@ public class HibernateCrudTest extends TestCase {
 
   }
 
-  public List<Tiendas> testTiendas(){
-      List<Tiendas> tiendas = new ArrayList<>();
+  public void testTiendas(){
       Tiendas hbf = new Tiendas();
       hbf.setNombre("HBF");
       hbf.setManager("Jorge");
@@ -61,17 +60,9 @@ public class HibernateCrudTest extends TestCase {
       impler.setFechaApertura(LocalDate.now());
       impler.setId(3);
       HibernateCrud.SaveTienda(impler);
-
-
-    tiendas.add(hbf);
-    tiendas.add(mf);
-    tiendas.add(impler);
-
-
-      return tiendas;
   }
 
-  public void testCreateCondeso(List<Tiendas> tiendas){
+  public void testCreateCondeso(){
 
     TipoEmpleado encargado = TipoEmpleado.Encargado;
     TipoEmpleado GM = TipoEmpleado.GM;
@@ -81,13 +72,15 @@ public class HibernateCrudTest extends TestCase {
     Contrato otros = Contrato.otros;
     Contrato minijob = Contrato.MiniJob;
 
-    Tiendas mf = tiendas.get(1);
+    List<Tiendas> tiendas = HibernateCrud.GetAllTiendas();
+
+    Tiendas mf = tiendas.get(0);
     List<Tiendas> freiheit = new ArrayList<>();
     freiheit.add(mf);
-    Tiendas hbf = tiendas.get(2);
+    Tiendas hbf = tiendas.get(1);
     List<Tiendas> haupt = new ArrayList<>();
     haupt.add(hbf);
-    Tiendas imp = tiendas.get(3);
+    Tiendas imp = tiendas.get(2);
     List<Tiendas> impler = new ArrayList<>();
     impler.add(imp);
 
