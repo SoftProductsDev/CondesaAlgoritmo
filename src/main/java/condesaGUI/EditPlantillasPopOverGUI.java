@@ -48,16 +48,33 @@ public class EditPlantillasPopOverGUI  implements Initializable {
     }
 
     public void applyChange(ActionEvent actionEvent) {
-      turno.setInicio(Integer.parseInt(inicioField.getText()));
-      turno.setFin(Integer.parseInt(finField.getText()));
-      grid.getChildren().remove(label);
-      //considering the first hour is 8 am
-      int hourIndex = turno.getInicio() - 7;
-      int columna = turno.getTipoTurno().ordinal();
-      grid.add(createLabel(), columna + 1, hourIndex,1, turno.getDuracion());
+      Turnos newTurno = new Turnos();
+      try {
+        newTurno.setInicio(Integer.parseInt(inicioField.getText()));
+        newTurno.setFin(Integer.parseInt(finField.getText()));
+        newTurno.setTipoTurno(turno.getTipoTurno());
+      }catch (Exception e){ }
+      if(!checkoverlap(newTurno)){
+        turno.setInicio(newTurno.getInicio());
+        turno.setFin(newTurno.getFin());
+        grid.getChildren().remove(label);
+        //considering the first hour is 8 am
+        int hourIndex = turno.getInicio() - 7;
+        int columna = turno.getTipoTurno().ordinal();
+        grid.add(createLabel(), columna + 1, hourIndex,1, turno.getDuracion());
+      }
     }
 
-    public void Delete(ActionEvent actionEvent) {
+  private boolean checkoverlap(Turnos turno) {
+    for (Turnos t:dia.getTurnos()) {
+      if(turno.overlapGUI(t)){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public void Delete(ActionEvent actionEvent) {
       dia.getTurnos().remove(turno);
       grid.getChildren().remove(label);
     }

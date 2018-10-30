@@ -36,17 +36,28 @@ public class  AddPlantillasPopOver implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     ObservableList<TipoTurno> turnos = FXCollections.observableArrayList(TipoTurno.values());
+    turnos.remove(TipoTurno.GM);
     tipoChoice.setItems(turnos);
   }
 
-  public void addTurno(ActionEvent actionEvent) {
+  public String addTurno(ActionEvent actionEvent) {
     Turnos turno = new Turnos();
-    turno.setInicio(Integer.parseInt(inicioField.getText()));
-    turno.setFin(Integer.parseInt(finField.getText()));
-    turno.setTipoTurno(tipoChoice.getValue());
+    try {
+      turno.setInicio(Integer.parseInt(inicioField.getText()));
+      turno.setFin(Integer.parseInt(finField.getText()));
+    }catch (Exception e){
+      return "Introduzca numeros entre el 8 y 24";
+    }
+    if(tipoChoice.getValue() != null){
+      turno.setTipoTurno(tipoChoice.getValue());
+    }
+    else{
+      return "Elija el tipo de turno";
+    }
     gridPane.add(createLabel(turno),turno.getTipoTurno().ordinal() + 1, turno.getInicio() - 7,
         1, turno.getDuracion());
     dia.getTurnos().add(turno);
+    return "";
   }
 
   private Label createLabel(Turnos turno) {
