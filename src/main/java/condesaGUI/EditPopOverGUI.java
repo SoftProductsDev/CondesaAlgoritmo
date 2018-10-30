@@ -36,6 +36,7 @@ public class EditPopOverGUI  implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     ObservableList<Condeso> list = FXCollections.observableArrayList(HibernateCrud.GetAllCondesos());
     condesoChoice.setItems(list);
+    ;
   }
 
   public void setInitialValues(Turnos turno, Dias dia, GridPane grid, Label label){
@@ -55,7 +56,7 @@ public class EditPopOverGUI  implements Initializable {
     grid.getChildren().remove(label);
     //considering the first hour is 8 am
     int hourIndex = turno.getInicio() - 7;
-    int columna = turno.getTipoTurno().ordinal();
+    int columna = turno.getTipoTurno().ordinal() + 1;
     grid.add(createLabel(), hourIndex, columna,1,turno.getDuracion());
   }
 
@@ -65,7 +66,7 @@ public class EditPopOverGUI  implements Initializable {
   }
 
   private Label createLabel() {
-    Label label = new Label(turno.getCondeso().getNombre());
+    Label label = new Label(turno.getCondeso().getAbreviacion());
     label.setStyle("-fx-background-color: " + turno.getCondeso().getColor());
     //label.setStyle();
     label.setMaxHeight(125462739);

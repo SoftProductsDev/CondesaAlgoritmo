@@ -131,8 +131,8 @@ public class PlantillaGUI   extends Application implements Initializable {
       tiendasChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
         @Override
         public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
-          Tiendas tienda = tiendasChoice.getItems().get(number2.intValue());
           try{
+            Tiendas tienda = tiendasChoice.getItems().get(number2.intValue());
             ObservableList<Plantillas> plantillas = FXCollections.observableArrayList(
                 tienda.getPlantillasAnteriores());
             nombreChoice.setItems(plantillas);
@@ -142,8 +142,8 @@ public class PlantillaGUI   extends Application implements Initializable {
       nombreChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
         @Override
         public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
-          Plantillas plantilla = nombreChoice.getItems().get(newValue.intValue());
           try {
+            Plantillas plantilla = nombreChoice.getItems().get(newValue.intValue());
             deleteTurnosLabels(weekGrid1);
             setDias(plantilla.getDias());
           }catch (Exception e){}

@@ -219,6 +219,18 @@ public class Turnos implements Comparable<Turnos> {
 			return this.getTipoTurno().compareTo(o2.getTipoTurno());
 		}
 	}
+
+	//returns true if overlaps
+	public Boolean overlapGUI(Turnos turnos){
+		if(this.tipoTurno == turnos.tipoTurno){
+			if((this.getInicio() >= turnos.getInicio() && turnos.getInicio() <= this.getFin()||
+					(this.getInicio() >= turnos.getFin() && turnos.getFin() <= this.getFin()))){
+				return true;
+			}
+			else return false;
+		}
+		else return false;
+	}
 }
 
 
