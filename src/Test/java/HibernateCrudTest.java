@@ -256,25 +256,25 @@ public class HibernateCrudTest extends TestCase {
     turnoLunes2.setInicio(11);
     turnoLunes2.setFin(15);
     turnoLunes2.setIdTienda(2);
-    turnoLunes1.setTipoTurno(f);
+    turnoLunes2.setTipoTurno(f);
 
     Turnos turnoLunes3 = new Turnos();
     turnoLunes3.setInicio(12);
     turnoLunes3.setFin(16);
     turnoLunes3.setIdTienda(2);
-    turnoLunes1.setTipoTurno(h);
+    turnoLunes3.setTipoTurno(h);
 
     Turnos turnoLunes4 = new Turnos();
     turnoLunes4.setInicio(15);
     turnoLunes4.setFin(22);
     turnoLunes4.setIdTienda(2);
-    turnoLunes1.setTipoTurno(h);
+    turnoLunes4.setTipoTurno(h);
 
     Turnos turnoLunes5 = new Turnos();
     turnoLunes5.setInicio(18);
     turnoLunes5.setFin(22);
     turnoLunes5.setIdTienda(2);
-    turnoLunes1.setTipoTurno(b);
+    turnoLunes5.setTipoTurno(b);
 
     Turnos turnoMartes1 = new Turnos();
     turnoMartes1.setInicio(8);
@@ -514,43 +514,43 @@ public class HibernateCrudTest extends TestCase {
     turnoLunes2.setInicio(9);
     turnoLunes2.setFin(15);
     turnoLunes2.setIdTienda(1);
-    turnoLunes1.setTipoTurno(f);
+    turnoLunes2.setTipoTurno(f);
 
     Turnos turnoLunes3 = new Turnos();
     turnoLunes3.setInicio(12);
     turnoLunes3.setFin(16);
     turnoLunes3.setIdTienda(1);
-    turnoLunes1.setTipoTurno(h);
+    turnoLunes3.setTipoTurno(h);
 
     Turnos turnoLunes4 = new Turnos();
     turnoLunes4.setInicio(15);
     turnoLunes4.setFin(21);
     turnoLunes4.setIdTienda(1);
-    turnoLunes1.setTipoTurno(f);
+    turnoLunes4.setTipoTurno(f);
 
     Turnos turnoLunes5 = new Turnos();
     turnoLunes5.setInicio(17);
     turnoLunes5.setFin(23);
     turnoLunes5.setIdTienda(1);
-    turnoLunes1.setTipoTurno(g);
+    turnoLunes5.setTipoTurno(g);
 
     Turnos turnoLunes6 = new Turnos();
     turnoLunes6.setInicio(17);
     turnoLunes6.setFin(23);
     turnoLunes6.setIdTienda(1);
-    turnoLunes1.setTipoTurno(h);
+    turnoLunes6.setTipoTurno(h);
 
     Turnos turnoLunes7 = new Turnos();
     turnoLunes7.setInicio(18);
     turnoLunes7.setFin(23);
     turnoLunes7.setIdTienda(1);
-    turnoLunes1.setTipoTurno(b);
+    turnoLunes7.setTipoTurno(b);
 
     Turnos turnoLunes8 = new Turnos();
     turnoLunes8.setInicio(18);
     turnoLunes8.setFin(23);
     turnoLunes8.setIdTienda(1);
-    turnoLunes1.setTipoTurno(r);
+    turnoLunes8.setTipoTurno(r);
 
     Turnos turnoMartes1 = new Turnos();
     turnoMartes1.setInicio(9);
