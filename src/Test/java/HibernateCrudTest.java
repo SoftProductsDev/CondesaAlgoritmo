@@ -67,13 +67,14 @@ public class HibernateCrudTest extends TestCase {
   private List<Dias> setDiasImpler() {
 
     List<Dias> diasImpler = new ArrayList<>();
-    Dias lunes = new Dias();
-    Dias martes = new Dias();
+    Set<Turnos> turnosJueves = new HashSet<>();
+    Set<Turnos> turnosViernes = new HashSet<>();
+    Set<Turnos> turnosSabado = new HashSet<>();
+    Set<Turnos> turnosMiercoles = new HashSet<>();
     Dias miercoles = new Dias();
     Dias jueves =  new Dias();
     Dias viernes = new Dias();
     Dias sabado = new Dias();
-    Dias domingo = new Dias();
 
     TipoTurno g = TipoTurno.G;
     TipoTurno f = TipoTurno.F;
@@ -165,13 +166,32 @@ public class HibernateCrudTest extends TestCase {
     turnoSabado4.setIdTienda(3);
     turnoSabado4.setTipoTurno(f);
 
-    diasImpler.add(lunes);
-    diasImpler.add(martes);
-    diasImpler.add(miercoles);
+    turnosMiercoles.add(turnoMiercoles1);
+    turnosMiercoles.add(turnoMiercoles2);
+
+    turnosJueves.add(turnoJueves1);
+    turnosJueves.add(turnoJueves2);
+    turnosJueves.add(turnoJueves3);
+    turnosJueves.add(turnoJueves4);
+
+    turnosViernes.add(turnoViernes1);
+    turnosViernes.add(turnoViernes2);
+    turnosViernes.add(turnoViernes3);
+    turnosViernes.add(turnoViernes4);
+
+    turnosSabado.add(turnoSabado1);
+    turnosSabado.add(turnoSabado2);
+    turnosSabado.add(turnoSabado3);
+    turnosSabado.add(turnoSabado4);
+
+    miercoles.setTurnos(turnosMiercoles);
+    jueves.setTurnos(turnosJueves);
+    viernes.setTurnos(turnosViernes);
+    sabado.setTurnos(turnosSabado);
+
     diasImpler.add(jueves);
     diasImpler.add(viernes);
     diasImpler.add(sabado);
-    diasImpler.add(domingo);
 
     return diasImpler;
   }
@@ -179,6 +199,12 @@ public class HibernateCrudTest extends TestCase {
   private List<Dias> setDiasHauptBahn() {
 
     List<Dias> diasHauptBahn = new ArrayList<>();
+    Set<Turnos> turnosHauptLunes = new HashSet<>();
+    Set<Turnos> turnosHauptMartes = new HashSet<>();
+    Set<Turnos> turnosHauptMiercoles = new HashSet<>();
+    Set<Turnos> turnosHauptJueves = new HashSet<>();
+    Set<Turnos> turnosHauptViernes = new HashSet<>();
+    Set<Turnos> turnosHauptSabado = new HashSet<>();
     Dias lunes = new Dias();
     Dias martes = new Dias();
     Dias miercoles = new Dias();
@@ -368,13 +394,54 @@ public class HibernateCrudTest extends TestCase {
     turnoDomingo4.setIdTienda(2);
     turnoDomingo4.setTipoTurno(f);
 
+    turnosHauptLunes.add(turnoLunes1);
+    turnosHauptLunes.add(turnoLunes2);
+    turnosHauptLunes.add(turnoLunes3);
+    turnosHauptLunes.add(turnoLunes4);
+    turnosHauptLunes.add(turnoLunes5);
+
+    turnosHauptMartes.add(turnoMartes1);
+    turnosHauptMartes.add(turnoMartes2);
+    turnosHauptMartes.add(turnoMartes3);
+    turnosHauptMartes.add(turnoMartes4);
+    turnosHauptMartes.add(turnoMartes5);
+
+    turnosHauptMiercoles.add(turnoMiercoles1);
+    turnosHauptMiercoles.add(turnoMiercoles2);
+    turnosHauptMiercoles.add(turnoMiercoles3);
+    turnosHauptMiercoles.add(turnoMiercoles4);
+    turnosHauptMiercoles.add(turnoMiercoles5);
+
+    turnosHauptJueves.add(turnoJueves1);
+    turnosHauptJueves.add(turnoJueves2);
+    turnosHauptJueves.add(turnoJueves3);
+    turnosHauptJueves.add(turnoJueves4);
+    turnosHauptJueves.add(turnoJueves5);
+
+    turnosHauptViernes.add(turnoViernes1);
+    turnosHauptViernes.add(turnoViernes2);
+    turnosHauptViernes.add(turnoViernes3);
+    turnosHauptViernes.add(turnoViernes4);
+    turnosHauptViernes.add(turnoViernes5);
+
+    turnosHauptSabado.add(turnoDomingo1);
+    turnosHauptSabado.add(turnoDomingo2);
+    turnosHauptSabado.add(turnoDomingo3);
+    turnosHauptSabado.add(turnoDomingo4);
+
+    lunes.setTurnos(turnosHauptLunes);
+    martes.setTurnos(turnosHauptMartes);
+    miercoles.setTurnos(turnosHauptMiercoles);
+    jueves.setTurnos(turnosHauptJueves);
+    viernes.setTurnos(turnosHauptViernes);
+    sabado.setTurnos(turnosHauptSabado);
+
     diasHauptBahn.add(lunes);
     diasHauptBahn.add(martes);
     diasHauptBahn.add(miercoles);
     diasHauptBahn.add(jueves);
     diasHauptBahn.add(viernes);
     diasHauptBahn.add(sabado);
-    diasHauptBahn.add(domingo);
 
     return diasHauptBahn;
   }
@@ -382,6 +449,13 @@ public class HibernateCrudTest extends TestCase {
   private List<Dias> setDiasFreiheit() {
 
     List<Dias> diasFreiheit = new ArrayList<>();
+    Set<Turnos> turnosLunes = new HashSet<>();
+    Set<Turnos> turnosMartes = new HashSet<>();
+    Set<Turnos> turnosMiercoles = new HashSet<>();
+    Set<Turnos> turnosJueves = new HashSet<>();
+    Set<Turnos> turnosViernes = new HashSet<>();
+    Set<Turnos> turnosSabado = new HashSet<>();
+    Set<Turnos> turnosDomingo = new HashSet<>();
     Dias lunes = new Dias();
     Dias martes = new Dias();
     Dias miercoles = new Dias();
@@ -734,6 +808,75 @@ public class HibernateCrudTest extends TestCase {
     turnoJueves8.setIdTienda(1);
     turnoLunes1.setTipoTurno(b);
 */
+    turnosLunes.add(turnoLunes1);
+    turnosLunes.add(turnoLunes2);
+    turnosLunes.add(turnoLunes3);
+    turnosLunes.add(turnoLunes4);
+    turnosLunes.add(turnoLunes5);
+    turnosLunes.add(turnoLunes6);
+    turnosLunes.add(turnoLunes7);
+    turnosLunes.add(turnoLunes8);
+
+    turnosMartes.add(turnoMartes1);
+    turnosMartes.add(turnoMartes2);
+    turnosMartes.add(turnoMartes3);
+    turnosMartes.add(turnoMartes4);
+    turnosMartes.add(turnoMartes5);
+    turnosMartes.add(turnoMartes6);
+    turnosMartes.add(turnoMartes7);
+    turnosMartes.add(turnoMartes8);
+
+    turnosMiercoles.add(turnoMiercoles1);
+    turnosMiercoles.add(turnoMiercoles2);
+    turnosMiercoles.add(turnoMiercoles3);
+    turnosMiercoles.add(turnoMiercoles4);
+    turnosMiercoles.add(turnoMiercoles5);
+    turnosMiercoles.add(turnoMiercoles6);
+    turnosMiercoles.add(turnoMiercoles7);
+    turnosMiercoles.add(turnoMiercoles8);
+
+    turnosJueves.add(turnoJueves1);
+    turnosJueves.add(turnoJueves2);
+    turnosJueves.add(turnoJueves3);
+    turnosJueves.add(turnoJueves4);
+    turnosJueves.add(turnoJueves5);
+    turnosJueves.add(turnoJueves6);
+    turnosJueves.add(turnoJueves7);
+    turnosJueves.add(turnoJueves8);
+
+    turnosViernes.add(turnoViernes1);
+    turnosViernes.add(turnoViernes2);
+    turnosViernes.add(turnoViernes3);
+    turnosViernes.add(turnoViernes4);
+    turnosViernes.add(turnoViernes5);
+    turnosViernes.add(turnoViernes6);
+    turnosViernes.add(turnoViernes7);
+    turnosViernes.add(turnoViernes8);
+
+    turnosSabado.add(turnoSabado1);
+    turnosSabado.add(turnoSabado2);
+    turnosSabado.add(turnoSabado3);
+    turnosSabado.add(turnoSabado4);
+    turnosSabado.add(turnoSabado5);
+    turnosSabado.add(turnoSabado6);
+    turnosSabado.add(turnoSabado7);
+    turnosSabado.add(turnoSabado8);
+
+    turnosDomingo.add(turnoDomingo1);
+    turnosDomingo.add(turnoDomingo2);
+    turnosDomingo.add(turnoDomingo3);
+    turnosDomingo.add(turnoDomingo4);
+    turnosDomingo.add(turnoDomingo5);
+    turnosDomingo.add(turnoDomingo6);
+    turnosDomingo.add(turnodomingo7);
+
+    lunes.setTurnos(turnosLunes);
+    martes.setTurnos(turnosMartes);
+    miercoles.setTurnos(turnosMiercoles);
+    jueves.setTurnos(turnosJueves);
+    viernes.setTurnos(turnosViernes);
+    sabado.setTurnos(turnosSabado);
+    domingo.setTurnos(turnosDomingo);
 
     diasFreiheit.add(lunes);
     diasFreiheit.add(martes);
