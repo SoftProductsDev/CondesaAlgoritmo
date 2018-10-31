@@ -208,6 +208,7 @@ public class HibernateCrudTest extends TestCase {
     viernes.setTurnos(turnosViernes);
     sabado.setTurnos(turnosSabado);
 
+    diasImpler.add(miercoles);
     diasImpler.add(jueves);
     diasImpler.add(viernes);
     diasImpler.add(sabado);
@@ -787,8 +788,8 @@ public class HibernateCrudTest extends TestCase {
     turnoSabado8.setTipoTurno(h);
 
     Turnos turnoSabado6 = new Turnos();
-    turnoSabado6.setInicio(13);
-    turnoSabado6.setFin(18);
+    turnoSabado6.setInicio(17);
+    turnoSabado6.setFin(23);
     turnoSabado6.setIdTienda(1);
     turnoSabado6.setTipoTurno(b);
 
