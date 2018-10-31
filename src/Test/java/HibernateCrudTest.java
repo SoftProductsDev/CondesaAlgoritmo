@@ -71,10 +71,20 @@ public class HibernateCrudTest extends TestCase {
     Set<Turnos> turnosViernes = new HashSet<>();
     Set<Turnos> turnosSabado = new HashSet<>();
     Set<Turnos> turnosMiercoles = new HashSet<>();
+    Dias lunes = new Dias();
+    lunes.setDate(LocalDate.of(2018,10,1));
+    Dias martes = new Dias();
+    martes.setDate(LocalDate.of(2018,10,2));
     Dias miercoles = new Dias();
+    miercoles.setDate(LocalDate.of(2018,10,3));
     Dias jueves =  new Dias();
+    jueves.setDate(LocalDate.of(2018,10,4));
     Dias viernes = new Dias();
+    viernes.setDate(LocalDate.of(2018,10,5));
     Dias sabado = new Dias();
+    sabado.setDate(LocalDate.of(2018,10,6));
+    Dias domingo = new Dias();
+    domingo.setDate(LocalDate.of(2018,10,7));
 
     TipoTurno g = TipoTurno.G;
     TipoTurno f = TipoTurno.F;
@@ -206,12 +216,19 @@ public class HibernateCrudTest extends TestCase {
     Set<Turnos> turnosHauptViernes = new HashSet<>();
     Set<Turnos> turnosHauptSabado = new HashSet<>();
     Dias lunes = new Dias();
+    lunes.setDate(LocalDate.of(2018,10,1));
     Dias martes = new Dias();
+    martes.setDate(LocalDate.of(2018,10,2));
     Dias miercoles = new Dias();
+    miercoles.setDate(LocalDate.of(2018,10,3));
     Dias jueves =  new Dias();
+    jueves.setDate(LocalDate.of(2018,10,4));
     Dias viernes = new Dias();
+    viernes.setDate(LocalDate.of(2018,10,5));
     Dias sabado = new Dias();
+    sabado.setDate(LocalDate.of(2018,10,6));
     Dias domingo = new Dias();
+    domingo.setDate(LocalDate.of(2018,10,7));
 
     TipoTurno g = TipoTurno.G;
     TipoTurno f = TipoTurno.F;
@@ -457,12 +474,19 @@ public class HibernateCrudTest extends TestCase {
     Set<Turnos> turnosSabado = new HashSet<>();
     Set<Turnos> turnosDomingo = new HashSet<>();
     Dias lunes = new Dias();
+    lunes.setDate(LocalDate.of(2018,10,1));
     Dias martes = new Dias();
+    martes.setDate(LocalDate.of(2018,10,2));
     Dias miercoles = new Dias();
+    miercoles.setDate(LocalDate.of(2018,10,3));
     Dias jueves =  new Dias();
+    jueves.setDate(LocalDate.of(2018,10,4));
     Dias viernes = new Dias();
+    viernes.setDate(LocalDate.of(2018,10,5));
     Dias sabado = new Dias();
+    sabado.setDate(LocalDate.of(2018,10,6));
     Dias domingo = new Dias();
+    domingo.setDate(LocalDate.of(2018,10,7));
 
     TipoTurno g = TipoTurno.G;
     TipoTurno f = TipoTurno.F;
