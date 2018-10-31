@@ -32,9 +32,18 @@ public class HibernateCrudTest extends TestCase {
     Tiendas haupt = tiendas.get(1);
     Tiendas impler = tiendas.get(2);
     freiheit.setPlantilla(plantillaFreiheit());
+    List<Plantillas> plFreiheit = new ArrayList<>();
+    plFreiheit.add(plantillaFreiheit());
+    freiheit.setPlantillasAnteriores(plFreiheit);
     HibernateCrud.UpdateTienda(freiheit);
+    List<Plantillas> plHaupt = new ArrayList<>();
+    plHaupt.add(plantillaHaupt());
+    haupt.setPlantillasAnteriores(plHaupt);
     haupt.setPlantilla(plantillaHaupt());
     HibernateCrud.UpdateTienda(haupt);
+    List<Plantillas> plImpler = new ArrayList<>();
+    plImpler.add(plantillaImpler());
+    impler.setPlantillasAnteriores(plImpler);
     impler.setPlantilla(plantillaImpler());
     HibernateCrud.UpdateTienda(impler);
     testCreateCondeso();
