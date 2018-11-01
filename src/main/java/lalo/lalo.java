@@ -126,6 +126,7 @@ public class lalo {
 		Set<Condeso> noDisponible = new HashSet<>();
 
 		//Set<Condeso> yaOcupados = new HashSet<>();
+		asignarFijos();
 		Set<Turnos> noAsignados = new HashSet<>();
 		PriorityQueue<Condeso> fila = new PriorityQueue<>(new CompareCondesos());
 		fila.addAll(condesos);
@@ -165,6 +166,55 @@ public class lalo {
 		}
 
 
+	}
+
+	private void asignarFijos(){
+		Set<Condeso> losFijos = getFijos();
+		Integer[][] disponibilidad;
+		Map<LocalDate, Dias> master;
+		Tiendas laTienda;
+		for(Condeso elFijo : losFijos){
+			if(elFijo.getDondePuedeTrabajar().size() > 1)
+				master = elFijo.getDondePuedeTrabajar().get(0).getMaster().getMes();
+			else throw new RuntimeException("No tiene tiendas donde trabajar");
+			disponibilidad = this.disponibilidad.get(elFijo.getId());
+			for(int i = 0; i < disponibilidad.length; i++){
+				Turnos elTurno = searchTurno( master.get(LocalDate.of(fecha.getYear(), fecha.getMonth(), i+1)), disponibilidad);
+				elFijo.asignarTurno(elTurno);
+			}
+		}
+
+	}
+
+	private Turnos searchTurno(Dias elDia, Integer[][] disponibilidad){
+		Set<Turnos> losTurnos = elDia.getTurnos();
+		int inicio = disponibilidad[0][elDia.getDate().getDayOfMonth()-1];
+		int fin = disponibilidad[1][elDia.getDate().getDayOfMonth()-1];
+		List<Turnos> losPosibles = new ArrayList<>();
+		for(Turnos elTurno : losTurnos){
+			if(elTurno.getInicio() == inicio && elTurno.getFin() == fin) return elTurno;
+			if(elTurno.getInicio() >= inicio && elTurno.getFin() <= fin) losPosibles.add(elTurno);
+		}
+		Turnos elBueno;
+		if(losPosibles.size() >= 1){
+		elBueno = losPosibles.get(0);
+		losPosibles.remove(0);
+		}
+		else throw  new RuntimeException("No hay turno que coincidan");
+		for(Turnos elTurno : losPosibles){
+			if(elBueno.getDuracion() < elTurno.getDuracion()) elBueno = elTurno;
+		}
+		return elBueno;
+	}
+
+
+	private HashSet<Condeso> getFijos(){
+		HashSet<Condeso> losFijos = new HashSet<>();
+		for(Condeso elCondeso : condesos){
+			if(elCondeso.isFijo()) losFijos.add(elCondeso);
+			condesos.remove(elCondeso);
+		}
+		return losFijos;
 	}
 
 	private boolean checkCondeso(Condeso elCondeso, HashMap<Integer, Integer[][]> disponibilidad, Turnos elTurno){
