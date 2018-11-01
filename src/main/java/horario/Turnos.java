@@ -2,6 +2,8 @@ package horario;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -43,6 +45,7 @@ public class Turnos implements Comparable<Turnos> {
 	private Condeso condeso;
 
 	@Column
+	@Enumerated(EnumType.STRING)
 	private TipoTurno tipoTurno;
 
 
@@ -222,7 +225,7 @@ public class Turnos implements Comparable<Turnos> {
 
 	//returns true if overlaps
 	public Boolean overlapGUI(Turnos turnos){
-		if(this.tipoTurno == turnos.tipoTurno){
+		if(this.tipoTurno == turnos.tipoTurno && this != turnos){
 			if((this.getInicio() >= turnos.getInicio() && turnos.getInicio() <= this.getFin()||
 					(this.getInicio() >= turnos.getFin() && turnos.getFin() <= this.getFin()))){
 				return true;
