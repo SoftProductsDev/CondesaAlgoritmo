@@ -29,6 +29,7 @@ public class  AddPlantillasPopOver implements Initializable {
   @FXML private TextField inicioField;
   @FXML private TextField finField;
   @FXML private AnchorPane anchorPane;
+  private GridPane weekGrid;
   private GridPane gridPane;
   private Dias dia;
   private ToggleSwitch toggleEditar;
@@ -69,7 +70,7 @@ public class  AddPlantillasPopOver implements Initializable {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            if(toggleEditar.isSelected()){
+            if(toggleEditar.isSelected() || gridPane.getParent().equals(weekGrid)){
               FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPlantillasPopOver.fxml"));
               String sceneFile = "/editPlantillasPopOver.fxml";
               Parent root = null;
@@ -85,7 +86,7 @@ public class  AddPlantillasPopOver implements Initializable {
               pop.setAutoFix(false);
               pop.show(label);
               EditPlantillasPopOverGUI edit = fxmlLoader.getController();
-              edit.setInitialValues(turno, dia, gridPane, label, toggleEditar);
+              edit.setInitialValues(turno, dia, gridPane, label, toggleEditar, weekGrid);
               event.consume();
             };
           }
@@ -93,9 +94,10 @@ public class  AddPlantillasPopOver implements Initializable {
     return label;
   }
 
-  public void setInitialValues(GridPane gridPane, Dias dia, ToggleSwitch toggleEditar){
+  public void setInitialValues(GridPane gridPane, Dias dia, ToggleSwitch toggleEditar, GridPane weekGrid){
     this.gridPane = gridPane;
     this.dia = dia;
     this.toggleEditar = toggleEditar;
+    this.weekGrid = weekGrid;
   }
 }

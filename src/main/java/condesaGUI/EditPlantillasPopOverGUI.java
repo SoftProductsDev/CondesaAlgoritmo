@@ -29,6 +29,7 @@ public class EditPlantillasPopOverGUI  implements Initializable {
     private Turnos turno;
     private Dias dia;
     private GridPane grid;
+    private GridPane weekGrid;
     private Label label;
     private ToggleSwitch toggleEditar;
 
@@ -37,7 +38,7 @@ public class EditPlantillasPopOverGUI  implements Initializable {
     }
 
     public void setInitialValues(Turnos turno, Dias dia, GridPane grid, Label label,
-        ToggleSwitch toggleEditar){
+        ToggleSwitch toggleEditar, GridPane weekGrid){
       this.turno = turno;
       this.dia = dia;
       this.grid = grid;
@@ -45,23 +46,26 @@ public class EditPlantillasPopOverGUI  implements Initializable {
       this.toggleEditar = toggleEditar;
       inicioField.setText(Integer.toString(turno.getInicio()));
       finField.setText(Integer.toString(turno.getFin()));
+      this.weekGrid = weekGrid;
     }
 
     public void applyChange(ActionEvent actionEvent) {
-      Turnos newTurno = new Turnos();
+      int oldInicio = turno.getInicio();
+      int oldFin = turno.getFin();
       try {
-        newTurno.setInicio(Integer.parseInt(inicioField.getText()));
-        newTurno.setFin(Integer.parseInt(finField.getText()));
-        newTurno.setTipoTurno(turno.getTipoTurno());
+        turno.setInicio(Integer.parseInt(inicioField.getText()));
+        turno.setFin(Integer.parseInt(finField.getText()));
+        turno.setTipoTurno(turno.getTipoTurno());
       }catch (Exception e){ }
-      if(!checkoverlap(newTurno)){
-        turno.setInicio(newTurno.getInicio());
-        turno.setFin(newTurno.getFin());
+      if(!checkoverlap(turno)){
         grid.getChildren().remove(label);
         //considering the first hour is 8 am
         int hourIndex = turno.getInicio() - 7;
         int columna = turno.getTipoTurno().ordinal();
         grid.add(createLabel(), columna + 1, hourIndex,1, turno.getDuracion());
+      }else {
+        turno.setInicio(oldInicio);
+        turno.setFin(oldFin);
       }
     }
 
@@ -89,7 +93,7 @@ public class EditPlantillasPopOverGUI  implements Initializable {
           new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-              if(toggleEditar.isSelected()){
+              if(toggleEditar.isSelected() || grid.getParent().equals(weekGrid)){
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPlantillasPopOver.fxml"));
                 String sceneFile = "/editPlantillasPopOver.fxml";
                 Parent root = null;
@@ -105,7 +109,7 @@ public class EditPlantillasPopOverGUI  implements Initializable {
                 pop.setAutoFix(false);
                 pop.show(label);
                 condesaGUI.EditPlantillasPopOverGUI edit = fxmlLoader.getController();
-                edit.setInitialValues(turno, dia, grid, label, toggleEditar);
+                edit.setInitialValues(turno, dia, grid, label, toggleEditar, weekGrid);
                 event.consume();
               };
             }

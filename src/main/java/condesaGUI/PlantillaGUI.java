@@ -46,10 +46,10 @@ import org.hibernate.Hibernate;
 public class PlantillaGUI   extends Application implements Initializable {
     @FXML private ChoiceBox<Plantillas> nombreChoice;
     @FXML private ChoiceBox<Tiendas> tiendasChoice;
-    @FXML private ListView<String>  horaList0;
-    @FXML private ListView<String>  horaList1;
-    @FXML private ListView<String>  horaList3;
-    @FXML private ListView<String>  horaList2;
+    @FXML private GridPane hourGrid1;
+    @FXML private GridPane hourGrid2;
+    @FXML private GridPane hourGrid3;
+    @FXML private GridPane hourGrid4;
     @FXML private GridPane weekGrid;
     @FXML private GridPane weekGrid1;
     @FXML private ChoiceBox<Tiendas> tiendasChoiceNueva;
@@ -69,6 +69,12 @@ public class PlantillaGUI   extends Application implements Initializable {
             list.add(i + "-" + (i+1));
         }
         return list;
+    }
+
+    private void fillHourGridPane(GridPane pane){
+      for (int i = 0; i < 17; i++){
+        pane.add(new Label(horario.get(i)),0, i);
+      }
     }
 
     private static List<Dias> createWeek(){
@@ -115,10 +121,10 @@ public class PlantillaGUI   extends Application implements Initializable {
         dias = createWeek();
         nuevaPlantilla = new Plantillas();
         nuevaPlantilla.setDias(dias);
-        horaList0.setItems(horario);
-        horaList1.setItems(horario);
-        horaList2.setItems(horario);
-        horaList3.setItems(horario);
+        fillHourGridPane(hourGrid1);
+        fillHourGridPane(hourGrid2);
+        fillHourGridPane(hourGrid3);
+        fillHourGridPane(hourGrid4);
         ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
         tiendasChoice.setItems(tiendas);
         addChoiceboxListeners();
@@ -195,7 +201,7 @@ public class PlantillaGUI   extends Application implements Initializable {
               pop.setAutoFix(false);
               pop.show(label);
               condesaGUI.EditPlantillasPopOverGUI edit = fxmlLoader.getController();
-              edit.setInitialValues(turno, dia, grid, label, toggleEditar);
+              edit.setInitialValues(turno, dia, grid, label, toggleEditar, weekGrid);
               event.consume();
             };
           }
@@ -285,7 +291,7 @@ public class PlantillaGUI   extends Application implements Initializable {
             new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                  if(toggleEditar.isSelected() || pane == weekGrid){
+                  if(toggleEditar.isSelected() || pane.getParent().equals(weekGrid)){
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/addPlantillaPopOver.fxml"));
                     Parent root = null;
                     try {
@@ -298,7 +304,7 @@ public class PlantillaGUI   extends Application implements Initializable {
                     pop.setAutoFix(false);
                     pop.show(pane);
                     AddPlantillasPopOver add = fxmlLoader.getController();
-                    add.setInitialValues(pane, dia, toggleEditar);
+                    add.setInitialValues(pane, dia, toggleEditar, weekGrid);
                 }
             }
         });
