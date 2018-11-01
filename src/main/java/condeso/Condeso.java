@@ -178,6 +178,11 @@ public class Condeso {
 		return antiguedad;
 	}
 
+	public boolean isFijo(){
+		if(contrato == Contrato.Fijo) return true;
+		return false;
+	}
+
 	public void setAntiguedad(LocalDate antiguedad) {
 		this.antiguedad = antiguedad;
 	}
@@ -291,7 +296,8 @@ public class Condeso {
 			case MiniJob: maxHours = 47;
 			minHours = 0;
 			break;
-			case otros: maxHours = 220;
+			case otros:
+			case Fijo:	maxHours = 220;
 			minHours = 50;
 			break;
 
@@ -440,11 +446,18 @@ public class Condeso {
 				break;
 				case otros: maxHours = 220;
 				break;
+				case Fijo: maxHours = 220;
+				break;
 			}
 		if(minHours == 0){
 			switch (contrato){
-				case otros: minHours = 50;
+				case otros:
+				case Fijo: minHours = 50;
+				break;
 			}
+		}
+		if(contrato == Contrato.MiniJob && minHours >= 47){
+			minHours = 47;
 		}
 		}
 	}
