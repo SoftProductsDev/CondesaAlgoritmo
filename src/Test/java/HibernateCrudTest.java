@@ -662,14 +662,14 @@ public class HibernateCrudTest extends TestCase {
     turnoJueves2.setTipoTurno(f);
 
     Turnos turnoJueves3 = new Turnos();
-    turnoJueves3.setInicio(12);
-    turnoJueves3.setFin(16);
+    turnoJueves3.setInicio(13);
+    turnoJueves3.setFin(17);
     turnoJueves3.setIdTienda(1);
     turnoJueves3.setTipoTurno(h);
 
     Turnos turnoJueves4 = new Turnos();
-    turnoJueves4.setInicio(13);
-    turnoJueves4.setFin(17);
+    turnoJueves4.setInicio(14);
+    turnoJueves4.setFin(18);
     turnoJueves4.setIdTienda(1);
     turnoJueves4.setTipoTurno(r);
 
@@ -710,14 +710,14 @@ public class HibernateCrudTest extends TestCase {
     turnoViernes2.setTipoTurno(f);
 
     Turnos turnoViernes3 = new Turnos();
-    turnoViernes3.setInicio(12);
-    turnoViernes3.setFin(16);
+    turnoViernes3.setInicio(13);
+    turnoViernes3.setFin(17);
     turnoViernes3.setIdTienda(1);
     turnoViernes3.setTipoTurno(h);
 
     Turnos turnoViernes4 = new Turnos();
-    turnoViernes4.setInicio(13);
-    turnoViernes4.setFin(17);
+    turnoViernes4.setInicio(14);
+    turnoViernes4.setFin(18);
     turnoViernes4.setIdTienda(1);
     turnoViernes4.setTipoTurno(r);
 
