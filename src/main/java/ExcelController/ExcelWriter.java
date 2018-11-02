@@ -18,17 +18,10 @@ public class  ExcelWriter {
   private static String[] columns = {"GM", "GM","G", "F", "D", "B", "R"};
   private static CellStyle borders;
   private static Workbook workbook;
-  private Sheet currentSheet;
 
   public ExcelWriter(){
-    workbook = createWorkbook();
+    workbook = new XSSFWorkbook();
     borders = createBordersStyle();
-  }
-
-  private Workbook createWorkbook() {
-    // Create a Workbook generates new Excel file
-    Workbook workbook = new XSSFWorkbook();
-    return workbook;
   }
 
   private CellStyle createBordersStyle() {
@@ -51,7 +44,6 @@ public class  ExcelWriter {
 
     // Create a Sheet
     Sheet sheet = workbook.createSheet("HorarioMaster");
-    currentSheet = sheet;
 
     createHourList(sheet);
 
@@ -142,7 +134,6 @@ public class  ExcelWriter {
   }
 
   private void setRegionBorderWithMedium(CellRangeAddress region, Sheet sheet) {
-    Workbook wb = sheet.getWorkbook();
     RegionUtil.setBorderBottom(BorderStyle.THIN, region, sheet);
     RegionUtil.setBorderLeft(BorderStyle.THIN, region, sheet);
     RegionUtil.setBorderRight(BorderStyle.THIN, region, sheet);

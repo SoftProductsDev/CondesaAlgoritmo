@@ -342,10 +342,13 @@ public class PlantillaGUI   extends Application implements Initializable {
   public void deleteTurnosLabels(GridPane pane){
     for (Node node: pane.getChildren()
     ) {
-      if(node.getClass() == GridPane.class && (node.equals(hourGrid1) || node.equals(hourGrid2))){
+      if(node.getClass() == GridPane.class){
         GridPane grid = (GridPane) node;
-        grid.getChildren().clear();
-        addLetrasArriba(grid);
+        if(grid !=hourGrid1 && grid!= hourGrid2 && grid != hourGrid3 && grid != hourGrid4){
+          grid.getChildren().clear();
+          addLetrasArriba(grid);
+        }
+
       }
     }
   }
