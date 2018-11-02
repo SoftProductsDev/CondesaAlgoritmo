@@ -76,10 +76,14 @@ public class HibernateCrudTest extends TestCase {
   private List<Dias> setDiasImpler() {
 
     List<Dias> diasImpler = new ArrayList<>();
+    Set<Turnos> turnosLunes= new HashSet<>();
+    Set<Turnos> turnosMartes = new HashSet<>();
+    Set<Turnos> turnosMiercoles = new HashSet<>();
     Set<Turnos> turnosJueves = new HashSet<>();
     Set<Turnos> turnosViernes = new HashSet<>();
     Set<Turnos> turnosSabado = new HashSet<>();
-    Set<Turnos> turnosMiercoles = new HashSet<>();
+    Set<Turnos> turnosDomingo = new HashSet<>();
+
     Dias lunes = new Dias();
     lunes.setDate(LocalDate.of(2018,10,1));
     Dias martes = new Dias();
@@ -203,15 +207,22 @@ public class HibernateCrudTest extends TestCase {
     turnosSabado.add(turnoSabado3);
     turnosSabado.add(turnoSabado4);
 
+
+    lunes.setTurnos(turnosLunes);
+    martes.setTurnos(turnosMartes);
     miercoles.setTurnos(turnosMiercoles);
     jueves.setTurnos(turnosJueves);
     viernes.setTurnos(turnosViernes);
     sabado.setTurnos(turnosSabado);
+    domingo.setTurnos(turnosDomingo);
 
+    diasImpler.add(lunes);
+    diasImpler.add(martes);
     diasImpler.add(miercoles);
     diasImpler.add(jueves);
     diasImpler.add(viernes);
     diasImpler.add(sabado);
+    diasImpler.add(domingo);
 
     return diasImpler;
   }
@@ -225,6 +236,7 @@ public class HibernateCrudTest extends TestCase {
     Set<Turnos> turnosHauptJueves = new HashSet<>();
     Set<Turnos> turnosHauptViernes = new HashSet<>();
     Set<Turnos> turnosHauptSabado = new HashSet<>();
+    Set<Turnos> turnosHauptDomingo = new HashSet<>();
     Dias lunes = new Dias();
     lunes.setDate(LocalDate.of(2018,10,1));
     Dias martes = new Dias();
@@ -462,6 +474,7 @@ public class HibernateCrudTest extends TestCase {
     jueves.setTurnos(turnosHauptJueves);
     viernes.setTurnos(turnosHauptViernes);
     sabado.setTurnos(turnosHauptSabado);
+    domingo.setTurnos(turnosHauptDomingo);
 
     diasHauptBahn.add(lunes);
     diasHauptBahn.add(martes);
@@ -469,6 +482,7 @@ public class HibernateCrudTest extends TestCase {
     diasHauptBahn.add(jueves);
     diasHauptBahn.add(viernes);
     diasHauptBahn.add(sabado);
+    diasHauptBahn.add(domingo);
 
     return diasHauptBahn;
   }
