@@ -199,11 +199,11 @@ public class lalo {
 		if(losPosibles.size() >= 1){
 		elBueno = losPosibles.get(0);
 		losPosibles.remove(0);
+			for(Turnos elTurno : losPosibles){
+				if(elBueno.getDuracion() < elTurno.getDuracion()) elBueno = elTurno;
+			}
 		}
-		else throw  new RuntimeException("No hay turno que coincidan");
-		for(Turnos elTurno : losPosibles){
-			if(elBueno.getDuracion() < elTurno.getDuracion()) elBueno = elTurno;
-		}
+		else return null;
 		return elBueno;
 	}
 

@@ -331,6 +331,7 @@ public class Condeso {
 	}
 
 	public void asignarTurno(Turnos elTurno){
+		if(elTurno == null) return;
 		int day = elTurno.getDate().getDayOfMonth();
 		elTurno.setCondeso(this);
 		elTurno.getDay().resetMinimoTurnos();
