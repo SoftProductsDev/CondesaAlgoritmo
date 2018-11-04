@@ -59,6 +59,7 @@ public class PlantillaGUI   extends Application implements Initializable {
     private static final ObservableList<String>
             horario = FXCollections.observableArrayList(getStaticList());
     private Plantillas nuevaPlantilla;
+    private List<PopOver> popOvers = new ArrayList<>();
 
     public PlantillaGUI(){}
 
@@ -303,6 +304,7 @@ public class PlantillaGUI   extends Application implements Initializable {
                     PopOver pop = new PopOver(root);
                     pop.setAutoFix(false);
                     pop.show(pane);
+                    popOvers.add(pop);
                     AddPlantillasPopOver add = fxmlLoader.getController();
                     add.setInitialValues(pane, dia, toggleEditar, weekGrid);
                 }
