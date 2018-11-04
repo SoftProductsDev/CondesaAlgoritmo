@@ -304,6 +304,11 @@ public class Condeso {
 		}
 	}
 
+	public void quinceMas(){
+		if(contrato ==Contrato.MiniJob) return;
+		maxHours *= 1.15;
+	}
+
 	public int getHoras(){ return (maxHours + minHours)/2;}
 
 	public void setHorasAsignadas(int horasAsignadas){this.horasAsignadas = horasAsignadas;}

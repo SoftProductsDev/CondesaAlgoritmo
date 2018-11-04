@@ -54,10 +54,6 @@ public class lalo {
 
 		addOtrosTurnos(GMs, deEncargado);
 
-
-		turnos = generateQueueTurnos();
-
-
 	}
 
 	private void addOtrosTurnos(Set<Condeso> GMs, List<Turnos> deEncargado){ //cre que este método es totalmente innecesario
@@ -131,6 +127,7 @@ public class lalo {
 
 		//Set<Condeso> yaOcupados = new HashSet<>();
 		asignarFijos();
+		turnos = generateQueueTurnos();
 		Set<Turnos> noAsignados = new HashSet<>();
 		PriorityQueue<Condeso> fila = new PriorityQueue<>(new CompareCondesos());
 		fila.addAll(condesos);
@@ -293,6 +290,10 @@ public class lalo {
 
 
 	private void reacomodar(Set<Turnos> noAsignados, Set<Condeso> condesos, HashMap<Integer, Integer[][]> disponibilidad){
+		for(Condeso elCondeso : condesos){
+			elCondeso.quinceMas();
+		}
+
 		PriorityQueue<Condeso> fila = new PriorityQueue<>(new CompareCondesos());
 		List<Condeso> regaladores;
 		Set<Turnos> dificiles = new HashSet<>();
@@ -451,7 +452,7 @@ public class lalo {
 	}
 
 	private enum Reasons{
-		finesOcupados, maximoAlcanzado, turnoEseDia, maximoDiasSeguidos
+		finesOcupados, maximoAlcanzado, turnoEseDia, maximoDiasSeguidos, faltaNivel
 	}
 
 	private boolean changeTurn(Condeso elCondeso, Condeso candidate, Turnos elTurno){
@@ -470,12 +471,14 @@ public class lalo {
 		List<Condeso> diasSeguidos = new ArrayList<>();
 		List<Condeso> maximoDelMes = new ArrayList<>();
 		List<Condeso> finesDeSemana = new ArrayList<>();
+		List<Condeso> porNivel = new ArrayList<>();
 
 		for(Condeso elCondeso : candidates){
 			if(elCondeso.getPersonal()[elTurno.getDate().getDayOfMonth()-1] != null) yaTieneTurno.add(elCondeso);
 			else if(!checkDiasSeguidos(elCondeso, elTurno)) diasSeguidos.add(elCondeso);
 			else if(!checkFinesLibres(elCondeso, elTurno)) finesDeSemana.add(elCondeso);
 			else if(!elCondeso.checkMax(elTurno)) maximoDelMes.add(elCondeso);
+			else if(!checkLevel(elCondeso, elTurno)) porNivel.add(elCondeso);
 
 		}
 
@@ -484,6 +487,7 @@ public class lalo {
 		Razones.put(Reasons.maximoDiasSeguidos, diasSeguidos);
 		Razones.put(Reasons.maximoAlcanzado, maximoDelMes);
 		Razones.put(Reasons.finesOcupados, finesDeSemana);
+		Razones.put(Reasons.faltaNivel, porNivel);
 		return Razones;
 	}
 
@@ -495,5 +499,6 @@ public class lalo {
 		}
 		return candidates;
 	}
+
 
 }
