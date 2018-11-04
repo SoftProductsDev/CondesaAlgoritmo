@@ -171,6 +171,9 @@ public class lalo {
 		System.out.println("No asignados: " + (count2-countFase2));
 		long elapsedTime =  System.currentTimeMillis() - start;
 		System.out.println("Tiempo en segundos: " + (float)elapsedTime/1000F);
+		System.out.println("Porcentaje de asignados 1 ronda: " +  (float)count/(count+count2)*100);
+		System.out.println("Porcentaje de asignados 2 ronda: " +  (float)countFase2/(count+count2)*100);
+		System.out.println("Porcentaje de asignados total: " +  (float)(count+countFase2)/(count+count2)*100);
 	}
 
 	private void asignarFijos(){

@@ -1020,7 +1020,7 @@ public class HibernateCrudTest extends TestCase {
     condeso2.setTipo(equipo);
     condeso2.setFijos(true);
     condeso2.setAntiguedad(LocalDate.now());
-    condeso2.setColor("#f48642");
+    condeso2.setColor("#f44242");
     condeso2.setDondePuedeTrabajar(haupt);
     HibernateCrud.SaveCondeso(condeso2);
 
@@ -1039,7 +1039,7 @@ public class HibernateCrudTest extends TestCase {
     condeso3.setTipo(encargado);
     condeso3.setFijos(true);
     condeso3.setAntiguedad(LocalDate.now());
-    condeso3.setColor("#f48642");
+    condeso3.setColor("#f46842");
     condeso3.setDondePuedeTrabajar(freiheit);
     HibernateCrud.SaveCondeso(condeso3);
 
@@ -1053,7 +1053,7 @@ public class HibernateCrudTest extends TestCase {
     condeso4.setLunch(true);
     condeso4.setTarde(false);
     condeso4.setManana(true);
-    condeso4.setColor("#f48642");
+    condeso4.setColor("#f4c542");
     condeso4.setCaja(true);
     condeso4.setLevel(3);
     condeso4.setTipo(equipo);
@@ -1072,7 +1072,7 @@ public class HibernateCrudTest extends TestCase {
     condeso5.setLunch(true);
     condeso5.setTarde(true);
     condeso5.setManana(true);
-    condeso5.setColor("#f48642");
+    condeso5.setColor("#c49411");
     condeso5.setCaja(true);
     condeso5.setLevel(3);
     condeso5.setTipo(encargado);
@@ -1091,7 +1091,7 @@ public class HibernateCrudTest extends TestCase {
     condeso6.setLunch(true);
     condeso6.setTarde(true);
     condeso6.setManana(true);
-    condeso6.setColor("#f48642");
+    condeso6.setColor("#c4be11");
     condeso6.setCaja(true);
     condeso6.setLevel(3);
     condeso6.setTipo(GM);
@@ -1110,7 +1110,7 @@ public class HibernateCrudTest extends TestCase {
     condeso7.setLunch(true);
     condeso7.setTarde(true);
     condeso7.setManana(true);
-    condeso7.setColor("#f48642");
+    condeso7.setColor("#fcf402");
     condeso7.setCaja(true);
     condeso7.setLevel(3);
     condeso7.setTipo(GM);
@@ -1129,7 +1129,7 @@ public class HibernateCrudTest extends TestCase {
     condeso8.setLunch(true);
     condeso8.setTarde(true);
     condeso8.setManana(true);
-    condeso8.setColor("#f48642");
+    condeso8.setColor("#cefc02");
     condeso8.setCaja(true);
     condeso8.setLevel(3);
     condeso8.setTipo(encargado);
@@ -1148,7 +1148,7 @@ public class HibernateCrudTest extends TestCase {
     condeso9.setLunch(true);
     condeso9.setTarde(true);
     condeso9.setManana(true);
-    condeso9.setColor("#f48642");
+    condeso9.setColor("#7d9904");
     condeso9.setCaja(true);
     condeso9.setLevel(2);
     condeso9.setTipo(equipo);
@@ -1167,7 +1167,7 @@ public class HibernateCrudTest extends TestCase {
     condeso10.setLunch(true);
     condeso10.setTarde(true);
     condeso10.setManana(true);
-    condeso10.setColor("#f48642");
+    condeso10.setColor("#90ff00");
     condeso10.setCaja(true);
     condeso10.setLevel(3);
     condeso10.setTipo(GM);
@@ -1186,7 +1186,7 @@ public class HibernateCrudTest extends TestCase {
     condeso11.setLunch(true);
     condeso11.setTarde(true);
     condeso11.setManana(true);
-    condeso11.setColor("#f48642");
+    condeso11.setColor("#00ff8c");
     condeso11.setCaja(true);
     condeso11.setLevel(3);
     condeso11.setTipo(encargado);
@@ -1205,7 +1205,7 @@ public class HibernateCrudTest extends TestCase {
     condeso12.setLunch(true);
     condeso12.setTarde(true);
     condeso12.setManana(true);
-    condeso12.setColor("#f48642");
+    condeso12.setColor("#299966");
     condeso12.setCaja(true);
     condeso12.setLevel(3);
     condeso12.setTipo(equipo);
@@ -1224,7 +1224,7 @@ public class HibernateCrudTest extends TestCase {
     condeso13.setLunch(true);
     condeso13.setTarde(true);
     condeso13.setManana(true);
-    condeso13.setColor("#f48642");
+    condeso13.setColor("#299982");
     condeso13.setCaja(true);
     condeso13.setLevel(3);
     condeso13.setTipo(GM);
@@ -1243,7 +1243,7 @@ public class HibernateCrudTest extends TestCase {
     condeso14.setLunch(true);
     condeso14.setTarde(true);
     condeso14.setManana(true);
-    condeso14.setColor("#f48642");
+    condeso14.setColor("#00ffcb");
     condeso14.setCaja(true);
     condeso14.setLevel(2);
     condeso14.setTipo(equipo);
@@ -1262,7 +1262,7 @@ public class HibernateCrudTest extends TestCase {
     condeso15.setLunch(true);
     condeso15.setTarde(true);
     condeso15.setManana(true);
-    condeso15.setColor("#f48642");
+    condeso15.setColor("#00f2ff");
     condeso15.setCaja(true);
     condeso15.setLevel(3);
     condeso15.setTipo(equipo);
@@ -1281,7 +1281,7 @@ public class HibernateCrudTest extends TestCase {
     condeso16.setLunch(true);
     condeso16.setTarde(true);
     condeso16.setManana(true);
-    condeso16.setColor("#f48642");
+    condeso16.setColor("#228b91");
     condeso16.setCaja(true);
     condeso16.setLevel(2);
     condeso16.setTipo(equipo);
@@ -1300,7 +1300,7 @@ public class HibernateCrudTest extends TestCase {
     condeso17.setLunch(true);
     condeso17.setTarde(true);
     condeso17.setManana(true);
-    condeso17.setColor("#f48642");
+    condeso17.setColor("#225d91");
     condeso17.setCaja(true);
     condeso17.setLevel(2);
     condeso17.setTipo(equipo);
@@ -1319,7 +1319,7 @@ public class HibernateCrudTest extends TestCase {
     condeso18.setLunch(true);
     condeso18.setTarde(true);
     condeso18.setManana(true);
-    condeso18.setColor("#f48642");
+    condeso18.setColor("#0081f2");
     condeso18.setCaja(true);
     condeso18.setLevel(2);
     condeso18.setTipo(equipo);
@@ -1338,7 +1338,7 @@ public class HibernateCrudTest extends TestCase {
     condeso19.setLunch(true);
     condeso19.setTarde(true);
     condeso19.setManana(true);
-    condeso19.setColor("#f48642");
+    condeso19.setColor("#2c00f2");
     condeso19.setCaja(true);
     condeso19.setLevel(3);
     condeso19.setTipo(equipo);
@@ -1357,7 +1357,7 @@ public class HibernateCrudTest extends TestCase {
     condeso20.setLunch(true);
     condeso20.setTarde(true);
     condeso20.setManana(true);
-    condeso20.setColor("#f48642");
+    condeso20.setColor("#9587d1");
     condeso20.setCaja(true);
     condeso20.setLevel(3);
     condeso20.setTipo(equipo);
@@ -1376,7 +1376,7 @@ public class HibernateCrudTest extends TestCase {
     condeso21.setLunch(true);
     condeso21.setTarde(true);
     condeso21.setManana(true);
-    condeso21.setColor("#f48642");
+    condeso21.setColor("#cec9e0");
     condeso21.setCaja(true);
     condeso21.setLevel(2);
     condeso21.setTipo(equipo);
@@ -1395,7 +1395,7 @@ public class HibernateCrudTest extends TestCase {
     condeso22.setLunch(true);
     condeso22.setTarde(true);
     condeso22.setManana(true);
-    condeso22.setColor("#f48642");
+    condeso22.setColor("#c345f9");
     condeso22.setCaja(true);
     condeso22.setLevel(3);
     condeso22.setTipo(GM);
@@ -1414,7 +1414,7 @@ public class HibernateCrudTest extends TestCase {
     condeso23.setLunch(true);
     condeso23.setTarde(true);
     condeso23.setManana(true);
-    condeso23.setColor("#f48642");
+    condeso23.setColor("#e600f7");
     condeso23.setCaja(true);
     condeso23.setLevel(2);
     condeso23.setTipo(equipo);
@@ -1433,7 +1433,7 @@ public class HibernateCrudTest extends TestCase {
     condeso24.setLunch(true);
     condeso24.setTarde(true);
     condeso24.setManana(true);
-    condeso24.setColor("#f48642");
+    condeso24.setColor("#f700a4");
     condeso24.setCaja(true);
     condeso24.setLevel(1);
     condeso24.setTipo(nuevo);
@@ -1452,7 +1452,7 @@ public class HibernateCrudTest extends TestCase {
     condeso25.setLunch(true);
     condeso25.setTarde(true);
     condeso25.setManana(true);
-    condeso25.setColor("#f48642");
+    condeso25.setColor("#f70073");
     condeso25.setCaja(true);
     condeso25.setLevel(1);
     condeso25.setTipo(nuevo);
@@ -1471,7 +1471,7 @@ public class HibernateCrudTest extends TestCase {
     condeso26.setLunch(true);
     condeso26.setTarde(true);
     condeso26.setManana(true);
-    condeso26.setColor("#f48642");
+    condeso26.setColor("#f70046");
     condeso26.setCaja(true);
     condeso26.setLevel(2);
     condeso26.setTipo(equipo);
@@ -1490,7 +1490,7 @@ public class HibernateCrudTest extends TestCase {
     condeso27.setLunch(true);
     condeso27.setTarde(true);
     condeso27.setManana(true);
-    condeso27.setColor("#f48642");
+    condeso27.setColor("#3c6b2e");
     condeso27.setCaja(true);
     condeso27.setLevel(1);
     condeso27.setTipo(nuevo);
@@ -1509,7 +1509,7 @@ public class HibernateCrudTest extends TestCase {
     condeso28.setLunch(true);
     condeso28.setTarde(true);
     condeso28.setManana(true);
-    condeso28.setColor("#f48642");
+    condeso28.setColor("#6b5b2e");
     condeso28.setCaja(true);
     condeso28.setLevel(1);
     condeso28.setTipo(nuevo);

@@ -4,6 +4,7 @@ import DbController.HibernateCrud;
 import condeso.Condeso;
 import horario.Dias;
 import horario.HorarioMaster;
+import horario.TipoTurno;
 import horario.Turnos;
 import java.io.IOException;
 import java.time.DayOfWeek;
@@ -175,13 +176,19 @@ public class FrontGUI extends Application implements Initializable {
         calendar.withDayOfMonth(1).getDayOfWeek().getValue();
     GridPane pane = (GridPane) monthGrid.getChildren().get(dateIndex);
     addGridEventHandler(pane, dia);
+    boolean isGM = false;
     for (Turnos turno:dia.getTurnos()
     ) {
-      latestTurn = setTurnos(dia, turno, dia.getDate(), latestTurn, pane);
+      if(turno.getTipoTurno() == TipoTurno.GM){
+        latestTurn = setTurnos(dia, turno, dia.getDate(), latestTurn, pane, isGM);
+        isGM = true;
+      }else{
+        latestTurn = setTurnos(dia, turno, dia.getDate(), latestTurn, pane, isGM);
+      }
     }
   }
 
-  private int[] setTurnos(Dias dia, Turnos turno, LocalDate date, int[] latestTurn, GridPane pane){
+  private int[] setTurnos(Dias dia, Turnos turno, LocalDate date, int[] latestTurn, GridPane pane,boolean isGM){
     //considering the first hour is 8 am
     int hourIndex = turno.getInicio() - 7;
     if(hourIndex < 0){
@@ -199,7 +206,12 @@ public class FrontGUI extends Application implements Initializable {
 
 
     Label label = createLabel(dia,turno, pane);
-    pane.add(label, turno.getTipoTurno().ordinal()+1, hourIndex, 1, turno.getDuracion());
+    if(isGM && turno.getTipoTurno() == TipoTurno.GM){
+      pane.add(label, turno.getTipoTurno().ordinal(), hourIndex, 1, turno.getDuracion());
+    }else {
+      pane.add(label, turno.getTipoTurno().ordinal()+1, hourIndex, 1, turno.getDuracion());
+    }
+
 
     return latestTurn;
   }
