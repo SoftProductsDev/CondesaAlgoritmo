@@ -90,12 +90,12 @@ public class Plantillas {
 		Dias elDia = days.get(dia);
 		Set<Turnos> losTurnos = elDia.getTurnos(); //falta resolver
 
-		Dias theDay = master.get(date);
-		if(theDay == null){
+		Dias theDay; //= master.get(date);
+		//if(theDay == null){
 			theDay = new Dias(date, laTienda);
 			master.put(date, theDay);
 			
-		}
+		//}
 
 		Turnos turno;
 
