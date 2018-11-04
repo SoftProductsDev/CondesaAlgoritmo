@@ -969,8 +969,10 @@ public class HibernateCrudTest extends TestCase {
     TipoEmpleado nuevo = TipoEmpleado.Nuevo;
     TipoEmpleado equipo = TipoEmpleado.Equipo;
 
+
     Contrato otros = Contrato.otros;
     Contrato minijob = Contrato.MiniJob;
+    Contrato fijos = Contrato.Fijo;
 
     List<Tiendas> tiendas = HibernateCrud.GetAllTiendas();
 
@@ -1009,7 +1011,7 @@ public class HibernateCrudTest extends TestCase {
     condeso2.setAbreviacion("JF");
     condeso2.setMasculino(true);
     condeso2.setFemenino(false);
-    condeso2.setContrato(otros);
+    condeso2.setContrato(fijos);
     condeso2.setLunch(true);
     condeso2.setTarde(true);
     condeso2.setManana(false);
@@ -1028,7 +1030,7 @@ public class HibernateCrudTest extends TestCase {
     condeso3.setAbreviacion("SP");
     condeso3.setMasculino(true);
     condeso3.setFemenino(false);
-    condeso3.setContrato(otros);
+    condeso3.setContrato(fijos);
     condeso3.setLunch(true);
     condeso3.setTarde(false);
     condeso3.setManana(true);
