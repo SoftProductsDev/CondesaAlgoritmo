@@ -1172,6 +1172,7 @@ public class HibernateCrudTest extends TestCase {
     condeso10.setLevel(3);
     condeso10.setTipo(GM);
     condeso10.setFijos(true);
+    condeso10.setAntiguedad(LocalDate.now());
     condeso10.setDondePuedeTrabajar(tiendas);
     HibernateCrud.SaveCondeso(condeso10);
 

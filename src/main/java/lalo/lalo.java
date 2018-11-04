@@ -27,9 +27,12 @@ public class lalo {
 	private List<Turnos> deEncargado;
 	private LocalDate fecha;
 	private int countFase2 = 0;
+	private long start;
+
 
 	public lalo(Set<Condeso> GMs, List<Turnos> deEncargado, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad,
 	LocalDate fecha){
+		start = System.currentTimeMillis();
 		this.fecha = fecha;
 		this.deEncargado = deEncargado;
 		this.disponibilidad = disponibilidad;
@@ -168,7 +171,9 @@ public class lalo {
 		System.out.println();
 		System.out.println("Asignados Fase1: " + count);
 		System.out.println("Asignados Fase2: "+ countFase2);
-		System.out.print("No asignados: " + (count2-countFase2));
+		System.out.println("No asignados: " + (count2-countFase2));
+		long elapsedTime =  System.currentTimeMillis() - start;
+		System.out.println("Tiempo en segundos: " + (float)elapsedTime/1000F);
 	}
 
 	private void asignarFijos(){
