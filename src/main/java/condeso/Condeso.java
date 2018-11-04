@@ -356,6 +356,10 @@ public class Condeso {
 
 	}
 
+	public int horasRestantes(){
+		return maxHours - horasAsignadas;
+	}
+
 	public Turnos cambiarTurno(Turnos elTurno){
 		int day = elTurno.getDate().getDayOfMonth();
 		elTurno.getDay().resetMinimoTurnos();

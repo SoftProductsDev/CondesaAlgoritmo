@@ -21,7 +21,7 @@ public class lalo {
 	public Set<HorarioEntrega> entregas;
 	private Set<Condeso> condesos;
 	public Set<Tiendas> tiendas;
-	private Queue<Turnos> turnos;
+	private PriorityQueue<Turnos> turnos;
 	//private HashMap<Tiendas, HorarioMaster> horariosMaster; // quitar pues estorba
 	private HashMap<Integer, Integer[][]> disponibilidad;
 	private List<Turnos> deEncargado;
@@ -128,6 +128,7 @@ public class lalo {
 		//Set<Condeso> yaOcupados = new HashSet<>();
 		asignarFijos();
 		turnos = generateQueueTurnos();
+		asignarJustos(turnos);
 		Set<Turnos> noAsignados = new HashSet<>();
 		PriorityQueue<Condeso> fila = new PriorityQueue<>(new CompareCondesos());
 		fila.addAll(condesos);
@@ -192,6 +193,31 @@ public class lalo {
 			}
 		}
 
+	}
+
+	private void asignarJustos(PriorityQueue<Turnos> turnos){
+		ArrayList<Turnos> losTurnos = new ArrayList<>();
+		Set<Condeso> losDisponibles;
+		for(Turnos elTurno : turnos){
+			losDisponibles = findCandidates(elTurno, condesos, disponibilidad);
+			if(losDisponibles.size() <= 2 && losDisponibles.size() > 0){
+				boolean first = true;
+				Condeso best = null;
+				for(Condeso elCondeso : losDisponibles){
+					if(first && checkCondeso(elCondeso, disponibilidad, elTurno)){
+						best = elCondeso;
+						first = false;
+					}else if(elCondeso.horasRestantes() > best.horasRestantes() && checkCondeso(elCondeso, disponibilidad, elTurno))
+						best = elCondeso;
+				}
+				if(best != null){
+					best.asignarTurno(elTurno);
+					losTurnos.add(elTurno);
+				}
+
+			}
+		}
+		turnos.removeAll(losTurnos);
 	}
 
 	private Turnos searchTurno(Dias elDia, Integer[][] disponibilidad, Condeso elCondeso){
