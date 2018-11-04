@@ -182,21 +182,21 @@ public class lalo {
 			else throw new RuntimeException("No tiene tiendas donde trabajar");
 			disponibilidad = this.disponibilidad.get((int)elFijo.getId());
 			for(int i = 0; i < disponibilidad.length; i++){
-				Turnos elTurno = searchTurno( master.get(LocalDate.of(fecha.getYear(), fecha.getMonth(), i+1)), disponibilidad);
+				Turnos elTurno = searchTurno( master.get(LocalDate.of(fecha.getYear(), fecha.getMonth(), i+1)), disponibilidad, elFijo);
 				elFijo.asignarTurno(elTurno);
 			}
 		}
 
 	}
 
-	private Turnos searchTurno(Dias elDia, Integer[][] disponibilidad){
+	private Turnos searchTurno(Dias elDia, Integer[][] disponibilidad, Condeso elCondeso){
 		Set<Turnos> losTurnos = elDia.getTurnos();
 		int inicio = disponibilidad[0][elDia.getDate().getDayOfMonth()-1];
 		int fin = disponibilidad[1][elDia.getDate().getDayOfMonth()-1];
 		List<Turnos> losPosibles = new ArrayList<>();
 		for(Turnos elTurno : losTurnos){
-			if(elTurno.getInicio() == inicio && elTurno.getFin() == fin) return elTurno;
-			if(elTurno.getInicio() >= inicio && elTurno.getFin() <= fin) losPosibles.add(elTurno);
+			if(elTurno.getInicio() == inicio && elTurno.getFin() == fin && checkEncargado(elCondeso, elTurno)) return elTurno;
+			if(elTurno.getInicio() >= inicio && elTurno.getFin() <= fin && checkEncargado(elCondeso, elTurno)) losPosibles.add(elTurno);
 		}
 		Turnos elBueno;
 		if(losPosibles.size() >= 1){
