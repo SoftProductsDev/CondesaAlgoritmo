@@ -157,15 +157,16 @@ public class lalo {
 
 
 		}
-		System.out.println();
-		System.out.println("Asignados: " + count);
-		System.out.print("No asignados: " + count2);
+
 		reacomodar(noAsignados, condesos, disponibilidad);
 		for(Tiendas tiendaFinal:tiendas){
 			HibernateCrud.UpdateTienda(tiendaFinal);
 		}
 
 
+		System.out.println();
+		System.out.println("Asignados: " + count);
+		System.out.print("No asignados: " + count2);
 	}
 
 	private void asignarFijos(){
