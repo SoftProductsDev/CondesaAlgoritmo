@@ -212,8 +212,8 @@ public class lalo {
 		HashSet<Condeso> losFijos = new HashSet<>();
 		for(Condeso elCondeso : condesos){
 			if(elCondeso.isFijo()) losFijos.add(elCondeso);
-			condesos.remove(elCondeso);
 		}
+		condesos.removeAll(losFijos);
 		return losFijos;
 	}
 
