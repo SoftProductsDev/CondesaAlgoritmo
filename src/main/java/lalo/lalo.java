@@ -160,7 +160,7 @@ public class lalo {
 		System.out.println();
 		System.out.println("Asignados: " + count);
 		System.out.print("No asignados: " + count2);
-		//reacomodar(noAsignados, condesos, disponibilidad);
+		reacomodar(noAsignados, condesos, disponibilidad);
 		for(Tiendas tiendaFinal:tiendas){
 			HibernateCrud.UpdateTienda(tiendaFinal);
 		}
@@ -174,10 +174,10 @@ public class lalo {
 		Map<LocalDate, Dias> master;
 		Tiendas laTienda;
 		for(Condeso elFijo : losFijos){
-			if(elFijo.getDondePuedeTrabajar().size() > 1)
+			if(elFijo.getDondePuedeTrabajar().size() >= 1)
 				master = elFijo.getDondePuedeTrabajar().get(0).getMaster().getMes();
 			else throw new RuntimeException("No tiene tiendas donde trabajar");
-			disponibilidad = this.disponibilidad.get(elFijo.getId());
+			disponibilidad = this.disponibilidad.get((int)elFijo.getId());
 			for(int i = 0; i < disponibilidad.length; i++){
 				Turnos elTurno = searchTurno( master.get(LocalDate.of(fecha.getYear(), fecha.getMonth(), i+1)), disponibilidad);
 				elFijo.asignarTurno(elTurno);
@@ -433,7 +433,8 @@ public class lalo {
 	}
 
 	private boolean useful(HashMap<Integer, Integer[][]> disponibilidad, Condeso elCondeso, int dia){
-		Integer[][] disp = disponibilidad.get(elCondeso.getId());
+		int id = (int) elCondeso.getId();
+		Integer[][] disp = disponibilidad.get(id);
 		if(disp[1][dia-1] != 0) return true;
 		return false;
 	}
