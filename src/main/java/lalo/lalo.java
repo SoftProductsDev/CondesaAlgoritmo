@@ -403,13 +403,24 @@ public class lalo {
 
 	private void insist(Set<Turnos> noAsignados){
 		//return;
+		Reasons laRazon;
 		for(Turnos elTurno : noAsignados){
 			Set<Condeso> losCandidatos = findCandidates(elTurno, condesos, disponibilidad);
 			for(Condeso elCondeso : losCandidatos){
-
+				laRazon = findReason(elTurno, elCondeso);
 			}
 		}
 			}
+
+	private boolean insistHelper(Turnos elTurno, Condeso elCondeso, Reasons laRazon, List<Condeso> fila){
+		if(fila.size() > 10){
+
+		}else{
+
+		}
+
+		return true; //quitar despues
+	}
 
 	private boolean porMaximmoAlcanzado(Condeso regalador, Condeso candidate, Turnos elTurno){
 		Turnos oferta;
@@ -512,7 +523,12 @@ public class lalo {
 	}
 
 	private Reasons findReason(Turnos elTurno, Condeso elCondeso){
-
+		if(elCondeso.getPersonal()[elTurno.getDate().getDayOfMonth()-1] != null) return Reasons.turnoEseDia;
+		else if(!checkDiasSeguidos(elCondeso, elTurno)) return Reasons.maximoDiasSeguidos;
+		else if(!checkFinesLibres(elCondeso, elTurno)) return Reasons.finesOcupados;
+		else if(!elCondeso.checkMax(elTurno)) return Reasons.maximoAlcanzado;
+		else if(!checkLevel(elCondeso, elTurno)) return Reasons.faltaNivel;
+		else return null;
 	}
 
 }
