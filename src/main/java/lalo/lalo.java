@@ -117,9 +117,8 @@ public class lalo {
 
 
 
-	public boolean start(){
+	public void start(){
 		laloFuncionando();
-		return true;
 	}
 
 	public void laloFuncionando() {

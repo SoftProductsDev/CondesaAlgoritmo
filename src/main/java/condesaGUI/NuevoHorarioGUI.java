@@ -89,7 +89,8 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             Set<Tiendas> tiendasALL2 = new HashSet<>();
             tiendasALL2.addAll(allTiendas);
             lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha);
-            boolean isDone = lalo.start();
+            lalo.start();
+
         }
     }
 
