@@ -126,7 +126,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        String filename = "disponibilidad2.txt";
+        String filename = "disponibilidad3.txt";
         horario = Parser.parse2(filename);
         for(Disponibilidad e: horario){
             e.Print();

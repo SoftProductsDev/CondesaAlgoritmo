@@ -206,7 +206,7 @@ try{
            int i = ignore(line, '\t');
            i += 75;
            int dias = 28;
-            while(line.charAt(i) != '\t'){
+            while(i < line.length() && line.charAt(i) != '\t'){
                 i+=3;
                 dias++;
             }
