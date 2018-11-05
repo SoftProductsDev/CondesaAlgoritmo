@@ -128,7 +128,6 @@ public class lalo {
 		//Set<Condeso> yaOcupados = new HashSet<>();
 		asignarFijos();
 		turnos = generateQueueTurnos();
-		asignarJustos(turnos);
 		Set<Turnos> noAsignados = new HashSet<>();
 		PriorityQueue<Condeso> fila = new PriorityQueue<>(new CompareCondesos());
 		fila.addAll(condesos);
@@ -167,6 +166,8 @@ public class lalo {
 
 
 		System.out.println();
+		System.out.println("Turnos totales: " + (count+count2));
+		System.out.println("Turnos totales asignados: " + (count+countFase2));
 		System.out.println("Asignados Fase1: " + count);
 		System.out.println("Asignados Fase2: "+ countFase2);
 		System.out.println("No asignados: " + (count2-countFase2));
@@ -193,31 +194,6 @@ public class lalo {
 			}
 		}
 
-	}
-
-	private void asignarJustos(PriorityQueue<Turnos> turnos){
-		ArrayList<Turnos> losTurnos = new ArrayList<>();
-		Set<Condeso> losDisponibles;
-		for(Turnos elTurno : turnos){
-			losDisponibles = findCandidates(elTurno, condesos, disponibilidad);
-			if(losDisponibles.size() <= 2 && losDisponibles.size() > 0){
-				boolean first = true;
-				Condeso best = null;
-				for(Condeso elCondeso : losDisponibles){
-					if(first && checkCondeso(elCondeso, disponibilidad, elTurno)){
-						best = elCondeso;
-						first = false;
-					}else if(elCondeso.horasRestantes() > best.horasRestantes() && checkCondeso(elCondeso, disponibilidad, elTurno))
-						best = elCondeso;
-				}
-				if(best != null){
-					best.asignarTurno(elTurno);
-					losTurnos.add(elTurno);
-				}
-
-			}
-		}
-		turnos.removeAll(losTurnos);
 	}
 
 	private Turnos searchTurno(Dias elDia, Integer[][] disponibilidad, Condeso elCondeso){
