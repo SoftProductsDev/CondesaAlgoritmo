@@ -176,6 +176,10 @@ public class lalo {
 		System.out.println("Porcentaje de asignados 1 ronda: " +  (float)count/(count+count2)*100);
 		System.out.println("Porcentaje de asignados 2 ronda: " +  (float)countFase2/(count+count2)*100);
 		System.out.println("Porcentaje de asignados total: " +  (float)(count+countFase2)/(count+count2)*100);
+		for(Condeso condeso:condesos){
+			System.out.println(condeso.getNombre() + ": " + (float)condeso.getHorasAsignadas()/condeso.getMaxHours()*100);
+		}
+
 	}
 
 	private void asignarFijos(){
