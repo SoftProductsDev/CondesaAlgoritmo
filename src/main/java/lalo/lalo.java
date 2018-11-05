@@ -13,7 +13,6 @@ import condeso.CompareCondesos;
 import condeso.Contrato;
 import condeso.TipoEmpleado;
 import horario.*;
-import javafx.scene.layout.Priority;
 import tiendas.Tiendas;
 import horario.HorarioEntrega;
 
@@ -118,9 +117,9 @@ public class lalo {
 
 
 
-	public void start(){
+	public boolean start(){
 		laloFuncionando();
-
+		return true;
 	}
 
 	public void laloFuncionando() {
