@@ -28,6 +28,7 @@ public class lalo {
 	private LocalDate fecha;
 	private int countFase2 = 0;
 	private long start;
+	private int countFijos = 0;
 
 
 	public lalo(Set<Condeso> GMs, List<Turnos> deEncargado, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad,
@@ -166,16 +167,20 @@ public class lalo {
 
 
 		System.out.println();
-		System.out.println("Turnos totales: " + (count+count2));
+		System.out.println("Turnos totales: " + (count+count2+countFijos));
 		System.out.println("Turnos totales asignados: " + (count+countFase2));
 		System.out.println("Asignados Fase1: " + count);
 		System.out.println("Asignados Fase2: "+ countFase2);
 		System.out.println("No asignados: " + (count2-countFase2));
 		long elapsedTime =  System.currentTimeMillis() - start;
 		System.out.println("Tiempo en segundos: " + (float)elapsedTime/1000F);
-		System.out.println("Porcentaje de asignados 1 ronda: " +  (float)count/(count+count2)*100);
-		System.out.println("Porcentaje de asignados 2 ronda: " +  (float)countFase2/(count+count2)*100);
-		System.out.println("Porcentaje de asignados total: " +  (float)(count+countFase2)/(count+count2)*100);
+		System.out.println("Porcentaje de asignados 1 ronda: " +  (float)count/(count+count2+countFijos)*100 + "%");
+		System.out.println("Porcentaje de asignados 2 ronda: " +  (float)countFase2/(count+count2+countFijos)*100 + "%");
+		System.out.println("Porcentaje de asignados total: " +  (float)(count+countFase2+countFijos)/(count+count2+countFijos)*100 + "%\n");
+		for(Condeso condeso:condesos){
+			System.out.println(condeso.getNombre() + ": " + (float)condeso.getHorasAsignadas()/condeso.getMaxHours()*100);
+		}
+
 	}
 
 	private void asignarFijos(){
@@ -188,9 +193,11 @@ public class lalo {
 				master = elFijo.getDondePuedeTrabajar().get(0).getMaster().getMes();
 			else throw new RuntimeException("No tiene tiendas donde trabajar");
 			disponibilidad = this.disponibilidad.get((int)elFijo.getId());
-			for(int i = 0; i < disponibilidad.length; i++){
+			for(int i = 0; i < disponibilidad[0].length; i++){
+				if(i+1 > fecha.lengthOfMonth()) break;
 				Turnos elTurno = searchTurno( master.get(LocalDate.of(fecha.getYear(), fecha.getMonth(), i+1)), disponibilidad, elFijo);
 				elFijo.asignarTurno(elTurno);
+				if(elTurno != null) countFijos++;
 			}
 		}
 
