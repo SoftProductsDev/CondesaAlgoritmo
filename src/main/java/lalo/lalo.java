@@ -426,7 +426,13 @@ public class lalo {
 	}
 
 	private void insist(Set<Turnos> noAsignados){
-		return;
+		//return;
+		for(Turnos elTurno : noAsignados){
+			Set<Condeso> losCandidatos = findCandidates(elTurno, condesos, disponibilidad);
+			for(Condeso elCondeso : losCandidatos){
+
+			}
+		}
 			}
 
 	private boolean porMaximmoAlcanzado(Condeso regalador, Condeso candidate, Turnos elTurno){
@@ -529,5 +535,8 @@ public class lalo {
 		return candidates;
 	}
 
+	private Reasons findReason(Turnos elTurno, Condeso elCondeso){
+
+	}
 
 }
