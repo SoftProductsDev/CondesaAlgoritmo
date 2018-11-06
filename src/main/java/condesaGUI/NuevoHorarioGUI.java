@@ -5,18 +5,26 @@ import condeso.Condeso;
 import horario.Plantillas;
 import horario.Turnos;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lalo.Disponibilidad;
 import lalo.Parser;
 import lalo.lalo;
 import tiendas.Tiendas;
+import condesaGUI.FrontGUI;
+
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
@@ -83,16 +91,34 @@ public class NuevoHorarioGUI extends Application implements Initializable {
         }
     }
 
-    public void iniciarClicked(ActionEvent actionEvent) {
+    public void iniciarClicked(ActionEvent actionEvent) throws Exception {
         disponibilidad = changeSetToHashMap(horario);
         if(fecha !=  null){
             Set<Tiendas> tiendasALL2 = new HashSet<>();
             tiendasALL2.addAll(allTiendas);
             lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha);
             lalo.start();
-
+            CloseOpenWindow("/frontGUI.fxml");
         }
     }
+
+    private void CloseOpenWindow(String filename) throws Exception{
+        ((Stage)iniciarButton.getScene().getWindow()).close();
+        String sceneFile = filename;
+        Parent root = null;
+        URL url  = null;
+        try {
+            url  = getClass().getResource( sceneFile );
+            root = FXMLLoader.load( url );
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
+                    Screen.getPrimary().getVisualBounds().getMaxY()));
+            stage.show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void fechasDeCierreClicked(ActionEvent actionEvent){
         LocalDate date = fechaDeCierre.getValue();

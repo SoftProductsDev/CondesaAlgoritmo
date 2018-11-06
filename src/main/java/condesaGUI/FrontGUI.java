@@ -74,7 +74,6 @@ public class FrontGUI extends Application implements Initializable {
     return list;
   }
 
-
   public void start(Stage primaryStage) throws Exception{
 
   }
