@@ -217,13 +217,42 @@ public class lalo {
 			if(elTurno.getInicio() >= inicio && elTurno.getFin() <= fin && checkEncargado(elCondeso, elTurno)
 			&& !elTurno.isOcupado()) losPosibles.add(elTurno);
 		}
-		Turnos elBueno;
+		Turnos elBueno = null;
 		if(losPosibles.size() >= 1){
-		elBueno = losPosibles.get(0);
-		losPosibles.remove(0);
+		HashMap<TipoTurno, Integer> tipoTurnos = new HashMap<>();
+		TipoTurno fila = null;
 			for(Turnos elTurno : losPosibles){
-				if(elBueno.getDuracion() < elTurno.getDuracion()) elBueno = elTurno;
+				if(tipoTurnos.get(elTurno.getTipoTurno()) != null){
+					fila = elTurno.getTipoTurno();
+					break;
+				}
+				tipoTurnos.put(elTurno.getTipoTurno(), 1);
 			}
+			if(fila == null){
+				elBueno = losPosibles.get(0);
+				losPosibles.remove(0);
+				for(Turnos elTurno : losPosibles){
+					if(elBueno.getDuracion() < elTurno.getDuracion()) elBueno = elTurno;
+				}
+			}else{
+				List<Turnos> Turnos = new ArrayList<>();
+				for(Turnos elTurno : losPosibles){
+					if(fila == elTurno.getTipoTurno()) Turnos.add(elTurno);
+				}
+				int min = Integer.MAX_VALUE;
+				int max = -1;
+				Turnos elTurno = Turnos.get(0);
+				for(int i = 0; i < Turnos.size(); i++){
+					min = Math.min(min, Turnos.get(i).getInicio());
+					max = Math.max(max, Turnos.get(i).getFin());
+					if(i > 0) elTurno.getDay().eliminarTurno(elTurno);
+				}
+				elTurno.setFin(max);
+				elTurno.setInicio(min);
+				return elTurno;
+			}
+
+
 		}
 		else return null;
 		return elBueno;

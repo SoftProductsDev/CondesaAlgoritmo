@@ -124,6 +124,10 @@ public class Dias {
         this.date = date;
     }
 
+    public void eliminarTurno(Turnos elTurno){
+        turnos.remove(elTurno);
+    }
+
     public void setDias(){
         for(Turnos elTurno : turnos){
             elTurno.setDay(this);
