@@ -262,7 +262,24 @@ public class FrontGUI extends Application implements Initializable {
   }
 
   public void NuevoHorarioClicked(ActionEvent actionEvent) throws Exception{
-    OpenNewWindow("/nuevoHorarioGUI.fxml");
+    CloseOpenWindow("/nuevoHorarioGUI.fxml");
+  }
+
+  private void CloseOpenWindow(String filename) throws Exception{
+    ((Stage)tiendasComboBox.getScene().getWindow()).close();
+    String sceneFile = filename;
+    Parent root = null;
+    URL url  = null;
+    try {
+      url  = getClass().getResource( sceneFile );
+      root = FXMLLoader.load( url );
+      Stage stage = new Stage();
+      stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
+              Screen.getPrimary().getVisualBounds().getMaxY()));
+      stage.show();
+    } catch(Exception e) {
+      e.printStackTrace();
+    }
   }
 
   private void OpenNewWindow(String filename) throws Exception{
