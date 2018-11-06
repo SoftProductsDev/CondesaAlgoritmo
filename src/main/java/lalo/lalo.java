@@ -29,6 +29,7 @@ public class lalo {
 	private long start;
 	private int countFijos = 0;
 	private HashMap<Long, Integer[][]> turnosExtras;
+	private Set<Condeso> GMs;
 
 
 	public lalo(Set<Condeso> GMs, List<Turnos> deEncargado, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad,
@@ -37,6 +38,7 @@ public class lalo {
 		this.fecha = fecha;
 		this.deEncargado = deEncargado;
 		this.disponibilidad = disponibilidad;
+		this.GMs = GMs;
 		this.condesos = condesos;
 		this.tiendas = tiendas;
 		this.turnosExtras = turnosExtras;
@@ -540,14 +542,13 @@ public class lalo {
 	}
 
 	private void agregarTurnosExtras(){
-		List<Condeso> losGMs = getGMs();
 		long id;
 		Integer[][] turnosExtra;
 		HashMap<Long, Tiendas> lasTiendas = new HashMap<>();
 				for(Tiendas laTienda : tiendas){
 					lasTiendas.put(laTienda.getId(), laTienda);
 				}
-		for(Condeso elGM : losGMs){
+		for(Condeso elGM : GMs){
 			id = elGM.getId();
 			turnosExtra = turnosExtras.get(id);
 			if(turnosExtra != null){
@@ -594,14 +595,6 @@ public class lalo {
 		end = Math.min(end, fin);
 		return start-end;
 	}
-
-	private List<Condeso> getGMs(){
-		List<Condeso> losGMs = new ArrayList<>();
-		for(Condeso elCondeso : condesos){
-			if(elCondeso.isGM()) losGMs.add(elCondeso);
-		}
-		condesos.removeAll(losGMs);
-		return losGMs;
-	}
+	
 
 }
