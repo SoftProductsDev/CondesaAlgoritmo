@@ -284,7 +284,8 @@ for(Condeso elCondeso : todosLosCondesos){
 try{
     FileReader reader = new FileReader(filename);
     BufferedReader buffer = new BufferedReader(reader);
-    while((line=buffer.readLine()) != null ){
+    line = buffer.readLine();
+    while(line != null ){
       int i = ignore(line, '\t');
       int j = subString(line, i, '\t');
       int idTienda;
@@ -316,7 +317,7 @@ try{
           line = buffer.readLine();
       }
 
-      while(useless(line)){
+      while(line != null && useless(line)){
           line = buffer.readLine();
         }
 
