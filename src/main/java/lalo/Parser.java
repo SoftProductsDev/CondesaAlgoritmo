@@ -252,8 +252,7 @@ try{
 }
 
 
-public static Set<Condeso> parseGMs(String filename, ArrayList<Turnos> losTurnos , LocalDate date){
-
+public static Set<Condeso> parseGMs(String filename, ArrayList<Turnos> losTurnos , LocalDate date, HashMap<Long, Integer[][]> turnosExtras){
 String line;
 String tienda;
 String mes;
@@ -311,12 +310,15 @@ try{
                idTienda, losTurnos, lasTiendas);
       parseTurnosGMs(buffer.readLine(), buffer.readLine(), buffer.readLine(), buffer.readLine(), date,  GMs,
                 idTienda, losTurnos, lasTiendas);
-      buffer.readLine();
-      buffer.readLine();
-      buffer.readLine();
-        /*while(useless(line)){
+      line = buffer.readLine();
+      if(!useless(line)){
+          parseTurnosExtras(line, buffer.readLine(), buffer.readLine(), buffer.readLine(), date, idTienda, turnosExtras);
           line = buffer.readLine();
-        }*/
+      }
+
+      while(useless(line)){
+          line = buffer.readLine();
+        }
 
     }
 buffer.close();
@@ -340,9 +342,8 @@ return paraRegresar;
 
 private static boolean useless(String line){
        System.out.println("useless");
-     for(int i = 0; i < 5; i++){
-
-         if(line.charAt(i) != '\t') return false;
+     for(int i = 0; i < line.length(); i++){
+         if(line.charAt(i) >= '!') return false;
      }
      return true;
 }
@@ -395,7 +396,7 @@ private static void parseTurnosGMs(String inicio, String fin, String GM, String 
                    throw new RuntimeException("error parsing second number");
                }
                try{
-                   Id = Integer.parseInt(ID.substring(paraId, (paraId = subString(ID, paraId, '\t'))));
+                   Id = Long.parseLong(ID.substring(paraId, (paraId = subString(ID, paraId, '\t'))));
                }catch (Exception e){
                    Id = 0;
                }
@@ -424,6 +425,64 @@ private static void parseTurnosGMs(String inicio, String fin, String GM, String 
         }
 }
 
+
+private static void parseTurnosExtras(String inicio, String fin, String GM, String ID, LocalDate mes,
+                                      long idTienda, HashMap<Long, Integer[][]> losTurnos){
+    int length = mes.lengthOfMonth();
+    int paraInicio = 0;
+    int paraFin = 0;
+    int paraGM = 0;
+    int paraId = 0;
+    int begin = 0;
+    int end;
+    long Id;
+    String Abrev;
+    boolean next;
+
+
+    paraInicio = ignore(inicio, '\t');
+    paraFin = ignore(fin, '\t');
+    paraGM = ignore(GM, '\t');
+    paraId = ignore(ID, '\t');
+
+    for(int i = 0; i < length; i++) {
+        try {
+            begin = Integer.parseInt(inicio.substring(paraInicio, (paraInicio = subString(inicio, paraInicio, '\t'))));
+            next = true;
+        } catch (Exception e) {
+            paraInicio++;
+            paraFin = subString(fin, paraFin, '\t') + 1;
+            paraId = subString(ID, paraId, '\t') + 1;
+            paraGM = subString(GM, paraGM, '\t') + 1;
+            next = false;
+        }
+        if(next){
+            try{
+                end = Integer.parseInt(fin.substring(paraFin, (paraFin = subString(fin, paraFin, '\t'))));
+            }catch(Exception e){
+                throw new RuntimeException("error parsing second number");
+            }
+            try{
+                Id = Long.parseLong(ID.substring(paraId, (paraId = subString(ID, paraId, '\t'))));
+            }catch (Exception e){
+                Id = 0;
+            }
+            Abrev = GM.substring(paraGM, (paraGM = subString(GM, paraGM, '\t')));
+            if(Abrev.charAt(0) != '#'){
+                Integer[][] disponibilidad = losTurnos.get(Id);
+                if(disponibilidad == null) disponibilidad = new Integer[3][mes.lengthOfMonth()];
+                disponibilidad[0][i] = begin;
+                disponibilidad[1][i] = end;
+                disponibilidad[2][i] = (int) idTienda;
+            }
+            paraInicio++;
+            paraFin++;
+            paraId++;
+            paraGM++;
+        }
+    }
+
+}
 
 }
 
