@@ -105,6 +105,18 @@ public class HibernateCrudTest extends TestCase {
     TipoTurno b = TipoTurno.B;
     TipoTurno r = TipoTurno.R;
 
+    Turnos turnoMartes1 = new Turnos();
+    turnoMartes1.setInicio(10);
+    turnoMartes1.setFin(18);
+    turnoMartes1.setIdTienda(3);
+    turnoMartes1.setTipoTurno(g);
+
+    Turnos turnoMartes2 = new Turnos();
+    turnoMartes2.setInicio(11);
+    turnoMartes2.setFin(15);
+    turnoMartes2.setIdTienda(3);
+    turnoMartes2.setTipoTurno(f);
+
     Turnos turnoMiercoles1 = new Turnos();
     turnoMiercoles1.setInicio(10);
     turnoMiercoles1.setFin(18);
@@ -125,7 +137,7 @@ public class HibernateCrudTest extends TestCase {
 
     Turnos turnoJueves2 = new Turnos();
     turnoJueves2.setInicio(17);
-    turnoJueves2.setFin(24);
+    turnoJueves2.setFin(23);
     turnoJueves2.setIdTienda(3);
     turnoJueves2.setTipoTurno(g);
 
@@ -149,7 +161,7 @@ public class HibernateCrudTest extends TestCase {
 
     Turnos turnoViernes2 = new Turnos();
     turnoViernes2.setInicio(17);
-    turnoViernes2.setFin(24);
+    turnoViernes2.setFin(23);
     turnoViernes2.setIdTienda(3);
     turnoViernes2.setTipoTurno(g);
 
@@ -177,17 +189,8 @@ public class HibernateCrudTest extends TestCase {
     turnoSabado2.setIdTienda(3);
     turnoSabado2.setTipoTurno(g);
 
-    Turnos turnoSabado3 = new Turnos();
-    turnoSabado3.setInicio(11);
-    turnoSabado3.setFin(15);
-    turnoSabado3.setIdTienda(3);
-    turnoSabado3.setTipoTurno(f);
-
-    Turnos turnoSabado4 = new Turnos();
-    turnoSabado4.setInicio(18);
-    turnoSabado4.setFin(22);
-    turnoSabado4.setIdTienda(3);
-    turnoSabado4.setTipoTurno(f);
+    turnosMartes.add(turnoMartes1);
+    turnosMartes.add(turnoMartes2);
 
     turnosMiercoles.add(turnoMiercoles1);
     turnosMiercoles.add(turnoMiercoles2);
@@ -204,9 +207,6 @@ public class HibernateCrudTest extends TestCase {
 
     turnosSabado.add(turnoSabado1);
     turnosSabado.add(turnoSabado2);
-    turnosSabado.add(turnoSabado3);
-    turnosSabado.add(turnoSabado4);
-
 
     lunes.setTurnos(turnosLunes);
     martes.setTurnos(turnosMartes);
@@ -278,7 +278,7 @@ public class HibernateCrudTest extends TestCase {
     turnoLunes3.setTipoTurno(h);
 
     Turnos turnoLunes4 = new Turnos();
-    turnoLunes4.setInicio(15);
+    turnoLunes4.setInicio(16);
     turnoLunes4.setFin(22);
     turnoLunes4.setIdTienda(2);
     turnoLunes4.setTipoTurno(h);
@@ -308,7 +308,7 @@ public class HibernateCrudTest extends TestCase {
     turnoMartes3.setTipoTurno(h);
 
     Turnos turnoMartes4 = new Turnos();
-    turnoMartes4.setInicio(15);
+    turnoMartes4.setInicio(16);
     turnoMartes4.setFin(22);
     turnoMartes4.setIdTienda(2);
     turnoMartes4.setTipoTurno(h);
@@ -338,7 +338,7 @@ public class HibernateCrudTest extends TestCase {
     turnoMiercoles3.setTipoTurno(h);
 
     Turnos turnoMiercoles4 = new Turnos();
-    turnoMiercoles4.setInicio(15);
+    turnoMiercoles4.setInicio(16);
     turnoMiercoles4.setFin(22);
     turnoMiercoles4.setIdTienda(2);
     turnoMiercoles4.setTipoTurno(h);
@@ -368,7 +368,7 @@ public class HibernateCrudTest extends TestCase {
     turnoJueves3.setTipoTurno(h);
 
     Turnos turnoJueves4 = new Turnos();
-    turnoJueves4.setInicio(15);
+    turnoJueves4.setInicio(16);
     turnoJueves4.setFin(22);
     turnoJueves4.setIdTienda(2);
     turnoJueves4.setTipoTurno(h);
@@ -398,16 +398,16 @@ public class HibernateCrudTest extends TestCase {
     turnoViernes3.setTipoTurno(h);
 
     Turnos turnoViernes4 = new Turnos();
-    turnoViernes4.setInicio(15);
+    turnoViernes4.setInicio(18);
     turnoViernes4.setFin(22);
     turnoViernes4.setIdTienda(2);
-    turnoViernes4.setTipoTurno(h);
+    turnoViernes4.setTipoTurno(b);
 
     Turnos turnoViernes5 = new Turnos();
-    turnoViernes5.setInicio(18);
+    turnoViernes5.setInicio(16);
     turnoViernes5.setFin(22);
     turnoViernes5.setIdTienda(2);
-    turnoViernes5.setTipoTurno(b);
+    turnoViernes5.setTipoTurno(h);
 
     Turnos turnoDomingo1 = new Turnos();
     turnoDomingo1.setInicio(10);
@@ -423,13 +423,13 @@ public class HibernateCrudTest extends TestCase {
 
     Turnos turnoDomingo3 = new Turnos();
     turnoDomingo3.setInicio(10);
-    turnoDomingo3.setFin(14);
+    turnoDomingo3.setFin(16);
     turnoDomingo3.setIdTienda(2);
     turnoDomingo3.setTipoTurno(f);
 
     Turnos turnoDomingo4 = new Turnos();
-    turnoDomingo4.setInicio(17);
-    turnoDomingo4.setFin(21);
+    turnoDomingo4.setInicio(16);
+    turnoDomingo4.setFin(22);
     turnoDomingo4.setIdTienda(2);
     turnoDomingo4.setTipoTurno(f);
 
@@ -533,7 +533,7 @@ public class HibernateCrudTest extends TestCase {
 
     Turnos turnoLunes3 = new Turnos();
     turnoLunes3.setInicio(12);
-    turnoLunes3.setFin(16);
+    turnoLunes3.setFin(17);
     turnoLunes3.setIdTienda(1);
     turnoLunes3.setTipoTurno(h);
 
@@ -553,19 +553,13 @@ public class HibernateCrudTest extends TestCase {
     turnoLunes6.setInicio(17);
     turnoLunes6.setFin(23);
     turnoLunes6.setIdTienda(1);
-    turnoLunes6.setTipoTurno(h);
+    turnoLunes6.setTipoTurno(b);
 
     Turnos turnoLunes7 = new Turnos();
     turnoLunes7.setInicio(18);
     turnoLunes7.setFin(23);
     turnoLunes7.setIdTienda(1);
-    turnoLunes7.setTipoTurno(b);
-
-    Turnos turnoLunes8 = new Turnos();
-    turnoLunes8.setInicio(18);
-    turnoLunes8.setFin(23);
-    turnoLunes8.setIdTienda(1);
-    turnoLunes8.setTipoTurno(r);
+    turnoLunes7.setTipoTurno(h);
 
     Turnos turnoMartes1 = new Turnos();
     turnoMartes1.setInicio(9);
@@ -581,7 +575,7 @@ public class HibernateCrudTest extends TestCase {
 
     Turnos turnoMartes3 = new Turnos();
     turnoMartes3.setInicio(12);
-    turnoMartes3.setFin(16);
+    turnoMartes3.setFin(17);
     turnoMartes3.setIdTienda(1);
     turnoMartes3.setTipoTurno(h);
 
@@ -601,19 +595,13 @@ public class HibernateCrudTest extends TestCase {
     turnoMartes6.setInicio(17);
     turnoMartes6.setFin(23);
     turnoMartes6.setIdTienda(1);
-    turnoMartes6.setTipoTurno(h);
+    turnoMartes6.setTipoTurno(b);
 
     Turnos turnoMartes7 = new Turnos();
     turnoMartes7.setInicio(18);
     turnoMartes7.setFin(23);
     turnoMartes7.setIdTienda(1);
-    turnoMartes7.setTipoTurno(b);
-
-    Turnos turnoMartes8 = new Turnos();
-    turnoMartes8.setInicio(18);
-    turnoMartes8.setFin(23);
-    turnoMartes8.setIdTienda(1);
-    turnoMartes8.setTipoTurno(r);
+    turnoMartes7.setTipoTurno(h);
 
     Turnos turnoMiercoles1 = new Turnos();
     turnoMiercoles1.setInicio(9);
@@ -629,7 +617,7 @@ public class HibernateCrudTest extends TestCase {
 
     Turnos turnoMiercoles3 = new Turnos();
     turnoMiercoles3.setInicio(12);
-    turnoMiercoles3.setFin(16);
+    turnoMiercoles3.setFin(17);
     turnoMiercoles3.setIdTienda(1);
     turnoMiercoles3.setTipoTurno(h);
 
@@ -649,19 +637,13 @@ public class HibernateCrudTest extends TestCase {
     turnoMiercoles6.setInicio(17);
     turnoMiercoles6.setFin(23);
     turnoMiercoles6.setIdTienda(1);
-    turnoMiercoles6.setTipoTurno(h);
+    turnoMiercoles6.setTipoTurno(b);
 
     Turnos turnoMiercoles7 = new Turnos();
     turnoMiercoles7.setInicio(18);
     turnoMiercoles7.setFin(23);
     turnoMiercoles7.setIdTienda(1);
-    turnoMiercoles7.setTipoTurno(b);
-
-    Turnos turnoMiercoles8 = new Turnos();
-    turnoMiercoles8.setInicio(18);
-    turnoMiercoles8.setFin(23);
-    turnoMiercoles8.setIdTienda(1);
-    turnoMiercoles8.setTipoTurno(r);
+    turnoMiercoles7.setTipoTurno(h);
 
     Turnos turnoJueves1 = new Turnos();
     turnoJueves1.setInicio(9);
@@ -676,13 +658,13 @@ public class HibernateCrudTest extends TestCase {
     turnoJueves2.setTipoTurno(f);
 
     Turnos turnoJueves3 = new Turnos();
-    turnoJueves3.setInicio(13);
+    turnoJueves3.setInicio(12);
     turnoJueves3.setFin(17);
     turnoJueves3.setIdTienda(1);
     turnoJueves3.setTipoTurno(h);
 
     Turnos turnoJueves4 = new Turnos();
-    turnoJueves4.setInicio(14);
+    turnoJueves4.setInicio(13);
     turnoJueves4.setFin(18);
     turnoJueves4.setIdTienda(1);
     turnoJueves4.setTipoTurno(r);
@@ -697,7 +679,7 @@ public class HibernateCrudTest extends TestCase {
     turnoJueves6.setInicio(17);
     turnoJueves6.setFin(23);
     turnoJueves6.setIdTienda(1);
-    turnoJueves6.setTipoTurno(f);
+    turnoJueves6.setTipoTurno(b);
 
     Turnos turnoJueves7 = new Turnos();
     turnoJueves7.setInicio(18);
@@ -709,7 +691,7 @@ public class HibernateCrudTest extends TestCase {
     turnoJueves8.setInicio(18);
     turnoJueves8.setFin(23);
     turnoJueves8.setIdTienda(1);
-    turnoJueves8.setTipoTurno(b);
+    turnoJueves8.setTipoTurno(f);
 
     Turnos turnoViernes1 = new Turnos();
     turnoViernes1.setInicio(9);
@@ -724,13 +706,13 @@ public class HibernateCrudTest extends TestCase {
     turnoViernes2.setTipoTurno(f);
 
     Turnos turnoViernes3 = new Turnos();
-    turnoViernes3.setInicio(13);
+    turnoViernes3.setInicio(12);
     turnoViernes3.setFin(17);
     turnoViernes3.setIdTienda(1);
     turnoViernes3.setTipoTurno(h);
 
     Turnos turnoViernes4 = new Turnos();
-    turnoViernes4.setInicio(14);
+    turnoViernes4.setInicio(13);
     turnoViernes4.setFin(18);
     turnoViernes4.setIdTienda(1);
     turnoViernes4.setTipoTurno(r);
@@ -745,7 +727,7 @@ public class HibernateCrudTest extends TestCase {
     turnoViernes6.setInicio(17);
     turnoViernes6.setFin(23);
     turnoViernes6.setIdTienda(1);
-    turnoViernes6.setTipoTurno(f);
+    turnoViernes6.setTipoTurno(b);
 
     Turnos turnoViernes7 = new Turnos();
     turnoViernes7.setInicio(18);
@@ -757,7 +739,7 @@ public class HibernateCrudTest extends TestCase {
     turnoViernes8.setInicio(18);
     turnoViernes8.setFin(23);
     turnoViernes8.setIdTienda(1);
-    turnoViernes8.setTipoTurno(b);
+    turnoViernes8.setTipoTurno(f);
 
     Turnos turnoSabado1 = new Turnos();
     turnoSabado1.setInicio(10);
@@ -789,23 +771,23 @@ public class HibernateCrudTest extends TestCase {
     turnoSabado5.setIdTienda(1);
     turnoSabado5.setTipoTurno(f);
 
-    Turnos turnoSabado7 = new Turnos();
-    turnoSabado7.setInicio(18);
-    turnoSabado7.setFin(23);
-    turnoSabado7.setIdTienda(1);
-    turnoSabado7.setTipoTurno(h);
-
-    Turnos turnoSabado8 = new Turnos();
-    turnoSabado8.setInicio(18);
-    turnoSabado8.setFin(23);
-    turnoSabado8.setIdTienda(1);
-    turnoSabado8.setTipoTurno(h);
-
     Turnos turnoSabado6 = new Turnos();
     turnoSabado6.setInicio(17);
     turnoSabado6.setFin(23);
     turnoSabado6.setIdTienda(1);
     turnoSabado6.setTipoTurno(b);
+
+    Turnos turnoSabado7 = new Turnos();
+    turnoSabado7.setInicio(13);
+    turnoSabado7.setFin(17);
+    turnoSabado7.setIdTienda(1);
+    turnoSabado7.setTipoTurno(h);
+
+    Turnos turnoSabado8 = new Turnos();
+    turnoSabado8.setInicio(17);
+    turnoSabado8.setFin(23);
+    turnoSabado8.setIdTienda(1);
+    turnoSabado8.setTipoTurno(h);
 
     Turnos turnoDomingo1 = new Turnos();
     turnoDomingo1.setInicio(10);
@@ -849,13 +831,6 @@ public class HibernateCrudTest extends TestCase {
     turnodomingo7.setIdTienda(1);
     turnodomingo7.setTipoTurno(r);
 
-/*
-    Turnos turnoJueves8 = new Turnos();
-    turnoJueves8.setInicio(18);
-    turnoJueves8.setFin(23);
-    turnoJueves8.setIdTienda(1);
-    turnoLunes1.setTipoTurno(b);
-*/
     turnosLunes.add(turnoLunes1);
     turnosLunes.add(turnoLunes2);
     turnosLunes.add(turnoLunes3);
@@ -863,7 +838,6 @@ public class HibernateCrudTest extends TestCase {
     turnosLunes.add(turnoLunes5);
     turnosLunes.add(turnoLunes6);
     turnosLunes.add(turnoLunes7);
-    turnosLunes.add(turnoLunes8);
 
     turnosMartes.add(turnoMartes1);
     turnosMartes.add(turnoMartes2);
@@ -872,7 +846,6 @@ public class HibernateCrudTest extends TestCase {
     turnosMartes.add(turnoMartes5);
     turnosMartes.add(turnoMartes6);
     turnosMartes.add(turnoMartes7);
-    turnosMartes.add(turnoMartes8);
 
     turnosMiercoles.add(turnoMiercoles1);
     turnosMiercoles.add(turnoMiercoles2);
@@ -881,7 +854,6 @@ public class HibernateCrudTest extends TestCase {
     turnosMiercoles.add(turnoMiercoles5);
     turnosMiercoles.add(turnoMiercoles6);
     turnosMiercoles.add(turnoMiercoles7);
-    turnosMiercoles.add(turnoMiercoles8);
 
     turnosJueves.add(turnoJueves1);
     turnosJueves.add(turnoJueves2);
