@@ -56,6 +56,8 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     private Set<Disponibilidad> horario;
     private Set<Condeso> gms;
     private ArrayList<Turnos> turnosEncargado = new ArrayList<>();
+    HashMap<Long, Integer[][]> turnosExtras = new HashMap<>();
+
 
 
     private HashMap<Integer, Integer[][]> disponibilidad;
@@ -96,7 +98,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
         if(fecha !=  null){
             Set<Tiendas> tiendasALL2 = new HashSet<>();
             tiendasALL2.addAll(allTiendas);
-            lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha);
+            lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha,turnosExtras);
             lalo.start();
             CloseOpenWindow("/frontGUI.fxml");
         }
@@ -135,7 +137,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     public void mesDeInicioClicked(ActionEvent actionEvent){
         LocalDate date = mesDeInicioPicker.getValue();
         fecha = date;
-        gms = Parser.parseGMs("GMs.txt", turnosEncargado,date);
+        gms = Parser.parseGMs("GMs.txt", turnosEncargado,date, turnosExtras);
         List<Condeso> allGMs = new LinkedList<>();
         for(Condeso gm: gms){
             long id = gm.getId();
