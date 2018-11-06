@@ -234,6 +234,11 @@ public class Turnos implements Comparable<Turnos> {
 		}
 		else return false;
 	}
+
+	public boolean isG(){
+		if(tipoTurno == TipoTurno.G) return true;
+		return false;
+	}
 }
 
 

@@ -471,4 +471,9 @@ public class Condeso {
 		}
 		}
 	}
+
+	public boolean isGM(){
+		if(tipo == TipoEmpleado.GM) return true;
+		return false;
+	}
 }
