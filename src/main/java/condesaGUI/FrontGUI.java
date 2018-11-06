@@ -157,7 +157,7 @@ public class FrontGUI extends Application implements Initializable {
       master = tienda.getMaster();
     }
     if (master != null){
-      for (int i = 1; i < calendar.getMonth().length(calendar.isLeapYear()); i++)
+      for (int i = 1; i <= calendar.getMonth().length(calendar.isLeapYear()); i++)
       {
           Map<LocalDate, Dias> mes = master.getMes();
           Dias dia = mes.get(calendar.withDayOfMonth(i));
