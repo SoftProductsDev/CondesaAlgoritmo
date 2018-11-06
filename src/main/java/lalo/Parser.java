@@ -471,7 +471,10 @@ private static void parseTurnosExtras(String inicio, String fin, String GM, Stri
             Abrev = GM.substring(paraGM, (paraGM = subString(GM, paraGM, '\t')));
             if(Abrev.charAt(0) != '#'){
                 Integer[][] disponibilidad = losTurnos.get(Id);
-                if(disponibilidad == null) disponibilidad = new Integer[3][mes.lengthOfMonth()];
+                if(disponibilidad == null){
+                    disponibilidad = new Integer[3][mes.lengthOfMonth()];
+                    losTurnos.put(Id, disponibilidad);
+                }
                 disponibilidad[0][i] = begin;
                 disponibilidad[1][i] = end;
                 disponibilidad[2][i] = (int) idTienda;

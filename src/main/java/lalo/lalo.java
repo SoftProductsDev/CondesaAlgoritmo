@@ -29,6 +29,7 @@ public class lalo {
 	private long start;
 	private int countFijos = 0;
 	private HashMap<Long, Integer[][]> turnosExtras;
+	private Set<Condeso> GMs;
 
 
 	public lalo(Set<Condeso> GMs, List<Turnos> deEncargado, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad,
@@ -37,6 +38,7 @@ public class lalo {
 		this.fecha = fecha;
 		this.deEncargado = deEncargado;
 		this.disponibilidad = disponibilidad;
+		this.GMs = GMs;
 		this.condesos = condesos;
 		this.tiendas = tiendas;
 		this.turnosExtras = turnosExtras;
@@ -210,8 +212,10 @@ public class lalo {
 		int fin = disponibilidad[1][elDia.getDate().getDayOfMonth()-1];
 		List<Turnos> losPosibles = new ArrayList<>();
 		for(Turnos elTurno : losTurnos){
-			if(elTurno.getInicio() == inicio && elTurno.getFin() == fin && checkEncargado(elCondeso, elTurno)) return elTurno;
-			if(elTurno.getInicio() >= inicio && elTurno.getFin() <= fin && checkEncargado(elCondeso, elTurno)) losPosibles.add(elTurno);
+			if(elTurno.getInicio() == inicio && elTurno.getFin() == fin && checkEncargado(elCondeso, elTurno)
+			&& !elTurno.isOcupado()) return elTurno;
+			if(elTurno.getInicio() >= inicio && elTurno.getFin() <= fin && checkEncargado(elCondeso, elTurno)
+			&& !elTurno.isOcupado()) losPosibles.add(elTurno);
 		}
 		Turnos elBueno;
 		if(losPosibles.size() >= 1){
@@ -255,6 +259,7 @@ public class lalo {
 		int inicio = elTurno.getInicio();
 		int fin = elTurno.getFin();
 		LocalDate fecha = elTurno.getDate();
+		if(fecha.lengthOfMonth() > disp[0].length) throw new RuntimeException("El mes no coincide con la disponibilidad");
 		int day = fecha.getDayOfMonth();
 		int desde = disp[0][day-1];
 		int hasta = disp[1][day-1];
@@ -540,14 +545,13 @@ public class lalo {
 	}
 
 	private void agregarTurnosExtras(){
-		List<Condeso> losGMs = getGMs();
 		long id;
 		Integer[][] turnosExtra;
 		HashMap<Long, Tiendas> lasTiendas = new HashMap<>();
 				for(Tiendas laTienda : tiendas){
 					lasTiendas.put(laTienda.getId(), laTienda);
 				}
-		for(Condeso elGM : losGMs){
+		for(Condeso elGM : GMs){
 			id = elGM.getId();
 			turnosExtra = turnosExtras.get(id);
 			if(turnosExtra != null){
@@ -560,8 +564,8 @@ public class lalo {
 		Tiendas laTienda;
 		Turnos elTurno;
 		for(int i = 0; i < turnosExtra[0].length; i++){
-			if(turnosExtra[0][i] != 0){
-				laTienda = lasTiendas.get(turnosExtra[2][i]);
+			if(turnosExtra[0][i] != null){
+				laTienda = lasTiendas.get((long)turnosExtra[2][i]);
 				if(laTienda == null) throw new RuntimeException("Tienda inexistente");
 				elTurno = searchTurnoParaGM(turnosExtra[0][i], turnosExtra[1][i], laTienda, i+1);
 				elGM.asignarTurno(elTurno);
@@ -577,13 +581,17 @@ public class lalo {
 			if(elturno.isG()) losUltimos.add(elturno);
 		}
 		Turnos elBueno;
-		if(losUltimos.size() >= 1) elBueno = losUltimos.get(0);
-		else throw new RuntimeException("Sin turnos para asignar");
-		for(int i = 1; i < losUltimos.size(); i++){
-			if(horasEncerradas(inicio, fin, losUltimos.get(i)) > horasEncerradas(inicio, fin, elBueno)) elBueno = losUltimos.get(i);
+		if(losUltimos.size() >= 1){
+			elBueno = losUltimos.get(0);
+			for(int i = 1; i < losUltimos.size(); i++){
+				if(horasEncerradas(inicio, fin, losUltimos.get(i)) > horasEncerradas(inicio, fin, elBueno)) elBueno = losUltimos.get(i);
 		}
-		elBueno.setInicio(inicio);
-		elBueno.setFin(fin);
+			elBueno.setInicio(inicio);
+			elBueno.setFin(fin);
+		}else{
+			return null;
+		}
+
 		return elBueno;
 	}
 
@@ -592,16 +600,8 @@ public class lalo {
 		int end = elTurno.getFin();
 		start = Math.max(start, inicio);
 		end = Math.min(end, fin);
-		return start-end;
+		return end-start;
 	}
 
-	private List<Condeso> getGMs(){
-		List<Condeso> losGMs = new ArrayList<>();
-		for(Condeso elCondeso : condesos){
-			if(elCondeso.isGM()) losGMs.add(elCondeso);
-		}
-		condesos.removeAll(losGMs);
-		return losGMs;
-	}
 
 }
