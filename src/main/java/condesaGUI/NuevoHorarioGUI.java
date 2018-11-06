@@ -100,7 +100,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             tiendasALL2.addAll(allTiendas);
             lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha,turnosExtras);
             lalo.start();
-            CloseOpenWindow("/frontGUI.fxml");
+            //CloseOpenWindow("/frontGUI.fxml");
         }
     }
 

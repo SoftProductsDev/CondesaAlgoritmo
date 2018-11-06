@@ -779,12 +779,12 @@ public class HibernateCrudTest extends TestCase {
 
     Turnos turnoSabado7 = new Turnos();
     turnoSabado7.setInicio(13);
-    turnoSabado7.setFin(17);
+    turnoSabado7.setFin(18);
     turnoSabado7.setIdTienda(1);
     turnoSabado7.setTipoTurno(h);
 
     Turnos turnoSabado8 = new Turnos();
-    turnoSabado8.setInicio(17);
+    turnoSabado8.setInicio(18);
     turnoSabado8.setFin(23);
     turnoSabado8.setIdTienda(1);
     turnoSabado8.setTipoTurno(h);
