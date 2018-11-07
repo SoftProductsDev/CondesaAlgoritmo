@@ -217,7 +217,9 @@ try{
               name = line.substring(j, i);
               condeso = new Disponibilidad(name);
               disponibilidad = new Integer[2][dias];
-              j = parseTime(disponibilidad, line, 0, ++i) + 1;
+             // j = parseTime(disponibilidad, line, 0, ++i) + 1;
+              j = parseTime(disponibilidad, line, 0, ++i);
+              j = ignore(line, '\t', j);
               parseMaxMin(line, condeso, j);
 
               line = buffer.readLine();
