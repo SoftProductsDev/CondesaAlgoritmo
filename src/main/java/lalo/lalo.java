@@ -358,7 +358,7 @@ public class lalo {
 
 	private void reacomodar(Set<Turnos> noAsignados, Set<Condeso> condesos, HashMap<Integer, Integer[][]> disponibilidad){
 		for(Condeso elCondeso : condesos){
-			elCondeso.quinceMas();
+			elCondeso.cincoMas();
 		}
 
 		PriorityQueue<Condeso> fila = new PriorityQueue<>(new CompareCondesos());
