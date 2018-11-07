@@ -114,11 +114,6 @@ public class PlantillaGUI   extends Application implements Initializable {
             System.out.println( "    ----------------------------------------\n" );
             throw ex;
         }
-         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-        public void handle(WindowEvent we) {
-          deletePopOvers();
-          we.consume();
-        }});
         primaryStage.setTitle("Administrador de Plantillas");
         primaryStage.setScene(new Scene(root, 700, 600));
         primaryStage.show();
@@ -309,6 +304,7 @@ public class PlantillaGUI   extends Application implements Initializable {
                     }
 
                     PopOver pop = new PopOver(root);
+                    pop.setAnimated(false);
                     pop.setAutoFix(false);
                     pop.show(pane);
                     popOvers.add(pop);

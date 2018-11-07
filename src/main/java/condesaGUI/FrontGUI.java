@@ -409,4 +409,8 @@ public class FrontGUI extends Application implements Initializable {
         });
   }
 
+  public void actualiza(MouseEvent mouseEvent) {
+    ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
+    tiendasComboBox.setItems(tiendas);
+  }
 }

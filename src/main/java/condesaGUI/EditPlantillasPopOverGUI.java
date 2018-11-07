@@ -107,6 +107,7 @@ public class EditPlantillasPopOverGUI  implements Initializable {
                 }
                 PopOver pop = new PopOver(root);
                 pop.setAutoFix(false);
+                pop.setAnimated(false);
                 pop.show(label);
                 condesaGUI.EditPlantillasPopOverGUI edit = fxmlLoader.getController();
                 edit.setInitialValues(turno, dia, grid, label, toggleEditar, weekGrid);

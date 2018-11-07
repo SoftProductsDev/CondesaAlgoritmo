@@ -83,6 +83,7 @@ public class  AddPlantillasPopOver implements Initializable {
                 e.printStackTrace();
               }
               PopOver pop = new PopOver(root);
+              pop.setAnimated(false);
               pop.setAutoFix(false);
               pop.show(label);
               EditPlantillasPopOverGUI edit = fxmlLoader.getController();

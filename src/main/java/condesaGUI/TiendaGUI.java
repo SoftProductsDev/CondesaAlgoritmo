@@ -74,11 +74,6 @@ public class TiendaGUI extends Application implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
                 Screen.getPrimary().getVisualBounds().getHeight()));
-            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                public void handle(WindowEvent we) {
-                    PlantillaGUI pl = fxmlLoader.getController();
-                    pl.deletePopOvers();
-                }});
             stage.show();
     }
 
