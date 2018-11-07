@@ -183,7 +183,27 @@ public class lalo {
 		for(Condeso condeso:condesos){
 			System.out.println(condeso.getNombre() + ": " + (float)condeso.getHorasAsignadas()/condeso.getMaxHours()*100 + " horas: " + condeso.getHorasAsignadas() + " maximo: " + condeso.getMaxHours());
 		}
+		System.out.println("\n");
+		int countTurnosTotales = 0;
+		int countTurnosAsignadosTotales = 0;
+		for(Tiendas tienda:tiendas){
+			HorarioMaster master = tienda.getMaster();
+			Map<LocalDate, Dias> masterMap = master.getMes();
+			for(int i =  0; i < fecha.lengthOfMonth(); i++){
+				Dias dia = masterMap.get(LocalDate.of(fecha.getYear(), fecha.getMonth(), i+1));
+				Set<Turnos> turnosFinales = dia.getTurnos();
+				for(Turnos turnoCount:turnosFinales){
+					countTurnosTotales++;
+					if(turnoCount.isOcupado()){
+						countTurnosAsignadosTotales++;
+					}
+				}
+			}
+		}
 
+		System.out.println("Todos los turnos: " + countTurnosTotales);
+		System.out.println("Todos  asignados: " + countTurnosAsignadosTotales);
+		System.out.println("Porcentaje asignados: " + (float)countTurnosAsignadosTotales/countTurnosTotales*100);
 	}
 
 	private void asignarFijos(){
