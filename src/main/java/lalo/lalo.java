@@ -265,7 +265,7 @@ public class lalo {
 				for(int i = 0; i < Turnos.size(); i++){
 					min = Math.min(min, Turnos.get(i).getInicio());
 					max = Math.max(max, Turnos.get(i).getFin());
-					if(i > 0) elTurno.getDay().eliminarTurno(elTurno);
+					if(i > 0) elTurno.getDay().eliminarTurno(Turnos.get(i));
 				}
 				elTurno.setFin(max);
 				elTurno.setInicio(min);

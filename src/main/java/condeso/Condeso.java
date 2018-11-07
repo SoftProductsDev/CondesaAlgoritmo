@@ -382,7 +382,8 @@ public class Condeso {
 		switch(contrato){
 			case Fijo: this.maxHours = 220;
 			break;
-			case MiniJob: this.maxHours = Math.min(maxHours, 47);
+			case MiniJob: if(maxHours == 0) this.maxHours = 47;
+				else this.maxHours = Math.min(maxHours, 47);
 			break;
 			case otros: if(maxHours == 0) this.maxHours = 220;
 			else if(maxHours < 50) this.maxHours = 50;
