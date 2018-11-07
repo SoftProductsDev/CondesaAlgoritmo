@@ -377,7 +377,19 @@ public class Condeso {
 	}
 
 	public void setMaxHours(int maxHours){
-		this.maxHours = contrato == Contrato.MiniJob ? Math.min(maxHours, 45) :  Math.max(maxHours, 50);
+		//this.maxHours = contrato == Contrato.MiniJob ? Math.min(maxHours, 45) :  Math.max(maxHours, 50);
+
+		switch(contrato){
+			case Fijo: this.maxHours = 220;
+			break;
+			case MiniJob: if(maxHours == 0) this.maxHours = 47;
+				else this.maxHours = Math.min(maxHours, 47);
+			break;
+			case otros: if(maxHours == 0) this.maxHours = 220;
+			else if(maxHours < 50) this.maxHours = 50;
+			else this.maxHours = maxHours;
+			break;
+		}
 		}
 
 	public int getMaxHours(){return maxHours;}
@@ -406,8 +418,20 @@ public class Condeso {
 
 	public int getMinHours(){return minHours;}
 
-	public void setMinHours(int minHours){this.minHours = minHours;
-		this.minHours = contrato == Contrato.MiniJob ? Math.min(minHours, 45) :  Math.max(minHours, 50);
+	public void setMinHours(int minHours){
+		//this.minHours = minHours;
+		//this.minHours = contrato == Contrato.MiniJob ? Math.min(minHours, 45) :  Math.max(minHours, 50);
+
+		switch(contrato){
+			case Fijo: this.minHours = 50;
+			break;
+			case MiniJob:if(minHours > 47) this.minHours = 47;
+			else this.minHours = minHours;
+			break;
+			case otros: if(minHours < 50) this.minHours = 50;
+			else this.minHours = minHours;
+			break;
+		}
 	}
 
 	public boolean checkMax(Turnos elTurno){ if(maxHours <= horasAsignadas + elTurno.getDuracion()) return false;
