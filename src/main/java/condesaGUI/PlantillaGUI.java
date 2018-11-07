@@ -3,7 +3,9 @@ package condesaGUI;
 import DbController.HibernateCrud;
 import horario.Dias;
 import horario.Plantillas;
+import javafx.application.Platform;
 import javafx.scene.control.ToggleButton;
+import javafx.stage.WindowEvent;
 import org.controlsfx.control.ToggleSwitch;
 import tiendas.Tiendas;
 import horario.Turnos;
@@ -112,6 +114,11 @@ public class PlantillaGUI   extends Application implements Initializable {
             System.out.println( "    ----------------------------------------\n" );
             throw ex;
         }
+         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+        public void handle(WindowEvent we) {
+          deletePopOvers();
+          we.consume();
+        }});
         primaryStage.setTitle("Administrador de Plantillas");
         primaryStage.setScene(new Scene(root, 700, 600));
         primaryStage.show();
@@ -395,5 +402,21 @@ public class PlantillaGUI   extends Application implements Initializable {
       if(nombreChoice.getSelectionModel().getSelectedItem() == null){
         toggleEditar.setSelected(false);
       }
+  }
+
+  @FXML
+  public void exitApplication(ActionEvent event) {
+    for (PopOver pop:popOvers
+    ) {
+      pop.hide();
+    }
+    Platform.exit();
+  }
+
+  public void deletePopOvers() {
+    for (PopOver pop:popOvers
+    ) {
+      pop.hide();
+    }
   }
 }

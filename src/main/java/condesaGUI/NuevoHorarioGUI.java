@@ -176,7 +176,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
         condesoID.setCellValueFactory(new PropertyValueFactory<Condeso, Long>("Id"));
         condesoAbreviación.setCellValueFactory(new PropertyValueFactory<Condeso, String>("abreviacion"));
         tiendasName.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("nombre"));
-        tiendasPlantilla.setCellValueFactory(new PropertyValueFactory<Tiendas, Plantillas>("plantillas"));
+        tiendasPlantilla.setCellValueFactory(new PropertyValueFactory<Tiendas, Plantillas>("plantilla"));
         condesosTable.getItems().setAll(foundCondesos);
         tiendasTable.getItems().setAll(allTiendas);
         tiendasTable.getSelectionModel().selectedItemProperty().addListener((obs, newSelection,

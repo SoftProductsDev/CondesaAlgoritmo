@@ -2,6 +2,9 @@ package condesaGUI;
 
 import DbController.HibernateCrud;
 import horario.Plantillas;
+import java.io.IOException;
+import javafx.event.EventHandler;
+import javafx.stage.WindowEvent;
 import tiendas.Tiendas;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -61,18 +64,22 @@ public class TiendaGUI extends Application implements Initializable {
         OpenNewWindow("/plantillasGUI.fxml");
     }
     private void OpenNewWindow(String filename) throws Exception{
-        String sceneFile = filename;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/plantillasGUI.fxml"));
         Parent root = null;
-        URL url  = null;
         try {
-            url  = getClass().getResource( sceneFile );
-            root = FXMLLoader.load( url );
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight()));
-            stage.show();
-        } catch(Exception e) {
+            root = (Parent) fxmlLoader.load();
+        } catch (IOException e) {
             e.printStackTrace();
         }
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
+                Screen.getPrimary().getVisualBounds().getHeight()));
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                public void handle(WindowEvent we) {
+                    PlantillaGUI pl = fxmlLoader.getController();
+                    pl.deletePopOvers();
+                }});
+            stage.show();
     }
 
     private void loadTiendadUpdate(){
