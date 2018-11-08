@@ -45,6 +45,14 @@ public class lalo {
 		for(Condeso elCondeso : condesos){
 			List<Tiendas> lasTiendas = elCondeso.getDondePuedeTrabajar();
 			if(lasTiendas.size() >= tiendas.size()){
+				for(Tiendas laTienda : tiendas){
+					for(Tiendas laTienda2 : lasTiendas){
+						if(laTienda2.getId() == laTienda.getId()){
+							laTienda2.setDiasDeCierre(laTienda.getDiasDeCierre());
+							break;
+						}
+					}
+				}
 				this.tiendas.clear();
 				this.tiendas.addAll(lasTiendas);
 				break;

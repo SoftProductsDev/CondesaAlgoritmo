@@ -1,6 +1,7 @@
 package condesaGUI;
 
 
+import DbController.HibernateCrud;
 import condeso.Condeso;
 import horario.Plantillas;
 import horario.Turnos;
@@ -131,6 +132,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             diasDeCierre = FXCollections.observableArrayList(dias);
             fechaDeCierreList.setItems(diasDeCierre);
             tienda.setDiasDeCierre(dias);
+            HibernateCrud.UpdateTienda(tienda);
         }
     }
 
