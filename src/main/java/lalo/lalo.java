@@ -80,9 +80,11 @@ public class lalo {
 			if(elTurno != null) {
 			    Tiendas tienda = lasTiendas.get(elTurno.getDay().getTienda().getId());
 			    Map<LocalDate, Dias> dias = tienda.getMaster().getMes();
-				elDia = dias.get(elTurno.getDate()) ;
+				elDia = dias.get(elTurno.getDate());
+				if(elDia != null){
 				elDia.addTurno(elTurno);
 				elTurno.setDay(elDia);
+				}
 			}
 			}
 		}
@@ -90,8 +92,9 @@ public class lalo {
             Tiendas tienda = lasTiendas.get(elTurno.getDay().getTienda().getId());
             Map<LocalDate, Dias> dias = tienda.getMaster().getMes();
             elDia = dias.get(elTurno.getDate()) ;
+            if(elDia != null){
             elDia.addTurno(elTurno);
-            elTurno.setDay(elDia);
+            elTurno.setDay(elDia);}
 		}
 	}
 
@@ -115,10 +118,11 @@ public class lalo {
 			int length = fecha.lengthOfMonth();
 			for(int i = 0; i < length; i++){
 				elDia = mes.get(LocalDate.of(year, month, i+1));
+				if(elDia != null){
 				losTurnos = elDia.getTurnos();
 				for(Turnos elTurno : losTurnos){
 					if(!elTurno.isOcupado())
-					turnosPriorityQueue.add(elTurno);
+					turnosPriorityQueue.add(elTurno);}
 				}
 			}
 		}
@@ -199,11 +203,13 @@ public class lalo {
 			Map<LocalDate, Dias> masterMap = master.getMes();
 			for(int i =  0; i < fecha.lengthOfMonth(); i++){
 				Dias dia = masterMap.get(LocalDate.of(fecha.getYear(), fecha.getMonth(), i+1));
-				Set<Turnos> turnosFinales = dia.getTurnos();
-				for(Turnos turnoCount:turnosFinales){
-					countTurnosTotales++;
-					if(turnoCount.isOcupado()){
-						countTurnosAsignadosTotales++;
+				if(dia != null) {
+					Set<Turnos> turnosFinales = dia.getTurnos();
+					for (Turnos turnoCount : turnosFinales) {
+						countTurnosTotales++;
+						if (turnoCount.isOcupado()) {
+							countTurnosAsignadosTotales++;
+						}
 					}
 				}
 			}
@@ -226,9 +232,11 @@ public class lalo {
 			disponibilidad = this.disponibilidad.get((int)elFijo.getId());
 			for(int i = 0; i < disponibilidad[0].length; i++){
 				if(i+1 > fecha.lengthOfMonth()) break;
-				Turnos elTurno = searchTurno( master.get(LocalDate.of(fecha.getYear(), fecha.getMonth(), i+1)), disponibilidad, elFijo);
+				Dias elDia = master.get(LocalDate.of(fecha.getYear(), fecha.getMonth(), i+1));
+				if(elDia != null){
+				Turnos elTurno = searchTurno( elDia, disponibilidad, elFijo);
 				elFijo.asignarTurno(elTurno);
-				if(elTurno != null) countFijos++;
+				if(elTurno != null) countFijos++;}
 			}
 		}
 
@@ -620,19 +628,22 @@ public class lalo {
 	private void asignarTurnosExtraGM(Condeso elGM, Integer[][] turnosExtra, HashMap<Long, Tiendas> lasTiendas){
 		Tiendas laTienda;
 		Turnos elTurno;
+		Dias elDia;
 		for(int i = 0; i < turnosExtra[0].length; i++){
-			if(turnosExtra[0][i] != null){
+			if(turnosExtra[0][i] != null &&
+(elDia = lasTiendas.get((long)turnosExtra[2][i]).getMaster().getMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), i+1))) != null){
 				laTienda = lasTiendas.get((long)turnosExtra[2][i]);
 				if(laTienda == null) throw new RuntimeException("Tienda inexistente");
-				elTurno = searchTurnoParaGM(turnosExtra[0][i], turnosExtra[1][i], laTienda, i+1);
+				elTurno = searchTurnoParaGM(turnosExtra[0][i], turnosExtra[1][i], elDia);
 				elGM.asignarTurno(elTurno);
 			}
 		}
 	}
 
-	private Turnos searchTurnoParaGM(int inicio, int fin, Tiendas laTienda, int dia){
-		Map<LocalDate, Dias> mes = laTienda.getMaster().getMes();
-		Set<Turnos> delDia = mes.get(LocalDate.of(fecha.getYear(), fecha.getMonth(), dia)).getTurnos();
+	private Turnos searchTurnoParaGM(int inicio, int fin, Dias elDia){
+		//Map<LocalDate, Dias> mes = laTienda.getMaster().getMes();
+		//Set<Turnos> delDia = mes.get(LocalDate.of(fecha.getYear(), fecha.getMonth(), dia)).getTurnos();
+		Set<Turnos> delDia = elDia.getTurnos();
 		List<Turnos> losUltimos = new ArrayList<>();
 		for(Turnos elturno : delDia){
 			if(elturno.isG()) losUltimos.add(elturno);
