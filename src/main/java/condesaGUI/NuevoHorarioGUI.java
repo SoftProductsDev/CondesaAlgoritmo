@@ -25,6 +25,7 @@ import lalo.lalo;
 import tiendas.Tiendas;
 import condesaGUI.FrontGUI;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -56,6 +57,9 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     private List<Tiendas> allTiendas = DbController.HibernateCrud.GetAllTiendas();
     private Set<Disponibilidad> horario;
     private Set<Condeso> gms;
+    private LocalDate date;
+    private String filename2;
+    private List<Condeso> allGMs = new LinkedList<>();
     private ArrayList<Turnos> turnosEncargado = new ArrayList<>();
     HashMap<Long, Integer[][]> turnosExtras = new HashMap<>();
 
@@ -91,6 +95,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             diasDeCierre = FXCollections.observableArrayList(dias);
             fechaDeCierreList.setItems(diasDeCierre);
             tienda.setDiasDeCierre(dias);
+            HibernateCrud.UpdateTienda(tienda);
         }
     }
 
@@ -137,10 +142,9 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     }
 
     public void mesDeInicioClicked(ActionEvent actionEvent){
-        LocalDate date = mesDeInicioPicker.getValue();
+        date = mesDeInicioPicker.getValue();
         fecha = date;
-        gms = Parser.parseGMs("GMS3.txt", turnosEncargado,date, turnosExtras);
-        List<Condeso> allGMs = new LinkedList<>();
+        gms = Parser.parseGMs(filename2, turnosEncargado,date, turnosExtras);
         for(Condeso gm: gms){
             long id = gm.getId();
             for(Condeso condeso : allCondesos){
@@ -157,22 +161,43 @@ public class NuevoHorarioGUI extends Application implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        String filename = "disponibilidad3.txt";
-        horario = Parser.parse2(filename);
-        for(Disponibilidad e: horario){
-            e.Print();
-            System.out.println();
-        }
-        for(Disponibilidad condeso:horario){
-            int id = condeso.getId();
-            for(Condeso condeso1:allCondesos){
-                if(condeso1.getId() == id){
-                    condeso1.setMaxHours(condeso.getMax());
-                    condeso1.setMinHours(condeso.getMin());
-                    //condeso1.checkMaxMin();
-                    foundCondesos.add(condeso1) ;
+        final JFileChooser fc = new JFileChooser();
+        int returnVal = fc.showOpenDialog(fc);
+        String filePath = null;
+        if(returnVal == JFileChooser.APPROVE_OPTION){
+            filePath = fc.getSelectedFile().getAbsolutePath();
+            String filename = filePath;
+            horario = Parser.parse2(filename);
+            for(Disponibilidad e: horario){
+                e.Print();
+                System.out.println();
+            }
+            for(Disponibilidad condeso:horario){
+                int id = condeso.getId();
+                for(Condeso condeso1:allCondesos){
+                    if(condeso1.getId() == id){
+                        condeso1.setMaxHours(condeso.getMax());
+                        condeso1.setMinHours(condeso.getMin());
+                        //condeso1.checkMaxMin();
+                        foundCondesos.add(condeso1) ;
+                    }
                 }
             }
+        }else{
+            String message = "No se selecciono ninguna\n direccion a un documento\n de disponibilidad condesos, \n las tablas estaran vacias! ";
+            JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        final JFileChooser fc2 = new JFileChooser();
+        int returnVal2 = fc2.showOpenDialog(fc2);
+        String filePath2 = null;
+        if(returnVal2 == JFileChooser.APPROVE_OPTION) {
+            filePath2 = fc2.getSelectedFile().getAbsolutePath();
+            filename2 = filePath2;
+        }else{
+            String message = "No se selecciono ninguna\n direccion a un documento\n de disponibilidad GMs, \n las tablas estaran vacias! ";
+            JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
+                    JOptionPane.ERROR_MESSAGE);
         }
         condesoName.setCellValueFactory(new PropertyValueFactory<Condeso, String>("nombre"));
         condesoID.setCellValueFactory(new PropertyValueFactory<Condeso, Long>("Id"));
