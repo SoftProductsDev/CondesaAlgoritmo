@@ -304,9 +304,9 @@ public class Condeso {
 		}
 	}
 
-	public void quinceMas(){
+	public void cincoMas(){
 		if(contrato ==Contrato.MiniJob) return;
-		maxHours *= 1.15;
+		maxHours *= 1.05;
 	}
 
 	public int getHoras(){ return (maxHours + minHours)/2;}
