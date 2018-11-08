@@ -343,7 +343,6 @@ return paraRegresar;
 }
 
 private static boolean useless(String line){
-       System.out.println("useless");
      for(int i = 0; i < line.length(); i++){
          if(line.charAt(i) >= '!') return false;
      }

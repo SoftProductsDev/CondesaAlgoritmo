@@ -13,6 +13,7 @@ import condeso.CompareCondesos;
 import condeso.Contrato;
 import condeso.TipoEmpleado;
 import horario.*;
+import org.apache.commons.compress.archivers.ar.ArArchiveEntry;
 import tiendas.Tiendas;
 import horario.HorarioEntrega;
 
@@ -406,7 +407,7 @@ public class lalo {
 				}
 				if(first) first = false;
 				if(Found){
-					countFase2++; //se debe quitar
+					countFase2++; // TODO se debe quitar
 					break;
 				}else{
 					fila.addAll(checados);
@@ -433,7 +434,7 @@ public class lalo {
 						checados.add(candidate);
 					}
 					if(Found){
-					countFase2++; // a quitar
+					countFase2++; // TODO a quitar
 					break;
 					}else{
 					fila.addAll(checados);
@@ -457,7 +458,7 @@ public class lalo {
 							checados.add(candidate);
 						}
 						if(Found){
-							countFase2++;
+							countFase2++; // TODO a quitar
 							break;
 						}else{
 							fila.addAll(checados);
@@ -475,30 +476,69 @@ public class lalo {
 			}
 
 		}
-		insist(dificiles);
+		insist(dificiles, new ArrayList<>());
 
 	}
 
-	private void insist(Set<Turnos> noAsignados){
+	private void insist(Set<Turnos> noAsignados, ArrayList<Condeso> fila){
 		//return;
 		Reasons laRazon;
 		for(Turnos elTurno : noAsignados){
 			Set<Condeso> losCandidatos = findCandidates(elTurno, condesos, disponibilidad);
 			for(Condeso elCondeso : losCandidatos){
 				laRazon = findReason(elTurno, elCondeso);
+				fila.add(elCondeso);
+				insistHelper(elTurno, elCondeso, laRazon, fila);
 			}
 		}
 			}
 
 	private boolean insistHelper(Turnos elTurno, Condeso elCondeso, Reasons laRazon, List<Condeso> fila){
-		if(fila.size() > 10){
+		if(fila.size() > 5)
+			return false;
 
-		}else{
-
+		Set<Turnos> losPosibles;
+		switch(laRazon){
+			case faltaNivel:
+			case finesOcupados:
+				return false;
+			case turnoEseDia: losPosibles = getTurnoEseDia(elTurno, elCondeso);
+				break;
+			case maximoDiasSeguidos: losPosibles = getMaximoDiasSeguidos(elTurno, elCondeso);
+				break;
+			case maximoAlcanzado: losPosibles = getMaximoAlcanzado(elTurno, elCondeso);
+				break;
 		}
 
 		return true; //quitar despues
 	}
+
+	private Set<Turnos> getMaximoAlcanzado(Turnos elTurno, Condeso elCondeso) {
+		int minimo = elCondeso.getHorasAsignadas() + elTurno.getDuracion() - elCondeso.getMaxHours();
+		ArrayList<Turnos> losTurnos = elCondeso.turnosToList();
+		Set<Turnos> aRegresar= new HashSet<>();
+		for(Turnos Turno : losTurnos){
+			if(Turno.getDuracion() >= minimo) aRegresar.add(elTurno);
+		}
+		return aRegresar;
+	}
+
+	private Set<Turnos> getMaximoDiasSeguidos(Turnos elTurno, Condeso elCondeso) {
+		int min = elCondeso.getHorasAsignadas() + elTurno.getDuracion() - elCondeso.getMaxHours();
+		ArrayList<Turnos> losTurnos = elCondeso.getTurnosSeguidos(elTurno.getDate().getDayOfMonth());
+		Set<Turnos> theShifts = new HashSet<>();
+		for(Turnos Turno : losTurnos){
+			if(Turno.getDuracion() >= min) theShifts.add(Turno);
+		}
+		return theShifts;
+	}
+
+	private Set<Turnos> getTurnoEseDia(Turnos elTurno, Condeso elCondeso) {
+		Set<Turnos> elSet= new HashSet<>();
+		elSet.add(elCondeso.getPersonal()[elTurno.getDate().getDayOfMonth()-1]);
+		return elSet;
+	}
+
 
 	private boolean porMaximmoAlcanzado(Condeso regalador, Condeso candidate, Turnos elTurno){
 		Turnos oferta;

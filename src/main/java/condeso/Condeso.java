@@ -337,6 +337,7 @@ public class Condeso {
 
 	public void asignarTurno(Turnos elTurno){
 		if(elTurno == null) return;
+		if(elTurno.isOcupado()) elTurno.getCondeso().borrarTurno(elTurno);
 		int day = elTurno.getDate().getDayOfMonth();
 		elTurno.setCondeso(this);
 		elTurno.getDay().resetMinimoTurnos();
@@ -499,5 +500,30 @@ public class Condeso {
 	public boolean isGM(){
 		if(tipo == TipoEmpleado.GM) return true;
 		return false;
+	}
+
+	public ArrayList<Turnos> turnosToList(){
+		ArrayList<Turnos> losTurnos = new ArrayList<>();
+		for(Turnos elTurno : personal){
+			if(elTurno != null) losTurnos.add(elTurno);
+		}
+		return losTurnos;
+	}
+
+	public ArrayList<Turnos> getTurnosSeguidos(int dia){
+		if(dia < 1 || dia > 31) return null;
+		ArrayList<Turnos> losTurnos = new ArrayList<>();
+		int counter = 0;
+		Turnos elTurno;
+		while(dia - 2- counter > 0 && (elTurno = personal[dia-2-counter]) != null){
+			counter++;
+			losTurnos.add(elTurno);
+		}
+		int i = 0;
+		while(dia + i < 31 && (elTurno = personal[dia + i]) != null){
+			i++;
+			losTurnos.add(elTurno);
+		}
+		return losTurnos;
 	}
 }
