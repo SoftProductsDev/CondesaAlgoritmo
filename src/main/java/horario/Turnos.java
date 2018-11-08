@@ -127,14 +127,6 @@ public class Turnos implements Comparable<Turnos> {
 
 	public void checkDia(){if(elDia == null)throw  new RuntimeException("dia es null");}
 
-	/*public Turnos(long idTienda, int inicio, int fin, LocalDate fecha){ // solo para el caso de los GMs
-		this.idTienda = idTienda;
-		this.inicio = inicio;
-		this.fin = fin;
-		this.fecha = fecha;
-		encargado = true;
-	}*/
-
 	public Dias getDay(){return elDia;}
 
 	public void setDay(Dias elDia){this.elDia = elDia;}

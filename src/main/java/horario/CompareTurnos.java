@@ -1,7 +1,5 @@
 package horario;
 
-import DbModel.Condeso;
-
 import java.util.Comparator;
 
 public class CompareTurnos implements Comparator<Turnos> {

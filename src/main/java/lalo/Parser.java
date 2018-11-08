@@ -10,7 +10,6 @@ import java.util.*;
 
 import DbController.HibernateCrud;
 import condeso.Condeso;
-import DbModel.HorarioEntrega;
 import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import condeso.TipoEmpleado;
 import horario.Dias;
