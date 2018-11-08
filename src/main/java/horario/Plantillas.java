@@ -78,6 +78,8 @@ public class Plantillas {
 			date2 = LocalDate.of(year, month, i+1);
 			if(!diasCerrado.contains(date2)){
 			elDia = generateDay(date2, this.dias, laTienda);
+			}else{
+				laTienda.getMaster().getMes().put(date2, null);
 			}
 		}
 		return laTienda.getMaster();
