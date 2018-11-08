@@ -1097,7 +1097,7 @@ public class HibernateCrudTest extends TestCase {
     condeso8.setAbreviacion("BR");
     condeso8.setMasculino(true);
     condeso8.setFemenino(false);
-    condeso8.setContrato(otros);
+    condeso8.setContrato(fijos);
     condeso8.setLunch(true);
     condeso8.setTarde(true);
     condeso8.setManana(true);
