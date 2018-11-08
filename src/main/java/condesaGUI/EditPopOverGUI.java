@@ -57,7 +57,7 @@ public class EditPopOverGUI  implements Initializable {
     //considering the first hour is 8 am
     int hourIndex = turno.getInicio() - 7;
     int columna = turno.getTipoTurno().ordinal() + 1;
-    grid.add(createLabel(), hourIndex, columna,1,turno.getDuracion());
+    grid.add(createLabel(), columna,  hourIndex,1,turno.getDuracion());
   }
 
   public void Delete(ActionEvent actionEvent) {
