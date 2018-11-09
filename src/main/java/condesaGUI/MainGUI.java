@@ -3,22 +3,17 @@ package condesaGUI;
 import java.net.URL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.TilePane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-
 public class MainGUI extends Application {
 
-    private TilePane Tile;
-    private Node[] controls;
     @Override
     public void start(Stage primaryStage) throws Exception {
         String sceneFile = "/frontGUI.fxml";
-        Parent root = null;
+        Parent root;
         URL url  = null;
         try
         {

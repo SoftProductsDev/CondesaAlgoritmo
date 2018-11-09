@@ -30,6 +30,7 @@ public class AddPopOverGUI implements Initializable {
   @FXML private ChoiceBox<Condeso> condesoChoice;
   private GridPane gridPane;
   private Dias dia;
+  private ObservableList<Condeso> condesos;
 
   public void addTurno(ActionEvent actionEvent) {
     Turnos turno = new Turnos();
@@ -44,15 +45,15 @@ public class AddPopOverGUI implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    ObservableList<Condeso> condesos = FXCollections.observableArrayList(HibernateCrud.GetAllCondesos());
-    condesoChoice.setItems(condesos);
     ObservableList<TipoTurno> turnos = FXCollections.observableArrayList(TipoTurno.values());
     tipoChoice.setItems(turnos);
   }
 
-  public void setInitialValues(GridPane grid, Dias dia){
+  public void setInitialValues(GridPane grid, Dias dia, ObservableList<Condeso> condesos){
     this.gridPane = grid;
     this.dia = dia;
+    this.condesos = condesos;
+    condesoChoice.setItems(condesos);
   }
 
   private Label createLabel(Turnos turno) {
@@ -81,7 +82,7 @@ public class AddPopOverGUI implements Initializable {
             pop.setAutoFix(false);
             pop.show(label);
             EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();
-            edit.setInitialValues(turno, dia, gridPane, label);
+            edit.setInitialValues(turno, dia, gridPane, label, condesos);
             event.consume();
           };
         });

@@ -31,21 +31,21 @@ public class EditPopOverGUI  implements Initializable {
   private Dias dia;
   private GridPane grid;
   private Label label;
+  private ObservableList<Condeso> condesos;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    ObservableList<Condeso> list = FXCollections.observableArrayList(HibernateCrud.GetAllCondesos());
-    condesoChoice.setItems(list);
-    ;
   }
 
-  public void setInitialValues(Turnos turno, Dias dia, GridPane grid, Label label){
+  public void setInitialValues(Turnos turno, Dias dia, GridPane grid, Label label, ObservableList<Condeso> condesos){
     this.turno = turno;
     this.dia = dia;
     this.grid = grid;
     this.label = label;
     inicioField.setText(Integer.toString(turno.getInicio()));
     finField.setText(Integer.toString(turno.getFin()));
+    this.condesos = condesos;
+    condesoChoice.setItems(condesos);
     condesoChoice.getSelectionModel().select(turno.getCondeso() );
   }
 
@@ -91,7 +91,7 @@ public class EditPopOverGUI  implements Initializable {
             pop.show(label);
             pop.setAnimated(false);
             EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();
-            edit.setInitialValues(turno, dia, grid, label);
+            edit.setInitialValues(turno, dia, grid, label, condesos);
             event.consume();
           };
         });
