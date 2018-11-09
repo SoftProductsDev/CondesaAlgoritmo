@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -25,11 +26,16 @@ import lalo.lalo;
 import tiendas.Tiendas;
 import condesaGUI.FrontGUI;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.List;
 
 public class NuevoHorarioGUI extends Application implements Initializable {
     @FXML private TableView<Condeso> condesosTable;
@@ -58,6 +64,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     private Set<Disponibilidad> horario;
     private Set<Condeso> gms;
     private LocalDate date;
+    private String filename;
     private String filename2;
     private List<Condeso> allGMs = new LinkedList<>();
     private ArrayList<Turnos> turnosEncargado = new ArrayList<>();
@@ -100,13 +107,24 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     }
 
     public void iniciarClicked(ActionEvent actionEvent) throws Exception {
-        disponibilidad = changeSetToHashMap(horario);
-        if(fecha !=  null){
+        if(fecha !=  null && horario != null){
+            disponibilidad = changeSetToHashMap(horario);
             Set<Tiendas> tiendasALL2 = new HashSet<>();
             tiendasALL2.addAll(allTiendas);
             lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha,turnosExtras);
+            BufferedImage img = ImageIO.read(new File("lalopensando.jpg"));
+            JFrame frame = new JFrame("Lalo Pensando");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setContentPane(new JLabel(new ImageIcon(img)));
+            frame.setLayout(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.gridwidth = GridBagConstraints.REMAINDER;
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
             lalo.start();
-            //CloseOpenWindow("/frontGUI.fxml");
+            frame.setVisible(false);
+            CloseOpenWindow("/frontGUI.fxml");
         }
     }
 
@@ -144,19 +162,21 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     public void mesDeInicioClicked(ActionEvent actionEvent){
         date = mesDeInicioPicker.getValue();
         fecha = date;
-        gms = Parser.parseGMs(filename2, turnosEncargado,date, turnosExtras);
-        for(Condeso gm: gms){
-            long id = gm.getId();
-            for(Condeso condeso : allCondesos){
-                if(condeso.getId() == id){
-                    allGMs.add(condeso);
+        if(filename2 != null && filename != null){
+            gms = Parser.parseGMs(filename2, turnosEncargado,date, turnosExtras);
+            for(Condeso gm: gms){
+                long id = gm.getId();
+                for(Condeso condeso : allCondesos){
+                    if(condeso.getId() == id){
+                        allGMs.add(condeso);
+                    }
                 }
             }
+            gmName.setCellValueFactory(new PropertyValueFactory<Condeso, String>("nombre"));
+            gmID.setCellValueFactory(new PropertyValueFactory<Condeso, Long>("Id"));
+            gmAbreviación.setCellValueFactory(new PropertyValueFactory<Condeso, String>("abreviacion"));
+            gmsTable.getItems().setAll(allGMs);
         }
-        gmName.setCellValueFactory(new PropertyValueFactory<Condeso, String>("nombre"));
-        gmID.setCellValueFactory(new PropertyValueFactory<Condeso, Long>("Id"));
-        gmAbreviación.setCellValueFactory(new PropertyValueFactory<Condeso, String>("abreviacion"));
-        gmsTable.getItems().setAll(allGMs);
     }
 
     @Override
@@ -166,7 +186,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
         String filePath = null;
         if(returnVal == JFileChooser.APPROVE_OPTION){
             filePath = fc.getSelectedFile().getAbsolutePath();
-            String filename = filePath;
+            filename = filePath;
             horario = Parser.parse2(filename);
             for(Disponibilidad e: horario){
                 e.Print();
