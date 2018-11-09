@@ -476,7 +476,7 @@ public class lalo {
 			}
 
 		}
-		//insist(dificiles, new ArrayList<>(), true);
+		insist(dificiles, new ArrayList<>(), true);
 
 	}
 
