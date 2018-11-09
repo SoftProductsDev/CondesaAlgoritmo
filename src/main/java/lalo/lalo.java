@@ -489,6 +489,7 @@ public class lalo {
 				Set<Condeso> losCandidatos = findCandidates(elTurno, condesos, disponibilidad);
 				for(Condeso elCondeso : losCandidatos){
 					laRazon = findReason(elTurno, elCondeso);
+					fila.clear();
 					fila.add(elCondeso);
 					if(insistHelper(elTurno, elCondeso, laRazon, fila)) break;
 				}
