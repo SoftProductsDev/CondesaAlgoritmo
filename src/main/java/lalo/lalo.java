@@ -476,28 +476,52 @@ public class lalo {
 			}
 
 		}
-		//insist(dificiles, new ArrayList<>());
+		//insist(dificiles, new ArrayList<>(), true);
 
 	}
 
-	private void insist(Set<Turnos> noAsignados, ArrayList<Condeso> fila){
+	private boolean insist(Set<Turnos> noAsignados, ArrayList<Condeso> fila, boolean first){
 		//return;
 		Reasons laRazon;
-		for(Turnos elTurno : noAsignados){
-			Set<Condeso> losCandidatos = findCandidates(elTurno, condesos, disponibilidad);
-			for(Condeso elCondeso : losCandidatos){
-				laRazon = findReason(elTurno, elCondeso);
-				fila.add(elCondeso);
-				insistHelper(elTurno, elCondeso, laRazon, fila);
+		boolean toReturn;
+		if(first){
+			for(Turnos elTurno : noAsignados){
+				Set<Condeso> losCandidatos = findCandidates(elTurno, condesos, disponibilidad);
+				for(Condeso elCondeso : losCandidatos){
+					laRazon = findReason(elTurno, elCondeso);
+					fila.add(elCondeso);
+					if(insistHelper(elTurno, elCondeso, laRazon, fila)) break;
+				}
 			}
+			return true;
+
+		}else{
+			for(Turnos elTurno : noAsignados){
+				Set<Condeso> losCandidatos = findCandidates(elTurno, condesos, disponibilidad);
+				losCandidatos.removeAll(fila);
+				for(Condeso elCondeso : losCandidatos){
+					if(checkCondeso(elCondeso, disponibilidad, elTurno)){
+						elCondeso.asignarTurno(elTurno);
+						return true;
+					}else{
+						laRazon = findReason(elTurno, elCondeso);
+						fila.add(elCondeso);
+						if(insistHelper(elTurno, elCondeso, laRazon, fila))
+							return true;
+					}
+				}
+			}
+			return false;
+
 		}
+
 			}
 
-	private boolean insistHelper(Turnos elTurno, Condeso elCondeso, Reasons laRazon, List<Condeso> fila){
+	private boolean insistHelper(Turnos elTurno, Condeso elCondeso, Reasons laRazon, ArrayList<Condeso> fila){
 		if(fila.size() > 5)
 			return false;
 
-		Set<Turnos> losPosibles;
+		Set<Turnos> losPosibles = null;
 		switch(laRazon){
 			case faltaNivel:
 			case finesOcupados:
@@ -509,8 +533,12 @@ public class lalo {
 			case maximoAlcanzado: losPosibles = getMaximoAlcanzado(elTurno, elCondeso);
 				break;
 		}
+		if(insist(losPosibles, fila, false)){
+			elCondeso.asignarTurno(elTurno);
+			return true;
+		}
 
-		return true; //quitar despues
+		return false;
 	}
 
 	private Set<Turnos> getMaximoAlcanzado(Turnos elTurno, Condeso elCondeso) {
