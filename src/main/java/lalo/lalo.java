@@ -31,6 +31,8 @@ public class lalo {
 	private int countFijos = 0;
 	private HashMap<Long, Integer[][]> turnosExtras;
 	private Set<Condeso> GMs;
+	private int countMid = 0;
+
 
 
 	public lalo(Set<Condeso> GMs, List<Turnos> deEncargado, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad,
@@ -176,7 +178,8 @@ public class lalo {
 
 		}
 
-		reacomodar(noAsignados, condesos, disponibilidad);
+		//reacomodar(noAsignados, condesos, disponibilidad);
+		insist(noAsignados, new ArrayList<>(), true);
 		for(Tiendas tiendaFinal:tiendas){
 			HibernateCrud.UpdateTienda(tiendaFinal);
 		}
@@ -215,6 +218,9 @@ public class lalo {
 				}
 			}
 		}
+		System.out.println("Todos los turnos: " + countTurnosTotales);
+		System.out.println("Todos  asignados 1 y 2: " + countMid);
+		System.out.println("Porcentaje asignados: " + (float)countMid/countTurnosTotales*100);
 
 		System.out.println("Todos los turnos: " + countTurnosTotales);
 		System.out.println("Todos  asignados: " + countTurnosAsignadosTotales);
@@ -476,12 +482,31 @@ public class lalo {
 			}
 
 		}
+		for(Tiendas tienda:tiendas){
+			HorarioMaster master = tienda.getMaster();
+			Map<LocalDate, Dias> masterMap = master.getMes();
+			for(int i =  0; i < fecha.lengthOfMonth(); i++){
+				Dias dia = masterMap.get(LocalDate.of(fecha.getYear(), fecha.getMonth(), i+1));
+				if(dia != null) {
+					Set<Turnos> turnosFinales = dia.getTurnos();
+					for (Turnos turnoCount : turnosFinales) {
+						//countTurnosTotales++;
+						if (turnoCount.isOcupado()) {
+							countMid++;
+						}
+					}
+				}
+			}
+		}
 		insist(dificiles, new ArrayList<>(), true);
 
 	}
 
 	private boolean insist(Set<Turnos> noAsignados, ArrayList<Condeso> fila, boolean first){
 		//return;
+		for(Condeso elCondeso : condesos){ //TODO provisional
+			elCondeso.cincoMas();
+		}
 		Reasons laRazon;
 		boolean toReturn;
 		if(first){
@@ -519,13 +544,15 @@ public class lalo {
 			}
 
 	private boolean insistHelper(Turnos elTurno, Condeso elCondeso, Reasons laRazon, ArrayList<Condeso> fila){
-		if(fila.size() > 5)
+		if(fila.size() > 20)
 			return false;
 
 		Set<Turnos> losPosibles = null;
 		switch(laRazon){
 			case faltaNivel:
 			case finesOcupados:
+			case noEncargado:
+			case notFound:
 				return false;
 			case turnoEseDia: losPosibles = getTurnoEseDia(elTurno, elCondeso);
 				break;
@@ -621,7 +648,7 @@ public class lalo {
 	}
 
 	private enum Reasons{
-		finesOcupados, maximoAlcanzado, turnoEseDia, maximoDiasSeguidos, faltaNivel
+		finesOcupados, maximoAlcanzado, turnoEseDia, maximoDiasSeguidos, faltaNivel, notFound, noEncargado
 	}
 
 	private boolean changeTurn(Condeso elCondeso, Condeso candidate, Turnos elTurno){
@@ -671,11 +698,12 @@ public class lalo {
 
 	private Reasons findReason(Turnos elTurno, Condeso elCondeso){
 		if(elCondeso.getPersonal()[elTurno.getDate().getDayOfMonth()-1] != null) return Reasons.turnoEseDia;
-		else if(!checkDiasSeguidos(elCondeso, elTurno)) return Reasons.maximoDiasSeguidos;
 		else if(!checkFinesLibres(elCondeso, elTurno)) return Reasons.finesOcupados;
+		else if(!checkDiasSeguidos(elCondeso, elTurno)) return Reasons.maximoDiasSeguidos;
 		else if(!elCondeso.checkMax(elTurno)) return Reasons.maximoAlcanzado;
 		else if(!checkLevel(elCondeso, elTurno)) return Reasons.faltaNivel;
-		else return null;
+		else if(!checkEncargado(elCondeso, elTurno)) return Reasons.noEncargado;
+		else return Reasons.notFound;
 	}
 
 	private void agregarTurnosExtras(){

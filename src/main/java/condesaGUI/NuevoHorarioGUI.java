@@ -124,7 +124,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             frame.setVisible(true);
             lalo.start();
             frame.setVisible(false);
-            CloseOpenWindow("/frontGUI.fxml");
+            //CloseOpenWindow("/frontGUI.fxml");
         }
     }
 
