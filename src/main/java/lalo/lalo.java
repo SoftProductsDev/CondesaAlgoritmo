@@ -544,7 +544,7 @@ public class lalo {
 			}
 
 	private boolean insistHelper(Turnos elTurno, Condeso elCondeso, Reasons laRazon, ArrayList<Condeso> fila){
-		if(fila.size() > 20)
+		if(fila.size() > 200)
 			return false;
 
 		Set<Turnos> losPosibles = null;
@@ -697,12 +697,12 @@ public class lalo {
 	}
 
 	private Reasons findReason(Turnos elTurno, Condeso elCondeso){
-		if(elCondeso.getPersonal()[elTurno.getDate().getDayOfMonth()-1] != null) return Reasons.turnoEseDia;
+		if(!checkEncargado(elCondeso, elTurno)) return Reasons.noEncargado;
+		else if(elCondeso.getPersonal()[elTurno.getDate().getDayOfMonth()-1] != null) return Reasons.turnoEseDia;
 		else if(!checkFinesLibres(elCondeso, elTurno)) return Reasons.finesOcupados;
 		else if(!checkDiasSeguidos(elCondeso, elTurno)) return Reasons.maximoDiasSeguidos;
 		else if(!elCondeso.checkMax(elTurno)) return Reasons.maximoAlcanzado;
 		else if(!checkLevel(elCondeso, elTurno)) return Reasons.faltaNivel;
-		else if(!checkEncargado(elCondeso, elTurno)) return Reasons.noEncargado;
 		else return Reasons.notFound;
 	}
 
