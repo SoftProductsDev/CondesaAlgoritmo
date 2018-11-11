@@ -184,6 +184,9 @@ public class lalo {
 			HibernateCrud.UpdateTienda(tiendaFinal);
 		}
 
+		for(Condeso condeso:condesos){
+			HibernateCrud.UpdateCondeso(condeso);
+		}
 
 		System.out.println();
 		System.out.println("Turnos totales: " + (count+count2+countFijos));
