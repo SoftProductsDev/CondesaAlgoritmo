@@ -182,7 +182,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
                 }
             } else {
                 String message = "No se selecciono ninguna\n direccion a un documento\n de disponibilidad condesos, \n las tablas estaran vacias! ";
-                JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
+                JOptionPane.showMessageDialog(new JFrame(), message, "AVISO!",
                         JOptionPane.ERROR_MESSAGE);
             }
             final JFileChooser fc2 = new JFileChooser();
@@ -193,7 +193,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
                 filename2 = filePath2;
             } else {
                 String message = "No se selecciono ninguna\n direccion a un documento\n de disponibilidad GMs, \n las tablas estaran vacias! ";
-                JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
+                JOptionPane.showMessageDialog(new JFrame(), message, "AVISO!",
                         JOptionPane.ERROR_MESSAGE);
             }
             if (filename2 != null) {
