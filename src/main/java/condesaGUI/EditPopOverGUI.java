@@ -31,29 +31,29 @@ public class EditPopOverGUI  implements Initializable {
   @FXML private TextField inicioField;
   @FXML private TextField finField;
   @FXML private ChoiceBox<Condeso> condesoChoice;
-  private List<Condeso> allCondesos = HibernateCrud.GetAllCondesos();
-  private List<Tiendas> allTiendas = HibernateCrud.GetAllTiendas();
   private Turnos turno;
   private Dias dia;
   private GridPane grid;
   private Label label;
+  private ObservableList<Condeso> condesos;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-
   }
 
-  public void setInitialValues(Turnos turno, Dias dia, GridPane grid, Label label){
+  public void setInitialValues(Turnos turno, Dias dia, GridPane grid, Label label, ObservableList<Condeso> condesos){
     this.turno = turno;
     this.dia = dia;
     this.grid = grid;
     this.label = label;
     inicioField.setText(Integer.toString(turno.getInicio()));
     finField.setText(Integer.toString(turno.getFin()));
+    this.condesos = condesos;
+    condesoChoice.setItems(condesos);
     condesoChoice.getSelectionModel().select(turno.getCondeso() );
-    HorarioMaster master;
+    /*HorarioMaster master;
     List<Condeso> foundCondesos = new ArrayList<>();
-    for(Condeso condesoTemp:allCondesos) {
+    for(Condeso condesoTemp:condesos) {
       boolean encontrado = false;
       for (Tiendas tienda : allTiendas) {
         master = tienda.getMaster();
@@ -61,7 +61,8 @@ public class EditPopOverGUI  implements Initializable {
         if(diaD != null) {
           Set<Turnos> losTurnos = diaD.getTurnos();
           for (Turnos turnoEnDia : losTurnos) {
-            //if (turnoEnDia.getCondeso().getId() == turno.getCondeso().getId()) encontrado = true; TODO arreglar que el turno tenga condeso o que le entre el condeso directamente al poup
+            //if (turnoEnDia.getCondeso().getId() == turno.getCondeso().getId()) encontrado = true;
+            TODO arreglar que el turno tenga condeso o que le entre el condeso directamente al poup
           }
         }
       }
@@ -70,7 +71,7 @@ public class EditPopOverGUI  implements Initializable {
       }
     }
     ObservableList<Condeso> list = FXCollections.observableArrayList(foundCondesos);
-    condesoChoice.setItems(list);
+    condesoChoice.setItems(list);*/
   }
 
   public void applyChange(ActionEvent actionEvent) {
@@ -115,7 +116,7 @@ public class EditPopOverGUI  implements Initializable {
             pop.show(label);
             pop.setAnimated(false);
             EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();
-            edit.setInitialValues(turno, dia, grid, label);
+            edit.setInitialValues(turno, dia, grid, label, condesos);
             event.consume();
           };
         });

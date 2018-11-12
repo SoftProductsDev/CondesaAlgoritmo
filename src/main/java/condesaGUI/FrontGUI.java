@@ -59,6 +59,9 @@ public class FrontGUI extends Application implements Initializable {
   @FXML private ListView<String>  horaList11;
   @FXML private Label monthLabel;
   @FXML private GridPane monthGrid;
+  private ObservableList<Tiendas> tiendas;
+  private ObservableList<Condeso> condesos;
+
 
   private ObservableList<Node> calendarNodes;
   private LocalDate calendar;
@@ -92,7 +95,8 @@ public class FrontGUI extends Application implements Initializable {
     horaList9.setItems(horario);
     horaList10.setItems(horario);
     horaList11.setItems(horario);
-    ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
+    tiendas = FXCollections.observableArrayList(HibernateCrud.GetAllTiendas());
+    condesos = FXCollections.observableArrayList(HibernateCrud.GetAllCondesos());
     tiendasComboBox.setItems(tiendas);
     Locale spanishLocale=new Locale("es", "ES");
     calendar = LocalDate.now();
@@ -169,7 +173,6 @@ public class FrontGUI extends Application implements Initializable {
   }
 
   private void setDias(Dias dia){
-    int[] latestTurn = {0,0,0,0,0,0,0};
     //42 date Labels + 12 listViews of time
     int dateIndex = dia.getDate().getDayOfMonth() + 52 +
         calendar.withDayOfMonth(1).getDayOfWeek().getValue();
@@ -179,30 +182,19 @@ public class FrontGUI extends Application implements Initializable {
     for (Turnos turno:dia.getTurnos()
     ) {
       if(turno.getTipoTurno() == TipoTurno.GM){
-        latestTurn = setTurnos(dia, turno, dia.getDate(), latestTurn, pane, isGM);
+        setTurnos(dia, turno, dia.getDate(), pane, isGM);
         isGM = true;
       }else{
-        latestTurn = setTurnos(dia, turno, dia.getDate(), latestTurn, pane, isGM);
+        setTurnos(dia, turno, dia.getDate(), pane, isGM);
       }
     }
   }
 
-  private int[] setTurnos(Dias dia, Turnos turno, LocalDate date, int[] latestTurn, GridPane pane,boolean isGM){
+  private void setTurnos(Dias dia, Turnos turno, LocalDate date, GridPane pane,boolean isGM){
     //considering the first hour is 8 am
     int hourIndex = turno.getInicio() - 7;
-    if(hourIndex < 0){
-      //Cry
+    if(hourIndex < 0) {
     }
-    /*
-    int columnIndex = 0;
-    for (int j = 0; j < 7; j++){
-      if (latestTurn[j] <= turno.getInicio()){
-        columnIndex = j;
-        latestTurn[j] = turno.getFin();
-        break;
-      }
-    }*/
-
 
     Label label = createLabel(dia,turno, pane);
     if(isGM && turno.getTipoTurno() == TipoTurno.GM){
@@ -210,9 +202,6 @@ public class FrontGUI extends Application implements Initializable {
     }else {
       pane.add(label, turno.getTipoTurno().ordinal()+1, hourIndex, 1, turno.getDuracion());
     }
-
-
-    return latestTurn;
   }
 
   private Label createLabel(Dias dia, Turnos turno, GridPane grid) {
@@ -242,7 +231,7 @@ public class FrontGUI extends Application implements Initializable {
             pop.setAutoFix(false);
             pop.show(label);
             EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();
-            edit.setInitialValues(turno, dia, grid, label);
+            edit.setInitialValues(turno, dia, grid, label, condesos);
             event.consume();
           };
         });
@@ -400,17 +389,13 @@ public class FrontGUI extends Application implements Initializable {
             } catch (IOException e) {
               e.printStackTrace();
             }
+            AddPopOverGUI add = fxmlLoader.getController();
+            add.setInitialValues(pane, dia, condesos);
             PopOver pop = new PopOver(root);
             pop.setAutoFix(false);
+            pop.setAnimated(false);
             pop.show(pane);
-            AddPopOverGUI add = fxmlLoader.getController();
-            add.setInitialValues(pane, dia);
           }
         });
-  }
-
-  public void actualiza(MouseEvent mouseEvent) {
-    ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
-    tiendasComboBox.setItems(tiendas);
   }
 }
