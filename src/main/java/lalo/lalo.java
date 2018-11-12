@@ -141,6 +141,11 @@ public class lalo {
 	}
 
 	public void laloFuncionando() {
+		/*
+		for(Condeso condeso:condesos){
+			condeso.setHorasAsignadas(0);
+		}
+		*/
 		Set<Condeso> noDisponible = new HashSet<>();
 
 		//Set<Condeso> yaOcupados = new HashSet<>();
@@ -183,11 +188,11 @@ public class lalo {
 		for(Tiendas tiendaFinal:tiendas){
 			HibernateCrud.UpdateTienda(tiendaFinal);
 		}
-
+/*
 		for(Condeso condeso:condesos){
 			HibernateCrud.UpdateCondeso(condeso);
 		}
-
+*/
 		System.out.println();
 		System.out.println("Turnos totales: " + (count+count2+countFijos));
 		System.out.println("Turnos totales asignados: " + (count+countFase2));
