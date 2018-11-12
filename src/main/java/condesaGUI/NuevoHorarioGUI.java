@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lalo.Disponibilidad;
@@ -162,12 +163,18 @@ public class NuevoHorarioGUI extends Application implements Initializable {
 
     public void importarClicked(ActionEvent actionEvent){
         if(date != null) {
-            final JFileChooser fc = new JFileChooser();
+            /*final JFileChooser fc = new JFileChooser();
             int returnVal = fc.showOpenDialog(fc);
             String filePath = null;
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 filePath = fc.getSelectedFile().getAbsolutePath();
-                filename = filePath;
+                filename = filePath;*/
+            final Stage stage = new Stage();
+            stage.setTitle("Disponibilidad condesos");
+            final FileChooser chooser = new FileChooser();
+            File file = chooser.showOpenDialog(stage);
+            if(file != null){
+                filename = file.getAbsolutePath();
                 horario = Parser.parse2(filename);
                 for (Disponibilidad condeso : horario) {
                     int id = condeso.getId();
@@ -185,12 +192,13 @@ public class NuevoHorarioGUI extends Application implements Initializable {
                 JOptionPane.showMessageDialog(new JFrame(), message, "AVISO!",
                         JOptionPane.ERROR_MESSAGE);
             }
-            final JFileChooser fc2 = new JFileChooser();
-            int returnVal2 = fc2.showOpenDialog(fc2);
-            String filePath2 = null;
-            if (returnVal2 == JFileChooser.APPROVE_OPTION) {
-                filePath2 = fc2.getSelectedFile().getAbsolutePath();
-                filename2 = filePath2;
+            final Stage stage1 = new Stage();
+            stage1.setTitle("Rotación GMs");
+            final FileChooser fc2 = new FileChooser();
+            File file2 = fc2.showOpenDialog(stage1);
+            if (file2 != null) {
+                filename2 = file2.getAbsolutePath();
+
             } else {
                 String message = "No se selecciono ninguna\n direccion a un documento\n de disponibilidad GMs, \n las tablas estaran vacias! ";
                 JOptionPane.showMessageDialog(new JFrame(), message, "AVISO!",
