@@ -61,7 +61,8 @@ public class EditPopOverGUI  implements Initializable {
         if(diaD != null) {
           Set<Turnos> losTurnos = diaD.getTurnos();
           for (Turnos turnoEnDia : losTurnos) {
-            //if (turnoEnDia.getCondeso().getId() == turno.getCondeso().getId()) encontrado = true; TODO arreglar que el turno tenga condeso o que le entre el condeso directamente al poup
+            //if (turnoEnDia.getCondeso().getId() == turno.getCondeso().getId()) encontrado = true;
+            TODO arreglar que el turno tenga condeso o que le entre el condeso directamente al poup
           }
         }
       }
