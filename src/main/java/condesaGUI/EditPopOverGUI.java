@@ -3,11 +3,14 @@ package condesaGUI;
 import DbController.HibernateCrud;
 import condeso.Condeso;
 import horario.Dias;
+import horario.HorarioMaster;
 import horario.Turnos;
 import horario.TipoTurno;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.util.*;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import org.controlsfx.control.PopOver;
+import tiendas.Tiendas;
 
 public class EditPopOverGUI  implements Initializable {
   @FXML private TextField inicioField;
@@ -47,6 +51,26 @@ public class EditPopOverGUI  implements Initializable {
     this.condesos = condesos;
     condesoChoice.setItems(condesos);
     condesoChoice.getSelectionModel().select(turno.getCondeso() );
+    /*HorarioMaster master;
+    List<Condeso> foundCondesos = new ArrayList<>();
+    for(Condeso condesoTemp:condesos) {
+      boolean encontrado = false;
+      for (Tiendas tienda : allTiendas) {
+        master = tienda.getMaster();
+        Dias diaD = master.getMes().get(dia.getDate());
+        if(diaD != null) {
+          Set<Turnos> losTurnos = diaD.getTurnos();
+          for (Turnos turnoEnDia : losTurnos) {
+            //if (turnoEnDia.getCondeso().getId() == turno.getCondeso().getId()) encontrado = true; TODO arreglar que el turno tenga condeso o que le entre el condeso directamente al poup
+          }
+        }
+      }
+      if (!encontrado) {
+        foundCondesos.add(condesoTemp);
+      }
+    }
+    ObservableList<Condeso> list = FXCollections.observableArrayList(foundCondesos);
+    condesoChoice.setItems(list);*/
   }
 
   public void applyChange(ActionEvent actionEvent) {

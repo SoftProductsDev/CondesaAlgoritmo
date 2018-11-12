@@ -86,5 +86,10 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <Button fx:id="importarButton" mnemonicParsing="false" onAction="#importarClicked" text="Importar" GridPane.columnIndex="1" GridPane.rowIndex="7">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 </GridPane>

@@ -95,7 +95,7 @@ public class Condeso {
 	private int finesLibres;
 	@Transient
 	private Turnos[] personal = new Turnos[31];
-	@Transient
+	@Column
 	private int horasAsignadas = 0;
 	@Transient
 	private int maxHours;
@@ -445,7 +445,7 @@ public class Condeso {
 
 	@Override
 	public String toString() {
-		return  nombre;
+		return  nombre + ": " +getHorasAsignadas();
 	}
 
 	public ObservableValue<Boolean> Lunch() {

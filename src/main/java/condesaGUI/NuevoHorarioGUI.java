@@ -54,6 +54,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     @FXML private TableColumn<Condeso, Long> gmID;
     @FXML private TableColumn<Condeso, String> gmAbreviación;
     @FXML private DatePicker mesDeInicioPicker;
+    @FXML private Button importarButton;
 
 
     private ObservableList<LocalDate> diasDeCierre = null;
@@ -159,66 +160,74 @@ public class NuevoHorarioGUI extends Application implements Initializable {
         }
     }
 
+    public void importarClicked(ActionEvent actionEvent){
+        if(date != null) {
+            final JFileChooser fc = new JFileChooser();
+            int returnVal = fc.showOpenDialog(fc);
+            String filePath = null;
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                filePath = fc.getSelectedFile().getAbsolutePath();
+                filename = filePath;
+                horario = Parser.parse2(filename);
+                for (Disponibilidad condeso : horario) {
+                    int id = condeso.getId();
+                    for (Condeso condeso1 : allCondesos) {
+                        if (condeso1.getId() == id) {
+                            condeso1.setMaxHours(condeso.getMax());
+                            condeso1.setMinHours(condeso.getMin());
+                            //condeso1.checkMaxMin();
+                            foundCondesos.add(condeso1);
+                        }
+                    }
+                }
+            } else {
+                String message = "No se selecciono ninguna\n direccion a un documento\n de disponibilidad condesos, \n las tablas estaran vacias! ";
+                JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+            final JFileChooser fc2 = new JFileChooser();
+            int returnVal2 = fc2.showOpenDialog(fc2);
+            String filePath2 = null;
+            if (returnVal2 == JFileChooser.APPROVE_OPTION) {
+                filePath2 = fc2.getSelectedFile().getAbsolutePath();
+                filename2 = filePath2;
+            } else {
+                String message = "No se selecciono ninguna\n direccion a un documento\n de disponibilidad GMs, \n las tablas estaran vacias! ";
+                JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+            if (filename2 != null) {
+                gms = Parser.parseGMs(filename2, turnosEncargado, date, turnosExtras);
+                for (Condeso gm : gms) {
+                    long id = gm.getId();
+                    for (Condeso condeso : allCondesos) {
+                        if (condeso.getId() == id) {
+                            allGMs.add(condeso);
+                        }
+                    }
+                }
+                gmName.setCellValueFactory(new PropertyValueFactory<Condeso, String>("nombre"));
+                gmID.setCellValueFactory(new PropertyValueFactory<Condeso, Long>("Id"));
+                gmAbreviación.setCellValueFactory(new PropertyValueFactory<Condeso, String>("abreviacion"));
+                gmsTable.getItems().setAll(allGMs);
+            }
+            condesoName.setCellValueFactory(new PropertyValueFactory<Condeso, String>("nombre"));
+            condesoID.setCellValueFactory(new PropertyValueFactory<Condeso, Long>("Id"));
+            condesoAbreviación.setCellValueFactory(new PropertyValueFactory<Condeso, String>("abreviacion"));
+            tiendasName.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("nombre"));
+            tiendasPlantilla.setCellValueFactory(new PropertyValueFactory<Tiendas, Plantillas>("plantilla"));
+            condesosTable.getItems().setAll(foundCondesos);
+            tiendasTable.getItems().setAll(allTiendas);
+        }
+    }
+
     public void mesDeInicioClicked(ActionEvent actionEvent){
         date = mesDeInicioPicker.getValue();
         fecha = date;
-        if(filename2 != null && filename != null){
-            gms = Parser.parseGMs(filename2, turnosEncargado,date, turnosExtras);
-            for(Condeso gm: gms){
-                long id = gm.getId();
-                for(Condeso condeso : allCondesos){
-                    if(condeso.getId() == id){
-                        allGMs.add(condeso);
-                    }
-                }
-            }
-            gmName.setCellValueFactory(new PropertyValueFactory<Condeso, String>("nombre"));
-            gmID.setCellValueFactory(new PropertyValueFactory<Condeso, Long>("Id"));
-            gmAbreviación.setCellValueFactory(new PropertyValueFactory<Condeso, String>("abreviacion"));
-            gmsTable.getItems().setAll(allGMs);
-        }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        final JFileChooser fc = new JFileChooser();
-        int returnVal = fc.showOpenDialog(fc);
-        String filePath = null;
-        if(returnVal == JFileChooser.APPROVE_OPTION){
-            filePath = fc.getSelectedFile().getAbsolutePath();
-            filename = filePath;
-            horario = Parser.parse2(filename);
-            for(Disponibilidad e: horario){
-                e.Print();
-                System.out.println();
-            }
-            for(Disponibilidad condeso:horario){
-                int id = condeso.getId();
-                for(Condeso condeso1:allCondesos){
-                    if(condeso1.getId() == id){
-                        condeso1.setMaxHours(condeso.getMax());
-                        condeso1.setMinHours(condeso.getMin());
-                        //condeso1.checkMaxMin();
-                        foundCondesos.add(condeso1) ;
-                    }
-                }
-            }
-        }else{
-            String message = "No se selecciono ninguna\n direccion a un documento\n de disponibilidad condesos, \n las tablas estaran vacias! ";
-            JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-        final JFileChooser fc2 = new JFileChooser();
-        int returnVal2 = fc2.showOpenDialog(fc2);
-        String filePath2 = null;
-        if(returnVal2 == JFileChooser.APPROVE_OPTION) {
-            filePath2 = fc2.getSelectedFile().getAbsolutePath();
-            filename2 = filePath2;
-        }else{
-            String message = "No se selecciono ninguna\n direccion a un documento\n de disponibilidad GMs, \n las tablas estaran vacias! ";
-            JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
-                    JOptionPane.ERROR_MESSAGE);
-        }
         condesoName.setCellValueFactory(new PropertyValueFactory<Condeso, String>("nombre"));
         condesoID.setCellValueFactory(new PropertyValueFactory<Condeso, Long>("Id"));
         condesoAbreviación.setCellValueFactory(new PropertyValueFactory<Condeso, String>("abreviacion"));
