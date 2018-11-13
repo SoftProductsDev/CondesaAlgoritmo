@@ -87,9 +87,7 @@ public class Condeso {
 	@Column
 	private Contrato contrato;
 
-	@JoinColumn
-	@OneToMany( fetch = FetchType.EAGER)
-	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	@ElementCollection
 	private Map<Month, Integer> horasMes;
 
 	public Condeso() {
