@@ -18,6 +18,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -114,6 +117,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             Set<Tiendas> tiendasALL2 = new HashSet<>();
             tiendasALL2.addAll(allTiendas);
             lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha,turnosExtras);
+            /*
             BufferedImage img = ImageIO.read(new File("lalopensando.jpg"));
             JFrame frame = new JFrame("Lalo Pensando");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -124,8 +128,9 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             frame.pack();
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
+            */
             lalo.start();
-            frame.setVisible(false);
+          //  frame.setVisible(false);
             //CloseOpenWindow("/frontGUI.fxml");
         }
     }
@@ -188,9 +193,11 @@ public class NuevoHorarioGUI extends Application implements Initializable {
                     }
                 }
             } else {
-                String message = "No se selecciono ninguna\n direccion a un documento\n de disponibilidad condesos, \n las tablas estaran vacias! ";
-                JOptionPane.showMessageDialog(new JFrame(), message, "AVISO!",
-                        JOptionPane.ERROR_MESSAGE);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("AVISO!");
+                alert.setHeaderText("No se selecciono documento de disponibilidad de condesos,\n las tablas estaran vacias! ");
+                alert.setContentText(null);
+                alert.showAndWait();
             }
             final Stage stage1 = new Stage();
             stage1.setTitle("Rotación GMs");
@@ -200,9 +207,11 @@ public class NuevoHorarioGUI extends Application implements Initializable {
                 filename2 = file2.getAbsolutePath();
 
             } else {
-                String message = "No se selecciono ninguna\n direccion a un documento\n de disponibilidad GMs, \n las tablas estaran vacias! ";
-                JOptionPane.showMessageDialog(new JFrame(), message, "AVISO!",
-                        JOptionPane.ERROR_MESSAGE);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("AVISO!");
+                alert.setHeaderText("No se selecciono documento de disponibilidad de GM's,\n las tablas estaran vacias! ");
+                alert.setContentText(null);
+                alert.showAndWait();
             }
             if (filename2 != null) {
                 gms = Parser.parseGMs(filename2, turnosEncargado, date, turnosExtras);

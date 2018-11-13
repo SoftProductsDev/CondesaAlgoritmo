@@ -49,32 +49,35 @@ public class EditPopOverGUI  implements Initializable {
     this.grid = grid;
     this.label = label;
     this.tiendas = tiendas;
-    inicioField.setText(Integer.toString(turno.getInicio()));
-    finField.setText(Integer.toString(turno.getFin()));
     this.condesos = condesos;
-    condesoChoice.setItems(condesos);
-    condesoChoice.getSelectionModel().select(turno.getCondeso() );
-    /*HorarioMaster master;
-    List<Condeso> foundCondesos = new ArrayList<>();
-    for(Condeso condesoTemp:condesos) {
-      boolean encontrado = false;
-      for (Tiendas tienda : allTiendas) {
-        master = tienda.getMaster();
-        Dias diaD = master.getMes().get(dia.getDate());
-        if(diaD != null) {
-          Set<Turnos> losTurnos = diaD.getTurnos();
-          for (Turnos turnoEnDia : losTurnos) {
-            //if (turnoEnDia.getCondeso().getId() == turno.getCondeso().getId()) encontrado = true;
-            TODO arreglar que el turno tenga condeso o que le entre el condeso directamente al poup
+    Map<LocalDate, Dias> master = new HashMap<>();
+    Dias diaD =  new Dias();
+    Set<Turnos> turnos = new HashSet<>();
+    for(Tiendas tienda:tiendas){
+      master = tienda.getMaster().getMes();
+      for(int i = 0; i < master.size(); i++){
+        diaD = master.get(LocalDate.of(dia.getDate().getYear(),dia.getDate().getMonth(), dia.getDate().getDayOfMonth() + i));
+        if (diaD != null) {
+          turnos = diaD.getTurnos();
+          for(Turnos turnoD:turnos){
+            if(turnoD.getCondeso() != null){
+              for(Condeso condeso:condesos){
+                if(condeso.getId() == turnoD.getCondeso().getId()){
+                  //condesos.remove(condeso); TODO concurrent exception
+                }
+              }
+            }
           }
         }
       }
-      if (!encontrado) {
-        foundCondesos.add(condesoTemp);
-      }
+
     }
-    ObservableList<Condeso> list = FXCollections.observableArrayList(foundCondesos);
-    condesoChoice.setItems(list);*/
+    inicioField.setText(Integer.toString(turno.getInicio()));
+    finField.setText(Integer.toString(turno.getFin()));
+    condesoChoice.setItems(condesos);
+    condesoChoice.getSelectionModel().select(turno.getCondeso() );
+    ObservableList<Condeso> list = FXCollections.observableArrayList(condesos);
+    condesoChoice.setItems(list);
   }
 
   public void applyChange(ActionEvent actionEvent) {
