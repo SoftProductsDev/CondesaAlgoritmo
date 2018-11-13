@@ -8,7 +8,9 @@ import java.lang.Math;
 
 import horario.Turnos;
 
+import java.time.Month;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Objects;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -85,6 +87,11 @@ public class Condeso {
 	@Column
 	private Contrato contrato;
 
+	@JoinColumn
+	@OneToMany( fetch = FetchType.EAGER)
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	private Map<Month, Integer> horasMes;
+
 	public Condeso() {
 	}
 	@Transient
@@ -95,7 +102,7 @@ public class Condeso {
 	private int finesLibres;
 	@Transient
 	private Turnos[] personal = new Turnos[31];
-	@Column
+	@Transient
 	private int horasAsignadas = 0;
 	@Transient
 	private int maxHours;
@@ -176,6 +183,14 @@ public class Condeso {
 
 	public LocalDate getAntiguedad() {
 		return antiguedad;
+	}
+
+	public Map<Month, Integer> getHorasMes() {
+		return horasMes;
+	}
+
+	public void setHorasMes(Map<Month, Integer> horasMes) {
+		this.horasMes = horasMes;
 	}
 
 	public boolean isFijo(){
