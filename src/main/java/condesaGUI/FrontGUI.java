@@ -231,7 +231,7 @@ public class FrontGUI extends Application implements Initializable {
             pop.setAutoFix(false);
             pop.show(label);
             EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();
-            edit.setInitialValues(turno, dia, grid, label, condesos);
+            edit.setInitialValues(turno, dia, grid, label, condesos, tiendas);
             event.consume();
           };
         });
@@ -390,7 +390,7 @@ public class FrontGUI extends Application implements Initializable {
               e.printStackTrace();
             }
             AddPopOverGUI add = fxmlLoader.getController();
-            add.setInitialValues(pane, dia, condesos);
+            add.setInitialValues(pane, dia, condesos, tiendas);
             PopOver pop = new PopOver(root);
             pop.setAutoFix(false);
             pop.setAnimated(false);

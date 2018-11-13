@@ -36,16 +36,19 @@ public class EditPopOverGUI  implements Initializable {
   private GridPane grid;
   private Label label;
   private ObservableList<Condeso> condesos;
+  private ObservableList<Tiendas> tiendas;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
   }
 
-  public void setInitialValues(Turnos turno, Dias dia, GridPane grid, Label label, ObservableList<Condeso> condesos){
+  public void setInitialValues(Turnos turno, Dias dia, GridPane grid, Label label,
+      ObservableList<Condeso> condesos, ObservableList<Tiendas> tiendas){
     this.turno = turno;
     this.dia = dia;
     this.grid = grid;
     this.label = label;
+    this.tiendas = tiendas;
     inicioField.setText(Integer.toString(turno.getInicio()));
     finField.setText(Integer.toString(turno.getFin()));
     this.condesos = condesos;
@@ -116,7 +119,7 @@ public class EditPopOverGUI  implements Initializable {
             pop.show(label);
             pop.setAnimated(false);
             EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();
-            edit.setInitialValues(turno, dia, grid, label, condesos);
+            edit.setInitialValues(turno, dia, grid, label, condesos, tiendas);
             event.consume();
           };
         });

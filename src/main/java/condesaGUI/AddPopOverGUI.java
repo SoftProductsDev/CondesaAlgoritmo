@@ -22,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import org.controlsfx.control.PopOver;
+import tiendas.Tiendas;
 
 public class AddPopOverGUI implements Initializable {
   @FXML private ChoiceBox<TipoTurno> tipoChoice;
@@ -31,6 +32,7 @@ public class AddPopOverGUI implements Initializable {
   private GridPane gridPane;
   private Dias dia;
   private ObservableList<Condeso> condesos;
+  private ObservableList<Tiendas> tiendas;
 
   public void addTurno(ActionEvent actionEvent) {
     Turnos turno = new Turnos();
@@ -49,9 +51,11 @@ public class AddPopOverGUI implements Initializable {
     tipoChoice.setItems(turnos);
   }
 
-  public void setInitialValues(GridPane grid, Dias dia, ObservableList<Condeso> condesos){
+  public void setInitialValues(GridPane grid, Dias dia, ObservableList<Condeso> condesos,
+      ObservableList<Tiendas> tiendas){
     this.gridPane = grid;
     this.dia = dia;
+    this.tiendas = tiendas;
     this.condesos = condesos;
     condesoChoice.setItems(condesos);
   }
@@ -82,7 +86,7 @@ public class AddPopOverGUI implements Initializable {
             pop.setAutoFix(false);
             pop.show(label);
             EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();
-            edit.setInitialValues(turno, dia, gridPane, label, condesos);
+            edit.setInitialValues(turno, dia, gridPane, label, condesos, tiendas);
             event.consume();
           };
         });
