@@ -1,6 +1,7 @@
 package ExcelController;
 
 import DbController.HibernateCrud;
+import DbModel.HibernateUtil;
 import horario.Dias;
 import horario.HorarioMaster;
 import horario.Turnos;
@@ -13,10 +14,16 @@ import java.time.format.TextStyle;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import javafx.scene.paint.Color;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.util.RegionUtil;
+import org.apache.poi.xssf.usermodel.CustomIndexedColorMap;
+import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import tiendas.Tiendas;
 
@@ -123,14 +130,38 @@ public class  ExcelWriter {
   }
 
   private void setTurno(Turnos turno, int column, Sheet sheet) {
-    int hourIndex = -3 + turno.getInicio();
+    int hourIndex = -4 + turno.getInicio();
     for (int i = 0; i <= turno.getDuracion(); i++){
       Cell cell = sheet.getRow(hourIndex).getCell(
           column + turno.getTipoTurno().ordinal() + 1);
-      cell.setCellValue(turno.getCondeso().getAbreviacion());
-      //cell.setCellStyle();
+      if (cell == null){
+        cell = sheet.getRow(hourIndex).createCell(
+            column + turno.getTipoTurno().ordinal() + 1);
+      }
+      if(turno.getCondeso() != null){
+        cell.setCellValue(turno.getCondeso().getAbreviacion());
+        cell.setCellStyle(colorStyle(turno.getCondeso().getColor()));
+      }
+      else {
+        cell.setCellValue("-");
+      }
       hourIndex += 1;
     }
+  }
+
+  private CellStyle colorStyle(String hexColor) {
+    XSSFCellStyle style = (XSSFCellStyle) workbookMaster.createCellStyle();
+    Color fx = Color.web(hexColor);
+    java.awt.Color awtColor = new java.awt.Color((float) fx.getRed(),
+        (float) fx.getGreen(),
+        (float) fx.getBlue(),
+        (float) fx.getOpacity());
+    byte[] rgb = {(byte)fx.getRed(), (byte) fx.getGreen(),(byte) fx.getBlue(),(byte) fx.getOpacity()};
+    XSSFColor color = new XSSFColor(awtColor, new DefaultIndexedColorMap());
+    style.setFillForegroundColor(color);
+    style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+    style.getFont().setFontHeightInPoints((short) 9);
+    return style;
   }
 
   private void setDayOfMonth(LocalDate date, Sheet sheet, int column, Row row, Workbook book) {
@@ -213,6 +244,7 @@ public class  ExcelWriter {
     ExcelWriter excelWriter = new ExcelWriter();
     excelWriter.CreateHorarioMasterExcel(HibernateCrud.GetAllTiendas(),
         LocalDate.of(2018,11,1));
+    HibernateUtil.shutdown();
   }
 
 }
