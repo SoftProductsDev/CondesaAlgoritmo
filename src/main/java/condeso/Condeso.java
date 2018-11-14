@@ -9,28 +9,19 @@ import java.lang.Math;
 import horario.Turnos;
 
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-import tiendas.Tiendas;
 
-import java.util.List;
+import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import org.hibernate.Hibernate;
+import org.hibernate.annotations.*;
+import tiendas.Tiendas;
 
 @Entity
 @Table(name = "condeso")
@@ -82,9 +73,10 @@ public class Condeso {
 	private Contrato contrato;
 
 	@ElementCollection
-	private Map<Month, Integer> horasMes;
+	private Map<LocalDate, Integer> horasMes;
 
 	public Condeso() {
+		horasMes = new HashMap<>();
 	}
 	@Transient
 	private int priorityValue;
@@ -177,12 +169,20 @@ public class Condeso {
 		return antiguedad;
 	}
 
-	public Map<Month, Integer> getHorasMes() {
+	public Map<LocalDate, Integer> getHorasMes() {
 		return horasMes;
 	}
 
-	public void setHorasMes(Map<Month, Integer> horasMes) {
+	public void setHorasMes(Map<LocalDate, Integer> horasMes) {
 		this.horasMes = horasMes;
+	}
+
+	public void setHorasMes(LocalDate date, Integer integer){
+		this.horasMes.put(date, integer);
+	}
+
+	public void setHorasMes(LocalDate month){
+		this.horasMes.put(month, horasAsignadas);
 	}
 
 	public boolean isFijo(){

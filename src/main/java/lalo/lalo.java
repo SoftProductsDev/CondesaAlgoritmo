@@ -90,6 +90,8 @@ public class lalo {
 				}
 			}
 			}
+			elGM.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+			HibernateCrud.UpdateCondeso(elGM);
 		}
 		for(Turnos elTurno : deEncargado){
             Tiendas tienda = lasTiendas.get(elTurno.getDay().getTienda().getId());
@@ -188,6 +190,10 @@ public class lalo {
 			elCondeso.cincoMas();
 		}
 		insist(noAsignados, new ArrayList<>(), true);
+		for(Condeso elCondeso : condesos){
+			elCondeso.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+			HibernateCrud.UpdateCondeso(elCondeso);
+		}
 		for(Tiendas tiendaFinal:tiendas){
 			HibernateCrud.UpdateTienda(tiendaFinal);
 		}
@@ -256,6 +262,8 @@ public class lalo {
 				elFijo.asignarTurno(elTurno);
 				if(elTurno != null) countFijos++;}
 			}
+			elFijo.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+			HibernateCrud.UpdateCondeso(elFijo);
 		}
 
 	}
