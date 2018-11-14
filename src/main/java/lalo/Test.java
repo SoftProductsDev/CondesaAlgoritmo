@@ -11,13 +11,28 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.chrono.IsoEra;
 import java.util.*;
+import java.awt.EventQueue;
+import javax.swing.JFileChooser;
 
 public class Test {
-    public static void main(String [] args) {
+    private static String result = null;
+    public static void main(String [] args) throws InvocationTargetException, InterruptedException {
+       // EventQueue.invokeAndWait(new Runnable() {
+         //   @Override
+           // public void run() {
+                //String folder = System.getProperty("user.dir");
+                 JFileChooser fc = new JFileChooser();
+                int returnVal = fc.showOpenDialog(fc);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    result = fc.getSelectedFile().getAbsolutePath();
+            }
+        //}});
+        System.out.println(result);
 
       /*String filename = "disponibilidad2.txt";
         Set<Disponibilidad> horario = Parser.parse2(filename);
@@ -50,13 +65,13 @@ public class Test {
             lasTiendas.add(laTienda);
         }*/
        // Dias elDia = new Dias(LocalDate.of(2018, Month.SEPTEMBER, 27), l);
-        List<Integer> hola = new ArrayList<>();
+       /* List<Integer> hola = new ArrayList<>();
         long prueba = 33L;
         hola.add((int)34L);
         hola.add((int) prueba);
         for(long pro : hola){
             System.out.println(pro);
-        }
+        }*/
 
 
 
