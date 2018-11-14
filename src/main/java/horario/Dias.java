@@ -7,6 +7,7 @@ import java.util.*;
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,6 +35,7 @@ public class Dias {
     private Set<Turnos> turnos;
 
     @Column(name = "date")
+    @Convert(converter= DbModel.LocalDateAttributeConverter.class)
     private LocalDate date;
 
     @Transient

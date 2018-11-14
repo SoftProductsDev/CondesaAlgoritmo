@@ -2,6 +2,7 @@ package ExcelController;
 
 import DbController.HibernateCrud;
 import DbModel.HibernateUtil;
+import condeso.Condeso;
 import horario.Dias;
 import horario.HorarioMaster;
 import horario.Turnos;
@@ -67,10 +68,12 @@ public class  ExcelWriter {
     return borders;
   }
 
-  public void CreateHorarioMasterExcel(List<Tiendas> tiendas,LocalDate calendar)
+  public void CreateHorarioMasterExcel(List<Tiendas> tiendas,List<Condeso> condesos,LocalDate calendar)
       throws IOException, InvalidFormatException {
 
     CreationHelper createHelper = workbookMaster.getCreationHelper();
+
+    createCondesoSheets(condesos, 1, 1, calendar);
 
     for (Tiendas t:tiendas
     ) {
@@ -80,17 +83,9 @@ public class  ExcelWriter {
       hourRows = createHourRows(5, sheet);
       createHourList(sheet, 0);
 
-      // Create a Row
-
-      /*for(int i = 1; i < 100; i+=8){
-        setLettersUP(sheet, i, lettersRow, borders);
-        setDayOfWeek(DayOfWeek.SATURDAY, sheet, i,dayOfWeekRow, workbookMaster);
-        setDayOfMonth(LocalDate.now(), sheet, i, dayOfMonthRow, workbookMaster);
-        setTurnosRegion(sheet, i);
-      }*/
-
       SetHorarioMaster(t.getMaster(), sheet, calendar);
     }
+
     // Write the output to a file
     //Tambien puede especificar el path ("C:\\Report\\TestCase.xlsx"));
     FileOutputStream fileOut = new FileOutputStream("Plan " + calendar.getMonth().getDisplayName
@@ -102,34 +97,61 @@ public class  ExcelWriter {
     workbookMaster.close();
   }
 
+  private void createCondesoSheets(List<Condeso> condesos, int column, int row, LocalDate calendar){
+    int ogColumn = column;
+    for (Condeso c:condesos){
+      Sheet sheet = workbookMaster.createSheet(c.getAbreviacion());
+      int lettersRow = 4;
+      int dayOfMonthRow = 3;
+      int dayOfWeekRow = 2;
+      int turnosRegRow = 5;
+      for (int i = 1; i <= calendar.getMonth().length(calendar.isLeapYear()); i++)
+      {
+        setLettersUP(sheet, column, lettersRow, borders);
+        setDayOfWeek(calendar.withDayOfMonth(i).getDayOfWeek(), sheet, column,dayOfWeekRow, workbookMaster);
+        setDayOfMonth(calendar.withDayOfMonth(i), sheet, column, dayOfMonthRow, workbookMaster);
+        setTurnosRegion(sheet, column, turnosRegRow);
+        if(calendar.withDayOfMonth(i).getDayOfWeek() == DayOfWeek.SUNDAY){
+          lettersRow += 20;
+          dayOfMonthRow += 20;
+          dayOfWeekRow += 20;
+          turnosRegRow += 20;
+          column = ogColumn;
+        }
+        column += 8;
+      }
+    }
+  }
+
   private void SetHorarioMaster(HorarioMaster master, Sheet sheet, LocalDate calendar) {
     int column = 1;//columna
-    //Forma chacalosa, poner metodo que solo tome la primera row con int
-    Row lettersRow = sheet.createRow(4);
-    Row dayOfMonthRow = sheet.createRow(3);
-    Row dayOfWeekRow = sheet.createRow(2);
+    int row = 0;
+    int lettersRow = 4;
+    int dayOfMonthRow = 3;
+    int dayOfWeekRow = 2;
+    int turnosRegRow = 5;
     for (int i = 1; i <= calendar.getMonth().length(calendar.isLeapYear()); i++)
     {
       setLettersUP(sheet, column, lettersRow, borders);
       setDayOfWeek(calendar.withDayOfMonth(i).getDayOfWeek(), sheet, column,dayOfWeekRow, workbookMaster);
       setDayOfMonth(calendar.withDayOfMonth(i), sheet, column, dayOfMonthRow, workbookMaster);
-      setTurnosRegion(sheet, column);
+      setTurnosRegion(sheet, column, turnosRegRow);
       Map<LocalDate, Dias> mes = master.getMes();
       Dias dia = mes.get(calendar.withDayOfMonth(i));
       if(dia!=null){
-        setDias(dia, column, sheet);
+        setDias(dia, column, row,sheet);
       }
       column+=8;
     }
   }
 
-  private void setDias(Dias dia, int column, Sheet sheet) {
+  private void setDias(Dias dia, int column, int row,Sheet sheet) {
     for (Turnos turno:dia.getTurnos()){
-      setTurno(turno, column, sheet);
+      setTurno(turno, column, row,sheet);
     }
   }
 
-  private void setTurno(Turnos turno, int column, Sheet sheet) {
+  private void setTurno(Turnos turno, int column, int row ,Sheet sheet) {
     int hourIndex = -4 + turno.getInicio();
     for (int i = 0; i <= turno.getDuracion(); i++){
       Cell cell = sheet.getRow(hourIndex).getCell(
@@ -164,14 +186,18 @@ public class  ExcelWriter {
     return style;
   }
 
-  private void setDayOfMonth(LocalDate date, Sheet sheet, int column, Row row, Workbook book) {
-    Cell cell = row.createCell(column);
+  private void setDayOfMonth(LocalDate date, Sheet sheet, int column, int row, Workbook book) {
+    Row r = sheet.getRow(row);
+    if(r == null){
+      r = sheet.createRow(row);
+    }
+    Cell cell = r.createCell(column);
     String day =  Integer.toString(date.getDayOfMonth());
     cell.setCellValue(day);
     cell.setCellStyle(centerStyle(book));
     CellRangeAddress regionDia =  new CellRangeAddress(
-        3, //first row (0-based)
-        3, //last row  (0-based)
+        row, //first row (0-based)
+        row, //last row  (0-based)
         column, //first column (0-based)
         column + 6 ); //last column  (0-based)
     //Unifica las celdas
@@ -180,31 +206,37 @@ public class  ExcelWriter {
     setRegionBorderWithMedium(regionDia, sheet);
   }
 
-  private void setLettersUP(Sheet sheet, int column, Row row, CellStyle borders){
-
-    // Create cells
+  private void setLettersUP(Sheet sheet, int column, int row, CellStyle borders){
+    Row r = sheet.getRow(row);
+    if(r == null){
+      r = sheet.createRow(row);
+    }
     for(int i = 0; i < columns.length; i++) {
-      Cell cell = row.createCell(i + column);
+      Cell cell = r.createCell(i + column);
       cell.setCellValue(columns[i]);
       cell.setCellStyle(borders);
       sheet.setColumnWidth(i + column, 800);
     }
   }
 
- private void setDayOfWeek(DayOfWeek dayOfWeek,Sheet sheet, int column, Row row, Workbook book){
-   Cell cell = row.createCell(column);
-   String day =  dayOfWeek.getDisplayName(TextStyle.FULL, Locale.GERMAN);
-   cell.setCellValue(day);
-   cell.setCellStyle(centerStyle(book));
-   CellRangeAddress regionDia =  new CellRangeAddress(
-       2, //first row (0-based)
-       2, //last row  (0-based)
+ private void setDayOfWeek(DayOfWeek dayOfWeek,Sheet sheet, int column, int row, Workbook book){
+    Row r = sheet.getRow(row);
+    if(r == null){
+      r = sheet.createRow(row);
+    }
+    Cell cell = r.createCell(column);
+    String day =  dayOfWeek.getDisplayName(TextStyle.FULL, Locale.GERMAN);
+    cell.setCellValue(day);
+    cell.setCellStyle(centerStyle(book));
+    CellRangeAddress regionDia =  new CellRangeAddress(
+       row, //first row (0-based)
+       row, //last row  (0-based)
        column, //first column (0-based)
        column + 6 ); //last column  (0-based)
-   //Unifica las celdas
-   sheet.addMergedRegion(regionDia);
-   //Les pone margen
-   setRegionBorderWithMedium(regionDia, sheet);
+    //Unifica las celdas
+    sheet.addMergedRegion(regionDia);
+    //Les pone margen
+    setRegionBorderWithMedium(regionDia, sheet);
  }
 
   private void createHourList(Sheet sheet, int column) {
@@ -227,9 +259,9 @@ public class  ExcelWriter {
     RegionUtil.setBorderTop(BorderStyle.THIN, region, sheet);
   }
 
-  private void setTurnosRegion(Sheet sheet, int column){
+  private void setTurnosRegion(Sheet sheet, int column, int row){
     CellRangeAddress turnosRegion = new CellRangeAddress(
-        5,19,column,column + 6
+        row,row + 14,column,column + 6
     );
     setRegionBorderWithMedium(turnosRegion, sheet);
   }
@@ -242,7 +274,7 @@ public class  ExcelWriter {
 
   public static void main(String[] args) throws IOException, InvalidFormatException{
     ExcelWriter excelWriter = new ExcelWriter();
-    excelWriter.CreateHorarioMasterExcel(HibernateCrud.GetAllTiendas(),
+    excelWriter.CreateHorarioMasterExcel(HibernateCrud.GetAllTiendas(),HibernateCrud.GetAllCondesos(),
         LocalDate.of(2018,11,1));
     HibernateUtil.shutdown();
   }

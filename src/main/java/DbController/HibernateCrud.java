@@ -2,7 +2,13 @@ package DbController;
 
 import condeso.Condeso;
 import DbModel.HibernateUtil;
+import horario.Dias;
+import horario.HorarioMaster;
 import horario.Plantillas;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.Map;
+import javax.persistence.TypedQuery;
 import tiendas.Tiendas;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -164,6 +170,18 @@ public class HibernateCrud {
         session.getTransaction().commit();
         session.close();
         return "Updated tienda: " + plantilla.toString();
+    }
+
+    public static List<Dias> GetMesHorarioMaster(){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.getTransaction().begin();
+        LocalDate date = LocalDate.of(2018, 11, 10);
+        var query = session.createQuery("SELECT e FROM Dias e WHERE date BETWEEN :start AND :end");
+        query.setParameter("start", date.minusDays(2));
+        query.setParameter("end", date.plusDays(7));
+        List<Dias> map = query.list() ;
+        return map;
     }
 
     /*public static void updateAllCondesos(List<Condeso> condesos) {

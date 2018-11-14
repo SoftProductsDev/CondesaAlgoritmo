@@ -2070,4 +2070,11 @@ public class HibernateCrudTest extends TestCase {
     }
   }
 
+  public void testGetDias(){
+    List<Dias> dias =  HibernateCrud.GetMesHorarioMaster();
+    for (Dias dia:dias){
+      System.out.println(dia.getDate());
+    }
+  }
+
 }

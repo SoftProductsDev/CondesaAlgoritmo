@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -44,6 +45,7 @@ public class Tiendas {
 	private String manager;
 
 	@Column(name = "fechaApertura")
+	@Convert(converter = DbModel.LocalDateAttributeConverter.class)
 	private LocalDate fechaApertura;
 
 	@JoinColumn
