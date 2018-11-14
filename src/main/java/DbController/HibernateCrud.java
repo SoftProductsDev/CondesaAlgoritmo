@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Map;
 import javax.persistence.TypedQuery;
+import org.hibernate.Query;
 import tiendas.Tiendas;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -177,7 +178,7 @@ public class HibernateCrud {
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         LocalDate date = LocalDate.of(2018, 11, 10);
-        var query = session.createQuery("SELECT e FROM Dias e WHERE date BETWEEN :start AND :end");
+        Query query = session.createQuery("SELECT e FROM Dias e WHERE date BETWEEN :start AND :end");
         query.setParameter("start", date.minusDays(2));
         query.setParameter("end", date.plusDays(7));
         List<Dias> map = query.list() ;
