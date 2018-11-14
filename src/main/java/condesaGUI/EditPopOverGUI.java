@@ -49,7 +49,7 @@ public class EditPopOverGUI  implements Initializable {
     this.grid = grid;
     this.label = label;
     this.tiendas = tiendas;
-    this.condesos = condesos;
+    this.condesos = FXCollections.observableArrayList(condesos);
     Map<LocalDate, Dias> master = new HashMap<>();
     Dias diaD =  new Dias();
     Set<Turnos> turnos = new HashSet<>();
@@ -64,7 +64,7 @@ public class EditPopOverGUI  implements Initializable {
               for(Condeso condeso:condesos){
                 if(condeso.getId() == turnoD.getCondeso().getId()){
                   aBorrar.add(condeso);
-                  // TODO a quienes esta metiendo (fijos y GMs)
+                  break;
                 }
               }
             }
@@ -72,12 +72,12 @@ public class EditPopOverGUI  implements Initializable {
         }
 
     }
-    condesos.removeAll(aBorrar);
+    this.condesos.removeAll(aBorrar);
     inicioField.setText(Integer.toString(turno.getInicio()));
     finField.setText(Integer.toString(turno.getFin()));
     condesoChoice.setItems(condesos);
     condesoChoice.getSelectionModel().select(turno.getCondeso() );
-    ObservableList<Condeso> list = FXCollections.observableArrayList(condesos);
+    ObservableList<Condeso> list = FXCollections.observableArrayList(this.condesos);
     condesoChoice.setItems(list);
   }
 

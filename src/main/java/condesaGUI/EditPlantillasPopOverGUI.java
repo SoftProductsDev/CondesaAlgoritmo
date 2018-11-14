@@ -112,7 +112,7 @@ public class EditPlantillasPopOverGUI  implements Initializable {
                 condesaGUI.EditPlantillasPopOverGUI edit = fxmlLoader.getController();
                 edit.setInitialValues(turno, dia, grid, label, toggleEditar, weekGrid);
                 event.consume();
-              };
+              }
             }
           });
       return label;
