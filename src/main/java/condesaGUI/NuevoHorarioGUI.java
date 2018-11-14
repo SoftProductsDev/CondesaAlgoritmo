@@ -117,7 +117,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             Set<Tiendas> tiendasALL2 = new HashSet<>();
             tiendasALL2.addAll(allTiendas);
             lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha,turnosExtras);
-            /*
+
             BufferedImage img = ImageIO.read(new File("lalopensando.jpg"));
             JFrame frame = new JFrame("Lalo Pensando");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -128,9 +128,9 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             frame.pack();
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
-            */
+
             lalo.start();
-          //  frame.setVisible(false);
+            frame.setVisible(false);
             //CloseOpenWindow("/frontGUI.fxml");
         }
     }

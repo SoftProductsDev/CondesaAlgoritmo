@@ -184,6 +184,9 @@ public class lalo {
 		}
 
 		//reacomodar(noAsignados, condesos, disponibilidad);
+		for(Condeso elCondeso : condesos){ //TODO provisional
+			elCondeso.cincoMas();
+		}
 		insist(noAsignados, new ArrayList<>(), true);
 		for(Tiendas tiendaFinal:tiendas){
 			HibernateCrud.UpdateTienda(tiendaFinal);
@@ -512,9 +515,6 @@ public class lalo {
 
 	private boolean insist(Set<Turnos> noAsignados, ArrayList<Condeso> fila, boolean first){
 		//return;
-		for(Condeso elCondeso : condesos){ //TODO provisional
-			elCondeso.cincoMas();
-		}
 		Reasons laRazon;
 		boolean toReturn;
 		if(first){

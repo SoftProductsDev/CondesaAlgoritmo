@@ -53,25 +53,26 @@ public class EditPopOverGUI  implements Initializable {
     Map<LocalDate, Dias> master = new HashMap<>();
     Dias diaD =  new Dias();
     Set<Turnos> turnos = new HashSet<>();
+    List<Condeso> aBorrar = new ArrayList<>();
     for(Tiendas tienda:tiendas){
       master = tienda.getMaster().getMes();
-      for(int i = 0; i < master.size(); i++){
-        diaD = master.get(LocalDate.of(dia.getDate().getYear(),dia.getDate().getMonth(), dia.getDate().getDayOfMonth() + i));
+        diaD = master.get(LocalDate.of(dia.getDate().getYear(),dia.getDate().getMonth(),  dia.getDate().getDayOfMonth()));
         if (diaD != null) {
           turnos = diaD.getTurnos();
           for(Turnos turnoD:turnos){
             if(turnoD.getCondeso() != null){
               for(Condeso condeso:condesos){
                 if(condeso.getId() == turnoD.getCondeso().getId()){
-                  //condesos.remove(condeso); TODO concurrent exception
+                  aBorrar.add(condeso);
+                  // TODO a quienes esta metiendo (fijos y GMs)
                 }
               }
             }
           }
         }
-      }
 
     }
+    condesos.removeAll(aBorrar);
     inicioField.setText(Integer.toString(turno.getInicio()));
     finField.setText(Integer.toString(turno.getFin()));
     condesoChoice.setItems(condesos);
