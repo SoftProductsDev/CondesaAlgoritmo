@@ -98,7 +98,7 @@ public class CondesoGUI  extends Application implements Initializable {
             throw ex;
         }
         primaryStage.setTitle("Administrador de Condesos");
-        primaryStage.setScene(new Scene(root, 700, 600));
+        primaryStage.setScene(new Scene(root, 7300, 600));
         primaryStage.show();
     }
 

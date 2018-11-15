@@ -257,7 +257,8 @@ public class FrontGUI extends Application implements Initializable {
       e.printStackTrace();
     }
     Stage stage = new Stage();
-    stage.setScene(new Scene(root));
+    stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
+              Screen.getPrimary().getVisualBounds().getMaxY()));
     stage.show();
     CondesoGUI condesos = (CondesoGUI) fxmlLoader.getController();
     condesos.setInitialValues(this.condesos, tiendas);
