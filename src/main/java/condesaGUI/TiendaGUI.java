@@ -3,6 +3,8 @@ package condesaGUI;
 import DbController.HibernateCrud;
 import horario.Plantillas;
 import java.io.IOException;
+
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
 import tiendas.Tiendas;
@@ -23,6 +25,7 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class TiendaGUI extends Application implements Initializable {
@@ -36,6 +39,7 @@ public class TiendaGUI extends Application implements Initializable {
     @FXML private TextField managerTextField;
     @FXML private TextField idTextField;
     @FXML private DatePicker aperturaCalendario;
+    private List<Tiendas> tiendas;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -103,14 +107,16 @@ public class TiendaGUI extends Application implements Initializable {
             tienda.setManager(managerTextField.getText());
             tienda.setFechaApertura(aperturaCalendario.getValue());
             HibernateCrud.SaveTienda(tienda);
-            tableView.getItems().setAll(HibernateCrud.GetAllTiendas()); //TODO
+            tiendas.add(tienda);
+            tableView.getItems().setAll(tiendas);
         }
     }
 
     public void deleteButtonClicked(ActionEvent actionEventent){
         Tiendas tienda = tableView.getSelectionModel().getSelectedItem();
         HibernateCrud.DeleteTienda(tienda);
-        tableView.getItems().setAll(HibernateCrud.GetAllTiendas()); //TODO
+        tiendas.remove(tienda);
+        tableView.getItems().setAll(tiendas);
     }
 
     public void updateButtonClicked(ActionEvent actionEvent){
@@ -126,24 +132,29 @@ public class TiendaGUI extends Application implements Initializable {
             tienda.setManager(managerTextField.getText());
             tienda.setFechaApertura(aperturaCalendario.getValue());
             HibernateCrud.UpdateTienda(tienda);
-            tableView.getItems().setAll(HibernateCrud.GetAllTiendas());
+            tableView.getItems().setAll(tiendas);
         }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    public void setInitialValues(ObservableList<Tiendas> tiendas) {
+        this.tiendas = tiendas;
         id.setCellValueFactory(new PropertyValueFactory<Tiendas, Long>("id"));
         tiendaNombre.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("nombre"));
         tiendaManager.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("manager"));
         fechaApertura.setCellValueFactory(new PropertyValueFactory<Tiendas, Date>("fechaApertura"));
         plantillaActual.setCellValueFactory(new PropertyValueFactory<Tiendas, Plantillas>("plantilla"));
-        tableView.getItems().setAll(HibernateCrud.GetAllTiendas());
+        tableView.getItems().setAll(this.tiendas);
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, newSelection, oldSelection) -> {
             loadTiendadUpdate();
         });
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

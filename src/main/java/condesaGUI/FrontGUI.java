@@ -267,7 +267,24 @@ public class FrontGUI extends Application implements Initializable {
   }
 
   public void TiendasClicked(ActionEvent actionEvent) throws Exception {
-    OpenNewWindow("/tiendasGUI.fxml");
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tiendasGUI.fxml"));  //TODO Example
+    Parent root = null;
+    String sceneFile = "/tiendasGUI.fxml";
+    URL url  = null;
+    try {
+      //url  = getClass().getResource( sceneFile );
+      //root = fxmlLoader.load( url );
+      root = (Parent) fxmlLoader.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    Stage stage = new Stage();
+    stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
+            Screen.getPrimary().getVisualBounds().getMaxY()));
+    stage.show();
+    TiendaGUI tiendasGUI = (TiendaGUI) fxmlLoader.getController();
+    tiendasGUI.setInitialValues(tiendas);
+    //OpenNewWindow("/tiendasGUI.fxml");
   }
 
   public void NuevoHorarioClicked(ActionEvent actionEvent) throws Exception{
