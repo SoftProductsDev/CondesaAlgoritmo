@@ -38,6 +38,8 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.stage.Window;
 import tiendas.Tiendas;
 import org.controlsfx.control.PopOver;
 import org.hibernate.Hibernate;
@@ -230,10 +232,10 @@ public class FrontGUI extends Application implements Initializable {
             PopOver pop = new PopOver(root);
             pop.setAutoFix(false);
             pop.show(label);
-            EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();
+            EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();//TODO EJEMPLO
             edit.setInitialValues(turno, dia, grid, label, condesos, tiendas);
             event.consume();
-          };
+          }
         });
     return label;
   }
@@ -243,7 +245,24 @@ public class FrontGUI extends Application implements Initializable {
   }
 
   public void CondesosClicked(ActionEvent actionEvent) throws Exception {
-    OpenNewWindow("/condesosGUI.fxml");
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/condesosGUI.fxml"));  //TODO Example
+    Parent root = null;
+    String sceneFile = "/condesosGUI.fxml";
+    URL url  = null;
+    try {
+      //url  = getClass().getResource( sceneFile );
+      //root = fxmlLoader.load( url );
+      root = (Parent) fxmlLoader.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    Stage stage = new Stage();
+    stage.setScene(new Scene(root));
+    stage.show();
+    CondesoGUI condesos = (CondesoGUI) fxmlLoader.getController();
+    condesos.setInitialValues(this.condesos, tiendas);
+    //Window condeos = new Window(root);
+   // OpenNewWindow("/condesosGUI.fxml");
   }
 
   public void TiendasClicked(ActionEvent actionEvent) throws Exception {

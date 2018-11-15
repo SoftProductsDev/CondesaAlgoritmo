@@ -1,4 +1,5 @@
 package condeso;
+import DbController.HibernateCrud;
 import horario.HorarioEntrega;
 import horario.HorarioMaster;
 
@@ -187,6 +188,7 @@ public class Condeso {
 		HorasMes horas = new HorasMes();
 		horas.setHoras(horasAsignadas);
 		this.horasMes.put(month,  horas);
+
 	}
 
 	public boolean isFijo(){

@@ -107,7 +107,7 @@ public class EditPopOverGUI  implements Initializable {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPopOver.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPopOver.fxml")); // TODO EXAMPLE
             String sceneFile = "/editPopOver.fxml";
             Parent root = null;
             URL url  = null;

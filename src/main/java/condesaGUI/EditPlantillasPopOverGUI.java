@@ -94,7 +94,7 @@ public class EditPlantillasPopOverGUI  implements Initializable {
             @Override
             public void handle(MouseEvent event) {
               if(toggleEditar.isSelected() || grid.getParent().equals(weekGrid)){
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPlantillasPopOver.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPlantillasPopOver.fxml"));//TODO Example
                 String sceneFile = "/editPlantillasPopOver.fxml";
                 Parent root = null;
                 URL url  = null;
@@ -109,8 +109,8 @@ public class EditPlantillasPopOverGUI  implements Initializable {
                 pop.setAutoFix(false);
                 pop.setAnimated(false);
                 pop.show(label);
-                condesaGUI.EditPlantillasPopOverGUI edit = fxmlLoader.getController();
-                edit.setInitialValues(turno, dia, grid, label, toggleEditar, weekGrid);
+                condesaGUI.EditPlantillasPopOverGUI edit = fxmlLoader.getController();//TODO
+                edit.setInitialValues(turno, dia, grid, label, toggleEditar, weekGrid);//TODO
                 event.consume();
               }
             }

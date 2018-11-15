@@ -187,7 +187,7 @@ public class lalo {
 		}
 
 		//reacomodar(noAsignados, condesos, disponibilidad);
-		for(Condeso elCondeso : condesos){ //TODO provisional
+		for(Condeso elCondeso : condesos){
 			elCondeso.cincoMas();
 		}
 		insist(noAsignados, new ArrayList<>(), true);

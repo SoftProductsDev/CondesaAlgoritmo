@@ -72,6 +72,8 @@ public class CondesoGUI  extends Application implements Initializable {
     @FXML private ScrollPane scrollPane;
     private List<Tiendas> tiendas;
     private List<Tiendas> tiendasAddCondeso;
+    private ObservableList<Condeso> condesos;
+
 
 
 
@@ -107,7 +109,7 @@ public class CondesoGUI  extends Application implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
       tiendasAddCondeso = new ArrayList<Tiendas>();
-      tiendas = HibernateCrud.GetAllTiendas();
+      tiendas = new ArrayList<>();//HibernateCrud.GetAllTiendas(); //TODO elliminar
         cargoComboBox.getItems().setAll(TipoEmpleado.values());
         contratoChoiceBox.getItems().setAll(Contrato.values());
         ArrayList<String> lvlList = new ArrayList<>();
@@ -186,12 +188,24 @@ public class CondesoGUI  extends Application implements Initializable {
             };
         });
 
-        tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
+        tableView = new TableView<>();
+        //tableView.getItems().setAll( HibernateCrud.GetAllCondesos()); //TODO eliminar
 
-        tableView.getSelectionModel().selectedItemProperty().addListener((obs, newSelection,
+       /* tableView.getSelectionModel().selectedItemProperty().addListener((obs, newSelection,
             oldSelection) -> {
             loadCondesoUpdate();
             });
+        initializeListasTiendas();*/
+    }
+
+    public void setInitialValues(ObservableList<Condeso> condesos, List<Tiendas> tiendas){
+        this.condesos = condesos;
+        this.tiendas = tiendas;
+        tableView.getItems().setAll(this.condesos);
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, newSelection,
+                                                                          oldSelection) -> {
+            loadCondesoUpdate();
+        });
         initializeListasTiendas();
     }
 
@@ -299,14 +313,16 @@ public class CondesoGUI  extends Application implements Initializable {
             //  errorLabel.setText("Error: Ese Id ya existe; elija otro!");
           //}
 
-          tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
+          condesos.add(condeso);
+          tableView.getItems().setAll(condesos); //TODO
         }
     }
 
     public void deleteButtonClicked(ActionEvent actionEvent) {
         Condeso condeso = tableView.getSelectionModel().getSelectedItem();
         HibernateCrud.DeleteCondeso(condeso);
-        tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
+        condesos.remove(condeso);
+        tableView.getItems().setAll(condesos);//TODO
     }
 
     public void updateButtonClicked(ActionEvent actionEvent) {
@@ -347,7 +363,8 @@ public class CondesoGUI  extends Application implements Initializable {
         catch (Exception e){*/
          errorLabel.setText("");
         //}
-        tableView.getItems().setAll( HibernateCrud.GetAllCondesos());
+
+        tableView.getItems().setAll(condesos);
       }
     }
 }

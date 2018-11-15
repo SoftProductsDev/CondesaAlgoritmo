@@ -103,14 +103,14 @@ public class TiendaGUI extends Application implements Initializable {
             tienda.setManager(managerTextField.getText());
             tienda.setFechaApertura(aperturaCalendario.getValue());
             HibernateCrud.SaveTienda(tienda);
-            tableView.getItems().setAll(HibernateCrud.GetAllTiendas());
+            tableView.getItems().setAll(HibernateCrud.GetAllTiendas()); //TODO
         }
     }
 
     public void deleteButtonClicked(ActionEvent actionEventent){
         Tiendas tienda = tableView.getSelectionModel().getSelectedItem();
         HibernateCrud.DeleteTienda(tienda);
-        tableView.getItems().setAll(HibernateCrud.GetAllTiendas());
+        tableView.getItems().setAll(HibernateCrud.GetAllTiendas()); //TODO
     }
 
     public void updateButtonClicked(ActionEvent actionEvent){
