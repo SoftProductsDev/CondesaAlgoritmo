@@ -83,8 +83,9 @@ public class HibernateCrud {
         Criteria criteria = session.createCriteria(Condeso.class);
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         List<Condeso> condesos = criteria.list();
-        Hibernate.initialize(condesos);
-
+        for (Condeso c:condesos){
+            Hibernate.initialize(c.getHorasAsignadas());
+        }
         session.close();
 
         return condesos;
