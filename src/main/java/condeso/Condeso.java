@@ -72,8 +72,10 @@ public class Condeso {
 	@Column
 	private Contrato contrato;
 
-	@ElementCollection
-	private Map<LocalDate, Integer> horasMes;
+	@JoinColumn
+	@OneToMany( fetch = FetchType.EAGER)
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	private Map<LocalDate, HorasMes> horasMes;
 
 	public Condeso() {
 		horasMes = new HashMap<>();
@@ -169,20 +171,22 @@ public class Condeso {
 		return antiguedad;
 	}
 
-	public Map<LocalDate, Integer> getHorasMes() {
+	public Map<LocalDate, HorasMes> getHorasMes() {
 		return horasMes;
 	}
 
-	public void setHorasMes(Map<LocalDate, Integer> horasMes) {
+	public void setHorasMes(Map<LocalDate, HorasMes> horasMes) {
 		this.horasMes = horasMes;
 	}
 
-	public void setHorasMes(LocalDate date, Integer integer){
+	public void setHorasMes(LocalDate date, HorasMes integer){
 		this.horasMes.put(date, integer);
 	}
 
 	public void setHorasMes(LocalDate month){
-		this.horasMes.put(month, horasAsignadas);
+		HorasMes horas = new HorasMes();
+		horas.setHoras(horasAsignadas);
+		this.horasMes.put(month,  horas);
 	}
 
 	public boolean isFijo(){

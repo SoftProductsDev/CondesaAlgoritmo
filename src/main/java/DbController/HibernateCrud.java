@@ -9,8 +9,10 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Map;
 import javax.persistence.TypedQuery;
+import org.hibernate.FetchMode;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
+import org.hibernate.criterion.CriteriaSpecification;
 import tiendas.Tiendas;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -82,30 +84,11 @@ public class HibernateCrud {
 
         Criteria criteria = session.createCriteria(Condeso.class);
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        criteria.setFetchMode("condeso.horasMes", FetchMode.JOIN);
         List<Condeso> condesos = criteria.list();
-        for (Condeso c:condesos){
-            Hibernate.initialize(c.getHorasAsignadas());
-        }
         session.close();
-
         return condesos;
     }
-
-
-        public static List<tiendas.Tiendas> GetAllDTOTiendas () {
-          SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-          Session session = sessionFactory.openSession();
-          List<tiendas.Tiendas> tiendas = session.createQuery(""
-              + "select "
-              + "t.id as id, "
-              + "t.nombre as nombre, "
-              + "t.plantilla as plantilla from Tiendas t"
-              ).setResultTransformer(
-              Transformers.aliasToBean(tiendas.Tiendas.class)).list();
-          session.close();
-          return tiendas;
-        }
-
 
         public static List<Tiendas> GetAllTiendas () {
             SessionFactory sessionFactory = HibernateUtil.getSessionFactory();

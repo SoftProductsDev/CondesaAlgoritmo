@@ -27,6 +27,7 @@
     <mapping class="horario.Plantillas"/>
     <mapping class="horario.Dias"/>
     <mapping class="horario.Turnos"/>
+    <mapping class="condeso.HorasMes"/>
 
 
   </session-factory>
