@@ -108,8 +108,13 @@ public class CondesoGUI  extends Application implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-      tiendasAddCondeso = new ArrayList<Tiendas>();
-      tiendas = new ArrayList<>();//HibernateCrud.GetAllTiendas(); //TODO elliminar
+
+    }
+
+    public void setInitialValues(ObservableList<Condeso> condesos, List<Tiendas> tiendas){
+        tiendasAddCondeso = new ArrayList<>();
+        this.tiendas = tiendas;//HibernateCrud.GetAllTiendas(); //TODO elliminar
+        this.condesos = condesos;
         cargoComboBox.getItems().setAll(TipoEmpleado.values());
         contratoChoiceBox.getItems().setAll(Contrato.values());
         ArrayList<String> lvlList = new ArrayList<>();
@@ -136,10 +141,10 @@ public class CondesoGUI  extends Application implements Initializable {
         condesoVespertino.setCellFactory(CheckBoxTableCell.forTableColumn(condesoVespertino));
         condesoVespertino.setEditable(false);
         condesoLunch.setCellValueFactory(new Callback<CellDataFeatures<Condeso,Boolean>, ObservableValue<Boolean>>() {
-          @Override
-          public ObservableValue<Boolean> call(CellDataFeatures<Condeso, Boolean> param) {
-            return param.getValue().Lunch();
-          }
+            @Override
+            public ObservableValue<Boolean> call(CellDataFeatures<Condeso, Boolean> param) {
+                return param.getValue().Lunch();
+            }
         });
         condesoLunch.setCellFactory(CheckBoxTableCell.forTableColumn(condesoLunch));
         condesoLunch.setEditable(false);
@@ -187,8 +192,7 @@ public class CondesoGUI  extends Application implements Initializable {
                 }
             };
         });
-
-        tableView = new TableView<>();
+        
         //tableView.getItems().setAll( HibernateCrud.GetAllCondesos()); //TODO eliminar
 
        /* tableView.getSelectionModel().selectedItemProperty().addListener((obs, newSelection,
@@ -196,11 +200,6 @@ public class CondesoGUI  extends Application implements Initializable {
             loadCondesoUpdate();
             });
         initializeListasTiendas();*/
-    }
-
-    public void setInitialValues(ObservableList<Condeso> condesos, List<Tiendas> tiendas){
-        this.condesos = condesos;
-        this.tiendas = tiendas;
         tableView.getItems().setAll(this.condesos);
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, newSelection,
                                                                           oldSelection) -> {
