@@ -14,6 +14,7 @@ import condeso.Contrato;
 import condeso.TipoEmpleado;
 import horario.*;
 import org.apache.commons.compress.archivers.ar.ArArchiveEntry;
+import org.hibernate.Hibernate;
 import tiendas.Tiendas;
 import horario.HorarioEntrega;
 

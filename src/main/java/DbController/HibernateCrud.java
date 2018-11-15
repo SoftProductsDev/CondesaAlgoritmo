@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Map;
 import javax.persistence.TypedQuery;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import tiendas.Tiendas;
 import org.hibernate.Criteria;
@@ -82,6 +83,7 @@ public class HibernateCrud {
         Criteria criteria = session.createCriteria(Condeso.class);
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         List<Condeso> condesos = criteria.list();
+        Hibernate.initialize(condesos);
 
         session.close();
 
@@ -177,10 +179,10 @@ public class HibernateCrud {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
-        LocalDate date = LocalDate.of(2018, 11, 10);
+        LocalDate date = LocalDate.of(2018, 11, 1);
         Query query = session.createQuery("SELECT e FROM Dias e WHERE date BETWEEN :start AND :end");
-        query.setParameter("start", date.minusDays(2));
-        query.setParameter("end", date.plusDays(7));
+        query.setParameter("start", date);
+        query.setParameter("end", date.plusDays(30));
         List<Dias> map = query.list() ;
         return map;
     }
