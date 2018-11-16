@@ -65,7 +65,24 @@ public class TiendaGUI extends Application implements Initializable {
         primaryStage.show();
     }
     public void plantillasClicked(ActionEvent actionEvent) throws Exception {
-        OpenNewWindow("/plantillasGUI.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/plantillasGUI.fxml"));  //TODO Example
+        Parent root = null;
+        String sceneFile = "/plantillasGUI.fxml";
+        URL url  = null;
+        try {
+            //url  = getClass().getResource( sceneFile );
+            //root = fxmlLoader.load( url );
+            root = (Parent) fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
+                Screen.getPrimary().getVisualBounds().getMaxY()));
+        stage.show();
+        PlantillaGUI plantillas = (PlantillaGUI) fxmlLoader.getController();
+        plantillas.setInitialValues(tiendas);
+        //OpenNewWindow("/plantillasGUI.fxml");
     }
     private void OpenNewWindow(String filename) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/plantillasGUI.fxml"));
