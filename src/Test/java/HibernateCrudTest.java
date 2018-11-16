@@ -2070,13 +2070,6 @@ public class HibernateCrudTest extends TestCase {
     }
   }
 
-  public void testGetDias(){
-    HashMap dias =  HibernateCrud.GetMesHorarioMaster(LocalDate.now(), new Tiendas());
-    /*for (Dias dia:dias){
-      System.out.println(dia.getDate());
-    }*/
-  }
-
   public void testDeleteCondesoFromTurnos(){
     Condeso condeso5 = new Condeso();
     condeso5.setId(41);
@@ -2095,6 +2088,10 @@ public class HibernateCrudTest extends TestCase {
     condeso5.setFijos(false);
     condeso5.setAntiguedad(LocalDate.now());
     HibernateCrud.deleteCondesoFromTurnos(condeso5);
+  }
+
+  public void testDeleteCondesosFromTurnos2(){
+
   }
 
 }
