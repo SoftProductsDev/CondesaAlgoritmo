@@ -45,7 +45,6 @@ public class Tiendas {
 	private String manager;
 
 	@Column(name = "fechaApertura")
-	@Convert(converter = DbModel.LocalDateAttributeConverter.class)
 	private LocalDate fechaApertura;
 
 	@JoinColumn

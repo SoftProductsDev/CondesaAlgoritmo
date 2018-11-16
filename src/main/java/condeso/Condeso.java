@@ -49,7 +49,6 @@ public class Condeso {
 	@Column
 	private boolean caja;
 	@Column
-	@Convert(converter= DbModel.LocalDateAttributeConverter.class)
 	private LocalDate antiguedad;
 	@Column
 	private boolean masculino;

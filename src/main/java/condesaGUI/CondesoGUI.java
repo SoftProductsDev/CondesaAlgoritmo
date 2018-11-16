@@ -192,14 +192,7 @@ public class CondesoGUI  extends Application implements Initializable {
                 }
             };
         });
-        
-        //tableView.getItems().setAll( HibernateCrud.GetAllCondesos()); //TODO eliminar
 
-       /* tableView.getSelectionModel().selectedItemProperty().addListener((obs, newSelection,
-            oldSelection) -> {
-            loadCondesoUpdate();
-            });
-        initializeListasTiendas();*/
         tableView.getItems().setAll(this.condesos);
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, newSelection,
                                                                           oldSelection) -> {
