@@ -1,6 +1,7 @@
 package condesaGUI;
 
 import DbController.HibernateCrud;
+import DbModel.HibernateUtil;
 import condeso.Condeso;
 import horario.Dias;
 import horario.HorarioMaster;
@@ -40,6 +41,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.stage.Window;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import tiendas.Tiendas;
 import org.controlsfx.control.PopOver;
 import org.hibernate.Hibernate;
@@ -158,7 +161,7 @@ public class FrontGUI extends Application implements Initializable {
 
   private void setHorarioMaster(){
     Tiendas tienda = tiendasComboBox.getValue();
-    HorarioMaster master = new HorarioMaster();
+    HorarioMaster master = null;
     if(tienda != null){
       master = tienda.getMaster();
     }

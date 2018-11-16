@@ -1,5 +1,6 @@
 package horario;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,9 +8,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import org.hibernate.annotations.Cascade;
 import tiendas.Tiendas;
 import condeso.Condeso;
 import java.time.LocalDate;
@@ -41,7 +44,7 @@ public class Turnos implements Comparable<Turnos> {
 	private int fin;
 
 	@JoinColumn
-	@OneToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Condeso condeso;
 
 	@Column

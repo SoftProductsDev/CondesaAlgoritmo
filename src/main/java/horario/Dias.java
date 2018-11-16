@@ -35,7 +35,6 @@ public class Dias {
     private Set<Turnos> turnos;
 
     @Column(name = "date")
-    @Convert(converter= DbModel.LocalDateAttributeConverter.class)
     private LocalDate date;
 
     @Transient

@@ -2071,10 +2071,30 @@ public class HibernateCrudTest extends TestCase {
   }
 
   public void testGetDias(){
-    List<Dias> dias =  HibernateCrud.GetMesHorarioMaster();
-    for (Dias dia:dias){
+    HashMap dias =  HibernateCrud.GetMesHorarioMaster(LocalDate.now(), new Tiendas());
+    /*for (Dias dia:dias){
       System.out.println(dia.getDate());
-    }
+    }*/
+  }
+
+  public void testDeleteCondesoFromTurnos(){
+    Condeso condeso5 = new Condeso();
+    condeso5.setId(41);
+    condeso5.setNombre("Eduardo Maurtua");
+    condeso5.setAbreviacion("EM");
+    condeso5.setMasculino(true);
+    condeso5.setFemenino(false);
+    condeso5.setContrato(Contrato.MiniJob);
+    condeso5.setLunch(true);
+    condeso5.setTarde(true);
+    condeso5.setManana(true);
+    condeso5.setColor("#c49411");
+    condeso5.setCaja(true);
+    condeso5.setLevel(3);
+    condeso5.setTipo(TipoEmpleado.Encargado);
+    condeso5.setFijos(false);
+    condeso5.setAntiguedad(LocalDate.now());
+    HibernateCrud.deleteCondesoFromTurnos(condeso5);
   }
 
 }

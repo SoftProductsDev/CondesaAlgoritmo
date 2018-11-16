@@ -7,6 +7,7 @@ import horario.HorarioMaster;
 import horario.Plantillas;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.TypedQuery;
 import org.hibernate.FetchMode;
@@ -59,9 +60,9 @@ public class HibernateCrud {
 
     public static String DeleteCondeso(Condeso deletedCondeso) {
         deletedCondeso.setDondePuedeTrabajar(null);
+        deleteCondesoFromTurnos(deletedCondeso);
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
-
         session.getTransaction().begin();
         session.delete(deletedCondeso);
         session.getTransaction().commit();
@@ -159,27 +160,15 @@ public class HibernateCrud {
         return "Updated tienda: " + plantilla.toString();
     }
 
-    public static List<Dias> GetMesHorarioMaster(){
+    public static void deleteCondesoFromTurnos(Condeso condeso){
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
-        LocalDate date = LocalDate.of(2018, 11, 1);
-        Query query = session.createQuery("SELECT e FROM Dias e WHERE date BETWEEN :start AND :end");
-        query.setParameter("start", date);
-        query.setParameter("end", date.plusDays(30));
-        List<Dias> map = query.list() ;
-        return map;
-    }
-
-    /*public static void updateAllCondesos(List<Condeso> condesos) {
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.getTransaction().begin();
-        for (Condeso c:condesos
-        ) {
-            session.update(c);
-        }
-        session.getTransaction().commit();
+        Query query = session.createQuery(
+            "update Turnos t set t.condeso = :nullC where t.condeso = :condeso");
+        query.setParameter("nullC", null);
+        query.setParameter("condeso", condeso);
+        query.executeUpdate();
         session.close();
-    }*/
+    }
 }
