@@ -58,6 +58,7 @@ public class PlantillaGUI   extends Application implements Initializable {
     @FXML private TextField nombrePlantilla;
     @FXML private ToggleSwitch toggleEditar;
     private List<Dias> dias;
+    private ObservableList<Tiendas> tiendas = FXCollections.observableArrayList();
     private static final ObservableList<String>
             horario = FXCollections.observableArrayList(getStaticList());
     private Plantillas nuevaPlantilla;
@@ -121,20 +122,10 @@ public class PlantillaGUI   extends Application implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        dias = createWeek();
-        nuevaPlantilla = new Plantillas();
-        nuevaPlantilla.setDias(dias);
-        fillHourGridPane(hourGrid1);
-        fillHourGridPane(hourGrid2);
-        fillHourGridPane(hourGrid3);
-        fillHourGridPane(hourGrid4);
-        ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
-        tiendasChoice.setItems(tiendas);
-        addChoiceboxListeners();
-        tiendasChoiceNueva.setItems(tiendas);
-        addLabelGrids(weekGrid);
-        addLabelGrids(weekGrid1);
     }
+
+
+
 
     private void addChoiceboxListeners(){
       tiendasChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
@@ -336,7 +327,7 @@ public class PlantillaGUI   extends Application implements Initializable {
       HibernateCrud.UpdateTienda(tienda);
       nuevaPlantilla.setDias(createWeek());
       deleteTurnosLabels(weekGrid);
-    ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
+    //ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
 
     try {
     tiendasChoice.setItems(tiendas);
@@ -375,7 +366,7 @@ public class PlantillaGUI   extends Application implements Initializable {
     }catch(NullPointerException e){}
     HibernateCrud.UpdateTienda(tienda);
     deleteTurnosLabels(weekGrid1);
-    ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
+    //ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
     try {
       tiendasChoice.setItems(tiendas);
       nombreChoice.setItems(FXCollections.observableList(new ArrayList<>()));
@@ -387,9 +378,9 @@ public class PlantillaGUI   extends Application implements Initializable {
       if(plantilla != null) {
         HibernateCrud.UpdatePlantilla(plantilla);
       }
-    ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
+    //ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
     try {
-      tiendasChoice.setItems(tiendas);
+      tiendasChoice.setItems(tiendas);//Todo chcar que sirva
       nombreChoice.setItems(FXCollections.observableList(new ArrayList<>()));
     }catch(Exception e){}
   }
@@ -415,4 +406,20 @@ public class PlantillaGUI   extends Application implements Initializable {
       pop.hide();
     }
   }
+
+    public void setInitialValues(List<Tiendas> tiendas) {
+        dias = createWeek();
+        nuevaPlantilla = new Plantillas();
+        nuevaPlantilla.setDias(dias);
+        fillHourGridPane(hourGrid1);
+        fillHourGridPane(hourGrid2);
+        fillHourGridPane(hourGrid3);
+        fillHourGridPane(hourGrid4);
+        this.tiendas.setAll(tiendas);
+        tiendasChoice.setItems(this.tiendas);
+        addChoiceboxListeners();
+        tiendasChoiceNueva.setItems(this.tiendas);
+        addLabelGrids(weekGrid);
+        addLabelGrids(weekGrid1);
+    }
 }
