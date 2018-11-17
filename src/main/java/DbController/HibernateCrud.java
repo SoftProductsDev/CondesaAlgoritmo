@@ -134,41 +134,36 @@ public class HibernateCrud {
             return "Updated tienda: " + updatedTienda.toString();
         }
 
-
-        public static List<String> tiendasToList () {
-            List<Tiendas> tiendas = GetAllTiendas();
-            List<String> tiendasString = new ArrayList<String>();
-            for (Tiendas tienda : tiendas) {
-                String nombre = tienda.getNombre();
-                tiendasString.add(nombre);
+        public static void UpdateMultipleTiendas (List<Tiendas> updatedTiendas){
+            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+            Session session = sessionFactory.openSession();
+            session.getTransaction().begin();
+            for (Tiendas t:updatedTiendas){
+                session.update(t);
             }
-            return tiendasString;
+            session.getTransaction().commit();
+            session.close();
         }
 
-    public static Condeso findCondesoId(int id) {
-        // en caso de que se quede ordenado simpre los condesos con su id
-        return null;
-    }
+        public static String UpdatePlantilla(Plantillas plantilla) {
+            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+            Session session = sessionFactory.openSession();
+            session.getTransaction().begin();
+            session.update(plantilla);
+            session.getTransaction().commit();
+            session.close();
+            return "Updated tienda: " + plantilla.toString();
+        }
 
-    public static String UpdatePlantilla(Plantillas plantilla) {
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.getTransaction().begin();
-        session.update(plantilla);
-        session.getTransaction().commit();
-        session.close();
-        return "Updated tienda: " + plantilla.toString();
-    }
-
-    public static void deleteCondesoFromTurnos(Condeso condeso){
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.getTransaction().begin();
-        Query query = session.createQuery(
-            "update Turnos t set t.condeso = :nullC where t.condeso = :condeso");
-        query.setParameter("nullC", null);
-        query.setParameter("condeso", condeso);
-        query.executeUpdate();
-        session.close();
-    }
+        public static void deleteCondesoFromTurnos(Condeso condeso){
+            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+            Session session = sessionFactory.openSession();
+            session.getTransaction().begin();
+            Query query = session.createQuery(
+                "update Turnos t set t.condeso = :nullC where t.condeso = :condeso");
+            query.setParameter("nullC", null);
+            query.setParameter("condeso", condeso);
+            query.executeUpdate();
+            session.close();
+        }
 }

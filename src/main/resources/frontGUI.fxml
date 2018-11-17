@@ -222,8 +222,7 @@
         </Label>
       </children>
     </GridPane>
-      <ToggleSwitch fx:id="toggle" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-      <Button mnemonicParsing="false" text="Guardar cambios" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <Button mnemonicParsing="false" text="Guardar cambios" onAction="#guardrarCambios" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <Button mnemonicParsing="false" text="Exportar a Excel" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
   </children>
   <padding>
