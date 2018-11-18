@@ -44,7 +44,7 @@ public class Turnos implements Comparable<Turnos> {
 	private int fin;
 
 	@JoinColumn
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Condeso condeso;
 
 	@Column
