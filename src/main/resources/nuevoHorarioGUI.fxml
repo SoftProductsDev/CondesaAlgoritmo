@@ -91,5 +91,10 @@
             <Font size="18.0" />
          </font>
       </Button>
+      <Button fx:id="regresarButton" mnemonicParsing="false" onAction="#regresarClicked" text="Regresar" GridPane.columnIndex="7" GridPane.rowIndex="7">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 </GridPane>

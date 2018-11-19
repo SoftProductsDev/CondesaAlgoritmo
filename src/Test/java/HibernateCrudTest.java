@@ -1492,7 +1492,7 @@ public class HibernateCrudTest extends TestCase {
 
     Condeso condeso29 = new Condeso();
     condeso29.setId(117);
-    condeso29.setNombre("Raul P");
+    condeso29.setNombre("Raul Perez");
     condeso29.setAbreviacion("RP");
     condeso29.setMasculino(true);
     condeso29.setFemenino(false);
@@ -1506,7 +1506,7 @@ public class HibernateCrudTest extends TestCase {
     condeso29.setTipo(nuevo);
     condeso29.setFijos(false);
     condeso29.setAntiguedad(LocalDate.now());
-    condeso29.setDondePuedeTrabajar(tiendas);
+    condeso29.setDondePuedeTrabajar(haupt);
     HibernateCrud.SaveCondeso(condeso29);
 
     Condeso condeso30 = new Condeso();
@@ -1549,11 +1549,11 @@ public class HibernateCrudTest extends TestCase {
 
     Condeso condeso32 = new Condeso();
     condeso32.setId(120);
-    condeso32.setNombre("Livier");
-    condeso32.setAbreviacion("l");
+    condeso32.setNombre("Mishell Rubio");
+    condeso32.setAbreviacion("M");
     condeso32.setMasculino(true);
     condeso32.setFemenino(false);
-    condeso32.setContrato(otros);
+    condeso32.setContrato(minijob);
     condeso32.setLunch(true);
     condeso32.setTarde(true);
     condeso32.setManana(true);
@@ -1566,7 +1566,138 @@ public class HibernateCrudTest extends TestCase {
     condeso32.setDondePuedeTrabajar(tiendas);
     HibernateCrud.SaveCondeso(condeso32);
 
+    Condeso condeso33 = new Condeso();
+    condeso33.setId(121);
+    condeso33.setNombre("Adrian Mora");
+    condeso33.setAbreviacion("AM");
+    condeso33.setMasculino(true);
+    condeso33.setFemenino(false);
+    condeso33.setContrato(otros);
+    condeso33.setLunch(true);
+    condeso33.setTarde(true);
+    condeso33.setManana(true);
+    condeso33.setColor("#41f48e");
+    condeso33.setCaja(false);
+    condeso33.setLevel(1);
+    condeso33.setTipo(nuevo);
+    condeso33.setFijos(false);
+    condeso33.setAntiguedad(LocalDate.now());
+    condeso33.setDondePuedeTrabajar(tiendas);
+    HibernateCrud.SaveCondeso(condeso33);
 
+    Condeso condeso34 = new Condeso();
+    condeso34.setId(122);
+    condeso34.setNombre("Eden Gonzalez");
+    condeso34.setAbreviacion("EG");
+    condeso34.setMasculino(true);
+    condeso34.setFemenino(false);
+    condeso34.setContrato(otros);
+    condeso34.setLunch(true);
+    condeso34.setTarde(true);
+    condeso34.setManana(true);
+    condeso34.setColor("#41f48e");
+    condeso34.setCaja(false);
+    condeso34.setLevel(1);
+    condeso34.setTipo(nuevo);
+    condeso34.setFijos(false);
+    condeso34.setAntiguedad(LocalDate.now());
+    condeso34.setDondePuedeTrabajar(tiendas);
+    HibernateCrud.SaveCondeso(condeso34);
+
+    Condeso condeso35 = new Condeso();
+    condeso35.setId(123);
+    condeso35.setNombre("Jimena Lopez");
+    condeso35.setAbreviacion("JL");
+    condeso35.setMasculino(true);
+    condeso35.setFemenino(false);
+    condeso35.setContrato(minijob);
+    condeso35.setLunch(true);
+    condeso35.setTarde(true);
+    condeso35.setManana(true);
+    condeso35.setColor("#41f48e");
+    condeso35.setCaja(false);
+    condeso35.setLevel(1);
+    condeso35.setTipo(nuevo);
+    condeso35.setFijos(false);
+    condeso35.setAntiguedad(LocalDate.now());
+    condeso35.setDondePuedeTrabajar(haupt);
+    HibernateCrud.SaveCondeso(condeso35);
+
+    Condeso condeso36 = new Condeso();
+    condeso36.setId(124);
+    condeso36.setNombre("Livier Sosa");
+    condeso36.setAbreviacion("lS");
+    condeso36.setMasculino(true);
+    condeso36.setFemenino(false);
+    condeso36.setContrato(minijob);
+    condeso36.setLunch(true);
+    condeso36.setTarde(true);
+    condeso36.setManana(true);
+    condeso36.setColor("#41f48e");
+    condeso36.setCaja(false);
+    condeso36.setLevel(1);
+    condeso36.setTipo(nuevo);
+    condeso36.setFijos(false);
+    condeso36.setAntiguedad(LocalDate.now());
+    condeso36.setDondePuedeTrabajar(tiendas);
+    HibernateCrud.SaveCondeso(condeso36);
+
+    Condeso condeso37 = new Condeso();
+    condeso37.setId(125);
+    condeso37.setNombre("Eva Rodriguez");
+    condeso37.setAbreviacion("ER");
+    condeso37.setMasculino(true);
+    condeso37.setFemenino(false);
+    condeso37.setContrato(otros);
+    condeso37.setLunch(true);
+    condeso37.setTarde(true);
+    condeso37.setManana(true);
+    condeso37.setColor("#41f48e");
+    condeso37.setCaja(false);
+    condeso37.setLevel(1);
+    condeso37.setTipo(nuevo);
+    condeso37.setFijos(false);
+    condeso37.setAntiguedad(LocalDate.now());
+    condeso37.setDondePuedeTrabajar(tiendas);
+    HibernateCrud.SaveCondeso(condeso37);
+
+    Condeso condeso38 = new Condeso();
+    condeso38.setId(126);
+    condeso38.setNombre("Jonathan Tovar");
+    condeso38.setAbreviacion("JT");
+    condeso38.setMasculino(true);
+    condeso38.setFemenino(false);
+    condeso38.setContrato(otros);
+    condeso38.setLunch(true);
+    condeso38.setTarde(true);
+    condeso38.setManana(true);
+    condeso38.setColor("#41f48e");
+    condeso38.setCaja(false);
+    condeso38.setLevel(1);
+    condeso38.setTipo(nuevo);
+    condeso38.setFijos(false);
+    condeso38.setAntiguedad(LocalDate.now());
+    condeso38.setDondePuedeTrabajar(tiendas);
+    HibernateCrud.SaveCondeso(condeso38);
+
+    Condeso condeso39 = new Condeso();
+    condeso39.setId(127);
+    condeso39.setNombre("Luisa Toledo");
+    condeso39.setAbreviacion("LT");
+    condeso39.setMasculino(true);
+    condeso39.setFemenino(false);
+    condeso39.setContrato(otros);
+    condeso39.setLunch(true);
+    condeso39.setTarde(true);
+    condeso39.setManana(true);
+    condeso39.setColor("#41f48e");
+    condeso39.setCaja(false);
+    condeso39.setLevel(1);
+    condeso39.setTipo(nuevo);
+    condeso39.setFijos(false);
+    condeso39.setAntiguedad(LocalDate.now());
+    condeso39.setDondePuedeTrabajar(tiendas);
+    HibernateCrud.SaveCondeso(condeso39);
   }
 
   public void testCreateHorario() {

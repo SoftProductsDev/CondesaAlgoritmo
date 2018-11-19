@@ -152,7 +152,7 @@ private static int ignore(String input, char toIgnore){
 
 private static int ignore(String input, char toIgnore, int from){
     int i = from;
-    while(input.charAt(i) == toIgnore){
+    while(i < input.length() && input.charAt(i) == toIgnore){
         i++;
     }
     return i;

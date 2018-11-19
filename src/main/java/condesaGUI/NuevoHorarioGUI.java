@@ -59,6 +59,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     @FXML private TableColumn<Condeso, String> gmAbreviación;
     @FXML private DatePicker mesDeInicioPicker;
     @FXML private Button importarButton;
+    @FXML private Button regresarButton;
 
 
     private ObservableList<LocalDate> diasDeCierre = null;
@@ -96,6 +97,10 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             hasmapDisponibilidad.put(disponibilidadUnCondeso.getId(),disponibilidadUnCondeso.getDisponibilidad());
         }
         return hasmapDisponibilidad;
+    }
+
+    public void regresarClicked(ActionEvent actionEvent){
+
     }
 
     public void eliminarClicked(ActionEvent actionEvent) {
