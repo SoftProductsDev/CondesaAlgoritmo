@@ -152,7 +152,7 @@ private static int ignore(String input, char toIgnore){
 
 private static int ignore(String input, char toIgnore, int from){
     int i = from;
-    while(input.charAt(i) == toIgnore){
+    while(i < input.length() && input.charAt(i) == toIgnore){
         i++;
     }
     return i;
@@ -305,7 +305,7 @@ try{
       j = subString(line, i, '\t');
       mes = line.substring(i, j);
       mes = mes.toUpperCase();
-      month = Month.valueOf(mes);
+//      month = Month.valueOf(mes);
       buffer.readLine();
       buffer.readLine();
       parseTurnosGMs(buffer.readLine(), buffer.readLine(), buffer.readLine(), buffer.readLine(), date,  GMs,
