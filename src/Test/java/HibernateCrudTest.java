@@ -15,7 +15,7 @@ import junit.framework.TestCase;
 import javax.print.CancelablePrintJob;
 import java.time.LocalDate;
 
-public class HibernateCrudTest extends TestCase {
+/*public class HibernateCrudTest extends TestCase {
 
   public void testGet() {
     List<Condeso> condesos = DbController.HibernateCrud.GetAllCondesos();
@@ -2094,4 +2094,4 @@ public class HibernateCrudTest extends TestCase {
 
   }
 
-}
+}*/
