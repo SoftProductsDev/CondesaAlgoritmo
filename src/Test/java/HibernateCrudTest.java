@@ -1116,7 +1116,7 @@ public class HibernateCrudTest extends TestCase {
     condeso9.setAbreviacion("PG");
     condeso9.setMasculino(true);
     condeso9.setFemenino(false);
-    condeso9.setContrato(minijob);
+    condeso9.setContrato(otros);
     condeso9.setLunch(true);
     condeso9.setTarde(true);
     condeso9.setManana(true);
@@ -1439,7 +1439,7 @@ public class HibernateCrudTest extends TestCase {
     condeso26.setAbreviacion("JV");
     condeso26.setMasculino(true);
     condeso26.setFemenino(false);
-    condeso26.setContrato(minijob);
+    condeso26.setContrato(otros);
     condeso26.setLunch(true);
     condeso26.setTarde(true);
     condeso26.setManana(true);
@@ -1477,7 +1477,7 @@ public class HibernateCrudTest extends TestCase {
     condeso28.setAbreviacion("MM");
     condeso28.setMasculino(false);
     condeso28.setFemenino(true);
-    condeso28.setContrato(otros);
+    condeso28.setContrato(minijob);
     condeso28.setLunch(true);
     condeso28.setTarde(true);
     condeso28.setManana(true);

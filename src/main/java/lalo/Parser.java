@@ -305,7 +305,7 @@ try{
       j = subString(line, i, '\t');
       mes = line.substring(i, j);
       mes = mes.toUpperCase();
-      month = Month.valueOf(mes);
+//      month = Month.valueOf(mes);
       buffer.readLine();
       buffer.readLine();
       parseTurnosGMs(buffer.readLine(), buffer.readLine(), buffer.readLine(), buffer.readLine(), date,  GMs,
