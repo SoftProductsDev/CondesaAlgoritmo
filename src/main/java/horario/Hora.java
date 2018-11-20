@@ -48,12 +48,19 @@ public class Hora {
             else countNoOcupados++;
         }
 
-        minimo = (minimo-ocupados+countNoOcupados-1)/countNoOcupados;
-        if(nivelUno && minimo <= 1) minimo++;
+        if(countNoOcupados != 0) {
+            minimo = (minimo - ocupados + countNoOcupados - 1) / countNoOcupados;
+            if (nivelUno && minimo <= 1) minimo++;
 
-        for(Turnos turno : colisiones){
-            if(!turno.isOcupado()) turno.setMinimo(minimo);
+            for (Turnos turno : colisiones) {
+                if (!turno.isOcupado()) turno.setMinimo(minimo);
+            }
+        }else{
+           for(Turnos turno : colisiones){
+
+           }
         }
+
 
 
     }

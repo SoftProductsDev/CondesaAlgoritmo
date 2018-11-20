@@ -104,7 +104,7 @@ public class Turnos implements Comparable<Turnos> {
 
 	public void change(){
 		for(Hora laHora : misHoras){
-			laHora.change(this);
+  			laHora.change(this);
 		}
 	}
 

@@ -40,7 +40,7 @@ public class Dias {
     @Transient
     private Tiendas tienda;
     @Transient
-    private HashMap<Integer, Hora> horas;
+    private HashMap<Integer, Hora> horas = new HashMap<>();
     @Transient
     private float promedioMinimo;
 

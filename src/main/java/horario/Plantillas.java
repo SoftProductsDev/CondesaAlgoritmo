@@ -80,7 +80,9 @@ public class Plantillas {
 			elDia = generateDay(date2, this.dias, laTienda);
 			}else{
 				laTienda.getMaster().getMes().put(date2, null);
+				elDia = null;
 			}
+			if(elDia != null) elDia.setHoras();
 		}
 		return laTienda.getMaster();
  	}
