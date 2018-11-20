@@ -7,7 +7,9 @@ import horario.Turnos;
 import horario.TipoTurno;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.util.*;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -48,8 +50,7 @@ public class AddPopOverGUI implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    ObservableList<TipoTurno> turnos = FXCollections.observableArrayList(TipoTurno.values());
-    tipoChoice.setItems(turnos);
+
   }
 
   public void setInitialValues(GridPane grid, Dias dia, ObservableList<Condeso> condesos,
@@ -58,7 +59,33 @@ public class AddPopOverGUI implements Initializable {
     this.dia = dia;
     this.tiendas = tiendas;
     this.condesos = condesos;
+    ObservableList<TipoTurno> turnos = FXCollections.observableArrayList(TipoTurno.values());
+    condesoTodosChoice.setItems(condesos);
+    Map<LocalDate, Dias> master = new HashMap<>();
+    Dias diaD =  new Dias();
+    Set<Turnos> turnosX = new HashSet<>();
+    List<Condeso> aBorrar = new ArrayList<>();
+    for(Tiendas tienda:tiendas){
+      master = tienda.getMaster().getMes();
+      diaD = master.get(LocalDate.of(dia.getDate().getYear(),dia.getDate().getMonth(),  dia.getDate().getDayOfMonth()));
+      if (diaD != null) {
+        turnosX = diaD.getTurnos();
+        for(Turnos turnoD:turnosX){
+          if(turnoD.getCondeso() != null){
+            for(Condeso condeso:condesos){
+              if(condeso.getId() == turnoD.getCondeso().getId()){
+                aBorrar.add(condeso);
+                break;
+              }
+            }
+          }
+        }
+      }
+
+    }
+    this.condesos.removeAll(aBorrar);
     condesoChoice.setItems(condesos);
+    tipoChoice.setItems(turnos);
   }
 
   private Label createLabel(Turnos turno) {

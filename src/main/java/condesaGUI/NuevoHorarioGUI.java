@@ -135,7 +135,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             tiendasALL2.addAll(allTiendas);
             lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha,turnosExtras);
 
-            BufferedImage img = ImageIO.read(new File("lalopensando.jpg"));
+            BufferedImage img = ImageIO.read(new File("/resources/lalopensando.jpg"));
             JFrame frame = new JFrame("Lalo Pensando");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setContentPane(new JLabel(new ImageIcon(img)));

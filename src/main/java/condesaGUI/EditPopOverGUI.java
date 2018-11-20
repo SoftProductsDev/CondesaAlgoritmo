@@ -19,9 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import org.controlsfx.control.PopOver;
@@ -73,10 +71,10 @@ public class EditPopOverGUI  implements Initializable {
         }
 
     }
+    condesoTodosChoice.setItems(FXCollections.observableArrayList(condesos));
     this.condesos.removeAll(aBorrar);
     inicioField.setText(Integer.toString(turno.getInicio()));
     finField.setText(Integer.toString(turno.getFin()));
-    condesoChoice.setItems(condesos);
     condesoChoice.getSelectionModel().select(turno.getCondeso() );
     ObservableList<Condeso> list = FXCollections.observableArrayList(this.condesos);
     condesoChoice.setItems(list);
@@ -85,7 +83,32 @@ public class EditPopOverGUI  implements Initializable {
   public void applyChange(ActionEvent actionEvent) {
     turno.setInicio(Integer.parseInt(inicioField.getText()));
     turno.setFin(Integer.parseInt(finField.getText()));
-    turno.setCondeso(condesoChoice.getSelectionModel().getSelectedItem());
+    if(condesoTodosChoice.getSelectionModel().getSelectedItem() != null && condesoChoice.getSelectionModel().getSelectedItem() != null){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("2 condesos con el mismo turno");
+        alert.setHeaderText("Hay 2 condesos con el mismo turno y debes elegir uno,");
+        alert.setContentText("los condesos son los siguientes:");
+
+        ButtonType buttonTypeOne = new ButtonType(condesoTodosChoice.getSelectionModel().getSelectedItem().getNombre());
+        ButtonType buttonTypeTwo = new ButtonType(condesoChoice.getSelectionModel().getSelectedItem().getNombre());
+
+        alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeOne){
+          turno.setCondeso(condesoTodosChoice.getSelectionModel().getSelectedItem());
+        } else if (result.get() == buttonTypeTwo) {
+          turno.setCondeso(condesoChoice.getSelectionModel().getSelectedItem());
+        } else {
+          Alert alertFinal = new Alert(Alert.AlertType.CONFIRMATION);
+          alertFinal.setTitle("No se selecciono ninguno");
+          alertFinal.setHeaderText("No se ha seleccionado ningun condeso\n por lo tanto no habra cambio en el turno.");
+        }
+    }else if(condesoTodosChoice.getSelectionModel().getSelectedItem() != null){
+      turno.setCondeso(condesoTodosChoice.getSelectionModel().getSelectedItem());
+    }else{
+      turno.setCondeso(condesoChoice.getSelectionModel().getSelectedItem());
+    }
     grid.getChildren().remove(label);
     //considering the first hour is 8 am
     int hourIndex = turno.getInicio() - 7;
