@@ -36,6 +36,7 @@ public class EditPopOverGUI  implements Initializable {
   private GridPane grid;
   private Label label;
   private ObservableList<Condeso> condesos;
+  @FXML private ChoiceBox<Condeso> condesoTodosChoice;
   private ObservableList<Tiendas> tiendas;
 
   @Override

@@ -29,6 +29,7 @@ public class AddPopOverGUI implements Initializable {
   @FXML private TextField inicioField;
   @FXML private TextField finField;
   @FXML private ChoiceBox<Condeso> condesoChoice;
+  @FXML private ChoiceBox<Condeso> condesoTodosChoice;
   private GridPane gridPane;
   private Dias dia;
   private ObservableList<Condeso> condesos;

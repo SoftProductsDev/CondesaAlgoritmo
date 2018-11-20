@@ -8,19 +8,21 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<Accordion maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="217.0" prefWidth="110.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.EditPopOverGUI">
+<Accordion maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="110.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.EditPopOverGUI">
   <panes>
     <TitledPane animated="false" expanded="true" text="Editar">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="166.0" prefWidth="108.0">
                <children>
-                  <Button fx:id="aplicarButton" layoutX="4.0" layoutY="127.0" mnemonicParsing="false" onAction="#applyChange" text="Aplicar cambio" />
-                  <Label layoutX="15.0" layoutY="75.0" text="Inicio" />
-                  <Label layoutX="21.0" layoutY="104.0" text="Fin" />
-                  <TextField fx:id="inicioField" layoutX="55.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
-                  <TextField fx:id="finField" layoutX="54.0" layoutY="100.0" prefHeight="25.0" prefWidth="47.0" />
-                  <ChoiceBox fx:id="condesoChoice" layoutX="6.0" layoutY="38.0" prefHeight="25.0" prefWidth="99.0" />
-                  <Label layoutX="32.0" layoutY="14.0" text="Condeso" />
+                  <ChoiceBox fx:id="condesoTodosChoice" layoutX="5.0" layoutY="70.0" prefHeight="25.0" prefWidth="99.0" />
+                  <Button fx:id="aplicarButton" layoutX="4.0" layoutY="160.0" mnemonicParsing="false" onAction="#applyChange" text="Aplicar cambio" />
+                  <Label layoutX="15.0" layoutY="105.0" text="Inicio" />
+                  <Label layoutX="21.0" layoutY="135.0" text="Fin" />
+                  <TextField fx:id="inicioField" layoutX="55.0" layoutY="100.0" prefHeight="25.0" prefWidth="46.0" />
+                  <TextField fx:id="finField" layoutX="54.0" layoutY="130.0" prefHeight="25.0" prefWidth="47.0" />
+                  <ChoiceBox fx:id="condesoChoice" layoutX="6.0" layoutY="25.0" prefHeight="25.0" prefWidth="99.0" />
+                  <Label layoutX="10.0" layoutY="5.0" text="Condesos libres" />
+                  <Label layoutX="10.0" layoutY="55.0" text="Condesos todos" />
                </children></AnchorPane>
       </content>
     </TitledPane>
