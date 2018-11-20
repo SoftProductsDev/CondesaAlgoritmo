@@ -57,7 +57,7 @@ public class Turnos implements Comparable<Turnos> {
 	@Transient
 	private boolean noOptions = false;
 	@Transient
-	private int minimo;
+	private int minimo = 1;
 	@Transient
 	private Dias elDia;
 	@Transient
@@ -232,6 +232,15 @@ public class Turnos implements Comparable<Turnos> {
 
 	public boolean isG(){
 		if(tipoTurno == TipoTurno.G) return true;
+		return false;
+	}
+
+	public boolean getMin(int level) {
+		minimo = 1;
+		for(Hora laHora: misHoras){
+			laHora.change2(this);
+		}
+		if(minimo <= level) return true;
 		return false;
 	}
 }

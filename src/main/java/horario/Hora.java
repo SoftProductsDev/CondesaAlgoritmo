@@ -7,6 +7,7 @@ public class Hora {
     private float promedio;
     private Dias elDia;
     private List<Turnos> colisiones;
+    private boolean nivelUno = false;
 
     private Dias getElDia(){return elDia;}
 
@@ -40,7 +41,6 @@ public class Hora {
         int ocupados = 0;
         int minimo = (int)(promedio*colisiones.size());
         int countNoOcupados = 0;
-        boolean nivelUno = false;
         for(Turnos turno : colisiones){
             if(turno.isOcupado()){
                 ocupados += turno.getCondeso().getLevel();
@@ -55,13 +55,16 @@ public class Hora {
             for (Turnos turno : colisiones) {
                 if (!turno.isOcupado()) turno.setMinimo(minimo);
             }
-        }else{
-           for(Turnos turno : colisiones){
-
-           }
         }
 
+    }
 
+
+    public void change2(Turnos elTurno) {
+        elTurno.resetMinimo();
+        if(nivelUno){elTurno.setMinimo(2);
+        return;
+        }
 
     }
 
