@@ -100,7 +100,19 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     }
 
     public void regresarClicked(ActionEvent actionEvent){
-
+        String sceneFile = "/frontGUI.fxml";
+        Parent root = null;
+        URL url  = null;
+        try {
+            url  = getClass().getResource( sceneFile );
+            root = FXMLLoader.load( url );
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
+                Screen.getPrimary().getVisualBounds().getMaxY()));
+            stage.show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void eliminarClicked(ActionEvent actionEvent) {

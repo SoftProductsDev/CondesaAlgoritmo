@@ -1,5 +1,6 @@
 package condesaGUI;
 
+import DbModel.HibernateUtil;
 import java.net.URL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -38,4 +39,15 @@ public class MainGUI extends Application {
             Screen.getPrimary().getVisualBounds().getMaxY()));
         primaryStage.show();
     }
+
+    @Override
+    public void stop(){
+        HibernateUtil.shutdown();
+        try {
+            super.stop();
+        }catch (Exception e){
+           System.out.println(e.getMessage());
+        }
+    }
+
 }
