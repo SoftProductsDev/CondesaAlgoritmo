@@ -49,6 +49,7 @@ public class EditPopOverGUI  implements Initializable {
     this.label = label;
     this.tiendas = tiendas;
     this.condesos = FXCollections.observableArrayList(condesos);
+    condesoTodosChoice.setItems(FXCollections.observableArrayList(condesos));
     Map<LocalDate, Dias> master = new HashMap<>();
     Dias diaD =  new Dias();
     Set<Turnos> turnos = new HashSet<>();
@@ -71,7 +72,6 @@ public class EditPopOverGUI  implements Initializable {
         }
 
     }
-    condesoTodosChoice.setItems(FXCollections.observableArrayList(condesos));
     this.condesos.removeAll(aBorrar);
     inicioField.setText(Integer.toString(turno.getInicio()));
     finField.setText(Integer.toString(turno.getFin()));
