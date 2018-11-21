@@ -4,7 +4,9 @@ import DbController.HibernateCrud;
 import condeso.Condeso;
 import condeso.Contrato;
 import condeso.TipoEmpleado;
-import java.util.List;
+
+import java.util.*;
+
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -33,9 +35,7 @@ import javafx.util.Callback;
 import tiendas.Tiendas;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.ResourceBundle;
+
 import org.hibernate.Hibernate;
 
 public class CondesoGUI  extends Application implements Initializable {
@@ -311,10 +311,25 @@ public class CondesoGUI  extends Application implements Initializable {
     }
 
     public void deleteButtonClicked(ActionEvent actionEvent) {
-        Condeso condeso = tableView.getSelectionModel().getSelectedItem();
-        HibernateCrud.DeleteCondeso(condeso);
-        condesos.remove(condeso);
-        tableView.getItems().setAll(condesos);//TODO
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("CUIDADO!!");
+            alert.setHeaderText("Al eliminar un condeso\n este se borrara permanentemente\n de la base de datos y su informacion se perdera.");
+            alert.setContentText("Seguro que deseas eliminar a \n" + tableView.getSelectionModel().getSelectedItem().getNombre() + " permanentemente ?");
+
+            ButtonType buttonTypeOne = new ButtonType("Si");
+            ButtonType buttonTypeTwo = new ButtonType("No");
+
+            alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == buttonTypeOne){
+                Condeso condeso = tableView.getSelectionModel().getSelectedItem();
+                HibernateCrud.DeleteCondeso(condeso);
+                condesos.remove(condeso);
+                tableView.getItems().setAll(condesos);//TODO
+            } else if (result.get() == buttonTypeTwo) {
+            } else {
+            }
     }
 
     public void updateButtonClicked(ActionEvent actionEvent) {
