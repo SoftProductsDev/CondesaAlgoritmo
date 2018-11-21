@@ -99,20 +99,8 @@ public class NuevoHorarioGUI extends Application implements Initializable {
         return hasmapDisponibilidad;
     }
 
-    public void regresarClicked(ActionEvent actionEvent){
-        String sceneFile = "/frontGUI.fxml";
-        Parent root = null;
-        URL url  = null;
-        try {
-            url  = getClass().getResource( sceneFile );
-            root = FXMLLoader.load( url );
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
-                Screen.getPrimary().getVisualBounds().getMaxY()));
-            stage.show();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+    public void regresarClicked(ActionEvent actionEvent) throws Exception {
+        CloseOpenWindow("/frontGUI.fxml");
     }
 
     public void eliminarClicked(ActionEvent actionEvent) {
@@ -148,7 +136,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
 
             lalo.start();
             frame.setVisible(false);
-            //CloseOpenWindow("/frontGUI.fxml");
+            CloseOpenWindow("/frontGUI.fxml");
         }
     }
 
