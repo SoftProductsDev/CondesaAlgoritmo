@@ -123,7 +123,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             tiendasALL2.addAll(allTiendas);
             lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha,turnosExtras);
 
-            BufferedImage img = ImageIO.read(new File("/resources/lalopensando.jpg"));
+            BufferedImage img = ImageIO.read(new File("lalopensando.jpg"));
             JFrame frame = new JFrame("Lalo Pensando");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setContentPane(new JLabel(new ImageIcon(img)));
@@ -240,6 +240,12 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             tiendasPlantilla.setCellValueFactory(new PropertyValueFactory<Tiendas, Plantillas>("plantilla"));
             condesosTable.getItems().setAll(foundCondesos);
             tiendasTable.getItems().setAll(allTiendas);
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("AVISO!");
+            alert.setHeaderText("No se selecciono fecha de inicio del mes! ");
+            alert.setContentText(null);
+            alert.showAndWait();
         }
     }
 
