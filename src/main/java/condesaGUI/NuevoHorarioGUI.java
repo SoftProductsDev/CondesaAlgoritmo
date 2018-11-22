@@ -2,6 +2,7 @@ package condesaGUI;
 
 
 import DbController.HibernateCrud;
+import ExcelController.ExcelWriter;
 import condeso.Condeso;
 import horario.Plantillas;
 import horario.Turnos;
@@ -27,6 +28,7 @@ import javafx.stage.Stage;
 import lalo.Disponibilidad;
 import lalo.Parser;
 import lalo.lalo;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import tiendas.Tiendas;
 import condesaGUI.FrontGUI;
 
@@ -64,9 +66,9 @@ public class NuevoHorarioGUI extends Application implements Initializable {
 
     private ObservableList<LocalDate> diasDeCierre = null;
     private List<LocalDate> dias = new ArrayList<>();
-    private List<Condeso> allCondesos = DbController.HibernateCrud.GetAllCondesos();
+    private List<Condeso> allCondesos ;
     private Set<Condeso> foundCondesos = new HashSet<>();
-    private List<Tiendas> allTiendas = DbController.HibernateCrud.GetAllTiendas();
+    private List<Tiendas> allTiendas;
     private Set<Disponibilidad> horario;
     private Set<Condeso> gms;
     private LocalDate date;
@@ -89,6 +91,22 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+    }
+
+    public void setInitialValues(List<Condeso> condesos, List<Tiendas> tiendas){
+        allCondesos = condesos;
+        allTiendas = tiendas;
+        condesoName.setCellValueFactory(new PropertyValueFactory<Condeso, String>("nombre"));
+        condesoID.setCellValueFactory(new PropertyValueFactory<Condeso, Long>("Id"));
+        condesoAbreviación.setCellValueFactory(new PropertyValueFactory<Condeso, String>("abreviacion"));
+        tiendasName.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("nombre"));
+        tiendasPlantilla.setCellValueFactory(new PropertyValueFactory<Tiendas, Plantillas>("plantilla"));
+        condesosTable.getItems().setAll(foundCondesos);
+        tiendasTable.getItems().setAll(allTiendas);
+        tiendasTable.getSelectionModel().selectedItemProperty().addListener((obs, newSelection,
+            oldSelection) -> {
+            loadFechasDeCierreUpdate();
+        });
     }
 
     public HashMap<Integer, Integer[][]> changeSetToHashMap(Set<Disponibilidad> disponibilidad){
@@ -123,7 +141,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             tiendasALL2.addAll(allTiendas);
             lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha,turnosExtras);
 
-            BufferedImage img = ImageIO.read(new File("lalopensando.jpg"));
+            /*BufferedImage img = ImageIO.read(new File("lalopensando.jpg"));
             JFrame frame = new JFrame("Lalo Pensando");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setContentPane(new JLabel(new ImageIcon(img)));
@@ -132,11 +150,25 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             gbc.gridwidth = GridBagConstraints.REMAINDER;
             frame.pack();
             frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
+            frame.setVisible(true);*/
 
-            lalo.start();
-            frame.setVisible(false);
-            CloseOpenWindow("/frontGUI.fxml");
+            var wd = new WorkIndicatorDialog(this.iniciarButton.getScene().getWindow(), "Creando horarios...");
+
+            wd.addTaskEndNotification(result -> {
+                System.out.println(result);
+                //wd=null; // don't keep the object, cleanup
+                try {
+                    CloseOpenWindow("/frontGUI.fxml");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+
+            wd.exec("123", inputParam -> {
+                lalo.start();
+                return (1);
+            });
+            //frame.setVisible(false);
         }
     }
 
@@ -256,17 +288,6 @@ public class NuevoHorarioGUI extends Application implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        condesoName.setCellValueFactory(new PropertyValueFactory<Condeso, String>("nombre"));
-        condesoID.setCellValueFactory(new PropertyValueFactory<Condeso, Long>("Id"));
-        condesoAbreviación.setCellValueFactory(new PropertyValueFactory<Condeso, String>("abreviacion"));
-        tiendasName.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("nombre"));
-        tiendasPlantilla.setCellValueFactory(new PropertyValueFactory<Tiendas, Plantillas>("plantilla"));
-        condesosTable.getItems().setAll(foundCondesos);
-        tiendasTable.getItems().setAll(allTiendas);
-        tiendasTable.getSelectionModel().selectedItemProperty().addListener((obs, newSelection,
-                                                                          oldSelection) -> {
-            loadFechasDeCierreUpdate();
-        });
     }
 
     private void loadFechasDeCierreUpdate() {

@@ -2,11 +2,13 @@ package condesaGUI;
 
 import DbController.HibernateCrud;
 import DbModel.HibernateUtil;
+import ExcelController.ExcelWriter;
 import condeso.Condeso;
 import horario.Dias;
 import horario.HorarioMaster;
 import horario.TipoTurno;
 import horario.Turnos;
+import java.io.File;
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -34,6 +36,8 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -41,6 +45,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.stage.Window;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import tiendas.Tiendas;
@@ -270,7 +275,7 @@ public class FrontGUI extends Application implements Initializable {
   }
 
   public void TiendasClicked(ActionEvent actionEvent) throws Exception {
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tiendasGUI.fxml"));  //TODO Example
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tiendasGUI.fxml"));
     Parent root = null;
     String sceneFile = "/tiendasGUI.fxml";
     URL url  = null;
@@ -296,35 +301,19 @@ public class FrontGUI extends Application implements Initializable {
 
   private void CloseOpenWindow(String filename) throws Exception{
     ((Stage)tiendasComboBox.getScene().getWindow()).close();
-    String sceneFile = filename;
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(filename));
     Parent root = null;
-    URL url  = null;
     try {
-      url  = getClass().getResource( sceneFile );
-      root = FXMLLoader.load( url );
-      Stage stage = new Stage();
-      stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
-              Screen.getPrimary().getVisualBounds().getMaxY()));
-      stage.show();
-    } catch(Exception e) {
+      root = (Parent) fxmlLoader.load();
+    } catch (IOException e) {
       e.printStackTrace();
     }
-  }
-
-  private void OpenNewWindow(String filename) throws Exception{
-    String sceneFile = filename;
-    Parent root = null;
-    URL url  = null;
-    try {
-      url  = getClass().getResource( sceneFile );
-      root = FXMLLoader.load( url );
-      Stage stage = new Stage();
-      stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
-          Screen.getPrimary().getVisualBounds().getMaxY()));
-      stage.show();
-    } catch(Exception e) {
-      e.printStackTrace();
-    }
+    Stage stage = new Stage();
+    stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
+        Screen.getPrimary().getVisualBounds().getMaxY()));
+    stage.show();
+    NuevoHorarioGUI nuevoHorarioGUI = (NuevoHorarioGUI) fxmlLoader.getController();
+    nuevoHorarioGUI.setInitialValues(condesos, tiendas);
   }
 
   public void monthBackButton(ActionEvent actionEvent) {
@@ -443,6 +432,33 @@ public class FrontGUI extends Application implements Initializable {
     for (Tiendas t:tiendas
     ) {
       HibernateCrud.UpdateMultipleTiendas(tiendas);
+    }
+  }
+
+  public void writeExcel(ActionEvent actionEvent) {
+    DirectoryChooser directoryChooser = new DirectoryChooser();
+    directoryChooser.setTitle("Open Resource File");
+    File f = directoryChooser.showDialog(monthGrid.getScene().getWindow());
+    if (f == null){}
+    else {
+      var wd = new WorkIndicatorDialog(this.monthGrid.getScene().getWindow(), "Creando Excel...");
+
+      wd.addTaskEndNotification(result -> {
+        System.out.println(result);
+        //wd=null; // don't keep the object, cleanup
+      });
+
+      wd.exec("123", inputParam -> {
+        ExcelWriter excelWriter = new ExcelWriter(tiendas, condesos, calendar, f.getAbsolutePath());
+        try {
+          excelWriter.createHorarioMasterExcel();
+        } catch (IOException e) {
+          e.printStackTrace();
+        } catch (InvalidFormatException e) {
+          e.printStackTrace();
+        }
+        return (1);
+      });
     }
   }
 }

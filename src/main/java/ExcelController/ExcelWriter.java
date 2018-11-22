@@ -38,9 +38,10 @@ public class  ExcelWriter {
   private List<Tiendas> tiendas;
   private List<Condeso> condesos;
   private LocalDate calendar;
+  private String path;
   private Row[] hourRows;
 
-  public ExcelWriter(List<Tiendas> tiendas,List<Condeso> condesos,LocalDate calendar){
+  public ExcelWriter(List<Tiendas> tiendas,List<Condeso> condesos,LocalDate calendar, String path){
     workbookMaster = new XSSFWorkbook();
     workbookCondesos = new XSSFWorkbook();
     borders = createBordersStyle(workbookMaster);
@@ -48,6 +49,7 @@ public class  ExcelWriter {
     this.tiendas = tiendas;
     this.condesos = condesos;
     this.calendar = calendar;
+    this.path = path;
   }
 
   private Row[] createHourRows(int startingRow, Sheet sheet) {
@@ -74,7 +76,7 @@ public class  ExcelWriter {
     return borders;
   }
 
-  public void CreateHorarioMasterExcel()
+  public void createHorarioMasterExcel()
       throws IOException, InvalidFormatException {
 
     CreationHelper createHelper = workbookMaster.getCreationHelper();
@@ -99,7 +101,7 @@ public class  ExcelWriter {
 
     // Write the output to a file
     //Tambien puede especificar el path ("C:\\Report\\TestCase.xlsx"));
-    FileOutputStream fileOut = new FileOutputStream("Plan " + calendar.getMonth().getDisplayName
+    FileOutputStream fileOut = new FileOutputStream(path + "\\Plan " + calendar.getMonth().getDisplayName
         (TextStyle.FULL, Locale.GERMAN) + ".xlsx");
     workbookMaster.write(fileOut);
     fileOut.close();
@@ -123,6 +125,7 @@ public class  ExcelWriter {
       int dayOfMonthRow = 3;
       int dayOfWeekRow = 2;
       int turnosRegRow = 5;
+      column = ogColumn;
       for (int i = 1; i <= calendar.getMonth().length(calendar.isLeapYear()); i++)
       {
         setLettersUP(sheet, column, lettersRow, borders);
@@ -134,7 +137,7 @@ public class  ExcelWriter {
           dayOfMonthRow += 20;
           dayOfWeekRow += 20;
           turnosRegRow += 20;
-          column = ogColumn;
+          column = ogColumn - 8;
         }
         column += 8;
       }
@@ -151,8 +154,15 @@ public class  ExcelWriter {
     for (int i = 1; i <= calendar.getMonth().length(calendar.isLeapYear()); i++)
     {
       setLettersUP(sheet, column, lettersRow, borders);
-      setDayOfWeek(calendar.withDayOfMonth(i).getDayOfWeek(), sheet, column,dayOfWeekRow, workbookMaster);
+      DayOfWeek weekDay = calendar.withDayOfMonth(i).getDayOfWeek();
+      setDayOfWeek(weekDay, sheet, column,dayOfWeekRow, workbookMaster);
       setDayOfMonth(calendar.withDayOfMonth(i), sheet, column, dayOfMonthRow, workbookMaster);
+      if(weekDay == DayOfWeek.SUNDAY){
+        createHourList(sheet,column + 7);
+      }
+      else {
+        sheet.setColumnWidth(column + 7, 1700);
+      }
       setTurnosRegion(sheet, column, turnosRegRow);
       Map<LocalDate, Dias> mes = master.getMes();
       Dias dia = mes.get(calendar.withDayOfMonth(i));
@@ -170,8 +180,8 @@ public class  ExcelWriter {
   }
 
   private void setTurno(Turnos turno, int column, int row ,Sheet sheet) {
-    int hourIndex = -4 + turno.getInicio();
-    for (int i = 0; i <= turno.getDuracion(); i++){
+    int hourIndex = -3 + turno.getInicio();
+    for (int i = 1; i <= turno.getDuracion(); i++){
       Cell cell = sheet.getRow(hourIndex).getCell(
           column + turno.getTipoTurno().ordinal() + 1);
       if (cell == null){
@@ -266,6 +276,8 @@ public class  ExcelWriter {
        Row r = hourRows[i];
        Cell cell = r.createCell(column);
        cell.setCellValue(row);
+      cell.setCellStyle(centerStyle(workbookMaster));
+      sheet.setColumnWidth(i + column, 1700);
        i++;
     }
   }
@@ -279,7 +291,7 @@ public class  ExcelWriter {
 
   private void setTurnosRegion(Sheet sheet, int column, int row){
     CellRangeAddress turnosRegion = new CellRangeAddress(
-        row,row + 14,column,column + 6
+        row,row + 15,column,column + 6
     );
     setRegionBorderWithMedium(turnosRegion, sheet);
   }
@@ -292,8 +304,8 @@ public class  ExcelWriter {
 
   public static void main(String[] args) throws IOException, InvalidFormatException{
     ExcelWriter excelWriter = new ExcelWriter(HibernateCrud.GetAllTiendas(),HibernateCrud.GetAllCondesos(),
-        LocalDate.of(2018,11,1));
-    excelWriter.CreateHorarioMasterExcel();
+        LocalDate.of(2018,11,1), "");
+    excelWriter.createHorarioMasterExcel();
     HibernateUtil.shutdown();
   }
 
