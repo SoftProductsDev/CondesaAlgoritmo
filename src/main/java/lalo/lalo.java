@@ -1,6 +1,10 @@
 package lalo;
 
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
@@ -139,11 +143,11 @@ public class lalo {
 
 
 
-	public void start(){
+	public void start() throws IOException {
 		laloFuncionando();
 	}
 
-	public void laloFuncionando() {
+	public void laloFuncionando() throws IOException {
 		/*
 		for(Condeso condeso:condesos){
 			condeso.setHorasAsignadas(0);
@@ -203,21 +207,26 @@ public class lalo {
 			HibernateCrud.UpdateCondeso(condeso);
 		}
 */
-		System.out.println();
+		File file = new File("Stats.txt");
+		String all = "";
+		/*System.out.println();
 		System.out.println("Turnos totales: " + (count+count2+countFijos));
 		System.out.println("Turnos totales asignados: " + (count+countFase2));
 		System.out.println("Asignados Fase1: " + count);
 		System.out.println("Asignados Fase2: "+ countFase2);
-		System.out.println("No asignados: " + (count2-countFase2));
+		System.out.println("No asignados: " + (count2-countFase2));*/
 		long elapsedTime =  System.currentTimeMillis() - start;
-		System.out.println("Tiempo en segundos: " + (float)elapsedTime/1000F);
-		System.out.println("Porcentaje de asignados 1 ronda: " +  (float)count/(count+count2+countFijos)*100 + "%");
+		//System.out.println("Tiempo en segundos: " + (float)elapsedTime/1000F);
+		all += "Tiempo en segundos: " + (float)elapsedTime/1000F + "\n";
+		/*System.out.println("Porcentaje de asignados 1 ronda: " +  (float)count/(count+count2+countFijos)*100 + "%");
 		System.out.println("Porcentaje de asignados 2 ronda: " +  (float)countFase2/(count+count2+countFijos)*100 + "%");
-		System.out.println("Porcentaje de asignados total: " +  (float)(count+countFase2+countFijos)/(count+count2+countFijos)*100 + "%\n");
+		System.out.println("Porcentaje de asignados total: " +  (float)(count+countFase2+countFijos)/(count+count2+countFijos)*100 + "%\n");*/
 		for(Condeso condeso:condesos){
-			System.out.println(condeso.getNombre() + ": " + (float)condeso.getHorasAsignadas()/condeso.getMaxHours()*100 + " horas: " + condeso.getHorasAsignadas() + " maximo: " + condeso.getMaxHours());
+			all+= condeso.getNombre() + ": " + (float)condeso.getHorasAsignadas()/condeso.getMaxHours()*100 + " horas: " + condeso.getHorasAsignadas() + " maximo: " + condeso.getMaxHours() + "\n";
+			//System.out.println(condeso.getNombre() + ": " + (float)condeso.getHorasAsignadas()/condeso.getMaxHours()*100 + " horas: " + condeso.getHorasAsignadas() + " maximo: " + condeso.getMaxHours());
 		}
-		System.out.println("\n");
+		all += "\n";
+		//System.out.println("\n");
 		int countTurnosTotales = 0;
 		int countTurnosAsignadosTotales = 0;
 		for(Tiendas tienda:tiendas){
@@ -236,13 +245,20 @@ public class lalo {
 				}
 			}
 		}
-		System.out.println("Todos los turnos: " + countTurnosTotales);
+		/*System.out.println("Todos los turnos: " + countTurnosTotales);
 		System.out.println("Todos  asignados 1 y 2: " + countMid);
 		System.out.println("Porcentaje asignados: " + (float)countMid/countTurnosTotales*100);
-
 		System.out.println("Todos los turnos: " + countTurnosTotales);
 		System.out.println("Todos  asignados: " + countTurnosAsignadosTotales);
-		System.out.println("Porcentaje asignados: " + (float)countTurnosAsignadosTotales/countTurnosTotales*100);
+		System.out.println("Porcentaje asignados: " + (float)countTurnosAsignadosTotales/countTurnosTotales*100);*/
+		all+="Todos los turnos: " + countTurnosTotales + "\n";
+		all+= "Todos  asignados: " + countTurnosAsignadosTotales + "\n";
+		all+= "Porcentaje asignados: " + (float)countTurnosAsignadosTotales/countTurnosTotales*100 + "\n";
+
+		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+		writer.write(all);
+
+		writer.close();
 	}
 
 	private void asignarFijos(){
@@ -388,12 +404,15 @@ public class lalo {
 	}
 
 	private boolean checkLevel(Condeso elCondeso, Turnos elTurno){
-		if(elTurno.isOcupado()){
+		if(elCondeso.getLevel() > 1) return true;
+		else{ return elTurno.checkUnos();}
+
+		/*if(!elTurno.isOcupado()){
 		if(elCondeso.getLevel() >= elTurno.getMinimo()) return true;
 		return false;}
 		else{
 			return elTurno.getMin(elCondeso.getLevel());
-		}
+		}*/
 	}
 
 	private boolean checkEncargado(Condeso elCondeso, Turnos elTurno){
@@ -532,7 +551,8 @@ public class lalo {
 		boolean toReturn;
 		if(first){
 			for(Turnos elTurno : noAsignados){
-				Set<Condeso> losCandidatos = findCandidates(elTurno, condesos, disponibilidad);
+				PriorityQueue<Condeso> losCandidatos = new PriorityQueue<>(new CompareCondesos());
+				losCandidatos.addAll(findCandidates(elTurno, condesos, disponibilidad));
 				for(Condeso elCondeso : losCandidatos){
 					laRazon = findReason(elTurno, elCondeso);
 					fila.clear();
@@ -544,7 +564,8 @@ public class lalo {
 
 		}else{
 			for(Turnos elTurno : noAsignados){
-				Set<Condeso> losCandidatos = findCandidates(elTurno, condesos, disponibilidad);
+				PriorityQueue<Condeso> losCandidatos = new PriorityQueue<>(new CompareCondesos());
+				losCandidatos.addAll(findCandidates(elTurno, condesos, disponibilidad));
 				losCandidatos.removeAll(fila);
 				for(Condeso elCondeso : losCandidatos){
 					if(checkCondeso(elCondeso, disponibilidad, elTurno)){
@@ -719,11 +740,11 @@ public class lalo {
 
 	private Reasons findReason(Turnos elTurno, Condeso elCondeso){
 		if(!checkEncargado(elCondeso, elTurno)) return Reasons.noEncargado;
-		else if(elCondeso.getPersonal()[elTurno.getDate().getDayOfMonth()-1] != null) return Reasons.turnoEseDia;
+		else if(!checkLevel(elCondeso, elTurno)) return Reasons.faltaNivel;
 		else if(!checkFinesLibres(elCondeso, elTurno)) return Reasons.finesOcupados;
+		else if(elCondeso.getPersonal()[elTurno.getDate().getDayOfMonth()-1] != null) return Reasons.turnoEseDia;
 		else if(!checkDiasSeguidos(elCondeso, elTurno)) return Reasons.maximoDiasSeguidos;
 		else if(!elCondeso.checkMax(elTurno)) return Reasons.maximoAlcanzado;
-		else if(!checkLevel(elCondeso, elTurno)) return Reasons.faltaNivel;
 		else return Reasons.notFound;
 	}
 

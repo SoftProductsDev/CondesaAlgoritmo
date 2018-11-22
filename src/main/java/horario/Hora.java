@@ -61,12 +61,21 @@ public class Hora {
 
 
     public void change2(Turnos elTurno) {
-        elTurno.resetMinimo();
-        if(nivelUno){elTurno.setMinimo(2);
-        return;
+        if(nivelUno && elTurno.getCondeso().getLevel() != 1){
+            elTurno.setMinimo(2);
+            return;
         }
 
     }
 
 
+    public boolean checkUnos() {
+        int max = colisiones.size()/2;
+        int count = 0;
+        for(Turnos elTurno : colisiones){
+            if(elTurno.isOcupado() && elTurno.getCondeso().getLevel() == 1) count++;
+        }
+        if(count >= max)return false;
+        return true;
+    }
 }

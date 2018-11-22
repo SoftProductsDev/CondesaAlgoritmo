@@ -165,7 +165,11 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             });
 
             wd.exec("123", inputParam -> {
-                lalo.start();
+                try {
+                    lalo.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 return (1);
             });
             //frame.setVisible(false);

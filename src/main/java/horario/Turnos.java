@@ -243,6 +243,13 @@ public class Turnos implements Comparable<Turnos> {
 		if(minimo <= level) return true;
 		return false;
 	}
+
+	public boolean checkUnos() {
+		for(Hora laHora : misHoras){
+			if(!laHora.checkUnos()) return false;
+		}
+		return true;
+	}
 }
 
 
