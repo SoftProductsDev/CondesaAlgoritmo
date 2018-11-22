@@ -17,6 +17,7 @@ import condeso.CompareCondesos;
 import condeso.Contrato;
 import condeso.TipoEmpleado;
 import horario.*;
+import javafx.scene.control.Alert;
 import org.apache.commons.compress.archivers.ar.ArArchiveEntry;
 import org.hibernate.Hibernate;
 import tiendas.Tiendas;
@@ -37,11 +38,12 @@ public class lalo {
 	private HashMap<Long, Integer[][]> turnosExtras;
 	private Set<Condeso> GMs;
 	private int countMid = 0;
+	private boolean sinChecarNivel;
 
 
 
 	public lalo(Set<Condeso> GMs, List<Turnos> deEncargado, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad,
-	LocalDate fecha, HashMap<Long, Integer[][]> turnosExtras){
+	LocalDate fecha, HashMap<Long, Integer[][]> turnosExtras, Boolean sinChecar){
 		start = System.currentTimeMillis();
 		this.fecha = fecha;
 		this.deEncargado = deEncargado;
@@ -50,6 +52,7 @@ public class lalo {
 		this.condesos = condesos;
 		this.tiendas = tiendas;
 		this.turnosExtras = turnosExtras;
+		this.sinChecarNivel = sinChecar;
 		for(Condeso elCondeso : condesos){
 			List<Tiendas> lasTiendas = elCondeso.getDondePuedeTrabajar();
 			if(lasTiendas.size() >= tiendas.size()){
@@ -259,6 +262,12 @@ public class lalo {
 		writer.write(all);
 
 		writer.close();
+
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("AVISO!");
+		alert.setHeaderText("No se selecciono documento de disponibilidad de condesos,\n las tablas estaran vacias! ");
+		alert.setContentText(null);
+		alert.showAndWait();
 	}
 
 	private void asignarFijos(){

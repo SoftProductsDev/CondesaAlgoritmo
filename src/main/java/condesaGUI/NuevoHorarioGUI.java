@@ -62,6 +62,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     @FXML private DatePicker mesDeInicioPicker;
     @FXML private Button importarButton;
     @FXML private Button regresarButton;
+    @FXML private RadioButton sinChecarNivel;
 
 
     private ObservableList<LocalDate> diasDeCierre = null;
@@ -139,7 +140,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             disponibilidad = changeSetToHashMap(horario);
             Set<Tiendas> tiendasALL2 = new HashSet<>();
             tiendasALL2.addAll(allTiendas);
-            lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha,turnosExtras);
+            lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha,turnosExtras, sinChecarNivel.isSelected());
 
             /*BufferedImage img = ImageIO.read(new File("lalopensando.jpg"));
             JFrame frame = new JFrame("Lalo Pensando");

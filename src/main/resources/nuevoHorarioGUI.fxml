@@ -4,6 +4,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -91,10 +92,14 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="regresarButton" mnemonicParsing="false" onAction="#regresarClicked" text="Regresar" GridPane.columnIndex="7" GridPane.rowIndex="7">
+      <Button fx:id="regresarButton" mnemonicParsing="false" onAction="#regresarClicked" text="Regresar" GridPane.columnIndex="8" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
+      <RadioButton fx:id="sinChecarNivel" mnemonicParsing="false" prefHeight="69.0" prefWidth="281.0" text="No checar Nivel" GridPane.columnIndex="7" GridPane.rowIndex="7">
+         <font>
+            <Font size="24.0" />
+         </font></RadioButton>
    </children>
 </GridPane>
