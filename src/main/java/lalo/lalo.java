@@ -404,8 +404,10 @@ public class lalo {
 	}
 
 	private boolean checkLevel(Condeso elCondeso, Turnos elTurno){
+		return true;
+		/*
 		if(elCondeso.getLevel() > 1) return true;
-		else{ return elTurno.checkUnos();}
+		else{ return elTurno.checkUnos();}*/
 
 		/*if(!elTurno.isOcupado()){
 		if(elCondeso.getLevel() >= elTurno.getMinimo()) return true;
