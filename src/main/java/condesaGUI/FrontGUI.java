@@ -110,6 +110,9 @@ public class FrontGUI extends Application implements Initializable {
     tiendasComboBox.setItems(tiendas);
     Locale spanishLocale=new Locale("es", "ES");
     calendar = LocalDate.now();
+    for(Condeso elCondeso : condesos){
+      elCondeso.setFecha(calendar);
+    }
     monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern("MMMM, YYYY",spanishLocale)));
     calendarNodes = monthGrid.getChildren();
     setCalendarDays();
@@ -319,6 +322,9 @@ public class FrontGUI extends Application implements Initializable {
   public void monthBackButton(ActionEvent actionEvent) {
     Locale spanishLocale=new Locale("es", "ES");
     calendar = calendar.plusMonths(-1);
+    for(Condeso elCondeso : condesos){
+      elCondeso.setFecha(calendar);
+    }
     setCalendarDays();
     monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern(
         "MMMM, YYYY",spanishLocale)));
@@ -329,6 +335,9 @@ public class FrontGUI extends Application implements Initializable {
   public void monthNextButton(ActionEvent actionEvent) {
     Locale spanishLocale=new Locale("es", "ES");
     calendar = calendar.plusMonths(1);
+    for(Condeso elCondeso : condesos){
+      elCondeso.setFecha(calendar);
+    }
     setCalendarDays();
     monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern(
         "MMMM, YYYY",spanishLocale)));

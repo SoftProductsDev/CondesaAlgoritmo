@@ -75,6 +75,7 @@ public class EditPopOverGUI  implements Initializable {
         }
 
     }
+
     condesosCopy.removeAll(aBorrar);
     inicioField.setText(Integer.toString(turno.getInicio()));
     finField.setText(Integer.toString(turno.getFin()));

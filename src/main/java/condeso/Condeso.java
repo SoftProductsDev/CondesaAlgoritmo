@@ -94,6 +94,8 @@ public class Condeso {
 	private int maxHours;
 	@Transient
 	private int minHours;
+	@Transient
+	private LocalDate fecha;
 
 	public long getId() {
 		return id;
@@ -130,6 +132,10 @@ public class Condeso {
 	public int getLevel() {
 		return level;
 	}
+
+	public LocalDate getFecha(){return fecha;}
+
+	public void setFecha(LocalDate fecha){this.fecha = fecha;}
 
 	public void setLevel(int level) {
 		this.level = level;
@@ -457,7 +463,15 @@ public class Condeso {
 
 	@Override
 	public String toString() {
+		if(fecha == null)
 		return  nombre + ": " +getHorasAsignadas();
+		else{
+		HorasMes horas =	horasMes.get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+		if(horas != null)
+		return nombre + ": " +horas.getHoras();
+		else
+		return nombre + ": 0";
+		}
 	}
 
 	public ObservableValue<Boolean> Lunch() {
