@@ -311,7 +311,7 @@ public class Condeso {
 	public void setContrato(Contrato contrato) {
 		this.contrato = contrato;
 		switch(contrato){
-			case MiniJob: maxHours = 47;
+			case MiniJob: maxHours = 45;
 			minHours = 0;
 			break;
 			case otros:
@@ -401,8 +401,8 @@ public class Condeso {
 		switch(contrato){
 			case Fijo: this.maxHours = 220;
 			break;
-			case MiniJob: if(maxHours == 0) this.maxHours = 47;
-				else this.maxHours = Math.min(maxHours, 47);
+			case MiniJob: if(maxHours == 0) this.maxHours = 45;
+				else this.maxHours = Math.min(maxHours, 45);
 			break;
 			case otros: if(maxHours == 0) this.maxHours = 220;
 			else if(maxHours < 50) this.maxHours = 50;
@@ -444,7 +444,7 @@ public class Condeso {
 		switch(contrato){
 			case Fijo: this.minHours = 50;
 			break;
-			case MiniJob:if(minHours > 47) this.minHours = 47;
+			case MiniJob:if(minHours > 45) this.minHours = 45;
 			else this.minHours = minHours;
 			break;
 			case otros: if(minHours < 50) this.minHours = 50;
@@ -503,7 +503,7 @@ public class Condeso {
 	public void checkMaxMin() {
 		if(maxHours == 0){
 			switch (contrato){
-				case MiniJob: maxHours = 47;
+				case MiniJob: maxHours = 45;
 				break;
 				case otros: maxHours = 220;
 				break;
@@ -517,8 +517,8 @@ public class Condeso {
 				break;
 			}
 		}
-		if(contrato == Contrato.MiniJob && minHours >= 47){
-			minHours = 47;
+		if(contrato == Contrato.MiniJob && minHours >= 45){
+			minHours = 45;
 		}
 		}
 	}
