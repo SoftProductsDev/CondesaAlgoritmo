@@ -35,13 +35,19 @@ public class  ExcelWriter {
   private Workbook workbookMaster;
   private Workbook workbookCondesos;
   private CellStyle borders2;
+  private List<Tiendas> tiendas;
+  private List<Condeso> condesos;
+  private LocalDate calendar;
   private Row[] hourRows;
 
-  public ExcelWriter(){
+  public ExcelWriter(List<Tiendas> tiendas,List<Condeso> condesos,LocalDate calendar){
     workbookMaster = new XSSFWorkbook();
     workbookCondesos = new XSSFWorkbook();
     borders = createBordersStyle(workbookMaster);
     borders2 = createBordersStyle(workbookCondesos);
+    this.tiendas = tiendas;
+    this.condesos = condesos;
+    this.calendar = calendar;
   }
 
   private Row[] createHourRows(int startingRow, Sheet sheet) {
@@ -68,22 +74,27 @@ public class  ExcelWriter {
     return borders;
   }
 
-  public void CreateHorarioMasterExcel(List<Tiendas> tiendas,List<Condeso> condesos,LocalDate calendar)
+  public void CreateHorarioMasterExcel()
       throws IOException, InvalidFormatException {
 
     CreationHelper createHelper = workbookMaster.getCreationHelper();
 
     createCondesoSheets(condesos, 1, 1, calendar);
 
+    int i = 0;
     for (Tiendas t:tiendas
     ) {
       // Create a Sheet
       Sheet sheet = workbookMaster.createSheet(t.getNombre());
+      workbookMaster.setSheetOrder(t.getNombre(),i);
+      
+      createCondesoLists(sheet,1,1);
 
       hourRows = createHourRows(5, sheet);
       createHourList(sheet, 0);
 
       SetHorarioMaster(t.getMaster(), sheet, calendar);
+      i++;
     }
 
     // Write the output to a file
@@ -95,6 +106,13 @@ public class  ExcelWriter {
 
     // Closing the workbook
     workbookMaster.close();
+  }
+
+  private void createCondesoLists(Sheet sheet, int i, int i1) {
+    for (Condeso c:condesos
+    ) {
+
+    }
   }
 
   private void createCondesoSheets(List<Condeso> condesos, int column, int row, LocalDate calendar){
@@ -241,7 +259,7 @@ public class  ExcelWriter {
 
   private void createHourList(Sheet sheet, int column) {
     String[] rows = {"08-09","09-10", "10-11","11-12", "12-13", "13-14", "14-15", "15-16", "16-17",
-        "17-18", "19-20", "20-21", "21-22", "22-23", "23-24"};
+        "17-18", "18-19","19-20", "20-21", "21-22", "22-23", "23-24"};
     int i = 0;
     for (String row:rows
     ) {
@@ -273,9 +291,9 @@ public class  ExcelWriter {
   }
 
   public static void main(String[] args) throws IOException, InvalidFormatException{
-    ExcelWriter excelWriter = new ExcelWriter();
-    excelWriter.CreateHorarioMasterExcel(HibernateCrud.GetAllTiendas(),HibernateCrud.GetAllCondesos(),
+    ExcelWriter excelWriter = new ExcelWriter(HibernateCrud.GetAllTiendas(),HibernateCrud.GetAllCondesos(),
         LocalDate.of(2018,11,1));
+    excelWriter.CreateHorarioMasterExcel();
     HibernateUtil.shutdown();
   }
 

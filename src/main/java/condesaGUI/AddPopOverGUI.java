@@ -85,6 +85,8 @@ public class AddPopOverGUI implements Initializable {
     Map<LocalDate, Dias> master = new HashMap<>();
     Dias diaD =  new Dias();
     Set<Turnos> turnosX = new HashSet<>();
+    ObservableList<Condeso> condesosCopy = FXCollections.observableArrayList();
+    condesosCopy.addAll(condesos);
     List<Condeso> aBorrar = new ArrayList<>();
     for(Tiendas tienda:tiendas){
       master = tienda.getMaster().getMes();
@@ -104,9 +106,9 @@ public class AddPopOverGUI implements Initializable {
       }
     }
     ObservableList<TipoTurno> turnos = FXCollections.observableArrayList(TipoTurno.values());
-    condesoTodosChoice.setItems(FXCollections.observableArrayList(condesos));
-    this.condesos.removeAll(aBorrar);
-    condesoChoice.setItems(condesos);
+    condesoTodosChoice.setItems(condesos);
+    condesosCopy.removeAll(aBorrar);
+    condesoChoice.setItems(condesosCopy);
     tipoChoice.setItems(turnos);
   }
 

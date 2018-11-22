@@ -48,11 +48,14 @@ public class EditPopOverGUI  implements Initializable {
     this.grid = grid;
     this.label = label;
     this.tiendas = tiendas;
-    this.condesos = FXCollections.observableArrayList(condesos);
-    condesoTodosChoice.setItems(FXCollections.observableArrayList(condesos));
-    Map<LocalDate, Dias> master = new HashMap<>();
-    Dias diaD =  new Dias();
-    Set<Turnos> turnos = new HashSet<>();
+    this.condesos = condesos;
+    condesoTodosChoice.setItems(condesos);
+    condesoTodosChoice.getSelectionModel().select(turno.getCondeso() );
+    Map<LocalDate, Dias> master;
+    Dias diaD;
+    Set<Turnos> turnos;
+    ObservableList<Condeso> condesosCopy = FXCollections.observableArrayList();
+    condesosCopy.addAll(condesos);
     List<Condeso> aBorrar = new ArrayList<>();
     for(Tiendas tienda:tiendas){
       master = tienda.getMaster().getMes();
@@ -72,12 +75,10 @@ public class EditPopOverGUI  implements Initializable {
         }
 
     }
-    this.condesos.removeAll(aBorrar);
+    condesosCopy.removeAll(aBorrar);
     inicioField.setText(Integer.toString(turno.getInicio()));
     finField.setText(Integer.toString(turno.getFin()));
-    condesoChoice.getSelectionModel().select(turno.getCondeso() );
-    ObservableList<Condeso> list = FXCollections.observableArrayList(this.condesos);
-    condesoChoice.setItems(list);
+    condesoChoice.setItems(condesosCopy);
   }
 
   public void applyChange(ActionEvent actionEvent) {
@@ -144,8 +145,8 @@ public class EditPopOverGUI  implements Initializable {
             }
             PopOver pop = new PopOver(root);
             pop.setAutoFix(false);
-            pop.show(label);
             pop.setAnimated(false);
+            pop.show(label);
             EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();
             edit.setInitialValues(turno, dia, grid, label, condesos, tiendas);
             event.consume();
