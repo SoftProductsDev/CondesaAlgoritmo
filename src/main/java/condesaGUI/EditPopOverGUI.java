@@ -2,6 +2,7 @@ package condesaGUI;
 
 import DbController.HibernateCrud;
 import condeso.Condeso;
+import condeso.HorasMes;
 import horario.Dias;
 import horario.HorarioMaster;
 import horario.Turnos;
@@ -83,6 +84,7 @@ public class EditPopOverGUI  implements Initializable {
   }
 
   public void applyChange(ActionEvent actionEvent) {
+    int duracion1 = turno.getDuracion();
     turno.setInicio(Integer.parseInt(inicioField.getText()));
     turno.setFin(Integer.parseInt(finField.getText()));
     if(condesoTodosChoice.getSelectionModel().getSelectedItem() != null && condesoChoice.getSelectionModel().getSelectedItem() != null){
@@ -98,18 +100,109 @@ public class EditPopOverGUI  implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOne){
-          turno.setCondeso(condesoTodosChoice.getSelectionModel().getSelectedItem());
+          Condeso elCondeso = turno.getCondeso();
+          LocalDate fecha = dia.getDate();
+          if(elCondeso != null){
+            HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+            if(horas != null){
+              int lasHoras = horas.getHoras();
+              horas.setHoras(lasHoras - duracion1);
+              //HibernateCrud.UpdateCondeso(elCondeso);
+            }
+          }
+          elCondeso = condesoTodosChoice.getSelectionModel().getSelectedItem();
+          turno.setCondeso(elCondeso);
+          HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+          if(horas != null){
+            int lasHoras = horas.getHoras();
+            horas.setHoras(lasHoras + turno.getDuracion());
+            //HibernateCrud.UpdateCondeso(elCondeso);
+          }else{
+            horas = new HorasMes();
+            horas.setHoras(turno.getDuracion());
+            elCondeso.getHorasMes().put(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1),horas);
+            //HibernateCrud.UpdateCondeso(elCondeso);
+          }
+
+
+
         } else if (result.get() == buttonTypeTwo) {
-          turno.setCondeso(condesoChoice.getSelectionModel().getSelectedItem());
+          Condeso elCondeso = turno.getCondeso();
+          LocalDate fecha = dia.getDate();
+          if(elCondeso != null){
+            HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+            if(horas != null){
+              int lasHoras = horas.getHoras();
+              horas.setHoras(lasHoras - duracion1);
+              //HibernateCrud.UpdateCondeso(elCondeso);
+            }
+          }
+          elCondeso = condesoChoice.getSelectionModel().getSelectedItem();
+          turno.setCondeso(elCondeso);
+          HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+          if(horas != null){
+            int lasHoras = horas.getHoras();
+            horas.setHoras(lasHoras + turno.getDuracion());
+            //HibernateCrud.UpdateCondeso(elCondeso);
+          }else{
+            horas = new HorasMes();
+            horas.setHoras(turno.getDuracion());
+            elCondeso.getHorasMes().put(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1),horas);
+            //HibernateCrud.UpdateCondeso(elCondeso);
+          }
         } else {
           Alert alertFinal = new Alert(Alert.AlertType.CONFIRMATION);
           alertFinal.setTitle("No se selecciono ninguno");
           alertFinal.setHeaderText("No se ha seleccionado ningun condeso\n por lo tanto no habra cambio en el turno.");
         }
     }else if(condesoTodosChoice.getSelectionModel().getSelectedItem() != null){
-      turno.setCondeso(condesoTodosChoice.getSelectionModel().getSelectedItem());
+      Condeso elCondeso = turno.getCondeso();
+      LocalDate fecha = dia.getDate();
+      if(elCondeso != null){
+        HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+        if(horas != null){
+          int lasHoras = horas.getHoras();
+          horas.setHoras(lasHoras - duracion1);
+          //HibernateCrud.UpdateCondeso(elCondeso);
+        }
+      }
+      elCondeso = condesoTodosChoice.getSelectionModel().getSelectedItem();
+      turno.setCondeso(elCondeso);
+      HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+      if(horas != null){
+        int lasHoras = horas.getHoras();
+        horas.setHoras(lasHoras + turno.getDuracion());
+        //HibernateCrud.UpdateCondeso(elCondeso);
+      }else{
+        horas = new HorasMes();
+        horas.setHoras(turno.getDuracion());
+        elCondeso.getHorasMes().put(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1),horas);
+        //HibernateCrud.UpdateCondeso(elCondeso);
+      }
     }else{
-      turno.setCondeso(condesoChoice.getSelectionModel().getSelectedItem());
+      Condeso elCondeso = turno.getCondeso();
+      LocalDate fecha = dia.getDate();
+      if(elCondeso != null){
+        HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+        if(horas != null){
+          int lasHoras = horas.getHoras();
+          horas.setHoras(lasHoras - duracion1);
+          //HibernateCrud.UpdateCondeso(elCondeso);
+        }
+      }
+      elCondeso = condesoChoice.getSelectionModel().getSelectedItem();
+      turno.setCondeso(elCondeso);
+      HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+      if(horas != null){
+        int lasHoras = horas.getHoras();
+        horas.setHoras(lasHoras + turno.getDuracion());
+        //HibernateCrud.UpdateCondeso(elCondeso);
+      }else{
+        horas = new HorasMes();
+        horas.setHoras(turno.getDuracion());
+        elCondeso.getHorasMes().put(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1),horas);
+        //HibernateCrud.UpdateCondeso(elCondeso);
+      }
     }
     grid.getChildren().remove(label);
     //considering the first hour is 8 am

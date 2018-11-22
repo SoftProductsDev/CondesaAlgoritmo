@@ -263,9 +263,10 @@ public class lalo {
 
 		writer.close();
 
+
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-		alert.setTitle("AVISO!");
-		alert.setHeaderText("No se selecciono documento de disponibilidad de condesos,\n las tablas estaran vacias! ");
+		alert.setTitle("PRCENTAJE");
+		alert.setHeaderText("El procentaje de turnos asignados es: \n" + (float)countTurnosAsignadosTotales/countTurnosTotales*100);
 		alert.setContentText(null);
 		alert.showAndWait();
 	}
@@ -413,10 +414,11 @@ public class lalo {
 	}
 
 	private boolean checkLevel(Condeso elCondeso, Turnos elTurno){
+		if(sinChecarNivel)
 		return true;
-		/*
+		else{
 		if(elCondeso.getLevel() > 1) return true;
-		else{ return elTurno.checkUnos();}*/
+		else return elTurno.checkUnos();}
 
 		/*if(!elTurno.isOcupado()){
 		if(elCondeso.getLevel() >= elTurno.getMinimo()) return true;
