@@ -264,11 +264,11 @@ public class lalo {
 		writer.close();
 
 
-		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		/*Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("PRCENTAJE");
 		alert.setHeaderText("El procentaje de turnos asignados es: \n" + (float)countTurnosAsignadosTotales/countTurnosTotales*100);
 		alert.setContentText(null);
-		alert.showAndWait();
+		alert.showAndWait();*/
 	}
 
 	private void asignarFijos(){
