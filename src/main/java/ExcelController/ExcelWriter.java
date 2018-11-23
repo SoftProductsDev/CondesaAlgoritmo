@@ -39,7 +39,6 @@ public class  ExcelWriter {
   private List<Condeso> condesos;
   private LocalDate calendar;
   private String path;
-  private Row[] hourRows;
 
   public ExcelWriter(List<Tiendas> tiendas,List<Condeso> condesos,LocalDate calendar, String path){
     workbookMaster = new XSSFWorkbook();
@@ -50,16 +49,6 @@ public class  ExcelWriter {
     this.condesos = condesos;
     this.calendar = calendar;
     this.path = path;
-  }
-
-  private Row[] createHourRows(int startingRow, Sheet sheet) {
-    Row[] result = new Row[17];
-    for (int i = 0; i < 17; i++)
-     {
-      Row r = sheet.createRow(i + startingRow);
-      result[i] = r;
-     }
-     return result;
   }
 
   private CellStyle createBordersStyle(Workbook book) {
@@ -89,11 +78,10 @@ public class  ExcelWriter {
       // Create a Sheet
       Sheet sheet = workbookMaster.createSheet(t.getNombre());
       workbookMaster.setSheetOrder(t.getNombre(),i);
-      
-      createCondesoLists(sheet,1,1);
 
-      hourRows = createHourRows(5, sheet);
-      createHourList(sheet, 0);
+      createHourList(sheet, 5, 5);
+
+      createCondesoLists(sheet,1,1);
 
       SetHorarioMaster(t.getMaster(), sheet, calendar);
       i++;
@@ -101,7 +89,7 @@ public class  ExcelWriter {
 
     // Write the output to a file
     //Tambien puede especificar el path ("C:\\Report\\TestCase.xlsx"));
-    FileOutputStream fileOut = new FileOutputStream(path + "\\Plan " + calendar.getMonth().getDisplayName
+    FileOutputStream fileOut = new FileOutputStream(path + "Plan " + calendar.getMonth().getDisplayName
         (TextStyle.FULL, Locale.GERMAN) + ".xlsx");
     workbookMaster.write(fileOut);
     fileOut.close();
@@ -111,9 +99,21 @@ public class  ExcelWriter {
   }
 
   private void createCondesoLists(Sheet sheet, int i, int i1) {
+    int rowStart = 3;
+    int columnStart = 1;
     for (Condeso c:condesos
     ) {
-
+       Row row = sheet.getRow(rowStart);
+       if (row == null){
+         row = sheet.createRow(rowStart);
+       }
+       Cell abrevCell = row.createCell(columnStart);
+       abrevCell.setCellValue(c.getAbreviacion());
+       abrevCell.setCellStyle(colorStyle(c.getColor()));
+       Cell nombreCell = row.createCell(columnStart + 1);
+       sheet.setColumnWidth(columnStart, 1700);
+       nombreCell.setCellValue(c.getNombre());
+      rowStart++;
     }
   }
 
@@ -128,6 +128,9 @@ public class  ExcelWriter {
       column = ogColumn;
       for (int i = 1; i <= calendar.getMonth().length(calendar.isLeapYear()); i++)
       {
+        if(i == 1){
+          column += 8 * (calendar.withDayOfMonth(i).getDayOfWeek().getValue() - 1);
+        }
         setLettersUP(sheet, column, lettersRow, borders);
         setDayOfWeek(calendar.withDayOfMonth(i).getDayOfWeek(), sheet, column,dayOfWeekRow, workbookMaster);
         setDayOfMonth(calendar.withDayOfMonth(i), sheet, column, dayOfMonthRow, workbookMaster);
@@ -145,7 +148,7 @@ public class  ExcelWriter {
   }
 
   private void SetHorarioMaster(HorarioMaster master, Sheet sheet, LocalDate calendar) {
-    int column = 1;//columna
+    int column = 6;//columna
     int row = 0;
     int lettersRow = 4;
     int dayOfMonthRow = 3;
@@ -158,7 +161,7 @@ public class  ExcelWriter {
       setDayOfWeek(weekDay, sheet, column,dayOfWeekRow, workbookMaster);
       setDayOfMonth(calendar.withDayOfMonth(i), sheet, column, dayOfMonthRow, workbookMaster);
       if(weekDay == DayOfWeek.SUNDAY){
-        createHourList(sheet,column + 7);
+        createHourList(sheet,column + 7, 5);
       }
       else {
         sheet.setColumnWidth(column + 7, 1700);
@@ -221,7 +224,7 @@ public class  ExcelWriter {
     }
     Cell cell = r.createCell(column);
     String day =  Integer.toString(date.getDayOfMonth());
-    cell.setCellValue(day);
+    cell.setCellValue(day + " " + date.getMonth());
     cell.setCellStyle(centerStyle(book));
     CellRangeAddress regionDia =  new CellRangeAddress(
         row, //first row (0-based)
@@ -267,19 +270,27 @@ public class  ExcelWriter {
     setRegionBorderWithMedium(regionDia, sheet);
  }
 
-  private void createHourList(Sheet sheet, int column) {
+  private void createHourList(Sheet sheet, int column, int rowInt) {
     String[] rows = {"08-09","09-10", "10-11","11-12", "12-13", "13-14", "14-15", "15-16", "16-17",
         "17-18", "18-19","19-20", "20-21", "21-22", "22-23", "23-24"};
     int i = 0;
+    CellRangeAddress turnosRegion = new CellRangeAddress(
+        rowInt,rowInt + 15,column,column
+    );
     for (String row:rows
     ) {
-       Row r = hourRows[i];
+       Row r = sheet.getRow(rowInt);
+       if(r == null){
+         r = sheet.createRow(rowInt);
+       }
        Cell cell = r.createCell(column);
        cell.setCellValue(row);
-      cell.setCellStyle(centerStyle(workbookMaster));
-      sheet.setColumnWidth(i + column, 1700);
+       cell.setCellStyle(centerStyle(workbookMaster));
+       sheet.setColumnWidth(i + column, 1700);
        i++;
+       rowInt++;
     }
+    setRegionBorderWithMedium(turnosRegion, sheet);
   }
 
   private void setRegionBorderWithMedium(CellRangeAddress region, Sheet sheet) {
