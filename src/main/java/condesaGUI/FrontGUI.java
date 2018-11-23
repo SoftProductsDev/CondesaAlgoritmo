@@ -14,6 +14,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import javafx.application.Application;
@@ -92,6 +93,9 @@ public class FrontGUI extends Application implements Initializable {
   }
 
   public void initialize(URL location, ResourceBundle resources) {
+  }
+
+  public void setInitialValues(ObservableList<Condeso> condesos, ObservableList<Tiendas> tiendas){
     //Populate javafx Nodes with data.
     horaList0.setItems(horario);
     horaList1.setItems(horario);
@@ -105,8 +109,8 @@ public class FrontGUI extends Application implements Initializable {
     horaList9.setItems(horario);
     horaList10.setItems(horario);
     horaList11.setItems(horario);
-    tiendas = FXCollections.observableArrayList(HibernateCrud.GetAllTiendas());
-    condesos = FXCollections.observableArrayList(HibernateCrud.GetAllCondesos());
+    this.tiendas = tiendas;
+    this.condesos = condesos;
     tiendasComboBox.setItems(tiendas);
     Locale spanishLocale=new Locale("es", "ES");
     calendar = LocalDate.now();
@@ -117,7 +121,6 @@ public class FrontGUI extends Application implements Initializable {
     calendarNodes = monthGrid.getChildren();
     setCalendarDays();
     addLabelGrids();
-    //setTurnos(GetTestTurno());
   }
 
   private void addLabelGrids() {

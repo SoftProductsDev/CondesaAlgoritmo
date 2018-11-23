@@ -188,19 +188,20 @@ public class NuevoHorarioGUI extends Application implements Initializable {
 
     private void CloseOpenWindow(String filename) throws Exception{
         ((Stage)iniciarButton.getScene().getWindow()).close();
-        String sceneFile = filename;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/frontGUI.fxml"));
         Parent root = null;
-        URL url  = null;
         try {
-            url  = getClass().getResource( sceneFile );
-            root = FXMLLoader.load( url );
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
-                    Screen.getPrimary().getVisualBounds().getMaxY()));
-            stage.show();
-        } catch(Exception e) {
+            root = (Parent) fxmlLoader.load();
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
+            Screen.getPrimary().getVisualBounds().getMaxY()));
+        stage.show();
+        FrontGUI nuevoHorarioGUI = fxmlLoader.getController();
+        nuevoHorarioGUI.setInitialValues(FXCollections.observableList(allCondesos),
+            FXCollections.observableList(allTiendas));
     }
 
 
