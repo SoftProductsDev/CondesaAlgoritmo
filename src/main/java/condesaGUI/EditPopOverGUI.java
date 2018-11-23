@@ -103,6 +103,13 @@ public class EditPopOverGUI  implements Initializable {
           Condeso elCondeso = turno.getCondeso();
           LocalDate fecha = dia.getDate();
           if(elCondeso != null){
+            long id = elCondeso.getId();
+            for(Condeso condeso : condesos){
+              if(id == condeso.getId()){
+                elCondeso = condeso;
+                break;
+              }
+            }
             HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
             if(horas != null){
               int lasHoras = horas.getHoras();
@@ -130,6 +137,13 @@ public class EditPopOverGUI  implements Initializable {
           Condeso elCondeso = turno.getCondeso();
           LocalDate fecha = dia.getDate();
           if(elCondeso != null){
+            long id = elCondeso.getId();
+            for(Condeso condeso : condesos){
+              if(id == condeso.getId()){
+                elCondeso = condeso;
+                break;
+              }
+            }
             HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
             if(horas != null){
               int lasHoras = horas.getHoras();
@@ -159,6 +173,13 @@ public class EditPopOverGUI  implements Initializable {
       Condeso elCondeso = turno.getCondeso();
       LocalDate fecha = dia.getDate();
       if(elCondeso != null){
+        long id = elCondeso.getId();
+        for(Condeso condeso : condesos){
+          if(id == condeso.getId()){
+            elCondeso = condeso;
+            break;
+          }
+        }
         HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
         if(horas != null){
           int lasHoras = horas.getHoras();
@@ -183,6 +204,13 @@ public class EditPopOverGUI  implements Initializable {
       Condeso elCondeso = turno.getCondeso();
       LocalDate fecha = dia.getDate();
       if(elCondeso != null){
+        long id = elCondeso.getId();
+        for(Condeso condeso : condesos){
+          if(id == condeso.getId()){
+            elCondeso = condeso;
+            break;
+          }
+        }
         HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
         if(horas != null){
           int lasHoras = horas.getHoras();
