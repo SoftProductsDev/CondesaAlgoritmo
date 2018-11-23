@@ -377,7 +377,7 @@ public class lalo {
 		int inicio = elTurno.getInicio();
 		int fin = elTurno.getFin();
 		LocalDate fecha = elTurno.getDate();
-		if(fecha.lengthOfMonth() > disp[0].length) throw new RuntimeException("El mes no coincide con la disponibilidad");
+		if(fecha.lengthOfMonth() > disp[0].length) return false;
 		int day = fecha.getDayOfMonth();
 		int desde = disp[0][day-1];
 		int hasta = disp[1][day-1];
