@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.HashMap;
 import java.util.Map;
+import javafx.collections.ObservableList;
 import javax.persistence.TypedQuery;
 import org.hibernate.FetchMode;
 import org.hibernate.Hibernate;
@@ -166,4 +167,15 @@ public class HibernateCrud {
             query.executeUpdate();
             session.close();
         }
+
+    public static void UpdateMultipleCondesos(ObservableList<Condeso> condesos) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.getTransaction().begin();
+        for (Condeso t:condesos){
+            session.update(t);
+        }
+        session.getTransaction().commit();
+        session.close();
+    }
 }

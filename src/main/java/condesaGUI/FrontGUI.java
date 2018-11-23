@@ -438,10 +438,8 @@ public class FrontGUI extends Application implements Initializable {
   }
 
   public void guardrarCambios(ActionEvent actionEvent) {
-    for (Tiendas t:tiendas
-    ) {
       HibernateCrud.UpdateMultipleTiendas(tiendas);
-    }
+      HibernateCrud.UpdateMultipleCondesos(condesos);
   }
 
   public void writeExcel(ActionEvent actionEvent) {
