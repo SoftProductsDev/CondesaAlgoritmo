@@ -160,6 +160,12 @@ public class NuevoHorarioGUI extends Application implements Initializable {
                 //wd=null; // don't keep the object, cleanup
                 try {
                     CloseOpenWindow("/frontGUI.fxml");
+                    float promedio = lalo.getPromedio();
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("PRCENTAJE");
+                    alert.setHeaderText("El procentaje de turnos asignados es: \n" + promedio);
+                    alert.setContentText(null);
+                    alert.showAndWait();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -173,8 +179,11 @@ public class NuevoHorarioGUI extends Application implements Initializable {
                 }
                 return (1);
             });
+            
+
             //frame.setVisible(false);
         }
+
     }
 
     private void CloseOpenWindow(String filename) throws Exception{

@@ -39,6 +39,7 @@ public class lalo {
 	private Set<Condeso> GMs;
 	private int countMid = 0;
 	private boolean sinChecarNivel;
+	private static float promedio = 0;
 
 
 
@@ -263,13 +264,15 @@ public class lalo {
 
 		writer.close();
 
-
+		promedio = (float)countTurnosAsignadosTotales/countTurnosTotales*100;
 		/*Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("PRCENTAJE");
 		alert.setHeaderText("El procentaje de turnos asignados es: \n" + (float)countTurnosAsignadosTotales/countTurnosTotales*100);
 		alert.setContentText(null);
 		alert.showAndWait();*/
 	}
+
+	public static float getPromedio(){return promedio;}
 
 	private void asignarFijos(){
 		Set<Condeso> losFijos = getFijos();
