@@ -240,6 +240,23 @@ public class EditPopOverGUI  implements Initializable {
   }
 
   public void Delete(ActionEvent actionEvent) {
+    Condeso elCondeso = turno.getCondeso();
+    LocalDate fecha = dia.getDate();
+    if(elCondeso != null){
+      long id = elCondeso.getId();
+      for(Condeso condeso : condesos){
+        if(id == condeso.getId()){
+          elCondeso = condeso;
+          break;
+        }
+      }
+      HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+      if(horas != null){
+        int lasHoras = horas.getHoras();
+        horas.setHoras(lasHoras - turno.getDuracion());
+        //HibernateCrud.UpdateCondeso(elCondeso);
+      }
+    }
     dia.getTurnos().remove(turno);
     grid.getChildren().remove(label);
   }
