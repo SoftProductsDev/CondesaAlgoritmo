@@ -12,6 +12,8 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.TextStyle;
+import java.time.temporal.TemporalField;
+import java.time.temporal.WeekFields;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -149,7 +151,7 @@ public class  ExcelWriter {
 
   private void SetHorarioMaster(HorarioMaster master, Sheet sheet, LocalDate calendar) {
     int column = 6;//columna
-    int row = 0;
+    int row = 5;
     int lettersRow = 4;
     int dayOfMonthRow = 3;
     int dayOfWeekRow = 2;
@@ -164,7 +166,7 @@ public class  ExcelWriter {
         createHourList(sheet,column + 7, 5);
       }
       else {
-        sheet.setColumnWidth(column + 7, 1700);
+        sheet.setColumnWidth(column + 7, 1200);
       }
       setTurnosRegion(sheet, column, turnosRegRow);
       Map<LocalDate, Dias> mes = master.getMes();
@@ -179,13 +181,26 @@ public class  ExcelWriter {
   private void setDias(Dias dia, int column, int row,Sheet sheet) {
     for (Turnos turno:dia.getTurnos()){
       setTurno(turno, column, row,sheet);
+      if(turno.getCondeso() != null) {
+        Sheet condesoSheet = workbookMaster.getSheet(turno.getCondeso().getAbreviacion());
+        int condesoColumn = 1;
+        condesoColumn += 8 * (dia.getDate().getDayOfWeek().getValue() - 1);
+        TemporalField weekNum = WeekFields.of(Locale.getDefault()).weekOfMonth();
+        int condesoRow = row;
+        condesoRow += ( dia.getDate().get(weekNum) - 1) * 20;
+        setTurno(turno, condesoColumn, condesoRow, condesoSheet);
+      }
     }
   }
 
   private void setTurno(Turnos turno, int column, int row ,Sheet sheet) {
-    int hourIndex = -3 + turno.getInicio();
+    int hourIndex = (row - 8) + turno.getInicio();
     for (int i = 1; i <= turno.getDuracion(); i++){
-      Cell cell = sheet.getRow(hourIndex).getCell(
+      Row r = sheet.getRow(hourIndex);
+      if(r == null){
+        r = sheet.createRow(hourIndex);
+      }
+      Cell cell = r.getCell(
           column + turno.getTipoTurno().ordinal() + 1);
       if (cell == null){
         cell = sheet.getRow(hourIndex).createCell(
