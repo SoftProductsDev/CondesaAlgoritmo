@@ -123,6 +123,16 @@ public class  ExcelWriter {
     int ogColumn = column;
     for (Condeso c:condesos){
       Sheet sheet = workbookMaster.createSheet(c.getAbreviacion());
+      Cell nombreCell = sheet.createRow(0).createCell(1);
+      CellRangeAddress range = new CellRangeAddress(0,0,1,9);
+      sheet.addMergedRegion(range);
+      nombreCell.setCellStyle(colorStyle("#ffc100"));
+      nombreCell.setCellValue("Plan für: " + c.getNombre());
+      Cell horasCell = sheet.getRow(0).createCell(17);
+      horasCell.setCellValue("Horas Total: " + c.getHorasMes().get(calendar).getHoras());
+      CellRangeAddress rangeHoras = new CellRangeAddress(0,0,17,24);
+      sheet.addMergedRegion(rangeHoras);
+      horasCell.setCellStyle(colorStyle("#ffc100"));
       int lettersRow = 4;
       int dayOfMonthRow = 3;
       int dayOfWeekRow = 2;
@@ -185,9 +195,13 @@ public class  ExcelWriter {
         Sheet condesoSheet = workbookMaster.getSheet(turno.getCondeso().getAbreviacion());
         int condesoColumn = 1;
         condesoColumn += 8 * (dia.getDate().getDayOfWeek().getValue() - 1);
-        TemporalField weekNum = WeekFields.of(Locale.getDefault()).weekOfMonth();
+        TemporalField weekField = WeekFields.of(Locale.GERMAN).weekOfMonth();
         int condesoRow = row;
-        condesoRow += ( dia.getDate().get(weekNum) - 1) * 20;
+        int weekNumb = dia.getDate().get(weekField);
+        if(dia.getDate().getDayOfWeek() == DayOfWeek.SUNDAY){
+          weekNumb -= 1;
+        }
+        condesoRow += ( weekNumb - 1) * 20;
         setTurno(turno, condesoColumn, condesoRow, condesoSheet);
       }
     }
