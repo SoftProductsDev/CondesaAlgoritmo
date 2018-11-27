@@ -10,7 +10,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.format.TextStyle;
 import java.time.temporal.TemporalField;
 import java.time.temporal.WeekFields;
@@ -18,12 +17,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import javafx.scene.paint.Color;
-import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.util.RegionUtil;
-import org.apache.poi.xssf.usermodel.CustomIndexedColorMap;
 import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFColor;
@@ -72,9 +69,10 @@ public class  ExcelWriter {
 
     CreationHelper createHelper = workbookMaster.getCreationHelper();
 
-    createCondesoSheets(condesos, 1, 1, calendar);
+    createCondesoSheets(condesos, 2, 1, calendar);
 
     int i = 0;
+    int tiendaColumn = 2;
     for (Tiendas t:tiendas
     ) {
       // Create a Sheet
@@ -85,8 +83,9 @@ public class  ExcelWriter {
 
       createCondesoLists(sheet,1,1);
 
-      SetHorarioMaster(t.getMaster(), sheet, calendar);
+      SetHorarioMaster(t.getMaster(), sheet, calendar, tiendaColumn);
       i++;
+      tiendaColumn += 58;
     }
 
     // Write the output to a file
@@ -133,33 +132,42 @@ public class  ExcelWriter {
       CellRangeAddress rangeHoras = new CellRangeAddress(0,0,17,24);
       sheet.addMergedRegion(rangeHoras);
       horasCell.setCellStyle(colorStyle("#ffc100"));
-      int lettersRow = 4;
-      int dayOfMonthRow = 3;
-      int dayOfWeekRow = 2;
-      int turnosRegRow = 5;
-      column = ogColumn;
-      for (int i = 1; i <= calendar.getMonth().length(calendar.isLeapYear()); i++)
-      {
-        if(i == 1){
-          column += 8 * (calendar.withDayOfMonth(i).getDayOfWeek().getValue() - 1);
-        }
-        setLettersUP(sheet, column, lettersRow, borders);
-        setDayOfWeek(calendar.withDayOfMonth(i).getDayOfWeek(), sheet, column,dayOfWeekRow, workbookMaster);
-        setDayOfMonth(calendar.withDayOfMonth(i), sheet, column, dayOfMonthRow, workbookMaster);
-        setTurnosRegion(sheet, column, turnosRegRow);
-        if(calendar.withDayOfMonth(i).getDayOfWeek() == DayOfWeek.SUNDAY){
-          lettersRow += 20;
-          dayOfMonthRow += 20;
-          dayOfWeekRow += 20;
-          turnosRegRow += 20;
-          column = ogColumn - 8;
-        }
-        column += 8;
+      for (Tiendas t: tiendas){
+        createMonth(column, sheet);
+        column += 58;
       }
+      column = ogColumn;
     }
   }
 
-  private void SetHorarioMaster(HorarioMaster master, Sheet sheet, LocalDate calendar) {
+  private void createMonth(int ogColumn, Sheet sheet){
+    int lettersRow = 4;
+    int dayOfMonthRow = 3;
+    int dayOfWeekRow = 2;
+    int turnosRegRow = 5;
+    int column = ogColumn;
+    for (int i = 1; i <= calendar.getMonth().length(calendar.isLeapYear()); i++)
+    {
+      if(i == 1){
+        column += 8 * (calendar.withDayOfMonth(i).getDayOfWeek().getValue() - 1);
+      }
+      setLettersUP(sheet, column, lettersRow, borders);
+      setDayOfWeek(calendar.withDayOfMonth(i).getDayOfWeek(), sheet, column,dayOfWeekRow, workbookMaster);
+      setDayOfMonth(calendar.withDayOfMonth(i), sheet, column, dayOfMonthRow, workbookMaster);
+      setTurnosRegion(sheet, column, turnosRegRow);
+      if(calendar.withDayOfMonth(i).getDayOfWeek() == DayOfWeek.SUNDAY){
+        lettersRow += 20;
+        dayOfMonthRow += 20;
+        dayOfWeekRow += 20;
+        turnosRegRow += 20;
+        column = ogColumn - 8;
+      }
+      column += 8;
+    }
+  }
+
+  private void SetHorarioMaster(HorarioMaster master, Sheet sheet, LocalDate calendar,
+      int condesoTiendaColumn) {
     int column = 6;//columna
     int row = 5;
     int lettersRow = 4;
@@ -182,18 +190,18 @@ public class  ExcelWriter {
       Map<LocalDate, Dias> mes = master.getMes();
       Dias dia = mes.get(calendar.withDayOfMonth(i));
       if(dia!=null){
-        setDias(dia, column, row,sheet);
+        setDias(dia, column, row,sheet, condesoTiendaColumn);
       }
       column+=8;
     }
   }
 
-  private void setDias(Dias dia, int column, int row,Sheet sheet) {
+  private void setDias(Dias dia, int column, int row,Sheet sheet, int condesoColumn) {
+    int ogColumn = condesoColumn;
     for (Turnos turno:dia.getTurnos()){
       setTurno(turno, column, row,sheet);
       if(turno.getCondeso() != null) {
         Sheet condesoSheet = workbookMaster.getSheet(turno.getCondeso().getAbreviacion());
-        int condesoColumn = 1;
         condesoColumn += 8 * (dia.getDate().getDayOfWeek().getValue() - 1);
         TemporalField weekField = WeekFields.of(Locale.GERMAN).weekOfMonth();
         int condesoRow = row;
@@ -205,6 +213,7 @@ public class  ExcelWriter {
         setTurno(turno, condesoColumn, condesoRow, condesoSheet);
       }
     }
+    condesoColumn = ogColumn;
   }
 
   private void setTurno(Turnos turno, int column, int row ,Sheet sheet) {
