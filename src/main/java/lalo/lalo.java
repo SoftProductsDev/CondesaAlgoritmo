@@ -164,7 +164,7 @@ public class lalo {
 		asignarFijos();
 		turnos = generateQueueTurnos();
 		Set<Turnos> noAsignados = new HashSet<>();
-		PriorityQueue<Condeso> fila = new PriorityQueue<>(new CompareCondesos());
+		PriorityQueue<Condeso> fila = new PriorityQueue<>(new CompareCondesos(sinChecarNivel));
 		fila.addAll(condesos);
 		System.out.println(disponibilidad.size());
 		Turnos elTurno = turnos.poll();
@@ -440,7 +440,7 @@ public class lalo {
 			elCondeso.cincoMas();
 		}
 
-		PriorityQueue<Condeso> fila = new PriorityQueue<>(new CompareCondesos());
+		PriorityQueue<Condeso> fila = new PriorityQueue<>(new CompareCondesos(sinChecarNivel));
 		List<Condeso> regaladores;
 		Set<Turnos> dificiles = new HashSet<>();
 
@@ -478,7 +478,7 @@ public class lalo {
 			condesos.addAll(regaladores);
 
 			if(!Found){ //intentar reacomodar a los que tienen muchos turnos
-				fila = new PriorityQueue<>(new CompareCondesos());
+				fila = new PriorityQueue<>(new CompareCondesos(sinChecarNivel));
 				regaladores = posibles.get(Reasons.maximoDiasSeguidos);
 				condesos.removeAll(regaladores);
 				checados = new HashSet<>();
@@ -508,7 +508,7 @@ public class lalo {
 				condesos.addAll(useless);
 
 				if(!Found){
-					fila = new PriorityQueue<>(new CompareCondesos());
+					fila = new PriorityQueue<>(new CompareCondesos(sinChecarNivel));
 					regaladores = posibles.get(Reasons.maximoAlcanzado);
 					condesos.removeAll(regaladores);
 					checados = new HashSet<>();
@@ -564,7 +564,7 @@ public class lalo {
 		boolean toReturn;
 		if(first){
 			for(Turnos elTurno : noAsignados){
-				PriorityQueue<Condeso> losCandidatos = new PriorityQueue<>(new CompareCondesos());
+				PriorityQueue<Condeso> losCandidatos = new PriorityQueue<>(new CompareCondesos(sinChecarNivel));
 				losCandidatos.addAll(findCandidates(elTurno, condesos, disponibilidad));
 				for(Condeso elCondeso : losCandidatos){
 					laRazon = findReason(elTurno, elCondeso);
@@ -577,7 +577,7 @@ public class lalo {
 
 		}else{
 			for(Turnos elTurno : noAsignados){
-				PriorityQueue<Condeso> losCandidatos = new PriorityQueue<>(new CompareCondesos());
+				PriorityQueue<Condeso> losCandidatos = new PriorityQueue<>(new CompareCondesos(sinChecarNivel));
 				losCandidatos.addAll(findCandidates(elTurno, condesos, disponibilidad));
 				losCandidatos.removeAll(fila);
 				for(Condeso elCondeso : losCandidatos){
