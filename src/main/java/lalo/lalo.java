@@ -195,9 +195,6 @@ public class lalo {
 		}
 
 		//reacomodar(noAsignados, condesos, disponibilidad);
-		for(Condeso elCondeso : condesos){
-			elCondeso.cincoMas();
-		}
 		insist(noAsignados, new ArrayList<>(), true);
 		for(Condeso elCondeso : condesos){
 			elCondeso.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
