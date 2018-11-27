@@ -13,8 +13,9 @@ public class CompareCondesos implements Comparator<Condeso> {
         double d2 = ((double) o2.getHoras())/((double) o2.getHorasAsignadas());
         if(d1 != d2){
         return Double.compare(d1, d2);}
-        else if(noChecarNivel) return Integer.compare(o2.getLevel(), o1.getLevel());
-        else return Integer.compare(o1.getLevel(), o2.getLevel());
+        else if (o2.getLevel() != o1.getLevel()){ if(noChecarNivel) return Integer.compare(o2.getLevel(), o1.getLevel());
+        else return Integer.compare(o1.getLevel(), o2.getLevel());}
+        else return o1.getAntiguedad().compareTo(o2.getAntiguedad());
 
     }
 }
