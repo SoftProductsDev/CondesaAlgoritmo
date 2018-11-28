@@ -211,9 +211,9 @@ public class  ExcelWriter {
         }
         condesoRow += ( weekNumb - 1) * 20;
         setTurno(turno, condesoColumn, condesoRow, condesoSheet);
+        condesoColumn = ogColumn;
       }
     }
-    condesoColumn = ogColumn;
   }
 
   private void setTurno(Turnos turno, int column, int row ,Sheet sheet) {
