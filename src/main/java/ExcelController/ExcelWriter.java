@@ -150,17 +150,26 @@ public class  ExcelWriter {
     {
       if(i == 1){
         column += 8 * (calendar.withDayOfMonth(i).getDayOfWeek().getValue() - 1);
+        createHourList(sheet,column - 1,turnosRegRow);
       }
       setLettersUP(sheet, column, lettersRow, borders);
       setDayOfWeek(calendar.withDayOfMonth(i).getDayOfWeek(), sheet, column,dayOfWeekRow, workbookMaster);
       setDayOfMonth(calendar.withDayOfMonth(i), sheet, column, dayOfMonthRow, workbookMaster);
       setTurnosRegion(sheet, column, turnosRegRow);
       if(calendar.withDayOfMonth(i).getDayOfWeek() == DayOfWeek.SUNDAY){
+        createHourList(sheet,column + 7, turnosRegRow);
         lettersRow += 20;
         dayOfMonthRow += 20;
         dayOfWeekRow += 20;
         turnosRegRow += 20;
         column = ogColumn - 8;
+      }
+      else if(calendar.withDayOfMonth(i).getDayOfWeek() == DayOfWeek.MONDAY){
+        createHourList(sheet,column - 1, turnosRegRow);
+        sheet.setColumnWidth(column + 7, 1200);
+      }
+      else {
+        sheet.setColumnWidth(column + 7, 1200);
       }
       column += 8;
     }
@@ -311,7 +320,6 @@ public class  ExcelWriter {
   private void createHourList(Sheet sheet, int column, int rowInt) {
     String[] rows = {"08-09","09-10", "10-11","11-12", "12-13", "13-14", "14-15", "15-16", "16-17",
         "17-18", "18-19","19-20", "20-21", "21-22", "22-23", "23-24"};
-    int i = 0;
     CellRangeAddress turnosRegion = new CellRangeAddress(
         rowInt,rowInt + 15,column,column
     );
@@ -324,10 +332,9 @@ public class  ExcelWriter {
        Cell cell = r.createCell(column);
        cell.setCellValue(row);
        cell.setCellStyle(centerStyle(workbookMaster));
-       sheet.setColumnWidth(i + column, 1700);
-       i++;
        rowInt++;
     }
+    sheet.setColumnWidth(column, 1700);
     setRegionBorderWithMedium(turnosRegion, sheet);
   }
 
