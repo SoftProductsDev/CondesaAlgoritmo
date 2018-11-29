@@ -5,6 +5,7 @@ import DbModel.HibernateUtil;
 import condeso.Condeso;
 import horario.Dias;
 import horario.HorarioMaster;
+import horario.TipoTurno;
 import horario.Turnos;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -24,6 +25,7 @@ import org.apache.poi.ss.util.RegionUtil;
 import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFColor;
+import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import tiendas.Tiendas;
 
@@ -32,22 +34,41 @@ public class  ExcelWriter {
   private final String[] columns = {"GM", "GM","G", "F", "D", "B", "R"};
   private CellStyle borders;
   private Workbook workbookMaster;
-  private Workbook workbookCondesos;
-  private CellStyle borders2;
   private List<Tiendas> tiendas;
   private List<Condeso> condesos;
   private LocalDate calendar;
   private String path;
+  private CellStyle nombreTiendasStyle;
 
   public ExcelWriter(List<Tiendas> tiendas,List<Condeso> condesos,LocalDate calendar, String path){
     workbookMaster = new XSSFWorkbook();
-    workbookCondesos = new XSSFWorkbook();
     borders = createBordersStyle(workbookMaster);
-    borders2 = createBordersStyle(workbookCondesos);
+    nombreTiendasStyle = createNombreTiendasStyle();
     this.tiendas = tiendas;
     this.condesos = condesos;
     this.calendar = calendar;
     this.path = path;
+  }
+
+  private CellStyle createNombreTiendasStyle() {
+    CellStyle borders = workbookMaster.createCellStyle();
+    Font font= workbookMaster.createFont();
+    font.setFontHeightInPoints((short)10);
+    font.setFontName("Calibri");
+    font.setColor(IndexedColors.BLACK.getIndex());
+    font.setBold(true);
+    font.setItalic(false);
+    borders.setFont(font);
+    borders.setAlignment(HorizontalAlignment.CENTER);
+    borders.setBorderBottom(BorderStyle.THIN);
+    borders.setBottomBorderColor(IndexedColors.BLACK.getIndex());
+    borders.setBorderLeft(BorderStyle.THIN);
+    borders.setLeftBorderColor(IndexedColors.BLACK.getIndex());
+    borders.setBorderRight(BorderStyle.THIN);
+    borders.setRightBorderColor(IndexedColors.BLACK.getIndex());
+    borders.setBorderTop(BorderStyle.THIN);
+    borders.setTopBorderColor(IndexedColors.BLACK.getIndex());
+    return borders;
   }
 
   private CellStyle createBordersStyle(Workbook book) {
@@ -69,7 +90,7 @@ public class  ExcelWriter {
 
     CreationHelper createHelper = workbookMaster.getCreationHelper();
 
-    createCondesoSheets(condesos, 2, 1, calendar);
+    createCondesoSheets(condesos, 2, 2, calendar);
 
     int i = 0;
     int tiendaColumn = 2;
@@ -102,6 +123,16 @@ public class  ExcelWriter {
   private void createCondesoLists(Sheet sheet, int i, int i1) {
     int rowStart = 3;
     int columnStart = 1;
+    Row r = sheet.getRow(rowStart -1);
+    if (r == null){
+      r = sheet.createRow(rowStart - 1);
+    }
+    Cell c1 = r.createCell(columnStart);
+    c1.setCellValue("Clave");
+    Cell c2 = r.createCell(columnStart + 1);
+    c2.setCellValue("Nombre");
+    Cell c3 = r.createCell(columnStart + 2);
+    c3.setCellValue("Horas");
     for (Condeso c:condesos
     ) {
        Row row = sheet.getRow(rowStart);
@@ -114,6 +145,9 @@ public class  ExcelWriter {
        Cell nombreCell = row.createCell(columnStart + 1);
        sheet.setColumnWidth(columnStart, 1700);
        nombreCell.setCellValue(c.getNombre());
+       sheet.autoSizeColumn(columnStart + 1);
+       Cell horasCell = row.createCell(columnStart + 2);
+       horasCell.setCellValue(c.getHorasMes().get(calendar).getHoras());
       rowStart++;
     }
   }
@@ -133,20 +167,21 @@ public class  ExcelWriter {
       sheet.addMergedRegion(rangeHoras);
       horasCell.setCellStyle(colorStyle("#ffc100"));
       for (Tiendas t: tiendas){
-        createMonth(column, sheet, t.getNombre());
+        createMonth(column, row,sheet, t.getNombre());
         column += 58;
       }
       column = ogColumn;
     }
   }
 
-  private void createMonth(int ogColumn, Sheet sheet, String nombreTienda){
-    int turnosRegRow = 5;
-    int lettersRow = 4;
-    int dayOfMonthRow = 3;
-    int dayOfWeekRow = 2;
+  private void createMonth(int ogColumn, int row,Sheet sheet, String nombreTienda){
+    int turnosRegRow = row + 4;
+    int lettersRow = row + 3;
+    int dayOfMonthRow = row + 2;
+    int dayOfWeekRow = row + 1;
     int column = ogColumn;
 
+    setNombreTienda(sheet, nombreTienda, column, row);
     for (int i = 1; i <= calendar.getMonth().length(calendar.isLeapYear()); i++)
     {
       if(i == 1){
@@ -159,14 +194,16 @@ public class  ExcelWriter {
       setTurnosRegion(sheet, column, turnosRegRow);
       if(calendar.withDayOfMonth(i).getDayOfWeek() == DayOfWeek.SUNDAY){
         createHourList(sheet,column + 7, turnosRegRow);
-        lettersRow += 20;
-        dayOfMonthRow += 20;
-        dayOfWeekRow += 20;
-        turnosRegRow += 20;
+        lettersRow += 21;
+        dayOfMonthRow += 21;
+        dayOfWeekRow += 21;
+        turnosRegRow += 21;
+        row += 21;
         column = ogColumn - 8;
       }
       else if(calendar.withDayOfMonth(i).getDayOfWeek() == DayOfWeek.MONDAY){
         createHourList(sheet,column - 1, turnosRegRow);
+        setNombreTienda(sheet, nombreTienda,column, row);
         sheet.setColumnWidth(column + 7, 1200);
       }
       else {
@@ -176,10 +213,23 @@ public class  ExcelWriter {
     }
   }
 
+  private void setNombreTienda(Sheet sheet, String nombreTienda ,int column, int row) {
+    Row r = sheet.getRow(row);
+    if (r == null){
+      r = sheet.createRow(row);
+    }
+    Cell c = r.createCell(column);
+    CellRangeAddress cra = new CellRangeAddress(row, row, column, column + 54);
+    sheet.addMergedRegion(cra);
+    setRegionBorderWithMedium(cra, sheet);
+    c.setCellValue(nombreTienda);
+    c.setCellStyle(nombreTiendasStyle);
+  }
+
   private void SetHorarioMaster(HorarioMaster master, Sheet sheet, LocalDate calendar,
       int condesoTiendaColumn) {
     int column = 6;//columna
-    int row = 5;
+    int row = 6;
     int lettersRow = 4;
     int dayOfMonthRow = 3;
     int dayOfWeekRow = 2;
@@ -208,8 +258,14 @@ public class  ExcelWriter {
 
   private void setDias(Dias dia, int column, int row,Sheet sheet, int condesoColumn) {
     int ogColumn = condesoColumn;
+    boolean gm = false;
     for (Turnos turno:dia.getTurnos()){
-      setTurno(turno, column, row,sheet);
+      if(turno.getTipoTurno() == TipoTurno.GM){
+        setTurno(turno, column, row,sheet, gm);
+        gm = true;
+      }else{
+        setTurno(turno, column, row,sheet, gm);
+      }
       if(turno.getCondeso() != null) {
         Sheet condesoSheet = workbookMaster.getSheet(turno.getCondeso().getAbreviacion());
         condesoColumn += 8 * (dia.getDate().getDayOfWeek().getValue() - 1);
@@ -219,25 +275,34 @@ public class  ExcelWriter {
         if(dia.getDate().getDayOfWeek() == DayOfWeek.SUNDAY){
           weekNumb -= 1;
         }
-        condesoRow += ( weekNumb - 1) * 20;
-        setTurno(turno, condesoColumn, condesoRow, condesoSheet);
+        condesoRow += ( weekNumb - 1) * 21;
+        setTurno(turno, condesoColumn, condesoRow, condesoSheet, false);
         condesoColumn = ogColumn;
       }
     }
   }
 
-  private void setTurno(Turnos turno, int column, int row ,Sheet sheet) {
+  private void setTurno(Turnos turno, int column, int row ,Sheet sheet, boolean gm) {
     int hourIndex = (row - 8) + turno.getInicio();
     for (int i = 1; i <= turno.getDuracion(); i++){
       Row r = sheet.getRow(hourIndex);
       if(r == null){
         r = sheet.createRow(hourIndex);
       }
-      Cell cell = r.getCell(
-          column + turno.getTipoTurno().ordinal() + 1);
-      if (cell == null){
-        cell = sheet.getRow(hourIndex).createCell(
-            column + turno.getTipoTurno().ordinal() + 1);
+      Cell cell;
+      if(gm && turno.getTipoTurno() == TipoTurno.GM){
+        cell = r.getCell(
+            column + turno.getTipoTurno().ordinal());
+        if (cell == null){
+          cell = sheet.getRow(hourIndex).createCell(
+              column + turno.getTipoTurno().ordinal());
+        }
+      }else {
+        cell = r.getCell(column + turno.getTipoTurno().ordinal() + 1);
+        if (cell == null) {
+          cell = sheet.getRow(hourIndex).createCell(
+              column + turno.getTipoTurno().ordinal() + 1);
+        }
       }
       if(turno.getCondeso() != null){
         cell.setCellValue(turno.getCondeso().getAbreviacion());
