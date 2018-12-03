@@ -85,8 +85,15 @@ public class EditPopOverGUI  implements Initializable {
 
   public void applyChange(ActionEvent actionEvent) {
     int duracion1 = turno.getDuracion();
-    turno.setInicio(Integer.parseInt(inicioField.getText()));
-    turno.setFin(Integer.parseInt(finField.getText()));
+    int inicio = Integer.parseInt(inicioField.getText());
+    int fin = Integer.parseInt(finField.getText());
+    if(inicio > 7 && inicio < 24 && fin > 8 && fin < 25){
+      turno.setInicio(inicio);
+      turno.setFin(fin);
+    }else{
+      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+      alert.setTitle("No se ingreso un horario valido");
+    }
     if(condesoTodosChoice.getSelectionModel().getSelectedItem() != null && condesoChoice.getSelectionModel().getSelectedItem() != null){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("2 condesos con el mismo turno");
