@@ -208,28 +208,29 @@ public class lalo {
 			HibernateCrud.UpdateCondeso(condeso);
 		}
 */
-		File file = new File("Stats.txt");
+		/*File file = new File("Stats.txt");
 		String all = "";
-		/*System.out.println();
+		System.out.println();
 		System.out.println("Turnos totales: " + (count+count2+countFijos));
 		System.out.println("Turnos totales asignados: " + (count+countFase2));
 		System.out.println("Asignados Fase1: " + count);
 		System.out.println("Asignados Fase2: "+ countFase2);
-		System.out.println("No asignados: " + (count2-countFase2));*/
+		System.out.println("No asignados: " + (count2-countFase2));
 		long elapsedTime =  System.currentTimeMillis() - start;
-		//System.out.println("Tiempo en segundos: " + (float)elapsedTime/1000F);
+		System.out.println("Tiempo en segundos: " + (float)elapsedTime/1000F);
 		all += "Tiempo en segundos: " + (float)elapsedTime/1000F + "\n";
-		/*System.out.println("Porcentaje de asignados 1 ronda: " +  (float)count/(count+count2+countFijos)*100 + "%");
+		System.out.println("Porcentaje de asignados 1 ronda: " +  (float)count/(count+count2+countFijos)*100 + "%");
 		System.out.println("Porcentaje de asignados 2 ronda: " +  (float)countFase2/(count+count2+countFijos)*100 + "%");
-		System.out.println("Porcentaje de asignados total: " +  (float)(count+countFase2+countFijos)/(count+count2+countFijos)*100 + "%\n");*/
+		System.out.println("Porcentaje de asignados total: " +  (float)(count+countFase2+countFijos)/(count+count2+countFijos)*100 + "%\n");
 		for(Condeso condeso:condesos){
 			all+= condeso.getNombre() + ": " + (float)condeso.getHorasAsignadas()/condeso.getMaxHours()*100 + " horas: " + condeso.getHorasAsignadas() + " maximo: " + condeso.getMaxHours() + "\n";
-			//System.out.println(condeso.getNombre() + ": " + (float)condeso.getHorasAsignadas()/condeso.getMaxHours()*100 + " horas: " + condeso.getHorasAsignadas() + " maximo: " + condeso.getMaxHours());
+			System.out.println(condeso.getNombre() + ": " + (float)condeso.getHorasAsignadas()/condeso.getMaxHours()*100 + " horas: " + condeso.getHorasAsignadas() + " maximo: " + condeso.getMaxHours());
 		}
 		all += "\n";
-		//System.out.println("\n");
+		System.out.println("\n");*/
 		int countTurnosTotales = 0;
 		int countTurnosAsignadosTotales = 0;
+
 		for(Tiendas tienda:tiendas){
 			HorarioMaster master = tienda.getMaster();
 			Map<LocalDate, Dias> masterMap = master.getMes();
@@ -251,7 +252,7 @@ public class lalo {
 		System.out.println("Porcentaje asignados: " + (float)countMid/countTurnosTotales*100);
 		System.out.println("Todos los turnos: " + countTurnosTotales);
 		System.out.println("Todos  asignados: " + countTurnosAsignadosTotales);
-		System.out.println("Porcentaje asignados: " + (float)countTurnosAsignadosTotales/countTurnosTotales*100);*/
+		System.out.println("Porcentaje asignados: " + (float)countTurnosAsignadosTotales/countTurnosTotales*100);
 		all+="Todos los turnos: " + countTurnosTotales + "\n";
 		all+= "Todos  asignados: " + countTurnosAsignadosTotales + "\n";
 		all+= "Porcentaje asignados: " + (float)countTurnosAsignadosTotales/countTurnosTotales*100 + "\n";
@@ -259,7 +260,7 @@ public class lalo {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 		writer.write(all);
 
-		writer.close();
+		writer.close();*/
 
 		promedio = (float)countTurnosAsignadosTotales/countTurnosTotales*100;
 		/*Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -566,12 +567,20 @@ public class lalo {
 			for(Turnos elTurno : noAsignados){
 				PriorityQueue<Condeso> losCandidatos = new PriorityQueue<>(new CompareCondesos(sinChecarNivel));
 				losCandidatos.addAll(findCandidates(elTurno, condesos, disponibilidad));
-				for(Condeso elCondeso : losCandidatos){
+				Condeso elCondeso = losCandidatos.poll();
+				while(elCondeso != null){
 					laRazon = findReason(elTurno, elCondeso);
 					fila.clear();
 					fila.add(elCondeso);
 					if(insistHelper(elTurno, elCondeso, laRazon, fila)) break;
+					elCondeso = losCandidatos.poll();
 				}
+				/*for(Condeso elCondeso : losCandidatos){
+					laRazon = findReason(elTurno, elCondeso);
+					fila.clear();
+					fila.add(elCondeso);
+					if(insistHelper(elTurno, elCondeso, laRazon, fila)) break;
+				}*/
 			}
 			return true;
 
@@ -580,7 +589,20 @@ public class lalo {
 				PriorityQueue<Condeso> losCandidatos = new PriorityQueue<>(new CompareCondesos(sinChecarNivel));
 				losCandidatos.addAll(findCandidates(elTurno, condesos, disponibilidad));
 				losCandidatos.removeAll(fila);
-				for(Condeso elCondeso : losCandidatos){
+				Condeso elCondeso = losCandidatos.poll();
+				while(elCondeso != null){
+					if(checkCondeso(elCondeso, disponibilidad, elTurno)){
+						elCondeso.asignarTurno(elTurno);
+						return true;
+					}else{
+						laRazon = findReason(elTurno, elCondeso);
+						fila.add(elCondeso);
+						if(insistHelper(elTurno, elCondeso, laRazon, fila))
+							return true;
+						elCondeso = losCandidatos.poll();
+					}
+				}
+				/*for(Condeso elCondeso : losCandidatos){
 					if(checkCondeso(elCondeso, disponibilidad, elTurno)){
 						elCondeso.asignarTurno(elTurno);
 						return true;
@@ -590,7 +612,7 @@ public class lalo {
 						if(insistHelper(elTurno, elCondeso, laRazon, fila))
 							return true;
 					}
-				}
+				}*/
 			}
 			return false;
 
