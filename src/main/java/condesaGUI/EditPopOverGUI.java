@@ -83,7 +83,7 @@ public class EditPopOverGUI  implements Initializable {
     condesoChoice.setItems(condesosCopy);
   }
 
-  public void applyChange(ActionEvent actionEvent) {
+  public boolean applyChange(ActionEvent actionEvent) {
     int duracion1 = turno.getDuracion();
     int inicio = Integer.parseInt(inicioField.getText());
     int fin = Integer.parseInt(finField.getText());
@@ -93,6 +93,8 @@ public class EditPopOverGUI  implements Initializable {
     }else{
       Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
       alert.setTitle("No se ingreso un horario valido");
+      alert.show();
+      return true;
     }
     if(condesoTodosChoice.getSelectionModel().getSelectedItem() != null && condesoChoice.getSelectionModel().getSelectedItem() != null){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -249,6 +251,7 @@ public class EditPopOverGUI  implements Initializable {
       columna = turno.getTipoTurno().ordinal() + 1;
     }
     grid.add(createLabel(), columna,  hourIndex,1,turno.getDuracion());
+    return true;
   }
 
   public void Delete(ActionEvent actionEvent) {
