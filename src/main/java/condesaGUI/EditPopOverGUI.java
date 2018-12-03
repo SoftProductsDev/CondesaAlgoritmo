@@ -235,7 +235,12 @@ public class EditPopOverGUI  implements Initializable {
     grid.getChildren().remove(label);
     //considering the first hour is 8 am
     int hourIndex = turno.getInicio() - 7;
-    int columna = turno.getTipoTurno().ordinal() + 1;
+    int  columna;
+    if(turno.getTipoTurno() == TipoTurno.GM){
+       columna = GridPane.getColumnIndex(label);
+    }else{
+      columna = turno.getTipoTurno().ordinal() + 1;
+    }
     grid.add(createLabel(), columna,  hourIndex,1,turno.getDuracion());
   }
 
