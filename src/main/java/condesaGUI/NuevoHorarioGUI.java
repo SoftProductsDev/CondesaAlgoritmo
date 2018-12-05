@@ -162,7 +162,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
                     CloseOpenWindow("/frontGUI.fxml");
                     float promedio = lalo.getPromedio();
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setTitle("PRCENTAJE");
+                    alert.setTitle("PORCENTAJE");
                     alert.setHeaderText("El procentaje de turnos asignados es: \n" + promedio);
                     alert.setContentText(null);
                     alert.showAndWait();
