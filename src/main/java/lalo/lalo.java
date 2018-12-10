@@ -845,5 +845,11 @@ public class lalo {
 		return end-start;
 	}
 
+	public List<Tiendas> getTiendas(){
+		List <Tiendas> allTiendas = new ArrayList<>();
+		allTiendas.addAll(tiendas);
+		return allTiendas;
+	}
+
 
 }

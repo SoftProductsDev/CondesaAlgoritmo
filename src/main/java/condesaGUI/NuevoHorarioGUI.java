@@ -159,6 +159,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
                 System.out.println(result);
                 //wd=null; // don't keep the object, cleanup
                 try {
+                    allTiendas = lalo.getTiendas();
                     CloseOpenWindow("/frontGUI.fxml");
                     float promedio = lalo.getPromedio();
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
