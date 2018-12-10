@@ -111,7 +111,7 @@ public class  ExcelWriter {
 
     // Write the output to a file
     //Tambien puede especificar el path ("C:\\Report\\TestCase.xlsx"));
-    FileOutputStream fileOut = new FileOutputStream(path + "Plan " + calendar.getMonth().getDisplayName
+    FileOutputStream fileOut = new FileOutputStream(path + "\\Plan " + calendar.getMonth().getDisplayName
         (TextStyle.FULL, Locale.GERMAN) + ".xlsx");
     workbookMaster.write(fileOut);
     fileOut.close();
@@ -147,7 +147,10 @@ public class  ExcelWriter {
        nombreCell.setCellValue(c.getNombre());
        sheet.autoSizeColumn(columnStart + 1);
        Cell horasCell = row.createCell(columnStart + 2);
-       horasCell.setCellValue(c.getHorasMes().get(calendar).getHoras());
+      var horasMes = c.getHorasMes().get(calendar.withDayOfMonth(1));
+      if (horasMes != null){
+        horasCell.setCellValue(horasMes.getHoras());
+      }
       rowStart++;
     }
   }
@@ -162,7 +165,10 @@ public class  ExcelWriter {
       nombreCell.setCellStyle(colorStyle("#ffc100"));
       nombreCell.setCellValue("Plan für: " + c.getNombre());
       Cell horasCell = sheet.getRow(0).createCell(17);
-      horasCell.setCellValue("Horas Total: " + c.getHorasMes().get(calendar).getHoras());
+      var horasMes = c.getHorasMes().get(calendar.withDayOfMonth(1));
+      if (horasMes != null){
+        horasCell.setCellValue("Horas Total: " + horasMes.getHoras());
+      }
       CellRangeAddress rangeHoras = new CellRangeAddress(0,0,17,24);
       sheet.addMergedRegion(rangeHoras);
       horasCell.setCellStyle(colorStyle("#ffc100"));
