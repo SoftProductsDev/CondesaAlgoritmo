@@ -267,10 +267,10 @@ public class  ExcelWriter {
     boolean gm = false;
     for (Turnos turno:dia.getTurnos()){
       if(turno.getTipoTurno() == TipoTurno.GM){
-        setTurno(turno, column, row,sheet, gm);
+        setTurno(turno, column, row - 1,sheet, gm);
         gm = true;
       }else{
-        setTurno(turno, column, row,sheet, gm);
+        setTurno(turno, column, row - 1,sheet, gm);
       }
       if(turno.getCondeso() != null) {
         Sheet condesoSheet = workbookMaster.getSheet(turno.getCondeso().getAbreviacion());
