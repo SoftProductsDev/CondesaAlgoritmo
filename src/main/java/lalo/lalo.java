@@ -101,7 +101,7 @@ public class lalo {
 			}
 			elGM.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
 			HibernateCrud.UpdateCondeso(elGM);
-			elGM.resetHoras();
+			elGM.resetCondeso();
 		}
 		for(Turnos elTurno : deEncargado){
             Tiendas tienda = lasTiendas.get(elTurno.getDay().getTienda().getId());
@@ -200,7 +200,7 @@ public class lalo {
 		for(Condeso elCondeso : condesos){
 			elCondeso.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
 			HibernateCrud.UpdateCondeso(elCondeso);
-			elCondeso.resetHoras();
+			elCondeso.resetCondeso();
 		}
 		for(Tiendas tiendaFinal:tiendas){
 			HibernateCrud.UpdateTienda(tiendaFinal);
@@ -294,7 +294,7 @@ public class lalo {
 			}
 			elFijo.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
 			HibernateCrud.UpdateCondeso(elFijo);
-			elFijo.resetHoras();
+			elFijo.resetCondeso();
 		}
 
 	}
