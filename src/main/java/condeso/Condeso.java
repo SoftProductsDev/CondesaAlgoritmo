@@ -193,7 +193,7 @@ public class Condeso {
 		HorasMes horas = new HorasMes();
 		horas.setHoras(horasAsignadas);
 		this.horasMes.put(month,  horas);
-
+		this.horasAsignadas = 0;
 	}
 
 	public boolean isFijo(){
@@ -551,5 +551,9 @@ public class Condeso {
 			losTurnos.add(elTurno);
 		}
 		return losTurnos;
+	}
+
+	public void resetHoras(){
+		this.horasAsignadas = 0;
 	}
 }
