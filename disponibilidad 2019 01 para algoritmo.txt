@@ -1,0 +1,85 @@
+																																			
+	ENERO																																		
+	Di	Mi	Do	Fr	Sa	So	Mo	Di	Mi	Do	Fr	Sa	So	Mo	Di	Mi	Do	Fr	Sa	So	Mo	Di	Mi	Do	Fr	Sa	So	Mo	Di	Mi	Do		MIN	MAX	
+	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31				
+																																			
+Jorge Figueroa	x	x	x	x	x	x	16	16	16	16	16	x	x	16	16	16	16	16	x	x	16	16	16	16	16	x	x	16	16	16	16		114	114	
+4	x	x	x	x	x	x	22	22	22	22	22	x	x	22	22	22	22	22	x	x	22	22	22	22	22	x	x	22	22	22	22				
+																																			
+Sergio Pindado	x	x	x	x	x	x	9	9	9	9	9	x	x	9	9	9	9	9	x	x	9	9	9	9	9	x	x	9	9	9	9		114	114	
+6	x	x	x	x	x	x	15	15	15	15	15	x	x	15	15	15	15	15	x	x	15	15	15	15	15	x	x	15	15	15	15				
+																																			
+Mishell	x	x	x	x	x	x	15	x	x	x	x	9	x	15	15	x	x	x	x	x	15	x	x	x	x	9	x	15	15	x	x		20	44	
+120	x	x	x	x	x	x	23	x	x	x	x	23	x	23	23	x	x	x	x	x	23	x	x	x	x	23	x	23	23	x	x				
+																																			
+Bruno	x	x	x	x	x	x	8	8	8	8	8	8	8	8	8	8	8	8	8	8	8	8	8	8	8	8	8	8	8	8	8		120	160	
+106	x	x	x	x	x	x	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23				
+																																			
+Asun	x	x	x	x	x	x	x	x	x	x	x	10	10	9	9	9	9	x	10	10	9	9	9	9	x	10	10	9	9	9	9		60	60	
+18	x	x	x	x	x	x	x	x	x	x	x	16	16	15	15	15	15	x	16	16	15	15	15	15	x	16	16	15	15	15	15				
+																																			
+Loreto	x	x	x	x	x	x	8	x	8	8	x	8	8	x	x	8	8	x	8	8	8	x	8	8	x	8	8	8	x	8	8		72	74	
+128	x	x	x	x	x	x	23	x	23	23	x	23	23	x	x	23	23	x	23	23	23	x	23	23	x	23	23	23	x	23	23				
+																																			
+Nuria	x	x	x	x	x	x	17	17	17	x	x	13	8	17	17	17	x	x	13	8	17	17	17	x	x	x	x	x	17	17	x		48	50	
+129	x	x	x	x	x	x	23	23	23	x	x	23	23	23	23	23	x	x	23	23	23	23	23	x	x	x	x	x	23	23	x				
+																																			
+Martina	x	x	x	x	x	x	x	x	x	x	x	x	8	13	13	13	13	13	8	8	13	13	13	13	13	8	8	13	13	13	13		80	150	
+130	x	x	x	x	x	x	x	x	x	x	x	x	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23				
+																																			
+Adrian Mora	x	x	x	x	x	x	8	x	x	8	x	x	12	8	8	13	8	x	x	x	8	x	13	x	x	x	x	8	18	13	8		40	40	
+121	x	x	x	x	x	x	14	x	x	24	x	x	24	14	13	24	24	x	x	x	14	x	24	x	x	x	x	14	13	24	13				
+																																			
+Abigail	x	x	x	x	x	x	x	x	x	x	17	8	12	18	8	8	x	8	8	12	18	8	8	15	8	8	12	x	8	8	16		70	80	
+107	x	x	x	x	x	x	x	x	x	x	23	24	23	23	16	16	x	16	23	23	23	16	16	24	16	23	23	x	16	16	23				
+																																			
+Laura Carolina	x	x	x	x	x	x	18	x	17	x	x	8	8	8	x	17	x	15	8	8	x	17	x	18	x	8	8	8	17	18	19		40	48	
+131	x	x	x	x	x	x	23	x	22	x	x	23	23	12	x	22	x	23	23	23	x	22	x	22	x	23	23	12	22	23	23				
+																																			
+Adrian R	x	x	x	x	x	x	x	x	x	x	12	8	8	8	8	8	8	8	8	16	8	8	8	8	8	8	8	8	8	8	8		70	82	
+90	x	x	x	x	x	x	x	x	x	x	23	23	22	23	23	23	23	23	17	22	23	23	23	23	23	23	22	23	23	23	23				
+																																			
+Constancio	x	x	x	x	x	x	x	x	x	x	9	9	9	9	9	9	9	9	9	9	9	9	9	9	9	9	9	9	9	9	9		100	160	
+113	x	x	x	x	x	x	x	x	x	x	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23				
+																																			
+Pablo	x	x	x	x	x	x	8	8	8	8	8	10	x	18	8	8	8	8	x	x	8	8	8	8	8	10	x	18	8	8	8		60	100	
+61	x	x	x	x	x	x	14	14	14	14	16	17	x	22	14	14	14	16	x	x	14	14	14	14	16	17	x	22	14	14	14				
+																																			
+Esbeidy	x	x	x	x	x	x	x	x	x	x	x	10	x	15	x	x	x	8	x	x	15	15	x	x	x	x	x	15	15	x	15		25	30	
+94	x	x	x	x	x	x	x	x	x	x	x	16	x	21	x	x	x	16	x	x	21	21	x	x	x	x	x	21	21	x	21				
+																																			
+Eden	x	x	x	x	x	x	17	17	17	17	17	10	10	17	17	17	17	17	10	10	17	17	17	17	17	10	10	17	17	17	x		75	90	
+122	x	x	x	x	x	x	23	23	23	23	23	22	22	23	23	23	23	23	22	22	23	23	23	23	23	22	22	23	23	23	x				
+																																			
+José Adrián	x	x	x	x	x	x	8	x	17	x	x	x	x	12	x	17	x	x	x	8	8	x	17	x	x	8	8	8	x	17	x		30	42	
+114	x	x	x	x	x	x	23	x	23	x	x	x	x	23	x	23	x	x	x	22	22	x	23	x	x	23	22	23	x	23	x				
+																																			
+Carlos	x	x	x	x	x	x	x	x	x	x	x	8	8	x	x	x	x	x	8	8	x	x	x	x	x	8	8	x	x	x	x		44	50	
+132	x	x	x	x	x	x	x	x	x	x	x	23	23	x	x	x	x	x	23	23	x	x	x	x	x	23	23	x	x	x	x				
+																																			
+Jimena	x	x	x	x	x	x	x	x	x	x	x	16	x	x	x	18	x	x	16	x	18	x	x	x	x	16	x	18	x	x	18		20	30	
+123	x	x	x	x	x	x	x	x	x	x	x	22	x	x	x	22	x	x	22	x	22	x	x	x	x	22	x	22	x	x	22				
+																																			
+Daniela	x	x	x	x	x	x	8	17	x	18	19	14	8	8	17	x	18	15	14	8	x	17	x	18	19	14	8	x	17	x	18		40	48	
+133	x	x	x	x	x	x	12	23	x	23	23	23	23	12	23	x	23	23	23	23	x	23	x	23	23	23	23	x	23	x	23				
+																																			
+Marta	x	x	x	x	x	x	15	15	15	15	15	10	x	15	15	x	x	x	x	x	15	15	15	15	15	10	10	15	15	15	15		10	35	
+116	x	x	x	x	x	x	23	23	23	23	23	23	x	23	23	x	x	x	x	x	23	23	23	23	23	23	23	23	23	23	23				
+																																			
+Eva	x	x	x	x	x	x	x	15	x	15	15	x	12	18	18	18	18	18	8	8	18	18	18	18	18	8	8	18	18	18	18		100	120	
+125	x	x	x	x	x	x	x	23	x	23	23	x	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23	23				
+																																			
+Jonathan	x	x	x	x	x	x	x	17	8	x	10	8	8	17	17	8	x	10	x	x	17	17	8	x	10	8	8	x	17	8	x		90	110	
+126	x	x	x	x	x	x	x	24	17	x	24	24	24	24	24	24	x	17	x	x	24	24	24	x	24	24	24	x	24	24	x				
+																																			
+Luisa	x	x	x	x	x	x	x	8	8	8	8	8	8	x	8	8	8	8	8	8	x	8	8	8	x	x	x	x	8	8	8		85	90	
+127	x	x	x	x	x	x	x	24	16	24	24	24	16	x	24	16	24	24	24	17	x	24	16	24	x	x	x	x	24	16	24				
+																																			
+Max Estrada	x	x	x	x	x	x	9	12	16	14	9	9	9	9	12	16	14	9	9	9	9	12	16	x	x	x	x	9	12	16	14		80	100	
+112	x	x	x	x	x	x	16	21	23	23	16	23	23	16	21	23	23	23	23	23	16	21	23	x	x	x	x	16	21	23	23				
+																																			
+Fatima	x	x	x	x	x	x	12	15	17	x	8	x	x	13	x	16	12	8	8	x	12	8	17	12	8	8	x	13	15	16	10		65	80	
+111	x	x	x	x	x	x	23	23	23	x	18	x	x	20	x	23	23	18	23	x	21	23	23	21	19	21	x	21	23	23	21				
+																																			
+Shantal	x	x	x	x	x	x	x	x	x	x	x	x	x	x	x	16	x	9	x	x	x	9	x	x	9	x	x	x	9	x	9		20	44	
+75	x	x	x	x	x	x	x	x	x	x	x	x	x	x	x	22	x	18	x	x	x	22	x	x	18	x	x	x	18	x	23				
