@@ -276,6 +276,36 @@ public class EditPopOverGUI  implements Initializable {
     grid.getChildren().remove(label);
   }
 
+  public void Empty(){
+    Condeso elCondeso = turno.getCondeso();
+    LocalDate fecha = dia.getDate();
+    if(elCondeso != null){
+      long id = elCondeso.getId();
+      for(Condeso condeso : condesos){
+        if(id == condeso.getId()){
+          elCondeso = condeso;
+          break;
+        }
+      }
+      HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+      if(horas != null){
+        int lasHoras = horas.getHoras();
+        horas.setHoras(lasHoras - turno.getDuracion());
+      }
+    }
+    turno.setCondeso(null);
+    grid.getChildren().remove(label);
+    //considering the first hour is 8 am
+    int hourIndex = turno.getInicio() - 7;
+    int  columna;
+    if(turno.getTipoTurno() == TipoTurno.GM){
+      columna = GridPane.getColumnIndex(label);
+    }else{
+      columna = turno.getTipoTurno().ordinal() + 1;
+    }
+    grid.add(createLabel(), columna,  hourIndex,1,turno.getDuracion());
+  }
+
   private Label createLabel() {
     Label label = new Label(turno.getCondeso().getAbreviacion());
     label.setStyle("-fx-background-color: " + turno.getCondeso().getColor());
