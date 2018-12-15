@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<Accordion maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="110.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.EditPopOverGUI">
+<Accordion maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="429.0" prefWidth="251.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.EditPopOverGUI">
   <panes>
     <TitledPane animated="false" expanded="true" text="Editar">
       <content>
@@ -31,6 +31,7 @@
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <Button layoutX="2.0" layoutY="62.0" mnemonicParsing="false" onAction="#Delete" prefHeight="43.0" prefWidth="104.0" text="Eliminar Turno" />
+                  <Button fx:id="vaciarButton" layoutX="2.0" layoutY="137.0" mnemonicParsing="false" onAction="#empty" prefHeight="43.0" prefWidth="104.0" text="Vaciar" />
                </children></AnchorPane>
       </content>
     </TitledPane>

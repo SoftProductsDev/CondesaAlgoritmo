@@ -276,7 +276,7 @@ public class EditPopOverGUI  implements Initializable {
     grid.getChildren().remove(label);
   }
 
-  public void empty(){
+  public void empty(ActionEvent actionEvent){
     Condeso elCondeso = turno.getCondeso();
     LocalDate fecha = dia.getDate();
     if(elCondeso != null){
