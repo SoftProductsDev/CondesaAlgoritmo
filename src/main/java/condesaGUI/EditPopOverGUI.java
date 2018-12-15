@@ -250,7 +250,7 @@ public class EditPopOverGUI  implements Initializable {
     }else{
       columna = turno.getTipoTurno().ordinal() + 1;
     }
-    grid.add(createLabel(), columna,  hourIndex,1,turno.getDuracion());
+    grid.add(createLabel(dia, turno, grid), columna,  hourIndex,1,turno.getDuracion());
     return true;
   }
 
@@ -303,10 +303,43 @@ public class EditPopOverGUI  implements Initializable {
     }else{
       columna = turno.getTipoTurno().ordinal() + 1;
     }
-    grid.add(createLabel(), columna,  hourIndex,1,turno.getDuracion());
+    grid.add(createLabel(dia, turno, grid), columna,  hourIndex,1,turno.getDuracion());
   }
 
-  private Label createLabel() {
+  private Label createLabel(Dias dia, Turnos turno, GridPane grid) {
+    Label label = new Label();
+    if(turno.getCondeso() == null){
+      label.setStyle("-fx-background-color: black");
+    }
+    else{
+      label.setText(turno.getCondeso().getAbreviacion());
+      label.setStyle("-fx-background-color: " + turno.getCondeso().getColor());
+    }
+    //label.setStyle();
+    label.setMaxHeight(125462739);
+    label.setMaxWidth(1234567890);
+    label.addEventHandler(MouseEvent.MOUSE_CLICKED,
+            new EventHandler<MouseEvent>() {
+              @Override
+              public void handle(MouseEvent event) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPopOver.fxml"));
+                Parent root = null;
+                try {
+                  root = (Parent) fxmlLoader.load();
+                } catch (IOException e) {
+                  e.printStackTrace();
+                }
+                PopOver pop = new PopOver(root);
+                pop.setAutoFix(false);
+                pop.show(label);
+                EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();//TODO EJEMPLO
+                edit.setInitialValues(turno, dia, grid, label, condesos, tiendas);
+                event.consume();
+              }
+            });
+    return label;
+  }
+  /*private Label createLabel() {
     Label label = new Label(turno.getCondeso().getAbreviacion());
     label.setStyle("-fx-background-color: " + turno.getCondeso().getColor());
     //label.setStyle();
@@ -337,5 +370,5 @@ public class EditPopOverGUI  implements Initializable {
           };
         });
     return label;
-  }
+  }*/
 }
