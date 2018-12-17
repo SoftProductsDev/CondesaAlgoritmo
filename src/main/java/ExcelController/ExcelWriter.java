@@ -7,6 +7,16 @@ import horario.Dias;
 import horario.HorarioMaster;
 import horario.TipoTurno;
 import horario.Turnos;
+import javafx.scene.paint.Color;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.ss.util.RegionUtil;
+import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFColor;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import tiendas.Tiendas;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.DayOfWeek;
@@ -17,17 +27,6 @@ import java.time.temporal.WeekFields;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import javafx.scene.paint.Color;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.ss.util.RegionUtil;
-import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFColor;
-import org.apache.poi.xssf.usermodel.XSSFFont;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import tiendas.Tiendas;
 
 public class  ExcelWriter {
 
@@ -39,11 +38,13 @@ public class  ExcelWriter {
   private LocalDate calendar;
   private String path;
   private CellStyle nombreTiendasStyle;
+  private CellStyle  topBorderStyle;
 
   public ExcelWriter(List<Tiendas> tiendas,List<Condeso> condesos,LocalDate calendar, String path){
     workbookMaster = new XSSFWorkbook();
     borders = createBordersStyle(workbookMaster);
     nombreTiendasStyle = createNombreTiendasStyle();
+    topBorderStyle = createTopBorder(workbookMaster);
     this.tiendas = tiendas;
     this.condesos = condesos;
     this.calendar = calendar;
@@ -85,10 +86,16 @@ public class  ExcelWriter {
     return borders;
   }
 
-  public void createHorarioMasterExcel()
-      throws IOException, InvalidFormatException {
+  private CellStyle createTopBorder(Workbook book){
+    CellStyle top = book.createCellStyle();
+    top.setBorderTop(BorderStyle.DOUBLE);
+    top.setTopBorderColor(IndexedColors.BLACK.getIndex());
+    return top;
+  }
 
-    CreationHelper createHelper = workbookMaster.getCreationHelper();
+  public void createHorarioMasterExcel()
+      throws IOException {
+
 
     createCondesoSheets(condesos, 2, 2, calendar);
 
@@ -141,7 +148,7 @@ public class  ExcelWriter {
        }
        Cell abrevCell = row.createCell(columnStart);
        abrevCell.setCellValue(c.getAbreviacion());
-       abrevCell.setCellStyle(colorStyle(c.getColor()));
+       abrevCell.setCellStyle(colorStyle(c.getColor(), false));
        Cell nombreCell = row.createCell(columnStart + 1);
        sheet.setColumnWidth(columnStart, 1700);
        nombreCell.setCellValue(c.getNombre());
@@ -162,7 +169,7 @@ public class  ExcelWriter {
       Cell nombreCell = sheet.createRow(0).createCell(1);
       CellRangeAddress range = new CellRangeAddress(0,0,1,9);
       sheet.addMergedRegion(range);
-      nombreCell.setCellStyle(colorStyle("#ffc100"));
+      nombreCell.setCellStyle(colorStyle("#ffc100", false));
       nombreCell.setCellValue("Plan für: " + c.getNombre());
       Cell horasCell = sheet.getRow(0).createCell(17);
       var horasMes = c.getHorasMes().get(calendar.withDayOfMonth(1));
@@ -171,7 +178,7 @@ public class  ExcelWriter {
       }
       CellRangeAddress rangeHoras = new CellRangeAddress(0,0,17,24);
       sheet.addMergedRegion(rangeHoras);
-      horasCell.setCellStyle(colorStyle("#ffc100"));
+      horasCell.setCellStyle(colorStyle("#ffc100", false));
       for (Tiendas t: tiendas){
         createMonth(column, row,sheet, t.getNombre());
         column += 58;
@@ -240,6 +247,7 @@ public class  ExcelWriter {
     int dayOfMonthRow = 3;
     int dayOfWeekRow = 2;
     int turnosRegRow = 5;
+    int middayRow = 9;
     for (int i = 1; i <= calendar.getMonth().length(calendar.isLeapYear()); i++)
     {
       setLettersUP(sheet, column, lettersRow, borders);
@@ -253,6 +261,7 @@ public class  ExcelWriter {
         sheet.setColumnWidth(column + 7, 1200);
       }
       setTurnosRegion(sheet, column, turnosRegRow);
+      setMiddayLine(sheet, column, middayRow);
       Map<LocalDate, Dias> mes = master.getMes();
       Dias dia = mes.get(calendar.withDayOfMonth(i));
       if(dia!=null){
@@ -290,6 +299,13 @@ public class  ExcelWriter {
 
   private void setTurno(Turnos turno, int column, int row ,Sheet sheet, boolean gm) {
     int hourIndex = (row - 8) + turno.getInicio();
+    CellStyle one = null;
+    CellStyle two = null;
+    if (turno.getCondeso() != null){
+      one = colorStyle(turno.getCondeso().getColor(),true);
+      two = colorStyle(turno.getCondeso().getColor(),false);
+    }
+
     for (int i = 1; i <= turno.getDuracion(); i++){
       Row r = sheet.getRow(hourIndex);
       if(r == null){
@@ -312,7 +328,11 @@ public class  ExcelWriter {
       }
       if(turno.getCondeso() != null){
         cell.setCellValue(turno.getCondeso().getAbreviacion());
-        cell.setCellStyle(colorStyle(turno.getCondeso().getColor()));
+        if(hourIndex == 9){
+          cell.setCellStyle(one);
+        }else {
+          cell.setCellStyle(two);
+        }
       }
       else {
         cell.setCellValue("-");
@@ -321,18 +341,21 @@ public class  ExcelWriter {
     }
   }
 
-  private CellStyle colorStyle(String hexColor) {
+  private CellStyle colorStyle(String hexColor, boolean withTopBorder) {
     XSSFCellStyle style = (XSSFCellStyle) workbookMaster.createCellStyle();
     Color fx = Color.web(hexColor);
     java.awt.Color awtColor = new java.awt.Color((float) fx.getRed(),
         (float) fx.getGreen(),
         (float) fx.getBlue(),
         (float) fx.getOpacity());
-    byte[] rgb = {(byte)fx.getRed(), (byte) fx.getGreen(),(byte) fx.getBlue(),(byte) fx.getOpacity()};
     XSSFColor color = new XSSFColor(awtColor, new DefaultIndexedColorMap());
     style.setFillForegroundColor(color);
     style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
     style.getFont().setFontHeightInPoints((short) 9);
+    if(withTopBorder){
+      style.setBorderTop(BorderStyle.DOUBLE);
+      style.setTopBorderColor(IndexedColors.BLACK.getIndex());
+    }
     return style;
   }
 
@@ -410,6 +433,20 @@ public class  ExcelWriter {
     setRegionBorderWithMedium(turnosRegion, sheet);
   }
 
+  private void setMiddayLine(Sheet sheet, int column, int row) {
+    Row r = sheet.getRow(row);
+    if(r==null){
+      r = sheet.createRow(row);
+    }
+    for(int i = column; i < columns.length + column; i++){
+      Cell c = r.getCell(i);
+      if(c == null){
+        c = r.createCell(i);
+        c.setCellStyle(topBorderStyle);
+      }
+    }
+  }
+
   private void setRegionBorderWithMedium(CellRangeAddress region, Sheet sheet) {
     RegionUtil.setBorderBottom(BorderStyle.THIN, region, sheet);
     RegionUtil.setBorderLeft(BorderStyle.THIN, region, sheet);
@@ -430,7 +467,7 @@ public class  ExcelWriter {
     return c;
   }
 
-  public static void main(String[] args) throws IOException, InvalidFormatException{
+  public static void main(String[] args) throws IOException{
     ExcelWriter excelWriter = new ExcelWriter(HibernateCrud.GetAllTiendas(),HibernateCrud.GetAllCondesos(),
         LocalDate.of(2018,11,1), "");
     excelWriter.createHorarioMasterExcel();
