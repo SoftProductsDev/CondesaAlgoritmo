@@ -395,12 +395,13 @@ public class lalo {
 	}
 
 	private boolean checkFinesLibres(Condeso elCondeso, Turnos elTurno){
-		if(elCondeso.getContrato() == Contrato.MiniJob) return true;
+		return true;
+		/*if(elCondeso.getContrato() == Contrato.MiniJob) return true;
 		LocalDate fecha = elTurno.getDate();
 		DayOfWeek dia = fecha.getDayOfWeek();
 		if(dia != DayOfWeek.SATURDAY && dia != DayOfWeek.SUNDAY) return true;
 		if(elCondeso.getFinesLibres() == 1) return false;
-		return true;
+		return true;*/
 	}
 
 	private boolean checkTurnosEseDia(Condeso elCondeso, Turnos elTurno){
@@ -635,6 +636,7 @@ public class lalo {
 			case notFound:
 				return false;
 			case turnoEseDia: losPosibles = getTurnoEseDia(elTurno, elCondeso);
+			if(losPosibles == null) return false;
 				break;
 			case maximoDiasSeguidos: losPosibles = getMaximoDiasSeguidos(elTurno, elCondeso);
 				break;
@@ -670,8 +672,11 @@ public class lalo {
 	}
 
 	private Set<Turnos> getTurnoEseDia(Turnos elTurno, Condeso elCondeso) {
+		int min = elCondeso.getHorasAsignadas() + elTurno.getDuracion() - elCondeso.getMaxHours();
+		Turnos elPasado = elCondeso.getPersonal()[elTurno.getDate().getDayOfMonth()-1];
+		if(elPasado.getDuracion() < min) return null;
 		Set<Turnos> elSet= new HashSet<>();
-		elSet.add(elCondeso.getPersonal()[elTurno.getDate().getDayOfMonth()-1]);
+		elSet.add(elPasado);
 		return elSet;
 	}
 
