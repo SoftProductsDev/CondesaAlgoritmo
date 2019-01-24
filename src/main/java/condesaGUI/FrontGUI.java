@@ -464,7 +464,7 @@ public class FrontGUI extends Application implements Initializable {
           excelWriter.createHorarioMasterExcel();
         } catch (IOException e) {
           e.printStackTrace();
-        } catch (InvalidFormatException e) {
+        } catch (Exception e) {
           e.printStackTrace();
         }
         return (1);
