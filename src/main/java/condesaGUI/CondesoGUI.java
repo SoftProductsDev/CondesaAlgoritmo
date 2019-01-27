@@ -4,17 +4,12 @@ import DbController.HibernateCrud;
 import condeso.Condeso;
 import condeso.Contrato;
 import condeso.TipoEmpleado;
-
-import java.util.*;
-
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,11 +27,12 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.hibernate.Hibernate;
 import tiendas.Tiendas;
 
 import java.net.URL;
-
-import org.hibernate.Hibernate;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class CondesoGUI  extends Application implements Initializable {
     @FXML private TableView<Condeso> tableView;
@@ -298,19 +294,31 @@ public class CondesoGUI  extends Application implements Initializable {
           errorLabel.setText("No se seleccionaron tiendas");
         }
         else{
-          condeso.setDondePuedeTrabajar(tiendasAddCondeso);
-          //try {
-              HibernateCrud.SaveCondeso(condeso);
-          //}catch (Exception InvocationTargetException){
-            //  errorLabel.setText("Error: Ese Id ya existe; elija otro!");
-          //}
+            var wd = new WorkIndicatorDialog(this.tableView.getScene().getWindow(), "Actualizando...");
 
-          condesos.add(condeso);
-          tableView.getItems().setAll(condesos); //TODO
+            wd.addTaskEndNotification(result -> {
+                System.out.println(result);
+                //wd=null; // don't keep the object, cleanup
+            });
+
+            wd.exec("123", inputParam -> {
+                try {
+                    condeso.setDondePuedeTrabajar(tiendasAddCondeso);
+                    HibernateCrud.SaveCondeso(condeso);
+                    condesos.add(condeso);
+                    tableView.getItems().setAll(condesos);
+                } catch (Exception e) {
+                    errorLabel.setText("Ya existe un condeso con ese id");
+                }
+                return (1);
+            });
+
         }
     }
 
     public void deleteButtonClicked(ActionEvent actionEvent) {
+
+            var wd = new WorkIndicatorDialog(this.tableView.getScene().getWindow(), "Actualizando...");
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("CUIDADO!!");
             alert.setHeaderText("Al eliminar un condeso\n este se borrara permanentemente\n de la base de datos y su informacion se perdera.");
@@ -323,23 +331,54 @@ public class CondesoGUI  extends Application implements Initializable {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == buttonTypeOne){
-                Condeso condeso = tableView.getSelectionModel().getSelectedItem();
-                HibernateCrud.DeleteCondeso(condeso);
-                condesos.remove(condeso);
-                tableView.getItems().setAll(condesos);//TODO
+
+
+                wd.addTaskEndNotification(result2 -> {
+                    System.out.println(result2);
+                    //wd=null; // don't keep the object, cleanup
+                });
+
+                wd.exec("123", inputParam -> {
+                    try {
+                        Condeso condeso = tableView.getSelectionModel().getSelectedItem();
+                        TimeUnit.SECONDS.sleep(3);
+                        HibernateCrud.DeleteCondeso(condeso);
+                        condesos.remove(condeso);
+                        tableView.getItems().setAll(condesos);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    return (1);
+                });
+                //TODO
             } else if (result.get() == buttonTypeTwo) {
             } else {
             }
     }
 
-    public void updateButtonClicked(ActionEvent actionEvent) {
+    public String updateButtonClicked(ActionEvent actionEvent) {
         Condeso condeso = tableView.getSelectionModel().getSelectedItem();
         errorLabel.setText("");
-        try{condeso.setId(Long.parseLong(idTextField.getText()));}
+        long id = -1;
+        try{id = Long.parseLong(idTextField.getText());}
         catch (Exception e){
             errorLabel.setText("Error: El Id solo puede contener números!");
         }
+        for (Condeso c:condesos) {
+            if(c.getId() == id && c != condeso)
+            {
+                errorLabel.setText("Ya existe un condeso con ese id!!!!");
+                return "error";
+            }
+        }
+        if (tiendasAddCondeso.isEmpty()){
+            errorLabel.setText("No se seleccionaron tiendas");
+            return "error";
+
+        }
+
         try {
+            condeso.setId(id);
           condeso.setNombre(nombreTextField.getText());
           condeso.setAbreviacion(abrevTextField.getText());
           condeso.setContrato(contratoChoiceBox.getValue());
@@ -356,22 +395,30 @@ public class CondesoGUI  extends Application implements Initializable {
           condeso.setColor(colorHex);
           condeso.setFemenino(femeninoRadio.isSelected());
           condeso.setMasculino(masculinoRadio.isSelected());}
+
         catch (NullPointerException e){
           errorLabel.setText("Error: Complete todos los campos");
+          return "error";
         }
-      if (tiendasAddCondeso.isEmpty()){
-        errorLabel.setText("No se seleccionaron tiendas");
-      }
-      else{
-        condeso.setDondePuedeTrabajar(tiendasAddCondeso);
-        //try {
-          HibernateCrud.UpdateCondeso(condeso);
-        /*}
-        catch (Exception e){*/
-         errorLabel.setText("");
-        //}
 
-        tableView.getItems().setAll(condesos);
-      }
+        var wd = new WorkIndicatorDialog(this.tableView.getScene().getWindow(), "Actualizando...");
+
+        wd.addTaskEndNotification(result -> {
+            System.out.println(result);
+            //wd=null; // don't keep the object, cleanup
+        });
+
+        wd.exec("123", inputParam -> {
+            try {
+                condeso.setDondePuedeTrabajar(tiendasAddCondeso);
+                HibernateCrud.UpdateCondeso(condeso);
+                errorLabel.setText("");
+                tableView.getItems().setAll(condesos);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return (1);
+        });
+        return "success";
     }
 }

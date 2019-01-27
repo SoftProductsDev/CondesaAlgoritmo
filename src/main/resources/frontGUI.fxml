@@ -221,7 +221,7 @@
         </Label>
       </children>
     </GridPane>
-      <Button mnemonicParsing="false" text="Guardar cambios" onAction="#guardrarCambios" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <Button mnemonicParsing="false" text="Guardar cambios" onAction="#guardarCambios" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <Button mnemonicParsing="false" text="Exportar a Excel" onAction="#writeExcel" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
   </children>
   <padding>

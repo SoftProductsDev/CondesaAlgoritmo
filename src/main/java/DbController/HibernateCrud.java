@@ -1,29 +1,13 @@
 package DbController;
 
-import condeso.Condeso;
 import DbModel.HibernateUtil;
-import horario.Dias;
-import horario.HorarioMaster;
+import condeso.Condeso;
 import horario.Plantillas;
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.HashMap;
-import java.util.Map;
 import javafx.collections.ObservableList;
-import javax.persistence.TypedQuery;
-import org.hibernate.FetchMode;
-import org.hibernate.Hibernate;
-import org.hibernate.Query;
-import org.hibernate.criterion.CriteriaSpecification;
+import org.hibernate.*;
 import tiendas.Tiendas;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
-import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.metamodel.relational.Tuple;
-import org.hibernate.transform.Transformers;
 
 
 
@@ -51,7 +35,7 @@ public class HibernateCrud {
         Session session = sessionFactory.openSession();
 
         session.getTransaction().begin();
-        session.update(updatedCondeso);
+        session.merge(updatedCondeso);
         session.getTransaction().commit();
 
         session.close();

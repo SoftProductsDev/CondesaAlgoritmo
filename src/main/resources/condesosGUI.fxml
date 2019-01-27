@@ -43,9 +43,9 @@
    <children>
       <TableView fx:id="tableView" editable="true" prefHeight="134.0" prefWidth="545.0" GridPane.columnSpan="4" GridPane.rowIndex="1">
         <columns>
-          <TableColumn fx:id="condesoId" prefWidth="${tableView.width*0.0769230769}" resizable="false" text="Id" />
-          <TableColumn fx:id="condesoName" prefWidth="${tableView.width*0.0769230769}" resizable="false" text="Nombre" />
-          <TableColumn fx:id="condesoAbreviacion" prefWidth="${tableView.width*0.0769230769}" resizable="false" text="Abreviación" />
+          <TableColumn fx:id="condesoId" prefWidth="${tableView.width*0.0769230769}" resizable="true" text="Id" />
+          <TableColumn fx:id="condesoName" prefWidth="${tableView.width*0.0769230769}" resizable="true" text="Nombre" />
+          <TableColumn fx:id="condesoAbreviacion" prefWidth="${tableView.width*0.0769230769}" resizable="true" text="Abreviación" />
             <TableColumn fx:id="condesoCargo" prefWidth="${tableView.width*0.0769230769}" text="Cargo" />
           <TableColumn fx:id="condesoContrato" prefWidth="${tableView.width*0.0769230769}" text="Contrato" />
             <TableColumn fx:id="condesoVespertino" prefWidth="${tableView.width*0.0769230769}" text="Vespertino" />
@@ -54,8 +54,8 @@
             <TableColumn fx:id="condesoAntiguedad" prefWidth="${tableView.width*0.0769230769}" text="Fecha de Contratación" />
             <TableColumn fx:id="condesoCaja" prefWidth="${tableView.width*0.0769230769}" text="Caja" />
             <TableColumn fx:id="condesoNivel" prefWidth="${tableView.width*0.0769230769}" text="Nivel" />
-          <TableColumn fx:id="condesoSexo" prefWidth="${tableView.width*0.0769230769}" resizable="false" text="Sexo" />
-          <TableColumn fx:id="condesoColor" prefWidth="${tableView.width*0.0769230769}" resizable="false" text="Color" />
+          <TableColumn fx:id="condesoSexo" prefWidth="${tableView.width*0.0769230769}" resizable="true" text="Sexo" />
+          <TableColumn fx:id="condesoColor" prefWidth="${tableView.width*0.0769230769}" resizable="true" text="Color" />
         </columns>
         <items>
 

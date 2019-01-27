@@ -1,22 +1,12 @@
 package condesaGUI;
 
 import DbController.HibernateCrud;
-import DbModel.HibernateUtil;
 import ExcelController.ExcelWriter;
 import condeso.Condeso;
 import horario.Dias;
 import horario.HorarioMaster;
 import horario.TipoTurno;
 import horario.Turnos;
-import java.io.File;
-import java.io.IOException;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,20 +28,21 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import javafx.stage.Window;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import tiendas.Tiendas;
 import org.controlsfx.control.PopOver;
-import org.hibernate.Hibernate;
+import tiendas.Tiendas;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 public class FrontGUI extends Application implements Initializable {
 
@@ -440,7 +431,7 @@ public class FrontGUI extends Application implements Initializable {
         });
   }
 
-  public void guardrarCambios(ActionEvent actionEvent) {
+  public void guardarCambios(ActionEvent actionEvent) {
       HibernateCrud.UpdateMultipleTiendas(tiendas);
       HibernateCrud.UpdateMultipleCondesos(condesos);
   }
