@@ -2,30 +2,26 @@ package condesaGUI;
 
 import DbController.HibernateCrud;
 import horario.Plantillas;
-import java.io.IOException;
-
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
-import javafx.stage.WindowEvent;
-import tiendas.Tiendas;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import tiendas.Tiendas;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class TiendaGUI extends Application implements Initializable {
@@ -35,10 +31,12 @@ public class TiendaGUI extends Application implements Initializable {
     @FXML private TableColumn<Tiendas, Date> fechaApertura;
     @FXML private TableColumn<Tiendas, Plantillas> plantillaActual;
     @FXML private TableColumn<Tiendas, Long> id;
+    @FXML private TableColumn<Tiendas, String> tiendaColor;
     @FXML private TextField nombreTextField;
     @FXML private TextField managerTextField;
     @FXML private TextField idTextField;
     @FXML private DatePicker aperturaCalendario;
+    @FXML private ColorPicker colorPicker;
     private List<Tiendas> tiendas;
 
     @Override
@@ -106,6 +104,7 @@ public class TiendaGUI extends Application implements Initializable {
             managerTextField.setText(tienda.getManager());
             plantillaActual.setText(tienda.getPlantilla().getNombre());
             aperturaCalendario.setValue(tienda.getFechaApertura());
+            colorPicker.setValue(Color.web(tienda.getColor()));
         }catch(Exception e){
 
         }
@@ -123,6 +122,9 @@ public class TiendaGUI extends Application implements Initializable {
             tienda.setNombre(nombreTextField.getText());
             tienda.setManager(managerTextField.getText());
             tienda.setFechaApertura(aperturaCalendario.getValue());
+            String colorHex = colorPicker.getValue().toString();
+            colorHex = "#" + colorHex.substring(2, 8);
+            tienda.setColor(colorHex);
             HibernateCrud.SaveTienda(tienda);
             tiendas.add(tienda);
             tableView.getItems().setAll(tiendas);
@@ -131,9 +133,38 @@ public class TiendaGUI extends Application implements Initializable {
 
     public void deleteButtonClicked(ActionEvent actionEventent){
         Tiendas tienda = tableView.getSelectionModel().getSelectedItem();
-        HibernateCrud.DeleteTienda(tienda);
-        tiendas.remove(tienda);
-        tableView.getItems().setAll(tiendas);
+
+        var wd = new WorkIndicatorDialog(this.tableView.getScene().getWindow(), "Actualizando...");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("CUIDADO!!");
+        alert.setHeaderText("Al eliminar una tienda\n esta se borrará permanentemente\n de la base de datos y su información se perderá.");
+        alert.setContentText("Seguro que deseas eliminar a \n" + tienda.getNombre() + " permanentemente ?");
+
+        ButtonType buttonTypeOne = new ButtonType("Si");
+        ButtonType buttonTypeTwo = new ButtonType("No");
+
+        alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeOne){
+
+
+            wd.addTaskEndNotification(result2 -> {
+                System.out.println(result2);
+                //wd=null; // don't keep the object, cleanup
+            });
+
+            wd.exec("123", inputParam -> {
+                try {
+                    HibernateCrud.DeleteTienda(tienda);
+                    tiendas.remove(tienda);
+                    tableView.getItems().setAll(tiendas);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return (1);
+            });
+        }
     }
 
     public void updateButtonClicked(ActionEvent actionEvent){
@@ -148,6 +179,9 @@ public class TiendaGUI extends Application implements Initializable {
             tienda.setNombre(nombreTextField.getText());
             tienda.setManager(managerTextField.getText());
             tienda.setFechaApertura(aperturaCalendario.getValue());
+            String colorHex = colorPicker.getValue().toString();
+            colorHex = "#" + colorHex.substring(2, 8);
+            tienda.setColor(colorHex);
             HibernateCrud.UpdateTienda(tienda);
             tableView.getItems().setAll(tiendas);
         }
@@ -172,6 +206,22 @@ public class TiendaGUI extends Application implements Initializable {
         tableView.getItems().setAll(this.tiendas);
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, newSelection, oldSelection) -> {
             loadTiendadUpdate();
+        });
+        tiendaColor.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("color"));
+        tiendaColor.setCellFactory( column -> {
+            return new TableCell<Tiendas, String>(){
+                @Override
+                protected void updateItem(String item, boolean empty){
+                    if (item == null || empty) {
+                        setText(null);
+                        setStyle("");
+                    } else {
+
+                        // Fill with a different color.
+                        setStyle("-fx-background-color: " + item);
+                    }
+                }
+            };
         });
     }
 }

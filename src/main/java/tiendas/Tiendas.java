@@ -3,29 +3,15 @@ import DbController.HibernateCrud;
 import condeso.Condeso;
 import horario.HorarioMaster;
 import horario.Plantillas;
-import java.util.Objects;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import org.hibernate.annotations.Cascade;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.OrderColumn;
-import javax.persistence.PreRemove;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import org.hibernate.annotations.Cascade;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tiendas")
@@ -47,6 +33,9 @@ public class Tiendas {
 
 	@Column(name = "fechaApertura")
 	private LocalDate fechaApertura;
+
+	@Column(nullable = true)
+	private String color;
 
 	@JoinColumn
 	@OneToOne
@@ -148,6 +137,14 @@ public class Tiendas {
 
 	public void setDiasDeCierre(List<LocalDate> diasDeCierre) {
 		this.diasDeCierre = diasDeCierre;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 	@Override
