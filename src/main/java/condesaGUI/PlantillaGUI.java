@@ -3,18 +3,9 @@ package condesaGUI;
 import DbController.HibernateCrud;
 import horario.Dias;
 import horario.Plantillas;
-import javafx.application.Platform;
-import javafx.scene.control.ToggleButton;
-import javafx.stage.WindowEvent;
-import org.controlsfx.control.ToggleSwitch;
-import tiendas.Tiendas;
 import horario.Turnos;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -30,7 +21,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
@@ -38,12 +28,18 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 import org.controlsfx.control.PopOver;
+import org.controlsfx.control.ToggleSwitch;
 import org.hibernate.Hibernate;
+import tiendas.Tiendas;
+
+import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.TreeSet;
 
 public class PlantillaGUI   extends Application implements Initializable {
     @FXML private ChoiceBox<Plantillas> nombreChoice;
@@ -219,6 +215,7 @@ public class PlantillaGUI   extends Application implements Initializable {
                 }
                 grid.setId(i + "-" + 0);
                 //grid.gridLinesVisibleProperty().set(true);
+                grid.setStyle("-fx-border-color: black;");
                 addLetrasArriba(grid);
                 addGridEventHandler(grid, dias.get(i-1));
                 gridToAddLabels.add(grid,i,0);
@@ -226,57 +223,24 @@ public class PlantillaGUI   extends Application implements Initializable {
     }
 
     public void addLetrasArriba(GridPane grid){
-        Label label1 = new Label("GM");
-        label1.setTextAlignment(TextAlignment.CENTER);
-        label1.setAlignment(Pos.CENTER);
-        label1.setMaxWidth(12345546);
-        label1.setMaxHeight(12345546);
-        label1.setStyle("-fx-border-color: black;");
-        Label label2 = new Label("GM");
-        label2.setTextAlignment(TextAlignment.CENTER);
-        label2.setAlignment(Pos.CENTER);
-        label2.setMaxWidth(12345546);
-        label2.setMaxHeight(12345546);
-        label2.setStyle("-fx-border-color: black;");
-        Label label3 = new Label("G");
-        label3.setTextAlignment(TextAlignment.CENTER);
-        label3.setAlignment(Pos.CENTER);
-        label3.setMaxWidth(12345546);
-        label3.setMaxHeight(12345546);
-        label3.setStyle("-fx-border-color: black;");
-        Label label4 = new Label("F");
-        label4.setTextAlignment(TextAlignment.CENTER);
-        label4.setAlignment(Pos.CENTER);
-        label4.setMaxWidth(12345546);
-        label4.setMaxHeight(12345546);
-        label4.setStyle("-fx-border-color: black;");
-        Label label5 = new Label("H");
-        label5.setTextAlignment(TextAlignment.CENTER);
-        label5.setAlignment(Pos.CENTER);
-        label5.setMaxWidth(12345546);
-        label5.setMaxHeight(12345546);
-        label5.setStyle("-fx-border-color: black;");
-        Label label6 = new Label("B");
-        label6.setTextAlignment(TextAlignment.CENTER);
-        label6.setAlignment(Pos.CENTER);
-        label6.setMaxWidth(12345546);
-        label6.setMaxHeight(12345546);
-        label6.setStyle("-fx-border-color: black;");
-        Label label7 = new Label("R");
-        label7.setTextAlignment(TextAlignment.CENTER);
-        label7.setAlignment(Pos.CENTER);
-        label7.setMaxWidth(12345546);
-        label7.setMaxHeight(12345546);
-        label7.setStyle("-fx-border-color: black;");
-        grid.setStyle("-fx-border-color: black;");
+        grid.add(createUpLettersLabel("GM") , 0,0);
+        grid.add(createUpLettersLabel("GM"), 1,0);
+        grid.add(createUpLettersLabel("G"), 2,0);
+        grid.add(createUpLettersLabel("F"), 3,0);
+        grid.add(createUpLettersLabel("H"), 4,0);
+        grid.add(createUpLettersLabel("B"), 5,0);
+        grid.add(createUpLettersLabel("R"), 6,0);
+        grid.add(createUpLettersLabel("E"), 7,0);
+    }
 
-        grid.add(label1, 0,0);
-        grid.add(label2, 1,0);
-        grid.add(label3, 2,0);
-        grid.add(label4, 3,0);
-        grid.add(label5, 4,0);
-        grid.add(label6, 5,0);
-        grid.add(label7, 6,0);
+    private Label createUpLettersLabel(String name) {
+        Label label = new Label(name);
+        label.setTextAlignment(TextAlignment.CENTER);
+        label.setAlignment(Pos.CENTER);
+        label.setMaxWidth(12345546);
+        label.setMaxHeight(12345546);
+        label.setStyle("-fx-border-color: black;");
+        return label;
     }
 
 

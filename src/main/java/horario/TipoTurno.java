@@ -6,5 +6,6 @@ public enum TipoTurno {
   F,
   H,
   B,
-  R
+  R,
+  E
 }

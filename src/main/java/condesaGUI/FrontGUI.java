@@ -39,16 +39,13 @@ import java.net.URL;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class FrontGUI extends Application implements Initializable {
 
   @FXML private ComboBox<Tiendas>  tiendasComboBox;
-  @FXML private  ListView<String> horaList0;
-  @FXML private ListView<String>  horaList1;
+  //@FXML private  ListView<String> horaList0;
+  //@FXML private ListView<String>  horaList1;
   @FXML private ListView<String>  horaList2;
   @FXML private ListView<String>  horaList3;
   @FXML private ListView<String>  horaList4;
@@ -67,11 +64,11 @@ public class FrontGUI extends Application implements Initializable {
 
   private ObservableList<Node> calendarNodes;
   private LocalDate calendar;
-  private static final ObservableList<String>
+  private static final ObservableList
       horario = FXCollections.observableArrayList(getStaticList());
 
-  private static ArrayList getStaticList() {
-    ArrayList list = new ArrayList<>();
+  private static ArrayList<String> getStaticList() {
+    ArrayList<String> list = new ArrayList<>();
     list.add("  ");
     for (int i = 8; i < 24; i++){
       list.add(i + "-" + (i+1));
@@ -88,18 +85,7 @@ public class FrontGUI extends Application implements Initializable {
 
   public void setInitialValues(ObservableList<Condeso> condesos, ObservableList<Tiendas> tiendas){
     //Populate javafx Nodes with data.
-    horaList0.setItems(horario);
-    horaList1.setItems(horario);
-    horaList2.setItems(horario);
-    horaList3.setItems(horario);
-    horaList4.setItems(horario);
-    horaList5.setItems(horario);
-    horaList6.setItems(horario);
-    horaList7.setItems(horario);
-    horaList8.setItems(horario);
-    horaList9.setItems(horario);
-    horaList10.setItems(horario);
-    horaList11.setItems(horario);
+    addHourGrids();
     this.tiendas = tiendas;
     this.condesos = condesos;
     tiendasComboBox.setItems(tiendas);
@@ -114,12 +100,41 @@ public class FrontGUI extends Application implements Initializable {
     addLabelGrids();
   }
 
+  private void addHourGrids()
+  {
+    for(int i = 0; i <= 8; i += 8)
+    {
+      for(int j = 1; j <= 11; j += 2)
+      {
+        monthGrid.add(createHourGrid(), i, j);
+      }
+    }
+  }
+
+  private GridPane createHourGrid() {
+    GridPane result = new GridPane();
+    ColumnConstraints column = new ColumnConstraints();
+    column.prefWidthProperty().set(50);
+    column.setMaxWidth(1234567890);
+    result.getColumnConstraints().add(column);
+    int hourRow = 0;
+    for (String h: getStaticList())
+    {
+      RowConstraints row = new RowConstraints();
+      row.setPrefHeight(40);
+      result.getRowConstraints().add(row);
+      result.add(new Label(h), 0, hourRow);
+      hourRow += 1;
+    }
+    return result;
+  }
+
   private void addLabelGrids() {
 
     for (int j = 1; j < 12; j+=2){
       for (int i = 1; i < 8; i++){
         GridPane grid = new GridPane();
-        for (int k = 0; k < 7; k++) {
+        for (int k = 0; k < 8; k++) {
           ColumnConstraints column = new ColumnConstraints();
           column.prefWidthProperty().set(200);
           column.setMaxWidth(1234567890);
@@ -131,7 +146,7 @@ public class FrontGUI extends Application implements Initializable {
           grid.getRowConstraints().add(column);
         }
         grid.setId(i + "-" + j);
-        //grid.gridLinesVisibleProperty().set(true);
+        grid.setStyle("-fx-border-color: black;");
         addLetrasArriba(grid);
         monthGrid.add(grid,i,j);
       }
@@ -145,7 +160,7 @@ public class FrontGUI extends Application implements Initializable {
     int labelIndex = 0;
     //There are 42 Labels for days
     for (int j = 1; j <= 42; j++) {
-      Label label = (Label) calendarNodes.get(labelIndex + 12);
+      Label label = (Label) calendarNodes.get(labelIndex);
       int dayNum = (j - day.getValue() + 1);
       int f = 0;
       if(dayNum <=0 ) {
@@ -189,18 +204,19 @@ public class FrontGUI extends Application implements Initializable {
     for (Turnos turno:dia.getTurnos()
     ) {
       if(turno.getTipoTurno() == TipoTurno.GM){
-        setTurnos(dia, turno, dia.getDate(), pane, isGM);
+        setTurnos(dia, turno, pane, isGM);
         isGM = true;
       }else{
-        setTurnos(dia, turno, dia.getDate(), pane, isGM);
+        setTurnos(dia, turno, pane, isGM);
       }
     }
   }
 
-  private void setTurnos(Dias dia, Turnos turno, LocalDate date, GridPane pane,boolean isGM){
+  private void setTurnos(Dias dia, Turnos turno, GridPane pane,boolean isGM){
     //considering the first hour is 8 am
     int hourIndex = turno.getInicio() - 7;
     if(hourIndex < 0) {
+      System.out.println("hour index must greater than 0");
     }
 
     Label label = createLabel(dia,turno, pane);
@@ -220,24 +236,23 @@ public class FrontGUI extends Application implements Initializable {
         label.setText(turno.getCondeso().getAbreviacion());
       label.setStyle("-fx-background-color: " + turno.getCondeso().getColor());
     }
-    //label.setStyle();
     label.setMaxHeight(125462739);
     label.setMaxWidth(1234567890);
     label.addEventHandler(MouseEvent.MOUSE_CLICKED,
-        new EventHandler<MouseEvent>() {
+        new EventHandler<>() {
           @Override
           public void handle(MouseEvent event) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPopOver.fxml"));
             Parent root = null;
             try {
-              root = (Parent) fxmlLoader.load();
+              root = fxmlLoader.load();
             } catch (IOException e) {
               e.printStackTrace();
             }
             PopOver pop = new PopOver(root);
             pop.setAutoFix(false);
             pop.show(label);
-            EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();//TODO EJEMPLO
+            EditPopOverGUI edit = fxmlLoader.getController();
             edit.setInitialValues(turno, dia, grid, label, condesos, tiendas);
             event.consume();
           }
@@ -250,46 +265,35 @@ public class FrontGUI extends Application implements Initializable {
   }
 
   public void CondesosClicked(ActionEvent actionEvent) throws Exception {
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/condesosGUI.fxml"));  //TODO Example
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/condesosGUI.fxml"));
     Parent root = null;
-    String sceneFile = "/condesosGUI.fxml";
-    URL url  = null;
     try {
-      //url  = getClass().getResource( sceneFile );
-      //root = fxmlLoader.load( url );
-      root = (Parent) fxmlLoader.load();
+      root = fxmlLoader.load();
     } catch (IOException e) {
       e.printStackTrace();
     }
     Stage stage = new Stage();
-    stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
+    stage.setScene(new Scene(Objects.requireNonNull(root), Screen.getPrimary().getVisualBounds().getWidth(),
               Screen.getPrimary().getVisualBounds().getMaxY()));
     stage.show();
-    CondesoGUI condesos = (CondesoGUI) fxmlLoader.getController();
+    CondesoGUI condesos = fxmlLoader.getController();
     condesos.setInitialValues(this.condesos, tiendas);
-    //Window condeos = new Window(root);
-   // OpenNewWindow("/condesosGUI.fxml");
   }
 
   public void TiendasClicked(ActionEvent actionEvent) throws Exception {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tiendasGUI.fxml"));
     Parent root = null;
-    String sceneFile = "/tiendasGUI.fxml";
-    URL url  = null;
     try {
-      //url  = getClass().getResource( sceneFile );
-      //root = fxmlLoader.load( url );
-      root = (Parent) fxmlLoader.load();
+      root =  fxmlLoader.load();
     } catch (IOException e) {
       e.printStackTrace();
     }
     Stage stage = new Stage();
-    stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
+    stage.setScene(new Scene(Objects.requireNonNull(root), Screen.getPrimary().getVisualBounds().getWidth(),
             Screen.getPrimary().getVisualBounds().getMaxY()));
     stage.show();
-    TiendaGUI tiendasGUI = (TiendaGUI) fxmlLoader.getController();
+    TiendaGUI tiendasGUI = fxmlLoader.getController();
     tiendasGUI.setInitialValues(tiendas);
-    //OpenNewWindow("/tiendasGUI.fxml");
   }
 
   public void NuevoHorarioClicked(ActionEvent actionEvent) throws Exception{
@@ -301,15 +305,15 @@ public class FrontGUI extends Application implements Initializable {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(filename));
     Parent root = null;
     try {
-      root = (Parent) fxmlLoader.load();
+      root = fxmlLoader.load();
     } catch (IOException e) {
       e.printStackTrace();
     }
     Stage stage = new Stage();
-    stage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),
+    stage.setScene(new Scene(Objects.requireNonNull(root), Screen.getPrimary().getVisualBounds().getWidth(),
         Screen.getPrimary().getVisualBounds().getMaxY()));
     stage.show();
-    NuevoHorarioGUI nuevoHorarioGUI = (NuevoHorarioGUI) fxmlLoader.getController();
+    NuevoHorarioGUI nuevoHorarioGUI = fxmlLoader.getController();
     nuevoHorarioGUI.setInitialValues(condesos, tiendas);
   }
 
@@ -344,80 +348,48 @@ public class FrontGUI extends Application implements Initializable {
     setHorarioMaster();
   }
 
-  public void deleteTurnosLabels(){
-    for (Node node: monthGrid.getChildren()
-    ) {
-      if(node.getClass() == GridPane.class){
+  public void deleteTurnosLabels() {
+    int ignoreHourGrids = 0;
+    for (Node node: monthGrid.getChildren()) {
+      if(node.getClass() == GridPane.class && ignoreHourGrids > 53){
         GridPane grid = (GridPane) node;
         grid.getChildren().clear();
         addLetrasArriba(grid);
       }
+      ignoreHourGrids ++;
     }
   }
 
   public void addLetrasArriba(GridPane grid){
-    Label label1 = new Label("GM");
-    label1.setTextAlignment(TextAlignment.CENTER);
-    label1.setAlignment(Pos.CENTER);
-    label1.setMaxWidth(12345546);
-    label1.setMaxHeight(12345546);
-    label1.setStyle("-fx-border-color: black;");
-    Label label2 = new Label("GM");
-    label2.setTextAlignment(TextAlignment.CENTER);
-    label2.setAlignment(Pos.CENTER);
-    label2.setMaxWidth(12345546);
-    label2.setMaxHeight(12345546);
-    label2.setStyle("-fx-border-color: black;");
-    Label label3 = new Label("G");
-    label3.setTextAlignment(TextAlignment.CENTER);
-    label3.setAlignment(Pos.CENTER);
-    label3.setMaxWidth(12345546);
-    label3.setMaxHeight(12345546);
-    label3.setStyle("-fx-border-color: black;");
-    Label label4 = new Label("F");
-    label4.setTextAlignment(TextAlignment.CENTER);
-    label4.setAlignment(Pos.CENTER);
-    label4.setMaxWidth(12345546);
-    label4.setMaxHeight(12345546);
-    label4.setStyle("-fx-border-color: black;");
-    Label label5 = new Label("H");
-    label5.setTextAlignment(TextAlignment.CENTER);
-    label5.setAlignment(Pos.CENTER);
-    label5.setMaxWidth(12345546);
-    label5.setMaxHeight(12345546);
-    label5.setStyle("-fx-border-color: black;");
-    Label label6 = new Label("B");
-    label6.setTextAlignment(TextAlignment.CENTER);
-    label6.setAlignment(Pos.CENTER);
-    label6.setMaxWidth(12345546);
-    label6.setMaxHeight(12345546);
-    label6.setStyle("-fx-border-color: black;");
-    Label label7 = new Label("R");
-    label7.setTextAlignment(TextAlignment.CENTER);
-    label7.setAlignment(Pos.CENTER);
-    label7.setMaxWidth(12345546);
-    label7.setMaxHeight(12345546);
-    label7.setStyle("-fx-border-color: black;");
-    grid.setStyle("-fx-border-color: black;");
+    grid.add(createUpLettersLabel("GM") , 0,0);
+    grid.add(createUpLettersLabel("GM"), 1,0);
+    grid.add(createUpLettersLabel("G"), 2,0);
+    grid.add(createUpLettersLabel("F"), 3,0);
+    grid.add(createUpLettersLabel("H"), 4,0);
+    grid.add(createUpLettersLabel("B"), 5,0);
+    grid.add(createUpLettersLabel("R"), 6,0);
+    grid.add(createUpLettersLabel("E"), 7,0);
+  }
 
-    grid.add(label1, 0,0);
-    grid.add(label2, 1,0);
-    grid.add(label3, 2,0);
-    grid.add(label4, 3,0);
-    grid.add(label5, 4,0);
-    grid.add(label6, 5,0);
-    grid.add(label7, 6,0);
+  private Label createUpLettersLabel(String name) {
+    Label label = new Label(name);
+    label.setTextAlignment(TextAlignment.CENTER);
+    label.setAlignment(Pos.CENTER);
+    label.setMaxWidth(12345546);
+    label.setMaxHeight(12345546);
+    label.setStyle("-fx-border-color: black;");
+    return label;
   }
 
   private void addGridEventHandler(GridPane pane, Dias dia) {
     pane.addEventHandler(MouseEvent.MOUSE_CLICKED,
-        new EventHandler<MouseEvent>() {
+        new EventHandler<>() {
           @Override
           public void handle(MouseEvent event) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/addPopOver.fxml"));
             Parent root = null;
             try {
-              root = (Parent) fxmlLoader.load();
+              root = fxmlLoader.load();
             } catch (IOException e) {
               e.printStackTrace();
             }
@@ -440,9 +412,8 @@ public class FrontGUI extends Application implements Initializable {
     DirectoryChooser directoryChooser = new DirectoryChooser();
     directoryChooser.setTitle("Open Resource File");
     File f = directoryChooser.showDialog(monthGrid.getScene().getWindow());
-    if (f == null){}
-    else {
-      var wd = new WorkIndicatorDialog(this.monthGrid.getScene().getWindow(), "Creando Excel...");
+    if (f != null){
+      WorkIndicatorDialog<String> wd = new WorkIndicatorDialog<>(this.monthGrid.getScene().getWindow(), "Creando Excel...");
 
       wd.addTaskEndNotification(result -> {
         System.out.println(result);
