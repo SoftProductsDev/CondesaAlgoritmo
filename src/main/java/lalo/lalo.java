@@ -19,6 +19,7 @@ import condeso.TipoEmpleado;
 import horario.*;
 import javafx.scene.control.Alert;
 import org.apache.commons.compress.archivers.ar.ArArchiveEntry;
+import org.apache.poi.ss.formula.functions.T;
 import org.hibernate.Hibernate;
 import tiendas.Tiendas;
 import horario.HorarioEntrega;
@@ -40,11 +41,12 @@ public class lalo {
 	private int countMid = 0;
 	private boolean sinChecarNivel;
 	private static float promedio = 0;
+	private Set<Disponibilidad> fijos;
 
 
 
 	public lalo(Set<Condeso> GMs, List<Turnos> deEncargado, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad,
-	LocalDate fecha, HashMap<Long, Integer[][]> turnosExtras, Boolean sinChecar){
+	LocalDate fecha, HashMap<Long, Integer[][]> turnosExtras, Boolean sinChecar, Set<Disponibilidad> fijos){
 		start = System.currentTimeMillis();
 		this.fecha = fecha;
 		this.deEncargado = deEncargado;
@@ -67,6 +69,7 @@ public class lalo {
 				}
 				this.tiendas.clear();
 				this.tiendas.addAll(lasTiendas);
+				this.fijos = fijos;
 				break;
 			}
 		}
@@ -162,7 +165,7 @@ public class lalo {
 
 		//Set<Condeso> yaOcupados = new HashSet<>();
 		agregarTurnosExtras();
-		asignarFijos();
+		asignarFijos2(fijos); //TODO probar
 		turnos = generateQueueTurnos();
 		Set<Turnos> noAsignados = new HashSet<>();
 		PriorityQueue<Condeso> fila = new PriorityQueue<>(new CompareCondesos(sinChecarNivel));
@@ -276,6 +279,47 @@ public class lalo {
 			elFijo.resetCondeso();
 		}
 
+	}
+
+	private void asignarFijos2(Set<Disponibilidad> fijos){
+		Map<Integer, Condeso> losFijos = findIDs(fijos);
+		Map<Integer, Tiendas> lasTiendas = tiendasToMap();
+		for(Disponibilidad disp : fijos){
+			Condeso elFijo = losFijos.get(disp.getId());
+			if(elFijo != null){
+				Integer[][] dispo = disp.getDisponibilidad();
+				for(int i = 0; i < dispo[0].length; i++){
+					if(i+1 > fecha.lengthOfMonth()) break;
+					Dias elDia = lasTiendas.get(dispo[2][i]).getMaster().getMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), i+1));
+					if(elDia != null){
+						Turnos elTurno = searchTurno(elDia, dispo, elFijo);
+						elFijo.asignarTurno(elTurno);
+						if(elTurno != null) countFijos++;}
+				}
+			}
+		}
+
+	}
+
+	private Map<Integer, Tiendas> tiendasToMap(){
+		HashMap<Integer, Tiendas> lasTiendas = new HashMap<>();
+		for(Tiendas laTienda: tiendas){
+			lasTiendas.put((int)laTienda.getId(), laTienda);
+		}
+		return lasTiendas;
+	}
+	private Map<Integer, Condeso> findIDs(Set<Disponibilidad> fijos){
+		Set<Integer> ids = new HashSet<>();
+		HashMap<Integer, Condeso> losFijos = new HashMap();
+		for(Disponibilidad fijo : fijos){
+			ids.add(fijo.getId());
+		}
+		for(Condeso elCondeso : condesos){
+			if(ids.contains(elCondeso.getId())){
+				losFijos.put((int) elCondeso.getId(), elCondeso);
+			}
+		}
+		return losFijos;
 	}
 
 	private Turnos searchTurno(Dias elDia, Integer[][] disponibilidad, Condeso elCondeso){

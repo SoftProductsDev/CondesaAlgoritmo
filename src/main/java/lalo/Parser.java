@@ -32,60 +32,6 @@ public class Parser {
         Parser.foundCondesos = foundCondesos;
     }
 
-    public static int[][] parse(String fileName) {
-        String line;
-        String month = "1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t11\t12\t13\t14\t15\t16\t17  \t18\t19\t20\t21\t22\t23\t24\t25\t26\t27\t28";
-        int[][] disponibilidad;
-        try {
-            FileReader reader = new FileReader(fileName);
-            BufferedReader buffer = new BufferedReader(reader);
-
-            while ((line = buffer.readLine()) != null) {
-                if(line.contains(month)){
-                    int i = ignore(line, '\t');
-                    i += 75;
-                    int j = 0;
-                    while(line.charAt(i) != '\t'){
-                        i+=3;
-                        j++;
-                    }
-                 disponibilidad = new int[3][28+j];
-
-                    for(int k = 0; k < disponibilidad[0].length; k++){
-                        disponibilidad[0][k] = k+1;
-                    }
-
-                 line = buffer.readLine();
-
-                 parseTime(disponibilidad, line, 1);
-
-                 line = buffer.readLine();
-
-                 parseTime(disponibilidad, line, 2);
-
-                    buffer.close();
-                    return disponibilidad;
-
-
-                }
-
-            }
-
-            buffer.close();
-
-        } catch (FileNotFoundException ex) {
-
-            System.out.println(
-                    "Unable to open file '" +
-                            fileName + "'");
-        } catch (IOException ex) {
-
-            ex.printStackTrace();
-        }
-
-        return null;
-    }
-
 private static void parseMaxMin(String line, Disponibilidad laDisponibilidad, int posicion){
         String number;
         int num;
@@ -107,7 +53,7 @@ private static void parseMaxMin(String line, Disponibilidad laDisponibilidad, in
 
 }
 
-private static void parseTime(int[][] disponibilidad, String line, int a){
+private static void parseTime(Integer[][] disponibilidad, String line, int a){
         int i;
         String number;
         int hour;
@@ -488,5 +434,73 @@ private static void parseTurnosExtras(String inicio, String fin, String GM, Stri
 
 }
 
+public static Set<Disponibilidad> parseFijos(String filename){
+    Set<Disponibilidad> Disp = new HashSet<Disponibilidad>();
+
+    String month = "1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t11\t12\t13\t14\t15\t16\t17\t18\t19\t20\t21\t22\t23\t24\t25\t26\t27\t28";
+    String line;
+    String name;
+    int Id;
+    Disponibilidad condeso;
+    Integer[][] disponibilidad;
+    try{
+        FileReader reader = new FileReader(filename);
+        BufferedReader buffer = new BufferedReader(reader);
+
+        while((line=buffer.readLine()) != null ){
+            if(line.contains(month)){
+                int i = ignore(line, '\t');
+                i += 75;
+                int dias = 28;
+                while(i < line.length() && line.charAt(i) != '\t'){
+                    i+=3;
+                    dias++;
+                }
+                buffer.readLine();
+                while((line = buffer.readLine()) != null){
+                    int j = ignore(line, '\t');
+                    i = getPosition(line, '\t', j);
+                    name = line.substring(j, i);
+                    condeso = new Disponibilidad(name);
+                    disponibilidad = new Integer[2][dias];
+                    // j = parseTime(disponibilidad, line, 0, ++i) + 1;
+                    j = parseTime(disponibilidad, line, 0, ++i);
+                    j = ignore(line, '\t', j);
+                    parseMaxMin(line, condeso, j);
+
+                    line = buffer.readLine();
+
+                    //parser del Id de condeso, para que funcione descomentar y borrar la función parseTime justo debajo de la parte comentada
+                    j = ignore(line, '\t');
+                    i = getPosition(line, '\t', j);
+                    Id = Integer.parseInt(line.substring(j, i));
+                    condeso.setId(Id);
+                    parseTime(disponibilidad, line, 1, ++i);
+
+                    line = buffer.readLine();
+
+                    // parse de la tienda
+                    parseTime(disponibilidad, line, 2);
+
+                    condeso.setDisponibilidad(disponibilidad);
+                    Disp.add(condeso);
+                    buffer.readLine();
+                }
+                buffer.close();
+                return Disp;
+            }
+        }
+        buffer.close();
+        return null;
+    } catch (FileNotFoundException ex){
+        System.out.println( "Unable to open file '" +
+                filename + "'");
+    } catch (IOException e){
+        e.printStackTrace();
+    }
+
+
+    return null;
+}
 }
 

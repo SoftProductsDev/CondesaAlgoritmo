@@ -78,6 +78,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     private List<Condeso> allGMs = new LinkedList<>();
     private ArrayList<Turnos> turnosEncargado = new ArrayList<>();
     HashMap<Long, Integer[][]> turnosExtras = new HashMap<>();
+    private Set<Disponibilidad> fijos;
 
 
 
@@ -140,7 +141,8 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             disponibilidad = changeSetToHashMap(horario);
             Set<Tiendas> tiendasALL2 = new HashSet<>();
             tiendasALL2.addAll(allTiendas);
-            lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha,turnosExtras, sinChecarNivel.isSelected());
+            lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha,turnosExtras, sinChecarNivel.isSelected(),
+                    fijos);
 
             /*BufferedImage img = ImageIO.read(new File("lalopensando.jpg"));
             JFrame frame = new JFrame("Lalo Pensando");
@@ -230,6 +232,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             final Stage stage = new Stage();
             stage.setTitle("Disponibilidad condesos");
             final FileChooser chooser = new FileChooser();
+            chooser.setTitle("Disponibilidad Condesos");
             File file = chooser.showOpenDialog(stage);
             if(file != null){
                 filename = file.getAbsolutePath();
@@ -252,10 +255,28 @@ public class NuevoHorarioGUI extends Application implements Initializable {
                 alert.setContentText(null);
                 alert.showAndWait();
             }
+
+            final Stage stage2 = new Stage();
+            stage.setTitle("Condesos fijos");
+            final FileChooser fc1 = new FileChooser();
+            fc1.setTitle("Tabla de condesos fijos");
+            File file3 = fc1.showOpenDialog(stage);
+            if(file3 != null){
+                fijos = Parser.parseFijos(file3.getAbsolutePath());
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("AVISO!");
+                alert.setHeaderText("No se selecciono documento de condesos fijos");
+                alert.setContentText(null);
+                alert.showAndWait();
+            }
+
+
             final Stage stage1 = new Stage();
             stage1.setTitle("Rotación GMs");
             final FileChooser fc2 = new FileChooser();
             File file2 = fc2.showOpenDialog(stage1);
+            fc2.setTitle("Rotación GMs");
             if (file2 != null) {
                 filename2 = file2.getAbsolutePath();
 
