@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class  ExcelWriter {
 
-  private final String[] columns = {"GM", "GM","G", "F", "D", "B", "R"};
+  private final String[] columns = {"GM", "GM","G", "F", "D", "B", "R", "E"};
   private CellStyle borders;
   private Workbook workbookMaster;
   private List<Tiendas> tiendas;
@@ -118,7 +118,7 @@ public class  ExcelWriter {
 
     // Write the output to a file
     //Tambien puede especificar el path ("C:\\Report\\TestCase.xlsx"));
-    FileOutputStream fileOut = new FileOutputStream(path + "\\Plan " + calendar.getMonth().getDisplayName
+    FileOutputStream fileOut = new FileOutputStream(path + "/Plan " + calendar.getMonth().getDisplayName
         (TextStyle.FULL, Locale.GERMAN) + ".xlsx");
     workbookMaster.write(fileOut);
     fileOut.close();
@@ -181,7 +181,7 @@ public class  ExcelWriter {
       horasCell.setCellStyle(colorStyle("#ffc100", false));
       for (Tiendas t: tiendas){
         createMonth(column, row,sheet, t.getNombre());
-        column += 58;
+        column += 65;
       }
       column = ogColumn;
     }
@@ -198,7 +198,7 @@ public class  ExcelWriter {
     for (int i = 1; i <= calendar.getMonth().length(calendar.isLeapYear()); i++)
     {
       if(i == 1){
-        column += 8 * (calendar.withDayOfMonth(i).getDayOfWeek().getValue() - 1);
+        column += 9 * (calendar.withDayOfMonth(i).getDayOfWeek().getValue() - 1);
         createHourList(sheet,column - 1,turnosRegRow);
       }
       setLettersUP(sheet, column, lettersRow, borders);
@@ -206,23 +206,23 @@ public class  ExcelWriter {
       setDayOfMonth(calendar.withDayOfMonth(i), sheet, column, dayOfMonthRow, workbookMaster);
       setTurnosRegion(sheet, column, turnosRegRow);
       if(calendar.withDayOfMonth(i).getDayOfWeek() == DayOfWeek.SUNDAY){
-        createHourList(sheet,column + 7, turnosRegRow);
+        createHourList(sheet,column + 8, turnosRegRow);
         lettersRow += 21;
         dayOfMonthRow += 21;
         dayOfWeekRow += 21;
         turnosRegRow += 21;
         row += 21;
-        column = ogColumn - 8;
+        column = ogColumn - 9;
       }
       else if(calendar.withDayOfMonth(i).getDayOfWeek() == DayOfWeek.MONDAY){
         createHourList(sheet,column - 1, turnosRegRow);
         setNombreTienda(sheet, nombreTienda,column, row);
-        sheet.setColumnWidth(column + 7, 1200);
+        sheet.setColumnWidth(column + 8, 1200);
       }
       else {
-        sheet.setColumnWidth(column + 7, 1200);
+        sheet.setColumnWidth(column + 8, 1200);
       }
-      column += 8;
+      column += 9;
     }
   }
 
@@ -232,7 +232,7 @@ public class  ExcelWriter {
       r = sheet.createRow(row);
     }
     Cell c = r.createCell(column);
-    CellRangeAddress cra = new CellRangeAddress(row, row, column, column + 54);
+    CellRangeAddress cra = new CellRangeAddress(row, row, column, column + 63);
     sheet.addMergedRegion(cra);
     setRegionBorderWithMedium(cra, sheet);
     c.setCellValue(nombreTienda);
@@ -255,10 +255,10 @@ public class  ExcelWriter {
       setDayOfWeek(weekDay, sheet, column,dayOfWeekRow, workbookMaster);
       setDayOfMonth(calendar.withDayOfMonth(i), sheet, column, dayOfMonthRow, workbookMaster);
       if(weekDay == DayOfWeek.SUNDAY){
-        createHourList(sheet,column + 7, 5);
+        createHourList(sheet,column + 8, 5);
       }
       else {
-        sheet.setColumnWidth(column + 7, 1200);
+        sheet.setColumnWidth(column + 8, 1200);
       }
       setTurnosRegion(sheet, column, turnosRegRow);
       setMiddayLine(sheet, column, middayRow);
@@ -267,7 +267,7 @@ public class  ExcelWriter {
       if(dia!=null){
         setDias(dia, column, row,sheet, condesoTiendaColumn);
       }
-      column+=8;
+      column += 9;
     }
   }
 
@@ -372,7 +372,7 @@ public class  ExcelWriter {
         row, //first row (0-based)
         row, //last row  (0-based)
         column, //first column (0-based)
-        column + 6 ); //last column  (0-based)
+        column + 7 ); //last column  (0-based)
     //Unifica las celdas
     sheet.addMergedRegion(regionDia);
     //Les pone margen
@@ -405,7 +405,7 @@ public class  ExcelWriter {
        row, //first row (0-based)
        row, //last row  (0-based)
        column, //first column (0-based)
-       column + 6 ); //last column  (0-based)
+       column + 7 ); //last column  (0-based)
     //Unifica las celdas
     sheet.addMergedRegion(regionDia);
     //Les pone margen
@@ -456,7 +456,7 @@ public class  ExcelWriter {
 
   private void setTurnosRegion(Sheet sheet, int column, int row){
     CellRangeAddress turnosRegion = new CellRangeAddress(
-        row,row + 15,column,column + 6
+        row,row + 15,column,column + 7
     );
     setRegionBorderWithMedium(turnosRegion, sheet);
   }
