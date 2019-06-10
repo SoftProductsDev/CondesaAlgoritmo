@@ -17,6 +17,7 @@ import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import tiendas.Tiendas;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.DayOfWeek;
@@ -118,7 +119,7 @@ public class  ExcelWriter {
 
     // Write the output to a file
     //Tambien puede especificar el path ("C:\\Report\\TestCase.xlsx"));
-    FileOutputStream fileOut = new FileOutputStream(path + "/Plan " + calendar.getMonth().getDisplayName
+    FileOutputStream fileOut = new FileOutputStream(path + File.separator + "Plan " + calendar.getMonth().getDisplayName
         (TextStyle.FULL, Locale.GERMAN) + ".xlsx");
     workbookMaster.write(fileOut);
     fileOut.close();
