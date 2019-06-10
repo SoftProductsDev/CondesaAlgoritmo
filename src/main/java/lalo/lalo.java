@@ -290,13 +290,19 @@ public class lalo {
 				Integer[][] dispo = disp.getDisponibilidad();
 				for(int i = 0; i < dispo[0].length; i++){
 					if(i+1 > fecha.lengthOfMonth()) break;
-					Dias elDia = lasTiendas.get(dispo[2][i]).getMaster().getMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), i+1));
-					if(elDia != null){
-						Turnos elTurno = searchTurno(elDia, dispo, elFijo);
-						elFijo.asignarTurno(elTurno);
-						if(elTurno != null) countFijos++;}
+					if(dispo[0][i] > 0) {
+						Dias elDia = lasTiendas.get(dispo[2][i]).getMaster().getMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), i + 1));
+						if (elDia != null) {
+							Turnos elTurno = searchTurno(elDia, dispo, elFijo);
+							elFijo.asignarTurno(elTurno);
+							if (elTurno != null) countFijos++;
+						}
+					}
 				}
 			}
+			elFijo.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+			HibernateCrud.UpdateCondeso(elFijo);
+			elFijo.resetCondeso();
 		}
 
 	}
@@ -309,16 +315,16 @@ public class lalo {
 		return lasTiendas;
 	}
 	private Map<Integer, Condeso> findIDs(Set<Disponibilidad> fijos){
-		Set<Integer> ids = new HashSet<>();
+		Set<Condeso> losFijos2 = new HashSet<>();
 		HashMap<Integer, Condeso> losFijos = new HashMap();
 		for(Disponibilidad fijo : fijos){
-			ids.add(fijo.getId());
-		}
 		for(Condeso elCondeso : condesos){
-			if(ids.contains(elCondeso.getId())){
+			if((int)elCondeso.getId() == fijo.getId()){
 				losFijos.put((int) elCondeso.getId(), elCondeso);
+				losFijos2.add(elCondeso);
 			}
-		}
+		}}
+		condesos.removeAll(losFijos2);
 		return losFijos;
 	}
 

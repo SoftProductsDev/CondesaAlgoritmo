@@ -90,9 +90,10 @@ return i;
 
 private static int ignore(String input, char toIgnore){
   int i = 0;
-        while(input.charAt(i) == toIgnore){
+        while(i < input.length() && input.charAt(i) == toIgnore){
             i++;
         }
+        if(i == input.length()) return -1;
         return i;
 }
 
@@ -158,6 +159,7 @@ try{
             buffer.readLine();
             while((line = buffer.readLine()) != null){
               int j = ignore(line, '\t');
+              if(j < 0) break;
               i = getPosition(line, '\t', j);
               name = line.substring(j, i);
               condeso = new Disponibilidad(name);
@@ -459,10 +461,11 @@ public static Set<Disponibilidad> parseFijos(String filename){
                 buffer.readLine();
                 while((line = buffer.readLine()) != null){
                     int j = ignore(line, '\t');
+                    if(j < 0) break;
                     i = getPosition(line, '\t', j);
                     name = line.substring(j, i);
                     condeso = new Disponibilidad(name);
-                    disponibilidad = new Integer[2][dias];
+                    disponibilidad = new Integer[3][dias];
                     // j = parseTime(disponibilidad, line, 0, ++i) + 1;
                     j = parseTime(disponibilidad, line, 0, ++i);
                     j = ignore(line, '\t', j);

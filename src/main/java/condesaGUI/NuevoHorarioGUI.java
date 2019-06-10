@@ -233,6 +233,13 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             stage.setTitle("Disponibilidad condesos");
             final FileChooser chooser = new FileChooser();
             chooser.setTitle("Disponibilidad Condesos");
+
+            Alert info1 = new Alert(Alert.AlertType.INFORMATION);
+            info1.setTitle("Archivo a seleccionar");
+            info1.setHeaderText("Disponibilidad de condesos");
+            info1.setContentText(null);
+            info1.showAndWait();
+
             File file = chooser.showOpenDialog(stage);
             if(file != null){
                 filename = file.getAbsolutePath();
@@ -260,9 +267,27 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             stage.setTitle("Condesos fijos");
             final FileChooser fc1 = new FileChooser();
             fc1.setTitle("Tabla de condesos fijos");
+
+            Alert info2 = new Alert(Alert.AlertType.INFORMATION);
+            info2.setTitle("Archivo a seleccionar");
+            info2.setHeaderText("Tabla de condesos fijos");
+            info2.setContentText(null);
+            info2.showAndWait();
+
             File file3 = fc1.showOpenDialog(stage);
             if(file3 != null){
                 fijos = Parser.parseFijos(file3.getAbsolutePath());
+                for (Disponibilidad condeso : fijos) {
+                    int id = condeso.getId();
+                    for (Condeso condeso1 : allCondesos) {
+                        if (condeso1.getId() == id) {
+                            condeso1.setMaxHours(condeso.getMax());
+                            condeso1.setMinHours(condeso.getMin());
+                            //condeso1.checkMaxMin();
+                            foundCondesos.add(condeso1);
+                        }
+                    }
+                }
             }else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("AVISO!");
@@ -275,6 +300,13 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             final Stage stage1 = new Stage();
             stage1.setTitle("Rotación GMs");
             final FileChooser fc2 = new FileChooser();
+
+            Alert info3 = new Alert(Alert.AlertType.INFORMATION);
+            info3.setTitle("Archivo a seleccionar");
+            info3.setHeaderText("Rotación de GM's");
+            info3.setContentText(null);
+            info3.showAndWait();
+
             File file2 = fc2.showOpenDialog(stage1);
             fc2.setTitle("Rotación GMs");
             if (file2 != null) {
