@@ -1,18 +1,20 @@
 package DbController;
 
 import DbModel.HibernateUtil;
+import com.google.gson.Gson;
 import condeso.Condeso;
 import horario.Plantillas;
 import javafx.collections.ObservableList;
 import org.hibernate.*;
 import tiendas.Tiendas;
-
 import java.util.List;
 
 
 
-public class HibernateCrud {
-    public static String SaveCondeso(Condeso condeso) {
+public class HibernateCrud implements CrudOperations {
+
+    @Override
+    public String SaveCondeso(Condeso condeso) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
         Session session = sessionFactory.openSession();
@@ -29,8 +31,8 @@ public class HibernateCrud {
 
         return ("condeso saved, id:  " + condeso.getId());
     }
-
-    public static String UpdateCondeso(Condeso updatedCondeso) {
+    @Override
+    public String UpdateCondeso(Condeso updatedCondeso) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
 
@@ -42,8 +44,8 @@ public class HibernateCrud {
 
         return "Updated condeso: " + updatedCondeso.toString();
     }
-
-    public static String DeleteCondeso(Condeso deletedCondeso) {
+    @Override
+    public String DeleteCondeso(Condeso deletedCondeso) {
         deletedCondeso.setDondePuedeTrabajar(null);
         deleteCondesoFromTurnos(deletedCondeso);
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -63,8 +65,8 @@ public class HibernateCrud {
         session.close();
         return condeso;
     }
-
-    public static List<Condeso> GetAllCondesos() {
+    @Override
+    public List<Condeso> GetAllCondesos() {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
 
@@ -75,8 +77,8 @@ public class HibernateCrud {
         session.close();
         return condesos;
     }
-
-        public static List<Tiendas> GetAllTiendas () {
+    @Override
+    public  List<Tiendas> GetAllTiendas () {
             SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
             Session session = sessionFactory.openSession();
             Criteria criteria = session.createCriteria(Tiendas.class);
@@ -86,59 +88,64 @@ public class HibernateCrud {
             return tiendas;
         }
 
-        public static String SaveTienda (Tiendas tienda){
-            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-            Session session = sessionFactory.openSession();
+    @Override
+    public  String SaveTienda (Tiendas tienda){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
 
-            session.getTransaction().begin();
+        session.getTransaction().begin();
 
-            session.save(tienda);
-            session.getTransaction().commit();
-            session.close();
-            return ("tienda saved, id:  " + tienda.getId());
+        session.save(tienda);
+        session.getTransaction().commit();
+        session.close();
+        return ("tienda saved, id:  " + tienda.getId());
+    }
+
+    @Override
+    public String DeleteTienda (Tiendas deletedTienda){
+        deletedTienda.removeTiendasFromCondesos();
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.getTransaction().begin();
+        session.delete(deletedTienda);
+        session.getTransaction().commit();
+        session.close();
+        return "Deleted:" + deletedTienda.toString();
+    }
+
+    @Override
+    public String UpdateTienda (Tiendas updatedTienda){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.getTransaction().begin();
+        session.update(updatedTienda);
+        session.getTransaction().commit();
+        session.close();
+        return "Updated tienda: " + updatedTienda.toString();
+    }
+
+    @Override
+    public void UpdateMultipleTiendas (List<Tiendas> updatedTiendas){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.getTransaction().begin();
+        for (Tiendas t:updatedTiendas){
+            session.update(t);
         }
+        session.getTransaction().commit();
+        session.close();
+    }
 
-        public static String DeleteTienda (Tiendas deletedTienda){
-            deletedTienda.removeTiendasFromCondesos();
-            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-            Session session = sessionFactory.openSession();
-            session.getTransaction().begin();
-            session.delete(deletedTienda);
-            session.getTransaction().commit();
-            session.close();
-            return "Deleted:" + deletedTienda.toString();
-        }
-
-        public static String UpdateTienda (Tiendas updatedTienda){
-            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-            Session session = sessionFactory.openSession();
-            session.getTransaction().begin();
-            session.update(updatedTienda);
-            session.getTransaction().commit();
-            session.close();
-            return "Updated tienda: " + updatedTienda.toString();
-        }
-
-        public static void UpdateMultipleTiendas (List<Tiendas> updatedTiendas){
-            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-            Session session = sessionFactory.openSession();
-            session.getTransaction().begin();
-            for (Tiendas t:updatedTiendas){
-                session.update(t);
-            }
-            session.getTransaction().commit();
-            session.close();
-        }
-
-        public static String UpdatePlantilla(Plantillas plantilla) {
-            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-            Session session = sessionFactory.openSession();
-            session.getTransaction().begin();
-            session.update(plantilla);
-            session.getTransaction().commit();
-            session.close();
-            return "Updated tienda: " + plantilla.toString();
-        }
+    @Override
+    public String UpdatePlantilla(Plantillas plantilla) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.getTransaction().begin();
+        session.update(plantilla);
+        session.getTransaction().commit();
+        session.close();
+        return "Updated tienda: " + plantilla.toString();
+    }
 
         public static void deleteCondesoFromTurnos(Condeso condeso){
             SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -152,7 +159,8 @@ public class HibernateCrud {
             session.close();
         }
 
-    public static void UpdateMultipleCondesos(ObservableList<Condeso> condesos) {
+    @Override
+    public void UpdateMultipleCondesos(List<Condeso> condesos) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
