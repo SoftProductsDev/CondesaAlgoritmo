@@ -1,5 +1,6 @@
 package condesaGUI;
 
+import DbController.CrudOperations;
 import DbController.HibernateCrud;
 import horario.Dias;
 import horario.Plantillas;
@@ -59,6 +60,7 @@ public class PlantillaGUI   extends Application implements Initializable {
             horario = FXCollections.observableArrayList(getStaticList());
     private Plantillas nuevaPlantilla;
     private List<PopOver> popOvers = new ArrayList<>();
+    private CrudOperations hibernateCrud = new HibernateCrud();
 
     public PlantillaGUI(){}
 
@@ -288,7 +290,7 @@ public class PlantillaGUI   extends Application implements Initializable {
         tienda.setPlantillasAnteriores(new ArrayList<>());
         tienda.getPlantillasAnteriores().add(nueva);
       }
-      HibernateCrud.UpdateTienda(tienda);
+      hibernateCrud.UpdateTienda(tienda);
       nuevaPlantilla.setDias(createWeek());
       deleteTurnosLabels(weekGrid);
     //ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
@@ -317,7 +319,7 @@ public class PlantillaGUI   extends Application implements Initializable {
       Tiendas tienda = tiendasChoice.getSelectionModel().getSelectedItem();
       Plantillas plantillas = nombreChoice.getSelectionModel().getSelectedItem();
       tienda.setPlantilla(plantillas);
-      HibernateCrud.UpdateTienda(tienda);
+      hibernateCrud.UpdateTienda(tienda);
   }
 
   public void deletePlantilla(ActionEvent actionEvent) {
@@ -328,7 +330,7 @@ public class PlantillaGUI   extends Application implements Initializable {
       if(tienda.getPlantilla().equals(plantillas)){
         tienda.setPlantilla(null);}
     }catch(NullPointerException e){}
-    HibernateCrud.UpdateTienda(tienda);
+    hibernateCrud.UpdateTienda(tienda);
     deleteTurnosLabels(weekGrid1);
     //ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
     try {
@@ -340,7 +342,7 @@ public class PlantillaGUI   extends Application implements Initializable {
   public void updatePlantilla(ActionEvent actionEvent) {
       Plantillas plantilla = nombreChoice.getSelectionModel().getSelectedItem();
       if(plantilla != null) {
-        HibernateCrud.UpdatePlantilla(plantilla);
+        hibernateCrud.UpdatePlantilla(plantilla);
       }
     //ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
     try {

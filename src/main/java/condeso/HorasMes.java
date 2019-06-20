@@ -12,13 +12,13 @@ public class HorasMes {
   private long id;
 
   @Column
-  private int horas;
+  private int hours;
 
   public int getHoras() {
-    return horas;
+    return hours;
   }
 
   public void setHoras(int horas) {
-    this.horas = horas;
+    this.hours = horas;
   }
 }

@@ -1,6 +1,7 @@
 package condesaGUI;
 
 
+import DbController.CrudOperations;
 import DbController.HibernateCrud;
 import ExcelController.ExcelWriter;
 import condeso.Condeso;
@@ -79,6 +80,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     private ArrayList<Turnos> turnosEncargado = new ArrayList<>();
     HashMap<Long, Integer[][]> turnosExtras = new HashMap<>();
     private Set<Disponibilidad> fijos;
+    private CrudOperations hibernateCrud = new HibernateCrud();
 
 
 
@@ -132,7 +134,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             diasDeCierre = FXCollections.observableArrayList(dias);
             fechaDeCierreList.setItems(diasDeCierre);
             tienda.setDiasDeCierre(dias);
-            HibernateCrud.UpdateTienda(tienda);
+            hibernateCrud.UpdateTienda(tienda);
         }
     }
 
@@ -217,7 +219,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             diasDeCierre = FXCollections.observableArrayList(dias);
             fechaDeCierreList.setItems(diasDeCierre);
             tienda.setDiasDeCierre(dias);
-            HibernateCrud.UpdateTienda(tienda);
+            hibernateCrud.UpdateTienda(tienda);
         }
     }
 

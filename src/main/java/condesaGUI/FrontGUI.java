@@ -1,5 +1,6 @@
 package condesaGUI;
 
+import DbController.CrudOperations;
 import DbController.HibernateCrud;
 import ExcelController.ExcelWriter;
 import condeso.Condeso;
@@ -404,8 +405,9 @@ public class FrontGUI extends Application implements Initializable {
   }
 
   public void guardarCambios(ActionEvent actionEvent) {
-      HibernateCrud.UpdateMultipleTiendas(tiendas);
-      HibernateCrud.UpdateMultipleCondesos(condesos);
+    CrudOperations hibernateCrud = new HibernateCrud();
+      hibernateCrud.UpdateMultipleTiendas(tiendas);
+      hibernateCrud.UpdateMultipleCondesos(condesos);
   }
 
   public void writeExcel(ActionEvent actionEvent) {

@@ -1,47 +1,104 @@
 package DbController;
 
-import com.google.gson.Gson;
+import com.google.gson.*;
+import org.apache.http.HttpEntity;
 import condeso.Condeso;
 import horario.Plantillas;
-import jdk.incubator.http.HttpClient;
-import jdk.incubator.http.HttpRequest;
-import jdk.incubator.http.HttpResponse;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
+import org.apache.http.conn.ssl.TrustStrategy;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContextBuilder;
 import tiendas.Tiendas;
 
 import java.io.IOException;
-import java.net.URI;
+import java.lang.reflect.Type;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class WebApiClient implements CrudOperations {
 
     public final String url = "https://localhost:44389/api/";
+    private final Gson gson;
 
-    public void MakeHttpClient(Condeso condeso) throws IOException, InterruptedException {
-        HttpClient client = HttpClient.newBuilder().build();
-        URI uri = URI.create(url + "Users");
-        Gson gson = new Gson();
-        String condesoJson = gson.toJson(condeso);
-        var body = HttpRequest.BodyPublisher.fromString(condesoJson);
-        HttpRequest postRequest = HttpRequest.newBuilder(uri).POST(body).build();
-        HttpResponse<String> response = HttpClient.newBuilder()
-                .build()
-                .send(postRequest, HttpResponse.BodyHandler.asString());
+    public WebApiClient()
+    {
+        gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .create();
     }
 
+    private CloseableHttpClient CreateClient(){
+        CloseableHttpClient client = null;
+        try {
+            client = HttpClients
+                    .custom().
+                            setHostnameVerifier(new AllowAllHostnameVerifier()).
+                            setSslcontext(new SSLContextBuilder().loadTrustMaterial(null, (TrustStrategy) (arg0, arg1) -> true).build()).build();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        }
+        return client;
+    }
 
     @Override
-    public String SaveCondeso(Condeso condeso) {
-        return null;
+    public String SaveCondeso(Condeso condeso){
+       var client = CreateClient();
+        HttpPost post = new HttpPost(url + "/Condesos");
+        String JSON_STRING =  gson.toJson(condeso);
+        HttpEntity stringEntity = new StringEntity(JSON_STRING, ContentType.APPLICATION_JSON);
+        post.setEntity(stringEntity);
+        CloseableHttpResponse response = null;
+        try {
+            response = client.execute(post);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response.toString();
     }
 
     @Override
     public String UpdateCondeso(Condeso condeso) {
-        return null;
+        var client = CreateClient();
+        HttpPut post = new HttpPut(url + "/Condesos/" + condeso.getId());
+        String JSON_STRING =  gson.toJson(condeso);
+        HttpEntity stringEntity = new StringEntity(JSON_STRING, ContentType.APPLICATION_JSON);
+        post.setEntity(stringEntity);
+        CloseableHttpResponse response = null;
+        try {
+            response = client.execute(post);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response.toString();
     }
 
     @Override
     public String DeleteCondeso(Condeso condeso) {
-        return null;
+        var client = CreateClient();
+        HttpDelete post = new HttpDelete(url + "/Condesos/" + condeso.getId());
+        CloseableHttpResponse response = null;
+        try {
+            response = client.execute(post);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response.toString();
     }
 
     @Override
@@ -56,7 +113,18 @@ public class WebApiClient implements CrudOperations {
 
     @Override
     public String SaveTienda(Tiendas tienda) {
-        return null;
+        var client = CreateClient();
+        HttpPost post = new HttpPost(url + "/Shops");
+        String JSON_STRING =  gson.toJson(tienda);
+        HttpEntity stringEntity = new StringEntity(JSON_STRING, ContentType.APPLICATION_JSON);
+        post.setEntity(stringEntity);
+        CloseableHttpResponse response = null;
+        try {
+            response = client.execute(post);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response.toString();
     }
 
     @Override
@@ -82,5 +150,12 @@ public class WebApiClient implements CrudOperations {
     @Override
     public String UpdatePlantilla(Plantillas plantilla) {
         return null;
+    }
+}
+
+class LocalDateAdapter implements JsonSerializer<LocalDate> {
+
+    public JsonElement serialize(LocalDate date, Type typeOfSrc, JsonSerializationContext context) {
+        return new JsonPrimitive(date.format(DateTimeFormatter.ISO_LOCAL_DATE)); // "yyyy-mm-dd"
     }
 }

@@ -31,54 +31,51 @@ public class Condeso {
 	@Id
 	private long id;
 	@Column
-	private TipoEmpleado tipo;
+	private TipoEmpleado type;
 	@Column
-	private String nombre;
+	private String name;
 	@Column
-	private String abreviacion;
+	private String nameAbreviate;
 	@Column
 	private boolean fijos;
 	@Column
 	private int level;
 	@Column
-	private boolean manana;
+	private boolean morning;
 	@Column
 	private boolean lunch;
 	@Column
-	private boolean tarde;
+	private boolean evening;
 	@Column
-	private boolean caja;
+	private boolean register;
 	@Column
-	private LocalDate antiguedad;
+	private LocalDate dateTime;
 	@Column
-	private boolean masculino;
+	private boolean male;
 	@Column
-	private boolean femenino;
+	private boolean female;
 	@Column
 	private String color;
+	public int phonenumber;
+	public String pmail;
 
-	@JoinColumn
-	@OneToOne
-	private HorarioEntrega entrega;
-
-	@JoinColumn
-	@ManyToOne
-	private HorarioMaster master;
+	@Transient
+	private Availability deliverySchedule;
 
 	@ManyToMany
 	@LazyCollection(LazyCollectionOption.FALSE)
-	private List<tiendas.Tiendas> dondePuedeTrabajar;
+	private List<tiendas.Tiendas> shop;
 
 	@Column
-	private Contrato contrato;
+	private Contrato contract;
 
 	@JoinColumn
 	@OneToMany( fetch = FetchType.EAGER)
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
-	private Map<LocalDate, HorasMes> horasMes;
+	private Map<LocalDate, HorasMes> monthHoursZ;
 
 	public Condeso() {
-		horasMes = new HashMap<>();
+		monthHoursZ = new HashMap<>();
 	}
 	@Transient
 	private int priorityValue;
@@ -106,19 +103,19 @@ public class Condeso {
 	}
 
 	public TipoEmpleado getTipo() {
-		return tipo;
+		return type;
 	}
 
 	public void setTipo(TipoEmpleado tipo) {
-		this.tipo = tipo;
+		this.type = tipo;
 	}
 
 	public String getNombre() {
-		return nombre;
+		return name;
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.name = nombre;
 	}
 
 	public boolean isFijos() {
@@ -150,58 +147,58 @@ public class Condeso {
 	}
 
 	public boolean isManana() {
-		return manana;
+		return morning;
 	}
 
 	public void setManana(boolean manana) {
-		this.manana = manana;
+		this.morning = manana;
 	}
 
 	public boolean isTarde() {
-		return tarde;
+		return evening;
 	}
 
 	public void setTarde(boolean tarde) {
-		this.tarde = tarde;
+		this.evening = tarde;
 	}
 
 	public boolean isCaja() {
-		return caja;
+		return register;
 	}
 
 	public void setCaja(boolean caja) {
-		this.caja = caja;
+		this.register = caja;
 	}
 
 	public LocalDate getAntiguedad() {
-		return antiguedad;
+		return dateTime;
 	}
 
 	public Map<LocalDate, HorasMes> getHorasMes() {
-		return horasMes;
+		return monthHoursZ;
 	}
 
 	public void setHorasMes(Map<LocalDate, HorasMes> horasMes) {
-		this.horasMes = horasMes;
+		this.monthHoursZ = horasMes;
 	}
 
 	public void setHorasMes(LocalDate date, HorasMes integer){
-		this.horasMes.put(date, integer);
+		this.monthHoursZ.put(date, integer);
 	}
 
 	public void setHorasMes(LocalDate month){
 		HorasMes horas = new HorasMes();
 		horas.setHoras(horasAsignadas);
-		this.horasMes.put(month,  horas);
+		this.monthHoursZ.put(month,  horas);
 	}
 
 	public boolean isFijo(){
-		if(contrato == Contrato.Fijo) return true;
+		if(contract == Contrato.Fijo) return true;
 		return false;
 	}
 
 	public void setAntiguedad(LocalDate antiguedad) {
-		this.antiguedad = antiguedad;
+		this.dateTime = antiguedad;
 	}
 
 	public int getDiasSeguidos(LocalDate fecha) {
@@ -235,20 +232,12 @@ public class Condeso {
 		else finesLibres = 4;
 	}
 
-	public HorarioEntrega getEntrega() {
-		return entrega;
+	public Availability getEntrega() {
+		return deliverySchedule;
 	}
 
-	public void setEntrega(HorarioEntrega entrega) {
-		this.entrega = entrega;
-	}
-
-	public HorarioMaster getMaster() {
-		return master;
-	}
-
-	public void setMaster(HorarioMaster master) {
-		this.master = master;
+	public void setEntrega(Availability entrega) {
+		this.deliverySchedule = entrega;
 	}
 
 	public Turnos[] getPersonal() {
@@ -260,19 +249,19 @@ public class Condeso {
 	}
 
 	public List<Tiendas> getDondePuedeTrabajar() {
-		return dondePuedeTrabajar;
+		return shop;
 	}
 
 	public void setDondePuedeTrabajar(List<Tiendas> dondePuedeTrabajar) {
-		this.dondePuedeTrabajar = dondePuedeTrabajar;
+		this.shop = dondePuedeTrabajar;
 	}
 
 	public String getAbreviacion() {
-		return abreviacion;
+		return nameAbreviate;
 	}
 
 	public void setAbreviacion(String abreviacion) {
-		this.abreviacion = abreviacion;
+		this.nameAbreviate = abreviacion;
 	}
 
 	public boolean isLunch() {
@@ -284,19 +273,19 @@ public class Condeso {
 	}
 
 	public boolean isMasculino() {
-		return masculino;
+		return male;
 	}
 
 	public void setMasculino(boolean masculino) {
-		this.masculino = masculino;
+		this.male = masculino;
 	}
 
 	public boolean isFemenino() {
-		return femenino;
+		return female;
 	}
 
 	public void setFemenino(boolean femenino) {
-		this.femenino = femenino;
+		this.female = femenino;
 	}
 
 	public void setFinesLibres(int finesLibres) {
@@ -304,11 +293,11 @@ public class Condeso {
 	}
 
 	public Contrato getContrato() {
-		return contrato;
+		return contract;
 	}
 
 	public void setContrato(Contrato contrato) {
-		this.contrato = contrato;
+		this.contract = contrato;
 		switch(contrato){
 			case MiniJob: maxHours = 45;
 			minHours = 0;
@@ -322,7 +311,7 @@ public class Condeso {
 	}
 
 	public void cincoMas(){
-		if(contrato ==Contrato.MiniJob) return;
+		if(contract ==Contrato.MiniJob) return;
 		maxHours *= 1.05;
 	}
 
@@ -341,15 +330,15 @@ public class Condeso {
 	}
 
 	public BooleanProperty Manana() {
-		return new SimpleBooleanProperty(manana);
+		return new SimpleBooleanProperty(morning);
 	}
 
 	public ObservableValue<Boolean> Tarde() {
-		return  new SimpleBooleanProperty(tarde);
+		return  new SimpleBooleanProperty(evening);
 	}
 
 	public ObservableValue<Boolean> Nivel() {
-		return  new SimpleBooleanProperty(caja);
+		return  new SimpleBooleanProperty(register);
 	}
 
 	public void asignarTurno(Turnos elTurno){
@@ -397,7 +386,7 @@ public class Condeso {
 	public void setMaxHours(int maxHours){
 		//this.maxHours = contrato == Contrato.MiniJob ? Math.min(maxHours, 45) :  Math.max(maxHours, 50);
 
-		switch(contrato){
+		switch(contract){
 			case Fijo: this.maxHours = 220;
 			break;
 			case MiniJob: if(maxHours == 0) this.maxHours = 45;
@@ -440,7 +429,7 @@ public class Condeso {
 		//this.minHours = minHours;
 		//this.minHours = contrato == Contrato.MiniJob ? Math.min(minHours, 45) :  Math.max(minHours, 50);
 
-		switch(contrato){
+		switch(contract){
 			case Fijo: this.minHours = 50;
 			break;
 			case MiniJob:if(minHours > 45) this.minHours = 45;
@@ -463,13 +452,13 @@ public class Condeso {
 	@Override
 	public String toString() {
 		if(fecha == null)
-		return  nombre + ": " +getHorasAsignadas();
+		return  name + ": " +getHorasAsignadas();
 		else{
-		HorasMes horas =	horasMes.get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+		HorasMes horas =	monthHoursZ.get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
 		if(horas != null)
-		return nombre + ": " +horas.getHoras();
+		return name + ": " +horas.getHoras();
 		else
-		return nombre + ": 0";
+		return name + ": 0";
 		}
 	}
 
@@ -478,7 +467,7 @@ public class Condeso {
 	}
 
 	public void printCondeso(){
-		System.out.println(nombre);
+		System.out.println(name);
 		List<Turnos> losTurnos = new ArrayList<>();
 		for(int i =0; i < personal.length; i++){
 			Turnos elturno = personal[i];
@@ -501,7 +490,7 @@ public class Condeso {
 
 	public void checkMaxMin() {
 		if(maxHours == 0){
-			switch (contrato){
+			switch (contract){
 				case MiniJob: maxHours = 45;
 				break;
 				case otros: maxHours = 220;
@@ -510,20 +499,20 @@ public class Condeso {
 				break;
 			}
 		if(minHours == 0){
-			switch (contrato){
+			switch (contract){
 				case otros:
 				case Fijo: minHours = 50;
 				break;
 			}
 		}
-		if(contrato == Contrato.MiniJob && minHours >= 45){
+		if(contract == Contrato.MiniJob && minHours >= 45){
 			minHours = 45;
 		}
 		}
 	}
 
 	public boolean isGM(){
-		if(tipo == TipoEmpleado.GM) return true;
+		if(type == TipoEmpleado.GM) return true;
 		return false;
 	}
 

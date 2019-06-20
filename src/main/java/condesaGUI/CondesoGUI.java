@@ -1,5 +1,6 @@
 package condesaGUI;
 
+import DbController.CrudOperations;
 import DbController.HibernateCrud;
 import condeso.Condeso;
 import condeso.Contrato;
@@ -69,6 +70,7 @@ public class CondesoGUI  extends Application implements Initializable {
     private List<Tiendas> tiendas;
     private List<Tiendas> tiendasAddCondeso;
     private ObservableList<Condeso> condesos;
+    private CrudOperations hibernateCrud;
 
 
 
@@ -109,6 +111,7 @@ public class CondesoGUI  extends Application implements Initializable {
 
     public void setInitialValues(ObservableList<Condeso> condesos, List<Tiendas> tiendas){
         tiendasAddCondeso = new ArrayList<>();
+        hibernateCrud = new HibernateCrud();
         this.tiendas = tiendas;//HibernateCrud.GetAllTiendas(); //TODO elliminar
         this.condesos = condesos;
         cargoComboBox.getItems().setAll(TipoEmpleado.values());
@@ -304,7 +307,7 @@ public class CondesoGUI  extends Application implements Initializable {
             wd.exec("123", inputParam -> {
                 try {
                     condeso.setDondePuedeTrabajar(tiendasAddCondeso);
-                    HibernateCrud.SaveCondeso(condeso);
+                    hibernateCrud.SaveCondeso(condeso);
                     condesos.add(condeso);
                     tableView.getItems().setAll(condesos);
                 } catch (Exception e) {
@@ -342,7 +345,7 @@ public class CondesoGUI  extends Application implements Initializable {
                     try {
                         Condeso condeso = tableView.getSelectionModel().getSelectedItem();
                         TimeUnit.SECONDS.sleep(3);
-                        HibernateCrud.DeleteCondeso(condeso);
+                        hibernateCrud.DeleteCondeso(condeso);
                         condesos.remove(condeso);
                         tableView.getItems().setAll(condesos);
                     } catch (Exception e) {
@@ -411,7 +414,7 @@ public class CondesoGUI  extends Application implements Initializable {
         wd.exec("123", inputParam -> {
             try {
                 condeso.setDondePuedeTrabajar(tiendasAddCondeso);
-                HibernateCrud.UpdateCondeso(condeso);
+                hibernateCrud.UpdateCondeso(condeso);
                 errorLabel.setText("");
                 tableView.getItems().setAll(condesos);
             } catch (Exception e) {

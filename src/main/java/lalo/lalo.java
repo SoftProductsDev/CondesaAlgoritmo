@@ -25,6 +25,7 @@ import tiendas.Tiendas;
 import horario.HorarioEntrega;
 
 public class lalo {
+	private final HibernateCrud hibernateCrud;
 	public Set<HorarioEntrega> entregas;
 	private Set<Condeso> condesos;
 	public Set<Tiendas> tiendas;
@@ -48,6 +49,7 @@ public class lalo {
 	public lalo(Set<Condeso> GMs, List<Turnos> deEncargado, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad,
 	LocalDate fecha, HashMap<Long, Integer[][]> turnosExtras, Boolean sinChecar, Set<Disponibilidad> fijos){
 		start = System.currentTimeMillis();
+		this.hibernateCrud = new HibernateCrud();
 		this.fecha = fecha;
 		this.deEncargado = deEncargado;
 		this.disponibilidad = disponibilidad;
@@ -103,7 +105,7 @@ public class lalo {
 			}
 			}
 			elGM.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-			HibernateCrud.UpdateCondeso(elGM);
+			hibernateCrud.UpdateCondeso(elGM);
 			elGM.resetCondeso();
 		}
 		for(Turnos elTurno : deEncargado){
@@ -202,11 +204,11 @@ public class lalo {
 		insist(noAsignados, new ArrayList<>(), true);
 		for(Condeso elCondeso : condesos){
 			elCondeso.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-			HibernateCrud.UpdateCondeso(elCondeso);
+			hibernateCrud.UpdateCondeso(elCondeso);
 			elCondeso.resetCondeso();
 		}
 		for(Tiendas tiendaFinal:tiendas){
-			HibernateCrud.UpdateTienda(tiendaFinal);
+			hibernateCrud.UpdateTienda(tiendaFinal);
 		}
 /*
 		for(Condeso condeso:condesos){
@@ -275,7 +277,7 @@ public class lalo {
 				if(elTurno != null) countFijos++;}
 			}
 			elFijo.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-			HibernateCrud.UpdateCondeso(elFijo);
+			hibernateCrud.UpdateCondeso(elFijo);
 			elFijo.resetCondeso();
 		}
 
@@ -301,7 +303,7 @@ public class lalo {
 				}
 			}
 			elFijo.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-			HibernateCrud.UpdateCondeso(elFijo);
+			hibernateCrud.UpdateCondeso(elFijo);
 			elFijo.resetCondeso();
 		}
 

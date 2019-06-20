@@ -1,5 +1,6 @@
 package condesaGUI;
 
+import DbController.CrudOperations;
 import DbController.HibernateCrud;
 import horario.Plantillas;
 import javafx.application.Application;
@@ -38,6 +39,7 @@ public class TiendaGUI extends Application implements Initializable {
     @FXML private DatePicker aperturaCalendario;
     @FXML private ColorPicker colorPicker;
     private List<Tiendas> tiendas;
+    private CrudOperations hibernateCrud = new HibernateCrud();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -125,7 +127,7 @@ public class TiendaGUI extends Application implements Initializable {
             String colorHex = colorPicker.getValue().toString();
             colorHex = "#" + colorHex.substring(2, 8);
             tienda.setColor(colorHex);
-            HibernateCrud.SaveTienda(tienda);
+            hibernateCrud.SaveTienda(tienda);
             tiendas.add(tienda);
             tableView.getItems().setAll(tiendas);
         }
@@ -156,7 +158,7 @@ public class TiendaGUI extends Application implements Initializable {
 
             wd.exec("123", inputParam -> {
                 try {
-                    HibernateCrud.DeleteTienda(tienda);
+                    hibernateCrud.DeleteTienda(tienda);
                     tiendas.remove(tienda);
                     tableView.getItems().setAll(tiendas);
                 } catch (Exception e) {
@@ -182,7 +184,7 @@ public class TiendaGUI extends Application implements Initializable {
             String colorHex = colorPicker.getValue().toString();
             colorHex = "#" + colorHex.substring(2, 8);
             tienda.setColor(colorHex);
-            HibernateCrud.UpdateTienda(tienda);
+            hibernateCrud.UpdateTienda(tienda);
             tableView.getItems().setAll(tiendas);
         }
     }

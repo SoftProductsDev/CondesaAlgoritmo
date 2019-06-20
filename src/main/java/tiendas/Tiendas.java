@@ -1,4 +1,5 @@
 package tiendas;
+import DbController.CrudOperations;
 import DbController.HibernateCrud;
 import condeso.Condeso;
 import horario.HorarioMaster;
@@ -23,16 +24,16 @@ public class Tiendas {
 	@JoinColumn(name = "plantilla")
 	@OneToOne
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
-	private Plantillas plantilla;
+	private Plantillas plantillaZ;
 
 	@Column(name = "nombre")
-	private String nombre;
+	private String name;
 
 	@Column(name = "manager")
 	private String manager;
 
 	@Column(name = "fechaApertura")
-	private LocalDate fechaApertura;
+	private LocalDate openingDate;
 
 	@Column(nullable = true)
 	private String color;
@@ -46,7 +47,7 @@ public class Tiendas {
 	@OneToMany(fetch = FetchType.EAGER)
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	@OrderColumn(name = "columnName")
-	private List<Plantillas> plantillasAnteriores;
+	private List<Plantillas> plantillasAnterioresZ;
 
 	@Transient
 	private Boolean selected;
@@ -54,8 +55,8 @@ public class Tiendas {
 	private List<LocalDate> diasDeCierre = new ArrayList<>();
 
 	public Tiendas(Plantillas plantilla, String nombre) {
-		this.plantilla = plantilla;
-		this.nombre = nombre;
+		this.plantillaZ = plantilla;
+		this.name = nombre;
 		this.master = new HorarioMaster();
 	}
 
@@ -65,7 +66,7 @@ public class Tiendas {
 	}
 
 	public Plantillas getPlantilla() {
-		return plantilla;
+		return plantillaZ;
 	}
 
 	public long getId() {
@@ -77,15 +78,15 @@ public class Tiendas {
 	}
 
 	public void setPlantilla(Plantillas plantilla) {
-		this.plantilla = plantilla;
+		this.plantillaZ = plantilla;
 	}
 
 	public String getNombre() {
-		return nombre;
+		return name;
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.name = nombre;
 	}
 
 	public HorarioMaster getMaster() {
@@ -116,19 +117,19 @@ public class Tiendas {
 	}
 
 	public LocalDate getFechaApertura() {
-		return fechaApertura;
+		return openingDate;
 	}
 
 	public void setFechaApertura(LocalDate fechaApertura) {
-		this.fechaApertura = fechaApertura;
+		this.openingDate = fechaApertura;
 	}
 
 	public List<Plantillas> getPlantillasAnteriores() {
-		return plantillasAnteriores;
+		return plantillasAnterioresZ;
 	}
 
 	public void setPlantillasAnteriores(List<Plantillas> plantillasAnteriores) {
-		this.plantillasAnteriores = plantillasAnteriores;
+		this.plantillasAnterioresZ = plantillasAnteriores;
 	}
 
 	public List<LocalDate> getDiasDeCierre() {
@@ -149,21 +150,22 @@ public class Tiendas {
 
 	@Override
 	public String toString() {
-		return nombre;
+		return name;
 	}
 
 	public void print(){
-		System.out.println(nombre);
+		System.out.println(name);
 		System.out.println(master);
 		System.out.println(master.getMes());
 	}
 
 	@PreRemove
 	public void removeTiendasFromCondesos() {
-		List<Condeso> condesos = HibernateCrud.GetAllCondesos();
+		CrudOperations hibernateCrud = new HibernateCrud();
+		List<Condeso> condesos = hibernateCrud.GetAllCondesos();
 		for (Condeso c : condesos) {
 			c.getDondePuedeTrabajar().remove(this);
-			HibernateCrud.UpdateCondeso(c);
+			hibernateCrud.UpdateCondeso(c);
 		}
 	}
 

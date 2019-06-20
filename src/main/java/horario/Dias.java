@@ -32,7 +32,7 @@ public class Dias {
     @MapKey(name = "inicio")
     @CollectionTable
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Turnos> turnos;
+    private Set<Turnos> shifts;
 
     @Column(name = "date")
     private LocalDate date;
@@ -45,13 +45,13 @@ public class Dias {
     private float promedioMinimo;
 
     public Dias(){
-        turnos = new HashSet<>();
+        shifts = new HashSet<>();
     }
 
     public Dias(LocalDate date, Tiendas laTienda){
         this.date = date;
         this.tienda = laTienda;
-        turnos = new HashSet<>();
+        shifts = new HashSet<>();
         switch (date.getDayOfWeek()){
             case SATURDAY:
             case SUNDAY:
@@ -69,7 +69,7 @@ public class Dias {
     }
 
     public void  resetMinimoTurnos(){
-        for(Turnos elTurno : turnos){
+        for(Turnos elTurno : shifts){
             elTurno.resetMinimo();
         }
     }
@@ -82,7 +82,7 @@ public class Dias {
     public HashMap<Integer, Hora> getHoras(){return horas;}
 
     public void setHoras(){
-        for(Turnos elTurno : turnos ){
+        for(Turnos elTurno : shifts ){
             elTurno.setHoras();
         }
     }
@@ -107,16 +107,16 @@ public class Dias {
         this.date = date;
     }*/
     public Set<Turnos> getTurnos() {
-        return turnos;
+        return shifts;
     }
     public void setTurnos(Set<Turnos> turnos) {
         for(Turnos elTurno : turnos){
             elTurno.setDay(this);
         }
-        this.turnos = turnos;
+        this.shifts = turnos;
     }
     public void addTurno(Turnos elTurno){
-        turnos.add(elTurno);
+        shifts.add(elTurno);
     }
     public LocalDate getDate() {
         return date;
@@ -126,11 +126,11 @@ public class Dias {
     }
 
     public void eliminarTurno(Turnos elTurno){
-        turnos.remove(elTurno);
+        shifts.remove(elTurno);
     }
 
     public void setDias(){
-        for(Turnos elTurno : turnos){
+        for(Turnos elTurno : shifts){
             elTurno.setDay(this);
         }
     }

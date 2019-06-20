@@ -1,5 +1,6 @@
 package ExcelController;
 
+import DbController.CrudOperations;
 import DbController.HibernateCrud;
 import DbModel.HibernateUtil;
 import condeso.Condeso;
@@ -469,7 +470,8 @@ public class  ExcelWriter {
   }
 
   public static void main(String[] args) throws IOException{
-    ExcelWriter excelWriter = new ExcelWriter(HibernateCrud.GetAllTiendas(),HibernateCrud.GetAllCondesos(),
+    CrudOperations hibernateCrud = new HibernateCrud();
+    ExcelWriter excelWriter = new ExcelWriter(hibernateCrud.GetAllTiendas(),hibernateCrud.GetAllCondesos(),
         LocalDate.of(2018,11,1), "");
     excelWriter.createHorarioMasterExcel();
     HibernateUtil.shutdown();
