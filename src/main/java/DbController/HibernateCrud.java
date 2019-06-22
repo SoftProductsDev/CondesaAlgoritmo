@@ -1,10 +1,8 @@
 package DbController;
 
 import DbModel.HibernateUtil;
-import com.google.gson.Gson;
 import condeso.Condeso;
 import horario.Plantillas;
-import javafx.collections.ObservableList;
 import org.hibernate.*;
 import tiendas.Tiendas;
 import java.util.List;
@@ -14,7 +12,7 @@ import java.util.List;
 public class HibernateCrud implements CrudOperations {
 
     @Override
-    public String SaveCondeso(Condeso condeso) {
+    public int SaveCondeso(Condeso condeso) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
         Session session = sessionFactory.openSession();
@@ -29,10 +27,10 @@ public class HibernateCrud implements CrudOperations {
         session.getTransaction().commit();
         session.close();
 
-        return ("condeso saved, id:  " + condeso.getId());
+        return 0;
     }
     @Override
-    public String UpdateCondeso(Condeso updatedCondeso) {
+    public int UpdateCondeso(Condeso updatedCondeso) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
 
@@ -42,10 +40,10 @@ public class HibernateCrud implements CrudOperations {
 
         session.close();
 
-        return "Updated condeso: " + updatedCondeso.toString();
+        return 0;
     }
     @Override
-    public String DeleteCondeso(Condeso deletedCondeso) {
+    public int DeleteCondeso(Condeso deletedCondeso) {
         deletedCondeso.setDondePuedeTrabajar(null);
         deleteCondesoFromTurnos(deletedCondeso);
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -55,7 +53,7 @@ public class HibernateCrud implements CrudOperations {
         session.getTransaction().commit();
         session.close();
 
-        return "Deleted:" + deletedCondeso.toString();
+        return 200;
     }
 
     public static Condeso GetCondeso(Condeso condesoBuscado) {
@@ -160,7 +158,7 @@ public class HibernateCrud implements CrudOperations {
         }
 
     @Override
-    public void UpdateMultipleCondesos(List<Condeso> condesos) {
+    public int UpdateMultipleCondesos(List<Condeso> condesos) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
@@ -169,5 +167,6 @@ public class HibernateCrud implements CrudOperations {
         }
         session.getTransaction().commit();
         session.close();
+        return 0;
     }
 }

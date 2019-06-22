@@ -57,7 +57,7 @@ public class Condeso {
 	@Column
 	private String color;
 	public int phonenumber;
-	public String pmail;
+	public String mail;
 
 	@Transient
 	private Availability deliverySchedule;
@@ -72,27 +72,29 @@ public class Condeso {
 	@JoinColumn
 	@OneToMany( fetch = FetchType.EAGER)
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
-	private Map<LocalDate, HorasMes> monthHoursZ;
+	private transient Map<LocalDate, HorasMes> horasMes;
+
+	private List<HorasMes>  monthHours;
 
 	public Condeso() {
-		monthHoursZ = new HashMap<>();
+		horasMes = new HashMap<>();
 	}
 	@Transient
-	private int priorityValue;
+	private transient int priorityValue;
 	@Transient
-	private int diasSeguidos = 5;
+	private transient int diasSeguidos = 5;
 	@Transient
-	private int finesLibres;
+	private transient int finesLibres;
 	@Transient
-	private Turnos[] personal = new Turnos[31];
+	private transient Turnos[] personal = new Turnos[31];
 	@Transient
-	private int horasAsignadas = 0;
+	private transient int horasAsignadas = 0;
 	@Transient
-	private int maxHours;
+	private transient int maxHours;
 	@Transient
-	private int minHours;
+	private transient int minHours;
 	@Transient
-	private LocalDate fecha;
+	private transient LocalDate fecha;
 
 	public long getId() {
 		return id;
@@ -175,21 +177,22 @@ public class Condeso {
 	}
 
 	public Map<LocalDate, HorasMes> getHorasMes() {
-		return monthHoursZ;
+		return horasMes;
 	}
 
 	public void setHorasMes(Map<LocalDate, HorasMes> horasMes) {
-		this.monthHoursZ = horasMes;
+		this.horasMes = horasMes;
 	}
 
 	public void setHorasMes(LocalDate date, HorasMes integer){
-		this.monthHoursZ.put(date, integer);
+		this.horasMes.put(date, integer);
 	}
 
 	public void setHorasMes(LocalDate month){
 		HorasMes horas = new HorasMes();
 		horas.setHoras(horasAsignadas);
-		this.monthHoursZ.put(month,  horas);
+		horas.setDate(month);
+		this.horasMes.put(month,  horas);
 	}
 
 	public boolean isFijo(){
@@ -199,6 +202,22 @@ public class Condeso {
 
 	public void setAntiguedad(LocalDate antiguedad) {
 		this.dateTime = antiguedad;
+	}
+
+	public int getPhonenumber() {
+		return phonenumber;
+	}
+
+	public void setPhonenumber(int phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String pmail) {
+		this.mail = pmail;
 	}
 
 	public int getDiasSeguidos(LocalDate fecha) {
@@ -454,7 +473,7 @@ public class Condeso {
 		if(fecha == null)
 		return  name + ": " +getHorasAsignadas();
 		else{
-		HorasMes horas =	monthHoursZ.get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+		HorasMes horas =	horasMes.get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
 		if(horas != null)
 		return name + ": " +horas.getHoras();
 		else
@@ -548,5 +567,13 @@ public class Condeso {
 		setFinesLibres(fecha);
 		else finesLibres = 5;
 
+	}
+
+	public List<HorasMes> getMonthHours() {
+		return monthHours;
+	}
+
+	public void setMonthHours(List<HorasMes> monthHours) {
+		this.monthHours = monthHours;
 	}
 }
