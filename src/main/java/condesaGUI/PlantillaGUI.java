@@ -1,7 +1,7 @@
 package condesaGUI;
 
 import DbController.CrudOperations;
-import DbController.HibernateCrud;
+import DbController.WebApiClient;
 import horario.Dias;
 import horario.Plantillas;
 import horario.Turnos;
@@ -60,7 +60,7 @@ public class PlantillaGUI   extends Application implements Initializable {
             horario = FXCollections.observableArrayList(getStaticList());
     private Plantillas nuevaPlantilla;
     private List<PopOver> popOvers = new ArrayList<>();
-    private CrudOperations hibernateCrud = new HibernateCrud();
+    private CrudOperations hibernateCrud = new WebApiClient();
 
     public PlantillaGUI(){}
 
@@ -163,7 +163,7 @@ public class PlantillaGUI   extends Application implements Initializable {
   private void setTurno(Turnos turno, int gridIndex, Dias dia) {
       GridPane grid =  (GridPane) weekGrid1.getChildren().get(gridIndex);
     int hourIndex = turno.getInicio() - 7;
-    int columna = turno.getTipoTurno().ordinal();
+    int columna = turno.getShiftType().ordinal();
     grid.add(createLabel(turno, dia, grid), columna + 1, hourIndex,1, turno.getDuracion());
     addGridEventHandler(grid, dia);
   }
@@ -204,9 +204,9 @@ public class PlantillaGUI   extends Application implements Initializable {
   private void addLabelGrids(GridPane gridToAddLabels) {
             for (int i = 1; i < 8; i++){
                 GridPane grid = new GridPane();
-                for (int k = 0; k < 7; k++) {
+                for (int k = 0; k < 8; k++) {
                     ColumnConstraints column = new ColumnConstraints();
-                    column.prefWidthProperty().set(200);
+                    column.prefWidthProperty().set(150);
                     column.setMaxWidth(1234567890);
                     grid.getColumnConstraints().add(column);
                 }
@@ -284,7 +284,6 @@ public class PlantillaGUI   extends Application implements Initializable {
       }catch (Exception e){}
       nueva.setDias(nuevaPlantilla.getDias());
       try {
-        Hibernate.initialize(tienda.getPlantillasAnteriores());
         tienda.getPlantillasAnteriores().add(nueva);
       }catch(Exception e){
         tienda.setPlantillasAnteriores(new ArrayList<>());
@@ -293,11 +292,10 @@ public class PlantillaGUI   extends Application implements Initializable {
       hibernateCrud.UpdateTienda(tienda);
       nuevaPlantilla.setDias(createWeek());
       deleteTurnosLabels(weekGrid);
-    //ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
 
     try {
-    tiendasChoice.setItems(tiendas);
-    nombreChoice.setItems(FXCollections.observableList(new ArrayList<>()));
+        tiendasChoice.setItems((ObservableList<Tiendas>) hibernateCrud.GetAllTiendas());
+        nombreChoice.getItems().removeAll();
     }catch(Exception e){}
   }
 
@@ -325,14 +323,15 @@ public class PlantillaGUI   extends Application implements Initializable {
   public void deletePlantilla(ActionEvent actionEvent) {
     Tiendas tienda = tiendasChoice.getSelectionModel().getSelectedItem();
     Plantillas plantillas = nombreChoice.getSelectionModel().getSelectedItem();
-    tienda.getPlantillasAnteriores().remove(plantillas);
+    if(tienda.getPlantillasAnteriores() != null){
+        tienda.getPlantillasAnteriores().remove(plantillas);
+    }
     try {
       if(tienda.getPlantilla().equals(plantillas)){
         tienda.setPlantilla(null);}
     }catch(NullPointerException e){}
     hibernateCrud.UpdateTienda(tienda);
     deleteTurnosLabels(weekGrid1);
-    //ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
     try {
       tiendasChoice.setItems(tiendas);
       nombreChoice.setItems(FXCollections.observableList(new ArrayList<>()));
@@ -342,9 +341,8 @@ public class PlantillaGUI   extends Application implements Initializable {
   public void updatePlantilla(ActionEvent actionEvent) {
       Plantillas plantilla = nombreChoice.getSelectionModel().getSelectedItem();
       if(plantilla != null) {
-        hibernateCrud.UpdatePlantilla(plantilla);
+          hibernateCrud.UpdatePlantilla(plantilla);
       }
-    //ObservableList<Tiendas> tiendas = FXCollections.observableList(HibernateCrud.GetAllTiendas());
     try {
       tiendasChoice.setItems(tiendas);//Todo chcar que sirva
       nombreChoice.setItems(FXCollections.observableList(new ArrayList<>()));

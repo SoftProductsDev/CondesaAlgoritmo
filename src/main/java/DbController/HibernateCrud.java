@@ -9,7 +9,7 @@ import java.util.List;
 
 
 
-public class HibernateCrud implements CrudOperations {
+/*public class HibernateCrud implements CrudOperations {
 
     @Override
     public int SaveCondeso(Condeso condeso) {
@@ -100,7 +100,7 @@ public class HibernateCrud implements CrudOperations {
     }
 
     @Override
-    public String DeleteTienda (Tiendas deletedTienda){
+    public int DeleteTienda (Tiendas deletedTienda){
         deletedTienda.removeTiendasFromCondesos();
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
@@ -108,22 +108,22 @@ public class HibernateCrud implements CrudOperations {
         session.delete(deletedTienda);
         session.getTransaction().commit();
         session.close();
-        return "Deleted:" + deletedTienda.toString();
+        return 0;
     }
 
     @Override
-    public String UpdateTienda (Tiendas updatedTienda){
+    public int UpdateTienda (Tiendas updatedTienda){
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         session.update(updatedTienda);
         session.getTransaction().commit();
         session.close();
-        return "Updated tienda: " + updatedTienda.toString();
+        return 0;
     }
 
     @Override
-    public void UpdateMultipleTiendas (List<Tiendas> updatedTiendas){
+    public int UpdateMultipleTiendas (List<Tiendas> updatedTiendas){
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
@@ -132,6 +132,7 @@ public class HibernateCrud implements CrudOperations {
         }
         session.getTransaction().commit();
         session.close();
+        return 0;
     }
 
     @Override
@@ -169,4 +170,4 @@ public class HibernateCrud implements CrudOperations {
         session.close();
         return 0;
     }
-}
+}*/

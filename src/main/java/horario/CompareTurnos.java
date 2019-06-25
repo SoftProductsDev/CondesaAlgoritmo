@@ -17,7 +17,7 @@ public class CompareTurnos implements Comparator<Turnos> {
     }
 
     private int compare2(Turnos o1, Turnos o2){
-        int i = o1.getTipoTurno().compareTo(o2.getTipoTurno());
+        int i = o1.getShiftType().compareTo(o2.getShiftType());
 
         if(i == 0){
             return Integer.compare(o1.getInicio(), o2.getInicio());

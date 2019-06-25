@@ -1,12 +1,11 @@
 package condesaGUI;
 
-import DbController.HibernateCrud;
 import condeso.Condeso;
 import condeso.HorasMes;
 import horario.Dias;
 import horario.HorarioMaster;
 import horario.Turnos;
-import horario.TipoTurno;
+import horario.ShiftType;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -123,7 +122,7 @@ public class EditPopOverGUI  implements Initializable {
             if(horas != null){
               int lasHoras = horas.getHoras();
               horas.setHoras(lasHoras - duracion1);
-              //HibernateCrud.UpdateCondeso(elCondeso);
+
             }
           }
           elCondeso = condesoTodosChoice.getSelectionModel().getSelectedItem();
@@ -132,12 +131,12 @@ public class EditPopOverGUI  implements Initializable {
           if(horas != null){
             int lasHoras = horas.getHoras();
             horas.setHoras(lasHoras + turno.getDuracion());
-            //HibernateCrud.UpdateCondeso(elCondeso);
+
           }else{
             horas = new HorasMes();
             horas.setHoras(turno.getDuracion());
             elCondeso.getHorasMes().put(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1),horas);
-            //HibernateCrud.UpdateCondeso(elCondeso);
+
           }
 
 
@@ -157,7 +156,7 @@ public class EditPopOverGUI  implements Initializable {
             if(horas != null){
               int lasHoras = horas.getHoras();
               horas.setHoras(lasHoras - duracion1);
-              //HibernateCrud.UpdateCondeso(elCondeso);
+
             }
           }
           elCondeso = condesoChoice.getSelectionModel().getSelectedItem();
@@ -166,12 +165,10 @@ public class EditPopOverGUI  implements Initializable {
           if(horas != null){
             int lasHoras = horas.getHoras();
             horas.setHoras(lasHoras + turno.getDuracion());
-            //HibernateCrud.UpdateCondeso(elCondeso);
           }else{
             horas = new HorasMes();
             horas.setHoras(turno.getDuracion());
             elCondeso.getHorasMes().put(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1),horas);
-            //HibernateCrud.UpdateCondeso(elCondeso);
           }
         } else {
           Alert alertFinal = new Alert(Alert.AlertType.CONFIRMATION);
@@ -193,7 +190,6 @@ public class EditPopOverGUI  implements Initializable {
         if(horas != null){
           int lasHoras = horas.getHoras();
           horas.setHoras(lasHoras - duracion1);
-          //HibernateCrud.UpdateCondeso(elCondeso);
         }
       }
       elCondeso = condesoTodosChoice.getSelectionModel().getSelectedItem();
@@ -202,12 +198,10 @@ public class EditPopOverGUI  implements Initializable {
       if(horas != null){
         int lasHoras = horas.getHoras();
         horas.setHoras(lasHoras + turno.getDuracion());
-        //HibernateCrud.UpdateCondeso(elCondeso);
       }else{
         horas = new HorasMes();
         horas.setHoras(turno.getDuracion());
         elCondeso.getHorasMes().put(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1),horas);
-        //HibernateCrud.UpdateCondeso(elCondeso);
       }
     }else{
       Condeso elCondeso = turno.getCondeso();
@@ -224,7 +218,6 @@ public class EditPopOverGUI  implements Initializable {
         if(horas != null){
           int lasHoras = horas.getHoras();
           horas.setHoras(lasHoras - duracion1);
-          //HibernateCrud.UpdateCondeso(elCondeso);
         }
       }
       elCondeso = condesoChoice.getSelectionModel().getSelectedItem();
@@ -233,22 +226,20 @@ public class EditPopOverGUI  implements Initializable {
       if(horas != null){
         int lasHoras = horas.getHoras();
         horas.setHoras(lasHoras + turno.getDuracion());
-        //HibernateCrud.UpdateCondeso(elCondeso);
       }else{
         horas = new HorasMes();
         horas.setHoras(turno.getDuracion());
         elCondeso.getHorasMes().put(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1),horas);
-        //HibernateCrud.UpdateCondeso(elCondeso);
       }
     }
     grid.getChildren().remove(label);
     //considering the first hour is 8 am
     int hourIndex = turno.getInicio() - 7;
     int  columna;
-    if(turno.getTipoTurno() == TipoTurno.GM){
+    if(turno.getShiftType() == ShiftType.GM){
        columna = GridPane.getColumnIndex(label);
     }else{
-      columna = turno.getTipoTurno().ordinal() + 1;
+      columna = turno.getShiftType().ordinal() + 1;
     }
     grid.add(createLabel(dia, turno, grid), columna,  hourIndex,1,turno.getDuracion());
     return true;
@@ -298,10 +289,10 @@ public class EditPopOverGUI  implements Initializable {
     //considering the first hour is 8 am
     int hourIndex = turno.getInicio() - 7;
     int  columna;
-    if(turno.getTipoTurno() == TipoTurno.GM){
+    if(turno.getShiftType() == ShiftType.GM){
       columna = GridPane.getColumnIndex(label);
     }else{
-      columna = turno.getTipoTurno().ordinal() + 1;
+      columna = turno.getShiftType().ordinal() + 1;
     }
     grid.add(createLabel(dia, turno, grid), columna,  hourIndex,1,turno.getDuracion());
   }
@@ -339,36 +330,4 @@ public class EditPopOverGUI  implements Initializable {
             });
     return label;
   }
-  /*private Label createLabel() {
-    Label label = new Label(turno.getCondeso().getAbreviacion());
-    label.setStyle("-fx-background-color: " + turno.getCondeso().getColor());
-    //label.setStyle();
-    label.setMaxHeight(125462739);
-    label.setMaxWidth(1234567890);
-    label.addEventHandler(MouseEvent.MOUSE_CLICKED,
-        new EventHandler<MouseEvent>() {
-          @Override
-          public void handle(MouseEvent event) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/editPopOver.fxml")); // TODO EXAMPLE
-            String sceneFile = "/editPopOver.fxml";
-            Parent root = null;
-            URL url  = null;
-            try {
-              //url  = getClass().getResource( sceneFile );
-              //root = fxmlLoader.load( url );
-              root = (Parent) fxmlLoader.load();
-            } catch (IOException e) {
-              e.printStackTrace();
-            }
-            PopOver pop = new PopOver(root);
-            pop.setAutoFix(false);
-            pop.setAnimated(false);
-            pop.show(label);
-            EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();
-            edit.setInitialValues(turno, dia, grid, label, condesos, tiendas);
-            event.consume();
-          };
-        });
-    return label;
-  }*/
 }

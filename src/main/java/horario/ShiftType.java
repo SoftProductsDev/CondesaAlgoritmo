@@ -1,15 +1,20 @@
-package condeso;
-
+package horario;
 
 import com.google.gson.annotations.SerializedName;
 
-public enum TipoEmpleado {
+public enum ShiftType {
   @SerializedName("0")
   GM,
   @SerializedName("1")
-  Equipo,
+  G,
   @SerializedName("2")
-  Nuevo,
+  F,
   @SerializedName("3")
-  Encargado
+  H,
+  @SerializedName("4")
+  B,
+  @SerializedName("5")
+  R,
+  @SerializedName("6")
+  E
 }

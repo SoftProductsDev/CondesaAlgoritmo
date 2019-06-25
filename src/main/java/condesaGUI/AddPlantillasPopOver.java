@@ -3,7 +3,7 @@ package condesaGUI;
 import condeso.Condeso;
 import horario.Dias;
 import horario.Turnos;
-import horario.TipoTurno;
+import horario.ShiftType;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,7 +25,7 @@ import org.controlsfx.control.PopOver;
 import org.controlsfx.control.ToggleSwitch;
 
 public class  AddPlantillasPopOver implements Initializable {
-  @FXML private ChoiceBox<TipoTurno> tipoChoice;
+  @FXML private ChoiceBox<ShiftType> tipoChoice;
   @FXML private TextField inicioField;
   @FXML private TextField finField;
   @FXML private AnchorPane anchorPane;
@@ -36,8 +36,8 @@ public class  AddPlantillasPopOver implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    ObservableList<TipoTurno> turnos = FXCollections.observableArrayList(TipoTurno.values());
-    turnos.remove(TipoTurno.GM);
+    ObservableList<ShiftType> turnos = FXCollections.observableArrayList(ShiftType.values());
+    turnos.remove(ShiftType.GM);
     tipoChoice.setItems(turnos);
   }
 
@@ -50,12 +50,12 @@ public class  AddPlantillasPopOver implements Initializable {
       return "Introduzca numeros entre el 8 y 24";
     }
     if(tipoChoice.getValue() != null){
-      turno.setTipoTurno(tipoChoice.getValue());
+      turno.setShiftType(tipoChoice.getValue());
     }
     else{
       return "Elija el tipo de turno";
     }
-    gridPane.add(createLabel(turno),turno.getTipoTurno().ordinal() + 1, turno.getInicio() - 7,
+    gridPane.add(createLabel(turno),turno.getShiftType().ordinal() + 1, turno.getInicio() - 7,
         1, turno.getDuracion());
     dia.getTurnos().add(turno);
     return "";

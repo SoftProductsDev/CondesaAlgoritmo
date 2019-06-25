@@ -1,7 +1,8 @@
 package condesaGUI;
 
 import DbController.CrudOperations;
-import DbController.HibernateCrud;
+import DbController.WebApiClient;
+import condeso.Condeso;
 import horario.Plantillas;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -39,7 +40,8 @@ public class TiendaGUI extends Application implements Initializable {
     @FXML private DatePicker aperturaCalendario;
     @FXML private ColorPicker colorPicker;
     private List<Tiendas> tiendas;
-    private CrudOperations hibernateCrud = new HibernateCrud();
+    private  List<Condeso> condesos;
+    private CrudOperations hibernateCrud = new WebApiClient();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -160,12 +162,19 @@ public class TiendaGUI extends Application implements Initializable {
                 try {
                     hibernateCrud.DeleteTienda(tienda);
                     tiendas.remove(tienda);
+                    removeTiendasFromCondesos(tienda);
                     tableView.getItems().setAll(tiendas);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 return (1);
             });
+        }
+    }
+
+    public void removeTiendasFromCondesos(Tiendas tienda) {
+        for (Condeso c : condesos) {
+            c.getDondePuedeTrabajar().remove(tienda);
         }
     }
 
@@ -198,8 +207,9 @@ public class TiendaGUI extends Application implements Initializable {
         launch(args);
     }
 
-    public void setInitialValues(ObservableList<Tiendas> tiendas) {
+    public void setInitialValues(ObservableList<Tiendas> tiendas, ObservableList<Condeso> condesos) {
         this.tiendas = tiendas;
+        this.condesos = condesos;
         id.setCellValueFactory(new PropertyValueFactory<Tiendas, Long>("id"));
         tiendaNombre.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("nombre"));
         tiendaManager.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("manager"));

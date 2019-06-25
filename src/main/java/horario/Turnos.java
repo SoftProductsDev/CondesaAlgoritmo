@@ -28,20 +28,11 @@ public class Turnos implements Comparable<Turnos> {
 	@Column(name = "id")
 	private long id;
 
-	/*@Column(name = "elemental")
-	private boolean elemental;
-
-	@Column(name = "matutino")
-	private boolean matutino;
-
-	@Column(name = "ocupado")
-	private boolean ocupado = false;*/
-
 	@Column(name = "inicio")
-	private int inicio;
+	private int start;
 
 	@Column(name = "fin")
-	private int fin;
+	private int finish;
 
 	@JoinColumn
 	@ManyToOne
@@ -49,7 +40,10 @@ public class Turnos implements Comparable<Turnos> {
 
 	@Column
 	@Enumerated(EnumType.STRING)
-	private TipoTurno tipoTurno;
+	private ShiftType shiftType;
+
+	@Transient
+	private LocalDate date;
 
 
 	//private boolean elemental;
@@ -64,8 +58,7 @@ public class Turnos implements Comparable<Turnos> {
 	private boolean encargado;
 	@Transient
 	private long idTienda;
-	@Transient
-	private LocalDate fecha;
+
 	@Transient
 	private List<Hora> misHoras = new ArrayList<>();
 
@@ -75,10 +68,10 @@ public class Turnos implements Comparable<Turnos> {
 
 	public Turnos(){};
 
-	public LocalDate getFecha(){return fecha;}
+	public LocalDate getFecha(){return date;}
 
 	public void setFecha(LocalDate fecha){
-		this.fecha = fecha;
+		this.date = fecha;
 	}
 
 	public void setIdTienda(int id){
@@ -91,7 +84,7 @@ public class Turnos implements Comparable<Turnos> {
 		if(encargado) return;
 		HashMap<Integer, Hora> horas = elDia.getHoras();
 		Hora laHora;
-		for (int i = inicio; i <= fin; i++) {
+		for (int i = start; i <= finish; i++) {
 			laHora = horas.get(i);
 			if(laHora == null){
 				laHora = new Hora(elDia, elDia.getPromedioMinimo());
@@ -115,15 +108,15 @@ public class Turnos implements Comparable<Turnos> {
 	}
 
 
-	public Turnos(Condeso condeso, int inicio, int fin, Dias elDia, boolean encargado, TipoTurno tipoTurno) {
+	public Turnos(Condeso condeso, int start, int finish, Dias elDia, boolean encargado, ShiftType ShiftType) {
 		this.condeso = condeso;
 		//this.matutino = matutino;
-		this.inicio = inicio;
-		this.fin = fin;
+		this.start = start;
+		this.finish = finish;
 		this.elDia = elDia;
 		this.encargado = encargado;
 		elDia.addTurno(this);
-		this.tipoTurno = tipoTurno;
+		this.shiftType = ShiftType;
 		minimo = 1;
 		if(elDia == null) throw new RuntimeException("dia es null");
 	}
@@ -149,23 +142,23 @@ public class Turnos implements Comparable<Turnos> {
 	}*/
 
 	public int getInicio() {
-		return inicio;
+		return start;
 	}
 
-	public void setInicio(int inicio) {
-		this.inicio = inicio;
+	public void setInicio(int start) {
+		this.start = start;
 	}
 
 	public int getFin() {
-		return fin;
+		return finish;
 	}
 
 	public void setFin(int fin) {
-		this.fin = fin;
+		this.finish = fin;
 	}
 
 	public int getDuracion() {
-		return fin - inicio;
+		return finish - start;
 	}
 
 	/*public boolean isMatutino() {
@@ -195,9 +188,9 @@ public class Turnos implements Comparable<Turnos> {
 		this.condeso = condeso;
 	}
 
-	public void setTipoTurno(TipoTurno tipo){this.tipoTurno = tipo;}
+	public void setShiftType(ShiftType tipo){this.shiftType = tipo;}
 
-	public TipoTurno getTipoTurno(){return tipoTurno;}
+	public ShiftType getShiftType(){return shiftType;}
 
 
 	public LocalDate getDate() { return elDia.getDate();
@@ -207,20 +200,20 @@ public class Turnos implements Comparable<Turnos> {
 
 
 	public Turnos duplicate(Dias elDia){
-	return new Turnos(condeso, inicio, fin, elDia, encargado, tipoTurno);
+	return new Turnos(condeso, start, finish, elDia, encargado, shiftType);
 	}
 
 	@Override
 	public int compareTo(Turnos o2) {
 		if(this.getInicio() != o2.getInicio()) return  Integer.compare(this.getInicio(), o2.getInicio());
 		else{
-			return this.getTipoTurno().compareTo(o2.getTipoTurno());
+			return this.getShiftType().compareTo(o2.getShiftType());
 		}
 	}
 
 	//returns true if overlaps
 	public Boolean overlapGUI(Turnos turnos){
-		if(this.tipoTurno == turnos.tipoTurno && this != turnos){
+		if(this.getShiftType() == turnos.getShiftType() && this != turnos){
 			if((this.getInicio() >= turnos.getInicio() && turnos.getInicio() <= this.getFin()||
 					(this.getInicio() >= turnos.getFin() && turnos.getFin() <= this.getFin()))){
 				return true;
@@ -231,7 +224,7 @@ public class Turnos implements Comparable<Turnos> {
 	}
 
 	public boolean isG(){
-		if(tipoTurno == TipoTurno.G) return true;
+		if(getShiftType() == ShiftType.G) return true;
 		return false;
 	}
 

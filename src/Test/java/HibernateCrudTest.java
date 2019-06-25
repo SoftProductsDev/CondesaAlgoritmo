@@ -1,5 +1,5 @@
 
-import DbController.HibernateCrud;
+
 import condesaGUI.EditPlantillasPopOverGUI;
 import horario.*;
 import org.apache.poi.ss.formula.functions.T;
@@ -99,95 +99,95 @@ import java.time.LocalDate;
     Dias domingo = new Dias();
     domingo.setDate(LocalDate.of(2018,10,7));
 
-    TipoTurno g = TipoTurno.G;
-    TipoTurno f = TipoTurno.F;
-    TipoTurno h = TipoTurno.H;
-    TipoTurno b = TipoTurno.B;
-    TipoTurno r = TipoTurno.R;
+    ShiftType g = ShiftType.G;
+    ShiftType f = ShiftType.F;
+    ShiftType h = ShiftType.H;
+    ShiftType b = ShiftType.B;
+    ShiftType r = ShiftType.R;
 
     Turnos turnoMartes1 = new Turnos();
     turnoMartes1.setInicio(10);
     turnoMartes1.setFin(18);
     turnoMartes1.setIdTienda(3);
-    turnoMartes1.setTipoTurno(g);
+    turnoMartes1.setShiftType(g);
 
     Turnos turnoMartes2 = new Turnos();
     turnoMartes2.setInicio(11);
     turnoMartes2.setFin(15);
     turnoMartes2.setIdTienda(3);
-    turnoMartes2.setTipoTurno(f);
+    turnoMartes2.setShiftType(f);
 
     Turnos turnoMiercoles1 = new Turnos();
     turnoMiercoles1.setInicio(10);
     turnoMiercoles1.setFin(18);
     turnoMiercoles1.setIdTienda(3);
-    turnoMiercoles1.setTipoTurno(g);
+    turnoMiercoles1.setShiftType(g);
 
     Turnos turnoMiercoles2 = new Turnos();
     turnoMiercoles2.setInicio(11);
     turnoMiercoles2.setFin(15);
     turnoMiercoles2.setIdTienda(3);
-    turnoMiercoles2.setTipoTurno(f);
+    turnoMiercoles2.setShiftType(f);
 
     Turnos turnoJueves1 = new Turnos();
     turnoJueves1.setInicio(10);
     turnoJueves1.setFin(17);
     turnoJueves1.setIdTienda(3);
-    turnoJueves1.setTipoTurno(g);
+    turnoJueves1.setShiftType(g);
 
     Turnos turnoJueves2 = new Turnos();
     turnoJueves2.setInicio(17);
     turnoJueves2.setFin(23);
     turnoJueves2.setIdTienda(3);
-    turnoJueves2.setTipoTurno(g);
+    turnoJueves2.setShiftType(g);
 
     Turnos turnoJueves3 = new Turnos();
     turnoJueves3.setInicio(11);
     turnoJueves3.setFin(15);
     turnoJueves3.setIdTienda(3);
-    turnoJueves3.setTipoTurno(f);
+    turnoJueves3.setShiftType(f);
 
     Turnos turnoJueves4 = new Turnos();
     turnoJueves4.setInicio(18);
     turnoJueves4.setFin(22);
     turnoJueves4.setIdTienda(3);
-    turnoJueves4.setTipoTurno(f);
+    turnoJueves4.setShiftType(f);
 
     Turnos turnoViernes1 = new Turnos();
     turnoViernes1.setInicio(10);
     turnoViernes1.setFin(17);
     turnoViernes1.setIdTienda(3);
-    turnoViernes1.setTipoTurno(g);
+    turnoViernes1.setShiftType(g);
 
     Turnos turnoViernes2 = new Turnos();
     turnoViernes2.setInicio(17);
     turnoViernes2.setFin(23);
     turnoViernes2.setIdTienda(3);
-    turnoViernes2.setTipoTurno(g);
+    turnoViernes2.setShiftType(g);
 
     Turnos turnoViernes3 = new Turnos();
     turnoViernes3.setInicio(11);
     turnoViernes3.setFin(15);
     turnoViernes3.setIdTienda(3);
-    turnoViernes3.setTipoTurno(f);
+    turnoViernes3.setShiftType(f);
 
     Turnos turnoViernes4 = new Turnos();
     turnoViernes4.setInicio(18);
     turnoViernes4.setFin(22);
     turnoViernes4.setIdTienda(3);
-    turnoViernes4.setTipoTurno(f);
+    turnoViernes4.setShiftType(f);
 
     Turnos turnoSabado1 = new Turnos();
     turnoSabado1.setInicio(10);
     turnoSabado1.setFin(17);
     turnoSabado1.setIdTienda(3);
-    turnoSabado1.setTipoTurno(g);
+    turnoSabado1.setShiftType(g);
 
     Turnos turnoSabado2 = new Turnos();
     turnoSabado2.setInicio(17);
     turnoSabado2.setFin(24);
     turnoSabado2.setIdTienda(3);
-    turnoSabado2.setTipoTurno(g);
+    turnoSabado2.setShiftType(g);
 
     turnosMartes.add(turnoMartes1);
     turnosMartes.add(turnoMartes2);
@@ -252,186 +252,186 @@ import java.time.LocalDate;
     Dias domingo = new Dias();
     domingo.setDate(LocalDate.of(2018,10,7));
 
-    TipoTurno g = TipoTurno.G;
-    TipoTurno f = TipoTurno.F;
-    TipoTurno h = TipoTurno.H;
-    TipoTurno b = TipoTurno.B;
-    TipoTurno r = TipoTurno.R;
+    ShiftType g = ShiftType.G;
+    ShiftType f = ShiftType.F;
+    ShiftType h = ShiftType.H;
+    ShiftType b = ShiftType.B;
+    ShiftType r = ShiftType.R;
 
 
     Turnos turnoLunes1 = new Turnos();
     turnoLunes1.setInicio(8);
     turnoLunes1.setFin(14);
     turnoLunes1.setIdTienda(2);
-    turnoLunes1.setTipoTurno(g);
+    turnoLunes1.setShiftType(g);
 
     Turnos turnoLunes2 = new Turnos();
     turnoLunes2.setInicio(11);
     turnoLunes2.setFin(15);
     turnoLunes2.setIdTienda(2);
-    turnoLunes2.setTipoTurno(f);
+    turnoLunes2.setShiftType(f);
 
     Turnos turnoLunes3 = new Turnos();
     turnoLunes3.setInicio(12);
     turnoLunes3.setFin(16);
     turnoLunes3.setIdTienda(2);
-    turnoLunes3.setTipoTurno(h);
+    turnoLunes3.setShiftType(h);
 
     Turnos turnoLunes4 = new Turnos();
     turnoLunes4.setInicio(16);
     turnoLunes4.setFin(22);
     turnoLunes4.setIdTienda(2);
-    turnoLunes4.setTipoTurno(h);
+    turnoLunes4.setShiftType(h);
 
     Turnos turnoLunes5 = new Turnos();
     turnoLunes5.setInicio(18);
     turnoLunes5.setFin(22);
     turnoLunes5.setIdTienda(2);
-    turnoLunes5.setTipoTurno(b);
+    turnoLunes5.setShiftType(b);
 
     Turnos turnoMartes1 = new Turnos();
     turnoMartes1.setInicio(8);
     turnoMartes1.setFin(14);
     turnoMartes1.setIdTienda(2);
-    turnoMartes1.setTipoTurno(g);
+    turnoMartes1.setShiftType(g);
 
     Turnos turnoMartes2 = new Turnos();
     turnoMartes2.setInicio(11);
     turnoMartes2.setFin(15);
     turnoMartes2.setIdTienda(2);
-    turnoMartes2.setTipoTurno(f);
+    turnoMartes2.setShiftType(f);
 
     Turnos turnoMartes3 = new Turnos();
     turnoMartes3.setInicio(12);
     turnoMartes3.setFin(16);
     turnoMartes3.setIdTienda(2);
-    turnoMartes3.setTipoTurno(h);
+    turnoMartes3.setShiftType(h);
 
     Turnos turnoMartes4 = new Turnos();
     turnoMartes4.setInicio(16);
     turnoMartes4.setFin(22);
     turnoMartes4.setIdTienda(2);
-    turnoMartes4.setTipoTurno(h);
+    turnoMartes4.setShiftType(h);
 
     Turnos turnoMartes5 = new Turnos();
     turnoMartes5.setInicio(18);
     turnoMartes5.setFin(22);
     turnoMartes5.setIdTienda(2);
-    turnoMartes5.setTipoTurno(b);
+    turnoMartes5.setShiftType(b);
 
     Turnos turnoMiercoles1 = new Turnos();
     turnoMiercoles1.setInicio(8);
     turnoMiercoles1.setFin(14);
     turnoMiercoles1.setIdTienda(2);
-    turnoMiercoles1.setTipoTurno(g);
+    turnoMiercoles1.setShiftType(g);
 
     Turnos turnoMiercoles2 = new Turnos();
     turnoMiercoles2.setInicio(11);
     turnoMiercoles2.setFin(15);
     turnoMiercoles2.setIdTienda(2);
-    turnoMiercoles2.setTipoTurno(f);
+    turnoMiercoles2.setShiftType(f);
 
     Turnos turnoMiercoles3 = new Turnos();
     turnoMiercoles3.setInicio(12);
     turnoMiercoles3.setFin(16);
     turnoMiercoles3.setIdTienda(2);
-    turnoMiercoles3.setTipoTurno(h);
+    turnoMiercoles3.setShiftType(h);
 
     Turnos turnoMiercoles4 = new Turnos();
     turnoMiercoles4.setInicio(16);
     turnoMiercoles4.setFin(22);
     turnoMiercoles4.setIdTienda(2);
-    turnoMiercoles4.setTipoTurno(h);
+    turnoMiercoles4.setShiftType(h);
 
     Turnos turnoMiercoles5 = new Turnos();
     turnoMiercoles5.setInicio(18);
     turnoMiercoles5.setFin(22);
     turnoMiercoles5.setIdTienda(2);
-    turnoMiercoles5.setTipoTurno(b);
+    turnoMiercoles5.setShiftType(b);
 
     Turnos turnoJueves1 = new Turnos();
     turnoJueves1.setInicio(8);
     turnoJueves1.setFin(14);
     turnoJueves1.setIdTienda(2);
-    turnoJueves1.setTipoTurno(g);
+    turnoJueves1.setShiftType(g);
 
     Turnos turnoJueves2 = new Turnos();
     turnoJueves2.setInicio(11);
     turnoJueves2.setFin(15);
     turnoJueves2.setIdTienda(2);
-    turnoJueves2.setTipoTurno(f);
+    turnoJueves2.setShiftType(f);
 
     Turnos turnoJueves3 = new Turnos();
     turnoJueves3.setInicio(12);
     turnoJueves3.setFin(16);
     turnoJueves3.setIdTienda(2);
-    turnoJueves3.setTipoTurno(h);
+    turnoJueves3.setShiftType(h);
 
     Turnos turnoJueves4 = new Turnos();
     turnoJueves4.setInicio(16);
     turnoJueves4.setFin(22);
     turnoJueves4.setIdTienda(2);
-    turnoJueves4.setTipoTurno(h);
+    turnoJueves4.setShiftType(h);
 
     Turnos turnoJueves5 = new Turnos();
     turnoJueves5.setInicio(18);
     turnoJueves5.setFin(22);
     turnoJueves5.setIdTienda(2);
-    turnoJueves5.setTipoTurno(b);
+    turnoJueves5.setShiftType(b);
 
     Turnos turnoViernes1 = new Turnos();
     turnoViernes1.setInicio(8);
     turnoViernes1.setFin(14);
     turnoViernes1.setIdTienda(2);
-    turnoViernes1.setTipoTurno(g);
+    turnoViernes1.setShiftType(g);
 
     Turnos turnoViernes2 = new Turnos();
     turnoViernes2.setInicio(11);
     turnoViernes2.setFin(15);
     turnoViernes2.setIdTienda(2);
-    turnoViernes2.setTipoTurno(f);
+    turnoViernes2.setShiftType(f);
 
     Turnos turnoViernes3 = new Turnos();
     turnoViernes3.setInicio(12);
     turnoViernes3.setFin(16);
     turnoViernes3.setIdTienda(2);
-    turnoViernes3.setTipoTurno(h);
+    turnoViernes3.setShiftType(h);
 
     Turnos turnoViernes4 = new Turnos();
     turnoViernes4.setInicio(18);
     turnoViernes4.setFin(22);
     turnoViernes4.setIdTienda(2);
-    turnoViernes4.setTipoTurno(b);
+    turnoViernes4.setShiftType(b);
 
     Turnos turnoViernes5 = new Turnos();
     turnoViernes5.setInicio(16);
     turnoViernes5.setFin(22);
     turnoViernes5.setIdTienda(2);
-    turnoViernes5.setTipoTurno(h);
+    turnoViernes5.setShiftType(h);
 
     Turnos turnoDomingo1 = new Turnos();
     turnoDomingo1.setInicio(10);
     turnoDomingo1.setFin(16);
     turnoDomingo1.setIdTienda(2);
-    turnoDomingo1.setTipoTurno(g);
+    turnoDomingo1.setShiftType(g);
 
     Turnos turnoDomingo2 = new Turnos();
     turnoDomingo2.setInicio(16);
     turnoDomingo2.setFin(22);
     turnoDomingo2.setIdTienda(2);
-    turnoDomingo2.setTipoTurno(g);
+    turnoDomingo2.setShiftType(g);
 
     Turnos turnoDomingo3 = new Turnos();
     turnoDomingo3.setInicio(10);
     turnoDomingo3.setFin(16);
     turnoDomingo3.setIdTienda(2);
-    turnoDomingo3.setTipoTurno(f);
+    turnoDomingo3.setShiftType(f);
 
     Turnos turnoDomingo4 = new Turnos();
     turnoDomingo4.setInicio(16);
     turnoDomingo4.setFin(22);
     turnoDomingo4.setIdTienda(2);
-    turnoDomingo4.setTipoTurno(f);
+    turnoDomingo4.setShiftType(f);
 
     turnosHauptLunes.add(turnoLunes1);
     turnosHauptLunes.add(turnoLunes2);
@@ -512,324 +512,324 @@ import java.time.LocalDate;
     Dias domingo = new Dias();
     domingo.setDate(LocalDate.of(2018,10,7));
 
-    TipoTurno g = TipoTurno.G;
-    TipoTurno f = TipoTurno.F;
-    TipoTurno h = TipoTurno.H;
-    TipoTurno b = TipoTurno.B;
-    TipoTurno r = TipoTurno.R;
+    ShiftType g = ShiftType.G;
+    ShiftType f = ShiftType.F;
+    ShiftType h = ShiftType.H;
+    ShiftType b = ShiftType.B;
+    ShiftType r = ShiftType.R;
 
 
     Turnos turnoLunes1 = new Turnos();
     turnoLunes1.setInicio(9);
     turnoLunes1.setFin(15);
     turnoLunes1.setIdTienda(1);
-    turnoLunes1.setTipoTurno(g);
+    turnoLunes1.setShiftType(g);
 
     Turnos turnoLunes2 = new Turnos();
     turnoLunes2.setInicio(9);
     turnoLunes2.setFin(15);
     turnoLunes2.setIdTienda(1);
-    turnoLunes2.setTipoTurno(f);
+    turnoLunes2.setShiftType(f);
 
     Turnos turnoLunes3 = new Turnos();
     turnoLunes3.setInicio(12);
     turnoLunes3.setFin(17);
     turnoLunes3.setIdTienda(1);
-    turnoLunes3.setTipoTurno(h);
+    turnoLunes3.setShiftType(h);
 
     Turnos turnoLunes4 = new Turnos();
     turnoLunes4.setInicio(15);
     turnoLunes4.setFin(21);
     turnoLunes4.setIdTienda(1);
-    turnoLunes4.setTipoTurno(f);
+    turnoLunes4.setShiftType(f);
 
     Turnos turnoLunes5 = new Turnos();
     turnoLunes5.setInicio(17);
     turnoLunes5.setFin(23);
     turnoLunes5.setIdTienda(1);
-    turnoLunes5.setTipoTurno(g);
+    turnoLunes5.setShiftType(g);
 
     Turnos turnoLunes6 = new Turnos();
     turnoLunes6.setInicio(17);
     turnoLunes6.setFin(23);
     turnoLunes6.setIdTienda(1);
-    turnoLunes6.setTipoTurno(b);
+    turnoLunes6.setShiftType(b);
 
     Turnos turnoLunes7 = new Turnos();
     turnoLunes7.setInicio(18);
     turnoLunes7.setFin(23);
     turnoLunes7.setIdTienda(1);
-    turnoLunes7.setTipoTurno(h);
+    turnoLunes7.setShiftType(h);
 
     Turnos turnoMartes1 = new Turnos();
     turnoMartes1.setInicio(9);
     turnoMartes1.setFin(15);
     turnoMartes1.setIdTienda(1);
-    turnoMartes1.setTipoTurno(g);
+    turnoMartes1.setShiftType(g);
 
     Turnos turnoMartes2 = new Turnos();
     turnoMartes2.setInicio(9);
     turnoMartes2.setFin(15);
     turnoMartes2.setIdTienda(1);
-    turnoMartes2.setTipoTurno(f);
+    turnoMartes2.setShiftType(f);
 
     Turnos turnoMartes3 = new Turnos();
     turnoMartes3.setInicio(12);
     turnoMartes3.setFin(17);
     turnoMartes3.setIdTienda(1);
-    turnoMartes3.setTipoTurno(h);
+    turnoMartes3.setShiftType(h);
 
     Turnos turnoMartes4 = new Turnos();
     turnoMartes4.setInicio(15);
     turnoMartes4.setFin(21);
     turnoMartes4.setIdTienda(1);
-    turnoMartes4.setTipoTurno(f);
+    turnoMartes4.setShiftType(f);
 
     Turnos turnoMartes5 = new Turnos();
     turnoMartes5.setInicio(17);
     turnoMartes5.setFin(23);
     turnoMartes5.setIdTienda(1);
-    turnoMartes5.setTipoTurno(g);
+    turnoMartes5.setShiftType(g);
 
     Turnos turnoMartes6 = new Turnos();
     turnoMartes6.setInicio(17);
     turnoMartes6.setFin(23);
     turnoMartes6.setIdTienda(1);
-    turnoMartes6.setTipoTurno(b);
+    turnoMartes6.setShiftType(b);
 
     Turnos turnoMartes7 = new Turnos();
     turnoMartes7.setInicio(18);
     turnoMartes7.setFin(23);
     turnoMartes7.setIdTienda(1);
-    turnoMartes7.setTipoTurno(h);
+    turnoMartes7.setShiftType(h);
 
     Turnos turnoMiercoles1 = new Turnos();
     turnoMiercoles1.setInicio(9);
     turnoMiercoles1.setFin(15);
     turnoMiercoles1.setIdTienda(1);
-    turnoMiercoles1.setTipoTurno(g);
+    turnoMiercoles1.setShiftType(g);
 
     Turnos turnoMiercoles2 = new Turnos();
     turnoMiercoles2.setInicio(9);
     turnoMiercoles2.setFin(15);
     turnoMiercoles2.setIdTienda(1);
-    turnoMiercoles2.setTipoTurno(f);
+    turnoMiercoles2.setShiftType(f);
 
     Turnos turnoMiercoles3 = new Turnos();
     turnoMiercoles3.setInicio(12);
     turnoMiercoles3.setFin(17);
     turnoMiercoles3.setIdTienda(1);
-    turnoMiercoles3.setTipoTurno(h);
+    turnoMiercoles3.setShiftType(h);
 
     Turnos turnoMiercoles4 = new Turnos();
     turnoMiercoles4.setInicio(15);
     turnoMiercoles4.setFin(21);
     turnoMiercoles4.setIdTienda(1);
-    turnoMiercoles4.setTipoTurno(f);
+    turnoMiercoles4.setShiftType(f);
 
     Turnos turnoMiercoles5 = new Turnos();
     turnoMiercoles5.setInicio(17);
     turnoMiercoles5.setFin(23);
     turnoMiercoles5.setIdTienda(1);
-    turnoMiercoles5.setTipoTurno(g);
+    turnoMiercoles5.setShiftType(g);
 
     Turnos turnoMiercoles6 = new Turnos();
     turnoMiercoles6.setInicio(17);
     turnoMiercoles6.setFin(23);
     turnoMiercoles6.setIdTienda(1);
-    turnoMiercoles6.setTipoTurno(b);
+    turnoMiercoles6.setShiftType(b);
 
     Turnos turnoMiercoles7 = new Turnos();
     turnoMiercoles7.setInicio(18);
     turnoMiercoles7.setFin(23);
     turnoMiercoles7.setIdTienda(1);
-    turnoMiercoles7.setTipoTurno(h);
+    turnoMiercoles7.setShiftType(h);
 
     Turnos turnoJueves1 = new Turnos();
     turnoJueves1.setInicio(9);
     turnoJueves1.setFin(15);
     turnoJueves1.setIdTienda(1);
-    turnoJueves1.setTipoTurno(g);
+    turnoJueves1.setShiftType(g);
 
     Turnos turnoJueves2 = new Turnos();
     turnoJueves2.setInicio(9);
     turnoJueves2.setFin(15);
     turnoJueves2.setIdTienda(1);
-    turnoJueves2.setTipoTurno(f);
+    turnoJueves2.setShiftType(f);
 
     Turnos turnoJueves3 = new Turnos();
     turnoJueves3.setInicio(12);
     turnoJueves3.setFin(17);
     turnoJueves3.setIdTienda(1);
-    turnoJueves3.setTipoTurno(h);
+    turnoJueves3.setShiftType(h);
 
     Turnos turnoJueves4 = new Turnos();
     turnoJueves4.setInicio(13);
     turnoJueves4.setFin(18);
     turnoJueves4.setIdTienda(1);
-    turnoJueves4.setTipoTurno(r);
+    turnoJueves4.setShiftType(r);
 
     Turnos turnoJueves5 = new Turnos();
     turnoJueves5.setInicio(17);
     turnoJueves5.setFin(23);
     turnoJueves5.setIdTienda(1);
-    turnoJueves5.setTipoTurno(g);
+    turnoJueves5.setShiftType(g);
 
     Turnos turnoJueves6 = new Turnos();
     turnoJueves6.setInicio(17);
     turnoJueves6.setFin(23);
     turnoJueves6.setIdTienda(1);
-    turnoJueves6.setTipoTurno(b);
+    turnoJueves6.setShiftType(b);
 
     Turnos turnoJueves7 = new Turnos();
     turnoJueves7.setInicio(18);
     turnoJueves7.setFin(23);
     turnoJueves7.setIdTienda(1);
-    turnoJueves7.setTipoTurno(h);
+    turnoJueves7.setShiftType(h);
 
     Turnos turnoJueves8 = new Turnos();
     turnoJueves8.setInicio(18);
     turnoJueves8.setFin(23);
     turnoJueves8.setIdTienda(1);
-    turnoJueves8.setTipoTurno(f);
+    turnoJueves8.setShiftType(f);
 
     Turnos turnoViernes1 = new Turnos();
     turnoViernes1.setInicio(9);
     turnoViernes1.setFin(15);
     turnoViernes1.setIdTienda(1);
-    turnoViernes1.setTipoTurno(g);
+    turnoViernes1.setShiftType(g);
 
     Turnos turnoViernes2 = new Turnos();
     turnoViernes2.setInicio(9);
     turnoViernes2.setFin(15);
     turnoViernes2.setIdTienda(1);
-    turnoViernes2.setTipoTurno(f);
+    turnoViernes2.setShiftType(f);
 
     Turnos turnoViernes3 = new Turnos();
     turnoViernes3.setInicio(12);
     turnoViernes3.setFin(17);
     turnoViernes3.setIdTienda(1);
-    turnoViernes3.setTipoTurno(h);
+    turnoViernes3.setShiftType(h);
 
     Turnos turnoViernes4 = new Turnos();
     turnoViernes4.setInicio(13);
     turnoViernes4.setFin(18);
     turnoViernes4.setIdTienda(1);
-    turnoViernes4.setTipoTurno(r);
+    turnoViernes4.setShiftType(r);
 
     Turnos turnoViernes5 = new Turnos();
     turnoViernes5.setInicio(17);
     turnoViernes5.setFin(23);
     turnoViernes5.setIdTienda(1);
-    turnoViernes5.setTipoTurno(g);
+    turnoViernes5.setShiftType(g);
 
     Turnos turnoViernes6 = new Turnos();
     turnoViernes6.setInicio(17);
     turnoViernes6.setFin(23);
     turnoViernes6.setIdTienda(1);
-    turnoViernes6.setTipoTurno(b);
+    turnoViernes6.setShiftType(b);
 
     Turnos turnoViernes7 = new Turnos();
     turnoViernes7.setInicio(18);
     turnoViernes7.setFin(23);
     turnoViernes7.setIdTienda(1);
-    turnoViernes7.setTipoTurno(h);
+    turnoViernes7.setShiftType(h);
 
     Turnos turnoViernes8 = new Turnos();
     turnoViernes8.setInicio(18);
     turnoViernes8.setFin(23);
     turnoViernes8.setIdTienda(1);
-    turnoViernes8.setTipoTurno(f);
+    turnoViernes8.setShiftType(f);
 
     Turnos turnoSabado1 = new Turnos();
     turnoSabado1.setInicio(10);
     turnoSabado1.setFin(16);
     turnoSabado1.setIdTienda(1);
-    turnoSabado1.setTipoTurno(g);
+    turnoSabado1.setShiftType(g);
 
     Turnos turnoSabado2 = new Turnos();
     turnoSabado2.setInicio(10);
     turnoSabado2.setFin(16);
     turnoSabado2.setIdTienda(1);
-    turnoSabado2.setTipoTurno(f);
+    turnoSabado2.setShiftType(f);
 
     Turnos turnoSabado3 = new Turnos();
     turnoSabado3.setInicio(11);
     turnoSabado3.setFin(17);
     turnoSabado3.setIdTienda(1);
-    turnoSabado3.setTipoTurno(b);
+    turnoSabado3.setShiftType(b);
 
     Turnos turnoSabado4 = new Turnos();
     turnoSabado4.setInicio(16);
     turnoSabado4.setFin(23);
     turnoSabado4.setIdTienda(1);
-    turnoSabado4.setTipoTurno(g);
+    turnoSabado4.setShiftType(g);
 
     Turnos turnoSabado5 = new Turnos();
     turnoSabado5.setInicio(17);
     turnoSabado5.setFin(23);
     turnoSabado5.setIdTienda(1);
-    turnoSabado5.setTipoTurno(f);
+    turnoSabado5.setShiftType(f);
 
     Turnos turnoSabado6 = new Turnos();
     turnoSabado6.setInicio(17);
     turnoSabado6.setFin(23);
     turnoSabado6.setIdTienda(1);
-    turnoSabado6.setTipoTurno(b);
+    turnoSabado6.setShiftType(b);
 
     Turnos turnoSabado7 = new Turnos();
     turnoSabado7.setInicio(13);
     turnoSabado7.setFin(18);
     turnoSabado7.setIdTienda(1);
-    turnoSabado7.setTipoTurno(h);
+    turnoSabado7.setShiftType(h);
 
     Turnos turnoSabado8 = new Turnos();
     turnoSabado8.setInicio(18);
     turnoSabado8.setFin(23);
     turnoSabado8.setIdTienda(1);
-    turnoSabado8.setTipoTurno(h);
+    turnoSabado8.setShiftType(h);
 
     Turnos turnoDomingo1 = new Turnos();
     turnoDomingo1.setInicio(10);
     turnoDomingo1.setFin(16);
     turnoDomingo1.setIdTienda(1);
-    turnoDomingo1.setTipoTurno(g);
+    turnoDomingo1.setShiftType(g);
 
     Turnos turnoDomingo2 = new Turnos();
     turnoDomingo2.setInicio(10);
     turnoDomingo2.setFin(16);
     turnoDomingo2.setIdTienda(1);
-    turnoDomingo2.setTipoTurno(f);
+    turnoDomingo2.setShiftType(f);
 
     Turnos turnoDomingo3 = new Turnos();
     turnoDomingo3.setInicio(12);
     turnoDomingo3.setFin(19);
     turnoDomingo3.setIdTienda(1);
-    turnoDomingo3.setTipoTurno(h);
+    turnoDomingo3.setShiftType(h);
 
     Turnos turnoDomingo4 = new Turnos();
     turnoDomingo4.setInicio(16);
     turnoDomingo4.setFin(22);
     turnoDomingo4.setIdTienda(1);
-    turnoDomingo4.setTipoTurno(g);
+    turnoDomingo4.setShiftType(g);
 
     Turnos turnoDomingo5 = new Turnos();
     turnoDomingo5.setInicio(17);
     turnoDomingo5.setFin(22);
     turnoDomingo5.setIdTienda(1);
-    turnoDomingo5.setTipoTurno(f);
+    turnoDomingo5.setShiftType(f);
 
     Turnos turnoDomingo6 = new Turnos();
     turnoDomingo6.setInicio(16);
     turnoDomingo6.setFin(22);
     turnoDomingo6.setIdTienda(1);
-    turnoDomingo6.setTipoTurno(b);
+    turnoDomingo6.setShiftType(b);
 
     Turnos turnodomingo7 = new Turnos();
     turnodomingo7.setInicio(16);
     turnodomingo7.setFin(22);
     turnodomingo7.setIdTienda(1);
-    turnodomingo7.setTipoTurno(r);
+    turnodomingo7.setShiftType(r);
 
     turnosLunes.add(turnoLunes1);
     turnosLunes.add(turnoLunes2);

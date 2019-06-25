@@ -1,8 +1,7 @@
 package condesaGUI;
 
 import DbController.CrudOperations;
-import DbController.HibernateCrud;
-import DbModel.HibernateUtil;
+import DbController.WebApiClient;
 import java.io.IOException;
 import java.net.URL;
 import javafx.application.Application;
@@ -33,7 +32,7 @@ public class MainGUI extends Application {
             Screen.getPrimary().getVisualBounds().getMaxY()));
         stage.show();
         FrontGUI nuevoHorarioGUI = fxmlLoader.getController();
-        CrudOperations hibernateCrud = new HibernateCrud();
+        CrudOperations hibernateCrud = new WebApiClient();
         nuevoHorarioGUI.setInitialValues(
             FXCollections.observableArrayList(hibernateCrud.GetAllCondesos()),
             FXCollections.observableList(hibernateCrud.GetAllTiendas()));
@@ -41,7 +40,7 @@ public class MainGUI extends Application {
 
     @Override
     public void stop(){
-        HibernateUtil.shutdown();
+        //HibernateUtil.shutdown();
         try {
             super.stop();
         }catch (Exception e){

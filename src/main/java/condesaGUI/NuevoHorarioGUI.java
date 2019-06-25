@@ -1,14 +1,10 @@
 package condesaGUI;
 
 
-import DbController.CrudOperations;
-import DbController.HibernateCrud;
-import ExcelController.ExcelWriter;
 import condeso.Condeso;
 import horario.Plantillas;
 import horario.Turnos;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,31 +14,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lalo.Disponibilidad;
 import lalo.Parser;
 import lalo.lalo;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import tiendas.Tiendas;
-import condesaGUI.FrontGUI;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.List;
 
 public class NuevoHorarioGUI extends Application implements Initializable {
     @FXML private TableView<Condeso> condesosTable;
@@ -80,9 +65,6 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     private ArrayList<Turnos> turnosEncargado = new ArrayList<>();
     HashMap<Long, Integer[][]> turnosExtras = new HashMap<>();
     private Set<Disponibilidad> fijos;
-    private CrudOperations hibernateCrud = new HibernateCrud();
-
-
 
     private HashMap<Integer, Integer[][]> disponibilidad;
     private LocalDate fecha;
@@ -134,7 +116,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             diasDeCierre = FXCollections.observableArrayList(dias);
             fechaDeCierreList.setItems(diasDeCierre);
             tienda.setDiasDeCierre(dias);
-            hibernateCrud.UpdateTienda(tienda);
+
         }
     }
 
@@ -219,7 +201,6 @@ public class NuevoHorarioGUI extends Application implements Initializable {
             diasDeCierre = FXCollections.observableArrayList(dias);
             fechaDeCierreList.setItems(diasDeCierre);
             tienda.setDiasDeCierre(dias);
-            hibernateCrud.UpdateTienda(tienda);
         }
     }
 

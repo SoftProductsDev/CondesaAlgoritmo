@@ -1,12 +1,11 @@
 package ExcelController;
 
 import DbController.CrudOperations;
-import DbController.HibernateCrud;
-import DbModel.HibernateUtil;
+import DbController.WebApiClient;
 import condeso.Condeso;
 import horario.Dias;
 import horario.HorarioMaster;
-import horario.TipoTurno;
+import horario.ShiftType;
 import horario.Turnos;
 import javafx.scene.paint.Color;
 import org.apache.poi.ss.usermodel.*;
@@ -277,7 +276,7 @@ public class  ExcelWriter {
     int ogColumn = condesoColumn;
     boolean gm = false;
     for (Turnos turno:dia.getTurnos()){
-      if(turno.getTipoTurno() == TipoTurno.GM){
+      if(turno.getShiftType() == ShiftType.GM){
         setTurno(turno, column, row - 1,sheet, gm);
         gm = true;
       }else{
@@ -314,18 +313,18 @@ public class  ExcelWriter {
         r = sheet.createRow(hourIndex);
       }
       Cell cell;
-      if(gm && turno.getTipoTurno() == TipoTurno.GM){
+      if(gm && turno.getShiftType() == ShiftType.GM){
         cell = r.getCell(
-            column + turno.getTipoTurno().ordinal());
+            column + turno.getShiftType().ordinal());
         if (cell == null){
           cell = sheet.getRow(hourIndex).createCell(
-              column + turno.getTipoTurno().ordinal());
+              column + turno.getShiftType().ordinal());
         }
       }else {
-        cell = r.getCell(column + turno.getTipoTurno().ordinal() + 1);
+        cell = r.getCell(column + turno.getShiftType().ordinal() + 1);
         if (cell == null) {
           cell = sheet.getRow(hourIndex).createCell(
-              column + turno.getTipoTurno().ordinal() + 1);
+              column + turno.getShiftType().ordinal() + 1);
         }
       }
       if(turno.getCondeso() != null){
@@ -470,11 +469,10 @@ public class  ExcelWriter {
   }
 
   public static void main(String[] args) throws IOException{
-    CrudOperations hibernateCrud = new HibernateCrud();
+    CrudOperations hibernateCrud = new WebApiClient();
     ExcelWriter excelWriter = new ExcelWriter(hibernateCrud.GetAllTiendas(),hibernateCrud.GetAllCondesos(),
         LocalDate.of(2018,11,1), "");
     excelWriter.createHorarioMasterExcel();
-    HibernateUtil.shutdown();
   }
 
 }

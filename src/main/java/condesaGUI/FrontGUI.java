@@ -1,12 +1,12 @@
 package condesaGUI;
 
 import DbController.CrudOperations;
-import DbController.HibernateCrud;
+import DbController.WebApiClient;
 import ExcelController.ExcelWriter;
 import condeso.Condeso;
 import horario.Dias;
 import horario.HorarioMaster;
-import horario.TipoTurno;
+import horario.ShiftType;
 import horario.Turnos;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -204,7 +204,7 @@ public class FrontGUI extends Application implements Initializable {
     boolean isGM = false;
     for (Turnos turno:dia.getTurnos()
     ) {
-      if(turno.getTipoTurno() == TipoTurno.GM){
+      if(turno.getShiftType() == ShiftType.GM){
         setTurnos(dia, turno, pane, isGM);
         isGM = true;
       }else{
@@ -221,10 +221,10 @@ public class FrontGUI extends Application implements Initializable {
     }
 
     Label label = createLabel(dia,turno, pane);
-    if(isGM && turno.getTipoTurno() == TipoTurno.GM){
-      pane.add(label, turno.getTipoTurno().ordinal(), hourIndex, 1, turno.getDuracion());
+    if(isGM && turno.getShiftType() == ShiftType.GM){
+      pane.add(label, turno.getShiftType().ordinal(), hourIndex, 1, turno.getDuracion());
     }else {
-      pane.add(label, turno.getTipoTurno().ordinal()+1, hourIndex, 1, turno.getDuracion());
+      pane.add(label, turno.getShiftType().ordinal()+1, hourIndex, 1, turno.getDuracion());
     }
   }
 
@@ -294,7 +294,7 @@ public class FrontGUI extends Application implements Initializable {
             Screen.getPrimary().getVisualBounds().getMaxY()));
     stage.show();
     TiendaGUI tiendasGUI = fxmlLoader.getController();
-    tiendasGUI.setInitialValues(tiendas);
+    tiendasGUI.setInitialValues(tiendas, condesos);
   }
 
   public void NuevoHorarioClicked(ActionEvent actionEvent) throws Exception{
@@ -405,7 +405,8 @@ public class FrontGUI extends Application implements Initializable {
   }
 
   public void guardarCambios(ActionEvent actionEvent) {
-    CrudOperations hibernateCrud = new HibernateCrud();
+    //TODO
+    CrudOperations hibernateCrud = new WebApiClient();
       hibernateCrud.UpdateMultipleTiendas(tiendas);
       hibernateCrud.UpdateMultipleCondesos(condesos);
   }

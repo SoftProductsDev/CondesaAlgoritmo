@@ -1,6 +1,5 @@
 package condesaGUI;
 
-import DbController.HibernateCrud;
 import horario.Dias;
 import horario.Turnos;
 import java.io.IOException;
@@ -55,13 +54,13 @@ public class EditPlantillasPopOverGUI  implements Initializable {
       try {
         turno.setInicio(Integer.parseInt(inicioField.getText()));
         turno.setFin(Integer.parseInt(finField.getText()));
-        turno.setTipoTurno(turno.getTipoTurno());
+        turno.setShiftType(turno.getShiftType());
       }catch (Exception e){ }
       if(!checkoverlap(turno)){
         grid.getChildren().remove(label);
         //considering the first hour is 8 am
         int hourIndex = turno.getInicio() - 7;
-        int columna = turno.getTipoTurno().ordinal();
+        int columna = turno.getShiftType().ordinal();
         grid.add(createLabel(), columna + 1, hourIndex,1, turno.getDuracion());
       }else {
         turno.setInicio(oldInicio);

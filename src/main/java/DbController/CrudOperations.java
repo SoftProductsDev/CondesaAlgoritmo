@@ -15,9 +15,9 @@ public interface CrudOperations {
     List<Condeso> GetAllCondesos();
     int UpdateMultipleCondesos(List<Condeso> condesos);
     String SaveTienda(Tiendas tienda);
-    String UpdateTienda(Tiendas tienda);
-    String DeleteTienda(Tiendas tienda);
+    int UpdateTienda(Tiendas tienda);
+    int DeleteTienda(Tiendas tienda);
     List<Tiendas> GetAllTiendas();
-    void UpdateMultipleTiendas(List<Tiendas> tiendas);
-    String UpdatePlantilla(Plantillas plantilla);
+    int UpdateMultipleTiendas(List<Tiendas> tiendas);
+    int UpdatePlantilla(Plantillas plantilla);
 }

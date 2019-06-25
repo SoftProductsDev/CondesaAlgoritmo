@@ -1,7 +1,7 @@
 package condesaGUI;
 
 import DbController.CrudOperations;
-import DbController.HibernateCrud;
+import DbController.WebApiClient;
 import condeso.Condeso;
 import condeso.Contrato;
 import condeso.TipoEmpleado;
@@ -111,7 +111,7 @@ public class CondesoGUI  extends Application implements Initializable {
 
     public void setInitialValues(ObservableList<Condeso> condesos, List<Tiendas> tiendas){
         tiendasAddCondeso = new ArrayList<>();
-        hibernateCrud = new HibernateCrud();
+        hibernateCrud = new WebApiClient();
         this.tiendas = tiendas;//HibernateCrud.GetAllTiendas(); //TODO elliminar
         this.condesos = condesos;
         cargoComboBox.getItems().setAll(TipoEmpleado.values());

@@ -1,11 +1,10 @@
 package condesaGUI;
 
-import DbController.HibernateCrud;
 import condeso.Condeso;
 import condeso.HorasMes;
 import horario.Dias;
 import horario.Turnos;
-import horario.TipoTurno;
+import horario.ShiftType;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -27,7 +26,7 @@ import org.controlsfx.control.PopOver;
 import tiendas.Tiendas;
 
 public class AddPopOverGUI implements Initializable {
-  @FXML private ChoiceBox<TipoTurno> tipoChoice;
+  @FXML private ChoiceBox<ShiftType> tipoChoice;
   @FXML private TextField inicioField;
   @FXML private TextField finField;
   @FXML private ChoiceBox<Condeso> condesoChoice;
@@ -99,8 +98,8 @@ public class AddPopOverGUI implements Initializable {
 
     if (tipoChoice.getValue() == null){
 
-    }else if (tipoChoice.getValue() == TipoTurno.GM){
-      turno.setTipoTurno(tipoChoice.getValue());
+    }else if (tipoChoice.getValue() == ShiftType.GM){
+      turno.setShiftType(tipoChoice.getValue());
       Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
       alert.setTitle("Elegir columna");
       alert.setHeaderText("Hay 2 columnas de gm");
@@ -113,12 +112,12 @@ public class AddPopOverGUI implements Initializable {
 
       Optional<ButtonType> result = alert.showAndWait();
       if (result.get() == buttonTypeOne){
-        gridPane.add(createLabel(turno),turno.getTipoTurno().ordinal(), turno.getInicio() - 7,
+        gridPane.add(createLabel(turno),turno.getShiftType().ordinal(), turno.getInicio() - 7,
             1, turno.getDuracion());
         dia.getTurnos().add(turno);
         return true;
       } else if (result.get() == buttonTypeTwo) {
-        gridPane.add(createLabel(turno),turno.getTipoTurno().ordinal() + 1, turno.getInicio() - 7,
+        gridPane.add(createLabel(turno),turno.getShiftType().ordinal() + 1, turno.getInicio() - 7,
             1, turno.getDuracion());
         dia.getTurnos().add(turno);
       } else {
@@ -129,9 +128,9 @@ public class AddPopOverGUI implements Initializable {
       }
 
     }else{
-      turno.setTipoTurno(tipoChoice.getValue());
+      turno.setShiftType(tipoChoice.getValue());
     }
-    gridPane.add(createLabel(turno),turno.getTipoTurno().ordinal() + 1, turno.getInicio() - 7,
+    gridPane.add(createLabel(turno),turno.getShiftType().ordinal() + 1, turno.getInicio() - 7,
         1, turno.getDuracion());
     dia.getTurnos().add(turno);
     return true;
@@ -171,7 +170,7 @@ public class AddPopOverGUI implements Initializable {
         }
       }
     }
-    ObservableList<TipoTurno> turnos = FXCollections.observableArrayList(TipoTurno.values());
+    ObservableList<ShiftType> turnos = FXCollections.observableArrayList(ShiftType.values());
     condesoTodosChoice.setItems(condesos);
     condesosCopy.removeAll(aBorrar);
     condesoChoice.setItems(condesosCopy);

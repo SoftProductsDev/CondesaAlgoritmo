@@ -10,8 +10,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.*;
 
-
-import DbController.HibernateCrud;
+import DbController.WebApiClient;
 import condeso.Condeso;
 import condeso.CompareCondesos;
 import condeso.Contrato;
@@ -25,7 +24,7 @@ import tiendas.Tiendas;
 import horario.HorarioEntrega;
 
 public class lalo {
-	private final HibernateCrud hibernateCrud;
+	private final WebApiClient webApi;
 	public Set<HorarioEntrega> entregas;
 	private Set<Condeso> condesos;
 	public Set<Tiendas> tiendas;
@@ -49,7 +48,7 @@ public class lalo {
 	public lalo(Set<Condeso> GMs, List<Turnos> deEncargado, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad,
 	LocalDate fecha, HashMap<Long, Integer[][]> turnosExtras, Boolean sinChecar, Set<Disponibilidad> fijos){
 		start = System.currentTimeMillis();
-		this.hibernateCrud = new HibernateCrud();
+		this.webApi = new WebApiClient();
 		this.fecha = fecha;
 		this.deEncargado = deEncargado;
 		this.disponibilidad = disponibilidad;
@@ -105,7 +104,7 @@ public class lalo {
 			}
 			}
 			elGM.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-			hibernateCrud.UpdateCondeso(elGM);
+			webApi.UpdateCondeso(elGM);
 			elGM.resetCondeso();
 		}
 		for(Turnos elTurno : deEncargado){
@@ -204,15 +203,15 @@ public class lalo {
 		insist(noAsignados, new ArrayList<>(), true);
 		for(Condeso elCondeso : condesos){
 			elCondeso.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-			hibernateCrud.UpdateCondeso(elCondeso);
+			webApi.UpdateCondeso(elCondeso);
 			elCondeso.resetCondeso();
 		}
 		for(Tiendas tiendaFinal:tiendas){
-			hibernateCrud.UpdateTienda(tiendaFinal);
+			webApi.UpdateTienda(tiendaFinal);
 		}
 /*
 		for(Condeso condeso:condesos){
-			HibernateCrud.UpdateCondeso(condeso);
+			webApi.UpdateCondeso(condeso);
 		}
 */
 		/*File file = new File("Stats.txt");
@@ -277,7 +276,7 @@ public class lalo {
 				if(elTurno != null) countFijos++;}
 			}
 			elFijo.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-			hibernateCrud.UpdateCondeso(elFijo);
+			webApi.UpdateCondeso(elFijo);
 			elFijo.resetCondeso();
 		}
 
@@ -303,7 +302,7 @@ public class lalo {
 				}
 			}
 			elFijo.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-			hibernateCrud.UpdateCondeso(elFijo);
+			webApi.UpdateCondeso(elFijo);
 			elFijo.resetCondeso();
 		}
 
@@ -343,14 +342,14 @@ public class lalo {
 		}
 		Turnos elBueno = null;
 		if(losPosibles.size() >= 1){
-		HashMap<TipoTurno, Integer> tipoTurnos = new HashMap<>();
-		TipoTurno fila = null;
+		HashMap<ShiftType, Integer> ShiftTypes = new HashMap<>();
+		ShiftType fila = null;
 			for(Turnos elTurno : losPosibles){
-				if(tipoTurnos.get(elTurno.getTipoTurno()) != null){
-					fila = elTurno.getTipoTurno();
+				if(ShiftTypes.get(elTurno.getShiftType()) != null){
+					fila = elTurno.getShiftType();
 					break;
 				}
-				tipoTurnos.put(elTurno.getTipoTurno(), 1);
+				ShiftTypes.put(elTurno.getShiftType(), 1);
 			}
 			if(fila == null){
 				elBueno = losPosibles.get(0);
@@ -361,7 +360,7 @@ public class lalo {
 			}else{
 				List<Turnos> Turnos = new ArrayList<>();
 				for(Turnos elTurno : losPosibles){
-					if(fila == elTurno.getTipoTurno()) Turnos.add(elTurno);
+					if(fila == elTurno.getShiftType()) Turnos.add(elTurno);
 				}
 				int min = Integer.MAX_VALUE;
 				int max = -1;

@@ -9,13 +9,13 @@ import java.time.Month;
 import java.util.*;
 
 import DbController.CrudOperations;
-import DbController.HibernateCrud;
+import DbController.WebApiClient;
 import condeso.Condeso;
 import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import condeso.TipoEmpleado;
 import horario.Dias;
 import horario.HorarioMaster;
-import horario.TipoTurno;
+import horario.ShiftType;
 import horario.Turnos;
 import tiendas.Tiendas;
 
@@ -207,7 +207,7 @@ String line;
 String tienda;
 String mes;
 Month month;
-    CrudOperations hibernateCrud = new HibernateCrud();
+    CrudOperations hibernateCrud = new WebApiClient();
 Set<Condeso> paraRegresar = new HashSet<Condeso>();
 List<Condeso> todosLosCondesos = hibernateCrud.GetAllCondesos();
 List<Tiendas> todasLasTiendas = hibernateCrud.GetAllTiendas();
@@ -361,10 +361,10 @@ private static void parseTurnosGMs(String inicio, String fin, String GM, String 
                    elMaster.put(LocalDate.of(mes.getYear(), mes.getMonth(), i+1), elDia);
                }
                if(Abrev.charAt(0) == '#'){
-                 losTurnos.add(new Turnos(null, begin, end, elDia, true, TipoTurno.GM));
+                 losTurnos.add(new Turnos(null, begin, end, elDia, true, ShiftType.GM));
 
                }else{
-               elGM.asignarTurno(new Turnos(elGM, begin, end, elDia, true, TipoTurno.GM));
+               elGM.asignarTurno(new Turnos(elGM, begin, end, elDia, true, ShiftType.GM));
 
             }
             paraInicio++;

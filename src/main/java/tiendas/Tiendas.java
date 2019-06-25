@@ -1,6 +1,5 @@
 package tiendas;
 import DbController.CrudOperations;
-import DbController.HibernateCrud;
 import condeso.Condeso;
 import horario.HorarioMaster;
 import horario.Plantillas;
@@ -24,7 +23,7 @@ public class Tiendas {
 	@JoinColumn(name = "plantilla")
 	@OneToOne
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
-	private Plantillas plantillaZ;
+	private Plantillas plantilla;
 
 	@Column(name = "nombre")
 	private String name;
@@ -47,7 +46,7 @@ public class Tiendas {
 	@OneToMany(fetch = FetchType.EAGER)
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	@OrderColumn(name = "columnName")
-	private List<Plantillas> plantillasAnterioresZ;
+	private List<Plantillas> plantillasAnteriores;
 
 	@Transient
 	private Boolean selected;
@@ -55,7 +54,7 @@ public class Tiendas {
 	private List<LocalDate> diasDeCierre = new ArrayList<>();
 
 	public Tiendas(Plantillas plantilla, String nombre) {
-		this.plantillaZ = plantilla;
+		this.plantilla = plantilla;
 		this.name = nombre;
 		this.master = new HorarioMaster();
 	}
@@ -66,7 +65,7 @@ public class Tiendas {
 	}
 
 	public Plantillas getPlantilla() {
-		return plantillaZ;
+		return plantilla;
 	}
 
 	public long getId() {
@@ -78,7 +77,7 @@ public class Tiendas {
 	}
 
 	public void setPlantilla(Plantillas plantilla) {
-		this.plantillaZ = plantilla;
+		this.plantilla = plantilla;
 	}
 
 	public String getNombre() {
@@ -125,11 +124,11 @@ public class Tiendas {
 	}
 
 	public List<Plantillas> getPlantillasAnteriores() {
-		return plantillasAnterioresZ;
+		return plantillasAnteriores;
 	}
 
 	public void setPlantillasAnteriores(List<Plantillas> plantillasAnteriores) {
-		this.plantillasAnterioresZ = plantillasAnteriores;
+		this.plantillasAnteriores = plantillasAnteriores;
 	}
 
 	public List<LocalDate> getDiasDeCierre() {
@@ -157,16 +156,6 @@ public class Tiendas {
 		System.out.println(name);
 		System.out.println(master);
 		System.out.println(master.getMes());
-	}
-
-	@PreRemove
-	public void removeTiendasFromCondesos() {
-		CrudOperations hibernateCrud = new HibernateCrud();
-		List<Condeso> condesos = hibernateCrud.GetAllCondesos();
-		for (Condeso c : condesos) {
-			c.getDondePuedeTrabajar().remove(this);
-			hibernateCrud.UpdateCondeso(c);
-		}
 	}
 
 	@Override
