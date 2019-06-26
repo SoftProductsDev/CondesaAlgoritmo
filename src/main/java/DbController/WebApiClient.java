@@ -4,6 +4,7 @@ import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import condeso.HorasMes;
 import horario.Dias;
+import lalo.Disponibilidad;
 import org.apache.http.HttpEntity;
 import condeso.Condeso;
 import horario.Plantillas;
@@ -25,15 +26,13 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class WebApiClient implements CrudOperations {
 
-    public final String url = "https://localhost:44389/api/";
+    public final String url = "https://webappcondesa.azurewebsites.net/api";
     private final Gson gson;
 
     public WebApiClient()
@@ -234,6 +233,7 @@ public class WebApiClient implements CrudOperations {
         return response.getStatusLine().getStatusCode();
     }
 
+    @Override
     public int SaveMultipleDays(List<Dias> dias)
     {
         var client = CreateClient();
@@ -250,10 +250,11 @@ public class WebApiClient implements CrudOperations {
         return response.getStatusLine().getStatusCode();
     }
 
+    @Override
     public int UpdateMultipleDays(List<Dias> dias)
     {
         var client = CreateClient();
-        HttpPost post = new HttpPost(url + "/Days/PutMultipleDays");
+        HttpPut post = new HttpPut(url + "/Days/PutMultipleDays");
         String JSON_STRING =  gson.toJson(dias);
         HttpEntity stringEntity = new StringEntity(JSON_STRING, ContentType.APPLICATION_JSON);
         post.setEntity(stringEntity);
@@ -266,6 +267,7 @@ public class WebApiClient implements CrudOperations {
         return response.getStatusLine().getStatusCode();
     }
 
+    @Override
     public HashMap<LocalDate, Dias> GetDaysForShop(long shopId, LocalDate time)
     {
         var client = CreateClient();
@@ -289,7 +291,28 @@ public class WebApiClient implements CrudOperations {
         return null;
     }
 
-
+    @Override
+    public Set<Disponibilidad> GetAvailabilities(Month month) {
+        var client = CreateClient();
+        //TODO checar time tostring formato
+        HttpGet get = new HttpGet(url + "/Availabilities/Month/" + month.toString());
+        CloseableHttpResponse response = null;
+        try {
+            response = client.execute(get);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            Type listType = new TypeToken<Set<Disponibilidad>>(){}.getType();
+            var entity = response.getEntity();
+            String str = EntityUtils.toString(entity);
+            Set<Disponibilidad> disponibilidades = gson.fromJson(str, listType);
+            return disponibilidades;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     @Override
     public int UpdatePlantilla(Plantillas plantilla) {

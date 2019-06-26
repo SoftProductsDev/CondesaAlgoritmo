@@ -38,6 +38,8 @@ public class Turnos implements Comparable<Turnos> {
 	@ManyToOne
 	private Condeso condeso;
 
+	private Tiendas shop;
+
 	@Column
 	@Enumerated(EnumType.STRING)
 	private ShiftType shiftType;
@@ -67,6 +69,14 @@ public class Turnos implements Comparable<Turnos> {
 	}
 
 	public Turnos(){};
+
+	public Tiendas getShop() {
+		return shop;
+	}
+
+	public void setShop(Tiendas shop) {
+		this.shop = shop;
+	}
 
 	public LocalDate getFecha(){return date;}
 

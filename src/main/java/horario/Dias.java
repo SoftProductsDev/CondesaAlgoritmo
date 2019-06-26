@@ -38,7 +38,7 @@ public class Dias {
     private LocalDate date;
 
     @Transient
-    private Tiendas tienda;
+    private Tiendas shop;
     @Transient
     private HashMap<Integer, Hora> horas = new HashMap<>();
     @Transient
@@ -50,7 +50,7 @@ public class Dias {
 
     public Dias(LocalDate date, Tiendas laTienda){
         this.date = date;
-        this.tienda = laTienda;
+        this.shop = laTienda;
         shifts = new HashSet<>();
         switch (date.getDayOfWeek()){
             case SATURDAY:
@@ -87,9 +87,9 @@ public class Dias {
         }
     }
 
-    public Tiendas getTienda(){return tienda;}
+    public Tiendas getTienda(){return shop;}
 
-    public void setTienda(Tiendas tienda){this.tienda = tienda;}
+    public void setTienda(Tiendas tienda){this.shop = tienda;}
 
     public long getId() {
         return id;

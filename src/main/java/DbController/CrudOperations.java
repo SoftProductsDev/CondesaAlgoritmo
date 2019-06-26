@@ -1,12 +1,18 @@
 package DbController;
 
 import condeso.Condeso;
+import horario.Dias;
 import horario.Plantillas;
+import lalo.Disponibilidad;
 import tiendas.Tiendas;
 
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 public interface CrudOperations {
     int SaveCondeso(Condeso condeso) throws KeyStoreException, NoSuchAlgorithmException;
@@ -20,4 +26,8 @@ public interface CrudOperations {
     List<Tiendas> GetAllTiendas();
     int UpdateMultipleTiendas(List<Tiendas> tiendas);
     int UpdatePlantilla(Plantillas plantilla);
+    int UpdateMultipleDays(List<Dias> dias);
+    int SaveMultipleDays(List<Dias> dias);
+    HashMap<LocalDate, Dias> GetDaysForShop(long shopId, LocalDate time);
+    Set<Disponibilidad> GetAvailabilities(Month month);
 }

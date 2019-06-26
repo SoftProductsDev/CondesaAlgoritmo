@@ -1,6 +1,8 @@
 package condesaGUI;
 
 
+import DbController.CrudOperations;
+import DbController.WebApiClient;
 import condeso.Condeso;
 import horario.Plantillas;
 import horario.Turnos;
@@ -121,7 +123,10 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     }
 
     public void iniciarClicked(ActionEvent actionEvent) throws Exception {
-        if(fecha !=  null && horario != null){
+        if(fecha !=  null){
+            CrudOperations webAPI = new WebApiClient();
+            //Regresa todas las disponibilidade que corresponden a ese mes
+            Set<Disponibilidad> horario = webAPI.GetAvailabilities(fecha.getMonth());
             disponibilidad = changeSetToHashMap(horario);
             Set<Tiendas> tiendasALL2 = new HashSet<>();
             tiendasALL2.addAll(allTiendas);

@@ -43,8 +43,6 @@ public class lalo {
 	private static float promedio = 0;
 	private Set<Disponibilidad> fijos;
 
-
-
 	public lalo(Set<Condeso> GMs, List<Turnos> deEncargado, Set<Condeso> condesos, Set<Tiendas> tiendas, HashMap<Integer, Integer[][]> disponibilidad,
 	LocalDate fecha, HashMap<Long, Integer[][]> turnosExtras, Boolean sinChecar, Set<Disponibilidad> fijos){
 		start = System.currentTimeMillis();
@@ -207,7 +205,8 @@ public class lalo {
 			elCondeso.resetCondeso();
 		}
 		for(Tiendas tiendaFinal:tiendas){
-			webApi.UpdateTienda(tiendaFinal);
+			var days = tiendaFinal.getMaster().getMes().values();
+			webApi.SaveMultipleDays((List<Dias>) days);
 		}
 /*
 		for(Condeso condeso:condesos){

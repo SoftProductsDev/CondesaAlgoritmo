@@ -407,7 +407,7 @@ public class FrontGUI extends Application implements Initializable {
   public void guardarCambios(ActionEvent actionEvent) {
     //TODO
     CrudOperations hibernateCrud = new WebApiClient();
-      hibernateCrud.UpdateMultipleTiendas(tiendas);
+      //hibernateCrud.UpdateMultipleDays();
       hibernateCrud.UpdateMultipleCondesos(condesos);
   }
 
