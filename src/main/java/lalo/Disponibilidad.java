@@ -1,11 +1,25 @@
 package lalo;
 
+import condeso.AvailableDay;
+
+import java.util.Collections;
+import java.util.List;
+
 public class Disponibilidad {
     private String name;
     private int Id;
     private Integer[][] disponibilidad;
+    private List<AvailableDay> availableDays ;
     private int max;
     private int min;
+
+    public List<AvailableDay> getAvailableDays() {
+        return availableDays;
+    }
+
+    public void setAvailableDays(List<AvailableDay> availableDays) {
+        this.availableDays = availableDays;
+    }
 
     public void setMax(int max){
         this.max = max;
@@ -58,4 +72,17 @@ public class Disponibilidad {
     }
 
 
+    public Integer[][] getAvailableDaysAsArray() {
+        if(availableDays == null)
+        {
+            return null;
+        }
+        Integer[][] result = new Integer[2][31];
+        for (AvailableDay day:availableDays
+             ) {
+                result[day.CalendarDay][0] = day.getStart();
+                result[day.CalendarDay][1] = day.getEnd();
+        }
+        return result;
+    }
 }

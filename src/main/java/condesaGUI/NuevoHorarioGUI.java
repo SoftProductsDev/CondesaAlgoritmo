@@ -100,7 +100,8 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     public HashMap<Integer, Integer[][]> changeSetToHashMap(Set<Disponibilidad> disponibilidad){
         HashMap<Integer, Integer[][]> hasmapDisponibilidad = new HashMap<>();
         for(Disponibilidad disponibilidadUnCondeso:disponibilidad){
-            hasmapDisponibilidad.put(disponibilidadUnCondeso.getId(),disponibilidadUnCondeso.getDisponibilidad());
+            Integer[][] disponibilidadArray = disponibilidadUnCondeso.getAvailableDaysAsArray();
+            hasmapDisponibilidad.put(disponibilidadUnCondeso.getId(), disponibilidadArray);
         }
         return hasmapDisponibilidad;
     }

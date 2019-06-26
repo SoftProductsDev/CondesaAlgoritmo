@@ -294,7 +294,6 @@ public class WebApiClient implements CrudOperations {
     @Override
     public Set<Disponibilidad> GetAvailabilities(Month month) {
         var client = CreateClient();
-        //TODO checar time tostring formato
         HttpGet get = new HttpGet(url + "/Availabilities/Month/" + month.toString());
         CloseableHttpResponse response = null;
         try {
