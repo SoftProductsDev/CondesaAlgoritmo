@@ -33,6 +33,7 @@ import java.util.*;
 public class WebApiClient implements CrudOperations {
 
     public final String url = "https://webappcondesa.azurewebsites.net/api";
+    //public final String url = "https://localhost:44389/api";
     private final Gson gson;
 
     public WebApiClient()

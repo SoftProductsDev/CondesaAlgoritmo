@@ -55,8 +55,8 @@ public class Condeso {
 	private boolean female;
 	@Column
 	private String color;
-	public int phonenumber;
-	public String mail;
+	public String phonenumber;
+	public String email;
 
 	@Transient
 	private Availability deliverySchedule;
@@ -203,20 +203,20 @@ public class Condeso {
 		this.dateTime = antiguedad;
 	}
 
-	public int getPhonenumber() {
+	public String getPhonenumber() {
 		return phonenumber;
 	}
 
-	public void setPhonenumber(int phonenumber) {
+	public void setPhonenumber(String phonenumber) {
 		this.phonenumber = phonenumber;
 	}
 
 	public String getMail() {
-		return mail;
+		return email;
 	}
 
 	public void setMail(String pmail) {
-		this.mail = pmail;
+		this.email = pmail;
 	}
 
 	public int getDiasSeguidos(LocalDate fecha) {
