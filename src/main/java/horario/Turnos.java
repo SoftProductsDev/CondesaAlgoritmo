@@ -69,6 +69,8 @@ public class Turnos implements Comparable<Turnos> {
 	@Transient
 	private List<Hora> misHoras = new ArrayList<>();
 
+	private Tiendas tienda;
+
 	public void resetMinimo(){
 		minimo = 1;
 	}
@@ -123,6 +125,7 @@ public class Turnos implements Comparable<Turnos> {
 		this.elDia = elDia;
 		this.encargado = encargado;
 		elDia.addTurno(this);
+		this.tienda = elDia.getTienda();
 		this.tipoTurno = tipoTurno;
 		minimo = 1;
 		if(elDia == null) throw new RuntimeException("dia es null");
