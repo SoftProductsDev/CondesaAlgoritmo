@@ -45,28 +45,19 @@ import java.util.*;
 public class FrontGUI extends Application implements Initializable {
 
   @FXML private ComboBox<Tiendas>  tiendasComboBox;
-  //@FXML private  ListView<String> horaList0;
-  //@FXML private ListView<String>  horaList1;
-  @FXML private ListView<String>  horaList2;
-  @FXML private ListView<String>  horaList3;
-  @FXML private ListView<String>  horaList4;
-  @FXML private ListView<String>  horaList5;
-  @FXML private ListView<String>  horaList6;
-  @FXML private ListView<String>  horaList7;
-  @FXML private ListView<String>  horaList8;
-  @FXML private ListView<String>  horaList9;
-  @FXML private ListView<String>  horaList10;
-  @FXML private ListView<String>  horaList11;
   @FXML private Label monthLabel;
   @FXML private GridPane monthGrid;
   private ObservableList<Tiendas> tiendas;
   private ObservableList<Condeso> condesos;
+  private CrudOperations webApi;
+  private HashMap<LocalDate, Dias> mes;
 
 
   private ObservableList<Node> calendarNodes;
   private LocalDate calendar;
   private static final ObservableList
       horario = FXCollections.observableArrayList(getStaticList());
+  private List<Dias> dias;
 
   private static ArrayList<String> getStaticList() {
     ArrayList<String> list = new ArrayList<>();
@@ -99,6 +90,7 @@ public class FrontGUI extends Application implements Initializable {
     calendarNodes = monthGrid.getChildren();
     setCalendarDays();
     addLabelGrids();
+    this.webApi = new WebApiClient();
   }
 
   private void addHourGrids()
@@ -180,13 +172,16 @@ public class FrontGUI extends Application implements Initializable {
   private void setHorarioMaster(){
     Tiendas tienda = tiendasComboBox.getValue();
     HorarioMaster master = null;
+     mes = null;
     if(tienda != null){
-      master = tienda.getMaster();
+      //TODO poner webapi
+      mes = webApi.GetDaysForShop(tienda.getId(), calendar.withDayOfMonth(1));
+      //master = tienda.getMaster();
     }
-    if (master != null){
+    if (mes != null){
       for (int i = 1; i <= calendar.getMonth().length(calendar.isLeapYear()); i++)
       {
-          Map<LocalDate, Dias> mes = master.getMes();
+          //Map<LocalDate, Dias> mes = master.getMes();
           Dias dia = mes.get(calendar.withDayOfMonth(i));
           if(dia!=null){
           setDias(dia);
@@ -406,9 +401,9 @@ public class FrontGUI extends Application implements Initializable {
 
   public void guardarCambios(ActionEvent actionEvent) {
     //TODO
-    CrudOperations hibernateCrud = new WebApiClient();
-      //hibernateCrud.UpdateMultipleDays();
-      hibernateCrud.UpdateMultipleCondesos(condesos);
+      var dias = mes.values().toArray(new Dias[100]);
+      webApi.UpdateMultipleDays(Arrays.asList(dias));
+      webApi.UpdateMultipleCondesos(condesos);
   }
 
   public void writeExcel(ActionEvent actionEvent) {

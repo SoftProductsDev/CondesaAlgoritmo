@@ -60,7 +60,8 @@ public class Turnos implements Comparable<Turnos> {
 	private boolean encargado;
 	@Transient
 	private long idTienda;
-
+	@Transient
+	private LocalDate fecha;
 	@Transient
 	private List<Hora> misHoras = new ArrayList<>();
 
@@ -84,11 +85,6 @@ public class Turnos implements Comparable<Turnos> {
 		this.date = fecha;
 	}
 
-	public void setIdTienda(int id){
-		idTienda = id;
-	}
-
-	public long getIdTienda(){return idTienda;}
 
 	public void setHoras() {
 		if(encargado) return;
@@ -126,6 +122,7 @@ public class Turnos implements Comparable<Turnos> {
 		this.elDia = elDia;
 		this.encargado = encargado;
 		elDia.addTurno(this);
+		this.shop = elDia.getTienda();
 		this.shiftType = ShiftType;
 		minimo = 1;
 		if(elDia == null) throw new RuntimeException("dia es null");

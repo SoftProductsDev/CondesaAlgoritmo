@@ -1,8 +1,10 @@
 package DbController;
 
 import condeso.Condeso;
+import condeso.User;
 import horario.Dias;
 import horario.Plantillas;
+import javafx.collections.ObservableList;
 import lalo.Disponibilidad;
 import tiendas.Tiendas;
 
@@ -30,4 +32,7 @@ public interface CrudOperations {
     int SaveMultipleDays(List<Dias> dias);
     HashMap<LocalDate, Dias> GetDaysForShop(long shopId, LocalDate time);
     Set<Disponibilidad> GetAvailabilities(Month month);
+    List<User> GetAllUsers();
+    int SaveUser(User user);
+    int DeleteUser(User user);
 }

@@ -5,6 +5,7 @@ import DbController.WebApiClient;
 import condeso.Condeso;
 import condeso.Contrato;
 import condeso.TipoEmpleado;
+import condeso.User;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -36,20 +37,22 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class CondesoGUI  extends Application implements Initializable {
-    @FXML private TableView<Condeso> tableView;
-    @FXML private TableColumn<Condeso, Long> condesoId;
-    @FXML private TableColumn<Condeso, String> condesoName;
-    @FXML private TableColumn<Condeso, String> condesoAbreviacion;
-    @FXML private TableColumn<Condeso, Contrato> condesoContrato;
-    @FXML private TableColumn<Condeso, Boolean> condesoVespertino;
-    @FXML private TableColumn<Condeso, Boolean> condesoLunch;
-    @FXML private TableColumn<Condeso, Boolean> condesoMatutino;
-    @FXML private TableColumn<Condeso, Date> condesoAntiguedad;
-    @FXML private TableColumn<Condeso, Integer> condesoNivel;
-    @FXML private TableColumn<Condeso, Boolean> condesoCaja;
-    @FXML private TableColumn<Condeso, TipoEmpleado> condesoCargo;
-    @FXML private TableColumn<Condeso, String> condesoColor;
-    @FXML private TableColumn<Condeso, Boolean> condesoSexo;
+    @FXML public TextField userTextField;
+    @FXML public TextField passwordTextField;
+    @FXML private TableView<User> tableView;
+    @FXML private TableColumn<User, Long> condesoId;
+    @FXML private TableColumn<User, String> condesoName;
+    @FXML private TableColumn<User, String> condesoAbreviacion;
+    @FXML private TableColumn<User, Contrato> condesoContrato;
+    @FXML private TableColumn<User, Boolean> condesoVespertino;
+    @FXML private TableColumn<User, Boolean> condesoLunch;
+    @FXML private TableColumn<User, Boolean> condesoMatutino;
+    @FXML private TableColumn<User, Date> condesoAntiguedad;
+    @FXML private TableColumn<User, Integer> condesoNivel;
+    @FXML private TableColumn<User, Boolean> condesoCaja;
+    @FXML private TableColumn<User, TipoEmpleado> condesoCargo;
+    @FXML private TableColumn<User, String> condesoColor;
+    @FXML private TableColumn<User, Boolean> condesoSexo;
     @FXML private ListView<Tiendas> listTiendas;
     @FXML private ComboBox<TipoEmpleado> cargoComboBox;
     @FXML private ComboBox<String> nivelComboBox;
@@ -67,9 +70,12 @@ public class CondesoGUI  extends Application implements Initializable {
     @FXML private TextField abrevTextField;
     @FXML private Label errorLabel;
     @FXML private ScrollPane scrollPane;
+    @FXML private TableColumn<User, String> contrasena;
+    @FXML private TableColumn<User, String> usuario;
     private List<Tiendas> tiendas;
     private List<Tiendas> tiendasAddCondeso;
     private ObservableList<Condeso> condesos;
+    private ObservableList<User> users;
     private CrudOperations hibernateCrud;
 
 
@@ -113,7 +119,7 @@ public class CondesoGUI  extends Application implements Initializable {
         tiendasAddCondeso = new ArrayList<>();
         hibernateCrud = new WebApiClient();
         this.tiendas = tiendas;//HibernateCrud.GetAllTiendas(); //TODO elliminar
-        this.condesos = condesos;
+        this.users = (ObservableList<User>) hibernateCrud.GetAllUsers();
         cargoComboBox.getItems().setAll(TipoEmpleado.values());
         contratoChoiceBox.getItems().setAll(Contrato.values());
         ArrayList<String> lvlList = new ArrayList<>();
@@ -121,48 +127,48 @@ public class CondesoGUI  extends Application implements Initializable {
         lvlList.add("Equipo - 2");
         lvlList.add("Bueno - 3");
         nivelComboBox.setItems( FXCollections.observableArrayList(lvlList));
-        condesoName.setCellValueFactory(new PropertyValueFactory<Condeso, String>("nombre"));
-        condesoAbreviacion.setCellValueFactory(new PropertyValueFactory<Condeso, String>("abreviacion"));
-        condesoMatutino.setCellValueFactory(new Callback<CellDataFeatures<Condeso,Boolean>, ObservableValue<Boolean>>() {
+        condesoName.setCellValueFactory(new PropertyValueFactory<User, String>("nombre"));
+        condesoAbreviacion.setCellValueFactory(new PropertyValueFactory<User, String>("abreviacion"));
+        condesoMatutino.setCellValueFactory(new Callback<CellDataFeatures<User,Boolean>, ObservableValue<Boolean>>() {
             @Override
-            public ObservableValue<Boolean> call(CellDataFeatures<Condeso, Boolean> param) {
+            public ObservableValue<Boolean> call(CellDataFeatures<User, Boolean> param) {
                 return param.getValue().Manana();
             }
         });
         condesoMatutino.setCellFactory(CheckBoxTableCell.forTableColumn(condesoMatutino));
         condesoMatutino.setEditable(false);
-        condesoVespertino.setCellValueFactory(new Callback<CellDataFeatures<Condeso,Boolean>, ObservableValue<Boolean>>() {
+        condesoVespertino.setCellValueFactory(new Callback<CellDataFeatures<User,Boolean>, ObservableValue<Boolean>>() {
             @Override
-            public ObservableValue<Boolean> call(CellDataFeatures<Condeso, Boolean> param) {
+            public ObservableValue<Boolean> call(CellDataFeatures<User, Boolean> param) {
                 return param.getValue().Tarde();
             }
         });
         condesoVespertino.setCellFactory(CheckBoxTableCell.forTableColumn(condesoVespertino));
         condesoVespertino.setEditable(false);
-        condesoLunch.setCellValueFactory(new Callback<CellDataFeatures<Condeso,Boolean>, ObservableValue<Boolean>>() {
+        condesoLunch.setCellValueFactory(new Callback<CellDataFeatures<User,Boolean>, ObservableValue<Boolean>>() {
             @Override
-            public ObservableValue<Boolean> call(CellDataFeatures<Condeso, Boolean> param) {
+            public ObservableValue<Boolean> call(CellDataFeatures<User, Boolean> param) {
                 return param.getValue().Lunch();
             }
         });
         condesoLunch.setCellFactory(CheckBoxTableCell.forTableColumn(condesoLunch));
         condesoLunch.setEditable(false);
-        condesoCaja.setCellValueFactory(new Callback<CellDataFeatures<Condeso,Boolean>, ObservableValue<Boolean>>() {
+        condesoCaja.setCellValueFactory(new Callback<CellDataFeatures<User,Boolean>, ObservableValue<Boolean>>() {
             @Override
-            public ObservableValue<Boolean> call(CellDataFeatures<Condeso, Boolean> param) {
+            public ObservableValue<Boolean> call(CellDataFeatures<User, Boolean> param) {
                 return param.getValue().Nivel();
             }
         });
         condesoCaja.setCellFactory(CheckBoxTableCell.forTableColumn(condesoCaja));
         condesoCaja.setEditable(false);
-        condesoContrato.setCellValueFactory(new PropertyValueFactory<Condeso, Contrato>("contrato"));
-        condesoAntiguedad.setCellValueFactory(new PropertyValueFactory<Condeso, Date>("antiguedad"));
-        condesoCargo.setCellValueFactory(new PropertyValueFactory<Condeso, TipoEmpleado>("tipo"));
-        condesoNivel.setCellValueFactory(new PropertyValueFactory<Condeso, Integer>("level"));
-        condesoId.setCellValueFactory(new PropertyValueFactory<Condeso, Long>("Id"));
-        condesoSexo.setCellValueFactory(new PropertyValueFactory<Condeso, Boolean>("femenino"));
+        condesoContrato.setCellValueFactory(new PropertyValueFactory<>("contrato"));
+        condesoAntiguedad.setCellValueFactory(new PropertyValueFactory<>("antiguedad"));
+        condesoCargo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+        condesoNivel.setCellValueFactory(new PropertyValueFactory<>("level"));
+        condesoId.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        condesoSexo.setCellValueFactory(new PropertyValueFactory<>("femenino"));
         condesoSexo.setCellFactory( column -> {
-            return new TableCell<Condeso, Boolean>(){
+            return new TableCell<User, Boolean>(){
                 @Override
                 protected void updateItem(Boolean item, boolean empty){
                     if (item == null || empty) {
@@ -175,9 +181,9 @@ public class CondesoGUI  extends Application implements Initializable {
                 }
             };
         });
-        condesoColor.setCellValueFactory(new PropertyValueFactory<Condeso, String>("color"));
+        condesoColor.setCellValueFactory(new PropertyValueFactory<>("color"));
         condesoColor.setCellFactory( column -> {
-            return new TableCell<Condeso, String>(){
+            return new TableCell<User, String>(){
                 @Override
                 protected void updateItem(String item, boolean empty){
                     if (item == null || empty) {
@@ -192,7 +198,7 @@ public class CondesoGUI  extends Application implements Initializable {
             };
         });
 
-        tableView.getItems().setAll(this.condesos);
+        tableView.getItems().setAll(this.users);
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, newSelection,
                                                                           oldSelection) -> {
             loadCondesoUpdate();
@@ -239,7 +245,10 @@ public class CondesoGUI  extends Application implements Initializable {
 
   private void loadCondesoUpdate() {
         try {
-            Condeso condeso = tableView.getSelectionModel().getSelectedItem();
+            User user = tableView.getSelectionModel().getSelectedItem();
+            Condeso condeso = user.getCondeso();
+            passwordTextField.setText(user.password);
+            userTextField.setText(user.username);
             idTextField.setText(Long.toString(condeso.getId()));
             nombreTextField.setText(condeso.getNombre());
             abrevTextField.setText(condeso.getAbreviacion());
@@ -266,29 +275,32 @@ public class CondesoGUI  extends Application implements Initializable {
     }
 
     public void addButtonClicked(ActionEvent actionEvent) {
+        User user = new User();
         Condeso condeso = new Condeso();
         try{condeso.setId(Long.parseLong(idTextField.getText()));}
         catch (Exception e){
             errorLabel.setText("Error: El Id solo puede contener números!");
         }
         try{
-        condeso.setNombre(nombreTextField.getText());
-        condeso.setAbreviacion(abrevTextField.getText());
-        condeso.setContrato(contratoChoiceBox.getValue());
-        condeso.setManana(matutinoRadio.isSelected());
-        condeso.setLunch(lunchRadio.isSelected());
-        condeso.setTarde(vespertinoRadio.isSelected());
-        condeso.setAntiguedad(calendario.getValue());
-        condeso.setTipo(cargoComboBox.getValue());
-        condeso.setLevel(Integer.parseInt(String.valueOf(nivelComboBox.getValue().charAt
-                (nivelComboBox.getValue().length() - 1))));
-        condeso.setCaja(cajaRadio.isSelected());
-        condeso.setMasculino(masculinoRadio.isSelected());
-        condeso.setFemenino(femeninoRadio.isSelected());
-        String colorHex = color.getValue().toString();
-        colorHex = "#" + colorHex.substring(2, 8);
-        condeso.setColor(colorHex);
-        errorLabel.setText("");}
+            user.setPassword(passwordTextField.getText());
+            user.setUsername(userTextField.getText());
+            condeso.setNombre(nombreTextField.getText());
+            condeso.setAbreviacion(abrevTextField.getText());
+            condeso.setContrato(contratoChoiceBox.getValue());
+            condeso.setManana(matutinoRadio.isSelected());
+            condeso.setLunch(lunchRadio.isSelected());
+            condeso.setTarde(vespertinoRadio.isSelected());
+            condeso.setAntiguedad(calendario.getValue());
+            condeso.setTipo(cargoComboBox.getValue());
+            condeso.setLevel(Integer.parseInt(String.valueOf(nivelComboBox.getValue().charAt
+                    (nivelComboBox.getValue().length() - 1))));
+            condeso.setCaja(cajaRadio.isSelected());
+            condeso.setMasculino(masculinoRadio.isSelected());
+            condeso.setFemenino(femeninoRadio.isSelected());
+            String colorHex = color.getValue().toString();
+            colorHex = "#" + colorHex.substring(2, 8);
+            condeso.setColor(colorHex);
+            errorLabel.setText("");}
         catch (NullPointerException e){
           errorLabel.setText("Error: Complete todos los campos");
         }
@@ -306,10 +318,11 @@ public class CondesoGUI  extends Application implements Initializable {
 
             wd.exec("123", inputParam -> {
                 try {
+                    user.setCondeso(condeso);
                     condeso.setDondePuedeTrabajar(tiendasAddCondeso);
-                    hibernateCrud.SaveCondeso(condeso);
-                    condesos.add(condeso);
-                    tableView.getItems().setAll(condesos);
+                    hibernateCrud.SaveUser(user);
+                    users.add(user);
+                    tableView.getItems().setAll(users);
                 } catch (Exception e) {
                     errorLabel.setText("Ya existe un condeso con ese id");
                 }
@@ -343,11 +356,12 @@ public class CondesoGUI  extends Application implements Initializable {
 
                 wd.exec("123", inputParam -> {
                     try {
-                        Condeso condeso = tableView.getSelectionModel().getSelectedItem();
+                        User user = tableView.getSelectionModel().getSelectedItem();
                         TimeUnit.SECONDS.sleep(3);
-                        hibernateCrud.DeleteCondeso(condeso);
-                        condesos.remove(condeso);
-                        tableView.getItems().setAll(condesos);
+                        hibernateCrud.DeleteCondeso(user.getCondeso());
+                        hibernateCrud.DeleteUser(user);
+                        users.remove(user);
+                        tableView.getItems().setAll(users);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -360,7 +374,8 @@ public class CondesoGUI  extends Application implements Initializable {
     }
 
     public String updateButtonClicked(ActionEvent actionEvent) {
-        Condeso condeso = tableView.getSelectionModel().getSelectedItem();
+        User user = tableView.getSelectionModel().getSelectedItem();
+        Condeso condeso = user.getCondeso();
         errorLabel.setText("");
         long id = -1;
         try{id = Long.parseLong(idTextField.getText());}
@@ -368,7 +383,7 @@ public class CondesoGUI  extends Application implements Initializable {
             errorLabel.setText("Error: El Id solo puede contener números!");
         }
         for (Condeso c:condesos) {
-            if(c.getId() == id && c != condeso)
+            if(c.getId() == id && c != user.getCondeso())
             {
                 errorLabel.setText("Ya existe un condeso con ese id!!!!");
                 return "error";
@@ -381,23 +396,25 @@ public class CondesoGUI  extends Application implements Initializable {
         }
 
         try {
+            user.setPassword(passwordTextField.getText());
+            user.setUsername(userTextField.getText());
             condeso.setId(id);
-          condeso.setNombre(nombreTextField.getText());
-          condeso.setAbreviacion(abrevTextField.getText());
-          condeso.setContrato(contratoChoiceBox.getValue());
-          condeso.setManana(matutinoRadio.isSelected());
-          condeso.setLunch(lunchRadio.isSelected());
-          condeso.setTarde(vespertinoRadio.isSelected());
-          condeso.setAntiguedad(calendario.getValue());
-          condeso.setTipo(cargoComboBox.getValue());
-          condeso.setLevel(Integer.parseInt(String.valueOf(nivelComboBox.getValue().charAt
+            condeso.setNombre(nombreTextField.getText());
+            condeso.setAbreviacion(abrevTextField.getText());
+            condeso.setContrato(contratoChoiceBox.getValue());
+            condeso.setManana(matutinoRadio.isSelected());
+            condeso.setLunch(lunchRadio.isSelected());
+            condeso.setTarde(vespertinoRadio.isSelected());
+            condeso.setAntiguedad(calendario.getValue());
+            condeso.setTipo(cargoComboBox.getValue());
+            condeso.setLevel(Integer.parseInt(String.valueOf(nivelComboBox.getValue().charAt
               (nivelComboBox.getValue().length() - 1))));
-          condeso.setCaja(cajaRadio.isSelected());
-          String colorHex = color.getValue().toString();
-          colorHex = "#" + colorHex.substring(2, 8);
-          condeso.setColor(colorHex);
-          condeso.setFemenino(femeninoRadio.isSelected());
-          condeso.setMasculino(masculinoRadio.isSelected());}
+            condeso.setCaja(cajaRadio.isSelected());
+            String colorHex = color.getValue().toString();
+            colorHex = "#" + colorHex.substring(2, 8);
+            condeso.setColor(colorHex);
+            condeso.setFemenino(femeninoRadio.isSelected());
+            condeso.setMasculino(masculinoRadio.isSelected());}
 
         catch (NullPointerException e){
           errorLabel.setText("Error: Complete todos los campos");
@@ -414,9 +431,10 @@ public class CondesoGUI  extends Application implements Initializable {
         wd.exec("123", inputParam -> {
             try {
                 condeso.setDondePuedeTrabajar(tiendasAddCondeso);
+                user.setCondeso(condeso);
                 hibernateCrud.UpdateCondeso(condeso);
                 errorLabel.setText("");
-                tableView.getItems().setAll(condesos);
+                tableView.getItems().setAll(users );
             } catch (Exception e) {
                 e.printStackTrace();
             }

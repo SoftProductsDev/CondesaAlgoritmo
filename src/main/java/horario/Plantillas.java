@@ -71,7 +71,8 @@ public class Plantillas {
 		Month month = date.getMonth();
 		List<LocalDate> diasCerrado = laTienda.getDiasDeCierre();
 		int dias = date.lengthOfMonth();
-		Map<LocalDate, Dias> master = laTienda.getMaster().getMes();
+		Map<LocalDate, Dias> mes = new HashMap<>();
+		laTienda.setMaster(new HorarioMaster(mes));
 		LocalDate date2;
 		Dias elDia;
 		for(int i = 0; i < dias; i++){

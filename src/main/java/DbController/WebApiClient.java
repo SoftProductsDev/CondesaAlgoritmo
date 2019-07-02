@@ -3,16 +3,21 @@ package DbController;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import condeso.HorasMes;
+import condeso.User;
 import horario.Dias;
 import lalo.Disponibilidad;
 import org.apache.http.HttpEntity;
 import condeso.Condeso;
 import horario.Plantillas;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.methods.*;
 import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
 import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContextBuilder;
@@ -46,6 +51,9 @@ public class WebApiClient implements CrudOperations {
 
     private CloseableHttpClient CreateClient(){
         CloseableHttpClient client = null;
+        CredentialsProvider provider = new BasicCredentialsProvider();
+        UsernamePasswordCredentials credentials = new UsernamePasswordCredentials("admin", "tacoAlPastor4");
+        provider.setCredentials(AuthScope.ANY, credentials);
         try {
             client = HttpClients
                     .custom().
@@ -312,6 +320,61 @@ public class WebApiClient implements CrudOperations {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List<User> GetAllUsers() {
+        var client = CreateClient();
+        HttpGet get = new HttpGet(url + "/Users");
+        CloseableHttpResponse response = null;
+        try {
+            response = client.execute(get);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            Type listType = new TypeToken<List<User>>(){}.getType();
+            var entity = response.getEntity();
+            String str = EntityUtils.toString(entity);
+            List<User> users = gson.fromJson(str, listType);
+            return users;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public int SaveUser(User user)
+    {
+        var client = CreateClient();
+        HttpPost post = new HttpPost(url + "/Users");
+        List<HorasMes> list = MonthHoursMapToList(user.getCondeso().getHorasMes());
+        user.getCondeso().setMonthHours(list);
+        String JSON_STRING =  gson.toJson(user);
+        HttpEntity stringEntity = new StringEntity(JSON_STRING, ContentType.APPLICATION_JSON);
+        post.setEntity(stringEntity);
+        CloseableHttpResponse response = null;
+        try {
+            response = client.execute(post);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response.getStatusLine().getStatusCode();
+    }
+
+    @Override
+    public int DeleteUser(User user)
+    {
+        var client = CreateClient();
+        HttpDelete delete = new HttpDelete(url + "/Users/" + user.getId());
+        CloseableHttpResponse response = null;
+        try {
+            response = client.execute(delete);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response.getStatusLine().getStatusCode();
     }
 
     @Override
