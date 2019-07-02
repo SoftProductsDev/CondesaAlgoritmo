@@ -119,7 +119,7 @@ public class CondesoGUI  extends Application implements Initializable {
         tiendasAddCondeso = new ArrayList<>();
         hibernateCrud = new WebApiClient();
         this.tiendas = tiendas;//HibernateCrud.GetAllTiendas(); //TODO elliminar
-        this.users = (ObservableList<User>) hibernateCrud.GetAllUsers();
+        this.users = FXCollections.observableArrayList(hibernateCrud.GetAllUsers());
         cargoComboBox.getItems().setAll(TipoEmpleado.values());
         contratoChoiceBox.getItems().setAll(Contrato.values());
         ArrayList<String> lvlList = new ArrayList<>();

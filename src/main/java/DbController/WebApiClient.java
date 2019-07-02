@@ -6,9 +6,12 @@ import condeso.HorasMes;
 import condeso.User;
 import horario.Dias;
 import lalo.Disponibilidad;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpEntity;
 import condeso.Condeso;
 import horario.Plantillas;
+import org.apache.http.HttpHeaders;
+import org.apache.http.HttpRequest;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
@@ -26,6 +29,7 @@ import tiendas.Tiendas;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -34,6 +38,8 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+
+import static org.apache.commons.codec.binary.Base64.encodeBase64;
 
 public class WebApiClient implements CrudOperations {
 
@@ -51,14 +57,15 @@ public class WebApiClient implements CrudOperations {
 
     private CloseableHttpClient CreateClient(){
         CloseableHttpClient client = null;
-        CredentialsProvider provider = new BasicCredentialsProvider();
-        UsernamePasswordCredentials credentials = new UsernamePasswordCredentials("admin", "tacoAlPastor4");
-        provider.setCredentials(AuthScope.ANY, credentials);
+//        CredentialsProvider provider = new BasicCredentialsProvider();
+//        UsernamePasswordCredentials credentials = new UsernamePasswordCredentials("admin", "tacoAlPastor4");
+//        provider.setCredentials(AuthScope.ANY, credentials);
         try {
             client = HttpClients
                     .custom().
                             setHostnameVerifier(new AllowAllHostnameVerifier()).
-                            setSslcontext(new SSLContextBuilder().loadTrustMaterial(null, (TrustStrategy) (arg0, arg1) -> true).build()).build();
+                            setSslcontext(new SSLContextBuilder().
+                                    loadTrustMaterial(null, (TrustStrategy) (arg0, arg1) -> true).build()).build();
         } catch (KeyManagementException e) {
             e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {
@@ -67,6 +74,15 @@ public class WebApiClient implements CrudOperations {
             e.printStackTrace();
         }
         return client;
+    }
+
+    private void SetHeadersToRequest(HttpRequest request)
+    {
+        String auth = "admin:tacoAlPastor4";
+        byte[] encodedAuth = Base64.encodeBase64(
+                auth.getBytes(StandardCharsets.ISO_8859_1));
+        String authHeader = "Basic " + new String(encodedAuth);
+        request.setHeader(HttpHeaders.AUTHORIZATION, authHeader);
     }
 
     @Override
@@ -326,6 +342,7 @@ public class WebApiClient implements CrudOperations {
     public List<User> GetAllUsers() {
         var client = CreateClient();
         HttpGet get = new HttpGet(url + "/Users");
+        SetHeadersToRequest(get);
         CloseableHttpResponse response = null;
         try {
             response = client.execute(get);
