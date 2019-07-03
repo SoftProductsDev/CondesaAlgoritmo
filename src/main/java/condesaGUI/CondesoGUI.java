@@ -365,6 +365,7 @@ public class CondesoGUI  extends Application implements Initializable {
                         TimeUnit.SECONDS.sleep(3);
                         //hibernateCrud.DeleteCondeso(user.getCondeso());
                         hibernateCrud.DeleteUser(user);
+                        hibernateCrud.DeleteCondeso(user.getCondeso());
                         users.remove(user);
                         tableView.getItems().setAll(users);
                     } catch (Exception e) {
