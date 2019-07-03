@@ -33,6 +33,7 @@ import org.hibernate.Hibernate;
 import tiendas.Tiendas;
 
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -120,6 +121,7 @@ public class CondesoGUI  extends Application implements Initializable {
         hibernateCrud = new WebApiClient();
         this.tiendas = tiendas;//HibernateCrud.GetAllTiendas(); //TODO elliminar
         this.users = FXCollections.observableArrayList(hibernateCrud.GetAllUsers());
+        users.remove(0);
         cargoComboBox.getItems().setAll(TipoEmpleado.values());
         contratoChoiceBox.getItems().setAll(Contrato.values());
         ArrayList<String> lvlList = new ArrayList<>();
@@ -127,6 +129,8 @@ public class CondesoGUI  extends Application implements Initializable {
         lvlList.add("Equipo - 2");
         lvlList.add("Bueno - 3");
         nivelComboBox.setItems( FXCollections.observableArrayList(lvlList));
+        contrasena.setCellValueFactory(new PropertyValueFactory("password"));
+        usuario.setCellValueFactory(new PropertyValueFactory<>("username"));
         condesoName.setCellValueFactory(new PropertyValueFactory<User, String>("nombre"));
         condesoAbreviacion.setCellValueFactory(new PropertyValueFactory<User, String>("abreviacion"));
         condesoMatutino.setCellValueFactory(new Callback<CellDataFeatures<User,Boolean>, ObservableValue<Boolean>>() {
@@ -165,7 +169,7 @@ public class CondesoGUI  extends Application implements Initializable {
         condesoAntiguedad.setCellValueFactory(new PropertyValueFactory<>("antiguedad"));
         condesoCargo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
         condesoNivel.setCellValueFactory(new PropertyValueFactory<>("level"));
-        condesoId.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        condesoId.setCellValueFactory(new PropertyValueFactory<>("condesoId"));
         condesoSexo.setCellValueFactory(new PropertyValueFactory<>("femenino"));
         condesoSexo.setCellFactory( column -> {
             return new TableCell<User, Boolean>(){
@@ -197,6 +201,7 @@ public class CondesoGUI  extends Application implements Initializable {
                 }
             };
         });
+
 
         tableView.getItems().setAll(this.users);
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, newSelection,
@@ -358,7 +363,7 @@ public class CondesoGUI  extends Application implements Initializable {
                     try {
                         User user = tableView.getSelectionModel().getSelectedItem();
                         TimeUnit.SECONDS.sleep(3);
-                        hibernateCrud.DeleteCondeso(user.getCondeso());
+                        //hibernateCrud.DeleteCondeso(user.getCondeso());
                         hibernateCrud.DeleteUser(user);
                         users.remove(user);
                         tableView.getItems().setAll(users);
@@ -377,20 +382,27 @@ public class CondesoGUI  extends Application implements Initializable {
         User user = tableView.getSelectionModel().getSelectedItem();
         Condeso condeso = user.getCondeso();
         errorLabel.setText("");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Error!!");
+        alert.setHeaderText("No se pudo actualizar");
+
         long id = -1;
         try{id = Long.parseLong(idTextField.getText());}
         catch (Exception e){
-            errorLabel.setText("Error: El Id solo puede contener números!");
+            alert.setContentText("Error: El Id solo puede contener números!");
+            alert.show();
         }
-        for (Condeso c:condesos) {
-            if(c.getId() == id && c != user.getCondeso())
+        for (User c:users) {
+            if(c.getCondeso().getId() == id && c != user)
             {
-                errorLabel.setText("Ya existe un condeso con ese id!!!!");
+                alert.setContentText("Ya existe un condeso con ese id!!!!");
+                alert.show();
                 return "error";
             }
         }
         if (tiendasAddCondeso.isEmpty()){
-            errorLabel.setText("No se seleccionaron tiendas");
+            alert.setContentText("No se seleccionaron tiendas");
+            alert.show();
             return "error";
 
         }
@@ -417,7 +429,8 @@ public class CondesoGUI  extends Application implements Initializable {
             condeso.setMasculino(masculinoRadio.isSelected());}
 
         catch (NullPointerException e){
-          errorLabel.setText("Error: Complete todos los campos");
+            alert.setContentText("Error: Complete todos los campos");
+            alert.show();
           return "error";
         }
 
@@ -441,5 +454,29 @@ public class CondesoGUI  extends Application implements Initializable {
             return (1);
         });
         return "success";
+    }
+
+    public void generatePassword(ActionEvent actionEvent) {
+        String generatedString = generateRandomPassword();
+        passwordTextField.setText(generatedString);
+    }
+
+    private String generateRandomPassword()
+    {
+        int leftLimit = 48; // number 0
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 8;
+        Random random = new Random();
+        StringBuilder buffer = new StringBuilder(targetStringLength);
+       while(buffer.length() <= targetStringLength) {
+            int randomLimitedInt = leftLimit + (int)
+                    (random.nextFloat() * (rightLimit - leftLimit + 1));
+            if ((58 > randomLimitedInt || randomLimitedInt > 64) && (91 > randomLimitedInt || randomLimitedInt > 96)) {
+                buffer.append((char) randomLimitedInt);
+            }
+
+        }
+        String generatedString = buffer.toString();
+        return generatedString;
     }
 }

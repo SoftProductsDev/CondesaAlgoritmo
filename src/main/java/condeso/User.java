@@ -14,10 +14,18 @@ import java.util.Map;
 import java.util.Objects;
 
 public class User {
-    public long Id;
+    public long id;
     public String username;
     public String password;
     public Condeso condeso;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -43,73 +51,93 @@ public class User {
         this.condeso = condeso;
     }
 
-    public long getId() {
-        return condeso.getId();
+    public long getCondesoId() {
+        if(condeso != null){return condeso.getId();}
+        return 0;
     }
 
-    public TipoEmpleado getTipo() { return condeso.getTipo(); }
+    public TipoEmpleado getTipo() {
+        if(condeso != null){return condeso.getTipo();}
+        return null;
+    }
 
     public String getNombre() {
-        return condeso.getNombre();
+        if(condeso != null){return condeso.getNombre();}
+        return null;
     }
 
     public int getLevel() {
-        return condeso.getLevel();
+        if(condeso != null){return condeso.getLevel();}
+        return 0;
     }
 
     public LocalDate getAntiguedad() {
-        return condeso.getAntiguedad();
+        if(condeso != null){ return condeso.getAntiguedad();}
+        return null;
     }
 
     public String getPhonenumber() {
-        return condeso.getPhonenumber();
+        if(condeso != null){ return condeso.getPhonenumber();}
+        return null;
     }
 
     public String getMail() {
-        return condeso.getMail();
+        if(condeso != null){return condeso.getMail();}
+        return null;
     }
 
     public List<Tiendas> getDondePuedeTrabajar() {
-        return condeso.getDondePuedeTrabajar();
+        if(condeso != null){return condeso.getDondePuedeTrabajar();}
+        return null;
     }
 
     public String getAbreviacion() {
-        return condeso.getAbreviacion();
+        if(condeso != null){return condeso.getAbreviacion();}
+        return null;
     }
 
     public boolean isLunch() {
-        return condeso.isLunch();
+        if(condeso != null){return condeso.isLunch();}
+        return false;
     }
 
     public boolean isMasculino() {
-        return condeso.isMasculino();
+        if(condeso != null){return condeso.isMasculino();}
+        return false;
     }
 
     public boolean isFemenino() {
-        return condeso.isFemenino();
+        if(condeso != null){ return condeso.isFemenino();}
+        return false;
     }
 
     public Contrato getContrato() {
-        return condeso.getContrato();
+        if(condeso != null){ return condeso.getContrato();}
+        return null;
     }
 
     public String getColor() {
-        return condeso.getColor();
+        if(condeso != null){ return condeso.getColor();}
+        return null;
     }
 
     public BooleanProperty Manana() {
-        return new SimpleBooleanProperty(condeso.isManana());
+        if(condeso != null){return new SimpleBooleanProperty(condeso.isManana());}
+        return null;
     }
 
     public ObservableValue<Boolean> Tarde() {
-        return  new SimpleBooleanProperty(condeso.isTarde());
+        if(condeso != null){return  new SimpleBooleanProperty(condeso.isTarde());}
+        return null;
     }
 
     public ObservableValue<Boolean> Nivel() {
-        return  new SimpleBooleanProperty(condeso.isCaja());
+        if(condeso != null){return  new SimpleBooleanProperty(condeso.isCaja());}
+        return null;
     }
 
     public ObservableValue<Boolean> Lunch() {
-        return  new SimpleBooleanProperty(condeso.isLunch());
+        if(condeso != null){ return  new SimpleBooleanProperty(condeso.isLunch());}
+        return null;
     }
 }

@@ -366,6 +366,7 @@ public class WebApiClient implements CrudOperations {
     {
         var client = CreateClient();
         HttpPost post = new HttpPost(url + "/Users");
+        SetHeadersToRequest(post);
         List<HorasMes> list = MonthHoursMapToList(user.getCondeso().getHorasMes());
         user.getCondeso().setMonthHours(list);
         String JSON_STRING =  gson.toJson(user);
@@ -385,6 +386,7 @@ public class WebApiClient implements CrudOperations {
     {
         var client = CreateClient();
         HttpDelete delete = new HttpDelete(url + "/Users/" + user.getId());
+        SetHeadersToRequest(delete);
         CloseableHttpResponse response = null;
         try {
             response = client.execute(delete);
