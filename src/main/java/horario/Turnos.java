@@ -85,6 +85,11 @@ public class Turnos implements Comparable<Turnos> {
 		this.date = fecha;
 	}
 
+	public void setIdTienda(int id)
+	{
+
+	}
+
 
 	public void setHoras() {
 		if(encargado) return;

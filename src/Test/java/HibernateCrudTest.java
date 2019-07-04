@@ -1,12 +1,12 @@
 
 
+import DbController.CrudOperations;
+import DbController.WebApiClient;
 import condesaGUI.EditPlantillasPopOverGUI;
+import condeso.*;
 import horario.*;
 import org.apache.poi.ss.formula.functions.T;
 import tiendas.Tiendas;
-import condeso.Condeso;
-import condeso.Contrato;
-import condeso.TipoEmpleado;
 
 import java.util.*;
 
@@ -15,10 +15,12 @@ import junit.framework.TestCase;
 import javax.print.CancelablePrintJob;
 import java.time.LocalDate;
 
-/*public class HibernateCrudTest extends TestCase {
+public class HibernateCrudTest extends TestCase {
+    
+    CrudOperations webClient  = new WebApiClient();
 
   public void testGet() {
-    List<Condeso> condesos = DbController.HibernateCrud.GetAllCondesos();
+    List<Condeso> condesos = webClient.GetAllCondesos();
     for (Condeso condeso: condesos
     ) {
       System.out.println(condeso.toString());
@@ -27,7 +29,7 @@ import java.time.LocalDate;
 
   public void testGeneral(){
     testTiendas();
-    List<Tiendas> tiendas = HibernateCrud.GetAllTiendas();
+    List<Tiendas> tiendas = webClient.GetAllTiendas();
     Tiendas freiheit = tiendas.get(0);
     Tiendas haupt = tiendas.get(1);
     Tiendas impler = tiendas.get(2);
@@ -35,17 +37,17 @@ import java.time.LocalDate;
     List<Plantillas> plFreiheit = new ArrayList<>();
     plFreiheit.add(plantillaFreiheit());
     freiheit.setPlantillasAnteriores(plFreiheit);
-    HibernateCrud.UpdateTienda(freiheit);
+    webClient.UpdateTienda(freiheit);
     List<Plantillas> plHaupt = new ArrayList<>();
     plHaupt.add(plantillaHaupt());
     haupt.setPlantillasAnteriores(plHaupt);
     haupt.setPlantilla(plantillaHaupt());
-    HibernateCrud.UpdateTienda(haupt);
+    webClient.UpdateTienda(haupt);
     List<Plantillas> plImpler = new ArrayList<>();
     plImpler.add(plantillaImpler());
     impler.setPlantillasAnteriores(plImpler);
     impler.setPlantilla(plantillaImpler());
-    HibernateCrud.UpdateTienda(impler);
+    webClient.UpdateTienda(impler);
     testCreateCondeso();
   }
 
@@ -108,85 +110,70 @@ import java.time.LocalDate;
     Turnos turnoMartes1 = new Turnos();
     turnoMartes1.setInicio(10);
     turnoMartes1.setFin(18);
-    turnoMartes1.setIdTienda(3);
     turnoMartes1.setShiftType(g);
 
     Turnos turnoMartes2 = new Turnos();
     turnoMartes2.setInicio(11);
     turnoMartes2.setFin(15);
-    turnoMartes2.setIdTienda(3);
     turnoMartes2.setShiftType(f);
 
     Turnos turnoMiercoles1 = new Turnos();
     turnoMiercoles1.setInicio(10);
     turnoMiercoles1.setFin(18);
-    turnoMiercoles1.setIdTienda(3);
     turnoMiercoles1.setShiftType(g);
 
     Turnos turnoMiercoles2 = new Turnos();
     turnoMiercoles2.setInicio(11);
     turnoMiercoles2.setFin(15);
-    turnoMiercoles2.setIdTienda(3);
     turnoMiercoles2.setShiftType(f);
 
     Turnos turnoJueves1 = new Turnos();
     turnoJueves1.setInicio(10);
     turnoJueves1.setFin(17);
-    turnoJueves1.setIdTienda(3);
     turnoJueves1.setShiftType(g);
 
     Turnos turnoJueves2 = new Turnos();
     turnoJueves2.setInicio(17);
-    turnoJueves2.setFin(23);
-    turnoJueves2.setIdTienda(3);
-    turnoJueves2.setShiftType(g);
+    turnoJueves2.setFin(23);turnoJueves2.setShiftType(g);
 
     Turnos turnoJueves3 = new Turnos();
     turnoJueves3.setInicio(11);
     turnoJueves3.setFin(15);
-    turnoJueves3.setIdTienda(3);
     turnoJueves3.setShiftType(f);
 
     Turnos turnoJueves4 = new Turnos();
     turnoJueves4.setInicio(18);
     turnoJueves4.setFin(22);
-    turnoJueves4.setIdTienda(3);
     turnoJueves4.setShiftType(f);
 
     Turnos turnoViernes1 = new Turnos();
     turnoViernes1.setInicio(10);
     turnoViernes1.setFin(17);
-    turnoViernes1.setIdTienda(3);
     turnoViernes1.setShiftType(g);
 
     Turnos turnoViernes2 = new Turnos();
     turnoViernes2.setInicio(17);
     turnoViernes2.setFin(23);
-    turnoViernes2.setIdTienda(3);
     turnoViernes2.setShiftType(g);
 
     Turnos turnoViernes3 = new Turnos();
     turnoViernes3.setInicio(11);
     turnoViernes3.setFin(15);
-    turnoViernes3.setIdTienda(3);
     turnoViernes3.setShiftType(f);
 
     Turnos turnoViernes4 = new Turnos();
     turnoViernes4.setInicio(18);
     turnoViernes4.setFin(22);
-    turnoViernes4.setIdTienda(3);
     turnoViernes4.setShiftType(f);
 
     Turnos turnoSabado1 = new Turnos();
     turnoSabado1.setInicio(10);
     turnoSabado1.setFin(17);
-    turnoSabado1.setIdTienda(3);
     turnoSabado1.setShiftType(g);
 
     Turnos turnoSabado2 = new Turnos();
     turnoSabado2.setInicio(17);
     turnoSabado2.setFin(24);
-    turnoSabado2.setIdTienda(3);
     turnoSabado2.setShiftType(g);
 
     turnosMartes.add(turnoMartes1);
@@ -262,133 +249,111 @@ import java.time.LocalDate;
     Turnos turnoLunes1 = new Turnos();
     turnoLunes1.setInicio(8);
     turnoLunes1.setFin(14);
-    turnoLunes1.setIdTienda(2);
     turnoLunes1.setShiftType(g);
 
     Turnos turnoLunes2 = new Turnos();
     turnoLunes2.setInicio(11);
     turnoLunes2.setFin(15);
-    turnoLunes2.setIdTienda(2);
     turnoLunes2.setShiftType(f);
 
     Turnos turnoLunes3 = new Turnos();
     turnoLunes3.setInicio(12);
     turnoLunes3.setFin(16);
-    turnoLunes3.setIdTienda(2);
     turnoLunes3.setShiftType(h);
 
     Turnos turnoLunes4 = new Turnos();
     turnoLunes4.setInicio(16);
     turnoLunes4.setFin(22);
-    turnoLunes4.setIdTienda(2);
     turnoLunes4.setShiftType(h);
 
     Turnos turnoLunes5 = new Turnos();
     turnoLunes5.setInicio(18);
     turnoLunes5.setFin(22);
-    turnoLunes5.setIdTienda(2);
     turnoLunes5.setShiftType(b);
 
     Turnos turnoMartes1 = new Turnos();
     turnoMartes1.setInicio(8);
     turnoMartes1.setFin(14);
-    turnoMartes1.setIdTienda(2);
     turnoMartes1.setShiftType(g);
 
     Turnos turnoMartes2 = new Turnos();
     turnoMartes2.setInicio(11);
     turnoMartes2.setFin(15);
-    turnoMartes2.setIdTienda(2);
     turnoMartes2.setShiftType(f);
 
     Turnos turnoMartes3 = new Turnos();
     turnoMartes3.setInicio(12);
     turnoMartes3.setFin(16);
-    turnoMartes3.setIdTienda(2);
     turnoMartes3.setShiftType(h);
 
     Turnos turnoMartes4 = new Turnos();
     turnoMartes4.setInicio(16);
     turnoMartes4.setFin(22);
-    turnoMartes4.setIdTienda(2);
     turnoMartes4.setShiftType(h);
 
     Turnos turnoMartes5 = new Turnos();
     turnoMartes5.setInicio(18);
     turnoMartes5.setFin(22);
-    turnoMartes5.setIdTienda(2);
     turnoMartes5.setShiftType(b);
 
     Turnos turnoMiercoles1 = new Turnos();
     turnoMiercoles1.setInicio(8);
     turnoMiercoles1.setFin(14);
-    turnoMiercoles1.setIdTienda(2);
     turnoMiercoles1.setShiftType(g);
 
     Turnos turnoMiercoles2 = new Turnos();
     turnoMiercoles2.setInicio(11);
     turnoMiercoles2.setFin(15);
-    turnoMiercoles2.setIdTienda(2);
     turnoMiercoles2.setShiftType(f);
 
     Turnos turnoMiercoles3 = new Turnos();
     turnoMiercoles3.setInicio(12);
     turnoMiercoles3.setFin(16);
-    turnoMiercoles3.setIdTienda(2);
     turnoMiercoles3.setShiftType(h);
 
     Turnos turnoMiercoles4 = new Turnos();
     turnoMiercoles4.setInicio(16);
     turnoMiercoles4.setFin(22);
-    turnoMiercoles4.setIdTienda(2);
     turnoMiercoles4.setShiftType(h);
 
     Turnos turnoMiercoles5 = new Turnos();
     turnoMiercoles5.setInicio(18);
     turnoMiercoles5.setFin(22);
-    turnoMiercoles5.setIdTienda(2);
     turnoMiercoles5.setShiftType(b);
 
     Turnos turnoJueves1 = new Turnos();
     turnoJueves1.setInicio(8);
     turnoJueves1.setFin(14);
-    turnoJueves1.setIdTienda(2);
     turnoJueves1.setShiftType(g);
 
     Turnos turnoJueves2 = new Turnos();
     turnoJueves2.setInicio(11);
     turnoJueves2.setFin(15);
-    turnoJueves2.setIdTienda(2);
     turnoJueves2.setShiftType(f);
 
     Turnos turnoJueves3 = new Turnos();
     turnoJueves3.setInicio(12);
     turnoJueves3.setFin(16);
-    turnoJueves3.setIdTienda(2);
     turnoJueves3.setShiftType(h);
 
     Turnos turnoJueves4 = new Turnos();
     turnoJueves4.setInicio(16);
     turnoJueves4.setFin(22);
-    turnoJueves4.setIdTienda(2);
     turnoJueves4.setShiftType(h);
 
     Turnos turnoJueves5 = new Turnos();
     turnoJueves5.setInicio(18);
     turnoJueves5.setFin(22);
-    turnoJueves5.setIdTienda(2);
     turnoJueves5.setShiftType(b);
 
     Turnos turnoViernes1 = new Turnos();
     turnoViernes1.setInicio(8);
     turnoViernes1.setFin(14);
-    turnoViernes1.setIdTienda(2);
     turnoViernes1.setShiftType(g);
 
     Turnos turnoViernes2 = new Turnos();
     turnoViernes2.setInicio(11);
     turnoViernes2.setFin(15);
-    turnoViernes2.setIdTienda(2);
     turnoViernes2.setShiftType(f);
 
     Turnos turnoViernes3 = new Turnos();
@@ -916,14 +881,14 @@ import java.time.LocalDate;
     mf.setManager("Leo");
     mf.setFechaApertura(LocalDate.now());
     mf.setId(1);
-    HibernateCrud.SaveTienda(mf);
+    webClient.SaveTienda(mf);
 
       Tiendas hbf = new Tiendas();
       hbf.setNombre("HBF");
       hbf.setManager("Jorge");
       hbf.setFechaApertura(LocalDate.now());
       hbf.setId(2);
-      HibernateCrud.SaveTienda(hbf);
+      webClient.SaveTienda(hbf);
 
 
       Tiendas impler = new Tiendas();
@@ -931,7 +896,7 @@ import java.time.LocalDate;
       impler.setManager("Jorge");
       impler.setFechaApertura(LocalDate.now());
       impler.setId(3);
-      HibernateCrud.SaveTienda(impler);
+      webClient.SaveTienda(impler);
   }
 
   public void testCreateCondeso(){
@@ -946,7 +911,7 @@ import java.time.LocalDate;
     Contrato minijob = Contrato.MiniJob;
     Contrato fijos = Contrato.Fijo;
 
-    List<Tiendas> tiendas = HibernateCrud.GetAllTiendas();
+    List<Tiendas> tiendas = webClient.GetAllTiendas();
 
     Tiendas mf = tiendas.get(0);
     List<Tiendas> freiheit = new ArrayList<>();
@@ -957,6 +922,8 @@ import java.time.LocalDate;
     Tiendas imp = tiendas.get(2);
     List<Tiendas> impler = new ArrayList<>();
     impler.add(imp);
+
+    List<Condeso> condesos = new ArrayList<>();
 
     Condeso condeso = new Condeso();
     condeso.setId(2);
@@ -975,7 +942,7 @@ import java.time.LocalDate;
     condeso.setFijos(false);
     condeso.setAntiguedad(LocalDate.now());
     condeso.setDondePuedeTrabajar(freiheit);
-    HibernateCrud.SaveCondeso(condeso);
+    condesos.add(condeso);
 
     Condeso condeso2 = new Condeso();
     condeso2.setId(4);
@@ -994,7 +961,7 @@ import java.time.LocalDate;
     condeso2.setAntiguedad(LocalDate.now());
     condeso2.setColor("#f44242");
     condeso2.setDondePuedeTrabajar(haupt);
-    HibernateCrud.SaveCondeso(condeso2);
+    condesos.add(condeso2);
 
     Condeso condeso3 = new Condeso();
     condeso3.setId(6);
@@ -1013,7 +980,7 @@ import java.time.LocalDate;
     condeso3.setAntiguedad(LocalDate.now());
     condeso3.setColor("#f46842");
     condeso3.setDondePuedeTrabajar(freiheit);
-    HibernateCrud.SaveCondeso(condeso3);
+    condesos.add(condeso3);
 
     Condeso condeso4 = new Condeso();
     condeso4.setId(18);
@@ -1032,7 +999,7 @@ import java.time.LocalDate;
     condeso4.setFijos(true);
     condeso4.setAntiguedad(LocalDate.now());
     condeso4.setDondePuedeTrabajar(freiheit);
-    HibernateCrud.SaveCondeso(condeso4);
+    condesos.add(condeso4);
 
     Condeso condeso5 = new Condeso();
     condeso5.setId(41);
@@ -1051,7 +1018,7 @@ import java.time.LocalDate;
     condeso5.setFijos(false);
     condeso5.setAntiguedad(LocalDate.now());
     condeso5.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso5);
+    condesos.add(condeso5);
 
     Condeso condeso6 = new Condeso();
     condeso6.setId(21);
@@ -1070,7 +1037,7 @@ import java.time.LocalDate;
     condeso6.setFijos(true);
     condeso6.setAntiguedad(LocalDate.now());
     condeso6.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso6);
+    condesos.add(condeso6);
 
     Condeso condeso7 = new Condeso();
     condeso7.setId(46);
@@ -1089,7 +1056,7 @@ import java.time.LocalDate;
     condeso7.setFijos(true);
     condeso7.setAntiguedad(LocalDate.now());
     condeso7.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso7);
+    condesos.add(condeso7);
 
     Condeso condeso8 = new Condeso();
     condeso8.setId(57);
@@ -1108,7 +1075,7 @@ import java.time.LocalDate;
     condeso8.setFijos(false);
     condeso8.setAntiguedad(LocalDate.now());
     condeso8.setDondePuedeTrabajar(haupt);
-    HibernateCrud.SaveCondeso(condeso8);
+    condesos.add(condeso8);
 
     Condeso condeso9 = new Condeso();
     condeso9.setId(61);
@@ -1127,7 +1094,7 @@ import java.time.LocalDate;
     condeso9.setFijos(false);
     condeso9.setAntiguedad(LocalDate.now());
     condeso9.setDondePuedeTrabajar(haupt);
-    HibernateCrud.SaveCondeso(condeso9);
+    condesos.add(condeso9);
 
     Condeso condeso10 = new Condeso();
     condeso10.setId(65);
@@ -1146,7 +1113,7 @@ import java.time.LocalDate;
     condeso10.setFijos(true);
     condeso10.setAntiguedad(LocalDate.now());
     condeso10.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso10);
+    condesos.add(condeso10);
 
     Condeso condeso11 = new Condeso();
     condeso11.setId(67);
@@ -1165,7 +1132,7 @@ import java.time.LocalDate;
     condeso11.setFijos(false);
     condeso11.setAntiguedad(LocalDate.now());
     condeso11.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso11);
+    condesos.add(condeso11);
 
     Condeso condeso12 = new Condeso();
     condeso12 .setId(75);
@@ -1184,7 +1151,7 @@ import java.time.LocalDate;
     condeso12.setFijos(false);
     condeso12.setAntiguedad(LocalDate.now());
     condeso12.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso12);
+    condesos.add(condeso12);
 
     Condeso condeso13 = new Condeso();
     condeso13.setId(84);
@@ -1203,7 +1170,7 @@ import java.time.LocalDate;
     condeso13.setFijos(true);
     condeso13.setAntiguedad(LocalDate.now());
     condeso13.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso13);
+    condesos.add(condeso13);
 
     Condeso condeso14 = new Condeso();
     condeso14.setId(88);
@@ -1222,7 +1189,7 @@ import java.time.LocalDate;
     condeso14.setFijos(false);
     condeso14.setAntiguedad(LocalDate.now());
     condeso14.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso14);
+    condesos.add(condeso14);
 
     Condeso condeso15 = new Condeso();
     condeso15.setId(90);
@@ -1241,7 +1208,7 @@ import java.time.LocalDate;
     condeso15.setFijos(false);
     condeso15.setAntiguedad(LocalDate.now());
     condeso15.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso15);
+    condesos.add(condeso15);
 
     Condeso condeso16 = new Condeso();
     condeso16.setId(94);
@@ -1260,7 +1227,7 @@ import java.time.LocalDate;
     condeso16.setFijos(false);
     condeso16.setAntiguedad(LocalDate.now());
     condeso16.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso16);
+    condesos.add(condeso16);
 
     Condeso condeso17 = new Condeso();
     condeso17.setId(97);
@@ -1279,7 +1246,7 @@ import java.time.LocalDate;
     condeso17.setFijos(false);
     condeso17.setAntiguedad(LocalDate.now());
     condeso17.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso17);
+    condesos.add(condeso17);
 
     Condeso condeso18 = new Condeso();
     condeso18.setId(98);
@@ -1298,7 +1265,7 @@ import java.time.LocalDate;
     condeso18.setFijos(false);
     condeso18.setAntiguedad(LocalDate.now());
     condeso18.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso18);
+    condesos.add(condeso18);
 
     Condeso condeso19 = new Condeso();
     condeso19.setId(103);
@@ -1317,7 +1284,7 @@ import java.time.LocalDate;
     condeso19.setFijos(false);
     condeso19.setAntiguedad(LocalDate.now());
     condeso19.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso19);
+    condesos.add(condeso19);
 
     Condeso condeso20 = new Condeso();
     condeso20.setId(106);
@@ -1336,7 +1303,7 @@ import java.time.LocalDate;
     condeso20.setFijos(false);
     condeso20.setAntiguedad(LocalDate.now());
     condeso20.setDondePuedeTrabajar(impler);
-    HibernateCrud.SaveCondeso(condeso20);
+    condesos.add(condeso20);
 
     Condeso condeso21 = new Condeso();
     condeso21.setId(107);
@@ -1355,7 +1322,7 @@ import java.time.LocalDate;
     condeso21.setFijos(false);
     condeso21.setAntiguedad(LocalDate.now());
     condeso21.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso21);
+    condesos.add(condeso21);
 
     Condeso condeso22 = new Condeso();
     condeso22.setId(108);
@@ -1374,7 +1341,7 @@ import java.time.LocalDate;
     condeso22.setFijos(false);
     condeso22.setAntiguedad(LocalDate.now());
     condeso22.setDondePuedeTrabajar(haupt);
-    HibernateCrud.SaveCondeso(condeso22);
+    condesos.add(condeso22);
 
     Condeso condeso23 = new Condeso();
     condeso23.setId(111);
@@ -1393,7 +1360,7 @@ import java.time.LocalDate;
     condeso23.setFijos(false);
     condeso23.setAntiguedad(LocalDate.now());
     condeso23.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso23);
+    condesos.add(condeso23);
 
     Condeso condeso24 = new Condeso();
     condeso24.setId(112);
@@ -1412,7 +1379,7 @@ import java.time.LocalDate;
     condeso24.setFijos(false);
     condeso24.setAntiguedad(LocalDate.now());
     condeso24.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso24);
+    condesos.add(condeso24);
 
     Condeso condeso25 = new Condeso();
     condeso25.setId(113);
@@ -1431,7 +1398,7 @@ import java.time.LocalDate;
     condeso25.setFijos(false);
     condeso25.setAntiguedad(LocalDate.now());
     condeso25.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso25);
+    condesos.add(condeso25);
 
     Condeso condeso26 = new Condeso();
     condeso26.setId(114);
@@ -1450,7 +1417,7 @@ import java.time.LocalDate;
     condeso26.setFijos(false);
     condeso26.setAntiguedad(LocalDate.now());
     condeso26.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso26);
+    condesos.add(condeso26);
 
     Condeso condeso27 = new Condeso();
     condeso27.setId(115);
@@ -1469,7 +1436,7 @@ import java.time.LocalDate;
     condeso27.setFijos(false);
     condeso27.setAntiguedad(LocalDate.now());
     condeso27.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso27);
+    condesos.add(condeso27);
 
     Condeso condeso28 = new Condeso();
     condeso28.setId(116);
@@ -1488,7 +1455,7 @@ import java.time.LocalDate;
     condeso28.setFijos(false);
     condeso28.setAntiguedad(LocalDate.now());
     condeso28.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso28);
+    condesos.add(condeso28);
 
     Condeso condeso29 = new Condeso();
     condeso29.setId(117);
@@ -1507,7 +1474,7 @@ import java.time.LocalDate;
     condeso29.setFijos(false);
     condeso29.setAntiguedad(LocalDate.now());
     condeso29.setDondePuedeTrabajar(haupt);
-    HibernateCrud.SaveCondeso(condeso29);
+    condesos.add(condeso29);
 
     Condeso condeso30 = new Condeso();
     condeso30.setId(118);
@@ -1526,7 +1493,7 @@ import java.time.LocalDate;
     condeso30.setFijos(false);
     condeso30.setAntiguedad(LocalDate.now());
     condeso30.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso30);
+    condesos.add(condeso30);
 
     Condeso condeso31 = new Condeso();
     condeso31.setId(119);
@@ -1545,7 +1512,7 @@ import java.time.LocalDate;
     condeso31.setFijos(false);
     condeso31.setAntiguedad(LocalDate.now());
     condeso31.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso31);
+    condesos.add(condeso31);
 
     Condeso condeso32 = new Condeso();
     condeso32.setId(120);
@@ -1564,7 +1531,7 @@ import java.time.LocalDate;
     condeso32.setFijos(false);
     condeso32.setAntiguedad(LocalDate.now());
     condeso32.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso32);
+    condesos.add(condeso32);
 
     Condeso condeso33 = new Condeso();
     condeso33.setId(121);
@@ -1583,7 +1550,7 @@ import java.time.LocalDate;
     condeso33.setFijos(false);
     condeso33.setAntiguedad(LocalDate.now());
     condeso33.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso33);
+    condesos.add(condeso33);
 
     Condeso condeso34 = new Condeso();
     condeso34.setId(122);
@@ -1602,7 +1569,7 @@ import java.time.LocalDate;
     condeso34.setFijos(false);
     condeso34.setAntiguedad(LocalDate.now());
     condeso34.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso34);
+    condesos.add(condeso34);
 
     Condeso condeso35 = new Condeso();
     condeso35.setId(123);
@@ -1621,7 +1588,7 @@ import java.time.LocalDate;
     condeso35.setFijos(false);
     condeso35.setAntiguedad(LocalDate.now());
     condeso35.setDondePuedeTrabajar(haupt);
-    HibernateCrud.SaveCondeso(condeso35);
+    condesos.add(condeso35);
 
     Condeso condeso36 = new Condeso();
     condeso36.setId(124);
@@ -1640,7 +1607,7 @@ import java.time.LocalDate;
     condeso36.setFijos(false);
     condeso36.setAntiguedad(LocalDate.now());
     condeso36.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso36);
+    condesos.add(condeso36);
 
     Condeso condeso37 = new Condeso();
     condeso37.setId(125);
@@ -1659,7 +1626,7 @@ import java.time.LocalDate;
     condeso37.setFijos(false);
     condeso37.setAntiguedad(LocalDate.now());
     condeso37.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso37);
+    condesos.add(condeso37);
 
     Condeso condeso38 = new Condeso();
     condeso38.setId(126);
@@ -1678,7 +1645,7 @@ import java.time.LocalDate;
     condeso38.setFijos(false);
     condeso38.setAntiguedad(LocalDate.now());
     condeso38.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso38);
+    condesos.add(condeso38);
 
     Condeso condeso39 = new Condeso();
     condeso39.setId(127);
@@ -1697,15 +1664,23 @@ import java.time.LocalDate;
     condeso39.setFijos(false);
     condeso39.setAntiguedad(LocalDate.now());
     condeso39.setDondePuedeTrabajar(tiendas);
-    HibernateCrud.SaveCondeso(condeso39);
+    condesos.add(condeso39);
+
+      for (Condeso c:condesos) {
+          User user = new User();
+          user.setUsername(c.getNombre());
+          user.setPassword(PasswordHelper.generateRandomPassword());
+          user.setCondeso(c);
+          webClient.SaveUser(user);
+      }
   }
 
   public void testCreateHorario() {
     HorarioMaster horarioMaster = new HorarioMaster();
     horarioMaster.setMes(createMes());
-    Tiendas tienda = HibernateCrud.GetAllTiendas().get(0);
+    Tiendas tienda = webClient.GetAllTiendas().get(0);
     tienda.setMaster(horarioMaster);
-    HibernateCrud.UpdateTienda(tienda);
+    webClient.UpdateTienda(tienda);
   }
 
   private HashMap<LocalDate, Dias> createMes() {
@@ -1785,7 +1760,7 @@ import java.time.LocalDate;
   private Set<Turnos> createTurnos3() {
 
     Set<Turnos> result = new TreeSet<>();
-    List<Condeso> condesos = HibernateCrud.GetAllCondesos();
+    List<Condeso> condesos = webClient.GetAllCondesos();
 
     Turnos turno1 = new Turnos();
     turno1.setInicio(9);
@@ -1844,7 +1819,7 @@ import java.time.LocalDate;
   private Set<Turnos> createTurnos4() {
 
     Set<Turnos> result = new TreeSet<>();
-    List<Condeso> condesos = HibernateCrud.GetAllCondesos();
+    List<Condeso> condesos = webClient.GetAllCondesos();
 
     Turnos turno1 = new Turnos();
     turno1.setInicio(9);
@@ -1901,7 +1876,7 @@ import java.time.LocalDate;
 
   private Set<Turnos> createTurnos5() {
     Set<Turnos> result = new TreeSet<>();
-    List<Condeso> condesos = HibernateCrud.GetAllCondesos();
+    List<Condeso> condesos = webClient.GetAllCondesos();
 
     Turnos turno1 = new Turnos();
     turno1.setInicio(9);
@@ -1959,7 +1934,7 @@ import java.time.LocalDate;
 
   private Set<Turnos> createTurnos6() {
     Set<Turnos> result = new TreeSet<>();
-    List<Condeso> condesos = HibernateCrud.GetAllCondesos();
+    List<Condeso> condesos = webClient.GetAllCondesos();
 
     Turnos turno1 = new Turnos();
     turno1.setInicio(9);
@@ -2015,7 +1990,7 @@ import java.time.LocalDate;
 
   private Set<Turnos> createTurnos7() {
     Set<Turnos> result = new TreeSet<>();
-    List<Condeso> condesos = HibernateCrud.GetAllCondesos();
+    List<Condeso> condesos = webClient.GetAllCondesos();
 
     Turnos turno1 = new Turnos();
     turno1.setInicio(9);
@@ -2073,7 +2048,7 @@ import java.time.LocalDate;
 
   private Set<Turnos> createTurnos2() {
     Set<Turnos> result = new TreeSet<>();
-    List<Condeso> condesos = HibernateCrud.GetAllCondesos();
+    List<Condeso> condesos = webClient.GetAllCondesos();
 
     Turnos turno1 = new Turnos();
     turno1.setInicio(9);
@@ -2129,7 +2104,7 @@ import java.time.LocalDate;
 
   private Set<Turnos> createTurnos() {
     Set<Turnos> result = new TreeSet<>();
-    List<Condeso> condesos = HibernateCrud.GetAllCondesos();
+    List<Condeso> condesos = webClient.GetAllCondesos();
 
     Turnos turno1 = new Turnos();
     turno1.setInicio(12);
@@ -2189,12 +2164,12 @@ import java.time.LocalDate;
   {
     Tiendas tienda = new Tiendas();
     tienda.setNombre("HBF");
-    HibernateCrud.SaveTienda(tienda);
+    webClient.SaveTienda(tienda);
   }
 
   public void testGetTiendas()
   {
-    List<tiendas.Tiendas> tiendas = HibernateCrud.GetAllTiendas();
+    List<tiendas.Tiendas> tiendas = webClient.GetAllTiendas();
     for (tiendas.Tiendas tienda:tiendas
     ) {
       System.out.println(tienda);
@@ -2218,11 +2193,11 @@ import java.time.LocalDate;
     condeso5.setTipo(TipoEmpleado.Encargado);
     condeso5.setFijos(false);
     condeso5.setAntiguedad(LocalDate.now());
-    HibernateCrud.deleteCondesoFromTurnos(condeso5);
+    //webClient.deleteCondesoFromTurnos(condeso5);
   }
 
   public void testDeleteCondesosFromTurnos2(){
 
   }
 
-}*/
+}

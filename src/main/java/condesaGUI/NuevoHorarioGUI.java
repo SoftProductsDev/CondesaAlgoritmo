@@ -219,38 +219,38 @@ public class NuevoHorarioGUI extends Application implements Initializable {
                 filePath = fc.getSelectedFile().getAbsolutePath();
                 filename = filePath;*/
             final Stage stage = new Stage();
-            stage.setTitle("Disponibilidad condesos");
-            final FileChooser chooser = new FileChooser();
-            chooser.setTitle("Disponibilidad Condesos");
-
-            Alert info1 = new Alert(Alert.AlertType.INFORMATION);
-            info1.setTitle("Archivo a seleccionar");
-            info1.setHeaderText("Disponibilidad de condesos");
-            info1.setContentText(null);
-            info1.showAndWait();
-
-            File file = chooser.showOpenDialog(stage);
-            if(file != null){
-                filename = file.getAbsolutePath();
-                horario = Parser.parse2(filename);
-                for (Disponibilidad condeso : horario) {
-                    int id = condeso.getId();
-                    for (Condeso condeso1 : allCondesos) {
-                        if (condeso1.getId() == id) {
-                            condeso1.setMaxHours(condeso.getMax());
-                            condeso1.setMinHours(condeso.getMin());
-                            //condeso1.checkMaxMin();
-                            foundCondesos.add(condeso1);
-                        }
-                    }
-                }
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("AVISO!");
-                alert.setHeaderText("No se selecciono documento de disponibilidad de condesos,\n las tablas estaran vacias! ");
-                alert.setContentText(null);
-                alert.showAndWait();
-            }
+//            stage.setTitle("Disponibilidad condesos");
+//            final FileChooser chooser = new FileChooser();
+//            chooser.setTitle("Disponibilidad Condesos");
+//
+//            Alert info1 = new Alert(Alert.AlertType.INFORMATION);
+//            info1.setTitle("Archivo a seleccionar");
+//            info1.setHeaderText("Disponibilidad de condesos");
+//            info1.setContentText(null);
+//            info1.showAndWait();
+//
+//            File file = chooser.showOpenDialog(stage);
+//            if(file != null){
+//                filename = file.getAbsolutePath();
+//                horario = Parser.parse2(filename);
+//                for (Disponibilidad condeso : horario) {
+//                    int id = condeso.getId();
+//                    for (Condeso condeso1 : allCondesos) {
+//                        if (condeso1.getId() == id) {
+//                            condeso1.setMaxHours(condeso.getMax());
+//                            condeso1.setMinHours(condeso.getMin());
+//                            //condeso1.checkMaxMin();
+//                            foundCondesos.add(condeso1);
+//                        }
+//                    }
+//                }
+//            } else {
+//                Alert alert = new Alert(Alert.AlertType.ERROR);
+//                alert.setTitle("AVISO!");
+//                alert.setHeaderText("No se selecciono documento de disponibilidad de condesos,\n las tablas estaran vacias! ");
+//                alert.setContentText(null);
+//                alert.showAndWait();
+//            }
 
             final Stage stage2 = new Stage();
             stage.setTitle("Condesos fijos");

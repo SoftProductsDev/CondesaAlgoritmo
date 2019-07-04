@@ -2,10 +2,7 @@ package condesaGUI;
 
 import DbController.CrudOperations;
 import DbController.WebApiClient;
-import condeso.Condeso;
-import condeso.Contrato;
-import condeso.TipoEmpleado;
-import condeso.User;
+import condeso.*;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -458,26 +455,8 @@ public class CondesoGUI  extends Application implements Initializable {
     }
 
     public void generatePassword(ActionEvent actionEvent) {
-        String generatedString = generateRandomPassword();
+        String generatedString = PasswordHelper.generateRandomPassword();
         passwordTextField.setText(generatedString);
     }
 
-    private String generateRandomPassword()
-    {
-        int leftLimit = 48; // number 0
-        int rightLimit = 122; // letter 'z'
-        int targetStringLength = 8;
-        Random random = new Random();
-        StringBuilder buffer = new StringBuilder(targetStringLength);
-       while(buffer.length() <= targetStringLength) {
-            int randomLimitedInt = leftLimit + (int)
-                    (random.nextFloat() * (rightLimit - leftLimit + 1));
-            if ((58 > randomLimitedInt || randomLimitedInt > 64) && (91 > randomLimitedInt || randomLimitedInt > 96)) {
-                buffer.append((char) randomLimitedInt);
-            }
-
-        }
-        String generatedString = buffer.toString();
-        return generatedString;
-    }
 }
