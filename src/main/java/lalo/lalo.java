@@ -62,6 +62,7 @@ public class lalo {
 					for(Tiendas laTienda2 : lasTiendas){
 						if(laTienda2.getId() == laTienda.getId()){
 							laTienda2.setDiasDeCierre(laTienda.getDiasDeCierre());
+							laTienda2.setPlantilla(laTienda.getPlantilla());
 							break;
 						}
 					}
@@ -282,6 +283,7 @@ public class lalo {
 	}
 
 	private void asignarFijos2(Set<Disponibilidad> fijos){
+		if (fijos == null){return;}
 		Map<Integer, Condeso> losFijos = findIDs(fijos);
 		Map<Integer, Tiendas> lasTiendas = tiendasToMap();
 		for(Disponibilidad disp : fijos){

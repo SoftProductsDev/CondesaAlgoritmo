@@ -217,6 +217,12 @@ ArrayList<Long> IDs = new ArrayList<>();
 
 for(Tiendas laTienda : todasLasTiendas){
     lasTiendas.put(laTienda.getId(), laTienda);
+    if(laTienda.getMaster() == null)
+    {
+        HorarioMaster master = new HorarioMaster();
+        master.setMes(new HashMap<>());
+        laTienda.setMaster(master);
+    }
     Map<LocalDate, Dias> losDias = laTienda.getMaster().getMes();
     int length = date.lengthOfMonth();
     for(int i = 0; i < length; i++){

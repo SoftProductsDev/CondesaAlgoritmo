@@ -100,8 +100,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     public HashMap<Integer, Integer[][]> changeSetToHashMap(Set<Disponibilidad> disponibilidad){
         HashMap<Integer, Integer[][]> hasmapDisponibilidad = new HashMap<>();
         for(Disponibilidad disponibilidadUnCondeso:disponibilidad){
-            Integer[][] disponibilidadArray = disponibilidadUnCondeso.getAvailableDaysAsArray();
-            hasmapDisponibilidad.put(disponibilidadUnCondeso.getId(), disponibilidadArray);
+            hasmapDisponibilidad.put(disponibilidadUnCondeso.getId(),disponibilidadUnCondeso.getDisponibilidad());
         }
         return hasmapDisponibilidad;
     }
@@ -124,26 +123,12 @@ public class NuevoHorarioGUI extends Application implements Initializable {
     }
 
     public void iniciarClicked(ActionEvent actionEvent) throws Exception {
-        if(fecha !=  null){
-            CrudOperations webAPI = new WebApiClient();
-            //Regresa todas las disponibilidade que corresponden a ese mes
-            Set<Disponibilidad> horario = webAPI.GetAvailabilities(fecha.getMonth());
+        if(fecha !=  null && horario != null){
             disponibilidad = changeSetToHashMap(horario);
             Set<Tiendas> tiendasALL2 = new HashSet<>();
             tiendasALL2.addAll(allTiendas);
             lalo lalo = new lalo(gms, turnosEncargado, foundCondesos, tiendasALL2, disponibilidad, fecha,turnosExtras, sinChecarNivel.isSelected(),
                     fijos);
-
-            /*BufferedImage img = ImageIO.read(new File("lalopensando.jpg"));
-            JFrame frame = new JFrame("Lalo Pensando");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setContentPane(new JLabel(new ImageIcon(img)));
-            frame.setLayout(new GridBagLayout());
-            GridBagConstraints gbc = new GridBagConstraints();
-            gbc.gridwidth = GridBagConstraints.REMAINDER;
-            frame.pack();
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);*/
 
             var wd = new WorkIndicatorDialog(this.iniciarButton.getScene().getWindow(), "Creando horarios...");
 
@@ -212,45 +197,39 @@ public class NuevoHorarioGUI extends Application implements Initializable {
 
     public void importarClicked(ActionEvent actionEvent){
         if(date != null) {
-            /*final JFileChooser fc = new JFileChooser();
-            int returnVal = fc.showOpenDialog(fc);
-            String filePath = null;
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-                filePath = fc.getSelectedFile().getAbsolutePath();
-                filename = filePath;*/
             final Stage stage = new Stage();
-//            stage.setTitle("Disponibilidad condesos");
-//            final FileChooser chooser = new FileChooser();
-//            chooser.setTitle("Disponibilidad Condesos");
-//
-//            Alert info1 = new Alert(Alert.AlertType.INFORMATION);
-//            info1.setTitle("Archivo a seleccionar");
-//            info1.setHeaderText("Disponibilidad de condesos");
-//            info1.setContentText(null);
-//            info1.showAndWait();
-//
-//            File file = chooser.showOpenDialog(stage);
-//            if(file != null){
-//                filename = file.getAbsolutePath();
-//                horario = Parser.parse2(filename);
-//                for (Disponibilidad condeso : horario) {
-//                    int id = condeso.getId();
-//                    for (Condeso condeso1 : allCondesos) {
-//                        if (condeso1.getId() == id) {
-//                            condeso1.setMaxHours(condeso.getMax());
-//                            condeso1.setMinHours(condeso.getMin());
-//                            //condeso1.checkMaxMin();
-//                            foundCondesos.add(condeso1);
-//                        }
-//                    }
-//                }
-//            } else {
-//                Alert alert = new Alert(Alert.AlertType.ERROR);
-//                alert.setTitle("AVISO!");
-//                alert.setHeaderText("No se selecciono documento de disponibilidad de condesos,\n las tablas estaran vacias! ");
-//                alert.setContentText(null);
-//                alert.showAndWait();
-//            }
+            stage.setTitle("Disponibilidad condesos");
+            final FileChooser chooser = new FileChooser();
+            chooser.setTitle("Disponibilidad Condesos");
+
+            Alert info1 = new Alert(Alert.AlertType.INFORMATION);
+            info1.setTitle("Archivo a seleccionar");
+            info1.setHeaderText("Disponibilidad de condesos");
+            info1.setContentText(null);
+            info1.showAndWait();
+
+            File file = chooser.showOpenDialog(stage);
+            if(file != null){
+                filename = file.getAbsolutePath();
+                horario = Parser.parse2(filename);
+                for (Disponibilidad condeso : horario) {
+                    int id = condeso.getId();
+                    for (Condeso condeso1 : allCondesos) {
+                        if (condeso1.getId() == id) {
+                            condeso1.setMaxHours(condeso.getMax());
+                            condeso1.setMinHours(condeso.getMin());
+                            //condeso1.checkMaxMin();
+                            foundCondesos.add(condeso1);
+                        }
+                    }
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("AVISO!");
+                alert.setHeaderText("No se selecciono documento de disponibilidad de condesos,\n las tablas estaran vacias! ");
+                alert.setContentText(null);
+                alert.showAndWait();
+            }
 
             final Stage stage2 = new Stage();
             stage.setTitle("Condesos fijos");

@@ -319,7 +319,7 @@ public class WebApiClient implements CrudOperations {
     @Override
     public Set<Disponibilidad> GetAvailabilities(Month month) {
         var client = CreateClient();
-        HttpGet get = new HttpGet(url + "/Availabilities/Month/" + month.toString());
+        HttpGet get = new HttpGet(url + "/Availabilities/Month/" + month.getValue());
         CloseableHttpResponse response = null;
         try {
             response = client.execute(get);
