@@ -206,8 +206,8 @@ public class lalo {
 			elCondeso.resetCondeso();
 		}
 		for(Tiendas tiendaFinal:tiendas){
-			var days = tiendaFinal.getMaster().getMes().values();
-			webApi.SaveMultipleDays((List<Dias>) days);
+			Collection<Dias> days = tiendaFinal.getMaster().getMes().values();
+			webApi.SaveMultipleDays(new ArrayList<>(days));
 		}
 /*
 		for(Condeso condeso:condesos){
@@ -681,6 +681,4 @@ public class lalo {
 		allTiendas.addAll(tiendas);
 		return allTiendas;
 	}
-
-
 }

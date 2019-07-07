@@ -36,9 +36,16 @@ public class Turnos implements Comparable<Turnos> {
 
 	@JoinColumn
 	@ManyToOne
-	private Condeso condeso;
+	private transient Condeso condeso;
 
-	private Tiendas shop;
+	private long condesoId;
+	private String condesoName;
+	private String condesoColor;
+	private String condesoAbreviate;
+	public long shopId;
+	public String shopName;
+	public String shopColor;
+	public String shopManager;
 
 	@Column
 	@Enumerated(EnumType.STRING)
@@ -47,37 +54,104 @@ public class Turnos implements Comparable<Turnos> {
 	@Transient
 	private LocalDate date;
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getCondesoName() {
+		return condesoName;
+	}
+
+	public void setCondesoName(String condesoName) {
+		this.condesoName = condesoName;
+	}
+
+	public String getCondesoColor() {
+		return condesoColor;
+	}
+
+	public void setCondesoColor(String condesoColor) {
+		this.condesoColor = condesoColor;
+	}
+
+	public long getCondesoId() {
+		return condesoId;
+	}
+
+	public void setCondesoId(long condesoId) {
+		this.condesoId = condesoId;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public boolean isNoOptions() {
+		return noOptions;
+	}
+
+	public Dias getElDia() {
+		return elDia;
+	}
+
+	public void setElDia(Dias elDia) {
+		this.elDia = elDia;
+	}
+
+	public boolean isEncargado() {
+		return encargado;
+	}
+
+	public long getIdTienda() {
+		return idTienda;
+	}
+
+	public void setIdTienda(long idTienda) {
+		this.idTienda = idTienda;
+	}
+
+	public List<Hora> getMisHoras() {
+		return misHoras;
+	}
+
+	public void setMisHoras(List<Hora> misHoras) {
+		this.misHoras = misHoras;
+	}
+
+	public String getCondesoAbreviate() {
+		return condesoAbreviate;
+	}
+
+	public void setCondesoAbreviate(String condesoAbreviate) {
+		this.condesoAbreviate = condesoAbreviate;
+	}
 
 	//private boolean elemental;
 	//private boolean matutino;
 	@Transient
-	private boolean noOptions = false;
+	private transient boolean noOptions = false;
 	@Transient
-	private int minimo = 1;
+	private transient int minimo = 1;
 	@Transient
-	private Dias elDia;
+	private transient Dias elDia;
 	@Transient
-	private boolean encargado;
+	private transient boolean encargado;
 	@Transient
-	private long idTienda;
+	private transient long idTienda;
 	@Transient
-	private LocalDate fecha;
+	private transient LocalDate fecha;
 	@Transient
-	private List<Hora> misHoras = new ArrayList<>();
+	private transient List<Hora> misHoras = new ArrayList<>();
 
 	public void resetMinimo(){
 		minimo = 1;
 	}
 
 	public Turnos(){};
-
-	public Tiendas getShop() {
-		return shop;
-	}
-
-	public void setShop(Tiendas shop) {
-		this.shop = shop;
-	}
 
 	public LocalDate getFecha(){return date;}
 
@@ -121,16 +195,25 @@ public class Turnos implements Comparable<Turnos> {
 
 	public Turnos(Condeso condeso, int start, int finish, Dias elDia, boolean encargado, ShiftType ShiftType) {
 		this.condeso = condeso;
-		//this.matutino = matutino;
+		if(condeso != null)
+		{
+			this.condesoId = condeso.getId();
+			this.condesoColor = condeso.getColor();
+			this.condesoName = condeso.getNombre();
+			this.condesoAbreviate = condeso.getAbreviacion();
+		}
 		this.start = start;
 		this.finish = finish;
 		this.elDia = elDia;
 		this.encargado = encargado;
-		elDia.addTurno(this);
-		this.shop = elDia.getTienda();
 		this.shiftType = ShiftType;
 		minimo = 1;
 		if(elDia == null) throw new RuntimeException("dia es null");
+		elDia.addTurno(this);
+		this.shopId = elDia.getTienda().getId();
+		this.shopColor = elDia.getTienda().getColor();
+		this.shopName = elDia.getTienda().getNombre();
+		this.shopManager = elDia.getTienda().getManager();
 	}
 
 	public void checkDia(){if(elDia == null)throw  new RuntimeException("dia es null");}
@@ -198,6 +281,12 @@ public class Turnos implements Comparable<Turnos> {
 
 	public void setCondeso(Condeso condeso) {
 		this.condeso = condeso;
+		if(condeso != null){
+			this.condesoId = condeso.getId();
+			this.condesoColor = condeso.getColor();
+			this.condesoName = condeso.getNombre();
+			this.condesoAbreviate = condeso.getAbreviacion();
+		}
 	}
 
 	public void setShiftType(ShiftType tipo){this.shiftType = tipo;}

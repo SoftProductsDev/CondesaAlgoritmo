@@ -3,7 +3,6 @@ package condesaGUI;
 import condeso.Condeso;
 import condeso.HorasMes;
 import horario.Dias;
-import horario.HorarioMaster;
 import horario.Turnos;
 import horario.ShiftType;
 import java.io.IOException;
@@ -36,19 +35,21 @@ public class EditPopOverGUI  implements Initializable {
   private ObservableList<Condeso> condesos;
   @FXML private ChoiceBox<Condeso> condesoTodosChoice;
   private ObservableList<Tiendas> tiendas;
+  private HashMap<LocalDate, Dias> diasEditados;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
   }
 
   public void setInitialValues(Turnos turno, Dias dia, GridPane grid, Label label,
-      ObservableList<Condeso> condesos, ObservableList<Tiendas> tiendas){
+                               ObservableList<Condeso> condesos, ObservableList<Tiendas> tiendas, HashMap<LocalDate, Dias> diasEditados){
     this.turno = turno;
     this.dia = dia;
     this.grid = grid;
     this.label = label;
     this.tiendas = tiendas;
     this.condesos = condesos;
+    this.diasEditados = diasEditados;
     condesoTodosChoice.setItems(condesos);
     condesoTodosChoice.getSelectionModel().select(turno.getCondeso() );
     Map<LocalDate, Dias> master;
@@ -242,6 +243,7 @@ public class EditPopOverGUI  implements Initializable {
       columna = turno.getShiftType().ordinal() + 1;
     }
     grid.add(createLabel(dia, turno, grid), columna,  hourIndex,1,turno.getDuracion());
+    diasEditados.put(dia.getDate(), dia);
     return true;
   }
 
@@ -265,6 +267,7 @@ public class EditPopOverGUI  implements Initializable {
     }
     dia.getTurnos().remove(turno);
     grid.getChildren().remove(label);
+    diasEditados.put(dia.getDate(), dia);
   }
 
   public void empty(ActionEvent actionEvent){
@@ -295,6 +298,7 @@ public class EditPopOverGUI  implements Initializable {
       columna = turno.getShiftType().ordinal() + 1;
     }
     grid.add(createLabel(dia, turno, grid), columna,  hourIndex,1,turno.getDuracion());
+    diasEditados.put(dia.getDate(), dia);
   }
 
   private Label createLabel(Dias dia, Turnos turno, GridPane grid) {
@@ -324,7 +328,7 @@ public class EditPopOverGUI  implements Initializable {
                 pop.setAutoFix(false);
                 pop.show(label);
                 EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();//TODO EJEMPLO
-                edit.setInitialValues(turno, dia, grid, label, condesos, tiendas);
+                edit.setInitialValues(turno, dia, grid, label, condesos, tiendas, diasEditados);
                 event.consume();
               }
             });

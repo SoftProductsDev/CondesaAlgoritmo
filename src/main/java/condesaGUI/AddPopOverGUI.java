@@ -35,6 +35,7 @@ public class AddPopOverGUI implements Initializable {
   private Dias dia;
   private ObservableList<Condeso> condesos;
   private ObservableList<Tiendas> tiendas;
+  private HashMap<LocalDate, Dias> diasEditados;
 
   public boolean addTurno(ActionEvent actionEvent) {
     Turnos turno = new Turnos();
@@ -133,6 +134,7 @@ public class AddPopOverGUI implements Initializable {
     gridPane.add(createLabel(turno),turno.getShiftType().ordinal() + 1, turno.getInicio() - 7,
         1, turno.getDuracion());
     dia.getTurnos().add(turno);
+    diasEditados.put(dia.getDate(), dia);
     return true;
   }
 
@@ -142,11 +144,12 @@ public class AddPopOverGUI implements Initializable {
   }
 
   public void setInitialValues(GridPane grid, Dias dia, ObservableList<Condeso> condesos,
-      ObservableList<Tiendas> tiendas){
+                               ObservableList<Tiendas> tiendas, HashMap<LocalDate, Dias> diasEditados){
     this.gridPane = grid;
     this.dia = dia;
     this.tiendas = tiendas;
     this.condesos = condesos;
+    this.diasEditados = diasEditados;
     Map<LocalDate, Dias> master = new HashMap<>();
     Dias diaD =  new Dias();
     Set<Turnos> turnosX = new HashSet<>();
@@ -206,7 +209,7 @@ public class AddPopOverGUI implements Initializable {
               pop.setAutoFix(false);
               pop.show(finalLabel);
               EditPopOverGUI edit = (EditPopOverGUI) fxmlLoader.getController();
-              edit.setInitialValues(turno, dia, gridPane, finalLabel, condesos, tiendas);
+              edit.setInitialValues(turno, dia, gridPane, finalLabel, condesos, tiendas, diasEditados);
               event.consume();
             };
           });

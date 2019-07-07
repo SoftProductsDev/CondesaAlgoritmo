@@ -37,10 +37,12 @@ public class Dias {
     @Column(name = "date")
     private LocalDate date;
 
+    private long shopId;
+
     @Transient
-    private Tiendas shop;
+    private transient Tiendas shop;
     @Transient
-    private HashMap<Integer, Hora> horas = new HashMap<>();
+    private transient HashMap<Integer, Hora> horas = new HashMap<>();
     @Transient
     private float promedioMinimo;
 
@@ -51,6 +53,7 @@ public class Dias {
     public Dias(LocalDate date, Tiendas laTienda){
         this.date = date;
         this.shop = laTienda;
+        this.shopId = laTienda.getId();
         shifts = new HashSet<>();
         switch (date.getDayOfWeek()){
             case SATURDAY:
@@ -66,6 +69,22 @@ public class Dias {
             break;
         }
         laTienda.getMaster().getMes().put(date, this);
+    }
+
+    public long getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(long shopId) {
+        this.shopId = shopId;
+    }
+
+    public Set<Turnos> getShifts() {
+        return shifts;
+    }
+
+    public void setShifts(Set<Turnos> shifts) {
+        this.shifts = shifts;
     }
 
     public void  resetMinimoTurnos(){
@@ -89,7 +108,8 @@ public class Dias {
 
     public Tiendas getTienda(){return shop;}
 
-    public void setTienda(Tiendas tienda){this.shop = tienda;}
+    public void setTienda(Tiendas tienda){this.shop = tienda;
+    this.shopId = tienda.getId();}
 
     public long getId() {
         return id;

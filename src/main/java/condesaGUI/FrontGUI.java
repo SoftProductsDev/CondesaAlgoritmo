@@ -57,7 +57,7 @@ public class FrontGUI extends Application implements Initializable {
   private LocalDate calendar;
   private static final ObservableList
       horario = FXCollections.observableArrayList(getStaticList());
-  private List<Dias> dias;
+  private HashMap<LocalDate, Dias> diasEditados = new HashMap<>();
 
   private static ArrayList<String> getStaticList() {
     ArrayList<String> list = new ArrayList<>();
@@ -86,11 +86,22 @@ public class FrontGUI extends Application implements Initializable {
     for(Condeso elCondeso : condesos){
       elCondeso.setFecha(calendar);
     }
+    setMasterForTiendas();
+
     monthLabel.setText(calendar.format(DateTimeFormatter.ofPattern("MMMM, YYYY",spanishLocale)));
     calendarNodes = monthGrid.getChildren();
     setCalendarDays();
     addLabelGrids();
     this.webApi = new WebApiClient();
+  }
+
+  private void setMasterForTiendas()
+  {
+    for (Tiendas tienda : tiendas) {
+      var master = new HorarioMaster();
+      master.setMes(webApi.GetDaysForShop(tienda.getId(), calendar.withDayOfMonth(1)));
+      tienda.setMaster(master);
+    }
   }
 
   private void addHourGrids()
@@ -174,9 +185,7 @@ public class FrontGUI extends Application implements Initializable {
     HorarioMaster master = null;
      mes = null;
     if(tienda != null){
-      //TODO poner webapi
-      mes = webApi.GetDaysForShop(tienda.getId(), calendar.withDayOfMonth(1));
-      //master = tienda.getMaster();
+      master = tienda.getMaster();
     }
     if (mes != null){
       for (int i = 1; i <= calendar.getMonth().length(calendar.isLeapYear()); i++)
@@ -225,12 +234,12 @@ public class FrontGUI extends Application implements Initializable {
 
   private Label createLabel(Dias dia, Turnos turno, GridPane grid) {
     Label label = new Label();
-    if(turno.getCondeso() == null){
+    if(turno.getCondesoId() == 0){
       label.setStyle("-fx-background-color: black");
     }
     else{
-        label.setText(turno.getCondeso().getAbreviacion());
-      label.setStyle("-fx-background-color: " + turno.getCondeso().getColor());
+        label.setText(turno.getCondesoAbreviate());
+        label.setStyle("-fx-background-color: " + turno.getCondesoColor());
     }
     label.setMaxHeight(125462739);
     label.setMaxWidth(1234567890);
@@ -249,7 +258,7 @@ public class FrontGUI extends Application implements Initializable {
             pop.setAutoFix(false);
             pop.show(label);
             EditPopOverGUI edit = fxmlLoader.getController();
-            edit.setInitialValues(turno, dia, grid, label, condesos, tiendas);
+            edit.setInitialValues(turno, dia, grid, label, condesos, tiendas, diasEditados);
             event.consume();
           }
         });
@@ -316,6 +325,7 @@ public class FrontGUI extends Application implements Initializable {
   public void monthBackButton(ActionEvent actionEvent) {
     Locale spanishLocale=new Locale("es", "ES");
     calendar = calendar.plusMonths(-1);
+    setMasterForTiendas();
     for(Condeso elCondeso : condesos){
       elCondeso.setFecha(calendar);
     }
@@ -329,6 +339,7 @@ public class FrontGUI extends Application implements Initializable {
   public void monthNextButton(ActionEvent actionEvent) {
     Locale spanishLocale=new Locale("es", "ES");
     calendar = calendar.plusMonths(1);
+    setMasterForTiendas();
     for(Condeso elCondeso : condesos){
       elCondeso.setFecha(calendar);
     }
@@ -390,7 +401,7 @@ public class FrontGUI extends Application implements Initializable {
               e.printStackTrace();
             }
             AddPopOverGUI add = fxmlLoader.getController();
-            add.setInitialValues(pane, dia, condesos, tiendas);
+            add.setInitialValues(pane, dia, condesos, tiendas, diasEditados);
             PopOver pop = new PopOver(root);
             pop.setAutoFix(false);
             pop.setAnimated(false);
@@ -401,9 +412,8 @@ public class FrontGUI extends Application implements Initializable {
 
   public void guardarCambios(ActionEvent actionEvent) {
     //TODO
-      var dias = mes.values().toArray(new Dias[100]);
-      webApi.UpdateMultipleDays(Arrays.asList(dias));
-      webApi.UpdateMultipleCondesos(condesos);
+    var values = diasEditados.values();
+    webApi.UpdateMultipleDays(new ArrayList<>(values));
   }
 
   public void writeExcel(ActionEvent actionEvent) {

@@ -2,6 +2,7 @@ package DbController;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonWriter;
 import condeso.HorasMes;
 import condeso.User;
 import horario.Dias;
@@ -27,7 +28,7 @@ import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.util.EntityUtils;
 import tiendas.Tiendas;
 
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
@@ -43,8 +44,8 @@ import static org.apache.commons.codec.binary.Base64.encodeBase64;
 
 public class WebApiClient implements CrudOperations {
 
-    public final String url = "https://webappcondesa.azurewebsites.net/api";
-    //public final String url = "https://localhost:44389/api";
+    //public final String url = "https://webappcondesa.azurewebsites.net/api";
+    public final String url = "https://localhost:44389/api";
     private final Gson gson;
 
     public WebApiClient()
@@ -112,8 +113,8 @@ public class WebApiClient implements CrudOperations {
     public int UpdateCondeso(Condeso condeso) {
         var client = CreateClient();
         HttpPut post = new HttpPut(url + "/Condesos/" + condeso.getId());
-        String JSON_STRING =  gson.toJson(condeso);
-        HttpEntity stringEntity = new StringEntity(JSON_STRING, ContentType.APPLICATION_JSON);
+        //String JSON_STRING =  gson.toJson(condeso);
+        HttpEntity stringEntity = new StringEntity("", ContentType.APPLICATION_JSON);
         post.setEntity(stringEntity);
         CloseableHttpResponse response = null;
         try {
@@ -121,7 +122,15 @@ public class WebApiClient implements CrudOperations {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return response.getStatusLine().getStatusCode();
+        finally {
+            try {
+                response.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        int result = response.getStatusLine().getStatusCode();
+        return result;
     }
 
     @Override
@@ -263,8 +272,13 @@ public class WebApiClient implements CrudOperations {
     {
         var client = CreateClient();
         HttpPost post = new HttpPost(url + "/Days/PostMultipleDays");
-        String JSON_STRING =  gson.toJson(dias);
-        HttpEntity stringEntity = new StringEntity(JSON_STRING, ContentType.APPLICATION_JSON);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        try {
+            writeJsonStream(out, dias, Dias.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        HttpEntity stringEntity = new StringEntity(out.toString(), ContentType.APPLICATION_JSON);
         post.setEntity(stringEntity);
         CloseableHttpResponse response = null;
         try {
@@ -280,8 +294,13 @@ public class WebApiClient implements CrudOperations {
     {
         var client = CreateClient();
         HttpPut post = new HttpPut(url + "/Days/PutMultipleDays");
-        String JSON_STRING =  gson.toJson(dias);
-        HttpEntity stringEntity = new StringEntity(JSON_STRING, ContentType.APPLICATION_JSON);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        try {
+            writeJsonStream(out, dias, Dias.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        HttpEntity stringEntity = new StringEntity(out.toString(), ContentType.APPLICATION_JSON);
         post.setEntity(stringEntity);
         CloseableHttpResponse response = null;
         try {
@@ -410,6 +429,17 @@ public class WebApiClient implements CrudOperations {
             e.printStackTrace();
         }
         return response.getStatusLine().getStatusCode();
+    }
+
+    public void writeJsonStream(OutputStream out, List<Dias> messages, Class t) throws IOException {
+        JsonWriter writer = new JsonWriter(new OutputStreamWriter(out, "UTF-8"));
+        writer.setIndent("  ");
+        writer.beginArray();
+        for (Dias message : messages) {
+            gson.toJson(message, t, writer);
+        }
+        writer.endArray();
+        writer.close();
     }
 }
 
