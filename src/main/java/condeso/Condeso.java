@@ -27,7 +27,7 @@ import tiendas.Tiendas;
 @Table(name = "condeso")
 public class Condeso {
 
-	@Id
+    @Id
 	private long id;
 	@Column
 	private TipoEmpleado type;
@@ -57,6 +57,7 @@ public class Condeso {
 	private String color;
 	public String phonenumber;
 	public String email;
+	public int horasMesCalculadas;
 
 	@Transient
 	private Availability deliverySchedule;
@@ -472,12 +473,8 @@ public class Condeso {
 		if(fecha == null)
 		return  name + ": " +getHorasAsignadas();
 		else{
-		HorasMes horas =	horasMes.get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-		if(horas != null)
-		return name + ": " +horas.getHoras();
-		else
-		return name + ": 0";
-		}
+			return name + ": " + horasMesCalculadas;
+ 		}
 	}
 
 	public ObservableValue<Boolean> Lunch() {

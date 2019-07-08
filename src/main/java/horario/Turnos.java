@@ -214,6 +214,7 @@ public class Turnos implements Comparable<Turnos> {
 		this.shopColor = elDia.getTienda().getColor();
 		this.shopName = elDia.getTienda().getNombre();
 		this.shopManager = elDia.getTienda().getManager();
+		this.date = elDia.getDate();
 	}
 
 	public void checkDia(){if(elDia == null)throw  new RuntimeException("dia es null");}

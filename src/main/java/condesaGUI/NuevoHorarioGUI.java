@@ -70,7 +70,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
 
     private HashMap<Integer, Integer[][]> disponibilidad;
     private LocalDate fecha;
-
+    private CrudOperations webApi;
 
     public static void main(String[] args) {
         launch(args);
@@ -78,10 +78,10 @@ public class NuevoHorarioGUI extends Application implements Initializable {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
     }
 
     public void setInitialValues(List<Condeso> condesos, List<Tiendas> tiendas){
+        webApi = new WebApiClient();
         allCondesos = condesos;
         allTiendas = tiendas;
         condesoName.setCellValueFactory(new PropertyValueFactory<Condeso, String>("nombre"));
@@ -124,6 +124,7 @@ public class NuevoHorarioGUI extends Application implements Initializable {
 
     public void iniciarClicked(ActionEvent actionEvent) throws Exception {
         if(fecha !=  null && horario != null){
+            webApi.DeleteMultipleDays(fecha);
             disponibilidad = changeSetToHashMap(horario);
             Set<Tiendas> tiendasALL2 = new HashSet<>();
             tiendasALL2.addAll(allTiendas);
@@ -302,12 +303,8 @@ public class NuevoHorarioGUI extends Application implements Initializable {
                 gmAbreviación.setCellValueFactory(new PropertyValueFactory<Condeso, String>("abreviacion"));
                 gmsTable.getItems().setAll(allGMs);
             }
-            condesoName.setCellValueFactory(new PropertyValueFactory<Condeso, String>("nombre"));
-            condesoID.setCellValueFactory(new PropertyValueFactory<Condeso, Long>("Id"));
-            condesoAbreviación.setCellValueFactory(new PropertyValueFactory<Condeso, String>("abreviacion"));
-            tiendasName.setCellValueFactory(new PropertyValueFactory<Tiendas, String>("nombre"));
-            tiendasPlantilla.setCellValueFactory(new PropertyValueFactory<Tiendas, Plantillas>("plantilla"));
-            condesosTable.getItems().setAll(foundCondesos);
+
+            condesosTable.getItems().addAll(foundCondesos);
             tiendasTable.getItems().setAll(allTiendas);
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -332,5 +329,33 @@ public class NuevoHorarioGUI extends Application implements Initializable {
         dias = tienda.getDiasDeCierre();
         diasDeCierre = FXCollections.observableArrayList(dias);
         fechaDeCierreList.setItems(diasDeCierre);
+    }
+
+    public void importarNube(ActionEvent actionEvent) {
+        if(fecha == null)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("AVISO!");
+            alert.setHeaderText("No se selecciono fecha de inicio del mes! ");
+            alert.setContentText(null);
+            alert.showAndWait();
+        }
+        else {
+            horario = webApi.GetAvailabilities(fecha.getMonth());
+            foundCondesos.clear();
+            for (Disponibilidad disponibilidad : horario) {
+                disponibilidad.getAvailableDaysAsArray();
+                long id = disponibilidad.getCondesoId();
+                for (Condeso condeso1 : allCondesos) {
+                    if (condeso1.getId() == id) {
+                        condeso1.setMaxHours(disponibilidad.getMax());
+                        condeso1.setMinHours(disponibilidad.getMin());
+                        //condeso1.checkMaxMin();
+                        foundCondesos.add(condeso1);}
+                }
+            }
+            condesosTable.getItems().clear();
+            condesosTable.getItems().addAll(foundCondesos);
+        }
     }
 }

@@ -30,6 +30,9 @@ public interface CrudOperations {
     int UpdatePlantilla(Plantillas plantilla);
     int UpdateMultipleDays(List<Dias> dias);
     int SaveMultipleDays(List<Dias> dias);
+
+    int DeleteMultipleDays(LocalDate date);
+
     HashMap<LocalDate, Dias> GetDaysForShop(long shopId, LocalDate time);
     Set<Disponibilidad> GetAvailabilities(Month month);
     List<User> GetAllUsers();

@@ -120,25 +120,26 @@ public class EditPopOverGUI  implements Initializable {
               }
             }
             HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-            if(horas != null){
-              int lasHoras = horas.getHoras();
-              horas.setHoras(lasHoras - duracion1);
-
-            }
+//            if(horas != null){
+//              int lasHoras = horas.getHoras();
+//              horas.setHoras(lasHoras - duracion1);
+//            }
+            elCondeso.horasMesCalculadas -= duracion1;
           }
           elCondeso = condesoTodosChoice.getSelectionModel().getSelectedItem();
           turno.setCondeso(elCondeso);
-          HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-          if(horas != null){
-            int lasHoras = horas.getHoras();
-            horas.setHoras(lasHoras + turno.getDuracion());
-
-          }else{
-            horas = new HorasMes();
-            horas.setHoras(turno.getDuracion());
-            elCondeso.getHorasMes().put(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1),horas);
-
-          }
+          elCondeso.horasMesCalculadas += turno.getDuracion();
+//          HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+//          if(horas != null){
+//            int lasHoras = horas.getHoras();
+//            horas.setHoras(lasHoras + turno.getDuracion());
+//
+//          }else{
+//            horas = new HorasMes();
+//            horas.setHoras(turno.getDuracion());
+//            elCondeso.getHorasMes().put(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1),horas);
+//
+//          }
 
 
 
@@ -153,24 +154,25 @@ public class EditPopOverGUI  implements Initializable {
                 break;
               }
             }
-            HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-            if(horas != null){
-              int lasHoras = horas.getHoras();
-              horas.setHoras(lasHoras - duracion1);
-
-            }
+//            HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+//            if(horas != null){
+//              int lasHoras = horas.getHoras();
+//              horas.setHoras(lasHoras - duracion1);
+//            }
+            elCondeso.horasMesCalculadas -= duracion1;
           }
           elCondeso = condesoChoice.getSelectionModel().getSelectedItem();
           turno.setCondeso(elCondeso);
-          HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-          if(horas != null){
-            int lasHoras = horas.getHoras();
-            horas.setHoras(lasHoras + turno.getDuracion());
-          }else{
-            horas = new HorasMes();
-            horas.setHoras(turno.getDuracion());
-            elCondeso.getHorasMes().put(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1),horas);
-          }
+          elCondeso.horasMesCalculadas += turno.getDuracion();
+//          HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+//          if(horas != null){
+//            int lasHoras = horas.getHoras();
+//            horas.setHoras(lasHoras + turno.getDuracion());
+//          }else{
+//            horas = new HorasMes();
+//            horas.setHoras(turno.getDuracion());
+//            elCondeso.getHorasMes().put(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1),horas);
+//          }
         } else {
           Alert alertFinal = new Alert(Alert.AlertType.CONFIRMATION);
           alertFinal.setTitle("No se selecciono ninguno");
@@ -187,23 +189,25 @@ public class EditPopOverGUI  implements Initializable {
             break;
           }
         }
-        HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-        if(horas != null){
-          int lasHoras = horas.getHoras();
-          horas.setHoras(lasHoras - duracion1);
-        }
+//        HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+//        if(horas != null){
+//          int lasHoras = horas.getHoras();
+//          horas.setHoras(lasHoras - duracion1);
+//        }
+        elCondeso.horasMesCalculadas -= duracion1;
       }
       elCondeso = condesoTodosChoice.getSelectionModel().getSelectedItem();
       turno.setCondeso(elCondeso);
-      HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-      if(horas != null){
-        int lasHoras = horas.getHoras();
-        horas.setHoras(lasHoras + turno.getDuracion());
-      }else{
-        horas = new HorasMes();
-        horas.setHoras(turno.getDuracion());
-        elCondeso.getHorasMes().put(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1),horas);
-      }
+//      HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+//      if(horas != null){
+//        int lasHoras = horas.getHoras();
+//        horas.setHoras(lasHoras + turno.getDuracion());
+//      }else{
+//        horas = new HorasMes();
+//        horas.setHoras(turno.getDuracion());
+//        elCondeso.getHorasMes().put(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1),horas);
+//      }
+      elCondeso.horasMesCalculadas += turno.getDuracion();
     }else{
       Condeso elCondeso = turno.getCondeso();
       LocalDate fecha = dia.getDate();
@@ -215,23 +219,25 @@ public class EditPopOverGUI  implements Initializable {
             break;
           }
         }
-        HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-        if(horas != null){
-          int lasHoras = horas.getHoras();
-          horas.setHoras(lasHoras - duracion1);
-        }
+//        HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+//        if(horas != null){
+//          int lasHoras = horas.getHoras();
+//          horas.setHoras(lasHoras - duracion1);
+//        }
+        elCondeso.horasMesCalculadas -= duracion1;
       }
       elCondeso = condesoChoice.getSelectionModel().getSelectedItem();
       turno.setCondeso(elCondeso);
-      HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-      if(horas != null){
-        int lasHoras = horas.getHoras();
-        horas.setHoras(lasHoras + turno.getDuracion());
-      }else{
-        horas = new HorasMes();
-        horas.setHoras(turno.getDuracion());
-        elCondeso.getHorasMes().put(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1),horas);
-      }
+//      HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+//      if(horas != null){
+//        int lasHoras = horas.getHoras();
+//        horas.setHoras(lasHoras + turno.getDuracion());
+//      }else{
+//        horas = new HorasMes();
+//        horas.setHoras(turno.getDuracion());
+//        elCondeso.getHorasMes().put(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1),horas);
+//      }
+      elCondeso.horasMesCalculadas += turno.getDuracion();
     }
     grid.getChildren().remove(label);
     //considering the first hour is 8 am
@@ -258,12 +264,13 @@ public class EditPopOverGUI  implements Initializable {
           break;
         }
       }
-      HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-      if(horas != null){
-        int lasHoras = horas.getHoras();
-        horas.setHoras(lasHoras - turno.getDuracion());
-        //HibernateCrud.UpdateCondeso(elCondeso);
-      }
+//      HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+//      if(horas != null){
+//        int lasHoras = horas.getHoras();
+//        horas.setHoras(lasHoras - turno.getDuracion());
+        //HibernateCrud.UpdateCondeso(elCondeso);}
+      elCondeso.horasMesCalculadas -= turno.getDuracion();
+
     }
     dia.getTurnos().remove(turno);
     grid.getChildren().remove(label);
@@ -281,11 +288,12 @@ public class EditPopOverGUI  implements Initializable {
           break;
         }
       }
-      HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-      if(horas != null){
-        int lasHoras = horas.getHoras();
-        horas.setHoras(lasHoras - turno.getDuracion());
-      }
+//      HorasMes horas = elCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+//      if(horas != null){
+//        int lasHoras = horas.getHoras();
+//        horas.setHoras(lasHoras - turno.getDuracion());
+//      }
+      elCondeso.horasMesCalculadas -= turno.getDuracion();
     }
     turno.setCondeso(null);
     grid.getChildren().remove(label);

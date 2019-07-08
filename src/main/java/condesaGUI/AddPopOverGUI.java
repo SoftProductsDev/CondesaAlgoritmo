@@ -90,11 +90,12 @@ public class AddPopOverGUI implements Initializable {
           break;
         }
       }
-      HorasMes horas = selectedCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-      if(horas != null){
-        int lasHoras = horas.getHoras();
-        horas.setHoras(lasHoras + turno.getDuracion());
-      }
+//      HorasMes horas = selectedCondeso.getHorasMes().get(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
+//      if(horas != null){
+//        int lasHoras = horas.getHoras();
+//        horas.setHoras(lasHoras + turno.getDuracion());
+//      }
+      selectedCondeso.horasMesCalculadas += turno.getDuracion();
     }
 
     if (tipoChoice.getValue() == null){

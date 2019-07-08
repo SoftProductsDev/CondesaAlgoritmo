@@ -202,7 +202,7 @@ public class lalo {
 		insist(noAsignados, new ArrayList<>(), true);
 		for(Condeso elCondeso : condesos){
 			elCondeso.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-			webApi.UpdateCondeso(elCondeso);
+			//webApi.UpdateCondeso(elCondeso);
 			elCondeso.resetCondeso();
 		}
 		for(Tiendas tiendaFinal:tiendas){
@@ -276,7 +276,7 @@ public class lalo {
 				if(elTurno != null) countFijos++;}
 			}
 			elFijo.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-			webApi.UpdateCondeso(elFijo);
+			//webApi.UpdateCondeso(elFijo);
 			elFijo.resetCondeso();
 		}
 
@@ -303,7 +303,7 @@ public class lalo {
 				}
 			}
 			elFijo.setHorasMes(LocalDate.of(fecha.getYear(), fecha.getMonth(), 1));
-			webApi.UpdateCondeso(elFijo);
+			//webApi.UpdateCondeso(elFijo);
 			elFijo.resetCondeso();
 		}
 

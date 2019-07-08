@@ -50,7 +50,7 @@ public class FrontGUI extends Application implements Initializable {
   private ObservableList<Tiendas> tiendas;
   private ObservableList<Condeso> condesos;
   private CrudOperations webApi;
-  private HashMap<LocalDate, Dias> mes;
+  private HashMap<Long, Condeso> condesoMap;
 
 
   private ObservableList<Node> calendarNodes;
@@ -78,13 +78,16 @@ public class FrontGUI extends Application implements Initializable {
   public void setInitialValues(ObservableList<Condeso> condesos, ObservableList<Tiendas> tiendas){
     //Populate javafx Nodes with data.
     addHourGrids();
+    this.webApi = new WebApiClient();
     this.tiendas = tiendas;
     this.condesos = condesos;
     tiendasComboBox.setItems(tiendas);
     Locale spanishLocale=new Locale("es", "ES");
     calendar = LocalDate.now();
+    condesoMap = new HashMap<Long, Condeso>();
     for(Condeso elCondeso : condesos){
       elCondeso.setFecha(calendar);
+      condesoMap.put(elCondeso.getId(), elCondeso);
     }
     setMasterForTiendas();
 
@@ -92,15 +95,32 @@ public class FrontGUI extends Application implements Initializable {
     calendarNodes = monthGrid.getChildren();
     setCalendarDays();
     addLabelGrids();
-    this.webApi = new WebApiClient();
   }
 
   private void setMasterForTiendas()
   {
     for (Tiendas tienda : tiendas) {
       var master = new HorarioMaster();
-      master.setMes(webApi.GetDaysForShop(tienda.getId(), calendar.withDayOfMonth(1)));
+      var mes = webApi.GetDaysForShop(tienda.getId(), calendar.withDayOfMonth(1));
+      if(mes != null)
+      {
+        master.setMes(mes);
+      }
       tienda.setMaster(master);
+      countHoras(mes);
+    }
+  }
+
+  private void countHoras(HashMap<LocalDate, Dias> mes) {
+    for (Dias d: mes.values()) {
+      for (Turnos t: d.getTurnos())
+      {
+        if(t.getCondesoId() != 0)
+        {
+          Condeso c = condesoMap.get(t.getCondesoId());
+          c.horasMesCalculadas += t.getDuracion();
+        }
+      }
     }
   }
 
@@ -183,14 +203,13 @@ public class FrontGUI extends Application implements Initializable {
   private void setHorarioMaster(){
     Tiendas tienda = tiendasComboBox.getValue();
     HorarioMaster master = null;
-     mes = null;
     if(tienda != null){
       master = tienda.getMaster();
     }
-    if (mes != null){
+    if (master != null){
       for (int i = 1; i <= calendar.getMonth().length(calendar.isLeapYear()); i++)
       {
-          //Map<LocalDate, Dias> mes = master.getMes();
+          Map<LocalDate, Dias> mes = master.getMes();
           Dias dia = mes.get(calendar.withDayOfMonth(i));
           if(dia!=null){
           setDias(dia);

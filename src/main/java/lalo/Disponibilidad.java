@@ -12,6 +12,15 @@ public class Disponibilidad {
     private List<AvailableDay> availableDays ;
     private int max;
     private int min;
+    public long condesoId;
+
+    public long getCondesoId() {
+        return condesoId;
+    }
+
+    public void setCondesoId(long condesoId) {
+        condesoId = condesoId;
+    }
 
     public List<AvailableDay> getAvailableDays() {
         return availableDays;
@@ -77,12 +86,12 @@ public class Disponibilidad {
         {
             return null;
         }
-        Integer[][] result = new Integer[2][31];
+        disponibilidad = new Integer[2][31];
         for (AvailableDay day:availableDays
              ) {
-                result[day.CalendarDay][0] = day.getStart();
-                result[day.CalendarDay][1] = day.getEnd();
+                disponibilidad[day.CalendarDay][0] = day.getStart();
+                disponibilidad[day.CalendarDay][1] = day.getEnd();
         }
-        return result;
+        return disponibilidad;
     }
 }

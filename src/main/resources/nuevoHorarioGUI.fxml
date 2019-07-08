@@ -12,18 +12,17 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="1130.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.NuevoHorarioGUI">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="1130.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="condesaGUI.NuevoHorarioGUI">
     <columnConstraints>
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="100.0" minWidth="8.0" prefWidth="15.0" />
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="204.0" minWidth="10.0" prefWidth="197.0" />
-      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="110.0" />
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="204.0" minWidth="10.0" prefWidth="135.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="121.0" minWidth="8.0" prefWidth="104.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="103.0" minWidth="0.0" prefWidth="71.0" />
         <ColumnConstraints hgrow="ALWAYS" maxWidth="105.0" minWidth="10.0" prefWidth="41.0" />
       <ColumnConstraints hgrow="ALWAYS" maxWidth="179.0" minWidth="10.0" prefWidth="179.0" />
       <ColumnConstraints hgrow="ALWAYS" maxWidth="137.0" minWidth="10.0" prefWidth="105.0" />
       <ColumnConstraints hgrow="ALWAYS" maxWidth="105.0" minWidth="0.0" prefWidth="32.0" />
         <ColumnConstraints hgrow="ALWAYS" maxWidth="262.0" minWidth="10.0" prefWidth="258.0" />
         <ColumnConstraints hgrow="ALWAYS" maxWidth="207.0" minWidth="10.0" prefWidth="183.0" />
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="101.0" minWidth="7.0" prefWidth="31.0" />
         <ColumnConstraints />
     </columnConstraints>
     <rowConstraints>
@@ -49,7 +48,7 @@
             <TableColumn fx:id="tiendasPlantilla" prefWidth="${tiendasTable.width*0.5}" text="Plantilla Actual" />
         </columns>
       </TableView>
-      <TableView fx:id="condesosTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="6" GridPane.valignment="CENTER">
+      <TableView fx:id="condesosTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="6" GridPane.valignment="CENTER">
         <columns>
             <TableColumn fx:id="condesoName" prefWidth="${condesosTable.width*0.333}" text="Nombre Condeso" />
             <TableColumn fx:id="condesoAbreviación" prefWidth="${condesosTable.width*0.333}" text="Abreviación" />
@@ -63,7 +62,7 @@
                <TableColumn fx:id="gmID" prefWidth="${gmsTable.width*0.333}" text="ID" />
            </columns>
        </TableView>
-      <Label text="Condesos Disponibles" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+      <Label text="Condesos Disponibles" GridPane.columnSpan="2" GridPane.halignment="CENTER">
        <font>
            <Font size="18.0" />
        </font>
@@ -87,7 +86,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="importarButton" mnemonicParsing="false" onAction="#importarClicked" text="Importar" GridPane.columnIndex="1" GridPane.rowIndex="7">
+      <Button fx:id="importarButton" mnemonicParsing="false" onAction="#importarClicked" text="Importar" GridPane.rowIndex="7">
          <font>
             <Font size="18.0" />
          </font>
@@ -101,5 +100,6 @@
          <font>
             <Font size="24.0" />
          </font></RadioButton>
+      <Button mnemonicParsing="false" onAction="#importarNube" prefHeight="40.0" prefWidth="113.0" text="Importar Nube" GridPane.columnIndex="1" GridPane.rowIndex="7" />
    </children>
 </GridPane>

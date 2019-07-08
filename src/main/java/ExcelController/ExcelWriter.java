@@ -147,19 +147,17 @@ public class  ExcelWriter {
        if (row == null){
          row = sheet.createRow(rowStart);
        }
-       Cell abrevCell = row.createCell(columnStart);
-       abrevCell.setCellValue(c.getAbreviacion());
-       abrevCell.setCellStyle(colorStyle(c.getColor(), false));
-       Cell nombreCell = row.createCell(columnStart + 1);
-       sheet.setColumnWidth(columnStart, 1700);
-       nombreCell.setCellValue(c.getNombre());
-       sheet.autoSizeColumn(columnStart + 1);
-       Cell horasCell = row.createCell(columnStart + 2);
-      var horasMes = c.getHorasMes().get(calendar.withDayOfMonth(1));
-      if (horasMes != null){
-        horasCell.setCellValue(horasMes.getHoras());
-      }
-      rowStart++;
+        Cell abrevCell = row.createCell(columnStart);
+        abrevCell.setCellValue(c.getAbreviacion());
+        abrevCell.setCellStyle(colorStyle(c.getColor(), false));
+        Cell nombreCell = row.createCell(columnStart + 1);
+        sheet.setColumnWidth(columnStart, 1700);
+        nombreCell.setCellValue(c.getNombre());
+        sheet.autoSizeColumn(columnStart + 1);
+        Cell horasCell = row.createCell(columnStart + 2);
+        var horasMes = c.horasMesCalculadas;
+        horasCell.setCellValue(horasMes);
+        rowStart++;
     }
   }
 
@@ -282,8 +280,8 @@ public class  ExcelWriter {
       }else{
         setTurno(turno, column, row - 1,sheet, gm);
       }
-      if(turno.getCondeso() != null) {
-        Sheet condesoSheet = workbookMaster.getSheet(turno.getCondeso().getAbreviacion());
+      if(turno.getCondesoAbreviate() != null) {
+        Sheet condesoSheet = workbookMaster.getSheet(turno.getCondesoAbreviate());
         condesoColumn += 8 * (dia.getDate().getDayOfWeek().getValue() - 1);
         TemporalField weekField = WeekFields.of(Locale.GERMAN).weekOfMonth();
         int condesoRow = row;
@@ -302,9 +300,9 @@ public class  ExcelWriter {
     int hourIndex = (row - 8) + turno.getInicio();
     CellStyle one = null;
     CellStyle two = null;
-    if (turno.getCondeso() != null){
-      one = colorStyle(turno.getCondeso().getColor(),true);
-      two = colorStyle(turno.getCondeso().getColor(),false);
+    if (turno.getCondesoColor() != null){
+      one = colorStyle(turno.getCondesoColor(),true);
+      two = colorStyle(turno.getCondesoColor(),false);
     }
 
     for (int i = 1; i <= turno.getDuracion(); i++){
@@ -327,8 +325,8 @@ public class  ExcelWriter {
               column + turno.getShiftType().ordinal() + 1);
         }
       }
-      if(turno.getCondeso() != null){
-        cell.setCellValue(turno.getCondeso().getAbreviacion());
+      if(turno.getCondesoAbreviate() != null){
+        cell.setCellValue(turno.getCondesoAbreviate());
         if(hourIndex == 9){
           cell.setCellStyle(one);
         }else {

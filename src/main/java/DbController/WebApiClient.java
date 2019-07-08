@@ -44,8 +44,8 @@ import static org.apache.commons.codec.binary.Base64.encodeBase64;
 
 public class WebApiClient implements CrudOperations {
 
-    //public final String url = "https://webappcondesa.azurewebsites.net/api";
-    public final String url = "https://localhost:44389/api";
+    public final String url = "https://webappcondesa.azurewebsites.net/api";
+    //public final String url = "https://localhost:44389/api";
     private final Gson gson;
 
     public WebApiClient()
@@ -302,6 +302,20 @@ public class WebApiClient implements CrudOperations {
         }
         HttpEntity stringEntity = new StringEntity(out.toString(), ContentType.APPLICATION_JSON);
         post.setEntity(stringEntity);
+        CloseableHttpResponse response = null;
+        try {
+            response = client.execute(post);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response.getStatusLine().getStatusCode();
+    }
+
+    @Override
+    public int DeleteMultipleDays(LocalDate date)
+    {
+        var client = CreateClient();
+        HttpDelete post = new HttpDelete(url + "/Days/DeleteMultipleDays/" + date.toString());
         CloseableHttpResponse response = null;
         try {
             response = client.execute(post);
