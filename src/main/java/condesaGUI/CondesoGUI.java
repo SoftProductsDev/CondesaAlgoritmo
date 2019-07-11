@@ -265,7 +265,7 @@ public class CondesoGUI  extends Application implements Initializable {
             femeninoRadio.setSelected(condeso.isFemenino());
             nivelComboBox.setValue(nivelComboBox.getItems().get(condeso.getLevel() - 1));
             color.setValue(Color.web(condeso.getColor()));
-            Hibernate.initialize(condeso.getDondePuedeTrabajar());
+            //Hibernate.initialize(condeso.getDondePuedeTrabajar());
             ObservableList<Tiendas> tiendas =
                 FXCollections.observableArrayList(condeso.getDondePuedeTrabajar());
             listTiendas.setItems(tiendas);
@@ -390,14 +390,14 @@ public class CondesoGUI  extends Application implements Initializable {
             alert.setContentText("Error: El Id solo puede contener números!");
             alert.show();
         }
-        for (User c:users) {
-            if(c.getCondeso().getId() == id && c != user)
+
+            if(condeso.getId() != id)
             {
-                alert.setContentText("Ya existe un condeso con ese id!!!!");
+                alert.setContentText("No se puede cambiar el id, nunca!!!!");
                 alert.show();
                 return "error";
             }
-        }
+
         if (tiendasAddCondeso.isEmpty()){
             alert.setContentText("No se seleccionaron tiendas");
             alert.show();
@@ -408,7 +408,7 @@ public class CondesoGUI  extends Application implements Initializable {
         try {
             user.setPassword(passwordTextField.getText());
             user.setUsername(userTextField.getText());
-            condeso.setId(id);
+            //condeso.setId(id);
             condeso.setNombre(nombreTextField.getText());
             condeso.setAbreviacion(abrevTextField.getText());
             condeso.setContrato(contratoChoiceBox.getValue());
